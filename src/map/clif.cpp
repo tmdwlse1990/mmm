@@ -4074,7 +4074,7 @@ void clif_changelook(struct block_list *bl, int32 type, int32 val) {
 			case LOOK_BODY2:
 #if PACKETVER < 20150513
 				return;
-#else
+#elif (PACKETVER_MAIN_NUM < 20231220) 
 				if (val && sd && sd->sc.option&OPTION_COSTUME)
  					val = 0;
  				vd->body_style = val;
@@ -9350,12 +9350,15 @@ void clif_guild_position_selected(map_session_data& sd)
 ///     enum emotion_type
 void clif_emotion( block_list& bl, emotion_type type ){
 	PACKET_ZC_EMOTION p{};
-
+#if (PACKETVER_MAIN_NUM < 20230925)
 	p.packetType = HEADER_ZC_EMOTION;
 	p.GID = bl.id;
 	p.type = static_cast<decltype(p.type)>( type );
 
 	clif_send( &p, sizeof(p), &bl, AREA );
+#else
+	clif_emotion2(&bl, 0, type);
+#endif
 }
 
 
@@ -10873,7 +10876,9 @@ void clif_parse_LoadEndAck(int32 fd,map_session_data *sd)
 				|| sd->bl.m == sd->feel_map[2].m)
 				sc_start(&sd->bl,&sd->bl, SC_KNOWLEDGE, 100, lv, skill_get_time(SG_KNOWLEDGE, lv));
 		}
-
+		
+		pc_load_emotion_expantion_list(sd);
+		
 		if(sd->pd && sd->pd->pet.intimate > 900)
 			clif_pet_emotion( *sd->pd, (sd->pd->pet.class_ - 100)*100 + 50 + pet_hungry_val(sd->pd) );
 
@@ -11558,6 +11563,7 @@ void clif_parse_ChangeDir(int32 fd, map_session_data *sd)
 /// type:
 ///     @see enum emotion_type
 void clif_parse_Emotion(int32 fd, map_session_data *sd){
+	#if (PACKETVER_MAIN_NUM < 20230925)
 	if( sd == nullptr ){
 		return;
 	}
@@ -11596,6 +11602,7 @@ void clif_parse_Emotion(int32 fd, map_session_data *sd){
 		clif_emotion( sd->bl, static_cast<emotion_type>( emoticon ) );
 	} else
 		clif_skill_fail( *sd, 1, USESKILL_FAIL_LEVEL, 1 );
+	#endif
 }
 
 
@@ -17668,6 +17675,13 @@ void clif_parse_configuration( int32 fd, map_session_data* sd ){
 
 			sd->hd->homunculus.autofeed = flag;
 			break;
+		case CONFIG_SHOW_COSTUME:
+		{
+			sd->status.show_costume = flag;
+			pc_set_costume_view(sd);
+
+			break;
+		}
 		default:
 			ShowWarning( "clif_parse_configuration: received unknown configuration type '%d'...\n", type );
 			return;
@@ -22801,6 +22815,13 @@ bool clif_parse_stylist_buy_sub( map_session_data* sd, _look look, int16 index )
 		return false;
 	}
 
+#if (PACKETVER_MAIN_NUM >= 20231220)
+	if (look == LOOK_BODY2 && entry->basejob != -1 && entry->basejob != sd->status.class_)
+	{
+		return false;
+	}
+#endif
+
 	int16 inventoryIndex = -1;
 
 	if( costs->requiredItem != 0 ){
@@ -22922,6 +22943,98 @@ void clif_parse_stylist_close( int32 fd, map_session_data* sd ){
 	sd->state.stylist_open = false;
 #endif
 }
+
+
+void clif_parse_stylist_buy3(const int fd, map_session_data* const sd)
+{
+#if (PACKETVER_MAIN_NUM >= 20231220)
+	PACKET_CZ_REQ_BUY_STYLINGSHOP3* const Packet = reinterpret_cast<PACKET_CZ_REQ_BUY_STYLINGSHOP3*>(RFIFOP(fd, 0));
+	const uint16 Length = (Packet->PacketLength - sizeof(PACKET_CZ_REQ_BUY_STYLINGSHOP3)) / sizeof(PACKET_CZ_REQ_BUY_STYLINGSHOP3_SUB);
+
+	if (Packet->Num > 10 || Length != Packet->Num)
+	{
+		clif_stylist_response(sd, false);
+		return;
+	}
+
+	for (size_t Num = 0; Num < Length; ++Num)
+	{
+		bool bResult = false;
+
+		switch (Packet->List[Num].Type)
+		{
+			case 0: // Hair Color
+			{
+				bResult = clif_parse_stylist_buy_sub(sd, LOOK_HAIR_COLOR, Packet->List[Num].Value);
+				break;
+			}
+
+			case 1: // Hair (Human)
+			{
+				bResult = clif_parse_stylist_buy_sub(sd, LOOK_HAIR, Packet->List[Num].Value);
+				break;
+			}
+
+			case 2: // Cloth Color (Human)
+			{
+				bResult = clif_parse_stylist_buy_sub(sd, LOOK_CLOTHES_COLOR, Packet->List[Num].Value);
+				break;
+			}
+
+			case 3: // Head Top
+			{
+				bResult = clif_parse_stylist_buy_sub(sd, LOOK_HEAD_TOP, Packet->List[Num].Value);
+				break;
+			}
+
+			case 4: // Head Mid
+			{
+				bResult = clif_parse_stylist_buy_sub(sd, LOOK_HEAD_MID, Packet->List[Num].Value);
+				break;
+			}
+
+			case 5: // Head Bottom
+			{
+				bResult = clif_parse_stylist_buy_sub(sd, LOOK_HEAD_BOTTOM, Packet->List[Num].Value);
+				break;
+			}
+
+			case 6: // Hair (Doram)
+			{
+				bResult = clif_parse_stylist_buy_sub(sd, LOOK_HAIR, Packet->List[Num].Value);
+				break;
+			}
+
+			case 8: // Cloth Color (Doram)
+			{
+				bResult = clif_parse_stylist_buy_sub(sd, LOOK_CLOTHES_COLOR, Packet->List[Num].Value);
+				break;
+			}
+
+			case 9: // Bodystyle
+			{
+				bResult = clif_parse_stylist_buy_sub(sd, LOOK_BODY2, Packet->List[Num].Value);
+				break;
+			}
+
+			default:
+			{
+				bResult = false;
+				break;
+			}
+		}
+
+		if (bResult != true)
+		{
+			clif_stylist_response(sd, true);
+			return;
+		}
+	}
+
+	clif_stylist_response(sd, false);
+#endif
+}
+
 
 void clif_inventory_expansion_info( map_session_data* sd ){
 #if PACKETVER_MAIN_NUM >= 20181219 || PACKETVER_RE_NUM >= 20181219 || PACKETVER_ZERO_NUM >= 20181212
@@ -24587,7 +24700,9 @@ void clif_parse_enchantwindow_general( int32 fd, map_session_data* sd ){
 
 	// Log retrieving the item again -> with the new enchant
 	log_pick_pc( sd, LOG_TYPE_ENCHANT, 1, &selected_item );
-
+	
+	sd->enchantIndex = sd->state.item_enchant_index;
+	
 	clif_enchantwindow_result( *sd, true, selected_item.card[slot] );
 #endif
 }
@@ -24687,7 +24802,9 @@ void clif_parse_enchantwindow_perfect( int32 fd, map_session_data* sd ){
 
 	// Log retrieving the item again -> with the new enchant
 	log_pick_pc( sd, LOG_TYPE_ENCHANT, 1, &selected_item );
-
+	
+	sd->enchantIndex = sd->state.item_enchant_index;
+	
 	clif_enchantwindow_result( *sd, true, selected_item.card[slot] );
 #endif
 }
@@ -24784,8 +24901,136 @@ void clif_parse_enchantwindow_upgrade( int32 fd, map_session_data* sd ){
 
 	// Log retrieving the item again -> with the new enchant
 	log_pick_pc( sd, LOG_TYPE_ENCHANT, 1, &selected_item );
-
+	
+	sd->enchantIndex = sd->state.item_enchant_index;
+	
 	clif_enchantwindow_result( *sd, true, selected_item.card[slot] );
+#endif
+}
+
+void clif_parse_enchantwindow_random_upgrade(int fd, map_session_data *sd)
+{
+#if (PACKETVER_MAIN_NUM >= 20230905)
+	PACKET_CZ_REQUEST_RANDOM_UPGRADE_ENCHANT* Packet = reinterpret_cast<PACKET_CZ_REQUEST_RANDOM_UPGRADE_ENCHANT*>(RFIFOP(fd, 0));
+
+	if (Packet->EnchantGroup != sd->state.item_enchant_index)
+	{
+		return;
+	}
+
+	const uint16 Index = server_index(Packet->Index);
+	if (Index >= MAX_INVENTORY)
+	{
+		return;
+	}
+
+	if (sd->inventory_data[Index] == nullptr)
+	{
+		return;
+	}
+
+	item& EnchantItem = sd->inventory.u.items_inventory[Index];
+	std::shared_ptr<s_item_enchant> EnchantGroup = item_enchant_db.find(Packet->EnchantGroup);
+	if (EnchantGroup == nullptr)
+	{
+		return;
+	}
+
+	if (!clif_parse_enchant_basecheck(EnchantItem, EnchantGroup))
+	{
+		return;
+	}
+
+	const uint16 Slot = Packet->Slot;
+	if (Slot >= MAX_SLOTS)
+	{
+		return;
+	}
+
+	if (Slot < sd->inventory_data[Index]->slots)
+	{
+		return;
+	}
+
+	if (EnchantItem.card[Slot] == 0)
+	{
+		return;
+	}
+
+	std::shared_ptr<s_item_enchant_slot> EnchantSlot = util::umap_find(EnchantGroup->slots, Slot);
+	if (EnchantSlot == nullptr)
+	{
+		return;
+	}
+
+	std::shared_ptr<s_item_enchant_random_upgrade> RandomUpgrades = util::umap_find(EnchantSlot->random_upgrade.enchants, EnchantItem.card[Slot]);
+	if (RandomUpgrades == nullptr)
+	{
+		return;
+	}
+
+	if (sd->status.zeny < RandomUpgrades->zeny)
+	{
+		return;
+	}
+
+	std::unordered_map<uint16, uint16> Materials;
+	for (const auto& Material : RandomUpgrades->materials)
+	{
+		const int16 Id = pc_search_inventory(sd, Material.first);
+		if (Id < 0)
+		{
+			return;
+		}
+
+		if (sd->inventory.u.items_inventory[Id].amount < Material.second)
+		{
+			return;
+		}
+
+		Materials[Id] = Material.second;
+	}
+
+	if (pc_payzeny(sd, RandomUpgrades->zeny, LOG_TYPE_ENCHANT) != 0)
+	{
+		return;
+	}
+
+	for (const auto& Material : Materials)
+	{
+		if (pc_delitem(sd, Material.first, Material.second, 0, 0, LOG_TYPE_ENCHANT)  != 0)
+		{
+			return;
+		}
+	}
+
+	log_pick_pc(sd, LOG_TYPE_ENCHANT, -1, &EnchantItem);
+
+	bool bEnchanted = false;
+	const size_t Maximum = RandomUpgrades->enchants.size() * 3;
+	for (size_t Num = 0; Num < Maximum; ++Num)
+	{
+		std::shared_ptr<s_item_enchant_normal_sub> RandomUpgrade = util::umap_random(RandomUpgrades->enchants);
+
+		const size_t RndValue = rnd_value(0, 100000);
+		if (RandomUpgrade->chance > RndValue)
+		{
+			EnchantItem.card[Slot] = RandomUpgrade->item_id;
+			bEnchanted = true;
+			break;
+		}
+	}
+
+	if (bEnchanted == false)
+	{
+		std::shared_ptr<s_item_enchant_normal_sub> RandomUpgrade = util::umap_random( RandomUpgrades->enchants );
+		EnchantItem.card[Slot] = RandomUpgrade->item_id;
+	}
+
+	// Log retrieving the item again -> with the new enchant
+	log_pick_pc (sd, LOG_TYPE_ENCHANT, 1, &EnchantItem);
+
+	clif_enchantwindow_result(*sd, true, EnchantItem.card[Slot]);
 #endif
 }
 
@@ -24902,7 +25147,9 @@ void clif_parse_enchantwindow_reset( int32 fd, map_session_data* sd ){
 
 	// Log retrieving the item again -> with the new enchant
 	log_pick_pc( sd, LOG_TYPE_ENCHANT, 1, &selected_item );
-
+	
+	sd->enchantIndex = sd->state.item_enchant_index;
+	
 	clif_enchantwindow_result( *sd, true );
 #endif
 }
@@ -24911,6 +25158,10 @@ void clif_parse_enchantwindow_close( int32 fd, map_session_data* sd ){
 #if PACKETVER_MAIN_NUM >= 20201118 || PACKETVER_RE_NUM >= 20211103 || PACKETVER_ZERO_NUM >= 20221024
 	sd->state.item_enchant_index = 0;
 #endif
+	if(sd->enchantIndex){
+		clif_enchantwindow_open(*sd, sd->enchantIndex);
+		sd->enchantIndex = 0;
+	}
 }
 
 void clif_parse_itempackage_select( int32 fd, map_session_data* sd ){
@@ -25530,6 +25781,287 @@ void clif_parse_macro_checker( int32 fd, map_session_data* sd ){
 	is_atcommand( sd->fd, sd, command, 1 );
 #endif
 }
+
+
+/*==========================================
+ * emotion2 client packet processing function
+ *------------------------------------------*/
+void clif_parse_emotion2(const int32 fd, map_session_data* const sd)
+{
+#if (PACKETVER_MAIN_NUM >= 20230925)
+	nullpo_retv(sd);
+
+	const PACKET_CZ_REQ_EMOTION2* const Packet = reinterpret_cast<PACKET_CZ_REQ_EMOTION2*>(RFIFOP(fd, 0));
+
+	pc_use_emotion(sd, Packet->ExpantionId, Packet->EmotionId);
+#endif
+}
+
+void clif_emotion2(block_list* const bl, const uint16 ExpantionId, const uint16 EmotionId)
+{
+#if (PACKETVER_MAIN_NUM >= 20230925)
+	nullpo_retv(bl);
+
+	PACKET_ZC_EMOTION2 Packet = {};
+	Packet.PacketType = HEADER_ZC_EMOTION2;
+	Packet.GID = bl->id;
+	Packet.ExpantionId = ExpantionId;
+	Packet.EmotionId = EmotionId;
+
+	clif_send(&Packet, sizeof(PACKET_ZC_EMOTION2), bl, AREA);
+#endif
+}
+
+void clif_emotion2_fail(map_session_data* const sd, const uint16 ExpantionId, const uint16 EmotionId, const EEmotionStatus Status)
+{
+#if (PACKETVER_MAIN_NUM >= 20230925)
+	nullpo_retv(sd);
+
+	const int32 fd = sd->fd;
+
+	WFIFOHEAD(fd, sizeof(PACKET_ZC_EMOTION2_FAIL));
+
+	PACKET_ZC_EMOTION2_FAIL* const Packet = reinterpret_cast<PACKET_ZC_EMOTION2_FAIL*>(WFIFOP(fd, 0));
+	Packet->PacketType = HEADER_ZC_EMOTION2_FAIL;
+	Packet->ExpantionId = ExpantionId;
+	Packet->EmotionId = EmotionId;
+	Packet->Status = Status;
+
+	WFIFOSET(fd, sizeof(PACKET_ZC_EMOTION2_FAIL));
+#endif
+}
+
+void clif_parse_emotion2_expantion(const int32 fd, map_session_data* const sd)
+{
+#if (PACKETVER_MAIN_NUM >= 20230925)
+	nullpo_retv(sd);
+
+	const PACKET_CZ_REQ_EMOTION2_EXPANTION* const Packet = reinterpret_cast<PACKET_CZ_REQ_EMOTION2_EXPANTION*>(RFIFOP(fd, 0));
+	
+	pc_buy_emotion_expantion(sd, Packet->ExpantionId, Packet->ItemId, Packet->Amount);
+#endif
+}
+
+void clif_emotion2_expantion(map_session_data* const sd, const uint16 ExpantionId, const bool bRented, const uint32 RentEndTime)
+{
+#if (PACKETVER_MAIN_NUM >= 20230925)
+	nullpo_retv(sd);
+
+	const int32 fd = sd->fd;
+
+	WFIFOHEAD(fd, sizeof(PACKET_ZC_EMOTION2_EXPANTION));
+
+	PACKET_ZC_EMOTION2_EXPANTION* const Packet = reinterpret_cast<PACKET_ZC_EMOTION2_EXPANTION*>(WFIFOP(fd, 0));
+	Packet->PacketType = HEADER_ZC_EMOTION2_EXPANTION;
+	Packet->ExpantionId = ExpantionId;
+	Packet->bRented = bRented;
+	Packet->Timestamp = RentEndTime;
+
+	WFIFOSET(fd, sizeof(PACKET_ZC_EMOTION2_EXPANTION));
+#endif
+}
+
+void clif_emotion2_expantion_fail(map_session_data* const sd, const uint16 ExpantionId, const EEmotionExpantionStatus Status)
+{
+#if (PACKETVER_MAIN_NUM >= 20230925)
+	nullpo_retv(sd);
+
+	const int32 fd = sd->fd;
+
+	WFIFOHEAD(fd, sizeof(PACKET_ZC_EMOTION2_EXPANTION_FAIL));
+
+	PACKET_ZC_EMOTION2_EXPANTION_FAIL* const Packet = reinterpret_cast<PACKET_ZC_EMOTION2_EXPANTION_FAIL*>(WFIFOP(fd, 0));
+	Packet->PacketType = HEADER_ZC_EMOTION2_EXPANTION_FAIL;
+	Packet->ExpantionId = ExpantionId;
+	Packet->Status = Status;
+
+	WFIFOSET(fd, sizeof(PACKET_ZC_EMOTION2_EXPANTION_FAIL));
+#endif
+}
+
+void clif_emotion2_expantion_list(map_session_data* const sd, const std::vector<PACKET_ZC_EMOTION2_EXPANTION_LIST_SUB>& List)
+{
+#if (PACKETVER_MAIN_NUM >= 20230925)
+	nullpo_retv(sd);
+
+	const int32 fd = sd->fd;
+
+	const size_t PacketTotalSize = sizeof(PACKET_ZC_EMOTION2_EXPANTION_LIST) + sizeof(PACKET_ZC_EMOTION2_EXPANTION_LIST_SUB) * List.size();
+	WFIFOHEAD(fd, PacketTotalSize);
+
+	PACKET_ZC_EMOTION2_EXPANTION_LIST* const Packet = reinterpret_cast<PACKET_ZC_EMOTION2_EXPANTION_LIST*>(WFIFOP(fd, 0));
+	Packet->PacketType = HEADER_ZC_EMOTION2_EXPANTION_LIST;
+	Packet->Timestamp = uint32(time(nullptr));
+	Packet->Timezone = 540; // Seems to be 9 (Korean UTC) * 60
+
+	for (size_t Num = 0; Num < List.size(); ++Num)
+	{
+		Packet->List[Num] = List[Num];
+	}
+
+	Packet->PacketLength = uint16(PacketTotalSize);
+
+	WFIFOSET(fd, PacketTotalSize);
+#endif
+}
+
+
+/*==========================================
+ * macro user report client packet processing function
+ *------------------------------------------*/
+void clif_parse_macro_user_report(int32 fd, map_session_data *sd)
+{
+#if (PACKETVER_MAIN_NUM > 20230915)
+	nullpo_retv(sd);
+
+	PACKET_CZ_MACRO_USER_REPORT_REQ* const Packet = reinterpret_cast<PACKET_CZ_MACRO_USER_REPORT_REQ*>(RFIFOP(fd, 0));
+
+	//
+	// Packets that may be forged needs to be integrity checked before processing them.
+	//
+
+	if (Packet->ReportType > 1)
+	{
+		return;
+	}
+
+	if (Packet->ReporterAID == Packet->ReportedAID)
+	{
+		return;
+	}
+
+	if (Packet->ReporterAID != sd->status.account_id)
+	{
+		return;
+	}
+
+	map_session_data* tsd = map_id2sd(Packet->ReportedAID);
+	if (tsd == nullptr)
+	{
+		clif_macro_user_report_ack(sd, MACRO_USER_REPORT_INVALID, nullptr);
+		return;
+	}
+
+	//
+	// Checks whether the reported user character name matches.
+	//
+
+	if (strcmpi(Packet->ReportName, tsd->status.name) != 0)
+	{
+		clif_macro_user_report_ack(sd, MACRO_USER_REPORT_INVALID, nullptr);
+		return;
+	}
+
+	//
+	// Limits the maximum report count per reporter user.
+	//
+
+	const uint32 ReportCount = static_cast<uint32>(pc_readreg2(sd, "#MUR_ReportCount"));
+	if (ReportCount > 999)
+	{
+		clif_macro_user_report_ack(sd, MACRO_USER_REPORT_COUNTLIMIT, nullptr);
+		return;
+	}
+
+	pc_setreg2(sd, "#MUR_ReportCount", ReportCount + 1);
+
+	//
+	// Limits the interval between reports per reporter user.
+	//
+
+	const uint32 LastReportTime = static_cast<uint32>(pc_readreg2(sd, "#MUR_LastReportTime"));
+	if (LastReportTime > 0 && LastReportTime + 60 > time(nullptr))
+	{
+		clif_macro_user_report_ack(sd, MACRO_USER_REPORT_COOLTIME, nullptr);
+		return;
+	}
+
+	pc_setreg2(sd, "#MUR_LastReportTime", static_cast<uint32>(time(nullptr)));
+
+	chrif_macro_user_report(Packet->ReporterAID, Packet->ReportedAID, Packet->ReportType, Packet->ReportMessage);
+	clif_macro_user_report_ack(sd, MACRO_USER_REPORT_SUCCESS, Packet->ReportName);
+#endif
+}
+
+void clif_macro_user_report_ack(map_session_data *sd, int32 status, const char* const report_name)
+{
+#if (PACKETVER_MAIN_NUM > 20230915)
+	nullpo_retv(sd);
+
+	const int32 fd = sd->fd;
+
+	PACKET_ZC_MACRO_USER_REPORT_ACK* const Packet = reinterpret_cast<PACKET_ZC_MACRO_USER_REPORT_ACK*>(packet_buffer);
+	Packet->PacketType = HEADER_ZC_MACRO_USER_REPORT_ACK;
+	Packet->ReporterAID = sd->status.account_id;
+
+	if (report_name != nullptr)
+	{
+		memcpy(Packet->ReportName, report_name, NAME_LENGTH);
+	}
+	else
+	{
+		memset(Packet->ReportName, '\0', NAME_LENGTH);
+	}
+
+	Packet->Status = status;
+	clif_send(Packet, sizeof(PACKET_ZC_MACRO_USER_REPORT_ACK), &sd->bl, SELF);
+#endif
+}
+
+ /*==========================================
+ * adventure guide client packet processing function
+ *------------------------------------------*/
+void clif_quest_status_ack(map_session_data* const sd, const PACKET_CZ_QUEST_STATUS_REQ_SUB* const QuestList, const uint16 QuestCount) 
+{
+    const uint16 max_quests = (2048 - sizeof(PACKET_ZC_QUEST_STATUS_ACK)) / sizeof(PACKET_ZC_QUEST_STATUS_ACK_SUB);
+    
+    if (QuestCount > max_quests) {
+        ShowError("clif_quest_status_ack: Too many quests requested (%d)\n", QuestCount);
+        return;
+    }
+
+    uint16 PacketLength = sizeof(PACKET_ZC_QUEST_STATUS_ACK) + QuestCount * sizeof(PACKET_ZC_QUEST_STATUS_ACK_SUB);
+    uint8* Buffer = (uint8*)aMalloc(PacketLength);
+
+    PACKET_ZC_QUEST_STATUS_ACK* const Packet = (PACKET_ZC_QUEST_STATUS_ACK*)Buffer;
+    Packet->PacketType = HEADER_ZC_QUEST_STATUS_ACK;
+    Packet->PacketLength = PacketLength;
+
+    PACKET_ZC_QUEST_STATUS_ACK_SUB* const List = (PACKET_ZC_QUEST_STATUS_ACK_SUB*)(Buffer + sizeof(PACKET_ZC_QUEST_STATUS_ACK));
+    
+    for (uint16 Num = 0; Num < QuestCount; ++Num) {
+        const uint32 QuestID = QuestList[Num].QuestID;
+        uint8 QuestStatus = Q_INACTIVE;
+
+        for (uint16 QuestNum = 0; QuestNum < sd->num_quests; ++QuestNum) {
+            if (QuestID == sd->quest_log[QuestNum].quest_id) {
+                QuestStatus = (sd->quest_log[QuestNum].state == Q_COMPLETE);
+                break;
+            }
+        }
+
+        List[Num].QuestID = QuestID;
+        List[Num].QuestStatus = QuestStatus;
+    }
+
+    clif_send(Packet, PacketLength, &sd->bl, SELF);
+    aFree(Buffer);
+}
+
+void clif_parse_quest_status(const int32 fd, map_session_data* const sd)
+{
+    const PACKET_CZ_QUEST_STATUS_REQ* const Packet = (PACKET_CZ_QUEST_STATUS_REQ*)RFIFOP(fd, 0);
+    
+    if (Packet->PacketLength <= (sizeof(PACKET_CZ_QUEST_STATUS_REQ) + sizeof(PACKET_CZ_QUEST_STATUS_REQ_SUB))) {
+        return;
+    }
+
+    const PACKET_CZ_QUEST_STATUS_REQ_SUB* const QuestList = (PACKET_CZ_QUEST_STATUS_REQ_SUB*)(RFIFOP(fd, sizeof(PACKET_CZ_QUEST_STATUS_REQ)));
+    const uint16 QuestCount = (Packet->PacketLength - sizeof(PACKET_CZ_QUEST_STATUS_REQ)) / sizeof(PACKET_CZ_QUEST_STATUS_REQ_SUB);
+    
+    clif_quest_status_ack(sd, QuestList, QuestCount);
+}
+
 
 /*==========================================
  * Main client packet processing function

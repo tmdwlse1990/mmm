@@ -56,6 +56,7 @@ struct s_stylist_entry{
 	uint16 look;
 	int16 index;
 	uint32 value;
+	int32 basejob;
 	std::shared_ptr<s_stylist_costs> human;
 	std::shared_ptr<s_stylist_costs> doram;
 };

@@ -267,6 +267,7 @@ uint64 StylistDatabase::parseBodyNode( const ryml::NodeRef& node ){
 			entry = std::make_shared<s_stylist_entry>();
 			entry->look = list->look;
 			entry->index = index;
+			entry->basejob = -1;
 
 			if( !this->nodesExist( optionNode, { "Value" } ) ){
 				return 0;
@@ -346,6 +347,19 @@ uint64 StylistDatabase::parseBodyNode( const ryml::NodeRef& node ){
 						this->invalidWarning( optionNode["Value"], "stylist_parseBodyNode: body style \"%u\" is too high...\n", value );
 						return 0;
 					}
+					
+					int32 basejob = 0;
+					if (this->asInt32(optionNode, "BaseJob", basejob))
+					{
+						if (pcdb_checkid(basejob) != true)
+						{
+							this->invalidWarning(optionNode["BaseJob"], "stylist_parseBodyNode: base job \'%d\' is invalid...\n", basejob);
+							return 0;
+						}
+
+						entry->basejob = basejob;
+					}
+
 					break;
 			}
 

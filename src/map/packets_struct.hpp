@@ -2308,6 +2308,21 @@ struct PACKET_ZC_STYLE_CHANGE_RES {
 	int8 flag;
 } __attribute__((packed));
 
+struct PACKET_CZ_REQ_BUY_STYLINGSHOP3_SUB
+{
+	uint32 Type;
+	uint32 Value;
+} __attribute__((packed));
+
+struct PACKET_CZ_REQ_BUY_STYLINGSHOP3
+{
+	uint16 PacketType;
+	uint16 PacketLength;
+	uint16 Num;
+	PACKET_CZ_REQ_BUY_STYLINGSHOP3_SUB List[];
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(CZ_REQ_BUY_STYLINGSHOP3, 0x0bf7)
+
 struct pet_evolution_items {
 	int16 index;
 	int16 amount;
@@ -5239,6 +5254,27 @@ struct PACKET_ZC_DELETE_MEMBER_FROM_GROUP {
 } __attribute__((packed));
 DEFINE_PACKET_HEADER(ZC_DELETE_MEMBER_FROM_GROUP, 0x0105);
 
+#if (PACKETVER_MAIN_NUM >= 20230905)
+struct PACKET_CZ_REQUEST_RANDOM_UPGRADE_ENCHANT
+{
+	int16 PacketType;
+	uint64 EnchantGroup;
+	uint16 Index;
+	uint16 Slot;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(CZ_REQUEST_RANDOM_UPGRADE_ENCHANT, 0x0bf0);
+
+struct PACKET_CZ_REQUEST_PERFECT_UPGRADE_ENCHANT
+{
+	int16 PacketType;
+	uint64 EnchantGroup;
+	uint16 Index;
+	uint16 Slot;
+	uint32 ItemID;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(CZ_REQUEST_PERFECT_UPGRADE_ENCHANT, 0x0bf1)
+#endif
+
 #if PACKETVER_MAIN_NUM >= 20230906
 struct PACKET_CZ_REQ_TAKEOFF_EQUIP_ALL {
 	int16 PacketType;
@@ -5251,6 +5287,28 @@ struct PACKET_CZ_REQ_TAKEOFF_EQUIP_ALL {
 } __attribute__((packed));
 DEFINE_PACKET_HEADER(CZ_REQ_TAKEOFF_EQUIP_ALL, 0x0bad);
 #endif  // PACKETVER_MAIN_NUM >= 20210818 || PACKETVER_RE_NUM >= 20211103 || PACKETVER_ZERO_NUM >= 20210818
+
+#if (PACKETVER_MAIN_NUM >= 20230915)
+struct PACKET_CZ_MACRO_USER_REPORT_REQ
+{
+	int16 PacketType;
+	uint32 ReporterAID;
+	uint32 ReportedAID;
+	char ReportName[NAME_LENGTH];
+	uint16 ReportType;
+	char ReportMessage[101];
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(CZ_MACRO_USER_REPORT_REQ, 0x0be2);
+
+struct PACKET_ZC_MACRO_USER_REPORT_ACK
+{
+	int16 PacketType;
+	uint32 ReporterAID;
+	char ReportName[NAME_LENGTH];
+	uint32 Status;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_MACRO_USER_REPORT_ACK, 0x0be3);
+#endif
 
 #if PACKETVER_MAIN_NUM >= 20210818 || PACKETVER_RE_NUM >= 20211103 || PACKETVER_ZERO_NUM >= 20221024
 struct PACKET_ZC_ACK_TAKEOFF_EQUIP_ALL {
@@ -5974,6 +6032,107 @@ struct PACKET_CZ_ADVENTURER_AGENCY_JOIN_RESULT {
 } __attribute__((packed));
 DEFINE_PACKET_HEADER(CZ_ADVENTURER_AGENCY_JOIN_RESULT, 0x0af8);
 #endif  // PACKETVER_MAIN_NUM >= 20191218 || PACKETVER_RE_NUM >= 20191211 || PACKETVER_ZERO_NUM >= 20191224
+
+struct PACKET_CZ_REQ_EMOTION2
+{
+	uint16 PacketType;
+	uint16 ExpantionId;
+	uint16 EmotionId;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(CZ_REQ_EMOTION2, 0x0be9);
+
+struct PACKET_ZC_EMOTION2
+{
+	uint16 PacketType;
+	uint32 GID;
+	uint16 ExpantionId;
+	uint16 EmotionId;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_EMOTION2, 0x0bea);
+
+struct PACKET_ZC_EMOTION2_FAIL
+{
+	uint16 PacketType;
+	uint16 ExpantionId;
+	uint16 EmotionId;
+	uint8 Status;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_EMOTION2_FAIL, 0x0beb);
+
+struct PACKET_CZ_REQ_EMOTION2_EXPANTION
+{
+	uint16 PacketType;
+	uint16 ExpantionId;
+	uint16 ItemId;
+	uint8 Amount;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(CZ_REQ_EMOTION2_EXPANTION, 0x0bec);
+
+struct PACKET_ZC_EMOTION2_EXPANTION
+{
+	uint16 PacketType;
+	uint16 ExpantionId;
+	uint8 bRented;
+	uint32 Timestamp;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_EMOTION2_EXPANTION, 0x0bed);
+
+struct PACKET_ZC_EMOTION2_EXPANTION_FAIL
+{
+	uint16 PacketType;
+	uint16 ExpantionId;
+	uint8 Status;
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_EMOTION2_EXPANTION_FAIL, 0x0bee);
+
+struct PACKET_ZC_EMOTION2_EXPANTION_LIST_SUB
+{
+	uint16 ExpantionId;
+	uint8 Rented;
+	uint32 Timestamp;
+} __attribute__((packed));
+
+struct PACKET_ZC_EMOTION2_EXPANTION_LIST
+{
+	uint16 PacketType;
+	uint16 PacketLength;
+	uint32 Timestamp;
+	int16 Timezone;
+	struct PACKET_ZC_EMOTION2_EXPANTION_LIST_SUB List[];
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_EMOTION2_EXPANTION_LIST, 0x0bf6);
+
+
+#if (PACKETVER_MAIN_NUM >= 20240516)
+struct PACKET_CZ_QUEST_STATUS_REQ_SUB
+{
+	uint32 QuestID;
+} __attribute__((packed));
+
+struct PACKET_CZ_QUEST_STATUS_REQ
+{
+    int16 PacketType;
+    uint16 PacketLength;
+	PACKET_CZ_QUEST_STATUS_REQ_SUB List[];
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(CZ_QUEST_STATUS_REQ, 0x0bf3);
+
+struct PACKET_ZC_QUEST_STATUS_ACK_SUB
+{
+	uint32 QuestID;
+	uint8 QuestStatus;
+} __attribute__((packed));
+
+struct PACKET_ZC_QUEST_STATUS_ACK
+{
+	int16 PacketType;
+	uint16 PacketLength;
+	PACKET_ZC_QUEST_STATUS_ACK_SUB List[];
+} __attribute__((packed));
+DEFINE_PACKET_HEADER(ZC_QUEST_STATUS_ACK, 0x0bf4);
+
+#endif
+
 
 #if !defined(sun) && (!defined(__NETBSD__) || __NetBSD_Version__ >= 600000000) // NetBSD 5 and Solaris don't like pragma pack but accept the packed attribute
 #pragma pack(pop)

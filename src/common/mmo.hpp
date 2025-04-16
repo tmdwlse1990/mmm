@@ -126,13 +126,16 @@ enum e_enchantgrade : uint16{
 	ENCHANTGRADE_D,
 	ENCHANTGRADE_C,
 	ENCHANTGRADE_B,
-	ENCHANTGRADE_A
+	ENCHANTGRADE_A,
+	ENCHANTGRADE_R,
+	ENCHANTGRADE_S,
+	ENCHANTGRADE_U
 };
 
 #ifdef RENEWAL
 	#define MAX_WEAPON_LEVEL 5
 	#define MAX_ARMOR_LEVEL 2
-	#define MAX_ENCHANTGRADE ENCHANTGRADE_A
+	#define MAX_ENCHANTGRADE ENCHANTGRADE_U
 #else
 	#define MAX_WEAPON_LEVEL 4
 	#define MAX_ARMOR_LEVEL 1
@@ -611,6 +614,7 @@ struct mmo_charstatus {
 	struct hotkey hotkeys[MAX_HOTKEYS_DB];
 #endif
 	bool show_equip, disable_call;
+	bool show_costume;
 	bool disable_partyinvite;
 	int16 rename;
 

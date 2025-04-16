@@ -54,6 +54,9 @@ enum e_macro_report_status : uint8;
 enum e_hom_state2 : uint8;
 enum _sp;
 enum e_searchstore_failure : uint16;
+enum EEmotionStatus : uint8;
+enum EEmotionExpantionStatus : uint8;
+struct PACKET_ZC_EMOTION2_EXPANTION_LIST_SUB;
 
 enum e_PacketDBVersion { // packet DB
 	MIN_PACKET_DB  = 0x064,
@@ -347,6 +350,27 @@ enum emotion_type {
 	ET_YUT5,
 	ET_YUT6,
 	ET_YUT7,
+	ET_CLICK_ME,
+	ET_DAILY_QUEST,
+	ET_EVENT,
+	ET_JOB_QUEST,
+	ET_TRAFFIC_LINE_QUEST,
+	ET_CUSTOM_1,
+	ET_CUSTOM_2,
+	ET_CUSTOM_3,
+	ET_CUSTOM_4,
+	ET_CUSTOM_5,
+	ET_CUSTOM_6,
+	ET_CUSTOM_7,
+	ET_CUSTOM_8,
+	ET_CUSTOM_9,
+	ET_CUSTOM_10,
+	ET_CUSTOM_11,
+	ET_CUSTOM_12,
+	ET_CUSTOM_13,
+	ET_CUSTOM_14,
+	ET_CUSTOM_15,
+	ET_EMOTION_LAST,
 	//
 	ET_MAX
 };
@@ -718,7 +742,9 @@ enum e_config_type : uint32 {
 	CONFIG_OPEN_EQUIPMENT_WINDOW = 0,
 	CONFIG_CALL,
 	CONFIG_PET_AUTOFEED,
-	CONFIG_HOMUNCULUS_AUTOFEED
+	CONFIG_HOMUNCULUS_AUTOFEED,
+	CONFIG_UNKNOWN,
+	CONFIG_SHOW_COSTUME,
 };
 
 enum e_memorial_dungeon_command : uint16 {
@@ -858,6 +884,20 @@ enum e_changestate_pet : uint8 {
 	CHANGESTATEPET_UPDATE_EGG = 6,
 };
 
+enum e_macro_user_report_status : uint32
+{
+	MACRO_USER_REPORT_COUNTLIMIT,			// If you have exceeded the number of daily reports, you will no longer be able to report.
+	MACRO_USER_REPORT_SUCCESS,				// %s was reported.
+	MACRO_USER_REPORT_COOLTIME,				// The target is being reported by another player.
+	MACRO_USER_REPORT_EFST_ACTIVATED,		// The target is under report protection.
+	MACRO_USER_REPORT_PENALTY_COUNTMAX,		// You can no longer report beyond the cumulative number of daily reports.
+	MACRO_USER_REPORT_REPORTED,				// You have been reported by another player.
+	MACRO_USER_REPORT_NOT_USE_AREA,			// This is an area where reporting is not possible.
+
+	MACRO_USER_REPORT_INVALID,				// CUSTOM: It will cause unexpected behavior (UB) to the client.
+};
+
+
 int32 clif_setip(const char* ip);
 void clif_setbindip(const char* ip);
 void clif_setport(uint16 port);
@@ -937,6 +977,14 @@ void clif_refresh_storagewindow(map_session_data *sd);
 void clif_refresh(map_session_data *sd);	// self
 
 void clif_emotion( block_list& bl, emotion_type type );
+void clif_parse_emotion2(const int fd, map_session_data* const sd);
+void clif_emotion2(block_list* const bl, const uint16 ExpantionId, const uint16 EmotionId);
+void clif_emotion2_fail(map_session_data* const sd, const uint16 ExpantionId, const uint16 EmotionId, const EEmotionStatus Status);
+void clif_parse_emotion2_expantion(const int fd, map_session_data* const sd);
+void clif_emotion2_expantion(map_session_data* const sd, const uint16 ExpantionId, const bool bRented, const uint32 RentEndTime);
+void clif_emotion2_expantion_fail(map_session_data* const sd, const uint16 ExpantionId, const EEmotionExpantionStatus Status);
+void clif_emotion2_expantion_list(map_session_data* const sd, const std::vector<PACKET_ZC_EMOTION2_EXPANTION_LIST_SUB>& List);
+
 void clif_talkiebox(struct block_list* bl, const char* talkie);
 void clif_wedding_effect( block_list& bl );
 void clif_divorced( map_session_data& sd, const char* name );
@@ -1485,6 +1533,9 @@ void clif_macro_detector_status(map_session_data &sd, e_macro_detect_status styp
 // Macro Reporter
 void clif_macro_reporter_select(map_session_data &sd, const std::vector<uint32> &aid_list);
 void clif_macro_reporter_status(map_session_data &sd, e_macro_report_status stype);
+
+void clif_parse_macro_user_report(int32 fd, map_session_data *sd);
+void clif_macro_user_report_ack(map_session_data* sd, int32 status, const char* const report_name);
 
 enum e_macro_checker_result : int16{
 	MACROCHECKER_NOGM = 0,
