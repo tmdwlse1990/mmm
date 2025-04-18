@@ -2365,10 +2365,10 @@ int32 status_base_amotion_pc(map_session_data* sd, struct status_data* status)
 		case W_GATLING:
 		case W_SHOTGUN:
 		case W_GRENADE:
-			temp_aspd = status->dex * status->dex / 7.0f + status->agi * status->agi * 0.5f;
+			temp_aspd = status->dex * status->dex / 4.0f + status->agi * status->agi * 0.8f;
 			break;
 		default:
-			temp_aspd = status->dex * status->dex / 5.0f + status->agi * status->agi * 0.5f;
+			temp_aspd = status->dex * status->dex / 1.5f + status->agi * status->agi * 0.8f;
 			break;
 	}
 	temp_aspd = (float)(sqrt(temp_aspd) * 0.25f) + 196;
@@ -2382,7 +2382,7 @@ int32 status_base_amotion_pc(map_session_data* sd, struct status_data* status)
 		val -= 50 - 10 * pc_checkskill(sd, KN_CAVALIERMASTERY);
 	else if (pc_isridingdragon(sd))
 		val -= 25 - 5 * pc_checkskill(sd, RK_DRAGONTRAINING);
-	aspd = ((int32)(temp_aspd + ((float)(status_calc_aspd(&sd->bl, &sd->sc, true) + val) * status->agi / 200)) - min(aspd, 200));
+	aspd = ((int32)(temp_aspd + ((float)(status_calc_aspd(&sd->bl, &sd->sc, true) + val) * (status->dex / 200 + status->agi / 200))) - min(aspd, 200));
 	return aspd;
 #else
 	if (job == nullptr)
@@ -2419,7 +2419,7 @@ uint16 status_base_atk(const struct block_list *bl, const struct status_data *st
 	if (!(bl->type&battle_config.enable_baseatk))
 		return 0;
 #endif
-
+/*
 	if (bl->type == BL_PC)
 	switch(((TBL_PC*)bl)->status.weapon) {
 		case W_BOW:
@@ -2445,7 +2445,23 @@ uint16 status_base_atk(const struct block_list *bl, const struct status_data *st
 		str = status->str;
 		dex = status->dex;
 	}
-
+*/
+	if (bl->type == BL_PC)
+		switch(((TBL_PC*)bl)->status.weapon) {
+			case W_REVOLVER:
+			case W_RIFLE:
+			case W_GATLING:
+			case W_SHOTGUN:
+			case W_GRENADE:
+				flag = 1;
+		}
+		if(!flag) {
+			dstr = 
+			str = status->str;
+			dex = status->dex;
+		}
+		else 
+			dstr = str = dex = 0;
 	/** [Skotlex]
 	* Normally only players have base-atk, but homunc have a different batk
 	* equation, hinting that perhaps non-players should use this for batk.
@@ -2461,7 +2477,8 @@ uint16 status_base_atk(const struct block_list *bl, const struct status_data *st
 			break;
 		case BL_PC:
 #ifdef RENEWAL
-			str = (dstr * 10 + dex * 10 / 5 + status->luk * 10 / 3 + level * 10 / 4) / 10 + 5 * status->pow;
+			//str = (dstr * 10 + dex * 10 / 5 + status->luk * 10 / 3 + level * 10 / 4) / 10 + 5 * status->pow;
+			str = dstr * 10 + status->luk / 3;
 #else
 			dstr = str / 10;
 			str += dstr*dstr;
@@ -2552,7 +2569,8 @@ uint16 status_base_matk_min(struct block_list *bl, const struct status_data* sta
 			return status_get_homint(bl) + level + (status_get_homint(bl) + status_get_homdex(bl)) / 5;
 		case BL_PC:
 		default:
-			return status->int_ + (status->int_ / 2) + (status->dex / 5) + (status->luk / 3) + (level / 4) + 5 * status->spl;
+			//return status->int_ + (status->int_ / 2) + (status->dex / 5) + (status->luk / 3) + (level / 4) + 5 * status->spl;
+			return status->int_ * 10 + (status->dex / 5) + status->luk;
 	}
 }
 
@@ -2571,7 +2589,8 @@ uint16 status_base_matk_max(struct block_list *bl, const struct status_data* sta
 			return status_get_homint(bl) + level + (status_get_homluk(bl) + status_get_homint(bl) + status_get_homdex(bl)) / 3;
 		case BL_PC:
 		default:
-			return status->int_ + (status->int_ / 2) + (status->dex / 5) + (status->luk / 3) + (level / 4) + 5 * status->spl;
+			//return status->int_ + (status->int_ / 2) + (status->dex / 5) + (status->luk / 3) + (level / 4) + 5 * status->spl;
+			return status->int_ * 10 + (status->dex / 5) + status->luk;
 	}
 }
 #endif
@@ -2622,12 +2641,12 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int32 l
 	} else {
 		// Hit
 		stat = status->hit;
-		stat += level + status->dex + (bl->type == BL_PC ? status->luk / 3 + 175 : 150); //base level + ( every 1 dex = +1 hit ) + (every 3 luk = +1 hit) + 175
+		stat += level + status->dex * 3 + (bl->type == BL_PC ? status->luk / 3 + 175 : 150); //base level + ( every 1 dex = +1 hit ) + (every 3 luk = +1 hit) + 175
 		stat += 2 * status->con;
 		status->hit = cap_value(stat, 1, SHRT_MAX);
 		// Flee
 		stat = status->flee;
-		stat += level + status->agi + (bl->type == BL_MER ? 0 : bl->type == BL_PC ? status->luk / 5 : 0) + 100; //base level + ( every 1 agi = +1 flee ) + (every 5 luk = +1 flee) + 100
+		stat += level + status->agi * 3 + (bl->type == BL_MER ? 0 : bl->type == BL_PC ? status->luk / 5 : 0) + 100; //base level + ( every 1 agi = +1 flee ) + (every 5 luk = +1 flee) + 100
 		stat += 2 * status->con;
 		status->flee = cap_value(stat, 1, SHRT_MAX);
 		// Def2
@@ -2635,7 +2654,7 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int32 l
 			stat = (int32)(status->vit + ((float)level / 10) + ((float)status->vit / 5));
 		else {
 			stat = status->def2;
-			stat += (int32)(((float)level + status->vit) / 2 + (bl->type == BL_PC ? ((float)status->agi / 5) : 0)); //base level + (every 2 vit = +1 def) + (every 5 agi = +1 def)
+			stat += (int32)(((float)level + status->vit * 5) / 2 + (bl->type == BL_PC ?  (status->vit * 5) : 0)) + (bl->type == BL_MOB ? (status->int_ * 10) + (level * 4) : 0 ); //base level + (every 2 vit = +1 def) + (every 5 agi = +1 def)
 		}
 		status->def2 = cap_value(stat, 0, SHRT_MAX);
 		// Mdef2
@@ -2643,7 +2662,7 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int32 l
 			stat = (int32)(((float)level / 10) + ((float)status->int_ / 5));
 		else {
 			stat = status->mdef2;
-			stat += (int32)(bl->type == BL_PC ? (status->int_ + ((float)level / 4) + ((float)(status->dex + status->vit) / 5)) : ((float)(status->int_ + level) / 4)); //(every 4 base level = +1 mdef) + (every 1 int32 = +1 mdef) + (every 5 dex = +1 mdef) + (every 5 vit = +1 mdef)
+			stat += (int32)(bl->type == BL_PC ? ((status->int_ * 10) + ((float)level / 4) + ((float)(status->dex + status->vit) / 5)) : ((float)(status->int_ + level) / 4)) + (bl->type == BL_MOB ? (status->int_ * 10) + (level * 4) : 0 ) ; //(every 4 base level = +1 mdef) + (every 1 int32 = +1 mdef) + (every 5 dex = +1 mdef) + (every 5 vit = +1 mdef)
 		}
 		status->mdef2 = cap_value(stat, 0, SHRT_MAX);
 		// PAtk
@@ -2707,8 +2726,8 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int32 l
 	if( bl->type&battle_config.enable_critical ) {
 		stat = status->cri;
 #ifdef RENEWAL
-		stat += (level / 10); // (every 10 BaseLevel = +0.1 critical)
-		stat += 10 + (status->luk*3); // (every 1 luk = +0.3 critical)
+		stat += (level / 5); // (every 10 BaseLevel = +0.1 critical)
+		//stat += 10 + (status->luk*3); // (every 1 luk = +0.3 critical)
 #else
 		stat += 10 + (status->luk*10/3); // (every 1 luk = +0.3 critical)
 #endif
@@ -2718,7 +2737,7 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int32 l
 
 	if (bl->type&battle_config.enable_perfect_flee) {
 		stat = status->flee2;
-		stat += status->luk + 10; // (every 10 luk = +1 perfect flee)
+		//stat += status->luk + 10; // (every 10 luk = +1 perfect flee)
 		status->flee2 = cap_value(stat, 0, SHRT_MAX);
 	} else
 		status->flee2 = 0;
@@ -3505,15 +3524,18 @@ static uint32 status_calc_maxhp_pc( map_session_data& sd, uint32 vit ){
 	double dmax = job->base_hp[level];
 
 	if( vit > 0 ){
-		dmax *= ( 1.0 + vit * 0.01 );
+		dmax *= ( 1.0 + vit * 0.05 );
 	}
-
+	
+	/*
 	if( sd.class_&JOBL_UPPER ){
 		dmax *= 1.25;
 	}else if( pc_is_taekwon_ranker( &sd ) ){
 		dmax *= 3;
 	}
-
+	*/
+	if( pc_is_taekwon_ranker( &sd ) )
+		dmax *= 3;
 	// Vit from equip gives +1 additional HP
 	dmax += sd.indexed_bonus.param_equip[PARAM_VIT];
 
@@ -3644,7 +3666,7 @@ bool status_calc_weight(map_session_data *sd, enum e_status_calc_weight_opt flag
 	sc = &sd->sc;
 	b_max_weight = sd->max_weight; // Store max weight for later comparison
 	b_weight = sd->weight; // Store current weight for later comparison
-	sd->max_weight = job_db.get_maxWeight(pc_mapid2jobid(sd->class_, sd->status.sex)) + sd->status.str * 300; // Recalculate max weight
+	sd->max_weight = job_db.get_maxWeight(pc_mapid2jobid(sd->class_, sd->status.sex)) + sd->status.str * 1000; // Recalculate max weight
 
 	if (flag&CALCWT_ITEM) {
 		sd->weight = 0; // Reset current weight
@@ -3660,7 +3682,7 @@ bool status_calc_weight(map_session_data *sd, enum e_status_calc_weight_opt flag
 		// Skill/Status bonus weight increases
 		sd->max_weight += sd->add_max_weight; // From bAddMaxWeight
 		if ((skill = pc_checkskill(sd, MC_INCCARRY)) > 0)
-			sd->max_weight += 2000 * skill;
+			sd->max_weight += 10000 * skill;
 		if (pc_isriding(sd) && pc_checkskill(sd, KN_RIDING) > 0)
 			sd->max_weight += 10000;
 		else if (pc_isridingdragon(sd))

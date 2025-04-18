@@ -1,0 +1,1031 @@
+# This file is a part of rAthena.
+#   Copyright(C) 2022 rAthena Development Team
+#   https://rathena.org - https://github.com/rathena
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+###########################################################################
+# Item Enchant Database
+###########################################################################
+#
+# Item Enchant Settings
+#
+###########################################################################
+# - Id                         Client side LUA index.
+#   TargetItems:               List of possible target items.
+#     <item name>              Item name of possible target item.
+#   MinimumRefine              Minimum refine of the target item. (Default: 0)
+#   MinimumEnchantgrade        Minimum enchant grade of the target item. (Default: 0)
+#   AllowRandomOptions         Enable random options in the target item. (Default: true)
+#   Reset:                     Reset options. (Default: null)
+#     Chance                   Chance of successful reset. (Default: 0)
+#     Price                    Price for resetting enchants. (Default: 0)
+#     Materials:               Items required for resetting enchants. (Default: null)
+#       - Material             Item name of the required item.
+#         Amount               Amount of the required item. (Default: 1)
+#   Order:                     Order in which the slots can be enchanted.
+#                              Overwriting via import will clear the currently defined order.
+#     - Slot                   Number of the slot (0-3).
+#   Slots:                     Enchant options.
+#     - Slot                   Number of the slot (0-3).
+#       Price                  Price required for the normal enchant process. (Default: 0)
+#       Materials:             Items required for the normal enchant process. (Default: null)
+#         - Material           Item name of the required item.
+#           Amount             Amount of the required item. (Default: 1)
+#       Chance                 Base chance for the normal enchant process. (Default: 100000)
+#       EnchantgradeBonus:     Additional bonus chance increase per enchant grade. (Default: null)
+#         - Enchantgrade       Enchant grade required for the bonus.
+#           Chance             Additional chance that is added to the base chance.
+#       Enchants:              Available enchants for the normal enchant process per enchant grade. (Default: null)
+#         - Enchantgrade       Enchant grade of the item to be enchanted.
+#           Items:             Available enchants for the normal enchant process on the given enchant grade. (Default: null)
+#             - Item           Item name of the available enchant item.
+#               Chance         Chance to get this specific enchant item.
+#       PerfectEnchants:       Available perfect enchants (100% chance + selectable) for this slot. (Default: null)
+#         - Item               Item name of the available enchant item.
+#           Price              Price required for this perfect enchant. (Default: 0)
+#           Materials:         Items required for this perfect enchant. (Default: null)
+#             - Material       Item name of the required item.
+#               Amount         Amount of the required item. (Default: 1)
+#       Upgrades:              Available enchant upgrades for this slot. (Default: null)
+#         - Enchant            Item name of the enchant item available for upgrade.
+#           Upgrade            Item name of the enchant it can be upgrade to.
+#           Price              Price required for this enchant upgrade. (Default: 0)
+#           Materials:         Items required for this enchant upgrade (Default: null)
+#             - Material       Item name of the required item.
+#               Amount         Amount of the required item. (Default: 1)
+###########################################################################
+
+Header:
+  Type: ITEM_ENCHANT_DB
+  Version: 1
+
+Body:
+  - Id: 13  # Skipped (some fields are not supported on rAthena for now)
+    TargetItems:
+      Signet_Of_Pow_Star: true
+      Signet_Of_Sta_Star: true
+      Signet_Of_Con_Star: true
+      Signet_Of_Crt_Star: true
+      Signet_Of_Spl_Star: true
+      Signet_Of_Wis_Star: true
+    Reset:
+      Chance: 80000
+      Price: 500000
+      Materials:
+        - Material: Meteorite_Dust
+          Amount: 30
+    Order:
+      - Slot: 3
+      - Slot: 2
+      - Slot: 1
+    Slots:
+      - Slot: 3
+        Price: 300000
+        Materials:
+          - Material: Meteorite_Fragment
+            Amount: 5
+        Enchants:
+          - Enchantgrade: 0
+            Items:
+              - Item: Spell3
+                Chance: 10000
+              - Item: Expert_Archer3
+                Chance: 10050
+              - Item: Fighting_Spirit3
+                Chance: 10050
+              - Item: Sharp3
+                Chance: 10050
+              - Item: Spell4
+                Chance: 1750
+              - Item: Expert_Archer4
+                Chance: 1750
+              - Item: Fighting_Spirit4
+                Chance: 1750
+              - Item: Sharp4
+                Chance: 1750
+              - Item: Star_Of_Mettle1
+                Chance: 4000
+              - Item: Star_Of_MasterArcher1
+                Chance: 4000
+              - Item: Star_Of_Sharp1
+                Chance: 4000
+              - Item: Star_Of_Spell1
+                Chance: 4000
+              - Item: Star_Of_Speed1
+                Chance: 4000
+              - Item: Star_Of_Vital1
+                Chance: 4000
+              - Item: Star_Of_Spirit1
+                Chance: 4000
+              - Item: Star_Of_Mettle2
+                Chance: 2000
+              - Item: Star_Of_MasterArcher2
+                Chance: 2000
+              - Item: Star_Of_Sharp2
+                Chance: 2000
+              - Item: Star_Of_Spell2
+                Chance: 2000
+              - Item: Star_Of_Speed2
+                Chance: 2000
+              - Item: Star_Of_Vital2
+                Chance: 2000
+              - Item: Star_Of_Spirit2
+                Chance: 2000
+              - Item: Star_Of_Mettle3
+                Chance: 1250
+              - Item: Star_Of_MasterArcher3
+                Chance: 1250
+              - Item: Star_Of_Sharp3
+                Chance: 1250
+              - Item: Star_Of_Spell3
+                Chance: 1250
+              - Item: Star_Of_Speed3
+                Chance: 1250
+              - Item: Star_Of_Vital3
+                Chance: 1250
+              - Item: Star_Of_Spirit3
+                Chance: 1250
+              - Item: Star_Of_Mettle4
+                Chance: 250
+              - Item: Star_Of_MasterArcher4
+                Chance: 250
+              - Item: Star_Of_Sharp4
+                Chance: 250
+              - Item: Star_Of_Spell4
+                Chance: 250
+              - Item: Star_Of_Speed4
+                Chance: 250
+              - Item: Star_Of_Vital4
+                Chance: 250
+              - Item: Star_Of_Spirit4
+                Chance: 250
+              - Item: Star_Of_Mettle5
+                Chance: 50
+              - Item: Star_Of_MasterArcher5
+                Chance: 50
+              - Item: Star_Of_Sharp5
+                Chance: 50
+              - Item: Star_Of_Spell5
+                Chance: 50
+              - Item: Star_Of_Speed5
+                Chance: 50
+              - Item: Star_Of_Vital5
+                Chance: 50
+              - Item: Star_Of_Spirit5
+                Chance: 50
+          - Enchantgrade: 1
+            Items:
+              - Item: Spell3
+                Chance: 10000
+              - Item: Expert_Archer3
+                Chance: 10050
+              - Item: Fighting_Spirit3
+                Chance: 10050
+              - Item: Sharp3
+                Chance: 10050
+              - Item: Spell4
+                Chance: 1750
+              - Item: Expert_Archer4
+                Chance: 1750
+              - Item: Fighting_Spirit4
+                Chance: 1750
+              - Item: Sharp4
+                Chance: 1750
+              - Item: Star_Of_Mettle1
+                Chance: 4000
+              - Item: Star_Of_MasterArcher1
+                Chance: 4000
+              - Item: Star_Of_Sharp1
+                Chance: 4000
+              - Item: Star_Of_Spell1
+                Chance: 4000
+              - Item: Star_Of_Speed1
+                Chance: 4000
+              - Item: Star_Of_Vital1
+                Chance: 4000
+              - Item: Star_Of_Spirit1
+                Chance: 4000
+              - Item: Star_Of_Mettle2
+                Chance: 2000
+              - Item: Star_Of_MasterArcher2
+                Chance: 2000
+              - Item: Star_Of_Sharp2
+                Chance: 2000
+              - Item: Star_Of_Spell2
+                Chance: 2000
+              - Item: Star_Of_Speed2
+                Chance: 2000
+              - Item: Star_Of_Vital2
+                Chance: 2000
+              - Item: Star_Of_Spirit2
+                Chance: 2000
+              - Item: Star_Of_Mettle3
+                Chance: 1250
+              - Item: Star_Of_MasterArcher3
+                Chance: 1250
+              - Item: Star_Of_Sharp3
+                Chance: 1250
+              - Item: Star_Of_Spell3
+                Chance: 1250
+              - Item: Star_Of_Speed3
+                Chance: 1250
+              - Item: Star_Of_Vital3
+                Chance: 1250
+              - Item: Star_Of_Spirit3
+                Chance: 1250
+              - Item: Star_Of_Mettle4
+                Chance: 250
+              - Item: Star_Of_MasterArcher4
+                Chance: 250
+              - Item: Star_Of_Sharp4
+                Chance: 250
+              - Item: Star_Of_Spell4
+                Chance: 250
+              - Item: Star_Of_Speed4
+                Chance: 250
+              - Item: Star_Of_Vital4
+                Chance: 250
+              - Item: Star_Of_Spirit4
+                Chance: 250
+              - Item: Star_Of_Mettle5
+                Chance: 50
+              - Item: Star_Of_MasterArcher5
+                Chance: 50
+              - Item: Star_Of_Sharp5
+                Chance: 50
+              - Item: Star_Of_Spell5
+                Chance: 50
+              - Item: Star_Of_Speed5
+                Chance: 50
+              - Item: Star_Of_Vital5
+                Chance: 50
+              - Item: Star_Of_Spirit5
+                Chance: 50
+          - Enchantgrade: 2
+            Items:
+              - Item: Spell3
+                Chance: 10000
+              - Item: Expert_Archer3
+                Chance: 10050
+              - Item: Fighting_Spirit3
+                Chance: 10050
+              - Item: Sharp3
+                Chance: 10050
+              - Item: Spell4
+                Chance: 1750
+              - Item: Expert_Archer4
+                Chance: 1750
+              - Item: Fighting_Spirit4
+                Chance: 1750
+              - Item: Sharp4
+                Chance: 1750
+              - Item: Star_Of_Mettle1
+                Chance: 4000
+              - Item: Star_Of_MasterArcher1
+                Chance: 4000
+              - Item: Star_Of_Sharp1
+                Chance: 4000
+              - Item: Star_Of_Spell1
+                Chance: 4000
+              - Item: Star_Of_Speed1
+                Chance: 4000
+              - Item: Star_Of_Vital1
+                Chance: 4000
+              - Item: Star_Of_Spirit1
+                Chance: 4000
+              - Item: Star_Of_Mettle2
+                Chance: 2000
+              - Item: Star_Of_MasterArcher2
+                Chance: 2000
+              - Item: Star_Of_Sharp2
+                Chance: 2000
+              - Item: Star_Of_Spell2
+                Chance: 2000
+              - Item: Star_Of_Speed2
+                Chance: 2000
+              - Item: Star_Of_Vital2
+                Chance: 2000
+              - Item: Star_Of_Spirit2
+                Chance: 2000
+              - Item: Star_Of_Mettle3
+                Chance: 1250
+              - Item: Star_Of_MasterArcher3
+                Chance: 1250
+              - Item: Star_Of_Sharp3
+                Chance: 1250
+              - Item: Star_Of_Spell3
+                Chance: 1250
+              - Item: Star_Of_Speed3
+                Chance: 1250
+              - Item: Star_Of_Vital3
+                Chance: 1250
+              - Item: Star_Of_Spirit3
+                Chance: 1250
+              - Item: Star_Of_Mettle4
+                Chance: 250
+              - Item: Star_Of_MasterArcher4
+                Chance: 250
+              - Item: Star_Of_Sharp4
+                Chance: 250
+              - Item: Star_Of_Spell4
+                Chance: 250
+              - Item: Star_Of_Speed4
+                Chance: 250
+              - Item: Star_Of_Vital4
+                Chance: 250
+              - Item: Star_Of_Spirit4
+                Chance: 250
+              - Item: Star_Of_Mettle5
+                Chance: 50
+              - Item: Star_Of_MasterArcher5
+                Chance: 50
+              - Item: Star_Of_Sharp5
+                Chance: 50
+              - Item: Star_Of_Spell5
+                Chance: 50
+              - Item: Star_Of_Speed5
+                Chance: 50
+              - Item: Star_Of_Vital5
+                Chance: 50
+              - Item: Star_Of_Spirit5
+                Chance: 50
+          - Enchantgrade: 3
+            Items:
+              - Item: Spell3
+                Chance: 10000
+              - Item: Expert_Archer3
+                Chance: 10050
+              - Item: Fighting_Spirit3
+                Chance: 10050
+              - Item: Sharp3
+                Chance: 10050
+              - Item: Spell4
+                Chance: 1750
+              - Item: Expert_Archer4
+                Chance: 1750
+              - Item: Fighting_Spirit4
+                Chance: 1750
+              - Item: Sharp4
+                Chance: 1750
+              - Item: Star_Of_Mettle1
+                Chance: 4000
+              - Item: Star_Of_MasterArcher1
+                Chance: 4000
+              - Item: Star_Of_Sharp1
+                Chance: 4000
+              - Item: Star_Of_Spell1
+                Chance: 4000
+              - Item: Star_Of_Speed1
+                Chance: 4000
+              - Item: Star_Of_Vital1
+                Chance: 4000
+              - Item: Star_Of_Spirit1
+                Chance: 4000
+              - Item: Star_Of_Mettle2
+                Chance: 2000
+              - Item: Star_Of_MasterArcher2
+                Chance: 2000
+              - Item: Star_Of_Sharp2
+                Chance: 2000
+              - Item: Star_Of_Spell2
+                Chance: 2000
+              - Item: Star_Of_Speed2
+                Chance: 2000
+              - Item: Star_Of_Vital2
+                Chance: 2000
+              - Item: Star_Of_Spirit2
+                Chance: 2000
+              - Item: Star_Of_Mettle3
+                Chance: 1250
+              - Item: Star_Of_MasterArcher3
+                Chance: 1250
+              - Item: Star_Of_Sharp3
+                Chance: 1250
+              - Item: Star_Of_Spell3
+                Chance: 1250
+              - Item: Star_Of_Speed3
+                Chance: 1250
+              - Item: Star_Of_Vital3
+                Chance: 1250
+              - Item: Star_Of_Spirit3
+                Chance: 1250
+              - Item: Star_Of_Mettle4
+                Chance: 250
+              - Item: Star_Of_MasterArcher4
+                Chance: 250
+              - Item: Star_Of_Sharp4
+                Chance: 250
+              - Item: Star_Of_Spell4
+                Chance: 250
+              - Item: Star_Of_Speed4
+                Chance: 250
+              - Item: Star_Of_Vital4
+                Chance: 250
+              - Item: Star_Of_Spirit4
+                Chance: 250
+              - Item: Star_Of_Mettle5
+                Chance: 50
+              - Item: Star_Of_MasterArcher5
+                Chance: 50
+              - Item: Star_Of_Sharp5
+                Chance: 50
+              - Item: Star_Of_Spell5
+                Chance: 50
+              - Item: Star_Of_Speed5
+                Chance: 50
+              - Item: Star_Of_Vital5
+                Chance: 50
+              - Item: Star_Of_Spirit5
+                Chance: 50
+          - Enchantgrade: 4
+            Items:
+              - Item: Spell3
+                Chance: 10000
+              - Item: Expert_Archer3
+                Chance: 10050
+              - Item: Fighting_Spirit3
+                Chance: 10050
+              - Item: Sharp3
+                Chance: 10050
+              - Item: Spell4
+                Chance: 1750
+              - Item: Expert_Archer4
+                Chance: 1750
+              - Item: Fighting_Spirit4
+                Chance: 1750
+              - Item: Sharp4
+                Chance: 1750
+              - Item: Star_Of_Mettle1
+                Chance: 4000
+              - Item: Star_Of_MasterArcher1
+                Chance: 4000
+              - Item: Star_Of_Sharp1
+                Chance: 4000
+              - Item: Star_Of_Spell1
+                Chance: 4000
+              - Item: Star_Of_Speed1
+                Chance: 4000
+              - Item: Star_Of_Vital1
+                Chance: 4000
+              - Item: Star_Of_Spirit1
+                Chance: 4000
+              - Item: Star_Of_Mettle2
+                Chance: 2000
+              - Item: Star_Of_MasterArcher2
+                Chance: 2000
+              - Item: Star_Of_Sharp2
+                Chance: 2000
+              - Item: Star_Of_Spell2
+                Chance: 2000
+              - Item: Star_Of_Speed2
+                Chance: 2000
+              - Item: Star_Of_Vital2
+                Chance: 2000
+              - Item: Star_Of_Spirit2
+                Chance: 2000
+              - Item: Star_Of_Mettle3
+                Chance: 1250
+              - Item: Star_Of_MasterArcher3
+                Chance: 1250
+              - Item: Star_Of_Sharp3
+                Chance: 1250
+              - Item: Star_Of_Spell3
+                Chance: 1250
+              - Item: Star_Of_Speed3
+                Chance: 1250
+              - Item: Star_Of_Vital3
+                Chance: 1250
+              - Item: Star_Of_Spirit3
+                Chance: 1250
+              - Item: Star_Of_Mettle4
+                Chance: 250
+              - Item: Star_Of_MasterArcher4
+                Chance: 250
+              - Item: Star_Of_Sharp4
+                Chance: 250
+              - Item: Star_Of_Spell4
+                Chance: 250
+              - Item: Star_Of_Speed4
+                Chance: 250
+              - Item: Star_Of_Vital4
+                Chance: 250
+              - Item: Star_Of_Spirit4
+                Chance: 250
+              - Item: Star_Of_Mettle5
+                Chance: 50
+              - Item: Star_Of_MasterArcher5
+                Chance: 50
+              - Item: Star_Of_Sharp5
+                Chance: 50
+              - Item: Star_Of_Spell5
+                Chance: 50
+              - Item: Star_Of_Speed5
+                Chance: 50
+              - Item: Star_Of_Vital5
+                Chance: 50
+              - Item: Star_Of_Spirit5
+                Chance: 50
+      - Slot: 2
+        Price: 500000
+        Materials:
+          - Material: Meteorite_Fragment
+            Amount: 10
+        Enchants:
+          - Enchantgrade: 0
+            Items:
+              - Item: Spell3
+                Chance: 10000
+              - Item: Expert_Archer3
+                Chance: 10050
+              - Item: Fighting_Spirit3
+                Chance: 10050
+              - Item: Sharp3
+                Chance: 10050
+              - Item: Spell4
+                Chance: 1750
+              - Item: Expert_Archer4
+                Chance: 1750
+              - Item: Fighting_Spirit4
+                Chance: 1750
+              - Item: Sharp4
+                Chance: 1750
+              - Item: Star_Of_Mettle1
+                Chance: 4000
+              - Item: Star_Of_MasterArcher1
+                Chance: 4000
+              - Item: Star_Of_Sharp1
+                Chance: 4000
+              - Item: Star_Of_Spell1
+                Chance: 4000
+              - Item: Star_Of_Speed1
+                Chance: 4000
+              - Item: Star_Of_Vital1
+                Chance: 4000
+              - Item: Star_Of_Spirit1
+                Chance: 4000
+              - Item: Star_Of_Mettle2
+                Chance: 2000
+              - Item: Star_Of_MasterArcher2
+                Chance: 2000
+              - Item: Star_Of_Sharp2
+                Chance: 2000
+              - Item: Star_Of_Spell2
+                Chance: 2000
+              - Item: Star_Of_Speed2
+                Chance: 2000
+              - Item: Star_Of_Vital2
+                Chance: 2000
+              - Item: Star_Of_Spirit2
+                Chance: 2000
+              - Item: Star_Of_Mettle3
+                Chance: 1250
+              - Item: Star_Of_MasterArcher3
+                Chance: 1250
+              - Item: Star_Of_Sharp3
+                Chance: 1250
+              - Item: Star_Of_Spell3
+                Chance: 1250
+              - Item: Star_Of_Speed3
+                Chance: 1250
+              - Item: Star_Of_Vital3
+                Chance: 1250
+              - Item: Star_Of_Spirit3
+                Chance: 1250
+              - Item: Star_Of_Mettle4
+                Chance: 250
+              - Item: Star_Of_MasterArcher4
+                Chance: 250
+              - Item: Star_Of_Sharp4
+                Chance: 250
+              - Item: Star_Of_Spell4
+                Chance: 250
+              - Item: Star_Of_Speed4
+                Chance: 250
+              - Item: Star_Of_Vital4
+                Chance: 250
+              - Item: Star_Of_Spirit4
+                Chance: 250
+              - Item: Star_Of_Mettle5
+                Chance: 50
+              - Item: Star_Of_MasterArcher5
+                Chance: 50
+              - Item: Star_Of_Sharp5
+                Chance: 50
+              - Item: Star_Of_Spell5
+                Chance: 50
+              - Item: Star_Of_Speed5
+                Chance: 50
+              - Item: Star_Of_Vital5
+                Chance: 50
+              - Item: Star_Of_Spirit5
+                Chance: 50
+          - Enchantgrade: 1
+            Items:
+              - Item: Spell3
+                Chance: 10000
+              - Item: Expert_Archer3
+                Chance: 10050
+              - Item: Fighting_Spirit3
+                Chance: 10050
+              - Item: Sharp3
+                Chance: 10050
+              - Item: Spell4
+                Chance: 1750
+              - Item: Expert_Archer4
+                Chance: 1750
+              - Item: Fighting_Spirit4
+                Chance: 1750
+              - Item: Sharp4
+                Chance: 1750
+              - Item: Star_Of_Mettle1
+                Chance: 4000
+              - Item: Star_Of_MasterArcher1
+                Chance: 4000
+              - Item: Star_Of_Sharp1
+                Chance: 4000
+              - Item: Star_Of_Spell1
+                Chance: 4000
+              - Item: Star_Of_Speed1
+                Chance: 4000
+              - Item: Star_Of_Vital1
+                Chance: 4000
+              - Item: Star_Of_Spirit1
+                Chance: 4000
+              - Item: Star_Of_Mettle2
+                Chance: 2000
+              - Item: Star_Of_MasterArcher2
+                Chance: 2000
+              - Item: Star_Of_Sharp2
+                Chance: 2000
+              - Item: Star_Of_Spell2
+                Chance: 2000
+              - Item: Star_Of_Speed2
+                Chance: 2000
+              - Item: Star_Of_Vital2
+                Chance: 2000
+              - Item: Star_Of_Spirit2
+                Chance: 2000
+              - Item: Star_Of_Mettle3
+                Chance: 1250
+              - Item: Star_Of_MasterArcher3
+                Chance: 1250
+              - Item: Star_Of_Sharp3
+                Chance: 1250
+              - Item: Star_Of_Spell3
+                Chance: 1250
+              - Item: Star_Of_Speed3
+                Chance: 1250
+              - Item: Star_Of_Vital3
+                Chance: 1250
+              - Item: Star_Of_Spirit3
+                Chance: 1250
+              - Item: Star_Of_Mettle4
+                Chance: 250
+              - Item: Star_Of_MasterArcher4
+                Chance: 250
+              - Item: Star_Of_Sharp4
+                Chance: 250
+              - Item: Star_Of_Spell4
+                Chance: 250
+              - Item: Star_Of_Speed4
+                Chance: 250
+              - Item: Star_Of_Vital4
+                Chance: 250
+              - Item: Star_Of_Spirit4
+                Chance: 250
+              - Item: Star_Of_Mettle5
+                Chance: 50
+              - Item: Star_Of_MasterArcher5
+                Chance: 50
+              - Item: Star_Of_Sharp5
+                Chance: 50
+              - Item: Star_Of_Spell5
+                Chance: 50
+              - Item: Star_Of_Speed5
+                Chance: 50
+              - Item: Star_Of_Vital5
+                Chance: 50
+              - Item: Star_Of_Spirit5
+                Chance: 50
+          - Enchantgrade: 2
+            Items:
+              - Item: Spell3
+                Chance: 10000
+              - Item: Expert_Archer3
+                Chance: 10050
+              - Item: Fighting_Spirit3
+                Chance: 10050
+              - Item: Sharp3
+                Chance: 10050
+              - Item: Spell4
+                Chance: 1750
+              - Item: Expert_Archer4
+                Chance: 1750
+              - Item: Fighting_Spirit4
+                Chance: 1750
+              - Item: Sharp4
+                Chance: 1750
+              - Item: Star_Of_Mettle1
+                Chance: 4000
+              - Item: Star_Of_MasterArcher1
+                Chance: 4000
+              - Item: Star_Of_Sharp1
+                Chance: 4000
+              - Item: Star_Of_Spell1
+                Chance: 4000
+              - Item: Star_Of_Speed1
+                Chance: 4000
+              - Item: Star_Of_Vital1
+                Chance: 4000
+              - Item: Star_Of_Spirit1
+                Chance: 4000
+              - Item: Star_Of_Mettle2
+                Chance: 2000
+              - Item: Star_Of_MasterArcher2
+                Chance: 2000
+              - Item: Star_Of_Sharp2
+                Chance: 2000
+              - Item: Star_Of_Spell2
+                Chance: 2000
+              - Item: Star_Of_Speed2
+                Chance: 2000
+              - Item: Star_Of_Vital2
+                Chance: 2000
+              - Item: Star_Of_Spirit2
+                Chance: 2000
+              - Item: Star_Of_Mettle3
+                Chance: 1250
+              - Item: Star_Of_MasterArcher3
+                Chance: 1250
+              - Item: Star_Of_Sharp3
+                Chance: 1250
+              - Item: Star_Of_Spell3
+                Chance: 1250
+              - Item: Star_Of_Speed3
+                Chance: 1250
+              - Item: Star_Of_Vital3
+                Chance: 1250
+              - Item: Star_Of_Spirit3
+                Chance: 1250
+              - Item: Star_Of_Mettle4
+                Chance: 250
+              - Item: Star_Of_MasterArcher4
+                Chance: 250
+              - Item: Star_Of_Sharp4
+                Chance: 250
+              - Item: Star_Of_Spell4
+                Chance: 250
+              - Item: Star_Of_Speed4
+                Chance: 250
+              - Item: Star_Of_Vital4
+                Chance: 250
+              - Item: Star_Of_Spirit4
+                Chance: 250
+              - Item: Star_Of_Mettle5
+                Chance: 50
+              - Item: Star_Of_MasterArcher5
+                Chance: 50
+              - Item: Star_Of_Sharp5
+                Chance: 50
+              - Item: Star_Of_Spell5
+                Chance: 50
+              - Item: Star_Of_Speed5
+                Chance: 50
+              - Item: Star_Of_Vital5
+                Chance: 50
+              - Item: Star_Of_Spirit5
+                Chance: 50
+          - Enchantgrade: 3
+            Items:
+              - Item: Spell3
+                Chance: 10000
+              - Item: Expert_Archer3
+                Chance: 10050
+              - Item: Fighting_Spirit3
+                Chance: 10050
+              - Item: Sharp3
+                Chance: 10050
+              - Item: Spell4
+                Chance: 1750
+              - Item: Expert_Archer4
+                Chance: 1750
+              - Item: Fighting_Spirit4
+                Chance: 1750
+              - Item: Sharp4
+                Chance: 1750
+              - Item: Star_Of_Mettle1
+                Chance: 4000
+              - Item: Star_Of_MasterArcher1
+                Chance: 4000
+              - Item: Star_Of_Sharp1
+                Chance: 4000
+              - Item: Star_Of_Spell1
+                Chance: 4000
+              - Item: Star_Of_Speed1
+                Chance: 4000
+              - Item: Star_Of_Vital1
+                Chance: 4000
+              - Item: Star_Of_Spirit1
+                Chance: 4000
+              - Item: Star_Of_Mettle2
+                Chance: 2000
+              - Item: Star_Of_MasterArcher2
+                Chance: 2000
+              - Item: Star_Of_Sharp2
+                Chance: 2000
+              - Item: Star_Of_Spell2
+                Chance: 2000
+              - Item: Star_Of_Speed2
+                Chance: 2000
+              - Item: Star_Of_Vital2
+                Chance: 2000
+              - Item: Star_Of_Spirit2
+                Chance: 2000
+              - Item: Star_Of_Mettle3
+                Chance: 1250
+              - Item: Star_Of_MasterArcher3
+                Chance: 1250
+              - Item: Star_Of_Sharp3
+                Chance: 1250
+              - Item: Star_Of_Spell3
+                Chance: 1250
+              - Item: Star_Of_Speed3
+                Chance: 1250
+              - Item: Star_Of_Vital3
+                Chance: 1250
+              - Item: Star_Of_Spirit3
+                Chance: 1250
+              - Item: Star_Of_Mettle4
+                Chance: 250
+              - Item: Star_Of_MasterArcher4
+                Chance: 250
+              - Item: Star_Of_Sharp4
+                Chance: 250
+              - Item: Star_Of_Spell4
+                Chance: 250
+              - Item: Star_Of_Speed4
+                Chance: 250
+              - Item: Star_Of_Vital4
+                Chance: 250
+              - Item: Star_Of_Spirit4
+                Chance: 250
+              - Item: Star_Of_Mettle5
+                Chance: 50
+              - Item: Star_Of_MasterArcher5
+                Chance: 50
+              - Item: Star_Of_Sharp5
+                Chance: 50
+              - Item: Star_Of_Spell5
+                Chance: 50
+              - Item: Star_Of_Speed5
+                Chance: 50
+              - Item: Star_Of_Vital5
+                Chance: 50
+              - Item: Star_Of_Spirit5
+                Chance: 50
+          - Enchantgrade: 4
+            Items:
+              - Item: Spell3
+                Chance: 10000
+              - Item: Expert_Archer3
+                Chance: 10050
+              - Item: Fighting_Spirit3
+                Chance: 10050
+              - Item: Sharp3
+                Chance: 10050
+              - Item: Spell4
+                Chance: 1750
+              - Item: Expert_Archer4
+                Chance: 1750
+              - Item: Fighting_Spirit4
+                Chance: 1750
+              - Item: Sharp4
+                Chance: 1750
+              - Item: Star_Of_Mettle1
+                Chance: 4000
+              - Item: Star_Of_MasterArcher1
+                Chance: 4000
+              - Item: Star_Of_Sharp1
+                Chance: 4000
+              - Item: Star_Of_Spell1
+                Chance: 4000
+              - Item: Star_Of_Speed1
+                Chance: 4000
+              - Item: Star_Of_Vital1
+                Chance: 4000
+              - Item: Star_Of_Spirit1
+                Chance: 4000
+              - Item: Star_Of_Mettle2
+                Chance: 2000
+              - Item: Star_Of_MasterArcher2
+                Chance: 2000
+              - Item: Star_Of_Sharp2
+                Chance: 2000
+              - Item: Star_Of_Spell2
+                Chance: 2000
+              - Item: Star_Of_Speed2
+                Chance: 2000
+              - Item: Star_Of_Vital2
+                Chance: 2000
+              - Item: Star_Of_Spirit2
+                Chance: 2000
+              - Item: Star_Of_Mettle3
+                Chance: 1250
+              - Item: Star_Of_MasterArcher3
+                Chance: 1250
+              - Item: Star_Of_Sharp3
+                Chance: 1250
+              - Item: Star_Of_Spell3
+                Chance: 1250
+              - Item: Star_Of_Speed3
+                Chance: 1250
+              - Item: Star_Of_Vital3
+                Chance: 1250
+              - Item: Star_Of_Spirit3
+                Chance: 1250
+              - Item: Star_Of_Mettle4
+                Chance: 250
+              - Item: Star_Of_MasterArcher4
+                Chance: 250
+              - Item: Star_Of_Sharp4
+                Chance: 250
+              - Item: Star_Of_Spell4
+                Chance: 250
+              - Item: Star_Of_Speed4
+                Chance: 250
+              - Item: Star_Of_Vital4
+                Chance: 250
+              - Item: Star_Of_Spirit4
+                Chance: 250
+              - Item: Star_Of_Mettle5
+                Chance: 50
+              - Item: Star_Of_MasterArcher5
+                Chance: 50
+              - Item: Star_Of_Sharp5
+                Chance: 50
+              - Item: Star_Of_Spell5
+                Chance: 50
+              - Item: Star_Of_Speed5
+                Chance: 50
+              - Item: Star_Of_Vital5
+                Chance: 50
+              - Item: Star_Of_Spirit5
+                Chance: 50
+      - Slot: 1
+        PerfectEnchants:
+          - Item: Star_Cluster_Of_Str1
+            Price: 5000000
+            Materials:
+              - Material: Unknown_Meteorite_F
+                Amount: 20
+              - Material: Pow_Meteorite_Fragment
+                Amount: 15
+              - Material: Wis_Meteorite_Fragment
+                Amount: 15
+              - Material: Con_Meteorite_Fragment
+                Amount: 10
+          - Item: Star_Cluster_Of_Luk1
+            Price: 5000000
+            Materials:
+              - Material: Unknown_Meteorite_F
+                Amount: 20
+              - Material: Crt_Meteorite_Fragment
+                Amount: 15
+              - Material: Spl_Meteorite_Fragment
+                Amount: 15
+              - Material: Pow_Meteorite_Fragment
+                Amount: 10
+          - Item: Star_Cluster_Of_Int1
+            Price: 5000000
+            Materials:
+              - Material: Unknown_Meteorite_F
+                Amount: 20
+              - Material: Spl_Meteorite_Fragment
+                Amount: 15
+              - Material: Sta_Meteorite_Fragment
+                Amount: 15
+              - Material: Con_Meteorite_Fragment
+                Amount: 10
+          - Item: Star_Cluster_Of_Res1
+            Price: 5000000
+            Materials:
+              - Material: Unknown_Meteorite_F
+                Amount: 20
+              - Material: Sta_Meteorite_Fragment
+                Amount: 15
+              - Material: Crt_Meteorite_Fragment
+                Amount: 15
+              - Material: Wis_Meteorite_Fragment
+                Amount: 10

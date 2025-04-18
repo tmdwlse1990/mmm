@@ -8688,7 +8688,8 @@ uint32 PlayerStatPointDatabase::pc_gets_trait_point(uint16 level) {
 
 #ifdef RENEWAL_STAT
 /// Renewal status point cost formula
-#define PC_STATUS_POINT_COST(low) (((low) < 100) ? (2 + ((low) - 1) / 10) : (16 + 4 * (((low) - 100) / 5)))
+//#define PC_STATUS_POINT_COST(low) (((low) < 100) ? (2 + ((low) - 1) / 10) : (16 + 4 * (((low) - 100) / 5)))
+#define PC_STATUS_POINT_COST(low) 1
 #else
 /// Pre-Renewal status point cost formula
 #define PC_STATUS_POINT_COST(low) (( 1 + ((low) + 9) / 10 ))
@@ -14250,7 +14251,7 @@ void JobDatabase::loadingFinished() {
 		if( class_ & JOBL_FOURTH ){
 			max = battle_config.max_trait_parameter;
 		}else{
-			max = 0;
+			max = battle_config.max_trait_parameter;
 		}
 
 		for( uint16 parameter = PARAM_POW; parameter < PARAM_MAX; parameter++ ){
