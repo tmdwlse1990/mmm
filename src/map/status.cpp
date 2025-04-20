@@ -2365,10 +2365,10 @@ int32 status_base_amotion_pc(map_session_data* sd, struct status_data* status)
 		case W_GATLING:
 		case W_SHOTGUN:
 		case W_GRENADE:
-			temp_aspd = status->dex * status->dex / 4.0f + status->agi * status->agi * 0.8f;
+			temp_aspd = status->agi * status->dex / 3.0f + status->agi * status->dex * 0.5f;
 			break;
 		default:
-			temp_aspd = status->dex * status->dex / 1.5f + status->agi * status->agi * 0.8f;
+			temp_aspd = status->agi * status->dex / 1.0f + status->agi * status->dex * 0.5f;
 			break;
 	}
 	temp_aspd = (float)(sqrt(temp_aspd) * 0.25f) + 196;
@@ -2382,7 +2382,7 @@ int32 status_base_amotion_pc(map_session_data* sd, struct status_data* status)
 		val -= 50 - 10 * pc_checkskill(sd, KN_CAVALIERMASTERY);
 	else if (pc_isridingdragon(sd))
 		val -= 25 - 5 * pc_checkskill(sd, RK_DRAGONTRAINING);
-	aspd = ((int32)(temp_aspd + ((float)(status_calc_aspd(&sd->bl, &sd->sc, true) + val) * (status->dex / 200 + status->agi / 200))) - min(aspd, 200));
+	aspd = ((int32)(temp_aspd + ((float)(status_calc_aspd(&sd->bl, &sd->sc, true) + val) * ( (status->agi + status->dex) / 100 )  ) ) - min(aspd, 200));
 	return aspd;
 #else
 	if (job == nullptr)
@@ -2923,6 +2923,21 @@ int32 status_calc_mob_(struct mob_data* md, uint8 opt)
 		}
 	}
 
+			// [Raw Upgrade Mob]
+			status->batk += 2 * md->level;
+			status->rhw.atk += 2 * md->level;
+			status->rhw.atk2 += 2 * md->level;
+			status->aspd_rate -= 2 * md->level;
+			status->max_hp *= 2 + ( md->level + 10 ) / 10;
+			status->max_sp *= 2 + ( md->level + 10 ) / 10;
+			status->hp = status->max_hp;
+			status->sp = status->max_sp;
+			status->str += md->level;
+			status->vit += md->level;
+			status->int_ += md->level;
+			status->def2 += md->level*2;
+			status->mdef2 += md->level*2;
+	
 	if (flag&16 && mbl) { // Max HP setting from Summon Flora/marine Sphere
 		struct unit_data *ud = unit_bl2ud(mbl);
 		// Remove special AI when this is used by regular mobs.
