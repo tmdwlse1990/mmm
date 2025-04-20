@@ -1195,6 +1195,7 @@ int32 mob_spawn (struct mob_data *md)
 	md->last_canmove = tick;
 	md->last_skillcheck = tick;
 	md->trickcasting = 0;
+	md->rank = rnd() % battle_config.config_random_monster_rank; // [Start's] Rank 0~90
 
 	for (i = 0; i < MAX_MOBSKILL; i++)
 		md->skilldelay[i] = 0;
@@ -2997,6 +2998,12 @@ int32 mob_dead(struct mob_data *md, struct block_list *src, int32 type)
 		(!map_getmapflag(m, MF_NOBASEEXP) || !map_getmapflag(m, MF_NOJOBEXP)) //Gives Exp
 	) { //Experience calculation.
 		int32 bonus = 100; //Bonus on top of your share (common to all attackers).
+		if (md->rank) {
+			if (battle_config.config_monster_rank_exp_bonus_mode == 0)
+				bonus = (bonus * (10 + md->rank)) / 10; // [Start's] Example: Rank 100 will increase exp rate by 100% (x2)
+			else
+				bonus = ( bonus * md->rank ) /10; // [Start's] Example: Rank 1 will increase exp rate by x2 (100%)
+		}
 		int32 pnum = 0;
 #ifndef RENEWAL
 		if (md->sc.getSCE(SC_RICHMANKIM))
@@ -3132,6 +3139,8 @@ int32 mob_dead(struct mob_data *md, struct block_list *src, int32 type)
 								job_exp = (t_exp)cap_value(apply_rate(job_exp, rate), 1, MAX_EXP);
 						}
 #endif
+						base_exp /= 3;
+						job_exp /= 3;
 						pc_gainexp(tmpsd[i], &md->bl, base_exp, job_exp, 0);
 					}
 				}
@@ -3245,6 +3254,17 @@ int32 mob_dead(struct mob_data *md, struct block_list *src, int32 type)
 				continue;
 
 			drop_rate = mob_getdroprate(src, md->db, entry->rate, drop_modifier, md);
+			
+			// Monster Rank
+			if (md->rank) {
+				if (battle_config.config_monster_rank_drop_bonus_mode == 0)
+					drop_rate = (drop_rate * (100 + md->rank)) / 100; // [Start's] Example: Rank 100 will increase drop rate by 100% (x2)
+				else
+					drop_rate = drop_rate * (md->rank + 1); // [Start's] Example: Rank 1 will increase drop rate by x2 (100%)
+			}
+
+			// Map drop rate
+			drop_rate = (drop_rate * (map_getmapflag(m, MF_DROPRATE))) / 100; // [Start's] Example: Rate 200 will increase drop rate by 100% (x2)
 
 			// attempt to drop the item
 			if (rnd() % 10000 >= drop_rate)

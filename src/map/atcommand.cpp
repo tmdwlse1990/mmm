@@ -9019,7 +9019,8 @@ ACMD_FUNC(mapflag) {
 												MF_JEXP,
 												MF_BATTLEGROUND,
 												MF_SKILL_DAMAGE,
-												MF_SKILL_DURATION };
+												MF_SKILL_DURATION,
+												MF_DROPRATE};
 
 			if (flag > 0 && util::vector_exists(disabled_mf, mapflag)) {
 				sprintf(atcmd_output,"[ @mapflag ] %s flag cannot be enabled as it requires unique values.", flag_name);

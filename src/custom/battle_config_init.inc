@@ -11,3 +11,12 @@
  *	 { "name", &battle_config.<variable name>, <default value>, <minimum value>, <maximum value> },
  **/
 
+
+ { "config_equipment_drop_auto_identify", &battle_config.config_equipment_drop_auto_identify, 1, 0, 1 },
+ { "config_random_monster_rank", &battle_config.config_random_monster_rank, 91, 0, 50000 },
+ { "config_monster_rank_damage_mode", &battle_config.config_monster_rank_damage_mode, 0, 0, 1 },
+ { "config_monster_rank_defense_mode", &battle_config.config_monster_rank_defense_mode, 0, 0, 1 },
+ { "config_monster_rank_exp_bonus_mode", &battle_config.config_monster_rank_exp_bonus_mode, 0, 0, 1 },
+ { "config_monster_rank_drop_bonus_mode", &battle_config.config_monster_rank_drop_bonus_mode, 0, 0, 1 },
+ { "config_enchantment_clickable", &battle_config.config_enchantment_clickable, 1, 0, 1 },
+ { "config_enchantment_maximum", &battle_config.config_enchantment_maximum, 1, 0, 4 },

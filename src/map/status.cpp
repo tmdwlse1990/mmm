@@ -2641,12 +2641,12 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int32 l
 	} else {
 		// Hit
 		stat = status->hit;
-		stat += level + status->dex * 3 + (bl->type == BL_PC ? status->luk / 3 + 175 : 150); //base level + ( every 1 dex = +1 hit ) + (every 3 luk = +1 hit) + 175
+		stat += level + status->dex * 2 + (bl->type == BL_PC ? status->luk / 3 + 175 + (level * 2) + status->dex : 150); //base level + ( every 1 dex = +1 hit ) + (every 3 luk = +1 hit) + 175
 		stat += 2 * status->con;
 		status->hit = cap_value(stat, 1, SHRT_MAX);
 		// Flee
 		stat = status->flee;
-		stat += level + status->agi * 3 + (bl->type == BL_MER ? 0 : bl->type == BL_PC ? status->luk / 5 : 0) + 100; //base level + ( every 1 agi = +1 flee ) + (every 5 luk = +1 flee) + 100
+		stat += level + status->agi * 2 + (bl->type == BL_MER ? 0 : bl->type == BL_PC ? status->luk / 5 + (level * 2) + status->agi : 0) + 100; //base level + ( every 1 agi = +1 flee ) + (every 5 luk = +1 flee) + 100
 		stat += 2 * status->con;
 		status->flee = cap_value(stat, 1, SHRT_MAX);
 		// Def2

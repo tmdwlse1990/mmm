@@ -7042,14 +7042,23 @@ void clif_use_card(map_session_data *sd,int32 idx)
 	ep=sd->inventory_data[idx]->equip;
 	WFIFOHEAD(fd,MAX_INVENTORY * 2 + 4);
 	WFIFOW(fd,0)=0x17b;
+	
+	bool isEnchantment = ((sd->inventory_data[idx]->subtype == CARD_ENCHANT) && battle_config.config_enchantment_clickable); // [Start's] Check it was Enchantment
+
 
 	for(i=c=0;i<MAX_INVENTORY;i++){
 		int32 j;
 
 		if(sd->inventory_data[i] == nullptr)
 			continue;
-		if(sd->inventory_data[i]->type!=IT_WEAPON && sd->inventory_data[i]->type!=IT_ARMOR)
-			continue;
+		if (!isEnchantment) {
+			if ((sd->inventory_data[i]->type != IT_WEAPON) && (sd->inventory_data[i]->type != IT_ARMOR))
+				continue;
+		}
+		else {
+			if ((sd->inventory_data[i]->type != IT_WEAPON) && (sd->inventory_data[i]->type != IT_ARMOR) && (sd->inventory_data[i]->type != IT_SHADOWGEAR))
+				continue;
+		}
 		if(itemdb_isspecial(sd->inventory.u.items_inventory[i].card[0])) //Can't slot it
 			continue;
 
@@ -7065,13 +7074,25 @@ void clif_use_card(map_session_data *sd,int32 idx)
 		if(sd->inventory_data[i]->type == IT_ARMOR && (ep & EQP_ACC) && ((ep & EQP_ACC) != EQP_ACC) && ((sd->inventory_data[i]->equip & EQP_ACC) != (ep & EQP_ACC)) ) // specific accessory-card can only be inserted to specific accessory.
 			continue;
 
-		ARR_FIND( 0, sd->inventory_data[i]->slots, j, sd->inventory.u.items_inventory[i].card[j] == 0 );
-		if( j == sd->inventory_data[i]->slots )	// No room
+		if (!isEnchantment) { // [Start's] Skip location checking for Enchantment
+			if ((sd->inventory_data[i]->equip & ep) == 0) // Not equippable on this part.
+				continue;
+
+			if ((sd->inventory_data[i]->type == IT_WEAPON) && (ep == EQP_SHIELD)) // Shield card won't go on left weapon.
+				continue;
+
+			if ((sd->inventory_data[i]->type == IT_ARMOR) && (ep & EQP_ACC) && ((ep & EQP_ACC) != EQP_ACC) && ((sd->inventory_data[i]->equip & EQP_ACC) != (ep & EQP_ACC))) // specific accessory-card can only be inserted to specific accessory.
+				continue;
+		}
+		//ARR_FIND(0, sd->inventory_data[i]->slots, j, sd->inventory.u.items_inventory[i].card[j] == 0);
+		j = isEnchantment ? sd->inventory_data[i]->slots : j; // [Start's] Enchantment will start at max card slot index
+		ARR_FIND(isEnchantment ? (sd->inventory_data[i]->slots) : 0, isEnchantment ? cap_value(sd->inventory_data[i]->slots + battle_config.config_enchantment_maximum, 0, 4) : sd->inventory_data[i]->slots, j, sd->inventory.u.items_inventory[i].card[j] == 0); // [Start's] Modify a bit for Enchantment
+		if (j == (isEnchantment ? cap_value(sd->inventory_data[i]->slots + battle_config.config_enchantment_maximum, 0, 4) : sd->inventory_data[i]->slots)) // No room + [Start's] Modify a bit for Enchantment
 			continue;
 
 		if( sd->inventory.u.items_inventory[i].equip > 0 )	// Do not check items that are already equipped
 			continue;
-
+			
 		WFIFOW(fd,4+c*2)=i+2;
 		c++;
 	}
@@ -9987,7 +10008,8 @@ void clif_name( struct block_list* src, struct block_list *bl, send_target targe
 				char mobhp[50], *str_p = mobhp;
 
 				if( battle_config.show_mob_info&4 ){
-					str_p += sprintf( str_p, "Lv. %d | ", md->level );
+					//str_p += sprintf( str_p, "Lv. %d | ", md->level );
+					str_p += sprintf(str_p, "R. %d | ", md->rank); // [Start's] Show rank on monster name
 				}
 
 				if( battle_config.show_mob_info&1 ){

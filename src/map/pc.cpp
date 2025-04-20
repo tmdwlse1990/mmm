@@ -5510,36 +5510,50 @@ int32 pc_insert_card(map_session_data* sd, int32 idx_card, int32 idx_equip)
 	t_itemid nameid;
 	struct item_data* item_eq = sd->inventory_data[idx_equip];
 	struct item_data* item_card = sd->inventory_data[idx_card];
+	
+	bool isEnchantment = false; // [Start's] Check it was Enchantment
 
 	if(item_eq == nullptr)
 		return 0; //Invalid item index.
 	if(item_card == nullptr)
 		return 0; //Invalid card index.
+	else
+		isEnchantment = ((item_card->subtype == CARD_ENCHANT) && battle_config.config_enchantment_clickable); // [Start's] Check it was Enchantment
 	if( sd->inventory.u.items_inventory[idx_equip].nameid == 0 || sd->inventory.u.items_inventory[idx_equip].amount < 1 )
 		return 0; // target item missing
 	if( sd->inventory.u.items_inventory[idx_card].nameid == 0 || sd->inventory.u.items_inventory[idx_card].amount < 1 )
 		return 0; // target card missing
-	if( item_eq->type != IT_WEAPON && item_eq->type != IT_ARMOR )
-		return 0; // only weapons and armor are allowed
+	if (!isEnchantment) {
+		if ((item_eq->type != IT_WEAPON) && (item_eq->type != IT_ARMOR))
+			return 0; // only weapons and armor are allowed
+	}
+	else {
+		if ((item_eq->type != IT_WEAPON) && (item_eq->type != IT_ARMOR) && (item_eq->type != IT_SHADOWGEAR))
+			return 0; // only weapons and armor are allowed
+	}
 	if( item_card->type != IT_CARD )
 		return 0; // must be a card
 	if( sd->inventory.u.items_inventory[idx_equip].identify == 0 )
 		return 0; // target must be identified
 	if( itemdb_isspecial(sd->inventory.u.items_inventory[idx_equip].card[0]) )
 		return 0; // card slots reserved for other purposes
-	if( (item_eq->equip & item_card->equip) == 0 )
-		return 0; // card cannot be compounded on this item type
-	if( item_eq->type == IT_WEAPON && item_card->equip == EQP_SHIELD )
-		return 0; // attempted to place shield card on left-hand weapon.
-	if( item_eq->type == IT_ARMOR && (item_card->equip & EQP_ACC) && ((item_card->equip & EQP_ACC) != EQP_ACC) && ((item_eq->equip & EQP_ACC) != (item_card->equip & EQP_ACC)) )
-		return 0; // specific accessory-card can only be inserted to specific accessory.
+	if (!isEnchantment) { // [Start's] Skip location checking for Enchantment
+		if ((item_eq->equip & (item_card->equip) == 0))
+			return 0; // card cannot be compounded on this item type
+		if ((item_eq->type == IT_WEAPON) && (item_card->equip == EQP_SHIELD))
+			return 0; // attempted to place shield card on left-hand weapon.
+		if ((item_eq->type == IT_ARMOR) && (item_card->equip & EQP_ACC) && ((item_card->equip & EQP_ACC) != EQP_ACC) && ((item_eq->equip & EQP_ACC) != (item_card->equip & EQP_ACC)))
+			return 0; // specific accessory-card can only be inserted to specific accessory.
+	}
 	if( sd->inventory.u.items_inventory[idx_equip].equip != 0 )
 		return 0; // item must be unequipped
 
-	ARR_FIND( 0, item_eq->slots, i, sd->inventory.u.items_inventory[idx_equip].card[i] == 0 );
-	if( i == item_eq->slots )
-		return 0; // no free slots
-
+	//ARR_FIND(0, item_eq->slots, i, sd->inventory.u.items_inventory[idx_equip].card[i] == 0);
+	i = isEnchantment ? item_eq->slots : i; // [Start's] Enchantment will start at max card slot index
+	ARR_FIND(isEnchantment ? item_eq->slots : 0, isEnchantment ? cap_value(item_eq->slots + battle_config.config_enchantment_maximum, 0, 4) : item_eq->slots, i, sd->inventory.u.items_inventory[idx_equip].card[i] == 0); // [Start's] Modify a bit for Enchantment
+	if (i == (isEnchantment ? cap_value(item_eq->slots + battle_config.config_enchantment_maximum, 0, 4) : item_eq->slots)) // No room + [Start's] Modify a bit for Enchantment
+		return 0;
+		
 	// remember the card id to insert
 	nameid = sd->inventory.u.items_inventory[idx_card].nameid;
 
@@ -5553,6 +5567,9 @@ int32 pc_insert_card(map_session_data* sd, int32 idx_card, int32 idx_equip)
 		sd->inventory.u.items_inventory[idx_equip].card[i] = nameid;
 		log_pick_pc(sd, LOG_TYPE_OTHER,  1, &sd->inventory.u.items_inventory[idx_equip]);
 		clif_insert_card( *sd, idx_equip, idx_card, false );
+		
+		if (isEnchantment) // [Start's] Force @refresh for show Enchantment at correct slot
+			clif_refresh(sd);
 	}
 
 	return 0;

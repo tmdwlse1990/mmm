@@ -3437,7 +3437,7 @@ char itemdb_isidentified(t_itemid nameid) {
 		case IT_ARMOR:
 		case IT_PETARMOR:
 		case IT_SHADOWGEAR:
-			return 0;
+			return battle_config.config_equipment_drop_auto_identify ? 1 : 0; // [Start's];
 		default:
 			return 1;
 	}

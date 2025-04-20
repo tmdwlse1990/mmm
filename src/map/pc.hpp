@@ -949,6 +949,10 @@ public:
 
 	std::vector<uint32> party_booking_requests;
 	uint64 enchantIndex;
+
+	uint16 debuff; // [Start's] Debuff for any purpose
+	uint16 bonusDebuff; // [Start's] A debuff for any bonus (Example: STR +10 -> STR +x)
+
 };
 
 extern struct eri *pc_sc_display_ers; /// Player's SC display table

@@ -1687,6 +1687,8 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 			if (battle_config.pk_mode == 1 && map_getmapflag(bl->m, MF_PVP) > 0)
 				damage = battle_calc_pk_damage(*src, *bl, damage, skill_id, flag);
 
+			damage = battle_calc_debuff_damage(src, bl, damage); // [Start's]
+
 			return damage; //These skills bypass everything else.
 	}
 
@@ -1698,6 +1700,8 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 		// Adjust this based on any possible PK damage rates.
 		if (battle_config.pk_mode == 1 && map_getmapflag(bl->m, MF_PVP) > 0)
 			damage = battle_calc_pk_damage(*src, *bl, damage, skill_id, flag);
+
+		damage = battle_calc_debuff_damage(src, bl, damage); // [Start's]
 
 		return damage;
 	}
@@ -2001,6 +2005,8 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 	if (battle_config.pk_mode == 1 && map_getmapflag(bl->m, MF_PVP) > 0)
 		damage = battle_calc_pk_damage(*src, *bl, damage, skill_id, flag);
 
+	damage = battle_calc_debuff_damage(src, bl, damage); // [Start's]
+	
 	if(battle_config.skill_min_damage && damage > 0 && damage < div_) {
 		if ((flag&BF_WEAPON && battle_config.skill_min_damage&1)
 			|| (flag&BF_MAGIC && battle_config.skill_min_damage&2)
@@ -2027,6 +2033,16 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 
 		if (md && md->damagetaken != 100)
 			damage = i64max(damage * md->damagetaken / 100, 1);
+		
+		if (md && (md->rank != 0))
+		{
+			// [Start's] Example: Rank 1 will reduces damage received by 1% (Maximum at 99% or Rank 99)
+			if (battle_config.config_monster_rank_defense_mode == 0)
+				damage = i64max((damage * (100 - (cap_value(md->rank, 0, 99)))) / 100, 1);
+			// [Start's] Example: Rank 1 will divide damage by 2
+			else
+				damage = i64max(damage / (md->rank + 1), 1);
+		}
 	}
 	
 	if (tsc != nullptr && !tsc->empty()) {
@@ -2211,6 +2227,34 @@ int64 battle_calc_pk_damage(block_list &src, block_list &bl, int64 damage, uint1
 			if (flag & BF_LONG)
 				damage = damage * battle_config.pk_long_damage_rate / 100;
 		}
+	}
+
+	return i64max(damage, 1);
+}
+
+/**
+ * [Start's]
+ * Calculates Debuff damage adjustments.
+ * @param src: Source object
+ * @param bl: Target object
+ * @param damage: Damage being done
+ * @return Modified damage
+ */
+int64 battle_calc_debuff_damage(struct block_list* src, struct block_list* bl, int64 damage) {
+	if (damage == 0) // No reductions to make.
+		return 0;
+
+	map_session_data* sd = sd = BL_CAST(BL_PC, src);
+
+	if (sd && sd->debuff)
+		damage = (damage * (100 - (cap_value(sd->debuff, 0, 100)))) / 100; // Example: Debuff 50 will decrease damage by 50%
+
+	mob_data* md = BL_CAST(BL_MOB, src);
+	if (md && (md->rank != 0)) {
+		if (battle_config.config_monster_rank_damage_mode == 0)
+			damage = i64max((damage * (100 + md->rank)) / 100, 1); // Example: Rank 100 will increase damage by 100% (x2)
+		else
+			damage = i64max(damage * (md->rank + 1), 1); // Example: Rank 1 will increase damage by x2 (100%)
 	}
 
 	return i64max(damage, 1);
@@ -10154,6 +10198,9 @@ int64 battle_calc_return_damage(struct block_list* tbl, struct block_list *src, 
 	else if (mapdata->getMapFlag(MF_PVP))
 		rdamage = battle_calc_pk_damage(*src, *tbl, rdamage, skill_id, flag);
 
+
+	rdamage = battle_calc_debuff_damage(src, tbl, rdamage); // [Start's]
+	
 	// Skill damage adjustment
 	int32 skill_damage = battle_skill_damage(src, tbl, skill_id);
 
