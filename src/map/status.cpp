@@ -2382,7 +2382,7 @@ int32 status_base_amotion_pc(map_session_data* sd, struct status_data* status)
 		val -= 50 - 10 * pc_checkskill(sd, KN_CAVALIERMASTERY);
 	else if (pc_isridingdragon(sd))
 		val -= 25 - 5 * pc_checkskill(sd, RK_DRAGONTRAINING);
-	aspd = ((int32)(temp_aspd + ((float)(status_calc_aspd(&sd->bl, &sd->sc, true) + val) * ( (status->agi + status->dex) / 100 )  ) ) - min(aspd, 200));
+	aspd = ((int32)(temp_aspd + ((float)(status_calc_aspd(&sd->bl, &sd->sc, true) + val) ) ) - min(aspd, 200));
 	return aspd;
 #else
 	if (job == nullptr)
@@ -2394,7 +2394,7 @@ int32 status_base_amotion_pc(map_session_data* sd, struct status_data* status)
 	 : (job->aspd_base[sd->weapontype1] + job->aspd_base[sd->weapontype2]) * 7 / 10; // Dual-wield
 
 	// Percentual delay reduction from stats
-	amotion -= amotion * (4 * status->agi + status->dex) / 1000;
+	amotion -= amotion * (4 * (status->agi + status->dex)) / 1000;
 
 	// Raw delay adjustment from bAspd bonus
 	amotion += sd->bonus.aspd_add;
@@ -2641,12 +2641,12 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int32 l
 	} else {
 		// Hit
 		stat = status->hit;
-		stat += level + status->dex * 2 + (bl->type == BL_PC ? status->luk / 3 + 175 + (level * 2) + status->dex : 150); //base level + ( every 1 dex = +1 hit ) + (every 3 luk = +1 hit) + 175
+		stat += level + status->dex * 2 + (bl->type == BL_PC ? status->luk / 3 + 175 + status->dex : 150); //base level + ( every 1 dex = +1 hit ) + (every 3 luk = +1 hit) + 175
 		stat += 2 * status->con;
 		status->hit = cap_value(stat, 1, SHRT_MAX);
 		// Flee
 		stat = status->flee;
-		stat += level + status->agi * 2 + (bl->type == BL_MER ? 0 : bl->type == BL_PC ? status->luk / 5 + (level * 2) + status->agi : 0) + 100; //base level + ( every 1 agi = +1 flee ) + (every 5 luk = +1 flee) + 100
+		stat += level + status->agi * 2 + (bl->type == BL_MER ? 0 : bl->type == BL_PC ? status->luk / 5 + status->agi : 0) + 100; //base level + ( every 1 agi = +1 flee ) + (every 5 luk = +1 flee) + 100
 		stat += 2 * status->con;
 		status->flee = cap_value(stat, 1, SHRT_MAX);
 		// Def2
@@ -2654,7 +2654,7 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int32 l
 			stat = (int32)(status->vit + ((float)level / 10) + ((float)status->vit / 5));
 		else {
 			stat = status->def2;
-			stat += (int32)(((float)level + status->vit * 5) / 2 + (bl->type == BL_PC ?  (status->vit * 5) : 0)) + (bl->type == BL_MOB ? (status->int_ * 10) + (level * 4) : 0 ); //base level + (every 2 vit = +1 def) + (every 5 agi = +1 def)
+			stat += (int32)(((float)level + status->vit * 5) / 2 + (bl->type == BL_PC ?  (status->vit * 5) : 0)) + (bl->type == BL_MOB ? (status->vit * 3) + (level) : 0 ); //base level + (every 2 vit = +1 def) + (every 5 agi = +1 def)
 		}
 		status->def2 = cap_value(stat, 0, SHRT_MAX);
 		// Mdef2
@@ -2662,7 +2662,7 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int32 l
 			stat = (int32)(((float)level / 10) + ((float)status->int_ / 5));
 		else {
 			stat = status->mdef2;
-			stat += (int32)(bl->type == BL_PC ? ((status->int_ * 10) + ((float)level / 4) + ((float)(status->dex + status->vit) / 5)) : ((float)(status->int_ + level) / 4)) + (bl->type == BL_MOB ? (status->int_ * 10) + (level * 4) : 0 ) ; //(every 4 base level = +1 mdef) + (every 1 int32 = +1 mdef) + (every 5 dex = +1 mdef) + (every 5 vit = +1 mdef)
+			stat += (int32)(bl->type == BL_PC ? ((status->int_ * 10) + ((float)level / 4) + ((float)(status->dex + status->vit) / 5)) : ((float)(status->int_ + level) / 4)) + (bl->type == BL_MOB ? (status->int_ * 3) + (level * 4) : 0 ) ; //(every 4 base level = +1 mdef) + (every 1 int32 = +1 mdef) + (every 5 dex = +1 mdef) + (every 5 vit = +1 mdef)
 		}
 		status->mdef2 = cap_value(stat, 0, SHRT_MAX);
 		// PAtk

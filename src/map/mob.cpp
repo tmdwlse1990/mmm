@@ -3002,7 +3002,7 @@ int32 mob_dead(struct mob_data *md, struct block_list *src, int32 type)
 			if (battle_config.config_monster_rank_exp_bonus_mode == 0)
 				bonus = (bonus * (10 + md->rank)) / 10; // [Start's] Example: Rank 100 will increase exp rate by 100% (x2)
 			else
-				bonus = ( bonus * md->rank ) /10; // [Start's] Example: Rank 1 will increase exp rate by x2 (100%)
+				bonus = bonus * (md->rank + 1); // [Start's] Example: Rank 1 will increase exp rate by x2 (100%)
 		}
 		int32 pnum = 0;
 #ifndef RENEWAL
@@ -3139,8 +3139,6 @@ int32 mob_dead(struct mob_data *md, struct block_list *src, int32 type)
 								job_exp = (t_exp)cap_value(apply_rate(job_exp, rate), 1, MAX_EXP);
 						}
 #endif
-						base_exp /= 3;
-						job_exp /= 3;
 						pc_gainexp(tmpsd[i], &md->bl, base_exp, job_exp, 0);
 					}
 				}

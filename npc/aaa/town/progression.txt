@@ -1,0 +1,10 @@
+icecastle,209,170,4	script	ÍÑ¾à¡Ã´ºÑµÃ¹Ñ¡¾¨­ÀÑÂ	4_EP21_HEINE_TAB,{
+	mes "µÑé§à©Âæ";
+	end;
+Oninit:
+	while(1) {
+	showscript "Upgrade ºÑµÃ¹Ñ¡¾¨­ÀÑÂ";
+	sleep 1000;
+	}
+	end;
+}

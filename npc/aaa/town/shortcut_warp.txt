@@ -1,0 +1,27 @@
+icecastle,174,206,6	script	Fast Travel#icecastle	4_LARVA_VIOLET,{
+	select("โซนพัฒนาตัวละคร:โซนขายของ:โซนเควสและดันเจี้ยน:โซนทดสอบดาเมจ");
+	.@menu = @menu;
+	switch(.@menu) {
+	case 1:
+		.@x = 204;
+		.@y = 164;
+		break;
+	case 2:
+		.@x = 186;
+		.@y = 206;
+		break;
+	case 3:
+		.@x = 186;
+		.@y = 206;
+		break;
+	case 4:
+		.@x = 186;
+		.@y = 206;
+		break;
+	}
+	warp "icecastle",.@x,.@y;
+	end;
+Oninit:
+		waitingroom "วาปภายในเมือง",0;
+		end;
+}
