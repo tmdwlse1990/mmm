@@ -7056,15 +7056,17 @@ void clif_use_card(map_session_data *sd,int32 idx)
 				continue;
 		}
 		else {
-			if ((sd->inventory_data[i]->type != IT_WEAPON) && (sd->inventory_data[i]->type != IT_ARMOR) && (sd->inventory_data[i]->type != IT_SHADOWGEAR))
+			if ( (sd->inventory_data[i]->type != IT_WEAPON) && (sd->inventory_data[i]->type != IT_ARMOR) && (sd->inventory_data[i]->type != IT_SHADOWGEAR))
 				continue;
 		}
+		if ( sd->inventory_data[i]->flag.no_refine == 1)
+			continue;
 		if(itemdb_isspecial(sd->inventory.u.items_inventory[i].card[0])) //Can't slot it
 			continue;
 
 		if(sd->inventory.u.items_inventory[i].identify==0 )	//Not identified
 			continue;
-
+		/*
 		if((sd->inventory_data[i]->equip&ep)==0)	//Not equippable on this part.
 			continue;
 
@@ -7073,7 +7075,7 @@ void clif_use_card(map_session_data *sd,int32 idx)
 
 		if(sd->inventory_data[i]->type == IT_ARMOR && (ep & EQP_ACC) && ((ep & EQP_ACC) != EQP_ACC) && ((sd->inventory_data[i]->equip & EQP_ACC) != (ep & EQP_ACC)) ) // specific accessory-card can only be inserted to specific accessory.
 			continue;
-
+			*/
 		if (!isEnchantment) { // [Start's] Skip location checking for Enchantment
 			if ((sd->inventory_data[i]->equip & ep) == 0) // Not equippable on this part.
 				continue;

@@ -268,8 +268,8 @@ function	Job_Options	{
 			   (.BabyClass && Is_First_Cls(.@eac&(~EAJL_BABY))) ) {	// Baby First Cls
 		// Player is First Class (not Novice)
 		// most jobs should have two options here  (2-1 and 2-2)
-		.@class1 = roclass(.@eac|EAJL_2_1); // 2-1
-		.@class2 = roclass(.@eac|EAJL_2_2); // 2-2
+		//.@class1 = roclass(.@eac|EAJL_2_1); // 2-1
+		//.@class2 = roclass(.@eac|EAJL_2_2); // 2-2
 		// dispbottom "Debug: Classes: class1 ("+.@class1+"), class2 ("+.@class2+")";
 		if(.LastJob && lastJob && (.@eac&EAJL_UPPER)) {
 			// Player is rebirth Cls and linear class changes are enforced
@@ -481,22 +481,18 @@ function	Get_Job_Equip	{
 		// => First Cls or not covered by the switch
 		switch(BaseClass) {
 			// First Class
-			case Job_Swordman:
-				getitem 1108,1;	break;	//	Blade [4]
-			case Job_Mage:
-				getitem 1602,1;	break;	//	Rod [4]
 			case Job_Archer:
-				getitem 1705,1;	break;	//	Composite Bow [4]
+				getitem 1750,500;
+			case Job_Swordman:
+			case Job_Mage:
 			case Job_Acolyte:
-				getitem 1505,1;	break;	//	Mace [4]
 			case Job_Merchant:
-				getitem 1302,1;	break;	//	Axe [4]
 			case Job_Thief:
-				getitem 1208,1;	break;	//	Main Gauche [4]
 			case Job_Gunslinger:
-				getitem 13101,1; break;	//	Six Shooter [2]
 			case Job_Ninja:
-				getitem 13010,1; break;	//	Asura [2]
+				getitem 2001001,1;	// Paradise Weapon
+				getitem 2001002,1;	// Paradise Armor
+				break;
 		}
 	}
 	return;
@@ -520,7 +516,7 @@ OnInit:
 	.LastJob = true;					// Enforce linear class changes?
 	.SkillPointCheck = false;			// Force player to use up all skill points?
 	.Platinum = true;					// Get platinum skills automatically?
-	.GetJobEquip = false;				// Get job equipment (mostly weapons) on job change?
+	.GetJobEquip = true;				// Get job equipment (mostly weapons) on job change?
 
 	// Level Requirements
 	setarray .Req_First[0],1,10; 		// Minimum base level, job level to turn into 1st class

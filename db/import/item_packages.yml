@@ -37,3 +37,43 @@
 Header:
   Type: ITEM_PACKAGE_DB
   Version: 1
+
+Body:
+  - Item: Paradise_Weap_1
+    Groups:
+      - Group: 0
+        Items:
+          - Item: 1Para_Sword
+      - Group: 1
+        Items:
+          - Item: 1Para_Axe
+      - Group: 2
+        Items:
+          - Item: 1Para_Mace
+      - Group: 3
+        Items:
+          - Item: 1Para_Dagger
+      - Group: 4
+        Items:
+          - Item: 1Para_Bow
+      - Group: 5
+        Items:
+          - Item: 1Para_Rod
+  - Item: Paradise_Armor_1
+    Groups:
+      - Group: 0
+        Items:
+          - Item: 1Para_Cap_A
+          - Item: 1Para_Armor_A
+          - Item: 1Para_Manteau_A
+          - Item: 1Para_Boots_A
+          - Item: 1Para_Acc_L_A
+          - Item: 1Para_Acc_R_A
+      - Group: 1
+        Items:
+          - Item: 1Para_Cap_B
+          - Item: 1Para_Armor_B
+          - Item: 1Para_Manteau_B
+          - Item: 1Para_Boots_B
+          - Item: 1Para_Acc_L_B
+          - Item: 1Para_Acc_R_B

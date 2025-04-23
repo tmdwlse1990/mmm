@@ -1,0 +1,25 @@
+//==== Gidz Scripts =============================================
+//= Cutin Checker
+//===== By: =====================================================
+//= Gidz
+//===== Current Version: ========================================
+//= 1.0
+//===== Description: ============================================
+//= @cutin to Display Cutin
+//= @allcutin for Global Cutin Display
+//===== Changelog: ==============================================
+//= 1.0 Implementation
+//===============================================================
+
+-	script	AtCutin	-1,{
+
+OnInit:
+	bindatcmd "cutin",strnpcinfo(3)+"::OnCutin";
+	end;
+	
+OnCutin:
+	mes "Input the exact Cutin Name";
+	input .@var$;
+	cutin ""+.@var$+"",2;
+	close3;
+}

@@ -88,7 +88,48 @@ Header:
   Type: ITEM_DB
   Version: 3
 
-#Body:
+Body:
+#   [Core Item Main]
+  - Id: 2000001
+    AegisName: Adventure_Card
+    Name: Adventure Card
+    Type: Shadowgear
+    Locations:
+      Shadow_Left_Accessory: true
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    EquipLevelMin: 1
+    Refineable: false
+    Script: |
+      bonus bBaseAtk,adv_atk*10;
+      bonus bMatk,adv_matk*10;
+      bonus bdef,adv_def*3;
+      bonus bMdef,adv_mdef*3;
+      bonus bHit,adv_hit*3;
+      bonus bFlee,adv_flee*3;
+      bonus bCritical,adv_Crit;
+      bonus baspdrate,adv_aspd;
+      bonus bmaxhp,adv_hp*100;
+      bonus bmaxsp,adv_sp*25;
+#   [Useable Item]
+  - Id: 2001001
+    AegisName: Paradise_Weap_1
+    Name: Paradise Weapon Box
+    Type: DelayConsume
+    Flags:
+      BuyingStore: true
+  - Id: 2001002
+    AegisName: Paradise_Armor_1
+    Name: Paradise Armor Box
+    Type: DelayConsume
+    Flags:
+      BuyingStore: true
 # THQ Quest Items
 #=============================================================
 #  - Id: 1998
