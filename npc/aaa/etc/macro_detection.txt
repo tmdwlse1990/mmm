@@ -1,0 +1,54 @@
+-	script	MacroDetection	-1,{
+//OnPCLoginEvent:
+//	macro_detector();
+	end;
+	
+OnInit:
+	initnpctimer;
+	end;
+	
+OnTimer1800000:
+	initnpctimer;
+	addrid(0);
+	//เพิ่มแมพที่ยกเว้นการตรวจ
+	if((strcharinfo(3) != "prontera") && (strcharinfo(3) != "icecastle")&& (strcharinfo(3) != "ptr_in") && (strcharinfo(3) != "grademk")
+			&& (strcharinfo(3) != "sec_pri"))
+	macro_detector();
+	end;
+}
+
+// macro detector
+
+//sec_pri,24,85,4	script	ผู้คุม	4_M_RASWORD,{
+sec_pri,0,0,0	script	Prisoner	4_M_SAKRAYROYAL,{
+
+	if( getstatus( SC_JAILED ) == 1){
+	mes "[" + strnpcinfo(1) + "]";
+	mes "<FONT COLOR = FF2929>• <FONT SIZE = 16><B>ต้องการออกจากสถานที่แห่งนี้ใช่ไหม</FONT></FONT></B>";
+	next;
+	switch( select( "^FF2929ไม่^000000", "ข้าต้องการอิสรภาพ !" ) ){
+	case 1:
+	end;
+	
+	case 2:
+	mes "[" + strnpcinfo(1) + "]";
+	mes "<FONT COLOR = FF2929>• <FONT SIZE = 16><B>เอาละกรอกตามภาพ</FONT></FONT></B>";
+	mes "<FONT COLOR = FF2929>• <FONT SIZE = 16><B>ที่เจ้าเห็นมาซะ</FONT></FONT></B>";
+	if (macrodetect == 1) {
+		macrodetect = 0;
+		atcommand "@unjail "+strcharinfo(0);
+		end;
+		}
+	macrodetect = 0;
+	macro_detector strcharinfo(0);
+	macrodetect = 1;
+	end;
+		}
+	end;
+	}else {atcommand "@load ";}
+
+end;
+}
+
+
+//sec_pri,50,85,4	duplicate(ผู้คุม)	Prisoner#02	4_M_RASWORD

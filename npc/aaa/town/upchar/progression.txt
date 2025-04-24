@@ -34,16 +34,12 @@ icecastle,209,170,4	script	อัพเกรดบัตรนักพจญภัย	4_EP21_HEINE_TAB,{
 		mes "ถ้ามีกรุณาสวมใส่ด้วย";
 		end;
 	}
-	setarray .@class$,"Atk","Matk","Def","Mdef","Hit","Flee","Critical","Attack Speed","Max HP","Max SP";
-	
-	setarray .@stats$,"adv_atk","adv_matk","adv_def","adv_mdef","adv_hit","adv_flee","adv_Crit","adv_aspd","adv_hp","adv_sp";
-	
 	.@menu$ = "";
-	for(.@i=0;.@i <= getarraysize(.@class$); .@i++) 
-	.@menu$ = .@menu$ + .@class$[.@i] + ":";
+	for(.@i=0;.@i <= getarraysize($class$); .@i++) 
+	.@menu$ = .@menu$ + $class$[.@i] + ":";
 	.@menu = select(.@menu$)-1;
 	// [Check Money For upgrade]
-		.@lvl = getd(.@stats$[.@menu]);
+		.@lvl = getd($stats$[.@menu]);
 		.@usezeny = .@zeny[.@lvl]*1000;
 		if(!.@usezeny) {
 			mes "ท่านอัพถึงระดับสูงสุดของ Rank F ในด้านนี้แล้ว";
@@ -65,7 +61,7 @@ icecastle,209,170,4	script	อัพเกรดบัตรนักพจญภัย	4_EP21_HEINE_TAB,{
 		}
 			
 	zeny -= .@usezeny;
-	setd(.@stats$[.@menu]),getd(.@stats$[.@menu])+1;
+	setd($stats$[.@menu]),getd($stats$[.@menu])+1;
 	mes "เรียบร้อยแถมบัพให้ด้วย";
 	// [Give Free Buff after Training]
 		specialeffect2 EF_INCAGILITY;
@@ -79,6 +75,10 @@ Oninit:
 	showscript "Upgrade บัตรนักพจญภัย";
 	sleep 1000;
 	}
+	
+	setarray $stats$,"adv_atk","adv_matk","adv_def","adv_mdef","adv_hit","adv_flee","adv_Crit","adv_aspd","adv_hp","adv_sp","adv_igdef","adv_igmdef";
+	setarray $class$,"Atk","Matk","Def","Mdef","Hit","Flee","Critical","Attack Speed","Max HP","Max SP","Ignore Def","Ignore MDef";
+	
 	end;
 }
 
@@ -88,22 +88,18 @@ icecastle,201,171,4	script	พนักงานต้อนรับ	4_EP21_GALAXIA_B,{
 	next;
 	switch(select("ตรวจสอบข้อมูลการอัพเกรด:ตรวจสอบค่าใช้จ่ายแต่ละระดับ:ไม่มีอะไรมาดูหน้าเฉยๆ") ) {
 		case 1:
-				
-			setarray .@class$,"Atk","Matk","Def","Mdef","Hit","Flee","Critical","Attack Speed","Max HP","Max SP";
-			
-			setarray .@stats$,"adv_atk","adv_matk","adv_def","adv_mdef","adv_hit","adv_flee","adv_Crit","adv_aspd","adv_hp","adv_sp";
-			
+
 			mes "ปัจจุบันของท่านได้รับความสามารถตามนี้";
 			for(.@i=0;.@i <= 1; .@i++)
-				mes ""+.@class$[.@i]+" : "+getd(.@stats$[.@i])*10+" หน่วย.";
+				mes ""+$class$[.@i]+" : "+getd($stats$[.@i])*10+" หน่วย.";
 			for(.@i=2;.@i <= 5; .@i++)
-				mes ""+.@class$[.@i]+" : "+getd(.@stats$[.@i])*3+" หน่วย.";
+				mes ""+$class$[.@i]+" : "+getd($stats$[.@i])*3+" หน่วย.";
 			for(.@i=6;.@i <= 7; .@i++)
-				mes ""+.@class$[.@i]+" : "+getd(.@stats$[.@i])+" %.";
+				mes ""+$class$[.@i]+" : "+getd($stats$[.@i])+" %.";
 			for(.@i=8;.@i <= 8; .@i++)
-				mes ""+.@class$[.@i]+" : "+getd(.@stats$[.@i])*100+" หน่วย.";
+				mes ""+$class$[.@i]+" : "+getd($stats$[.@i])*100+" หน่วย.";
 			for(.@i=9;.@i <= 9; .@i++)
-				mes ""+.@class$[.@i]+" : "+getd(.@stats$[.@i])*25+" หน่วย.";
+				mes ""+$class$[.@i]+" : "+getd($stats$[.@i])*25+" หน่วย.";
 			mes "ตามนี้";
 			setdialogsize(400,500);
 			next;

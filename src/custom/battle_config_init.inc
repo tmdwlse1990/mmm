@@ -12,6 +12,9 @@
  **/
 
 
+ { "mob_mvp_skill_rate", &battle_config.mob_mvp_skill_rate, 1, 0, 1 },
+ { "max_sell_item_cap", &battle_config.max_sell_item_cap, 2000, 0, INT_MAX },
+ { "max_seal_item_val", &battle_config.max_seal_item_val, 700, 0, INT_MAX },
  { "config_equipment_drop_auto_identify", &battle_config.config_equipment_drop_auto_identify, 1, 0, 1 },
  { "config_random_monster_rank", &battle_config.config_random_monster_rank, 91, 0, 50000 },
  { "config_monster_rank_damage_mode", &battle_config.config_monster_rank_damage_mode, 0, 0, 1 },

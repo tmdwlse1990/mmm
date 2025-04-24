@@ -13,6 +13,9 @@
  **/
 
 
+ int mob_mvp_skill_rate;
+ int max_sell_item_cap;
+ int max_seal_item_val;
  int config_equipment_drop_auto_identify;
  int config_random_monster_rank;
  int config_monster_rank_damage_mode;

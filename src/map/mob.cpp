@@ -9,6 +9,7 @@
 #include <map>
 #include <unordered_map>
 #include <vector>
+#include <sstream> // สำหรับ std::ostringstream
 
 #include <common/cbasetypes.hpp>
 #include <common/db.hpp>
@@ -33,6 +34,7 @@
 #include "itemdb.hpp"
 #include "log.hpp"
 #include "map.hpp"
+#include "mapreg.hpp"
 #include "mercenary.hpp"
 #include "npc.hpp"
 #include "party.hpp"
@@ -1047,6 +1049,24 @@ TIMER_FUNC(mob_delayspawn){
 	struct block_list* bl = map_id2bl(id);
 	struct mob_data* md = BL_CAST(BL_MOB, bl);
 
+	// if monster boss -> do announce
+	if (md->spawn->state.boss || md->db->mexp > 0) {
+		map_setmapflag(md->bl.m, MF_PVP, true);
+
+	std::ostringstream oss;
+
+	oss << "[MVP Alert] " << md->name <<"";
+	oss << "has appeared on the " << map_mapid2mapname(md->spawn->m) << " map!";
+
+	// Extract the message string from the stream
+	std::string message = oss.str();
+
+	// Choose appropriate broadcast function based on server settings
+	clif_broadcast(&md->bl, message.c_str(), message.length() + 1, BC_DEFAULT, ALL_CLIENT);
+	// OR
+	// map_broadcast(md->spawn->m, message.c_str(), message.length() + 1, BC_DEFAULT);
+	}
+
 	if( md )
 	{
 		if( md->spawn_timer != tid )
@@ -1135,8 +1155,14 @@ int32 mob_spawn (struct mob_data *md)
 
 	if (md->spawn) { //Respawn data
 		md->bl.m = md->spawn->m;
+		md->bl.x = md->spawn->x;
+		md->bl.y = md->spawn->y;
 		md->bl.x = md->centerX;
 		md->bl.y = md->centerY;
+
+		if (md->spawn->state.boss || md->db->mexp > 0) {
+			map_setmapflag(md->bl.m, MF_PVP, true);
+		}
 
 		// Search can be skipped for boss monster spawns if spawn location is fixed
 		// We can't skip normal monsters as they should pick a random location if the cell is blocked (e.g. Icewall)
@@ -1223,6 +1249,12 @@ int32 mob_spawn (struct mob_data *md)
 		clif_spawn(&md->bl);
 	skill_unit_move(&md->bl,tick,1);
 	mobskill_use(md, tick, MSC_SPAWN);
+
+	if(md->spawn && md->spawn->state.boss){
+		std::string mapregname = "$" + std::to_string(md->mob_id) + "_" + std::to_string(md->bl.m);
+		mapreg_setreg(reference_uid( add_str( mapregname.c_str() ), 0 ),2);
+	}
+
 	return 0;
 }
 
@@ -3285,7 +3317,15 @@ int32 mob_dead(struct mob_data *md, struct block_list *src, int32 type)
 			// Announce first, or else ditem will be freed. [Lance]
 			// By popular demand, use base drop rate for autoloot code. [Skotlex]
 			mob_item_drop(md, dlist, ditem, 0, battle_config.autoloot_adjust ? drop_rate : entry->rate, homkillonly || merckillonly);
+			// ประกาศการ์ดบอสตก
+			if(mvp_sd && (md->state.boss || md->db->mexp > 0) && it->type == IT_CARD){
+				char mvp_drop[CHAT_SIZE_MAX];
+				sprintf(mvp_drop, msg_txt(NULL, 541), mvp_sd->status.name, md->name,
+				item_db.create_item_link(it).c_str(), (float)drop_rate / 100);
+				intif_broadcast2(mvp_drop, (int)strlen(mvp_drop)+1, 0xf2ff00, FW_NORMAL, 12, 0, 0);
+			}
 		}
+
 
 		// Ore Discovery (triggers if owner has loot priority, does not require to be the killer)
 		if (first_sd != nullptr && pc_checkskill(first_sd, BS_FINDINGORE) > 0) {
@@ -3563,6 +3603,32 @@ int32 mob_dead(struct mob_data *md, struct block_list *src, int32 type)
 	// MvP tomb [GreenBox]
 	if (battle_config.mvp_tomb_enabled && md->spawn->state.boss && map_getmapflag(md->bl.m, MF_NOTOMB) != 1)
 		mvptomb_create(md, mvp_sd != nullptr ? mvp_sd->status.name : (first_sd != nullptr ? first_sd->status.name : nullptr), time(nullptr));
+	
+	if (md->spawn->state.boss || md->db->mexp > 0) {
+		std::string mapregname = "$" + std::to_string(md->db->id) + "_" + std::to_string(md->bl.m);
+		std::string mapregnamestr = mapregname + "$";
+		mapreg_setreg(reference_uid(add_str(mapregname.c_str()), 0), 1);
+		mapreg_setreg(reference_uid(add_str(mapregname.c_str()), 1), md->bl.x);
+		mapreg_setreg(reference_uid(add_str(mapregname.c_str()), 2), md->bl.y);
+		mapreg_setreg(reference_uid(add_str(mapregname.c_str()), 3), time(NULL));
+		mapreg_setregstr(reference_uid(add_str(mapregnamestr.c_str()), 4), mvp_sd ? mvp_sd->status.name : NULL);
+
+		std::ostringstream oss;
+
+		map_setmapflag(md->bl.m, MF_PVP, false);
+		oss << "[MVP Alert] " << md->name << " ";
+		if (sd != nullptr) {
+			oss << " has been slain by " << sd->status.name << "!";
+		}
+		else {
+			oss << " has been slain!";
+		}
+		std::string message = oss.str();
+
+		clif_broadcast(&md->bl, message.c_str(), message.length() + 1, BC_DEFAULT, ALL_CLIENT);
+	}
+		// OR
+		// map_broadcast(md->spawn->m, message.c_str(), message.length() + 1, BC_DEFAULT);
 
 	if( !rebirth )
 		mob_setdelayspawn(md); //Set respawning.
@@ -4200,9 +4266,10 @@ bool mobskill_use(struct mob_data *md, t_tick tick, int32 event, int64 damage)
 
 	std::vector<std::shared_ptr<s_mob_skill>> &ms = md->db->skill;
 
-	if (!battle_config.mob_skill_rate || md->ud.skilltimer != INVALID_TIMER || ms.empty() || status_has_mode(&md->status,MD_NOCAST))
+	if ( !battle_config.mob_skill_rate || md->ud.skilltimer != INVALID_TIMER || ms.empty() || status_has_mode(&md->status,MD_NOCAST))
 		return 0;
-
+	if ( (md->state.boss || md->db->mexp) && !battle_config.mob_mvp_skill_rate )
+		return 0;
 	// Monsters check their non-attack-state skills once per second, but we ignore this for events for now
 	if (event == -1)
 		md->last_skillcheck = tick;
