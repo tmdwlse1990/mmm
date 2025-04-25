@@ -1,0 +1,4 @@
+icecastle,14,116,5	script	Server Dungeon#main	4_EP19_LUNCH,{
+	mes "ยังไม่พร้อม";
+	end;
+}

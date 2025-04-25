@@ -2363,12 +2363,12 @@ int32 status_base_amotion_pc(map_session_data* sd, struct status_data* status)
 		case W_REVOLVER:
 		case W_RIFLE:
 		case W_GATLING:
-		case W_SHOTGUN:
+		case W_SHOTGUN: 
 		case W_GRENADE:
-			temp_aspd = status->agi * status->dex / 3.0f + status->agi * status->dex * 0.5f;
+			temp_aspd = pow(status->agi + status->dex,2) / 3.0f + pow(status->agi + status->dex, 2) * 0.5f;
 			break;
 		default:
-			temp_aspd = status->agi * status->dex / 1.0f + status->agi * status->dex * 0.5f;
+			temp_aspd = pow(status->agi + status->dex, 2) / 1.0f + pow(status->agi + status->dex, 2) * 0.5f;
 			break;
 	}
 	temp_aspd = (float)(sqrt(temp_aspd) * 0.25f) + 196;

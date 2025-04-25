@@ -71,12 +71,8 @@ icecastle,209,170,4	script	อัพเกรดบัตรนักพจญภัย	4_EP21_HEINE_TAB,{
 	unequip EQI_SHADOW_ACC_L;
 	end;
 Oninit:
-	while(1) {
-	showscript "Upgrade บัตรนักพจญภัย";
-	sleep 1000;
-	}
-	
 	setarray $stats$,"adv_atk","adv_matk","adv_def","adv_mdef","adv_hit","adv_flee","adv_Crit","adv_aspd","adv_hp","adv_sp","adv_igdef","adv_igmdef";
+	
 	setarray $class$,"Atk","Matk","Def","Mdef","Hit","Flee","Critical","Attack Speed","Max HP","Max SP","Ignore Def","Ignore MDef";
 	
 	end;
@@ -100,6 +96,8 @@ icecastle,201,171,4	script	พนักงานต้อนรับ	4_EP21_GALAXIA_B,{
 				mes ""+$class$[.@i]+" : "+getd($stats$[.@i])*100+" หน่วย.";
 			for(.@i=9;.@i <= 9; .@i++)
 				mes ""+$class$[.@i]+" : "+getd($stats$[.@i])*25+" หน่วย.";
+			for(.@i=10;.@i <= 11; .@i++)
+				mes ""+$class$[.@i]+" : "+getd($stats$[.@i])+" %.";
 			mes "ตามนี้";
 			setdialogsize(400,500);
 			next;
@@ -123,9 +121,5 @@ icecastle,201,171,4	script	พนักงานต้อนรับ	4_EP21_GALAXIA_B,{
 	cutin "",255;
 	end;
 Oninit:
-	while(1) {
-	showscript "ตรวจสอบข้อมูลบัตรนักพจญภัย";
-	sleep 1000;
-	}
 	end;
 }

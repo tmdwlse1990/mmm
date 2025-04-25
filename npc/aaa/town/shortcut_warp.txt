@@ -3,25 +3,24 @@ icecastle,174,206,6	script	Fast Travel#icecastle	4_LARVA_VIOLET,{
 	.@menu = @menu;
 	switch(.@menu) {
 	case 1:
-		.@x = 204;
+		.@x = 199;
 		.@y = 164;
 		break;
 	case 2:
-		.@x = 186;
-		.@y = 206;
+		.@x = 74;
+		.@y = 221;
 		break;
 	case 3:
-		.@x = 186;
-		.@y = 206;
+		.@x = 24;
+		.@y = 120;
 		break;
 	case 4:
+		.@map = 1;
+		.@map$ = "";
 		.@x = 186;
 		.@y = 206;
 		break;
 	}
-	warp "icecastle",.@x,.@y;
+	warp (.@map ? .@map$ :"icecastle"),.@x,.@y;
 	end;
-Oninit:
-		waitingroom "วาปภายในเมือง",0;
-		end;
 }

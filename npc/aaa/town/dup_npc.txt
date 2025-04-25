@@ -1,0 +1,78 @@
+//	[โซนทำของ]
+icecastle,194,171,5	script	ตีบวก#ice	4_M_DWARF,{
+	refineui();
+	end;
+}
+
+-	script	refine_barter_init_ice	-1,{
+	end;
+OnInit:
+	if (getbattleflag("feature.barter")) {
+		npcshopupdate "market_refine_icecastle",1010,200,999999;
+		npcshopupdate "market_refine_icecastle",1011,1000,999999;
+	}
+	else
+		unloadnpc "market_refine_icecastle";
+}
+-	marketshop	market_refine_icecastle	-1,1010:-1:999999,1011:-1:999999
+icecastle,189,171,5	duplicate(Dietrich#ns_prt)	Ore Derler#2	1_M_SMITH
+
+// setunitdata getnpcid(0),UNPC_GROUP_ID,7; 	[ค่อยเล่น]
+//	[โซนขายของ]
+icecastle,65,221,5	duplicate(#over_arrow)	Arrow Merchant#ice	4_M_ARCHER
+
+-	shop	#dagger_katar	-1,1201:-1,1204:-1,1207:-1,1210:-1,1213:-1,1216:-1,1219:-1,1222:-1,1250:-1,1252:-1,1254:-1
+-	shop	#sword	-1,1101:-1,1104:-1,1107:-1,1110:-1,1113:-1,1119:-1,1122:-1,1123:-1,1126:-1,1129:-1,1116:-1,1151:-1,1154:-1,1157:-1,1160:-1
+-	shop	#spear	-1,1401:-1,1404:-1,1407:-1,1451:-1,1454:-1,1457:-1,1460:-1,1463:-1,1410:-1
+-	shop	#axe	-1,1301:-1,1351:-1,1354:-1,1357:-1,1360:-1
+-	shop	#mace_fist	-1,1501:-1,1504:-1,1507:-1,1510:-1,1513:-1,1519:-1,1807:-1,1811:-1,1809:-1
+-	shop	#rod	-1,1601:-1,1604:-1,1607:-1,1610:-1
+-	shop	#bow	-1,1701:-1,1704:-1,1707:-1,1710:-1,1713:-1,1714:-1,1718:-1
+-	shop	#musicwep	-1,1901:-1,1903:-1,1905:-1,1909:-1,1911:-1,1907:-1,1950:-1,1952:-1,1954:-1,1958:-1,1960:-1,1956:-1
+
+icecastle,68,224,5	script	Weapon Dealers#ice	49,{
+	
+	setarray .@list$,"Dagger Katar","Sword","Spear","Axe","Mace Knuckle","Staff","Bow","Musician";
+	.@menu$ = "";
+	for(.@i=0;.@i < getarraysize(.@list$); .@i++)
+		.@menu$ = .@menu$ + .@list$[.@i] + ":";
+	switch(select(.@menu$)) {
+		case 1:
+			callshop "#dagger_katar";
+			break;
+		case 2:
+			callshop "#sword";
+			break;
+		case 3:
+			callshop "#spear";
+			break;
+		case 4:
+			callshop "#axe";
+			break;
+		case 5:
+			callshop "#mace_fist";
+			break;
+		case 6:
+			callshop "#rod";
+			break;
+		case 7:
+			callshop "#bow";
+			break;
+		case 8:
+			callshop "#musicwep";
+			break;
+	}
+	end;
+Oninit:
+	setunitdata getnpcid(0),UNPC_GROUP_ID,6; 
+}
+
+-	shop	#armor	-1,2401:-1,2403:-1,2405:-1,2501:-1,2503:-1,2505:-1,2208:-1,2211:-1,2212:-1,2301:-1,2303:-1,2305:-1,2321:-1,2328:-1,2332:-1,2307:-1,2309:-1,2330:-1,2628:-1
+
+
+icecastle,71,227,5	script	Armor Dealers#ice	76,{
+	callshop	"#armor";
+	end;
+Oninit:
+	setunitdata getnpcid(0),UNPC_GROUP_ID,6; 
+}

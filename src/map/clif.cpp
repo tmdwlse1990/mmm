@@ -7059,7 +7059,7 @@ void clif_use_card(map_session_data *sd,int32 idx)
 			if ( (sd->inventory_data[i]->type != IT_WEAPON) && (sd->inventory_data[i]->type != IT_ARMOR) && (sd->inventory_data[i]->type != IT_SHADOWGEAR))
 				continue;
 		}
-		if ( sd->inventory_data[i]->flag.no_refine == 1)
+		if (isEnchantment && sd->inventory_data[i]->flag.trade_restriction.trade == 1)
 			continue;
 		if(itemdb_isspecial(sd->inventory.u.items_inventory[i].card[0])) //Can't slot it
 			continue;

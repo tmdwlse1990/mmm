@@ -80,6 +80,16 @@ Body:
         RequiredItems:
           - Index: 0
             Item: Purified_Bradium
+      - Index: 5
+        Item: Blacksmith_Blessing
+        Zeny: 1000000
+        RequiredItems:
+          - Index: 0
+            Item: Oridecon
+            Amount: 5
+          - Index: 1
+            Item: Elunium
+            Amount: 5
   - Name: barter_refine_2
     Items:
       - Index: 0
