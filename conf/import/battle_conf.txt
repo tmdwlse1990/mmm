@@ -1,0 +1,40 @@
+//Boss use skill
+mob_mvp_skill_rate: 0
+
+//Value item for use val cap
+max_sell_item_cap: 2000
+
+//Vaule item sell cap
+max_seal_item_val: 700
+
+// Enchantment คลิกใส่เลยได้ไหม (1 ได้)
+config_enchantment_clickable: 1
+
+// Enchantment คลิกใส่ได้มากสุดกี่ช่อง (มากสุด 4)
+config_enchantment_maximum: 1
+
+// Equipment ทุกชิ้น Drop แล้วตรวจสอบอัตโนมัติหรือไม่ (1 ตรวจอัตโนมัติ)
+config_equipment_drop_auto_identify: 1
+
+// Monster ที่ Spawn ปกติมี Rank 0~(n-1)
+config_random_monster_rank: 4
+
+// Rank ของ Monster จะเพิ่ม Damage ให้ Monster แบบใด
+// 0 = % ถ้า Rank 1 ก็เพิ่ม Damage 1%
+// 1 = คูณ ถ้า Rank 1 ก็ Damage คูณ 2
+config_monster_rank_damage_mode: 1
+
+// Rank ของ Monster จะลด Damage ที่ได้รับ แบบใด
+// 0 = % ถ้า Rank 1 ก็ลด Damage ที่ได้รับ 1% (แต่จะลดได้มากสุด 99% เพื่อไม่ให้เป็นอมตะ)
+// 1 = หาร ถ้า Rank 1 ก็ Damage ที่ได้รับ หาร 2
+config_monster_rank_defense_mode: 1
+
+// Rank ของ Monster จะเพิ่ม % EXP แบบใด
+// 0 = % ถ้า Rank 1 ก็เพิ่ม EXP 1%
+// 1 = คูณ ถ้า Rank 1 ก็ EXP คูณ 2
+config_monster_rank_exp_bonus_mode: 0
+
+// Rank ของ Monster จะเพิ่ม % Drop แบบใด
+// 0 = % ถ้า Rank 1 ก็เพิ่ม Drop 1%
+// 1 = คูณ ถ้า Rank 1 ก็ Drop คูณ 2
+config_monster_rank_drop_bonus_mode: 0
