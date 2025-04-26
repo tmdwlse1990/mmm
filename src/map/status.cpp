@@ -464,6 +464,9 @@ bool RefineDatabase::calculate_refine_info( const struct item_data& data, e_refi
 		level = 1;
 
 		return true;
+	}else if( data.type == IT_CHARM ){
+		refine_type = REFINE_TYPE_CHARM;
+		level = 1;
 	}else{
 		return false;
 	}
@@ -594,6 +597,8 @@ uint64 EnchantgradeDatabase::parseBodyNode( const ryml::NodeRef& node ){
 		itemtype_maxlevel = MAX_WEAPON_LEVEL;
 	}else if( itemtype == IT_ARMOR ){
 		itemtype_maxlevel = MAX_ARMOR_LEVEL;
+	}else if( itemtype == IT_SHADOWGEAR || itemtype == IT_CHARM ){
+		itemtype_maxlevel = 1;
 	}else{
 		this->invalidWarning( node["Type"], "Item type \"%s\" is not supported.\n", itemtype_constant.c_str() );
 		return 0;
@@ -954,6 +959,8 @@ std::shared_ptr<s_enchantgradelevel> EnchantgradeDatabase::findCurrentLevelInfo(
 		level = data.weapon_level;
 	}else if( data.type == IT_ARMOR ){
 		level = data.armor_level;
+	} else if( data.type == IT_SHADOWGEAR || data.type == IT_CHARM ){
+		level = 1; // กำหนด level เป็น 1 เมื่อเป็นชนิด IT_SHADOWGEAR หรือ IT_CHARM
 	}
 
 	const auto& enchantgradelevels = enchantgrade->levels.find( level );
@@ -3921,6 +3928,16 @@ int32 status_calc_pc_sub(map_session_data* sd, uint8 opt)
 		pet_delautobonus(*sd, sd->pd->autobonus3, true);
 	}
 
+	for (i = 0; i < MAX_INVENTORY; i++){
+		//dh
+		if (!sd->inventory_data[i] || sd->inventory_data[i]->type != IT_CHARM)
+			continue;
+		if (sd->inventory_data[i]->script && sd->inventory_data[i]->elv <= sd->status.base_level && sd->inventory_data[i]->class_upper){
+			run_script(sd->inventory_data[i]->script, 0, sd->bl.id, 0);
+			if (!calculating) //Abort, run_script retriggered this. [Skotlex]
+			return 1;
+		}
+	}
 	// Parse equipment
 	for (i = 0; i < EQI_MAX; i++) {
 		current_equip_item_index = index = sd->equip_index[i]; // We pass INDEX to current_equip_item_index - for EQUIP_SCRIPT (new cards solution) [Lupus]

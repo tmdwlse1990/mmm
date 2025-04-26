@@ -115,7 +115,7 @@ static inline int32 itemtype(t_itemid nameid) {
 		else
 			return IT_ARMOR;
 	}
-	return ( type == IT_PETEGG ) ? IT_ARMOR : type;
+	return ( type == IT_PETEGG ) ? IT_ARMOR : (type == IT_CHARM) ? IT_SHADOWGEAR : type;
 }
 
 // TODO: doc
@@ -16957,7 +16957,7 @@ void clif_parse_Auction_setitem(int32 fd, map_session_data *sd){
 
 	std::shared_ptr<item_data> id = item_db.find(sd->inventory.u.items_inventory[idx].nameid);
 
-	if( id != nullptr && !(id->type == IT_ARMOR || id->type == IT_PETARMOR || id->type == IT_WEAPON || id->type == IT_CARD || id->type == IT_ETC || id->type == IT_SHADOWGEAR) )
+	if( id != nullptr && !(id->type == IT_ARMOR || id->type == IT_PETARMOR || id->type == IT_WEAPON || id->type == IT_CARD || id->type == IT_ETC || id->type == IT_SHADOWGEAR || id->type == IT_CHARM) )
 	{ // Consumable or pets are not allowed
 		clif_Auction_setitem(sd->fd, idx, true);
 		return;
@@ -24037,7 +24037,9 @@ void clif_parse_enchantgrade_add( int32 fd, map_session_data* sd ){
 	}else if( sd->inventory_data[index]->type == IT_ARMOR ){
 		level = sd->inventory_data[index]->armor_level;
 	}
-
+	else if (sd->inventory_data[index]->type == IT_SHADOWGEAR || sd->inventory_data[index]->type == IT_CHARM) {
+		level = 1; // กำหนด level เป็น 1 เมื่อเป็นชนิด IT_SHADOWGEAR หรือ IT_CHARM
+	}
 	const auto& enchantgradelevels = enchantgrade->levels.find( level );
 
 	// Cannot upgrade this weapon or armor level
@@ -24126,7 +24128,9 @@ void clif_parse_enchantgrade_start( int32 fd, map_session_data* sd ){
 	}else if( sd->inventory_data[index]->type == IT_ARMOR ){
 		level = sd->inventory_data[index]->armor_level;
 	}
-
+	else if (sd->inventory_data[index]->type == IT_SHADOWGEAR || sd->inventory_data[index]->type == IT_CHARM) {
+		level = 1; // กำหนด level เป็น 1 เมื่อเป็นชนิด IT_SHADOWGEAR หรือ IT_CHARM
+	}
 	const auto& enchantgradelevels = enchantgrade->levels.find( level );
 
 	// Cannot upgrade this weapon or armor level - no answer

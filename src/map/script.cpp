@@ -7855,7 +7855,7 @@ BUILDIN_FUNC(getitem2)
 	item item_tmp = {};
 
 	if( item_data ) {
-		if( item_data->type == IT_WEAPON || item_data->type == IT_ARMOR || item_data->type == IT_SHADOWGEAR ) {
+		if( item_data->type == IT_WEAPON || item_data->type == IT_ARMOR || item_data->type == IT_SHADOWGEAR|| item_data->type == IT_CHARM ) {
 			if(ref > MAX_REFINE)
 				ref = MAX_REFINE;
 		}
@@ -8022,7 +8022,7 @@ BUILDIN_FUNC(rentitem2) {
 	int32 ref = script_getnum(st,5);
 	int32 attr = script_getnum(st,6);
 
-	if (id->type==IT_WEAPON || id->type==IT_ARMOR || id->type==IT_SHADOWGEAR) {
+	if (id->type==IT_WEAPON || id->type==IT_ARMOR || id->type==IT_SHADOWGEAR || id->type == IT_CHARM) {
 		if(ref > MAX_REFINE)
 			ref = MAX_REFINE;
 	}
@@ -8288,7 +8288,7 @@ BUILDIN_FUNC(makeitem2) {
 		char ref = (char)script_getnum(st,8);
 		char attr = (char)script_getnum(st,9);		
 
-		if (id->type==IT_WEAPON || id->type==IT_ARMOR || id->type==IT_SHADOWGEAR) {
+		if (id->type==IT_WEAPON || id->type==IT_ARMOR || id->type==IT_SHADOWGEAR|| id->type == IT_CHARM) {
 			if(ref > MAX_REFINE)
 				ref = MAX_REFINE;
 		}
@@ -16900,6 +16900,52 @@ BUILDIN_FUNC(getrefine)
 }
 
 /*=======================================================
+ * Returns the refined number of charm items in the inventory [null]
+ *-------------------------------------------------------*/
+BUILDIN_FUNC(getcharmrefine)
+{
+	TBL_PC *sd;
+	int i, refine = 0;
+	if (script_rid2sd(sd)){
+		for (i = 0; i < MAX_INVENTORY; i++)
+		{
+			if (sd->inventory_data[i] && sd->inventory_data[i]->type == IT_CHARM)
+			{
+				refine = sd->inventory.u.items_inventory[i].refine;
+			}
+		}
+		script_pushint(st, refine);
+		return SCRIPT_CMD_SUCCESS;
+	}else{
+		script_pushint(st, 0);
+		return SCRIPT_CMD_FAILURE;
+	}
+}
+
+/*=======================================================
+ * Returns the enchantgrade number of charm items in the inventory [null]
+ *-------------------------------------------------------*/
+BUILDIN_FUNC(getcharmenchantgrade)
+{
+	TBL_PC *sd;
+	int i, enchantgrade = 0;
+	if (script_rid2sd(sd)){
+		for (i = 0; i < MAX_INVENTORY; i++)
+		{
+			if (sd->inventory_data[i] && sd->inventory_data[i]->type == IT_CHARM)
+			{
+				enchantgrade = sd->inventory.u.items_inventory[i].enchantgrade;
+			}
+		}
+		script_pushint(st, enchantgrade);
+		return SCRIPT_CMD_SUCCESS;
+	}else{
+		script_pushint(st, 0);
+		return SCRIPT_CMD_FAILURE;
+	}
+}
+
+/*=======================================================
  * Day/Night controls
  *-------------------------------------------------------*/
 BUILDIN_FUNC(night)
@@ -18564,7 +18610,7 @@ BUILDIN_FUNC(addmonsterdrop)
 			script_pushint(st, false);
 			return SCRIPT_CMD_FAILURE;
 		}
-		if (itm->type != IT_WEAPON && itm->type != IT_ARMOR && itm->type != IT_SHADOWGEAR) {
+		if (itm->type != IT_WEAPON && itm->type != IT_ARMOR && itm->type != IT_SHADOWGEAR && itm->type != IT_CHARM) {
 			ShowError("buildin_addmonsterdrop: Random option group can't be used with this type of item (item Id: %d).\n", item_id);
 			script_pushint(st, false);
 			return SCRIPT_CMD_FAILURE;
@@ -26272,7 +26318,7 @@ BUILDIN_FUNC(mail){
 
 			msg.item[i].refine = (char)get_val2_num( st, reference_uid( id, start ), reference_getref( data ) );
 
-			if (!itm->flag.no_refine && (itm->type == IT_WEAPON || itm->type == IT_ARMOR || itm->type == IT_SHADOWGEAR)) {
+			if (!itm->flag.no_refine && (itm->type == IT_WEAPON || itm->type == IT_ARMOR || itm->type == IT_SHADOWGEAR  || itm->type == IT_CHARM)) {
 				if (msg.item[i].refine > MAX_REFINE)
 					msg.item[i].refine = MAX_REFINE;
 			}
@@ -28084,6 +28130,8 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(isequippedcnt,"i*"), // check how many items/cards are being equipped [Celest]
 	BUILDIN_DEF(cardscnt,"i*"), // check how many items/cards are being equipped in the same arm [Lupus]
 	BUILDIN_DEF(getrefine,""), // returns the refined number of the current item, or an item with index specified [celest]
+	BUILDIN_DEF(getcharmrefine,""), // returns the refined number of charm items in the inventory [null]getcharmenchantgrade
+	BUILDIN_DEF(getcharmenchantgrade,""), // returns the enchantgrade number of charm items in the inventory [null]
 	BUILDIN_DEF(night,""), // sets the server to night time
 	BUILDIN_DEF(day,""), // sets the server to day time
 #ifdef PCRE_SUPPORT

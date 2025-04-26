@@ -1597,7 +1597,7 @@ ACMD_FUNC(item2)
 			get_count = number;
 		}
 
-		if( itemdb_isequip2( item_data.get() ) ){
+		if( itemdb_isequip2( item_data.get() ) || item_data->type == IT_CHARM ) {
 			refine = cap_value( refine, 0, MAX_REFINE );
 		}else{
 			// All other items cannot be refined and are always identified

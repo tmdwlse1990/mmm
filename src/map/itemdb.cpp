@@ -465,7 +465,7 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 				return 0;
 
 			if (active) {
-				if (constant & EQP_SHADOW_GEAR && item->type != IT_SHADOWGEAR) {
+				if (constant & EQP_SHADOW_GEAR && item->type != IT_SHADOWGEAR && item->type != IT_CHARM) {
 					this->invalidWarning(node, "Invalid item equip location %s as it's not a Shadow Gear item type, defaulting to IT_ETC.\n", equipName.c_str());
 					item->type = IT_ETC;
 				}
@@ -3277,6 +3277,7 @@ const char* itemdb_typename(enum item_types type)
 		case IT_PETARMOR:       return "Pet Accessory";
 		case IT_AMMO:           return "Arrow/Ammunition";
 		case IT_DELAYCONSUME:   return "Delay-Consume Usable";
+		case IT_CHARM:			return "Charm";
 		case IT_SHADOWGEAR:     return "Shadow Equipment";
 		case IT_CASH:           return "Cash Usable";
 	}
@@ -4983,6 +4984,7 @@ bool item_data::isStackable()
 		case IT_PETEGG:
 		case IT_PETARMOR:
 		case IT_SHADOWGEAR:
+		case IT_CHARM:
 			return false;
 	}
 	return true;
