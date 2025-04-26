@@ -90,14 +90,15 @@ Header:
 
 Body:
   - Id: 2160001
-    AegisName: C_Adventure_Cat_Bag
-    Name: Costume Adventure Bag
+    AegisName: Vincent John Back
+    Name: Vincent_John_Back
     Type: Armor
     Weight: 10000
     Locations:
       Garment: true
     ArmorLevel: 1
     View: 107
+    Trade:
       NoDrop: true
       NoTrade: true
       NoGuildStorage: true
