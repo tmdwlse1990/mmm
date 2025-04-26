@@ -90,13 +90,12 @@ Header:
 
 Body:
   - Id: 1999901
-    AegisName: Box_12
-    Name: iBOX LV.12
+    AegisName: Fucking_Heavy_Bag
+    Name: Fucking Heavy Bag
     Type: Charm
     Trade:
       NoDrop: true
       NoTrade: true
-      NoSell: true
       NoCart: true
       NoStorage: true
       NoGuildStorage: true

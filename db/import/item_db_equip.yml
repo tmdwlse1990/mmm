@@ -87,3 +87,25 @@
 Header:
   Type: ITEM_DB
   Version: 3
+
+Body:
+  - Id: 2160001
+    AegisName: C_Adventure_Cat_Bag
+    Name: Costume Adventure Bag
+    Type: Armor
+    Weight: 10000
+    Locations:
+      Garment: true
+    ArmorLevel: 1
+    View: 107
+      NoDrop: true
+      NoTrade: true
+      NoGuildStorage: true
+      NoMail: true
+    Script: |
+      if(baseclass == JOB_MERCHANT)
+        bonus2 bGetZenyNum,300,5;
+      else {
+        skill "MC_OVERCHARGE",10;
+        skill "MC_DISCOUNT",10;
+      }
