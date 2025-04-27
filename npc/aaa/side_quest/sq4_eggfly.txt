@@ -1,0 +1,80 @@
+//----------------------------Side Quest 4 เด็กกับไข่ดาว -------------
+
+icecastle,244,206,4	script	Henry ผู้หิวโซ	870,{
+	if(SQfour == 2){
+		mes "[Henry]";
+		mes "ขอบคุณพี่นะ มันอร่อยมากเลย!!";
+		emotion ET_THANKS;
+		end;
+		
+		} else if(SQfour == 1){
+		mes "[Henry]";
+		mes "พี่เอาของมาแล้วใช่ไหม?";
+		next;
+		if(countitem(574) >= 1 && countitem(7455) >= 1) {
+			mes "[Henry]";
+			mes "มาเริ่มทำกันเถอะ!! ผมช่วยเตรียมนะ..";
+			delitem 574,1;
+			delitem 7455,1;
+			progressbar_NPC "FF9900", 3;
+			set .@rightnum,rand(0,100);
+			if(.@rightnum>70){
+				specialeffect EF_REFINEOK,AREA;
+				mes "เย้!! ไข่ดาวที่ผมอยากกินเสร็จแล้ว!!";
+				next;
+				mes "[Henry]";
+				mes "ขอบคุณพี่นะ ผมไม่มีอะไรจะให้พี่เลย พี่เอาอันนี้ไปละกันนะ!!";
+				getitem 603,1;
+				specialeffect EF_HEAL2;
+				set SQfour,2;
+				end;
+				
+			} else { 
+				specialeffect EF_CLAYMORE,AREA;
+				mes "มันไหม้หมดละอ่าาา..... พี่ทำใหม่ให้ผมที T^T";
+				emotion ET_CRY;
+				end;
+			}
+			
+		} else { 
+			mes "[Henry]";
+			mes "เตรียมของเร็วๆนะ ผมหิว...."; 
+			mes "";
+			mes "^FF0000Side Quest 4";
+			end;
+		}
+		
+	} else {
+		mes "[Henry]";
+		mes "พี่ตรงนั้นหนะ.... ช่วยอะไรผมหน่อยสิ.....";
+		mes "ผมหิวข้าวมากเลย.....";
+		emotion ET_FOOD;
+		mes "";
+		mes "^FF0000Side Quest 4";
+		next;
+		
+		switch(select("อยากให้ทำอะไรหละ?","โทษที ยุ่งอยู่")){
+			case 1:
+				mes "[Henry]";
+				mes "ผมอยากกินไข่ดาว.......";
+				mes "ไข่เจียวที่......";
+				mes "แยกไข่แดงออกมา ทอดไข่ขาวไฟกลาง กรอบนอกนุ่มใน ห้ามมีฟองเลยนะ ราดซอสมะเขือนิดหน่อย";
+				next;
+				mes "[Henry]";
+				mes "แต่ข้าไม่มีวัตถุดิบเลย......";
+				mes "พี่ไปหาให้ผมหน่อยนะ";
+				mes "ไข่น่าจะอยู่ในป่ามอส ที่มีแม่มดกับแฟรี่อยู่เต็มไปหมด";
+				mes "ซอสเผ็ดจากที่ร้านข้างทางก็ได้";
+				set SQfour,1;
+				close;
+			
+			case 2:
+				mes "[Henry]";
+				mes "โอย~หิวอ่าาาาา";
+				emotion ET_CRY;
+				close;
+		}
+	}
+}
+
+//---------------- จบ SQ 4 ----------------------------------

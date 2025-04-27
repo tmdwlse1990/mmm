@@ -1,0 +1,141 @@
+//-----------------------Side Quest 3 เด็กติดยาแดง (Repeat 20 ชม.) --------------
+
+icecastle,247,200,4	script	เด็กที่น่าสงสัย	854,{
+
+if (delay == 0) {  // ตรวจสอบว่า delay ยังไม่ได้ถูกกำหนด
+		set delay, gettimetick(2);  // กำหนดเวลาปัจจุบันเมื่อเริ่มใช้งานครั้งแรก
+		} else if (delay > gettimetick(2)) {
+		mes "[Walter Right]";
+		mes "เจ้าได้ของไปแล้วนี่!! พรุ่งนี้ค่อยมาเล่นกับข้าใหม่นะ!!";
+		mes "";
+		mes "^FF0000Side Quest 3 ทำซ้ำได้";
+		end;
+	}
+	
+	mes "[Walter Right]";
+	mes "เฮ้ย เอ็งอ่ะ....";
+	mes "";
+	mes "^FF0000Side Quest 3 ทำซ้ำได้";
+	next;
+	mes "[Walter Right]";
+	mes "ชอบเล่นพนันป่าว....";
+	mes "";
+	mes "^FF0000Side Quest 3 ทำซ้ำได้";
+	next;
+	mes "[Walter Right]";
+	mes "ใช้ Red Potion แค่ 100 ขวดเอ๊งงงง!!"; // แก้ไขรางวัลที่จะให้
+	mes "";
+	mes "^FF0000Side Quest 3 ทำซ้ำได้";
+	next;
+	mes "[Walter Right]";
+	mes "แต่ข้าดูหน้าเจ้าแล้ว น่าจะไม่ค่อยมีกะตังนะ 555";
+	mes "";
+	mes "^FF0000Side Quest 3 ทำซ้ำได้";
+	next;
+	
+	menu "ก็มาสิวะ!!",Lok,"แม่บอกไม่ให้ยุ่งกับคนแปลกหน้า....",Lno;
+	
+		Lok:
+			if(countitem(501)>=100){
+			delitem 501,100;
+			set .@rightnum,rand(0,100);
+			mes "[Walter Right]";
+			mes "เอ้า ดู!!";
+			next;
+			mes "[Walter Right]";
+			mes "กะล๊อก ก๊อกแก๊ก กลุ๊กๆ.....";
+			next;
+			
+				if(.@rightnum>70){
+				specialeffect EF_STEALCOIN,AREA;
+				specialeffect EF_RG_COIN,AREA;
+				mes "[Walter Right]";
+				mes "ดีใจด้วย!! เจ้าชนะรอบนี้!!!";
+				mes "รางวัลคือ Red Potion 200 ขวด!!"; //แก้เป็นรางวัลจริงๆ
+				next;
+				mes "[Walter Right]";
+				mes "เอาอีกรอบป่าว? รอบนี้รางวัลคือ Battle Manual 1 ea!!"; //เพิ่มรางวัลที่ได้รอบ2
+				next;
+				menu "ก็มาสิวะ!!",Loktwo,"พอละะ เอามานี่!!!!",Lnotwo;
+			
+				Loktwo:
+				set .@rightnum,rand(0,100);
+				mes "[Walter Right]";
+				mes "เอาละนะ!! ดูววว!!";
+				next;
+				mes "[Walter Right]";
+				mes "กะล๊อก ก๊อกแก๊ก กลุ๊กๆ.....";
+				next;
+							if(.@rightnum>70){
+							specialeffect EF_STEALCOIN,AREA;
+							specialeffect EF_RG_COIN,AREA;
+							mes "[Walter Right]";
+							mes "ดีใจด้วย!! เจ้าชนะอีกแล้ววว!!!";
+							mes "รางวัลคือ Battle Manual 1 ea!!"; //แก้เป็นรางวัลจริงๆ
+							next;
+							mes "[Walter Right]";
+							mes "เอาอีกรอบป่าว? รอบนี้ของที่ได้ก็คือ Bubble Gum 1 ea!!"; //เพิ่มรางวัลที่ได้รอบ3
+							next;
+							menu "ก็มาสิวะ!!",Lokthree,"พอละะ กุมีดวงแค่นี้!!!!",Lnothree;
+							
+								Lokthree:
+								set .@rightnum,rand(0,100);
+								mes "[Walter Right]";
+								mes "เอาละนะ!! ดูววว!!";
+								next;
+								mes "[Walter Right]";
+								mes "กะล๊อก ก๊อกแก๊ก กลุ๊กๆ.....";
+								next;
+								if(.@rightnum>70){
+									specialeffect EF_STEALCOIN,AREA;
+									specialeffect EF_RG_COIN,AREA;
+									specialeffect EF_POK_JAP,AREA;
+									mes "[Walter Right]";
+									mes "ดีใจด้วย!! เจ้ามันดวงดีจริงๆ เอารางวัลใหญ่ไปเล้ย!!!"; //รับรางวัลใหญ่รอบสุดท้าย
+									getitem 12264,1; //ยัดไอเทมให้คนชนะ
+									set delay, gettimetick(2) + 72000; //นับเวลา 20ชม.
+									close;
+									} else { 
+									specialeffect EF_SUI_EXPLOSION,AREA;
+									mes "[Walter Right]";
+									mes "ว้าาา อีกนิดเดียวเอง!! ไอ้น้องงง";
+									end;}
+								
+								Lnothree:
+								mes "[Walter Right]";
+								mes "เคๆ ไว้คราวหน้ามาใหม่นะ อ่ะรางวัลของเอ็ง";
+								getitem 12495,1; //รับรางวัลรอบรองสุดท้าย
+								set delay, gettimetick(2) + 72000; //นับเวลา 20ชม.
+								end;
+								
+							} else {
+								specialeffect EF_SUI_EXPLOSION,AREA;
+								mes "[Walter Right]";
+								mes "ว้าาา เอ็งมันไม่มีดวงจริงๆหวะ!! ไอ้น้องงง";
+								end;}
+							
+				Lnotwo:
+				mes "[Walter Right]";
+				mes "เค เค เอาของละไปไกลๆ ชิ่ว!!";
+				getitem 501,200; //รับรางวัลรอบแรก
+				set delay, gettimetick(2) + 72000; //นับเวลา 20ชม.
+				end;
+				
+			} else { 
+			specialeffect EF_SUI_EXPLOSION,AREA;	//เพิ่มeffectระเบิด
+			mes "[Walter Right]";
+			mes "ว้าาา โอกาสหน้าเอาใหม่นะ!! ไอ้น้องงง";
+		end;}
+		} else {
+			mes "[Walter Right]";
+			mes "ไม่มีของก็อย่ามาเนียน!! ไป๊!!";
+		end;
+		}
+		
+		Lno:
+		mes "[Walter Right]";
+		mes "เคๆ ถ้าเจ้าสนใจก็มาหาข้านะ!!";
+		end;
+}
+
+//-----------------------จบ SQ3 cd 20 ชม. --------------

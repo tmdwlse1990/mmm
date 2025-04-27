@@ -1,0 +1,76 @@
+//----------------- NPC Quest Guide ----------------
+icecastle,241,209,4	script	Quest Guide	627,{
+	mes "[Quest Guide]";
+	mes "เจ้าอยากรู้อะไรหละ? ข้าบอกเจ้าได้ทุกอย่างเลยนะ!! แค่เปิดให้ถูกหน้า.....";
+	next;
+	mes "[Quest Guide]";
+	mes "ใส่เลข Quest ที่เจ้าตามหา ^FF0000(ได้จากNPC)";
+	input guess;
+	setdialogsize(400,300);
+
+	switch(guess) {
+		case 1:
+			next;
+			mes "[Quest Guide]";
+			mes "เจ้าต้องเพิ่ม LV ให้ถึง 20";
+			close;
+
+		case 2:
+			next;
+			mes "[Quest Guide]";
+			mes "ไปทำ Side Quest 1 และมีชุดไก่ทอดอยู่ในตัว";
+			mes "ไปหาItem [ไข่ทองคำ] ที่ดรอปจาก Monster ไก่ลมกรด รอบๆเมือง xxx เพื่อนำมาให้แม่ไก่";
+			close;
+			
+		case 3:
+			next;
+			mes "[Quest Guide]";
+			mes "ถือ Red Potion ไป 100 ขวด เพื่อพนันกับเด็ก";
+			close;
+			
+		case 4:
+			next;
+			mes "[Quest Guide]";
+			mes "ใช้ Egg จาก Wood Goblin ";
+			mes "และ Spicy Sauce จากร้านขายของทำอาหาร";
+			close;
+			
+		case 5:
+			next;
+			mes "[Quest Guide]";
+			mes "นำจดหมายไปส่งให้สายลับ 1 ใน 3 คน ดังนี้";
+			mes "ท่อระบายน้ำ = หน้าทางเข้า Culvert dun (prt_fild05 275 203)";
+			mes "เขาวงกต = หน้าทางเข้า Hidden Dungeon (prt_fild01 148 363)";
+			mes "ถ้ำมีซอมบี้ = หน้าทางเข้า Payon Dungeon (pay_arche 44 144)";
+			mes "^FF0000ถ้า LV มากกว่า 50 จะได้รางวัลเพิ่ม";
+			close;
+			
+		case 6:
+			next;
+			mes "[Quest Guide]";
+			mes "เควสจะสุ่มไปหา John 1 ใน 5 คน ไล่จาก Miler/William/Smith/White/Brown";
+			mes "ต้องไล่คุยจาก NPC ที่ Vincent กำหนดจนไปถึง Brown";
+			mes "โดยแต่ละคนจะอยู่ที่ดังต่อไปนี้";
+			next;
+			mes "John Miler อยู่ที่ Ayothaya 239,264";
+			mes "John William อยู่ที่ xmas(Lutie) 115,170";
+			mes "John Smith อยู่ที่ harboro1(Rockridge) 275,259 ";
+			mes "John White อยู่ที่ wolfvill(Gray Wolf Village) 271,68 ";
+			mes "John Brown อยู่ที่ yuno 51,205 ";
+			close;
+			
+		case 7:
+			next;
+			mes "[Quest Guide]";
+			mes "อันนี้ยังไม่อัพเดทหนะ รอข้าเขียนแปป.....";
+			close;
+
+		default:
+			next;
+			mes "[Quest Guide]";
+			mes "ข้าไม่รู้ว่าหน้านั้นคืออะไรนะ ลองใหม่อีกทีสิ!";
+			close;
+		}
+end;
+}
+//---------------------------------------------------------

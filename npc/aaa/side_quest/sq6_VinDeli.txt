@@ -1,0 +1,305 @@
+//-----------------------Side Quest 6 ---------------------------
+icecastle,247,198,4	script	Vincent	407,{ //===NPCรับเควส===
+    // === NPC Quest Handling ===
+	if (No_more_vincent) {
+        mes "[Vincent]";
+		mes "ข้าไม่คุยกับคนไม่มีความรับผิดชอบหรอกนะ";
+		close;
+	}
+	if (No_John_bag) {
+        mes "[Vincent]";
+		mes "โอ้ ข้าทำกระเป๋าได้ใบเดียวนี่สิ ขอโทษด้วยนะ";
+		mes "ถ้าทำหายก็คงไม่ไว้ใจให้เจ้าทำงานให้แล้วละ";
+		mes "ขอให้เจอที่ดีๆนะเจ้าหนู";
+		No_more_vincent++;
+		close;
+	}
+    if (deliveryjohn == 2) {
+        mes "[Vincent]";
+        mes "เรื่องคราวก่อนขอบใจเจ้ามากๆนะ";
+        close;
+    } else if (johnStage == 5) {
+        mes "[Vincent]";
+        mes "เจ้าเอาของไปส่งให้มันแล้วใช่ไหม!! ไหนหลักฐานเอามาดูซิ!!";
+		mes "";
+		mes "^FF0000Side Quest 6 ";
+        next;
+        mes "[Vincent]";
+        mes "ขอบใจเจ้ามาก อ่ะนี่รางวัล ว่าแต่มันอยู่ที่ไหนนะ?!?";
+        getitem 2160001, 1;  // Reward Item
+        set deliveryjohn, 2;
+        close;
+    } else if (deliveryjohn == 1) {
+        mes "[Vincent]";
+        mes "เร็วเข้า John มันรอของอยู่นะ!!";
+		mes "";
+		mes "^FF0000Side Quest 6 ";
+        close;
+    }
+    // Reset Quest Variables to Default
+    set johnStage, 0;
+    set deliveryjohn, 3;
+    set johnA, 0;
+    set johnB, 0;
+    set johnC, 0;
+    set johnD, 0;
+    set johnE, 0;
+
+    // Start New Quest Dialogue
+    mes "[Vincent]";
+    mes "เฮ้ เอ็งอ่ะ ข้ามีเรื่องจะวานให้ช่วย";
+    mes "แน่นอน ไม่ได้ให้ทำฟรีๆอยู่แล้วน่าาาา";
+	mes "";
+	mes "^FF0000Side Quest 6 ";
+
+    switch (select("ได้สิ ให้ทำอะไรหละ", "ไม่อ่ะ ลุงเป็นใครข้าก็ไม่รู้จัก!!")) {
+        case 1:
+            mes "[Vincent]";
+            mes "ส่งกระเป๋าสั่งทำพิเศษอันนี้ไปให้ John หน่อยสิ";
+            mes "แต่ติดปัญหาเรื่องนึง..... ข้าไม่รู้ว่ามันอยู่เมืองไหนกันแน่.....";
+            mes "เจ้าลองไปหาดูเอานะ!!!";
+            getitem 1999901, 1;  // Special Bag Item
+            
+            // Check if it's the first time receiving the quest
+            if (deliveryjohn != 1) {   
+                set .@john, rand(1, 5);  // Randomize John Location
+                set deliveryjohn, 1;  // Mark quest as accepted
+            }
+
+            next;
+            mes "[Vincent]";
+            switch (.@john) {
+                case 1: 
+                    set johnA, 1;  // Set John A as location 1
+					mes "ข้าจะบอกแค่ครั้งเดียวนะ!!";
+					next;
+					mes "[Vincent]";
+					mes "เจ้าต้องจำให้ดีๆหละ!!";
+					next;
+					mes "[Vincent]";
+					mes "ตั้งใจฟังนะ!!!";
+					next;
+					mes "[Vincent]";
+                    mes "ข้าว่า.....มันน่าจะไปไหว้พระในเมืองอโยธยาแถบเอเชียที่มีลิงเยอะๆอ่ะ มันตามเพื่อนนักมวยไป...";  //ayothaya 239,264
+                    break;
+                case 2: 
+                    set johnB, 1;  // Set John B as location 2
+					mes "ข้าจะบอกแค่ครั้งเดียวนะ!!";
+					next;
+					mes "[Vincent]";
+					mes "เจ้าต้องจำให้ดีๆหละ!!";
+					next;
+					mes "[Vincent]";
+					mes "ตั้งใจฟังนะ!!!";
+					next;
+					mes "[Vincent]";
+                    mes "ข้าว่า.....มันอยู่ที่บ้านป้ามันนะ ช่วงนี้หิมะตก มันเลยต้องไปซ่อมหลังคาให้บ้านป้ามันหนะ...แถวๆต้นไม้ต้นใหญ่ที่สุดในเมืองเลย"; //xmas 115,170 (Lutie)
+                    break;
+                case 3: 
+                    set johnC, 1;  // Set John C as location 3
+					mes "ข้าจะบอกแค่ครั้งเดียวนะ!!";
+					next;
+					mes "[Vincent]";
+					mes "เจ้าต้องจำให้ดีๆหละ!!";
+					next;
+					mes "[Vincent]";
+					mes "ตั้งใจฟังนะ!!!";
+					next;
+					mes "[Vincent]";
+                    mes "ข้าว่า.....มันต้องไปเป็นคาวบอยแน่นอน เห็นมีต้องไปจัดการทรัพย์สินที่อยู่ใน Bank ในเมืองนั้นกับเจ้านายของมันนะ"; // harboro1 275,259 (Rockridge)
+                    break;
+                case 4: 
+                    set johnD, 1;  // Set John D as location 4
+					mes "ข้าจะบอกแค่ครั้งเดียวนะ!!";
+					next;
+					mes "[Vincent]";
+					mes "เจ้าต้องจำให้ดีๆหละ!!";
+					next;
+					mes "[Vincent]";
+					mes "ตั้งใจฟังนะ!!!";
+					next;
+					mes "[Vincent]";
+                    mes "ข้าว่า.....มันต้องไปหาสาวแน่นอน!! เห็นว่ามันบอกจะไปหาแฟนที่อยู่ในเมืองชนเช่าหมาป่าอะไรนี่แหละ ป่านนี้น่าจะถึงหน้าหมู่บ้านแล้วหละ"; //wolfvill 271,68 (Gray Wolf Village)
+                    break;
+                case 5: 
+                    set johnE, 1;  // Set John E as location 5
+					mes "ข้าจะบอกแค่ครั้งเดียวนะ!!";
+					next;
+					mes "[Vincent]";
+					mes "เจ้าต้องจำให้ดีๆหละ!!";
+					next;
+					mes "[Vincent]";
+					mes "ตั้งใจฟังนะ!!!";
+					next;
+					mes "[Vincent]";
+                    mes "ข้าได้ยินว่ามันจะเดินทางไปเกาะลอยฟ้านะ เห็นว่าจะไปดูการจุติของชาวบ้าน ป่านนี้คงพึ่งลงที่ป้ายสถานีพอดีหละ"; //yuno 51,205 
+                    break;
+            }
+			set johnStage,.@john-1;
+            end;
+            
+        case 2:  // Player refuses the quest
+            mes "[Vincent]";
+            mes "งั้นเรอะ.... น่าเสียดาย";
+            end;
+    }
+}
+
+
+ayothaya,239,264,4	script	John Miler	899,{ //===John A ===
+if(deliveryjohn == 2){
+	mes "[John Miler]";
+	mes "เป็นไงบ้าง เจ้าเจอ John ที่เจ้าตามหารึยัง??";
+	mes "";
+	mes "^FF0000Side Quest 6 ";
+	close;
+	}else
+	if(johnStage == 1) {
+		mes "[John Miler]";
+		mes "ข้าว่า.....มันอยู่ที่บ้านป้ามันนะ ช่วงนี้หิมะตก มันเลยต้องไปซ่อมหลังคาให้บ้านป้ามันหนะ...แถวๆต้นไม้ต้นใหญ่ที่สุดในเมืองเลย"; //xmas 115,170
+		end;
+		}else
+	mes "[John Miler]";
+	mes "สวัสดี มีอะไรให้ช่วยหละ";
+	next;
+	if(johnA == 1){
+	mes "[John Miler]";
+	mes "ข้าไม่ใช่ John ที่เจ้าตามหาหรอกนะ....";
+	mes "ข้าว่า.....มันอยู่ที่บ้านป้ามันนะ ช่วงนี้หิมะตก มันเลยต้องไปซ่อมหลังคาให้บ้านป้ามันหนะ...แถวๆต้นไม้ต้นใหญ่ที่สุดในเมืองเลย"; //xmas 115,170
+	set johnStage,1;
+	set johnB,1;
+	end;
+	} 
+	mes "[John Miler]";
+	mes "ถ้าไม่มีก็ไป๊ เกะกะ";
+	end;
+}
+
+xmas,115,170,4	script	John William	899,{ //===John B ===
+if(deliveryjohn == 2){
+	mes "[John William]";
+	mes "เป็นไงบ้าง เจ้าเจอ John ที่เจ้าตามหารึยัง??";
+	mes "";
+	mes "^FF0000Side Quest 6 ";
+	close;
+	}else
+	if(johnStage == 2) {
+		mes "[John William]";
+		mes "ข้าว่า.....มันต้องไปเป็นคาวบอยแน่นอน เห็นมีต้องไปจัดการทรัพย์สินที่อยู่ใน Bank ในเมืองนั้นกับเจ้านายของมันนะ"; // harboro1 275,259 (Rockridge)
+		end;
+		}else
+		mes "[John William]";
+		mes "สวัสดี มีอะไรให้ช่วยหละ";
+		next;
+		if(johnB == 1){
+		mes "[John William]";
+		mes "ข้าไม่ใช่ John ที่เจ้าตามหาหรอกนะ....";
+		mes "ข้าว่า.....มันต้องไปเป็นคาวบอยแน่นอน เห็นมีต้องไปจัดการทรัพย์สินที่อยู่ใน Bank ในเมืองนั้นกับเจ้านายของมันนะ"; // harboro1 275,259 (Rockridge)
+		set johnStage,2;
+		set johnC,1;
+		end;
+		} 
+		mes "[John William]";
+		mes "ถ้าไม่มีก็ไป๊ เกะกะ";
+		end;
+}
+
+harboro1,275,259,4	script	John Smith	899,{ //===John C ===
+if(deliveryjohn == 2){
+	mes "[John Smith]";	
+	mes "เป็นไงบ้าง เจ้าเจอ John ที่เจ้าตามหารึยัง??";
+	mes "";
+	mes "^FF0000Side Quest 6 ";
+	close;
+	}else
+	if(johnStage == 3) {
+		mes "[John Smith]";
+		mes "ข้าว่า.....มันต้องไปหาสาวแน่นอน!! เห็นว่ามันบอกจะไปหาแฟนที่อยู่ในเมืองชนเช่าหมาป่าอะไรนี่แหละ ป่านนี้น่าจะถึงหน้าหมู่บ้านแล้วหละ"; //wolfvill 271,68 (Gray Wolf Village)
+		end;
+		}else
+	mes "[John Smith]";	
+	mes "สวัสดี มีอะไรให้ช่วยหละ";
+	next;
+	if(johnC == 1){
+	mes "[John Smith]";	
+	mes "ข้าไม่ใช่ John ที่เจ้าตามหาหรอกนะ....";
+	mes "ข้าว่า.....มันต้องไปหาสาวแน่นอน!! เห็นว่ามันบอกจะไปหาแฟนที่อยู่ในเมืองชนเช่าหมาป่าอะไรนี่แหละ ป่านนี้น่าจะถึงหน้าหมู่บ้านแล้วหละ"; //wolfvill 271,68 (Gray Wolf Village)
+	set johnStage,3;
+	set johnD,1;
+	end;
+	} 
+	mes "[John Smith]";
+	mes "ถ้าไม่มีก็ไป๊ เกะกะ";
+	end;
+}
+
+wolfvill,271,68,4	script	John White	899,{ //===John D ===
+	if(deliveryjohn == 2){
+	mes "[John White]";
+	mes "เป็นไงบ้าง เจ้าเจอ John ที่เจ้าตามหารึยัง??";
+	mes "";
+	mes "^FF0000Side Quest 6 ";
+	close;
+	}else
+	if(johnStage == 4) {
+		mes "[John White]";
+		mes "ข้าได้ยินว่ามันจะเดินทางไปเกาะลอยฟ้านะ เห็นว่าจะไปหาปราญบนนั้น ป่านนี้คงพึ่งลงที่ป้ายสถานีพอดีหละ"; //yuno 51,205 
+		end;
+		}else
+	mes "[John White]";
+	mes "สวัสดี มีอะไรให้ช่วยหละ";
+	next;
+	if(johnD == 1){
+	mes "[John White]";
+	mes "ข้าไม่ใช่ John ที่เจ้าตามหาหรอกนะ....";
+	mes "ข้าได้ยินว่ามันจะเดินทางไปเกาะลอยฟ้านะ เห็นว่าจะไปหาปราญบนนั้น ป่านนี้คงพึ่งลงที่ป้ายสถานีพอดีหละ"; //yuno 51,205 
+	set johnStage,4;
+	set johnE,1;
+	end;
+	} 
+	mes "[John White]";
+	mes "ถ้าไม่มีก็ไป๊ เกะกะ";
+	end;
+}
+
+yuno,51,205,4	script	John Brown	899,{ //===The Last John ===
+	if(No_John_bag) {
+		mes "[John Brown]";
+		mes "อย่ามาทำให้ข้าเสียเวลาเลยเจ้านักต้มตุ๋น";
+		close;
+	}
+	if(deliveryjohn == 2){
+		mes "[John Brown]";
+		mes "ขอบคุณเจ้ามาก ดูนี่สิ!! กระเป๋า Limited เชียวนะะะ";
+		end;
+	}else
+	mes "[John Brown]";
+	mes "สวัสดี มีอะไรให้ช่วยหละ";
+	next;
+	if(johnStage == 4){
+	mes "[John Brown]";
+	mes "ใช่!! ข้าเองแหละ John ที่ Vincent จะส่งกระเป๋ารุ่น Limited มาให้!!";
+	mes "ข้าขอดูของนั่นหน่อยสิ!! หูววววว ดูมันสิ!! ของโครตดีย์!!!";
+	if(!countitem(1999901)) {
+		mes "[John Brown]";
+		mes "ไม่เห็นจะมีกระเป๋าเลยนี่เจ้านี่ต้มตุ๋นข้าจริงๆ";
+		set No_John_bag,1;
+		warp "savepoint",0,0;
+		end;
+	}
+	delitem 1999901,1;
+	set johnStage,5;
+	next;
+	mes "[John Brown]";
+	mes "อ่ะ!! นี่คือหลักฐานการรับกระเป๋าของข้า เอามันไปให้ Vincent นะ";
+	mes "ขอบใจเจ้ามาก รู้ไหมว่าค่าส่งของระดับนี้มันแพงขนาดไหน!!";
+	mes "ได้เจ้ามาช่วยไว้นี่มันประหยัดได้เยอะจริงๆ!!";
+	next;
+	mes "[John Brown]";
+	mes "เจ้ามีอะไรกับข้าอีกรึเปล่า? ถ้าไม่มีก็ไปไป๊ อย่ามายืนเกะกะแถวนี้..";
+	end;
+	} 
+	mes "[John Brown]";
+	mes "ถ้าไม่มีก็ไป๊ เกะกะ";
+	end;
+}
