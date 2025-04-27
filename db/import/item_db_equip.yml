@@ -89,6 +89,54 @@ Header:
   Version: 3
 
 Body:
+#  [Armor]
+  - Id: 2130001
+    AegisName: Chicken_Armor
+    Name: Chicken Armor
+    Type: Armor
+    Weight: 1000
+    Defense: 5
+    ArmorLevel: 1
+    Locations:
+      Armor: true
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoGuildStorage: true
+      NoMail: true
+    Script: |
+      bonus bVit,2;
+      bonus bMaxHp,50;
+      bonus bMaxSp,50;
+      bonus bAspdRate,5;
+      bonus bSPrecovRate,5;
+  - Id: 2130002
+    AegisName: All_Chicken_Armor
+    Name: All Chicken Armor
+    Type: Armor
+    Weight: 3000
+    Defense: 20
+    ArmorLevel: 1
+    Locations:
+      Armor: true
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoGuildStorage: true
+      NoMail: true
+    Script: |
+      bonus bVit,3;
+      bonus bMaxHp,100;
+      bonus bMaxSp,100;
+      bonus bAspdRate,5;
+      bonus bSPrecovRate,5;
+      bonus bHPGainValue,25;
+      bonus bSPGainValue,10;
+      bonus bLongHPGainValue,25;
+      bonus bLongSPGainValue,10;
+      bonus bMagicHPGainValue,25;
+      bonus bMagicSPGainValue,10;
+#  [Garment]
   - Id: 2160001
     AegisName: Vincent John Back
     Name: Vincent_John_Back

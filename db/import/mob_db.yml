@@ -80,7 +80,76 @@ Header:
   Type: MOB_DB
   Version: 4
 
-#Body:
+Body:
+  - Id: 1840
+    AegisName: GOLDEN_SAVAGE
+    Name: Golden Savage
+    Level: 60
+    Hp: 100000
+    Attack: 237
+    Attack2: 237
+    Defense: 64
+    MagicDefense: 38
+    Str: 50
+    Agi: 50
+    Vit: 50
+    Int: 50
+    Dex: 130
+    Luk: 50
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Neutral
+    ElementLevel: 1
+    WalkSpeed: 200
+    AttackDelay: 1000
+    AttackMotion: 864
+    ClientAttackMotion: 672
+    DamageMotion: 480
+    Ai: 04
+    Class: Boss
+    Drops:
+      - Item: GOLDEN_SAVAGE_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 27001
+    AegisName: GOLDPICKY
+    Name: Gold Picky
+    Level: 10
+    Hp: 20
+    BaseExp: 1
+    JobExp: 1
+    Attack: 13
+    Attack2: 8
+    Defense: 160
+    Int: 50
+    Dex: 100
+    Luk: 100
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Neutral
+    ElementLevel: 3
+    WalkSpeed: 100
+    AttackDelay: 720
+    AttackMotion: 720
+    ClientAttackMotion: 432
+    DamageMotion: 432
+    Ai: 06
+    Class: Boss
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Gold_Picky_Card
+        Rate: 1
+        StealProtected: true
 # eAthena Dev Team
 #=============================================================
 #  - Id: 1900

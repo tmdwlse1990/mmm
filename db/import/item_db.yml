@@ -117,6 +117,91 @@ Body:
       bonus baspdrate,adv_aspd;
       bonus bmaxhp,adv_hp*100;
       bonus bmaxsp,adv_sp*25;
+  - Id: 2000002
+    AegisName: S_Alpha
+    Name: S
+    Type: Etc
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 2000003
+    AegisName: H_Alpha
+    Name: H
+    Type: Etc
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 2000004
+    AegisName: A_Alpha
+    Name: A
+    Type: Etc
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 2000005
+    AegisName: R_Alpha
+    Name: R
+    Type: Etc
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 2000006
+    AegisName: K_Alpha
+    Name: K
+    Type: Etc
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 2000006
+    AegisName: SHARK_Combine
+    Name: Shark
+    Type: Etc
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+#   [Side Quest Item]
+  - Id: 2005001
+    AegisName: Golden_Egg
+    Name: Golden Egg
+    Type: Etc
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
 #   [Useable Item]
   - Id: 2001001
     AegisName: Paradise_Weap_1
@@ -130,6 +215,34 @@ Body:
     Type: DelayConsume
     Flags:
       BuyingStore: true
+#   [Card Item]
+  - Id: 2230001
+    AegisName: GOLDEN_SAVAGE_Card
+    Name: Golden Savage Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Armor: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus bMaxHp,5000;
+  - Id: 2230002
+    AegisName: Gold_Picky_Card
+    Name: Gold Picky Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Armor: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus bStr,2;
+      bonus bBaseAtk,20;
 # THQ Quest Items
 #=============================================================
 #  - Id: 1998

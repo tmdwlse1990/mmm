@@ -2105,7 +2105,6 @@ Body:
       Dex: true
       Luk: true
     Flags:
-      NoRemoveOnDead: true
       NoClearbuff: true
       NoDispell: true
       NoBanishingBuster: true

@@ -18,9 +18,12 @@
 	.@Price = 0;	// Zeny required for heal
 	.@Buffs = 1;	// Also buff players? (1: yes / 0: no)
 	.@Delay = 5;	// Heal delay, in seconds
+	.@bufftime = 900000;	// 1000 = 1sec
 
-	if (@HD > gettimetick(2))
+	if (@HD > gettimetick(2)) {
+		//message strcharinfo(0),"อย่ากดเยอะดิ๊ ติดดีเลย์";
 		end;
+		}
 	if (.@Price) {
 		message strcharinfo(0), "Healing costs " + callfunc("F_InsertComma",.@Price) + " Zeny.";
 		if (Zeny < .@Price)
@@ -33,9 +36,15 @@
 	percentheal 50,50;
 	if (.@Buffs) {
 		specialeffect2 EF_INCAGILITY;
-		sc_start SC_INCREASEAGI,900000,5;
+		sc_start SC_INCREASEAGI,.@bufftime,5;
 		specialeffect2 EF_BLESSING;
-		sc_start SC_BLESSING,900000,5;
+		sc_start SC_BLESSING,.@bufftime,5;
+		if(countitem(2000002)) .@allval++;
+		if(countitem(2000003)) .@allval++;
+		if(countitem(2000004)) .@allval++;
+		if(countitem(2000005)) .@allval++;
+		if(countitem(2000006)) .@allval++;
+		if(.@allval) sc_start SC_INCALLSTATUS,.@bufftime,.@allval;
 	}
 	if (.@Delay)
 		@HD = gettimetick(2) + .@Delay;

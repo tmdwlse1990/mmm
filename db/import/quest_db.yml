@@ -48,3 +48,28 @@
 Header:
   Type: QUEST_DB
   Version: 3
+
+Body: #ให้ใช้ ID ไม่เกิน 1000 
+  - Id: 1
+    Title: For Cat and Shark # ให้ใช้ภาษาอังกฤษเท่านั้น
+    Targets: #ได้มากสุด 3 ตัวใน 1 เควส 
+      - Mob: PORING
+        Count: 1000
+      - Mob: DROPS
+        Count: 1000
+      - Mob: POPORING
+        Count: 1000
+# // Main Quest ให้ใช้ตั้งแต่ 100 ขึ้นไป จะได้จัดระเบียบถูก มีดรอปของพิเศษเฉพาะตอนมีเควสด้วย ดูด้านบนเอา
+  - Id: 101
+    Title: Golden Savage
+    Drops:
+      - Mob: GOLDPICKY
+        Item: Gold_Tulip
+        Rate: 10000
+# // Side Quest ให้ใช้ตั้งแต่ 500 ขึ้นไป จะได้จัดระเบียบถูก มีดรอปของพิเศษเฉพาะตอนมีเควสด้วย ดูด้านบนเอา
+  - Id: 501
+    Title: Golden Egg
+    Drops:
+      - Mob: GOLDPICKY
+        Item: Golden_Egg
+        Rate: 3000
