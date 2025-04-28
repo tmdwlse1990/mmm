@@ -1386,4 +1386,4 @@ malangdo,134,117,6	duplicate(Warper)	Warper#mal	811
 malaya,231,204,4	duplicate(Warper)	Warper#ma	811
 mora,57,152,4	duplicate(Warper)	Warper#mora	811
 
-icecastle,188,216,4	duplicate(Warper)	Warper#ieccas	811
+icecastle,192,219,4	duplicate(Warper)	Warper#ieccas	811

@@ -1,5 +1,5 @@
 
-icecastle,177,216,4	script	Kafra Service#ice	113,{
+icecastle,175,216,4	script	Kafra Service#ice	113,{
 	cutin "kafra_05",2;
 	mes "[Kafra Leilah]";
 	mes "Hm...?";

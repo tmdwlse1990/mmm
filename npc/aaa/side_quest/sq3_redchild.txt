@@ -1,6 +1,6 @@
 //-----------------------Side Quest 3 เด็กติดยาแดง (Repeat 20 ชม.) --------------
 
-icecastle,247,200,4	script	เด็กที่น่าสงสัย	854,{
+icecastle,169,241,4	script	เด็กที่น่าสงสัย	854,{
 
 if (delay == 0) {  // ตรวจสอบว่า delay ยังไม่ได้ถูกกำหนด
 		set delay, gettimetick(2);  // กำหนดเวลาปัจจุบันเมื่อเริ่มใช้งานครั้งแรก
@@ -23,7 +23,7 @@ if (delay == 0) {  // ตรวจสอบว่า delay ยังไม่ได้ถูกกำหนด
 	mes "^FF0000Side Quest 3 ทำซ้ำได้";
 	next;
 	mes "[Walter Right]";
-	mes "ใช้ Red Potion แค่ 100 ขวดเอ๊งงงง!!"; // แก้ไขรางวัลที่จะให้
+	mes "ใช้ Red Novice แค่ 100 ขวดเอ๊งงงง!!"; // แก้ไขรางวัลที่จะให้
 	mes "";
 	mes "^FF0000Side Quest 3 ทำซ้ำได้";
 	next;
@@ -37,7 +37,7 @@ if (delay == 0) {  // ตรวจสอบว่า delay ยังไม่ได้ถูกกำหนด
 	
 		Lok:
 			if(countitem(501)>=100){
-			delitem 501,100;
+			delitem 569,100;
 			set .@rightnum,rand(0,100);
 			mes "[Walter Right]";
 			mes "เอ้า ดู!!";
@@ -51,7 +51,7 @@ if (delay == 0) {  // ตรวจสอบว่า delay ยังไม่ได้ถูกกำหนด
 				specialeffect EF_RG_COIN,AREA;
 				mes "[Walter Right]";
 				mes "ดีใจด้วย!! เจ้าชนะรอบนี้!!!";
-				mes "รางวัลคือ Red Potion 200 ขวด!!"; //แก้เป็นรางวัลจริงๆ
+				mes "รางวัลคือ Red Novice 200 ขวด!!"; //แก้เป็นรางวัลจริงๆ
 				next;
 				mes "[Walter Right]";
 				mes "เอาอีกรอบป่าว? รอบนี้รางวัลคือ Battle Manual 1 ea!!"; //เพิ่มรางวัลที่ได้รอบ2
@@ -117,7 +117,7 @@ if (delay == 0) {  // ตรวจสอบว่า delay ยังไม่ได้ถูกกำหนด
 				Lnotwo:
 				mes "[Walter Right]";
 				mes "เค เค เอาของละไปไกลๆ ชิ่ว!!";
-				getitem 501,200; //รับรางวัลรอบแรก
+				getitem 569,200; //รับรางวัลรอบแรก
 				set delay, gettimetick(2) + 72000; //นับเวลา 20ชม.
 				end;
 				

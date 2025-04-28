@@ -1,5 +1,5 @@
 //----------------- NPC Quest Guide ----------------
-icecastle,241,209,4	script	Quest Guide	627,{
+icecastle,228,159,4	script	Quest Guide	627,{
 	mes "[Quest Guide]";
 	mes "เจ้าอยากรู้อะไรหละ? ข้าบอกเจ้าได้ทุกอย่างเลยนะ!! แค่เปิดให้ถูกหน้า.....";
 	next;

@@ -1,5 +1,5 @@
 //-----------------------Side Quest 6 ---------------------------
-icecastle,247,198,4	script	Vincent	407,{ //===NPCÃÑºà¤ÇÊ===
+icecastle,91,240,4	script	Vincent	407,{ //===NPCÃÑºà¤ÇÊ===
     // === NPC Quest Handling ===
 	if (No_more_vincent) {
         mes "[Vincent]";
