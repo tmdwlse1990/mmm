@@ -3477,6 +3477,11 @@ static bool intif_parse_StorageReceived(int32 fd)
 
 	memcpy(stor, p, sz_stor); //copy the items data to correct destination
 
+	if (stor->stor_id == COLLECTION_STORAGE && sd->state.collection_flag&PCCOLLECTION_LOAD) {
+		pc_collection_update(stor,*sd);
+		return true;
+	}
+
 	switch (type) {
 		case TABLE_INVENTORY: {
 #ifdef BOUND_ITEMS

@@ -16408,6 +16408,70 @@ uint64 CaptchaDatabase::parseBodyNode(const ryml::NodeRef &node) {
 
 	return 1;
 }
+ 
+void pc_collection_load(map_session_data &sd) {
+	if (!storage_exists(COLLECTION_STORAGE)) {
+		return;
+	}
+
+	sd.state.collection_flag |= PCCOLLECTION_LOAD;
+
+	storage_premiumStorage_load(&sd, COLLECTION_STORAGE, STOR_MODE_NONE);
+}
+
+void pc_collection_update(struct s_storage *stor, map_session_data &sd) {
+	nullpo_retv(stor);
+
+	char output[128];
+
+	if (stor->stor_id != COLLECTION_STORAGE) {
+		return;
+	}
+	
+	if (sd.state.collection_flag &(PCCOLLECTION_LOAD|PCCOLLECTION_RECAL)) {
+		
+		// reset data
+		sd.collection_list.clear();
+
+		// update data
+		for (int i = 0; i < stor->max_amount; i++) {
+
+			std::shared_ptr<item_data> id = item_db.find(stor->u.items_storage[i].nameid);
+			int amount = stor->u.items_storage[i].amount;
+
+			if (!id || !amount) {
+				continue;
+			}
+
+			if (!id->flag.collection) {
+				ShowError("pc_collection_update_bind: Item %s(%d) invalid type.", id->ename.c_str(), id->nameid);
+				storage_storageget(&sd, stor, i, amount);
+				continue;
+			}
+
+			if (rathena::util::vector_exists(sd.collection_list, id->nameid)) {
+				ShowError("pc_collection_update_bind: Item %s(%d) duplicate bonus.", id->ename.c_str(), id->nameid);
+
+				continue;
+			}
+
+			sd.collection_list.push_back(id->nameid);
+		}
+	}
+
+	if (sd.state.collection_flag&PCCOLLECTION_RELOAD) {
+		clif_inventorylist(&sd);
+	}
+
+	if ((sd.state.collection_flag&PCCOLLECTION_LOAD && sd.collection_list.size() > 0) || sd.state.collection_flag&PCCOLLECTION_RECAL) {
+		sprintf(output, msg_txt(&sd,(sd.state.collection_flag&PCCOLLECTION_LOAD ? 1540 : 1541)), sd.collection_list.size());
+		clif_messagecolor(&sd.bl, color_table[COLOR_LIGHT_GREEN], output, false, SELF);
+		status_calc_pc(&sd, SCO_FORCE);
+	}
+
+	sd.state.collection_flag = PCCOLLECTION_CLEAR;
+}
+
 
 /*==========================================
  * pc Init/Terminate

@@ -4222,6 +4222,18 @@ int32 status_calc_pc_sub(map_session_data* sd, uint8 opt)
 		current_equip_opt_index = -1;
 	}
 
+	if (sd->collection_list.size() > 0) {
+		for (auto &nameid : sd->collection_list ) {
+			std::shared_ptr<item_data> data = item_db.find(nameid);
+			if (data && data->flag.collection && data->collection_script) {
+				run_script(data->collection_script, 0, sd->bl.id, 0);
+			}
+		}
+		if (!calculating) {
+			return 1;
+		}
+	}
+
 	if (!sc->empty()){
 		if( status_change_entry* sce = sc->getSCE(SC_ITEMSCRIPT); sce != nullptr ){
 			std::shared_ptr<item_data> data = item_db.find(sc->getSCE(SC_ITEMSCRIPT)->val1);

@@ -36,7 +36,10 @@ Header:
   Type: INTER_SERVER_DB
   Version: 1
 
-#Body:
+Body:
+  - ID: 1
+    Name: "Collection"
+    Table: COLLECTION_STORAGE
 #   - ID: 1
 #     Name: "VIP Storage"
 #     Table: vip_storage

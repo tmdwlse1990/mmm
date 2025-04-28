@@ -302,6 +302,17 @@ struct s_autospell {
 	bool lock;  // bAutoSpellOnSkill: blocks autospell from triggering again, while being executed
 };
 
+/**
+ * Player blocking actions related flags.
+ */
+enum e_collection_flag : uint16 {
+	PCCOLLECTION_CLEAR    = 0x00,
+	PCCOLLECTION_LOAD     = 0x01,
+	PCCOLLECTION_RELOAD   = 0x02,
+	PCCOLLECTION_RECAL    = 0x04,
+	PCCOLLECTION_ALL  	  = 0x07,
+};
+
 /// AddEff and AddEff2 bonus struct
 struct s_addeffect {
 	enum sc_type sc; /// SC type/effect
@@ -460,6 +471,7 @@ public:
 		bool roulette_open;
 		t_itemid item_reform;
 		uint64 item_enchant_index;
+		unsigned int collection_flag : 5;
 	} state;
 	struct {
 		unsigned char no_weapon_damage, no_magic_damage, no_misc_damage;
@@ -948,6 +960,7 @@ public:
 	s_macro_detect macro_detect;
 
 	std::vector<uint32> party_booking_requests;
+	std::vector<t_itemid> collection_list;
 	uint64 enchantIndex;
 
 	uint16 debuff; // [Start's] Debuff for any purpose
@@ -1824,5 +1837,8 @@ void pc_macro_reporter_process(map_session_data &sd, int32 reporter_account_id =
 #ifdef MAP_GENERATOR
 void pc_reputation_generate();
 #endif
+
+void pc_collection_load(map_session_data &sd);
+void pc_collection_update(struct s_storage* stor, map_session_data& sd);
 
 #endif /* PC_HPP */

@@ -1,0 +1,14 @@
+//===== rAthena Script =======================================
+//= Ex0ample: Collection Sample
+//===== By: ==================================================
+//= rAthena Dev Team
+//===== Last Updated: ========================================
+//= 202309214
+//===== Description: ========================================= 
+//= Collection demonstrates.
+//============================================================
+
+-	script	Collection	105,{
+	openstorage2 1,STOR_MODE_GET|STOR_MODE_PUT;
+	end;
+}

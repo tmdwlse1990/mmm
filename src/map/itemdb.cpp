@@ -1108,6 +1108,26 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			item->unequip_script = nullptr;
 	}
 
+	if (this->nodeExists(node, "CollectionScript")) {
+		std::string script;
+
+		if (!this->asString(node, "CollectionScript", script))
+			return 0;
+
+		if (exists && item->collection_script) {
+			script_free_code(item->collection_script);
+			item->collection_script = nullptr;
+		}
+
+		item->collection_script = parse_script(script.c_str(), this->getCurrentFile().c_str(), this->getLineNumber(node["CollectionScript"]), SCRIPT_IGNORE_EXTERNAL_BRACKETS);
+		item->flag.collection = true;
+	} else {
+		if (!exists) {
+			item->collection_script = nullptr;
+			item->flag.collection = false;
+		}
+	}
+
 	if (!exists)
 		this->put(nameid, item);
 
