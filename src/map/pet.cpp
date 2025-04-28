@@ -27,6 +27,7 @@
 #include "mob.hpp"
 #include "npc.hpp"
 #include "pc.hpp"
+#include "storage.hpp"
 
 using namespace rathena;
 
@@ -1818,7 +1819,8 @@ static int32 pet_ai_sub_hard(struct pet_data *pd, map_session_data *sd, t_tick t
 
 	if(!target && pd->loot && pd->loot->count < pd->loot->max && DIFF_TICK(tick,pd->ud.canact_tick) > 0) {
 		// Use half the pet's range of sight.
-		map_foreachinallrange(pet_ai_sub_hard_lootsearch, &pd->bl, pd->db->range2 / 2, BL_ITEM, pd, &target);
+//		map_foreachinallrange(pet_ai_sub_hard_lootsearch, &pd->bl, pd->db->range2 / 2, BL_ITEM, pd, &target);
+		map_foreachinmap(pet_ai_sub_hard_lootsearch, pd->bl.m, BL_ITEM, pd, &target);
 	}
 
 	if (!target) { // Just walk around.
@@ -1859,10 +1861,24 @@ static int32 pet_ai_sub_hard(struct pet_data *pd, map_session_data *sd, t_tick t
 		} else {
 			struct flooritem_data *fitem = (struct flooritem_data *)target;
 
+			/* ให้เก็บเฉพาะ type
+			if (!(itemdb_type(fitem->item.nameid) == IT_ETC || itemdb_type(fitem->item.nameid) == IT_CARD)) {
+			pet_unlocktarget(pd); // Skip the item if it's one of the types to ignore
+			clif_emotion(&pd->bl, ET_STARE_ABOUT); //ET_CRY
+			map_clearflooritem(target);
+			return 0;
+			}*/
+			
 			if(pd->loot->count < pd->loot->max) {
 				memcpy(&pd->loot->item[pd->loot->count++],&fitem->item,sizeof(pd->loot->item[0]));
 				pd->loot->weight += itemdb_weight(fitem->item.nameid)*fitem->item.amount;
-				map_clearflooritem(target);
+//				map_clearflooritem(target);
+				pd->loot->count = 0;
+				//clif_emotion(&pd->bl, ET_OK); //ET_CRY	
+
+				if (!pc_additem(sd, &fitem->item, fitem->item.amount, LOG_TYPE_PICKDROP_PLAYER)) {
+					map_clearflooritem(target);
+				}
 			}
 
 			//Target is unlocked regardless of whether it was picked or not.
