@@ -13,6 +13,9 @@
  **/
 
 
+ int config_maxlv;
+ int config_global_mvp_drop;
+ int config_global_mvp_drop_rate;
  int mob_mvp_skill_rate;
  int max_sell_item_cap;
  int max_seal_item_val;

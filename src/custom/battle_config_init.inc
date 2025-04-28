@@ -12,6 +12,9 @@
  **/
 
 
+ { "config_maxlv", &battle_config.config_maxlv, 99, 1, MAX_LEVEL },
+ { "config_global_mvp_drop", &battle_config.config_global_mvp_drop, 0, 0, INT_MAX },
+ { "config_global_mvp_drop_rate", &battle_config.config_global_mvp_drop_rate, 1, 0, INT_MAX },
  { "mob_mvp_skill_rate", &battle_config.mob_mvp_skill_rate, 1, 0, 1 },
  { "max_sell_item_cap", &battle_config.max_sell_item_cap, 2000, 0, INT_MAX },
  { "max_seal_item_val", &battle_config.max_seal_item_val, 700, 0, INT_MAX },

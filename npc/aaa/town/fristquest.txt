@@ -15,7 +15,7 @@ icecastle,188,199,1	script	ออเดิร์ฟ#new_commer	4_M_NOV_RUMIN,{
 				mes .@npcname$;
 				mes "ยังทำภารกิจไม่สำเร็จเลยนี่";
 				mes "ไปทำภารกิจก่อนเถอะ";
-				break;
+				end;
 			case 2:
 				mes .@npcname$;
 				mes "ทำดีนี่น่า ถือว่าเป็นค่าตอบแทน";

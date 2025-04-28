@@ -122,6 +122,7 @@ Body:
     Name: S
     Type: Etc
     Trade:
+      NoSell: true
       NoDrop: true
       NoTrade: true
       NoCart: true
@@ -134,6 +135,7 @@ Body:
     Name: H
     Type: Etc
     Trade:
+      NoSell: true
       NoDrop: true
       NoTrade: true
       NoCart: true
@@ -146,6 +148,7 @@ Body:
     Name: A
     Type: Etc
     Trade:
+      NoSell: true
       NoDrop: true
       NoTrade: true
       NoCart: true
@@ -158,6 +161,7 @@ Body:
     Name: R
     Type: Etc
     Trade:
+      NoSell: true
       NoDrop: true
       NoTrade: true
       NoCart: true
@@ -170,6 +174,7 @@ Body:
     Name: K
     Type: Etc
     Trade:
+      NoSell: true
       NoDrop: true
       NoTrade: true
       NoCart: true
@@ -182,6 +187,7 @@ Body:
     Name: Shark
     Type: Etc
     Trade:
+      NoSell: true
       NoDrop: true
       NoTrade: true
       NoCart: true
@@ -209,12 +215,39 @@ Body:
     Type: DelayConsume
     Flags:
       BuyingStore: true
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
   - Id: 2001002
     AegisName: Paradise_Armor_1
     Name: Paradise Armor Box
     Type: DelayConsume
     Flags:
       BuyingStore: true
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 2002001
+    AegisName: MVP_Option_Box_T1
+    Name: MVP Option Tier 1
+    Type: DelayConsume
+    Flags:
+      BuyingStore: true
+    Trade:
+      NoDrop: true
+      NoSell: true
+    Script: |
+      callfunc("F_MVPReward",1);
 #   [Card Item]
   - Id: 2230001
     AegisName: GOLDEN_SAVAGE_Card

@@ -8370,9 +8370,11 @@ void pc_gainexp(map_session_data *sd, struct block_list *src, t_exp base_exp, t_
 	uint8 flag = 0; ///< 1: Base EXP given, 2: Job EXP given, 4: Max Base level, 8: Max Job Level
 
 	nullpo_retv(sd);
+	
 
 	if(sd->bl.prev == nullptr || pc_isdead(sd))
 		return;
+	
 
 	if (!(exp_flag&2)) {
 
@@ -8382,12 +8384,15 @@ void pc_gainexp(map_session_data *sd, struct block_list *src, t_exp base_exp, t_
 		if (sd->status.guild_id>0)
 			base_exp -= guild_payexp(sd,base_exp);
 	}
-
+	
 	flag = ((base_exp) ? 1 : 0) |
 		((job_exp) ? 2 : 0) |
 		((pc_is_maxbaselv(sd)) ? 4 : 0) |
 		((pc_is_maxjoblv(sd)) ? 8 : 0);
 
+	if(sd->status.base_level >= battle_config.config_maxlv)
+		base_exp = 0;
+	
 	if (!(exp_flag&2))
 		pc_calcexp(sd, &base_exp, &job_exp, src);
 

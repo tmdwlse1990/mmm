@@ -1,3 +1,11 @@
+// Max Cap Level
+config_maxlv: 60
+
+// Boss ทุกตัว Drop Item Id (ใส่ 0 เพื่อปิดการใช้งาน)
+config_global_mvp_drop: 2002001
+// %
+config_global_mvp_drop_rate: 10000
+
 //Boss use skill
 mob_mvp_skill_rate: 0
 

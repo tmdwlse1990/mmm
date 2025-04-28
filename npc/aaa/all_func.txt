@@ -1,0 +1,23 @@
+function	script	F_MVPReward	{
+	set .@tier,getarg(0);
+	switch(.@tier) {
+		case 1:
+			setarray .@itemlist,
+			4700,4701,4702,4703,    //
+			4710,4711,4712,4713,    //
+			4720,4721,4722,4723,    //
+			4730,4731,4732,4733,    //
+			4740,4741,4742,4743,    //
+			4750,4751,4752,4753,    //
+			300291;					//Jackpot
+			break;
+		default:
+			setarray .@itemlist,4700,4710,4720,4730,4740,4750;
+			break;
+	}
+	.@pos = rand(getarraysize(.@itemlist));
+	.@getitemid = .@itemlist[.@pos];
+	announce "ท่าน "+strcharinfo(0)+" ได้รับ "+(.@pos == (getarraysize(.@itemlist)-1) ? "(Jackpot)":"" )+""+getitemname(.@getitemid)+" จากกล่อง MVP Tier "+.@tier,bc_blue;
+	getitem .@getitemid,1;
+	return;
+}
