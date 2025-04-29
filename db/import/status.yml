@@ -44,3 +44,14 @@
 Header:
   Type: STATUS_DB
   Version: 4
+
+Body:
+  - Status: AutoAttack
+    Icon: EFST_AUTOATTACK
+    Flags:
+      NoClearbuff: true
+      NoDispell: true
+      NoBanishingBuster: true
+      NoClearance: true
+      NoRemoveOnDead: true
+      SendVal1: true

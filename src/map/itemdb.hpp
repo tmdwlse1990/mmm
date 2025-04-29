@@ -3655,6 +3655,40 @@ bool itemdb_isstackable2(struct item_data *id);
 #define itemdb_isstackable(nameid) itemdb_isstackable2(itemdb_search(nameid))
 bool itemdb_isNoEquip(struct item_data *id, uint16 m);
 
+struct s_ai_item_buff {
+	t_itemid itemid;
+	t_tick duration;
+	bool resetwhendead;
+};
+
+struct s_ai_flywings {
+	t_itemid itemid;
+	bool leader_only;
+	bool is_delete;
+};
+
+enum aa_ai_ammo_type : uint8 {
+	AI_AMMO_NONE		= 0,
+	AI_AMMO_ARROW		= 1,
+	AI_AMMO_BULLET		= 2,
+	AI_AMMO_SYURIKEN	= 3,
+	AI_AMMO_KUNAI		= 4,
+	AI_AMMO_CANNON		= 5,
+};
+
+struct s_ai_ammo {
+	aa_ai_ammo_type type;
+	t_itemid itemid;
+	e_element ele;
+	int atk;
+	t_itemid quiver;
+};
+
+extern std::vector<s_ai_item_buff> ai_item_buff;
+extern std::vector<t_itemid> ai_item_buff_reset;
+extern std::vector<s_ai_flywings> ai_item_flywings;
+extern std::vector<s_ai_ammo> ai_item_ammo;
+
 bool itemdb_parse_roulette_db(void);
 
 void itemdb_gen_itemmoveinfo();

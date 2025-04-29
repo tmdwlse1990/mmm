@@ -237,15 +237,30 @@ Body:
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
-  - Id: 2002001
-    AegisName: MVP_Option_Box_T1
-    Name: MVP Option Tier 1
+  - Id: 2002000
+    AegisName: AI_Item
+    Name: AI Item
     Type: DelayConsume
     Flags:
       BuyingStore: true
     Trade:
       NoDrop: true
       NoSell: true
+    Script: |
+      callfunc "F_AutoAT";
+  - Id: 2002001
+    AegisName: MVP_Option_Box_T1
+    Name: MVP Option Tier 1
+    Type: Usable
+    Flags:
+      BuyingStore: true
+    Trade:
+      NoDrop: true
+      NoSell: true
+    NoUse:
+      Sitting: true
+    Buy: 1000
+    Weight: 200
     Script: |
       callfunc("F_MVPReward",1);
 #   [Card Item]

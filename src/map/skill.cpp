@@ -110,6 +110,11 @@ static inline int32 splash_target(struct block_list* bl) {
 	return ( bl->type == BL_MOB ) ? BL_SKILL|BL_CHAR : BL_CHAR;
 }
 
+std::vector<uint16> skill_ai_attack;
+std::vector<uint16> skill_ai_support;
+std::vector<uint16> skill_ai_heal;
+std::map<uint16, std::shared_ptr<s_ai_sphere_skill>> skill_ai_sphere;
+
 /**
  * Get skill id from name
  * @param name
@@ -3826,6 +3831,8 @@ int64 skill_attack (int32 attack_type, struct block_list* src, struct block_list
 
 	//combo handling
 	skill_combo(src,dsrc,bl,skill_id,skill_lv,tick);
+
+	aa_monk_combo(src,bl,skill_id,skill_lv);
 
 	//Display damage.
 	switch( skill_id ) {
@@ -11012,6 +11019,7 @@ int32 skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, 
 			if (md) {
 				sd->guild->chargeshout_flag_id = md->bl.id;
 				md->master_id = src->id;
+				md->special_state.summon = 1;
 
 				if (md->deletetimer != INVALID_TIMER)
 					delete_timer(md->deletetimer, mob_timer_delete);
@@ -12703,6 +12711,7 @@ int32 skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, 
 			{
 				md2->master_id = src->id;
 				md2->special_state.ai = AI_ZANZOU;
+				md2->special_state.summon = 1;
 				if( md2->deletetimer != INVALID_TIMER )
 					delete_timer(md2->deletetimer, mob_timer_delete);
 				md2->deletetimer = add_timer (gettick() + skill_get_time(skill_id, skill_lv), mob_timer_delete, md2->bl.id, 0);
@@ -12902,6 +12911,7 @@ int32 skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, 
 			if (sum_md) {
 				sum_md->master_id =  src->id;
 				sum_md->special_state.ai = AI_LEGION;
+				sum_md->special_state.summon = 1;
 				if (sum_md->deletetimer != INVALID_TIMER)
 					delete_timer(sum_md->deletetimer, mob_timer_delete);
 				sum_md->deletetimer = add_timer(gettick() + skill_get_time(skill_id, skill_lv), mob_timer_delete, sum_md->bl.id, 0);
@@ -13321,6 +13331,7 @@ int32 skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, 
 			if (md) {
 				md->master_id = src->id;
 				md->special_state.ai = AI_ABR;
+				md->special_state.summon = 1;
 
 				if (md->deletetimer != INVALID_TIMER)
 					delete_timer(md->deletetimer, mob_timer_delete);
@@ -13344,6 +13355,7 @@ int32 skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, 
 			if (md) {
 				md->master_id = src->id;
 				md->special_state.ai = AI_BIONIC;
+				md->special_state.summon = 1;
 
 				if (md->deletetimer != INVALID_TIMER)
 					delete_timer(md->deletetimer, mob_timer_delete);
@@ -14829,6 +14841,7 @@ int32 skill_castend_pos2(struct block_list* src, int32 x, int32 y, uint16 skill_
 			if (md) {
 				md->master_id = src->id;
 				md->special_state.ai = ai;
+				md->special_state.summon = 1;
 				if( md->deletetimer != INVALID_TIMER )
 					delete_timer(md->deletetimer, mob_timer_delete);
 				md->deletetimer = add_timer (gettick() + skill_get_time(skill_id,skill_lv), mob_timer_delete, md->bl.id, 0);
@@ -14957,6 +14970,7 @@ int32 skill_castend_pos2(struct block_list* src, int32 x, int32 y, uint16 skill_
 				}
 
 				md = mob_once_spawn_sub(src, src->m, x, y, "--ja--", mob_id, "", SZ_SMALL, AI_NONE);
+				md->special_state.summon = 1;
 				if (!md)
 					break;
 				if ((t = skill_get_time(skill_id, skill_lv)) > 0)
@@ -15095,6 +15109,7 @@ int32 skill_castend_pos2(struct block_list* src, int32 x, int32 y, uint16 skill_
 			if( md ) {
 				md->master_id = src->id;
 				md->special_state.ai = AI_FAW;
+				md->special_state.summon = 1;
 				if( md->deletetimer != INVALID_TIMER )
 					delete_timer(md->deletetimer, mob_timer_delete);
 				md->deletetimer = add_timer (gettick() + skill_get_time(skill_id, skill_lv), mob_timer_delete, md->bl.id, 0);
@@ -23749,6 +23764,7 @@ void skill_magicdecoy( map_session_data& sd, t_itemid nameid ){
 		struct unit_data *ud = unit_bl2ud(&md->bl);
 		md->master_id = sd.bl.id;
 		md->special_state.ai = AI_FAW;
+		md->special_state.summon = 1;
 		if(ud) {
 			ud->skill_id = NC_MAGICDECOY;
 			ud->skill_lv = skill;
@@ -25850,6 +25866,8 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			skill->sc = SC_NONE;
 	}
 
+	skill->ai_skill_type = SKILL_TYPE_NONE;
+
 	if (!exists) {
 		this->put(skill_id, skill);
 		this->skilldb_id2idx[skill_id] = this->skill_num;
@@ -26344,6 +26362,107 @@ static bool skill_parse_row_skilldamage( char* split[], size_t columns, size_t c
 	return true;
 }
 
+int get_ai_skill_type(uint16 skill_id)
+{
+	std::shared_ptr<s_skill_db> skill = skill_db.find(skill_id);
+
+	if(skill){
+		return skill->ai_skill_type;
+	}
+
+	return SKILL_TYPE_NONE;
+}
+
+/**
+ */
+static bool skill_parse_ai_attack_skills(char* fields[], size_t columns, size_t current)
+{
+	std::string skill_name = fields[0];
+
+	uint16 skill_id = skill_name2id(skill_name.c_str());
+	std::shared_ptr<s_skill_db> skill = skill_db.find(skill_id);
+
+	if(!skill_id || skill == nullptr){
+		ShowError("skill_parse_ai_attack_skills: Invalid skill name %s.\n", skill_name.c_str());
+		return false;
+	}
+
+	if(util::vector_exists(skill_ai_attack, skill_id))
+		return true;
+
+	skill->ai_skill_type |= SKILL_TYPE_ATTACK;
+	skill_ai_attack.push_back(skill_id);
+	return true;
+}
+
+/**
+ */
+static bool skill_parse_ai_support_skills(char* fields[], size_t columns, size_t current)
+{
+	std::string skill_name = fields[0];
+
+	uint16 skill_id = skill_name2id(skill_name.c_str());
+	std::shared_ptr<s_skill_db> skill = skill_db.find(skill_id);
+
+	if(!skill_id || skill == nullptr){
+		ShowError("skill_parse_ai_support_skills: Invalid skill name %s.\n", skill_name.c_str());
+		return false;
+	}
+
+	if(util::vector_exists(skill_ai_support, skill_id))
+		return true;
+
+	skill->ai_skill_type |= SKILL_TYPE_SUPPORT;
+	skill_ai_support.push_back(skill_id);
+	return true;
+}
+
+/**
+ */
+static bool skill_parse_ai_heal_skills(char* fields[], size_t columns, size_t current)
+{
+	std::string skill_name = fields[0];
+
+	uint16 skill_id = skill_name2id(skill_name.c_str());
+	std::shared_ptr<s_skill_db> skill = skill_db.find(skill_id);
+
+	if(!skill_id || skill == nullptr){
+		ShowError("skill_parse_ai_heal_skills: Invalid skill name %s.\n", skill_name.c_str());
+		return false;
+	}
+
+	if(util::vector_exists(skill_ai_heal, skill_id))
+		return true;
+
+	skill->ai_skill_type |= SKILL_TYPE_HEAL;
+	skill_ai_heal.push_back(skill_id);
+	return true;
+}
+
+static bool skill_parse_ai_sphere_skills(char* fields[], size_t columns, size_t current)
+{
+	std::string skill_name = fields[0];
+	uint16 skill_id = skill_name2id(skill_name.c_str());
+
+	if(!skill_id){
+		ShowError("skill_parse_ai_sphere_skills: Invalid skill name %s.\n", skill_name.c_str());
+		return false;
+	}
+
+	int amount = atoi(fields[1]);
+
+	std::shared_ptr<s_ai_sphere_skill> sphere = util::map_find(skill_ai_sphere, skill_id);
+
+	if(sphere != nullptr)
+		return true;
+
+	auto entry = std::make_shared<s_ai_sphere_skill>();
+	entry->skill_id = skill_id;
+	entry->sphere = amount;
+	skill_ai_sphere.insert({skill_id,entry});
+	return true;
+}
+
 /** Reads skill database files */
 static void skill_readdb(void) {
 	int32 i;
@@ -26378,6 +26497,10 @@ static void skill_readdb(void) {
 		sv_readdb(dbsubpath2, "produce_db.txt"        , ',',   5,  5+2*MAX_PRODUCE_RESOURCE, MAX_SKILL_PRODUCE_DB, skill_parse_row_producedb, i > 0);
 		sv_readdb(dbsubpath1, "skill_changematerial_db.txt" , ',',   5,  5+2*MAX_SKILL_CHANGEMATERIAL_SET, MAX_SKILL_CHANGEMATERIAL_DB, skill_parse_row_changematerialdb, i > 0);
 		sv_readdb(dbsubpath1, "skill_damage_db.txt"         , ',',   4,  3+SKILLDMG_MAX, -1, skill_parse_row_skilldamage, i > 0);
+		sv_readdb(dbsubpath1, "custom/ai_attack_skill.txt", ',', 1, 1, -1, skill_parse_ai_attack_skills, i > 0);
+		sv_readdb(dbsubpath1, "custom/ai_support_skill.txt",',', 1, 1, -1, skill_parse_ai_support_skills,i > 0);
+		sv_readdb(dbsubpath1, "custom/ai_heal_skill.txt",	',', 1, 1, -1, skill_parse_ai_heal_skills,i > 0);
+		sv_readdb(dbsubpath1, "custom/ai_sphere_skill.txt",	',', 2, 2, -1, skill_parse_ai_sphere_skills,i > 0);
 
 		aFree(dbsubpath1);
 		aFree(dbsubpath2);
@@ -26398,6 +26521,10 @@ void skill_reload (void) {
 	magic_mushroom_db.clear();
 	reading_spellbook_db.clear();
 	skill_arrow_db.clear();
+	skill_ai_attack.clear();
+	skill_ai_support.clear();
+	skill_ai_heal.clear();
+	skill_ai_sphere.clear();
 
 	skill_readdb();
 
@@ -26442,6 +26569,10 @@ void do_final_skill(void)
 	magic_mushroom_db.clear();
 	reading_spellbook_db.clear();
 	skill_arrow_db.clear();
+	skill_ai_attack.clear();
+	skill_ai_support.clear();
+	skill_ai_heal.clear();
+	skill_ai_sphere.clear();
 
 	db_destroy(skillunit_db);
 	db_destroy(skillusave_db);

@@ -441,6 +441,27 @@ static int32 clif_send_sub(struct block_list *bl, va_list ap)
 		}
 	}
 	break;
+	case AREA_AUTOATTACK_WOS:
+	{
+		if (bl == src_bl)
+			return 0;
+
+		map_session_data *ssd = (map_session_data *)src_bl;
+
+		if(sd == ssd)
+			return 0; // don't send to self
+
+		bool src_is_autoattack = false;
+		if (ssd->sc.getSCE(SC_AUTOATTACK))
+			src_is_autoattack = true;
+
+		bool target_is_autoattack = false;
+		if (sd->sc.getSCE(SC_AUTOATTACK))
+			target_is_autoattack = true;
+
+		if(!src_is_autoattack)
+			return 0;
+	}
 	}
 
 	if( src_bl->type == BL_NPC && npc_is_hidden_dynamicnpc( *( (struct npc_data*)src_bl ), *sd ) ){
@@ -736,6 +757,11 @@ int32 clif_send(const void* buf, int32 len, struct block_list* bl, enum send_tar
 			}
 			mapit_free(iter);
 		}
+		break;
+
+	case AREA_AUTOATTACK_WOS:
+		map_foreachinallarea(clif_send_sub, bl->m, bl->x-AREA_SIZE, bl->y-AREA_SIZE, bl->x+AREA_SIZE, bl->y+AREA_SIZE,
+			BL_PC, buf, len, bl, type);
 		break;
 
 	default:
@@ -1741,6 +1767,7 @@ int32 clif_spawn( struct block_list *bl, bool walking ){
 				clif_spiritcharm( *sd );
 			clif_efst_status_change_sub(bl, bl, AREA);
 			clif_hat_effects( *sd, sd->bl, AREA );
+			clif_autoattack_effect(bl);
 		}
 		break;
 	case BL_MOB:
@@ -5062,6 +5089,7 @@ void clif_getareachar_unit( map_session_data* sd,struct block_list *bl ){
 				clif_sendbgemblem_single(sd->fd,tsd);
 			clif_efst_status_change_sub(&sd->bl, bl, SELF);
 			clif_hat_effects( *sd, tsd->bl, SELF );
+			clif_autoattack_effect(bl);
 		}
 		break;
 	case BL_MER: // Devotion Effects
@@ -5961,6 +5989,10 @@ void clif_skillcastcancel( block_list& bl ){
 /// Note: when this packet is received an unknown flag is always set to 0,
 /// suggesting this is an ACK packet for the UseSkill packets and should be sent on success too [FlavioJS]
 void clif_skill_fail( map_session_data& sd, uint16 skill_id, enum useskill_fail_cause cause, int32 btype, t_itemid itemId ){
+
+	if(sd.sc.getSCE(SC_AUTOATTACK))
+		return;
+
 	if(battle_config.display_skill_fail&1)
 		return; //Disable all skill failed messages
 
@@ -21498,6 +21530,46 @@ void clif_hat_effects( map_session_data& sd, block_list& bl, enum send_target ta
 	}
 
 	clif_send( p, p->packetLength, tbl, target );
+#endif
+}
+
+void clif_autoattack_effect(struct block_list* bl){
+#if PACKETVER_MAIN_NUM >= 20150507 || PACKETVER_RE_NUM >= 20150429 || defined(PACKETVER_ZERO)
+
+	nullpo_retv( bl );
+
+	if(!battle_config.autoattack_hateffect)
+		return;
+
+	struct PACKET_ZC_EQUIPMENT_EFFECT* p = (struct PACKET_ZC_EQUIPMENT_EFFECT*)packet_buffer;
+
+	if(!BL_CAST(BL_PC,bl)->sc.getSCE(SC_AUTOATTACK))
+		return;
+
+	p->packetType = HEADER_ZC_EQUIPMENT_EFFECT;
+	p->packetLength = (int16)( sizeof( struct PACKET_ZC_EQUIPMENT_EFFECT ) + sizeof( int16 ));
+	p->aid = bl->id;
+	p->status = 1;
+	p->effects[BL_CAST(BL_PC,bl)->hatEffects.size()] = battle_config.autoattack_hateffect;
+
+	clif_send( p, p->packetLength, bl, AREA_AUTOATTACK_WOS);
+#endif
+}
+
+void clif_autoattack_effect_off(struct block_list* bl){
+#if PACKETVER_MAIN_NUM >= 20150507 || PACKETVER_RE_NUM >= 20150429 || defined(PACKETVER_ZERO)
+
+	nullpo_retv( bl );
+
+	struct PACKET_ZC_EQUIPMENT_EFFECT* p = (struct PACKET_ZC_EQUIPMENT_EFFECT*)packet_buffer;
+
+	p->packetType = HEADER_ZC_EQUIPMENT_EFFECT;
+	p->packetLength = (int16)( sizeof( struct PACKET_ZC_EQUIPMENT_EFFECT ) + sizeof( int16 ));
+	p->aid = bl->id;
+	p->status = 0;
+	p->effects[BL_CAST(BL_PC,bl)->hatEffects.size()] = battle_config.autoattack_hateffect;
+
+	clif_send( p, p->packetLength, bl, AREA);
 #endif
 }
 

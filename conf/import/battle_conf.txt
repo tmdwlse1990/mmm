@@ -46,3 +46,97 @@ config_monster_rank_exp_bonus_mode: 0
 // 0 = % ถ้า Rank 1 ก็เพิ่ม Drop 1%
 // 1 = คูณ ถ้า Rank 1 ก็ Drop คูณ 2
 config_monster_rank_drop_bonus_mode: 0
+
+// Autoattack settings
+// สกิลฮิว
+autoattack_skillheal: on
+
+// ยาปั้ม
+autoattack_item_potion: on
+
+// นั่งเพิ่มเลือด
+autoattack_sittorest: on
+
+// สกิลโจมตี
+autoattack_skill_attack: on
+
+// สกิลบัฟ
+autoattack_skill_buff: on
+
+// ยาบัฟ
+autoattack_item_buff: on
+
+// เทเลพอร์ท
+autoattack_teleport: on
+
+// เก็บของ
+autoattack_item_pickup: on
+
+// เลือกเป้าหมาย
+autoattack_mselection: on
+
+// ระยะตรวจหาไอเทมรวบๆ
+autoattack_item_range_detection: 15
+
+// ระยะตรวจหามอนสเตอร์
+autoattack_mob_detection: 15
+
+// ระยะเดิม
+autoattack_move: 7
+
+// รูปแบบการเดิน , 0 = สุ่มเดินมั่ว , 1 = เดินหน้าไปเรื่อยๆจนชนจุดที่เดินไม่ได้ จะเลี้ยว
+autoattack_move_type: 0
+
+// ระยะการทำงานของ Autoattack ต่อรอบ , หากปรับต่ำมากๆ จะทำให้หนักเซิร์ฟ , 1000-5000 ลองปรับดู
+autoattack_interval_timer: 500
+
+// ระยะเวลาที่ใช้ในการเก็บของแต่ละชิ้น
+autoattack_pickup_delay: 500
+
+// ยกเลิกสถานะเมื่อออกเกม , เมื่อกลับเข้าเกม Autoattack จะไม่ทำงาน
+autoattack_clean_logout: no
+
+// effect แสดงเมื่อเปิด auto attack , คนเปิดไม่เห็น , คนอื่นเห็น
+autoattack_hateffect: 31
+
+// กำหนด % การใช้สกิล หากไม่มีการตั้งค่า
+autoattack_skill_rate_default: 25
+
+// ลด drop เรท หากใช้ autoattack , 0 = ปิด , หน่วยเป็น %
+autoattack_reduce_droprate: 50
+
+// โหลดการปรับลด 0 = ปิด
+// 1 healing
+// 2 usable
+// 4 etc + ammo
+// 8 armor
+// 16 weapon
+// 32 card
+autoattack_reduce_mode: 63
+
+// กำหนด จำนวนสูงสุดในการกำหนดเป้าหมาย , ไม่ควรเกิน 20, ต้องลองปรับ เพราะมันจะมีการบัคชื่อไม่ขึ้น
+autoattack_max_moblist: 15
+
+// กำหนด จำนวนสูงสุดในการกำหนดไอเทมบัฟ
+autoattack_max_itemlist: 15
+
+// ลด % auto steal , 0 = ไม่ลด
+autoattack_steal_reduce_rate: 50
+
+// เล็งเป้ามอนตัวเดิมนานสุดเท่าไร 60000 = 1นาที , หากไม่ตายจะเดินหนี
+autoattack_max_time_per_mob: 60000
+
+// แก้ไขเรื่องล็อคมอนนานเกินไป , ควรตั้งให้น้อยกว่า autoattack_max_time_per_mob
+autoattack_mob_struck: 30000
+
+// ตัวเช็คการแกะซองธนูขั้นต่ำ
+autoattack_quiver_check: 100
+
+// กำหนด max รายชื่อมอนที่จะวิงหนี
+autoattack_max_flee_mob: 5
+
+// บังคับ coinflip 100% (บอทจะโยนเหรียญรัวๆจนครบ 10)
+autoattack_gunslinger_conflip_fix: yes
+
+// ปรับให้ coinflip ใช้ Zeny มากกว่าขึ้น เนื่องจาก fix 100%
+autoattack_coinflip_coin: 5

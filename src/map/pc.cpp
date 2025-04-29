@@ -2238,9 +2238,201 @@ bool pc_authok(map_session_data *sd, uint32 login_id2, time_t expiration_time, i
 		clif_updatestatus(*sd, SP_JOBEXP);
 	}
 
+	pc_aa_load(sd);
+
 	// Request all registries (auth is considered completed whence they arrive)
 	intif_request_registry(sd,7);
 	return true;
+}
+
+void pc_aa_load(map_session_data* sd)
+{
+	nullpo_retv(sd);
+
+	int type;
+	t_tick tick = gettick();
+
+	// aa_common_config
+	if (Sql_Query(mmysql_handle,"SELECT `stopmelee`,`pickup_item_config`,`aggressive_behavior`,`autositregen_conf`,"
+		"`autositregen_maxhp`,`autositregen_minhp`,`autositregen_maxsp`,`autositregen_minsp`,`tp_use_teleport`,"
+		"`tp_use_flywing`,`tp_min_hp`,`tp_delay_nomobmeet`,`skill_rate`,`teleport_boss`,`focus_mob` FROM `aa_common_config` WHERE `char_id` = %d",
+		sd->status.char_id ) != SQL_SUCCESS ){
+		Sql_ShowDebug(mmysql_handle);
+		return;
+	}
+
+	if(Sql_NumRows(mmysql_handle)){
+		while (SQL_SUCCESS == Sql_NextRow(mmysql_handle)) {
+			char* data;
+			Sql_GetData(mmysql_handle, 0,  &data, NULL); sd->aa.stopmelee 				 	= atoi(data);
+			Sql_GetData(mmysql_handle, 1,  &data, NULL); sd->aa.pickup_item_config 		 	= atoi(data);
+			Sql_GetData(mmysql_handle, 2,  &data, NULL); sd->aa.mobs.aggressive_behavior 	= atoi(data);
+			Sql_GetData(mmysql_handle, 3,  &data, NULL); sd->aa.autositregen.is_active		= atoi(data);
+			Sql_GetData(mmysql_handle, 4,  &data, NULL); sd->aa.autositregen.max_hp 		= atoi(data);
+			Sql_GetData(mmysql_handle, 5,  &data, NULL); sd->aa.autositregen.min_hp 		= atoi(data);
+			Sql_GetData(mmysql_handle, 6,  &data, NULL); sd->aa.autositregen.max_sp 		= atoi(data);
+			Sql_GetData(mmysql_handle, 7,  &data, NULL); sd->aa.autositregen.min_sp 		= atoi(data);
+			Sql_GetData(mmysql_handle, 8,  &data, NULL); sd->aa.teleport.use_teleport 		= atoi(data);
+			Sql_GetData(mmysql_handle, 9,  &data, NULL); sd->aa.teleport.use_flywing 		= atoi(data);
+			Sql_GetData(mmysql_handle, 10, &data, NULL); sd->aa.teleport.min_hp 			= atoi(data);
+			Sql_GetData(mmysql_handle, 11, &data, NULL); sd->aa.teleport.delay_nomobmeet 	= atoi(data);
+			Sql_GetData(mmysql_handle, 12, &data, NULL); sd->aa.skill_use_rate 				= atoi(data);
+			Sql_GetData(mmysql_handle, 13, &data, NULL); sd->aa.teleport.facing_boss		= atoi(data);
+			Sql_GetData(mmysql_handle, 14, &data, NULL); sd->aa.focus_mob					= atoi(data);
+		}
+	} else {
+		sd->aa.stopmelee 					= 0;
+		sd->aa.pickup_item_config 			= 0;
+		sd->aa.skill_use_rate				= battle_config.autoattack_skill_rate_default;
+		sd->aa.mobs.aggressive_behavior 	= 0;
+		sd->aa.autositregen.is_active 		= 0;
+		sd->aa.autositregen.max_hp 			= 0;
+		sd->aa.autositregen.min_hp 			= 0;
+		sd->aa.autositregen.max_sp 			= 0;
+		sd->aa.autositregen.min_sp 			= 0;
+		sd->aa.teleport.use_teleport 		= 0;
+		sd->aa.teleport.use_flywing 		= 0;
+		sd->aa.teleport.min_hp 				= 0;
+		sd->aa.teleport.delay_nomobmeet 	= 0;
+		sd->aa.teleport.facing_boss			= true;
+		sd->aa.focus_mob 					= true;
+	}
+
+	Sql_FreeResult(mmysql_handle);
+
+	// aa_items
+	if (Sql_Query(mmysql_handle,"SELECT `type`,`item_id`,`min_hp`,`min_sp` FROM `aa_items` WHERE `char_id` = %d ",sd->status.char_id ) != SQL_SUCCESS ){
+		Sql_ShowDebug(mmysql_handle);
+		return;
+	}
+
+	struct s_autobuffitems autobuffitems = {};
+	struct s_autopotion autopotion = {};
+	struct s_autoheal autoheal = {};
+	struct s_autobuffskills autobuffskills = {};
+	struct s_autoattackskills autoattackskills = {};
+
+	if(Sql_NumRows(mmysql_handle)){
+		while (SQL_SUCCESS == Sql_NextRow(mmysql_handle)) {
+			char* data;
+			Sql_GetData(mmysql_handle, 0, &data, NULL); type = atoi(data);
+
+			switch(type){
+
+				case 0:
+					autobuffitems.is_active = 1;
+					Sql_GetData(mmysql_handle, 1, &data, NULL); autobuffitems.item_id 	= atoi(data);
+					autobuffitems.last_use = 0;
+					autobuffitems.delay = 0;
+					sd->aa.autobuffitems.push_back(autobuffitems);
+					break;
+
+				case 1:
+					autopotion.is_active = 1;
+					Sql_GetData(mmysql_handle, 1, &data, NULL); autopotion.item_id 	= atoi(data);
+					Sql_GetData(mmysql_handle, 2, &data, NULL); autopotion.min_hp 	= atoi(data);
+					Sql_GetData(mmysql_handle, 3, &data, NULL); autopotion.min_sp 	= atoi(data);
+					sd->aa.autopotion.push_back(autopotion);
+					break;
+
+				case 2:
+					t_itemid nameid = 0;
+					Sql_GetData(mmysql_handle, 1, &data, NULL); nameid = atoi(data);
+					sd->aa.pickup_item_id.push_back(nameid);
+					break;
+			}
+		}
+	}
+
+	Sql_FreeResult(mmysql_handle);
+
+	// aa_mobs
+	if (Sql_Query(mmysql_handle,"SELECT `mob_id` FROM `aa_mobs` WHERE `char_id` = %d ", sd->status.char_id ) != SQL_SUCCESS ){
+		Sql_ShowDebug(mmysql_handle);
+		return;
+	}
+
+	if(Sql_NumRows(mmysql_handle)){
+		while (SQL_SUCCESS == Sql_NextRow(mmysql_handle)) {
+			char* data;
+			uint32 mob_id;
+			Sql_GetData(mmysql_handle, 0, &data, NULL); mob_id = atoi(data);
+			sd->aa.mobs.id.push_back(mob_id);
+		}
+	}
+
+	Sql_FreeResult(mmysql_handle);
+
+	// aa_skills
+	if (Sql_Query(mmysql_handle,"SELECT `type`,`skill_id`,`skill_lv`,`min_hp` FROM `aa_skills` WHERE `char_id` = %d ", sd->status.char_id ) != SQL_SUCCESS ){
+		Sql_ShowDebug(mmysql_handle);
+		return;
+	}
+
+	if(Sql_NumRows(mmysql_handle)){
+		while (SQL_SUCCESS == Sql_NextRow(mmysql_handle)) {
+			char* data;
+			Sql_GetData(mmysql_handle, 0, &data, NULL); type = atoi(data);
+			switch(type){
+
+				case 0:
+					autoheal.is_active = 1;
+					Sql_GetData(mmysql_handle, 1, &data, NULL); autoheal.skill_id = atoi(data);
+					Sql_GetData(mmysql_handle, 2, &data, NULL); autoheal.skill_lv = atoi(data);
+					Sql_GetData(mmysql_handle, 3, &data, NULL); autoheal.min_hp = atoi(data);
+					autoheal.last_use = 1;
+					sd->aa.autoheal.push_back(autoheal);
+					break;
+
+				case 1:
+					autobuffskills.is_active = 1;
+					Sql_GetData(mmysql_handle, 1, &data, NULL); autobuffskills.skill_id = atoi(data);
+					Sql_GetData(mmysql_handle, 2, &data, NULL); autobuffskills.skill_lv = atoi(data);
+					autobuffskills.last_use = 1;
+					sd->aa.autobuffskills.push_back(autobuffskills);
+					break;
+
+				case 2:
+					autoattackskills.is_active = 1;
+					Sql_GetData(mmysql_handle, 1, &data, NULL); autoattackskills.skill_id = atoi(data);
+					Sql_GetData(mmysql_handle, 2, &data, NULL); autoattackskills.skill_lv = atoi(data);
+					autoattackskills.last_use = 1;
+					sd->aa.autoattackskills.push_back(autoattackskills);
+					break;
+			}
+		}
+	}
+
+	Sql_FreeResult(mmysql_handle);
+
+	sd->aa.flee_mobs = {};
+	// aa_flee_mob
+	if (Sql_Query(mmysql_handle,"SELECT `mob_id` FROM `aa_flee_mobs` WHERE `char_id` = %d ", sd->status.char_id ) != SQL_SUCCESS ){
+		Sql_ShowDebug(mmysql_handle);
+		return;
+	}
+
+	if(Sql_NumRows(mmysql_handle)){
+		while (SQL_SUCCESS == Sql_NextRow(mmysql_handle)) {
+			char* data;
+			uint32 mob_id;
+			Sql_GetData(mmysql_handle, 0, &data, NULL); mob_id = atoi(data);
+			sd->aa.flee_mobs.push_back(mob_id);
+		}
+	}
+
+	Sql_FreeResult(mmysql_handle);
+
+	sd->aa.last_hit 		= tick;
+	sd->aa.last_teleport 	= tick;
+	sd->aa.last_move 		= tick;
+	sd->aa.last_attack 		= tick;
+	sd->aa.last_hit 		= tick;
+	sd->aa.attack_target_id = 0;
+	sd->aa.target_id 		= 0;
+	sd->aa.itempick_id 		= 0;
+	memset(&sd->aa.aa_last_move,0,sizeof(sd->aa.aa_last_move));
+	sd->aa.aa_last_move_index = 0;
 }
 
 /*==========================================
@@ -6759,7 +6951,7 @@ bool pc_steal_item(map_session_data *sd,struct block_list *bl, uint16 skill_lv)
 		}
 #else
 		// Droprate is affected by the skill success rate.
-		if( rnd() % 10000 < entry->rate * rate / 100. ){
+		if( rnd() % ( if(sd->sc.getSCE(SC_AUTOATTACK)) ? 20000 : 10000) < entry->rate * rate / 100. ){
 			drop = entry;
 			break;
 		}
@@ -6862,7 +7054,7 @@ enum e_setpos pc_setpos(map_session_data* sd, uint16 mapindex, int32 x, int32 y,
 		return SETPOS_MAPINDEX;
 	}
 
-	if ( sd->state.autotrade && (sd->vender_id || sd->buyer_id) ) // Player with autotrade just causes clif glitch! @ FIXME
+	if ( (sd->sc.getSCE(SC_AUTOATTACK) && sd->mapindex != mapindex) || (sd->state.autotrade && sd->sc.getSCE(SC_AUTOATTACK)) || (sd->state.autotrade && (sd->vender_id || sd->buyer_id)) ) // Player with autotrade just causes clif glitch! @ FIXME
 		return SETPOS_AUTOTRADE;
 
 	if( battle_config.revive_onwarp && pc_isdead(sd) ) { //Revive dead people before warping them
@@ -9626,6 +9818,17 @@ void pc_damage(map_session_data *sd,struct block_list *src,uint32 hp, uint32 sp,
 
 	if(battle_config.prevent_logout_trigger&PLT_DAMAGE)
 		sd->canlog_tick = gettick();
+
+	if((!sd->aa.teleport.use_teleport || !sd->aa.teleport.use_flywing) && sd->aa.teleport.min_hp && (sd->status.hp * 100 / sd->aa.teleport.min_hp) < sd->status.max_hp)
+		aa_teleport(sd);
+
+	if(!sd->aa.target_id && !sd->aa.mobs.aggressive_behavior && src->type == BL_MOB){
+		if(sd->aa.itempick_id)
+			sd->aa.itempick_id = 0; // priority to defend player
+		sd->aa.target_id = src->id;
+	}
+
+	sd->aa.last_hit = gettick();
 }
 
 TIMER_FUNC(pc_close_npc_timer){
@@ -9800,6 +10003,14 @@ int32 pc_dead(map_session_data *sd,struct block_list *src)
 	pc_setdead(sd);
 
 	clif_party_dead( *sd );
+
+	// auto attack
+	{
+		for(auto &it : sd->aa.autobuffitems){
+			if(util::vector_exists(ai_item_buff_reset, it.item_id))
+				it.delay = 0;
+		}
+	}
 
 	pc_setparam(sd, SP_PCDIECOUNTER, sd->die_counter+1);
 	pc_setparam(sd, SP_KILLERRID, src?src->id:0);

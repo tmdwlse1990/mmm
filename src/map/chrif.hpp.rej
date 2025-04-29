@@ -1,0 +1,10 @@
+diff a/src/map/chrif.hpp b/src/map/chrif.hpp	(rejected hunks)
+@@ -88,6 +88,8 @@ int chrif_req_charunban(int aid, const char* character_name);
+ int chrif_bsdata_request(uint32 char_id);
+ int chrif_bsdata_save(map_session_data *sd, bool quit);
+ 
++void chrif_aa_save(map_session_data* sd);
++
+ void do_final_chrif(void);
+ void do_init_chrif(void);
+ 

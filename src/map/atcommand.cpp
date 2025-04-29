@@ -7614,6 +7614,7 @@ ACMD_FUNC(summon)
 	md->deletetimer=add_timer(tick+(duration*60000),mob_timer_delete,md->bl.id,0);
 	clif_specialeffect(&md->bl,EF_ENTRY2,AREA);
 	mob_spawn(md);
+	md->special_state.summon = 1;
 	sc_start4(nullptr,&md->bl, SC_MODECHANGE, 100, 1, 0, MD_AGGRESSIVE, 0, 60000);
 	clif_skill_poseffect( sd->bl, AM_CALLHOMUN, 1, md->bl.x, md->bl.y, tick );
 	clif_displaymessage(fd, msg_txt(sd,39));	// All monster summoned!

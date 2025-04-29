@@ -389,6 +389,106 @@ struct s_qi_display {
 	e_questinfo_markcolor color;
 };
 
+struct s_autoattackskills {
+	bool is_active;
+	uint16 skill_id;
+	uint16 skill_lv;
+	t_tick last_use;
+};
+
+struct s_autobuffskills {
+	bool is_active;
+	uint16 skill_id;
+	uint16 skill_lv;
+	t_tick last_use;
+};
+
+struct s_autoheal {
+	bool is_active;
+	uint16 skill_id;
+	uint16 skill_lv;
+	uint16 min_hp;
+	t_tick last_use;
+};
+
+struct s_autopotion {
+	bool is_active;
+	t_itemid item_id;
+	uint16 min_hp;
+	uint16 min_sp;
+};
+
+struct s_autositregen {
+	bool is_active;
+	uint16 max_hp;
+	uint16 min_hp;
+	uint16 max_sp;
+	uint16 min_sp;
+};
+
+struct s_autobuffitems {
+	bool is_active;
+	t_itemid item_id;
+	time_t last_use;
+	t_tick delay;
+};
+
+struct s_lastposition {
+	int map; // Previous map on Map Change
+	short x,y;
+	short dx,dy;
+};
+
+struct s_teleport {
+	bool use_teleport;
+	bool use_flywing;
+	bool facing_boss;
+	uint16 min_hp;
+	unsigned int delay_nomobmeet;
+};
+
+struct s_mobs {
+	std::vector<uint32> id;
+	bool aggressive_behavior; //0 attack - 1 ignore
+};
+
+struct s_position_history {
+    int x;
+    int y;
+    time_t timestamp;
+};
+
+#define MAX_HISTORY 30
+
+struct s_autoattack {
+	time_t last_teleport;
+	time_t last_move;
+	time_t last_attack;
+	time_t last_pickup;
+	t_tick skill_cd;
+	t_tick last_hit;
+	int attack_target_id;
+	int target_id;
+	int itempick_id;
+	bool stopmelee;
+	bool focus_mob;
+	int skill_use_rate;
+	unsigned int pickup_item_config;
+	struct s_teleport teleport;
+	struct s_lastposition lastposition;
+	struct s_autositregen autositregen;
+	struct s_mobs mobs;
+	struct s_position_history aa_last_move[MAX_HISTORY];
+	int aa_last_move_index;
+	std::vector<s_autoheal> autoheal;
+	std::vector<s_autopotion> autopotion;
+	std::vector<s_autobuffskills> autobuffskills;
+	std::vector<s_autoattackskills> autoattackskills;
+	std::vector<s_autobuffitems> autobuffitems;
+	std::vector<t_itemid> pickup_item_id;
+	std::vector<uint16> flee_mobs;
+};
+
 class map_session_data {
 public:
 	struct block_list bl;
@@ -398,9 +498,11 @@ public:
 	status_change sc;
 	struct regen_data regen;
 	struct regen_data_sub sregen, ssregen;
+	struct s_autoattack aa;
 	//NOTE: When deciding to add a flag to state or special_state, take into consideration that state is preserved in
 	//status_calc_pc, while special_state is recalculated in each call. [Skotlex]
 	struct s_state {
+		uint32 autoattack : 1; //Marks active player (not active is logging in/out, or changing map servers)
 		uint32 active : 1; //Marks active player (not active is logging in/out, or changing map servers)
 		uint32 menu_or_input : 1;// if a script is waiting for feedback from the player
 		uint32 dead_sit : 2;
@@ -1466,6 +1568,7 @@ void pc_reg_received(map_session_data *sd);
 void pc_close_npc(map_session_data *sd,int32 flag);
 TIMER_FUNC(pc_close_npc_timer);
 
+void pc_aa_load(map_session_data* sd);
 void pc_setequipindex(map_session_data *sd);
 uint8 pc_isequip(map_session_data *sd,int32 n);
 int32 pc_equippoint(map_session_data *sd,int32 n);

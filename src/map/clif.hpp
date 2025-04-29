@@ -240,6 +240,8 @@ enum send_target : uint8_t {
 	BG_AREA_WOS,
 
 	CLAN,				// Clan System
+
+	AREA_AUTOATTACK_WOS, /// area autoattack without self
 };
 
 enum broadcast_flags : uint8_t {
@@ -1557,5 +1559,10 @@ void clif_set_npc_window_pos_percent(map_session_data& sd, int32 x, int32 y);
 void clif_noask_sub( map_session_data& sd, map_session_data& tsd, int32 type );
 
 void clif_specialpopup(map_session_data& sd, int32 id);
+
+int clif_getareachar(struct block_list* bl,va_list ap);
+void clif_autoattack_effect(struct block_list* bl);
+void clif_autoattack_effect_off(struct block_list* bl);
+void clif_getareachar_unit( map_session_data* sd,struct block_list *bl );
 
 #endif /* CLIF_HPP */

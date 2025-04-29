@@ -31,10 +31,12 @@
 #include "mob.hpp"
 #include "npc.hpp"
 #include "path.hpp"
+#include "party.hpp"
 #include "pc.hpp"
 #include "pc_groups.hpp"
 #include "pet.hpp"
 #include "script.hpp"
+#include "log.hpp"
 
 using namespace rathena;
 
@@ -54,6 +56,10 @@ uint32 current_equip_combo_pos; /// For combo items we need to save the position
 int32 current_equip_card_id; /// To prevent card-stacking (from jA) [Skotlex]
 // We need it for new cards 15 Feb 2005, to check if the combo cards are insrerted into the CURRENT weapon only to avoid cards exploits
 int16 current_equip_opt_index; /// Contains random option index of an equipped item. [Secret]
+
+#define POSITION_HISTORY_DURATION 15000
+#define AA_AOE_SIZE 3
+#define MAX_ATTEMPTS 15
 
 uint16 SCDisabled[SC_MAX]; ///< List of disabled SC on map zones. [Cydh]
 
@@ -5036,6 +5042,8 @@ int32 status_calc_pc_sub(map_session_data* sd, uint8 opt)
 		sc_start(&sd->bl, &sd->bl, SC_SPRITEMABLE, 100, 1, INFINITE_TICK);
 	if (pc_checkskill(sd, SU_SOULATTACK) > 0 && !sd->sc.getSCE(SC_SOULATTACK))
 		sc_start(&sd->bl, &sd->bl, SC_SOULATTACK, 100, 1, INFINITE_TICK);
+
+	autoattack_clear(sd);
 
 	calculating = 0;
 
@@ -12406,6 +12414,20 @@ int32 status_change_start(struct block_list* src, struct block_list* bl,enum sc_
 			tick_time = 1000;
 			val4 = tick / tick_time;
 			break;
+		case SC_AUTOATTACK:
+			sd->state.autoattack = 1;
+
+			tick_time = battle_config.autoattack_interval_timer;
+			val4 = tick / tick_time;
+
+			if(sd){
+				sd->aa.lastposition.map = sd->mapindex;
+				sd->aa.lastposition.x = sd->bl.x;
+				sd->aa.lastposition.y = sd->bl.y;
+				sd->aa.lastposition.dx = 0;
+				sd->aa.lastposition.dy = 0;
+			}
+			break;
 		case SC_TELEKINESIS_INTENSE:
 			val2 = 10 * val1; // sp consum / casttime reduc %
 			val3 = 40 * val1; // magic dmg bonus
@@ -13444,6 +13466,9 @@ int32 status_change_end( struct block_list* bl, enum sc_type type, int32 tid ){
 	status_data* status = status_get_status_data(*bl);
 
 	switch(type) {
+		case SC_AUTOATTACK:
+			sd->state.autoattack = 0;
+			break;
 		case SC_KEEPING:
 		case SC_BARRIER:
 			if (unit_data* ud = unit_bl2ud(bl); ud != nullptr) {
@@ -14088,6 +14113,392 @@ TIMER_FUNC(status_change_timer){
 	};
 	
 	switch(type) {
+	case SC_AUTOATTACK:
+		if (--(sce->val4) > 0) {
+
+			if(pc_isdead(sd)){
+				status_change_end(&sd->bl, SC_AUTOATTACK);
+				break;
+			}
+
+			int at_index = 0;
+			struct status_data *status = status_get_status_data(sd->bl);
+			time_t last_time   = time(NULL);
+			t_tick last_tick   = gettick();
+			t_tick idle_tick   = cap_value(DIFF_TICK(last_time, sd->idletime), 0, USHRT_MAX);
+			t_tick tele_tick   = DIFF_TICK(last_tick, sd->aa.last_teleport);
+			t_tick move_tick   = DIFF_TICK(last_tick, sd->aa.last_move);
+			t_tick attack_tick = DIFF_TICK(last_tick, sd->aa.last_attack);
+			t_tick hit_tick    = DIFF_TICK(last_tick, sd->aa.last_hit);
+			bool skip = false;
+			bool flywing = false;
+
+			struct mob_data * md_target = nullptr;
+			struct block_list* target = nullptr;
+
+			// Item pick up
+			if(battle_config.autoattack_item_pickup){
+				if(!pc_issit(sd) && sd->aa.pickup_item_config != 2){
+					aa_check_item_pickup_onfloor(sd);
+					if(sd->aa.itempick_id){
+						struct block_list *fitem_bl = map_id2bl(sd->aa.itempick_id);
+						if(fitem_bl){
+							struct flooritem_data* fitem = (struct flooritem_data *)fitem_bl;
+							if(!check_distance_bl(&sd->bl, fitem_bl, 2))
+								unit_walktobl(&sd->bl, fitem_bl, 1, 1);
+							else{
+								if(!sd->aa.last_pickup || DIFF_TICK(last_tick, sd->aa.last_pickup) > 0){
+									pc_takeitem(sd,fitem);
+									sd->aa.last_pickup = last_tick + battle_config.autoattack_pickup_delay;
+								}
+							}
+						}
+					}
+				}
+			}
+
+			if(!sd->aa.itempick_id)
+				aa_check_target_alive(sd);
+
+			if(sd->aa.target_id){
+				target = map_id2bl(sd->aa.target_id);
+				if(target && target->type == BL_MOB)
+					md_target = (TBL_MOB*)target;
+			}
+
+			if(md_target){
+				switch(sd->status.weapon){
+					case W_BOW:
+					case W_WHIP:
+					case W_MUSICAL:
+						aa_arrowchange(sd, md_target);
+						break;
+					case W_REVOLVER:
+					case W_RIFLE:
+					case W_GATLING:
+					case W_SHOTGUN:
+					case W_GRENADE:
+						aa_bulletchange(sd, md_target);
+						break;
+				}
+			}
+
+			//Auto-heal skill
+			if(battle_config.autoattack_skillheal){
+				if(!sd->aa.autoheal.empty() && hit_tick > 2000){
+					if(last_tick >= sd->aa.skill_cd){
+						for(auto &itAutoheal : sd->aa.autoheal){
+							if(((status->hp * 100 / itAutoheal.min_hp) < sd->status.max_hp) && pc_checkskill(sd, itAutoheal.skill_id) >= itAutoheal.skill_lv)
+							{
+								if(last_tick >= itAutoheal.last_use){
+									if(unit_skilluse_id(bl, bl->id, itAutoheal.skill_id, itAutoheal.skill_lv)){
+										itAutoheal.last_use = last_tick + + pc_get_skillcooldown(sd, itAutoheal.skill_id, itAutoheal.skill_lv);
+										skip = true;
+
+										skill_consume_requirement(sd,itAutoheal.skill_id,itAutoheal.skill_lv,2);
+
+										if(itAutoheal.last_use > sd->aa.skill_cd)
+											sd->aa.skill_cd = itAutoheal.last_use;
+										if(sd->aa.skill_cd < (last_tick + pc_get_skillcooldown(sd, itAutoheal.skill_id, itAutoheal.skill_lv) + skill_castfix(&sd->bl,itAutoheal.skill_id, itAutoheal.skill_lv)))
+											sd->aa.skill_cd = last_tick + pc_get_skillcooldown(sd, itAutoheal.skill_id, itAutoheal.skill_lv) + skill_castfix(&sd->bl,itAutoheal.skill_id, itAutoheal.skill_lv);
+									}
+								} else
+									skip = true;
+							}
+						}
+					} else
+						skip = true;
+				}
+			}
+
+			//Healing potions
+			if(battle_config.autoattack_item_potion){
+				if(sd->aa.autopotion.size()){
+					for(auto &itAutopotion : sd->aa.autopotion){
+						//HP
+						if(itAutopotion.min_hp > 0 && ((status->hp * 100 / itAutopotion.min_hp) < sd->status.max_hp)){
+							at_index = pc_search_inventory(sd, itAutopotion.item_id);
+
+							if (at_index >= 0)
+								pc_useitem(sd, at_index);
+						}
+						//SP
+						if(itAutopotion.min_sp > 0 && ((status->sp * 100 / itAutopotion.min_sp) < sd->status.max_sp)){
+							at_index = pc_search_inventory(sd, itAutopotion.item_id);
+
+							if (at_index >= 0)
+								pc_useitem(sd, at_index);
+						}
+					}
+				}
+			}
+
+            //Sit to rest
+            if (battle_config.autoattack_sittorest) {
+                if (sd->aa.autositregen.is_active) {
+                    bool overweight = false;
+#ifdef RENEWAL
+                    overweight = 0;
+#else
+                    overweight = pc_is50overweight(sd);
+#endif
+
+                    // Sit down if HP/SP are below the configured minimum thresholds and not overweight
+                    if (!pc_issit(sd) &&
+                        ((sd->aa.autositregen.min_hp > 0 && (status->hp * 100 / sd->status.max_hp) < sd->aa.autositregen.min_hp) ||
+                        (sd->aa.autositregen.min_sp > 0 && (status->sp * 100 / sd->status.max_sp) < sd->aa.autositregen.min_sp)) &&
+                        hit_tick >= 5000 && !overweight) {
+
+                        pc_setsit(sd);
+                        skill_sit(sd, 1);
+                        clif_sitting(sd->bl);
+
+                    // Stand up if HP or SP meet the maximum thresholds (ignore HP or SP check if max_hp or max_sp is 0)
+                    } else if (pc_issit(sd) &&
+                            ((sd->aa.autositregen.max_hp == 0 || (status->hp * 100 / sd->status.max_hp) >= sd->aa.autositregen.max_hp) &&
+                                (sd->aa.autositregen.max_sp == 0 || (status->sp * 100 / sd->status.max_sp) >= sd->aa.autositregen.max_sp))) {
+
+                        pc_setstand(sd, false);
+                        skill_sit(sd, 0);
+                        clif_standing(sd->bl);
+
+                    // Stand up if other conditions are met (overweight or early hit_tick)
+                    } else if (pc_issit(sd) &&
+                            (hit_tick < 5000 || overweight) &&
+                            pc_setstand(sd, false)) {
+
+                        skill_sit(sd, 0);
+                        clif_standing(sd->bl);
+                    }
+                }
+            }
+
+			//Buff skills
+			if(battle_config.autoattack_skill_buff){
+				if(!skip && !pc_issit(sd) && sd->aa.autobuffskills.size()){
+					for(auto &itAutobuffskills : sd->aa.autobuffskills){
+						if(itAutobuffskills.is_active
+							&& !skill_isNotOk(itAutobuffskills.skill_id, *sd)
+							&& pc_checkskill(sd, itAutobuffskills.skill_id) >= itAutobuffskills.skill_lv
+							&& !sc->getSCE(skill_get_sc(itAutobuffskills.skill_id))
+							&& skill_check_condition_castbegin(*sd, itAutobuffskills.skill_id, itAutobuffskills.skill_lv)){
+
+							if(aa_sphere_req(sd,itAutobuffskills.skill_id,itAutobuffskills.skill_lv))
+								continue;
+
+							if(aa_autospell(sd,itAutobuffskills.skill_id,itAutobuffskills.skill_lv))
+								continue;
+
+							if(aa_shadowspell(sd,itAutobuffskills.skill_id,itAutobuffskills.skill_lv))
+								continue;
+
+							if (skill_get_inf(itAutobuffskills.skill_id)&INF_GROUND_SKILL)
+								unit_skilluse_pos(&sd->bl, sd->bl.x, sd->bl.y, itAutobuffskills.skill_id, itAutobuffskills.skill_lv);
+							else
+								unit_skilluse_id(&sd->bl, sd->bl.id, itAutobuffskills.skill_id, itAutobuffskills.skill_lv);
+
+							sd->aa.skill_cd = itAutobuffskills.last_use = last_tick + skill_delayfix(&sd->bl, itAutobuffskills.skill_id, itAutobuffskills.skill_lv);
+							skip = true;
+						}
+					}
+				}
+			}
+
+			//Buff items
+			if(battle_config.autoattack_item_buff){
+				if(sd->aa.autobuffitems.size()){
+					for(auto &itAutobuffitem : sd->aa.autobuffitems){
+						if(last_tick >= itAutobuffitem.delay && itAutobuffitem.is_active){
+							at_index = pc_search_inventory(sd, itAutobuffitem.item_id);
+
+							if (at_index >= 0 && pc_useitem(sd, at_index)){
+
+								struct s_ai_item_buff entry = {};
+								bool found = false;
+
+								for(const auto &it : ai_item_buff){
+									if(it.itemid == itAutobuffitem.item_id){
+										entry = it;
+										found = true;
+										break;
+									}
+								}
+
+								if(found)
+									itAutobuffitem.delay = last_tick + entry.duration;
+							}
+						}
+					}
+				}
+			}
+
+			//Attack skills
+			if (!skip && !pc_issit(sd) && sd->aa.target_id > 0 && !sd->aa.itempick_id){ //Attack
+				sd->aa.last_teleport = last_tick; // set it to 0 as we found target
+
+				if(sd->aa.target_id != sd->aa.attack_target_id){
+					sd->aa.attack_target_id = sd->aa.target_id;
+					sd->aa.last_attack = last_tick;
+				} else if(!sd->aa.teleport.use_teleport || !sd->aa.teleport.use_flywing){
+
+					if(sd->aa.teleport.delay_nomobmeet && !sd->aa.target_id){
+
+						if(attack_tick > sd->aa.teleport.delay_nomobmeet && !skip)
+							flywing = aa_teleport(sd);
+
+					} else if(sd->aa.target_id && attack_tick > battle_config.autoattack_max_time_per_mob && !skip) // stuck on target, try to teleport
+						flywing = aa_teleport(sd);
+				}
+
+				if(battle_config.autoattack_skill_attack){
+					if(last_tick >= sd->aa.skill_cd && sd->aa.autoattackskills.size()){
+						std::random_device rd;
+						std::default_random_engine rng(rd());
+						std::vector<s_autoattackskills> skills_temp_list = sd->aa.autoattackskills;
+						std::shuffle(skills_temp_list.begin(), skills_temp_list.end(), rng);
+						for(auto &itAutoattackskills : skills_temp_list){
+							if(last_tick >= sd->aa.skill_cd && last_tick >= itAutoattackskills.last_use && rand()%100 <= sd->aa.skill_use_rate){ // 25% is default rate
+								if(itAutoattackskills.is_active
+									&& !skill_isNotOk(itAutoattackskills.skill_id, *sd)
+									&& pc_checkskill(sd, itAutoattackskills.skill_id) >= itAutoattackskills.skill_lv
+									&& skill_check_condition_castbegin(*sd, itAutoattackskills.skill_id, itAutoattackskills.skill_lv)){
+
+									if(itAutoattackskills.skill_id == AL_HEAL && !aa_possible_heal_attack(sd,md_target))
+										continue;
+
+									aa_ammo_skill_req(sd,md_target,itAutoattackskills.skill_id,itAutoattackskills.skill_lv);
+
+									if (skill_get_inf(itAutoattackskills.skill_id) & INF_ATTACK_SKILL || skill_get_inf(itAutoattackskills.skill_id) & INF_GROUND_SKILL || skill_get_inf(itAutoattackskills.skill_id) & INF_SUPPORT_SKILL) {
+										int aa_skill_range = skill_get_range(itAutoattackskills.skill_id, itAutoattackskills.skill_lv);
+
+										if (aa_skill_range < 0)
+											aa_skill_range = aa_skill_range * -1;
+
+										if (aa_skill_range == 0)
+											aa_skill_range = 2;
+
+										if (!check_distance_bl(&sd->bl, target, aa_skill_range)) {
+											unit_walktobl(&sd->bl, target, aa_skill_range, 1);
+											continue;
+										}
+
+										if (skill_get_inf(itAutoattackskills.skill_id) & INF_ATTACK_SKILL || skill_get_inf(itAutoattackskills.skill_id) & INF_SUPPORT_SKILL) {
+
+											if (!unit_skilluse_id(&sd->bl, sd->aa.target_id, itAutoattackskills.skill_id, itAutoattackskills.skill_lv))
+												continue;
+										} else if (skill_get_inf(itAutoattackskills.skill_id) & INF_GROUND_SKILL) {
+
+											if (!unit_skilluse_pos(bl, target->x, target->y, itAutoattackskills.skill_id, itAutoattackskills.skill_lv))
+												continue;
+										}
+									} else if (skill_get_inf(itAutoattackskills.skill_id) & INF_SELF_SKILL) {
+										if (check_distance_bl(&sd->bl, target, 2)) {
+
+											if (!unit_skilluse_id(&sd->bl, sd->bl.id, itAutoattackskills.skill_id, itAutoattackskills.skill_lv))
+												continue;
+										} else {
+											unit_walktobl(&sd->bl, target, 2, 1);
+											continue;
+										}
+									}
+
+									sd->idletime = last_time;
+									sd->aa.skill_cd = itAutoattackskills.last_use = last_tick + skill_delayfix(&sd->bl, itAutoattackskills.skill_id, itAutoattackskills.skill_lv);
+									break;
+								}
+							}
+						}
+					}
+				}
+
+				if(!sd->aa.stopmelee)
+				unit_attack(bl, sd->aa.target_id, 1);
+			}
+
+			if(!sd->aa.itempick_id && sd->aa.target_id)
+				if(aa_check_target_alive(sd))
+				    skip = true;
+
+			// Main movement logic
+			if (!skip && !pc_issit(sd) && ((sd->aa.target_id == 0 && sd->aa.itempick_id == 0) ||
+				attack_tick > battle_config.autoattack_mob_struck || idle_tick > 15) && !flywing) {
+
+				const int d = battle_config.autoattack_move;
+				int dx, dy, tx, ty;
+				bool dest_checked = false;
+
+				if ((!sd->aa.teleport.use_teleport || !sd->aa.teleport.use_flywing) &&
+					sd->aa.teleport.delay_nomobmeet && tele_tick > sd->aa.teleport.delay_nomobmeet &&
+					!sd->aa.target_id && !skip) {
+					flywing = aa_teleport(sd);
+				}
+
+				if (move_tick > 500 && !flywing) {
+					int directions[8][2] = {{d, 0}, {-d, 0}, {0, d}, {0, -d}, {d, d}, {-d, -d}, {d, -d}, {-d, d}};
+
+					if (battle_config.autoattack_move_type) {
+						tx = sd->aa.lastposition.dx + sd->bl.x;
+						ty = sd->aa.lastposition.dy + sd->bl.y;
+					}
+
+					for (int attempts = 0; attempts < MAX_ATTEMPTS; attempts++) {
+						int r = rnd() % 8;
+						dx = directions[r][0];
+						dy = directions[r][1];
+
+						int x = sd->bl.x + dx;
+						int y = sd->bl.y + dy;
+
+						// Check if the area has been visited recently
+						if (has_visited_recently(sd, x, y)) {
+							continue; // Retry finding a new direction
+						}
+
+						if (battle_config.autoattack_move_type && !dest_checked &&
+							(sd->aa.lastposition.dx != 0 || sd->aa.lastposition.dy != 0) &&
+							((tx != sd->bl.x) || (ty != sd->bl.y)) &&
+							map_getcell(sd->bl.m, tx, ty, CELL_CHKPASS) &&
+							unit_walktoxy(&sd->bl, tx, ty, 0)) {
+
+							sd->aa.last_move = last_tick;
+							add_position_to_history(sd);
+							break;
+						} else {
+							dest_checked = true;
+						}
+
+						// Check if the target position is valid and move there
+						if (((x != sd->bl.x) || (y != sd->bl.y)) &&
+							map_getcell(sd->bl.m, x, y, CELL_CHKPASS) &&
+							unit_walktoxy(&sd->bl, x, y, 0)) {
+
+							sd->aa.last_move = last_tick;
+							add_position_to_history(sd);
+
+							if (battle_config.autoattack_move_type) {
+								sd->aa.lastposition.dx = dx;
+								sd->aa.lastposition.dy = dy;
+							}
+							break;
+						}
+					}
+				}
+			}
+
+			if(sd->aa.lastposition.map <= 0 || sd->aa.lastposition.map > MAX_MAPINDEX)
+				sd->aa.lastposition.map = sd->mapindex;
+
+			if(sd->mapindex != sd->aa.lastposition.map){
+				pc_setpos(sd, sd->aa.lastposition.map, 0, 0, CLR_TELEPORT);
+			} else {
+				sd->aa.lastposition.x = sd->bl.x;
+				sd->aa.lastposition.y = sd->bl.y;
+			}
+
+			sce->timer = add_timer(tick + battle_config.autoattack_interval_timer, status_change_timer, bl->id, data);
+			return 0;
+		}
+		break;
 	case SC_MAXIMIZEPOWER:
 	case SC_CLOAKING:
 		if(!status_charge(bl, 0, 1))
@@ -15713,6 +16124,1017 @@ uint64 AttributeDatabase::parseBodyNode(const ryml::NodeRef& node) {
 }
 
 AttributeDatabase elemental_attribute_db;
+
+void cleanup_old_positions(map_session_data* sd)
+{
+    time_t current_time = gettick();
+    for (int i = 0; i < MAX_HISTORY; i++) {
+        if (sd->aa.aa_last_move[i].timestamp != 0 && // Check valid entries
+            current_time - sd->aa.aa_last_move[i].timestamp > POSITION_HISTORY_DURATION) {
+            // Clear entries older than POSITION_HISTORY_DURATION
+            sd->aa.aa_last_move[i].timestamp = 0;
+            sd->aa.aa_last_move[i].x = 0;
+            sd->aa.aa_last_move[i].y = 0;
+        }
+    }
+}
+
+void add_position_to_history(map_session_data* sd)
+{
+	cleanup_old_positions(sd);
+    sd->aa.aa_last_move[sd->aa.aa_last_move_index].x = sd->bl.x;
+    sd->aa.aa_last_move[sd->aa.aa_last_move_index].y = sd->bl.y;
+    sd->aa.aa_last_move[sd->aa.aa_last_move_index].timestamp = gettick(); // Record current time
+    sd->aa.aa_last_move_index = (sd->aa.aa_last_move_index + 1) % MAX_HISTORY; // Circular buffer
+}
+
+bool has_visited_recently(map_session_data* sd, int x, int y)
+{
+    time_t current_time = gettick();
+    for (int i = 0; i < MAX_HISTORY; i++) {
+        if (sd->aa.aa_last_move[i].timestamp != 0 && // Only check valid entries
+            current_time - sd->aa.aa_last_move[i].timestamp <= POSITION_HISTORY_DURATION) {
+
+            // Check the AoE around the recorded position
+            for (int dx = -AA_AOE_SIZE; dx <= AA_AOE_SIZE; dx++) {
+                for (int dy = -AA_AOE_SIZE; dy <= AA_AOE_SIZE; dy++) {
+                    if (sd->aa.aa_last_move[i].x + dx == x && sd->aa.aa_last_move[i].y + dy == y) {
+                        return true; // Position or its AoE found in recent history
+                    }
+                }
+            }
+        }
+    }
+    return false;
+}
+
+int buildin_autopick_sub(struct block_list *bl, va_list ap)
+{
+	int *itempick_id = va_arg(ap, int *);
+	int src_id = va_arg(ap, int);
+	struct block_list *src = map_id2bl(src_id);
+	map_session_data *sd = map_id2sd(src->id);
+
+	if (!src || !bl)
+		return 1;
+
+	if (aa_check_item_pickup(sd, bl) == true)
+		*itempick_id = bl->id;
+	else
+		*itempick_id = 0;
+
+	return 1;
+}
+
+bool aa_check_item_pickup(map_session_data *sd, struct block_list *bl)
+{
+	struct flooritem_data* fitem;
+	struct party_data *p = NULL;
+	t_tick tick = gettick();
+
+	if (sd->status.party_id)
+		p = party_search(sd->status.party_id);
+
+	if(bl && bl->type == BL_ITEM && bl->m == sd->bl.m && !pc_cant_act(sd)){
+		fitem = (struct flooritem_data *)bl;
+        if (fitem->first_get_charid > 0 && fitem->first_get_charid != sd->status.char_id) {
+            map_session_data *first_sd = map_charid2sd(fitem->first_get_charid);
+            if (DIFF_TICK(tick,fitem->first_get_tick) < 0) {
+                if (!(p && p->party.item&1 &&
+                    first_sd && first_sd->status.party_id == sd->status.party_id
+                    ))
+                    return false;
+            }
+            else if (fitem->second_get_charid > 0 && fitem->second_get_charid != sd->status.char_id) {
+                map_session_data *second_sd = map_charid2sd(fitem->second_get_charid);
+                if (DIFF_TICK(tick, fitem->second_get_tick) < 0) {
+                    if (!(p && p->party.item&1 &&
+                        ((first_sd && first_sd->status.party_id == sd->status.party_id) ||
+                        (second_sd && second_sd->status.party_id == sd->status.party_id))
+                        ))
+                        return false;
+                }
+                else if (fitem->third_get_charid > 0 && fitem->third_get_charid != sd->status.char_id){
+                    map_session_data *third_sd = map_charid2sd(fitem->third_get_charid);
+                    if (DIFF_TICK(tick,fitem->third_get_tick) < 0) {
+                        if(!(p && p->party.item&1 &&
+                            ((first_sd && first_sd->status.party_id == sd->status.party_id) ||
+                            (second_sd && second_sd->status.party_id == sd->status.party_id) ||
+                            (third_sd && third_sd->status.party_id == sd->status.party_id))
+                            ))
+                            return false;
+                    }
+                }
+            }
+        }
+		if(sd->aa.pickup_item_config == 1 && !sd->aa.pickup_item_id.empty()){
+			for (int i=0; i<sd->aa.pickup_item_id.size(); i++){
+				if(sd->aa.pickup_item_id.at(i) == fitem->item.nameid)
+					return true;
+			}
+			return false;
+		}
+		if (path_search(NULL, sd->bl.m, sd->bl.x, sd->bl.y, bl->x, bl->y, 1, CELL_CHKNOREACH) && distance_xy(sd->bl.x, sd->bl.y, bl->x, bl->y) < 11){
+			return true;
+		}
+	}
+	return false;
+}
+
+unsigned int aa_check_item_pickup_onfloor(map_session_data *sd)
+{
+	struct block_list *bl = map_id2bl(sd->aa.itempick_id);
+	if (!aa_check_item_pickup(sd, bl)){
+		if( (sd->aa.focus_mob && !sd->aa.target_id)
+			|| !sd->aa.focus_mob ){
+			sd->aa.itempick_id = 0;
+			t_itemid itemid = 0;
+			for (int i = 0; i < battle_config.autoattack_item_range_detection; i++){
+				map_foreachinarea(buildin_autopick_sub, sd->bl.m, sd->bl.x - i, sd->bl.y - i, sd->bl.x + i, sd->bl.y + i, BL_ITEM, &itemid, sd->bl.id);
+
+				if (itemid){
+					sd->aa.itempick_id = itemid;
+						break;
+				}
+			}
+		}
+	}
+	return sd->aa.itempick_id;
+}
+
+bool aa_check_target(map_session_data *sd, unsigned int id)
+{
+	struct block_list *bl = map_id2bl(id);
+
+	if (bl && path_search(NULL, sd->bl.m, sd->bl.x, sd->bl.y, bl->x, bl->y, 1, CELL_CHKNOREACH) && distance_xy(sd->bl.x, sd->bl.y, bl->x, bl->y) < 11){
+		TBL_MOB *md = BL_CAST(BL_MOB, bl);
+		e_mob_bosstype bosstype = md->get_bosstype();
+
+		if (md && md->status.hp > 0 && !md->special_state.summon){
+
+			if(util::vector_exists(sd->aa.flee_mobs, md->mob_id)){
+				aa_teleport(sd);
+				return false;
+			}
+
+			if(sd->aa.teleport.facing_boss && bosstype == BOSSTYPE_MVP){
+				aa_teleport(sd);
+				return false;
+			}
+
+			if(util::vector_exists(sd->aa.flee_mobs,md->mob_id)){
+				aa_teleport(sd);
+				return false;
+			}
+
+			if(md->sc.option & (OPTION_HIDE|OPTION_CLOAK))
+				return false;
+
+			if(!sd->aa.target_id && sd->aa.mobs.id.size()){
+				if(util::vector_exists(sd->aa.mobs.id,md->mob_id))
+					return true;
+				else
+					return false;
+			}
+			return true;
+		}
+	}
+	return false;
+}
+
+int buildin_autoattack_sub(struct block_list *bl, va_list ap)
+{
+	int *target_id = va_arg(ap, int *);
+	int src_id = va_arg(ap, int);
+	struct block_list *src = map_id2bl(src_id);
+	map_session_data *sd = map_id2sd(src->id);
+
+	if (!src || !bl)
+		return 1;
+
+	if (aa_check_target(sd, bl->id) == true)
+		*target_id = bl->id;
+	else
+		*target_id = 0;
+
+	return 1;
+}
+
+unsigned int aa_check_target_alive(map_session_data *sd)
+{
+	if (!aa_check_target(sd, sd->aa.target_id)){
+		int target_id = 0;
+		bool target_found = false;
+		sd->aa.target_id = 0;
+
+		for (int i = 0; i < battle_config.autoattack_mob_detection; i++){
+			map_foreachinarea(buildin_autoattack_sub, sd->bl.m, sd->bl.x - i, sd->bl.y - i, sd->bl.x + i, sd->bl.y + i, BL_MOB, &target_id, sd->bl.id);
+			if (target_id){
+				sd->aa.target_id = target_id;
+					break;
+			}
+		}
+	}
+
+	return sd->aa.target_id;
+}
+
+bool aa_party_teleport(map_session_data *sd, t_itemid nameid)
+{
+	if(!sd || !sd->status.party_id) return false;
+
+	struct party_data* p_data = party_search(sd->status.party_id);
+
+	if(!p_data) return true;
+
+	bool is_leader = false;
+
+	int i = 0;
+	ARR_FIND( 0, MAX_PARTY, i, p_data->data[i].sd == sd );
+	if (i < MAX_PARTY)
+		is_leader = true;
+
+	int c = 0;
+	for(int z=0;z<MAX_PARTY;z++){
+
+		if(p_data->data[i].sd != nullptr)
+			c++;
+	}
+
+	return is_leader && c > 1 ? true : false;
+}
+
+bool aa_teleport(map_session_data *sd)
+{
+	int i = 0;
+	bool flywing = false;
+
+	if(!sd->sc.getSCE(SC_AUTOATTACK))
+		return flywing;
+
+	if(!battle_config.autoattack_teleport)
+		return flywing;
+
+	if(sd->state.autotrade && sd->sc.getSCE(SC_AUTOATTACK))
+		return flywing;
+
+	if (!sd->aa.teleport.use_teleport && sd->status.sp > 20 && flywing == false){
+		if (pc_checkskill(sd, AL_TELEPORT) > 0){
+			skill_consume_requirement(sd,AL_TELEPORT,1,2);
+			pc_randomwarp(sd, CLR_TELEPORT);
+			status_heal(&sd->bl, 0, -(skill_get_sp(AL_TELEPORT, 1)), 1);
+			flywing = true;
+		}
+	}
+
+	if(!sd->aa.teleport.use_flywing && flywing == false){
+		if(ai_item_flywings.size()){
+			for(auto &it : ai_item_flywings ){
+				i = pc_search_inventory(sd, it.itemid);
+				if (i >= 0){
+					if(it.leader_only && aa_party_teleport(sd, it.itemid)){
+						pc_useitem(sd, i);
+						flywing = true;
+					}else{
+						if(it.is_delete)
+							pc_delitem(sd,i,1,1,0,LOG_TYPE_CONSUME);
+						pc_randomwarp(sd, CLR_TELEPORT);
+						flywing = true;
+					}
+					break;
+				}
+			}
+		}
+	}
+
+	if (flywing == true)
+		sd->aa.last_teleport = gettick();
+
+	return flywing;
+}
+
+int aa_arrowchange(map_session_data * sd, struct mob_data *md)
+{
+	int arrowelement;
+	std::vector<t_itemid> arrows = {};
+	std::vector<e_element> arrowelem = {};
+	std::vector<int> arrowatk = {};
+	std::vector<t_itemid> quivers = {};
+
+	if (DIFF_TICK(sd->canequip_tick, gettick()) > 0)
+		return 0;
+
+	for(const auto &it : ai_item_ammo){
+
+		if(it.type != AI_AMMO_ARROW)
+			continue;
+
+		arrows.push_back(it.itemid);
+		arrowelem.push_back(it.ele);
+		arrowatk.push_back(it.atk);
+		quivers.push_back(it.quiver);
+	}
+
+	int16 index = -1;
+	int i,j;
+	int best = -1; int bestprio = -1;
+	bool eqp = false;
+	arrowelement = ELE_NONE;
+	bool has_arrows = false;
+
+	for (i = 0; i < arrows.size(); i++) {
+		if ((index = pc_search_inventory(sd, arrows[i])) >= 0){
+
+			int arrow_count = sd->inventory.u.items_inventory[index].amount;
+
+            if (arrow_count > 0) {
+                has_arrows = true; // We have arrows, set the flag to true
+
+                if (arrow_count < battle_config.autoattack_quiver_check) {
+                    int quiver_index = pc_search_inventory(sd, quivers[i]);
+                    if (quiver_index >= 0) {
+                        pc_useitem(sd, quiver_index);
+                        arrow_count = sd->inventory.u.items_inventory[index].amount;
+                    }
+                }
+
+                j = arrowatk[i];
+                if (aa_elemstrong(md, arrowelem[i]))
+                    j += 500;
+                if (aa_elemallowed(md, arrowelem[i]) && j > bestprio) {
+                    bestprio = j;
+                    best = index;
+                    eqp = pc_checkequip2(sd, arrows[i], EQI_AMMO, EQI_AMMO + 1);
+                    arrowelement = arrowelem[i];
+                }
+            }
+		}
+	}
+	if (best > -1) {
+		if (!eqp)
+			pc_equipitem(sd, best, EQP_AMMO);
+		return 1;
+	} else {
+		return 0;
+	}
+}
+
+int aa_bulletchange(map_session_data * sd, mob_data *md)
+{
+	std::vector<t_itemid> arrows = {};
+	std::vector<e_element> arrowelem = {};
+	std::vector<int> arrowatk = {};
+	std::vector<int> arrowlvl = {};
+
+	if (DIFF_TICK(sd->canequip_tick, gettick()) > 0)
+		return 0;
+
+	for(const auto &it : ai_item_ammo){
+
+		if(it.type != AI_AMMO_BULLET)
+			continue;
+
+		std::shared_ptr<item_data> item = item_db.find(it.itemid);
+
+		arrows.push_back(it.itemid);
+		arrowelem.push_back(it.ele);
+		arrowatk.push_back(it.atk);
+		arrowlvl.push_back(item->elv);
+	}
+
+	int16 index = -1;
+	int i, j;
+	int best = -1; int bestprio = -1;
+	bool eqp = false; int bestelem = -1;
+
+	for (i = 0; i < arrows.size(); i++) {
+		if ((index = pc_search_inventory(sd, arrows[i])) >= 0) {
+			j = arrowatk[i];
+			if (aa_elemstrong(md, arrowelem[i]))
+				j += 500;
+			if (aa_elemallowed(md, arrowelem[i]) && j > bestprio && sd->status.base_level >= arrowlvl[i]){
+				bestprio = j;
+				best = index;
+				eqp = pc_checkequip2(sd, arrows[i], EQI_AMMO, EQI_AMMO + 1);
+				bestelem = arrowelem[i];
+			}
+		}
+	}
+	if (best > -1) {
+		if (!eqp)
+			pc_equipitem(sd, best, EQP_AMMO);
+		return bestelem;
+	} else {
+		return -1;
+	}
+}
+
+int aa_shurikenchange(map_session_data * sd, struct mob_data *md)
+{
+	int arrowelement;
+	std::vector<t_itemid> arrows = {};
+	std::vector<e_element> arrowelem = {};
+	std::vector<int> arrowatk = {};
+
+	if (DIFF_TICK(sd->canequip_tick, gettick()) > 0)
+		return 0;
+
+	for(const auto &it : ai_item_ammo){
+
+		if(it.type != AI_AMMO_SYURIKEN)
+			continue;
+
+		arrows.push_back(it.itemid);
+		arrowelem.push_back(it.ele);
+		arrowatk.push_back(it.atk);
+	}
+
+	int16 index = -1;
+	int i,j;
+	int best = -1; int bestprio = -1;
+	bool eqp = false;
+	arrowelement = ELE_NONE;
+
+	for (i = 0; i < arrows.size(); i++) {
+		if ((index = pc_search_inventory(sd, arrows[i])) >= 0){
+			j = arrowatk[i];
+			if (aa_elemstrong(md, arrowelem[i]))
+				j += 500;
+			if (aa_elemallowed(md, arrowelem[i]) && j>bestprio) {
+				bestprio = j;
+				best = index;
+				eqp = pc_checkequip2(sd, arrows[i], EQI_AMMO, EQI_AMMO+1);
+				arrowelement = arrowelem[i];
+			}
+		}
+	}
+	if (best > -1) {
+		if (!eqp)
+			pc_equipitem(sd, best, EQP_AMMO);
+		return 1;
+	} else {
+		return 0;
+	}
+}
+
+int aa_kunaichange(map_session_data * sd, struct mob_data *md, int rqamount)
+{
+	std::vector<t_itemid> arrows = {};
+	std::vector<e_element> arrowelem = {};
+	std::vector<int> arrowatk = {};
+	std::vector<int> arrowlvl = {};
+
+	if (DIFF_TICK(sd->canequip_tick, gettick()) > 0)
+		return 0;
+
+	for(const auto &it : ai_item_ammo){
+
+		if(it.type != AI_AMMO_KUNAI)
+			continue;
+
+		std::shared_ptr<item_data> item = item_db.find(it.itemid);
+
+		arrows.push_back(it.itemid);
+		arrowelem.push_back(it.ele);
+		arrowatk.push_back(it.atk);
+		arrowlvl.push_back(item->elv);
+	}
+
+	int16 index = -1;
+	int i, j;
+	int best = -1; int bestprio = -1;
+	bool eqp = false; int bestelem = -1;
+
+	for (i = 0; i < arrows.size(); i++) {
+		if ((index = pc_search_inventory(sd, arrows[i])) >= 0){
+			if (sd->inventory.u.items_inventory[index].amount >=rqamount) {
+				j = arrowatk[i];
+				if (aa_elemstrong(md, arrowelem[i]))
+					j += 500;
+				if (aa_elemallowed(md, arrowelem[i]) && j > bestprio && sd->status.base_level >= arrowlvl[i]){
+					bestprio = j;
+					best = index;
+					eqp = pc_checkequip2(sd, arrows[i], EQI_AMMO, EQI_AMMO + 1);
+					bestelem = arrowelem[i];
+				}
+			}
+		}
+	}
+	if (best > -1) {
+		if (!eqp)
+			pc_equipitem(sd, best, EQP_AMMO);
+		return bestelem;
+	} else {
+		return -1;
+	}
+}
+
+int aa_cannonballchange(map_session_data * sd, struct mob_data *md)
+{
+	std::vector<t_itemid> arrows = {};
+	std::vector<e_element> arrowelem = {};
+	std::vector<int> arrowatk = {};
+
+	if (DIFF_TICK(sd->canequip_tick, gettick()) > 0)
+		return 0;
+
+	for(const auto &it : ai_item_ammo){
+
+		if(it.type != AI_AMMO_CANNON)
+			continue;
+
+		arrows.push_back(it.itemid);
+		arrowelem.push_back(it.ele);
+		arrowatk.push_back(it.atk);
+	}
+
+	int16 index = -1;
+	int i, j;
+	int best = -1; int bestprio = -1;
+	bool eqp = false;
+
+	for (i = 0; i < arrows.size(); i++) {
+		if ((index = pc_search_inventory(sd, arrows[i])) >= 0) {
+			j = arrowatk[i];
+			if (aa_elemstrong(md, arrowelem[i]))
+				j += 500;
+			if (aa_elemallowed(md, arrowelem[i]) && j > bestprio){
+				bestprio = j;
+				best = index;
+				eqp = pc_checkequip2(sd, arrows[i], EQI_AMMO, EQI_AMMO + 1);
+			}
+		}
+	}
+	if (best > -1) {
+		if (!eqp) pc_equipitem(sd, best, EQP_AMMO);
+		if (bestprio > 500) return 2;
+		return 1;
+	} else {
+		return 0;
+	}
+}
+
+void aa_ammo_skill_req(map_session_data *sd, struct mob_data *md, uint16 skill_id, uint16 skill_lv)
+{
+	struct s_skill_condition require = skill_get_requirement(sd, skill_id, skill_lv);
+
+	if (require.ammo&(1<<AMMO_ARROW)){
+		aa_arrowchange(sd,md);
+		return;
+	} else if(require.ammo&(1<<AMMO_BULLET|1<<AMMO_GRENADE|1<<AMMO_SHELL)){
+		aa_bulletchange(sd,md);
+		return;
+	} else if(require.ammo&(1<<AMMO_SHURIKEN)){
+		aa_shurikenchange(sd,md);
+		return;
+	} else if(require.ammo&(1<<AMMO_KUNAI)){
+		aa_kunaichange(sd,md,require.ammo_qty);
+		return;
+	} else if(require.ammo&(1<<AMMO_CANNONBALL)){
+		aa_cannonballchange(sd,md);
+		return;
+	}
+}
+
+// Elemental property decisions for picking an attack spell. 50% or below = not allowed, 125% or more = good
+bool aa_elemstrong(struct mob_data *md, int ele){
+	if(!md || &md->bl == nullptr)
+		return 0;
+
+	if (ele == ELE_GHOST) {
+		if ((md->status.def_ele == ELE_UNDEAD) && (md->status.ele_lv >= 2)) return 1;
+		if (md->status.def_ele == ELE_GHOST) return 1;
+		return 0;
+	}
+	if (ele == ELE_FIRE) {
+		if (md->status.def_ele == ELE_UNDEAD) return 1;
+		if (md->status.def_ele == ELE_EARTH) return 1;
+		return 0;
+	}
+	if (ele == ELE_WATER) {
+		if ((md->status.def_ele == ELE_UNDEAD) && (md->status.ele_lv >= 3)) return 1;
+		if (md->status.def_ele == ELE_FIRE) return 1;
+		return 0;
+	}
+
+	if (ele == ELE_WIND) {
+		if (md->status.def_ele == ELE_WATER) return 1;
+		return 0;
+	}
+	if (ele == ELE_EARTH) {
+		if (md->status.def_ele == ELE_WIND) return 1;
+		return 0;
+	}
+	if (ele == ELE_HOLY) {
+		if ((md->status.def_ele == ELE_POISON) && (md->status.ele_lv >= 3)) return 1;
+		if (md->status.def_ele == ELE_DARK) return 1;
+		if (md->status.def_ele == ELE_UNDEAD) return 1;
+		return 0;
+	}
+	if (ele == ELE_DARK) {
+		if (md->status.def_ele == ELE_HOLY) return 1;
+		return 0;
+	}
+	if (ele == ELE_POISON) {
+		if ((md->status.def_ele == ELE_UNDEAD) && (md->status.ele_lv >= 2)) return 1;
+		if (md->status.def_ele == ELE_GHOST) return 1;
+		if (md->status.def_ele == ELE_NEUTRAL) return 1;
+		return 0;
+	}
+	if (ele == ELE_UNDEAD) {
+		if ((md->status.def_ele == ELE_HOLY) && (md->status.ele_lv >= 2)) return 1;
+		return 0;
+	}
+	if (ele == ELE_NEUTRAL) {
+		return 0;
+	}
+	return 0;
+}
+
+bool aa_elemallowed(struct mob_data *md, int ele){
+	if(!md || &md->bl == nullptr)
+		return 1;
+
+	if (ele == ELE_GHOST) {
+		if (md->sc.getSCE(SC_WHITEIMPRISON)) return 1;
+		if ((md->status.def_ele == ELE_NEUTRAL) && (md->status.ele_lv >= 2)) return 0;
+		if ((md->status.def_ele == ELE_FIRE) && (md->status.ele_lv >= 3)) return 0;
+		if ((md->status.def_ele == ELE_WATER) && (md->status.ele_lv >= 3)) return 0;
+		if ((md->status.def_ele == ELE_WIND) && (md->status.ele_lv >= 3)) return 0;
+		if ((md->status.def_ele == ELE_EARTH) && (md->status.ele_lv >= 3)) return 0;
+		if ((md->status.def_ele == ELE_POISON) && (md->status.ele_lv >= 3)) return 0;
+		if ((md->status.def_ele == ELE_HOLY) && (md->status.ele_lv >= 2)) return 0;
+		if ((md->status.def_ele == ELE_DARK) && (md->status.ele_lv >= 2)) return 0;
+		return 1;
+
+	}
+	if (ele == ELE_FIRE) {
+		if ((md->status.def_ele == ELE_FIRE)) return 0;
+		if ((md->status.def_ele == ELE_HOLY) && (md->status.ele_lv >= 2)) return 0;
+		if ((md->status.def_ele == ELE_DARK) && (md->status.ele_lv >= 3)) return 0;
+		if (md->sc.getSCE(SC_WHITEIMPRISON)) return 0;
+		return 1;
+	}
+	if (ele == ELE_WATER) {
+		if ((md->status.def_ele == ELE_WATER)) return 0;
+		if ((md->status.def_ele == ELE_HOLY) && (md->status.ele_lv >= 2)) return 0;
+		if ((md->status.def_ele == ELE_DARK) && (md->status.ele_lv >= 3)) return 0;
+		if (md->sc.getSCE(SC_WHITEIMPRISON)) return 0;
+		return 1;
+	}
+	if (ele == ELE_WIND) {
+		if ((md->status.def_ele == ELE_WIND)) return 0;
+		if ((md->status.def_ele == ELE_HOLY) && (md->status.ele_lv >= 2)) return 0;
+		if ((md->status.def_ele == ELE_DARK) && (md->status.ele_lv >= 3)) return 0;
+		if (md->sc.getSCE(SC_WHITEIMPRISON)) return 0;
+		return 1;
+
+	}
+	if (ele == ELE_EARTH) {
+		if ((md->status.def_ele == ELE_EARTH)) return 0;
+		if ((md->status.def_ele == ELE_HOLY) && (md->status.ele_lv >= 2)) return 0;
+		if ((md->status.def_ele == ELE_DARK) && (md->status.ele_lv >= 3)) return 0;
+		if ((md->status.def_ele == ELE_UNDEAD) && (md->status.ele_lv >= 4)) return 0;
+		if (md->sc.getSCE(SC_WHITEIMPRISON)) return 0;
+		return 1;
+
+	}
+	if (ele == ELE_HOLY) {
+		if ((md->status.def_ele == ELE_HOLY)) return 0;
+		if (md->sc.getSCE(SC_WHITEIMPRISON)) return 0;
+		return 1;
+
+	}
+	if (ele == ELE_DARK) {
+		if ((md->status.def_ele == ELE_POISON)) return 0;
+		if ((md->status.def_ele == ELE_DARK)) return 0;
+		if ((md->status.def_ele == ELE_UNDEAD)) return 0;
+		if (md->sc.getSCE(SC_WHITEIMPRISON)) return 0;
+		return 1;
+
+	}
+	if (ele == ELE_POISON) {
+		if ((md->status.def_ele == ELE_WATER) && (md->status.ele_lv >= 3)) return 0;
+		if ((md->status.def_ele == ELE_GHOST) && (md->status.ele_lv >= 3)) return 0;
+		if ((md->status.def_ele == ELE_POISON)) return 0;
+		if ((md->status.def_ele == ELE_UNDEAD)) return 0;
+		if ((md->status.def_ele == ELE_HOLY) && (md->status.ele_lv >= 2)) return 0;
+		if ((md->status.def_ele == ELE_DARK)) return 0;
+		if (md->sc.getSCE(SC_WHITEIMPRISON)) return 0;
+		return 1;
+
+	}
+	if (ele == ELE_UNDEAD) {
+		if ((md->status.def_ele == ELE_WATER) && (md->status.ele_lv >= 3)) return 0;
+		if ((md->status.def_ele == ELE_FIRE) && (md->status.ele_lv >= 3)) return 0;
+		if ((md->status.def_ele == ELE_WIND) && (md->status.ele_lv >= 3)) return 0;
+		if ((md->status.def_ele == ELE_EARTH) && (md->status.ele_lv >= 3)) return 0;
+		if ((md->status.def_ele == ELE_POISON) && (md->status.ele_lv >= 1)) return 0;
+		if ((md->status.def_ele == ELE_UNDEAD)) return 0;
+		if ((md->status.def_ele == ELE_DARK)) return 0;
+		if (md->sc.getSCE(SC_WHITEIMPRISON)) return 0;
+		return 1;
+
+	}
+	if (ele == ELE_NEUTRAL) {
+		if(md->status.def_ele == ELE_GHOST)
+			if(md->status.ele_lv >= 2)
+				return 0;
+		if (md->sc.getSCE(SC_WHITEIMPRISON)) return 0;
+		return 1;
+
+	}
+	return 1;
+}
+
+bool aa_possible_heal_attack(map_session_data *sd, struct mob_data *md)
+{
+	if(md->status.def_ele != ELE_UNDEAD || md->status.race != RC_UNDEAD)
+		return false;
+
+	return true;
+}
+
+TIMER_FUNC(aa_delay_combo) {
+	map_session_data* sd = map_id2sd( id );
+	int skill_mode = static_cast<int>( data );
+
+	if(!sd)
+		return 0;
+
+	if(skill_mode == MO_CHAINCOMBO)
+		unit_skilluse_id(&sd->bl, sd->aa.target_id, MO_CHAINCOMBO, pc_checkskill(sd,MO_CHAINCOMBO));
+	else if (skill_mode == MO_COMBOFINISH && sd->spiritball > 0)
+		unit_skilluse_id(&sd->bl, sd->aa.target_id, MO_COMBOFINISH, pc_checkskill(sd,MO_COMBOFINISH));
+
+	return 0;
+}
+
+void aa_monk_combo(struct block_list *src, struct block_list *bl, uint16 skill_id, uint16 skill_lv)
+{
+	if(!src || !bl || src->type != BL_PC)
+		return;
+
+	map_session_data *sd;
+	sd = BL_CAST(BL_PC,src);
+
+	if(!sd->sc.getSCE(SC_AUTOATTACK))
+		return;
+
+	if(pc_checkskill(sd,MO_CHAINCOMBO)){
+
+		if(!sd->aa.target_id)
+			return;
+
+		add_timer(gettick()+150, aa_delay_combo, sd->bl.id, MO_CHAINCOMBO);
+	}
+
+	if(pc_checkskill(sd,MO_COMBOFINISH) && sd->spiritball > 0){
+
+		if(!sd->aa.target_id)
+			return;
+
+		add_timer(gettick()+300, aa_delay_combo, sd->bl.id, MO_COMBOFINISH);
+	}
+}
+
+TIMER_FUNC(aa_autoattack_end)
+{
+	map_session_data* sd = map_id2sd( id );
+
+	if(!sd)
+		return 0;
+
+	status_change_end(&sd->bl, SC_AUTOATTACK);
+	sd->state.autoattack = 0;
+	clif_displaymessage(sd->fd, msg_txt(NULL,1644));
+	return 0;
+}
+
+bool aa_sphere_req(map_session_data *sd, uint16 skill_id, uint16 skill_lv)
+{
+	std::shared_ptr<s_ai_sphere_skill> sphere = util::map_find(skill_ai_sphere, skill_id);
+
+	if(sphere == nullptr)
+		return false;
+
+	if(sd->spiritball >= sphere->sphere)
+		return true;
+
+	return false;
+}
+
+bool aa_autospell(map_session_data *sd, uint16 skill_id, uint16 skill_lv)
+{
+	if(skill_id == SA_AUTOSPELL){
+		sd->menuskill_val = pc_checkskill(sd,SA_AUTOSPELL);
+#ifdef RENEWAL
+		switch(skill_lv){
+			case 1:
+			case 2:
+			case 3:
+			{
+				short random_skill = rand() % 3;
+				if(random_skill == 0)
+					skill_autospell(sd, MG_FIREBOLT);
+				else if(random_skill == 1)
+					skill_autospell(sd, MG_COLDBOLT);
+				else if(random_skill == 2)
+					skill_autospell(sd, MG_LIGHTNINGBOLT);
+			}
+				break;
+			case 4:
+			case 5:
+			case 6:
+			{
+				short random_skill = rand() % 2;
+				if(random_skill == 0)
+					skill_autospell(sd, MG_FIREBALL);
+				else if(random_skill == 1)
+					skill_autospell(sd, MG_SOULSTRIKE);
+			}
+				break;
+			case 7:
+			case 8:
+			case 9:
+			{
+				short random_skill = rand() % 2;
+				if(random_skill == 0)
+					skill_autospell(sd, MG_FROSTDIVER);
+				else if(random_skill == 1)
+					skill_autospell(sd, WZ_EARTHSPIKE);
+			}
+				break;
+			case 10:
+			{
+				short random_skill = rand() % 2;
+				if(random_skill == 0)
+					skill_autospell(sd, MG_THUNDERSTORM);
+				else if(random_skill == 1)
+					skill_autospell(sd, WZ_HEAVENDRIVE);
+			}
+				break;
+		}
+#else
+		switch(skill_lv){
+			case 1:
+				skill_autospell(sd, MG_NAPALMBEAT);
+				break;
+			case 2:
+			case 3:
+			case 4:
+			{
+				short random_skill = rand() % 3;
+				if(random_skill == 0)
+					skill_autospell(sd, MG_FIREBOLT);
+				else if(random_skill == 1)
+					skill_autospell(sd, MG_COLDBOLT);
+				else if(random_skill == 2)
+					skill_autospell(sd, MG_LIGHTNINGBOLT);
+			}
+				break;
+			case 5:
+			case 6:
+			case 7:
+				skill_autospell(sd, MG_SOULSTRIKE);
+				break;
+			case 8:
+			case 9:
+				skill_autospell(sd, MG_FIREBALL);
+				break;
+			case 10:
+				skill_autospell(sd, MG_FROSTDIVER);
+				break;
+		}
+#endif
+		sd->menuskill_id = 0;
+		sd->menuskill_val = 0;
+	}else{
+		return false;
+	}
+
+	return true;
+}
+
+bool aa_shadowspell(map_session_data *sd, uint16 skill_id, uint16 skill_lv)
+{
+	if(skill_id != SC_AUTOSHADOWSPELL)
+		return false;
+
+	if(sd->sc.getSCE(SC__AUTOSHADOWSPELL))
+		return true;
+
+	std::vector<uint16> copy_skill = {};
+
+	for(int i=0;i<MAX_SKILL;i++){
+		if(sd->status.skill[i].id && sd->status.skill[i].flag == SKILL_FLAG_PLAGIARIZED)
+			copy_skill.push_back(sd->status.skill[i].id);
+	}
+
+	if(!copy_skill.size())
+		return false;
+
+	uint16 ret_skill = 0;
+
+	for(const auto &it : copy_skill){
+		if(skill_get_inf2(it, INF2_ISAUTOSHADOWSPELL)){
+			ret_skill = it;
+			break;
+		}
+	}
+
+	if(!ret_skill)
+		return false;
+
+	sd->menuskill_id = SC_AUTOSHADOWSPELL;
+	sd->menuskill_val = skill_lv;
+	sc_start(&sd->bl,&sd->bl,SC_STOP,100,skill_lv,INFINITE_TICK);
+	skill_select_menu(*sd, ret_skill);
+	sd->menuskill_id = 0;
+	sd->menuskill_val = 0;
+	return true;
+}
+
+void autoattack_clear(map_session_data *sd)
+{
+	nullpo_retv(sd);
+
+	std::vector<uint16> at_atk_skill_lists = {};
+	std::vector<uint16> sd_atk_skill_lists = {};
+	std::vector<uint16> at_sup_skill_lists = {};
+	std::vector<uint16> sd_sup_skill_lists = {};
+	std::vector<uint16> at_heal_skill_lists = {};
+	std::vector<uint16> sd_heal_skill_lists = {};
+
+	if(sd->aa.autoattackskills.size()){
+		for(const auto &attack_skill : sd->aa.autoattackskills){
+			at_atk_skill_lists.push_back(attack_skill.skill_id);
+		}
+	}
+
+	for(int i=0;i<MAX_SKILL;i++){
+		if(sd->status.skill[i].id > 0 && sd->status.skill[i].lv > 0){
+			std::shared_ptr<s_skill_db> skill = skill_db.find(sd->status.skill[i].id);
+			if (skill && skill->ai_skill_type&SKILL_TYPE_ATTACK){
+				sd_atk_skill_lists.push_back(sd->status.skill[i].id);
+			}
+		}
+	}
+
+	if(sd->aa.autobuffskills.size()){
+		for(const auto &buff_skill : sd->aa.autobuffskills){
+			at_sup_skill_lists.push_back(buff_skill.skill_id);
+		}
+	}
+
+	for(int i=0;i<MAX_SKILL;i++){
+		if(sd->status.skill[i].id > 0 && sd->status.skill[i].lv > 0){
+			std::shared_ptr<s_skill_db> skill = skill_db.find(sd->status.skill[i].id);
+			if (skill && skill->ai_skill_type&SKILL_TYPE_SUPPORT){
+				sd_sup_skill_lists.push_back(sd->status.skill[i].id);
+			}
+		}
+	}
+
+	if(sd->aa.autoheal.size()){
+		for(const auto &heal_skill : sd->aa.autoheal){
+			at_heal_skill_lists.push_back(heal_skill.skill_id);
+		}
+	}
+
+	for(int i=0;i<MAX_SKILL;i++){
+		if(sd->status.skill[i].id > 0 && sd->status.skill[i].lv > 0){
+			std::shared_ptr<s_skill_db> skill = skill_db.find(sd->status.skill[i].id);
+			if (skill && skill->ai_skill_type&SKILL_TYPE_HEAL){
+				sd_heal_skill_lists.push_back(sd->status.skill[i].id);
+			}
+		}
+	}
+
+	for(const auto &attack_skill : at_atk_skill_lists){
+		if(std::find(sd_atk_skill_lists.begin(), sd_atk_skill_lists.end(), attack_skill) == sd_atk_skill_lists.end()){
+			sd->aa.autoattackskills.erase(std::remove_if(sd->aa.autoattackskills.begin(), sd->aa.autoattackskills.end(), [attack_skill](const auto &skill){
+				return skill.skill_id == attack_skill;
+			}), sd->aa.autoattackskills.end());
+		}
+	}
+
+	for(const auto &buff_skill : at_sup_skill_lists){
+		if(std::find(sd_sup_skill_lists.begin(), sd_sup_skill_lists.end(), buff_skill) == sd_sup_skill_lists.end()){
+			sd->aa.autobuffskills.erase(std::remove_if(sd->aa.autobuffskills.begin(), sd->aa.autobuffskills.end(), [buff_skill](const auto &skill){
+				return skill.skill_id == buff_skill;
+			}), sd->aa.autobuffskills.end());
+		}
+	}
+
+	for(const auto &heal_skill : at_heal_skill_lists){
+		if(std::find(sd_heal_skill_lists.begin(), sd_heal_skill_lists.end(), heal_skill) == sd_heal_skill_lists.end()){
+			sd->aa.autoheal.erase(std::remove_if(sd->aa.autoheal.begin(), sd->aa.autoheal.end(), [heal_skill](const auto &skill){
+				return skill.skill_id == heal_skill;
+			}), sd->aa.autoheal.end());
+		}
+	}
+}
 
 /**
  * Get attribute ratio

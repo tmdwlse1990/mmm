@@ -307,6 +307,7 @@ struct s_skill_db {
 	int32 abra_probability[MAX_SKILL_LEVEL];
 	uint16 improvisedsong_rate;
 	sc_type sc;									///< Default SC for skill
+	int ai_skill_type;
 };
 
 class SkillDatabase : public TypesafeCachedYamlDatabase <uint16, s_skill_db> {
@@ -2864,5 +2865,47 @@ int32 skill_get_time3(struct map_data *mapdata, uint16 skill_id, uint16 skill_lv
 #define SKILL_CHK_ELEM(skill_id)  ( (skill_id) >= EL_SKILLBASE && (skill_id) < EL_SKILLBASE+MAX_ELEMENTALSKILL )
 #define SKILL_CHK_ABR(skill_id)   ( (skill_id) >= ABR_SKILLBASE && (skill_id) < ABR_SKILLBASE+MAX_ABRSKILL )
 #define SKILL_CHK_GUILD(skill_id) ( (skill_id) >= GD_SKILLBASE && (skill_id) < GD_SKILLBASE+MAX_GUILDSKILL )
+
+enum e_ai_skill_type : uint8 {
+	SKILL_TYPE_NONE 	= 0x0,
+	SKILL_TYPE_ATTACK	= 0x1,
+	SKILL_TYPE_SUPPORT	= 0x2,
+	SKILL_TYPE_HEAL		= 0x4,
+};
+
+int get_ai_skill_type(uint16 skill_id);
+
+extern std::vector<uint16> skill_ai_attack;
+extern std::vector<uint16> skill_ai_support;
+extern std::vector<uint16> skill_ai_heal;
+
+enum e_get_info_string : uint8 {
+	GET_INFO_HEAL			= 0,
+	GET_INFO_POTION			= 1,
+	GET_INFO_SIT			= 2,
+	GET_INFO_SUPPORT_SKILL	= 3,
+	GET_INFO_ATTACK_SKILL	= 4,
+	GET_INFO_BUFF_ITEM		= 5,
+	GET_INFO_ATTACK			= 6,
+	GET_INFO_TELEPORT		= 7,
+	GET_INFO_MOB			= 8,
+	GET_INFO_PICKUP_ITEM	= 9,
+	GET_INFO_SKILL_RATE		= 10,
+	GET_INFO_FLEE_MOB		= 11,
+	GET_INFO_FOCUS_MOB		= 12,
+};
+
+enum e_skill_info_type : uint8 {
+	SKILL_INFO_ATTACK		= 1,
+	SKILL_INFO_SUPPORT		= 2,
+	SKILL_INFO_HEAL			= 3,
+};
+
+struct s_ai_sphere_skill {
+	uint16 skill_id;
+	int sphere;
+};
+
+extern std::map<uint16, std::shared_ptr<s_ai_sphere_skill>> skill_ai_sphere;
 
 #endif /* SKILL_HPP */

@@ -35,6 +35,11 @@ ItemGroupDatabase itemdb_group;
 
 struct s_roulette_db rd;
 
+std::vector<s_ai_item_buff> ai_item_buff;
+std::vector<t_itemid> ai_item_buff_reset;
+std::vector<s_ai_flywings> ai_item_flywings;
+std::vector<s_ai_ammo> ai_item_ammo;
+
 static void itemdb_jobid2mapid(uint64 bclass[3], e_mapid jobmask, bool active);
 
 const std::string ItemDatabase::getDefaultLocation() {
@@ -4943,6 +4948,171 @@ bool RandomOptionGroupDatabase::option_get_id(std::string name, uint16 &id) {
 }
 
 /**
+ */
+static bool itemdb_read_ai_item_buff(char* fields[], size_t columns, size_t current)
+{
+	t_itemid itemid = atoi(fields[0]);
+	t_tick duration = atoi(fields[1]);
+	bool reset = false;
+
+	if(atoi(fields[2]) == 1){
+		reset = true;
+	}else{
+		reset = false;
+	}
+
+	if(!item_db.exists(itemid)){
+		ShowWarning("itemdb_read_ai_item_buff: Item ID %d not found.\n", itemid);
+		return false;
+	}
+
+	std::shared_ptr<item_data> id = item_db.find(itemid);
+
+	if( id->type != IT_HEALING && id->type != IT_USABLE ){
+		ShowWarning("itemdb_read_ai_item_buff: Item ID %d is not a healing item or usable item.\n", itemid);
+		return false;
+	}
+
+	bool found = false;
+	for (const auto& entry : ai_item_buff) {
+		if (entry.itemid == itemid) {
+			found = true;
+			break;
+		}
+	}
+
+	if (found) {
+		ShowWarning("itemdb_read_ai_item_buff: Item ID %d is already in the list.\n", itemid);
+		return false;
+	}
+
+	struct s_ai_item_buff entry = {};
+	entry.itemid = itemid;
+	entry.duration = duration;
+	entry.resetwhendead = reset;
+	ai_item_buff.push_back(entry);
+
+	if(reset)
+		ai_item_buff_reset.push_back(itemid);
+
+	return true;
+}
+
+/**
+ */
+static bool itemdb_read_ai_item_flywing(char* fields[], size_t columns, size_t current)
+{
+	t_itemid itemid = atoi(fields[0]);
+
+	std::string onlyPL = fields[1];
+	std::string isDelete = fields[2];
+	util::tolower(isDelete);
+
+	util::tolower(onlyPL);
+
+	if(!item_db.exists(itemid)){
+		ShowWarning("itemdb_read_ai_item_flywing: Item ID %d not found.\n", itemid);
+		return false;
+	}
+
+	std::shared_ptr<item_data> id = item_db.find(itemid);
+
+	if( id->type != IT_USABLE ){
+		ShowWarning("itemdb_read_ai_item_flywing: Item ID %d is not a usable item.\n", itemid);
+		return false;
+	}
+
+	bool is_only_party_leader = false;
+	if(strstr(onlyPL.c_str(), "true"))
+		is_only_party_leader = true;
+
+	for(const auto &it : ai_item_flywings){
+		if(it.itemid == itemid)
+			return true;
+	}
+
+	bool is_delete = false;
+	if(strstr(isDelete.c_str(), "true"))
+		is_delete = true;
+
+	struct s_ai_flywings entry = {};
+	entry.itemid = itemid;
+	entry.leader_only = is_only_party_leader;
+	entry.is_delete = is_delete;
+	ai_item_flywings.push_back(entry);
+	return true;
+}
+
+static bool itemdb_read_ai_item_ammo(char* fields[], size_t columns, size_t current)
+{
+	std::string type = fields[0];
+	t_itemid itemid = atoi(fields[1]);
+	std::string ele = fields[2];
+	int atk = atoi(fields[3]);
+	t_itemid quiver = 0;
+
+	util::tolower(type);
+
+	if(!item_db.exists(itemid)){
+		ShowWarning("itemdb_read_ai_item_ammo: Item ID %d not found.\n", itemid);
+		return false;
+	}
+
+	std::shared_ptr<item_data> id = item_db.find(itemid);
+
+	if( id->type != IT_AMMO ){
+		ShowWarning("itemdb_read_ai_item_ammo: Item ID %d is not a ammo type.\n", itemid);
+		return false;
+	}
+
+	int64 ele_constant;
+
+	if (!script_get_constant(ele.c_str(), &ele_constant)) {
+		ShowWarning("itemdb_read_ai_item_ammo: wrong element.\n", itemid);
+		return false;
+	}
+
+	if(strlen(fields[4])){
+		quiver = atoi(fields[4]);
+		std::shared_ptr<item_data> qid = item_db.find(quiver);
+
+		if(qid == nullptr){
+			ShowWarning("itemdb_read_ai_item_ammo: wrong quiver id.\n", quiver);
+			return false;
+		}
+	}
+
+	struct s_ai_ammo entry = {};
+
+	for(const auto &it : ai_item_ammo){
+		if(it.itemid == itemid)
+			return true;
+	}
+
+	if(strstr(type.c_str(), "arrow"))
+		entry.type = AI_AMMO_ARROW;
+	else if (strstr(type.c_str(), "bullet"))
+		entry.type = AI_AMMO_BULLET;
+	else if (strstr(type.c_str(), "syuriken"))
+		entry.type = AI_AMMO_SYURIKEN;
+	else if (strstr(type.c_str(), "kunai"))
+		entry.type = AI_AMMO_KUNAI;
+	else if (strstr(type.c_str(), "cannon"))
+		entry.type = AI_AMMO_CANNON;
+	else {
+		ShowWarning("itemdb_read_ai_item_ammo: wrong ammo type.\n", itemid);
+		return false;
+	}
+
+	entry.itemid = itemid;
+	entry.ele = (e_element)ele_constant;
+	entry.atk = atk;
+	entry.quiver = quiver;
+	ai_item_ammo.push_back(entry);
+	return true;
+}
+
+/**
 * Read all item-related databases
 */
 static void itemdb_read(void) {
@@ -4974,6 +5144,10 @@ static void itemdb_read(void) {
 		}
 
 		sv_readdb(dbsubpath2, "item_noequip.txt",       ',', 2, 2, -1, &itemdb_read_noequip, i > 0);
+		sv_readdb(dbsubpath1, "custom/ai_item_buff.txt",',', 3, 3, -1, &itemdb_read_ai_item_buff,i > 0);
+		sv_readdb(dbsubpath1, "custom/ai_item_flywing.txt", ',', 3, 3, -1, &itemdb_read_ai_item_flywing,i > 0);
+		sv_readdb(dbsubpath1, "custom/ai_item_ammo.txt", ',', 4, 5, -1, &itemdb_read_ai_item_ammo,i > 0);
+
 		aFree(dbsubpath1);
 		aFree(dbsubpath2);
 	}
@@ -5085,6 +5259,11 @@ void do_final_itemdb(void) {
 	item_package_db.clear();
 	if (battle_config.feature_roulette)
 		itemdb_roulette_free();
+
+	ai_item_buff.clear();
+	ai_item_buff_reset.clear();
+	ai_item_flywings.clear();
+	ai_item_ammo.clear();
 }
 
 /**
