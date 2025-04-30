@@ -266,96 +266,97 @@ int32 chrif_isconnected(void) {
 }
 
 
-void chrif_aa_save(map_session_data* sd) {
+void chrif_aa_save(map_session_data* sd){
 
 	//aa_common_config
-	if (SQL_ERROR == Sql_Query(mmysql_handle, "REPLACE INTO `aa_common_config` (`char_id`,`stopmelee`,`pickup_item_config`,`aggressive_behavior`,`autositregen_conf`,`autositregen_maxhp`,`autositregen_minhp`,`autositregen_maxsp`,`autositregen_minsp`,`tp_use_teleport`,`tp_use_flywing`,`tp_min_hp`,`tp_delay_nomobmeet`,`skill_rate`,`teleport_boss`,`focus_mob`) VALUES (%d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d)", sd->status.char_id, sd->aa.stopmelee, sd->aa.pickup_item_config, sd->aa.mobs.aggressive_behavior, sd->aa.autositregen.is_active, sd->aa.autositregen.max_hp, sd->aa.autositregen.min_hp, sd->aa.autositregen.max_sp, sd->aa.autositregen.min_sp, sd->aa.teleport.use_teleport, sd->aa.teleport.use_flywing, sd->aa.teleport.min_hp, sd->aa.teleport.delay_nomobmeet, sd->aa.skill_use_rate, sd->aa.teleport.facing_boss, sd->aa.focus_mob)) {
+	if( SQL_ERROR == Sql_Query( mmysql_handle, "REPLACE INTO `aa_common_config` (`char_id`,`stopmelee`,`pickup_item_config`,`aggressive_behavior`,`autositregen_conf`,`autositregen_maxhp`,`autositregen_minhp`,`autositregen_maxsp`,`autositregen_minsp`,`tp_use_teleport`,`tp_use_flywing`,`tp_min_hp`,`tp_delay_nomobmeet`,`skill_rate`,`teleport_boss`,`focus_mob`,`monk_combo`) VALUES (%d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d)", sd->status.char_id, sd->aa.stopmelee, sd->aa.pickup_item_config, sd->aa.mobs.aggressive_behavior, sd->aa.autositregen.is_active, sd->aa.autositregen.max_hp, sd->aa.autositregen.min_hp, sd->aa.autositregen.max_sp, sd->aa.autositregen.min_sp, sd->aa.teleport.use_teleport, sd->aa.teleport.use_flywing, sd->aa.teleport.min_hp, sd->aa.teleport.delay_nomobmeet, sd->aa.skill_use_rate, sd->aa.teleport.facing_boss, sd->aa.focus_mob, sd->aa.enable_combo ) ){
 		Sql_ShowDebug(mmysql_handle);
 	}
 
 	//clean aa_items
-	if (SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `aa_items` WHERE `char_id` = %d", sd->status.char_id)) {
+	if( SQL_ERROR == Sql_Query( mmysql_handle, "DELETE FROM `aa_items` WHERE `char_id` = %d", sd->status.char_id ) ){
 		Sql_ShowDebug(mmysql_handle);
 	}
 	//insert aa_items - 0 - autobuffitems
-	if (sd->aa.autobuffitems.size()) {
-		for (auto& itAutobuffitem : sd->aa.autobuffitems) {
-			if (SQL_ERROR == Sql_Query(mmysql_handle, "INSERT INTO `aa_items` (`char_id`,`type`,`item_id`) VALUES (%d, 0, %d)", sd->status.char_id, itAutobuffitem.item_id)) {
+	if(sd->aa.autobuffitems.size()){
+		for(auto &itAutobuffitem : sd->aa.autobuffitems){
+			if( SQL_ERROR == Sql_Query( mmysql_handle, "INSERT INTO `aa_items` (`char_id`,`type`,`item_id`) VALUES (%d, 0, %d)", sd->status.char_id, itAutobuffitem.item_id ) ){
 				Sql_ShowDebug(mmysql_handle);
 			}
 		}
 	}
 	//insert aa_items - 1 - autopotion
-	if (sd->aa.autopotion.size()) {
-		for (auto& itAutopotion : sd->aa.autopotion) {
-			if (SQL_ERROR == Sql_Query(mmysql_handle, "INSERT INTO `aa_items` (`char_id`,`type`,`item_id`,`min_hp`,`min_sp`) VALUES (%d, 1, %d, %d, %d)", sd->status.char_id, itAutopotion.item_id, itAutopotion.min_hp, itAutopotion.min_sp)) {
+	if(sd->aa.autopotion.size()){
+		for(auto &itAutopotion : sd->aa.autopotion){
+			if( SQL_ERROR == Sql_Query( mmysql_handle, "INSERT INTO `aa_items` (`char_id`,`type`,`item_id`,`min_hp`,`min_sp`) VALUES (%d, 1, %d, %d, %d)", sd->status.char_id, itAutopotion.item_id, itAutopotion.min_hp, itAutopotion.min_sp ) ){
 				Sql_ShowDebug(mmysql_handle);
 			}
 		}
 	}
 	//insert aa_items - 2 - pickup_item_id
-	if (sd->aa.pickup_item_id.size()) {
-		for (int i = 0; i < sd->aa.pickup_item_id.size(); i++) {
-			if (SQL_ERROR == Sql_Query(mmysql_handle, "INSERT INTO `aa_items` (`char_id`,`type`,`item_id`) VALUES (%d, 2, %d)", sd->status.char_id, sd->aa.pickup_item_id.at(i))) {
+	if(sd->aa.pickup_item_id.size()){
+		for (int i=0; i<sd->aa.pickup_item_id.size(); i++){
+			if( SQL_ERROR == Sql_Query( mmysql_handle, "INSERT INTO `aa_items` (`char_id`,`type`,`item_id`) VALUES (%d, 2, %d)", sd->status.char_id, sd->aa.pickup_item_id.at(i) ) ){
 				Sql_ShowDebug(mmysql_handle);
 			}
 		}
 	}
 
 	//clean aa_mobs
-	if (SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `aa_mobs` WHERE `char_id` = %d", sd->status.char_id)) {
+	if( SQL_ERROR == Sql_Query( mmysql_handle, "DELETE FROM `aa_mobs` WHERE `char_id` = %d", sd->status.char_id ) ){
 		Sql_ShowDebug(mmysql_handle);
 	}
 	//insert aa_mobs
-	if (sd->aa.mobs.id.size()) {
-		for (int i = 0; i < sd->aa.mobs.id.size(); i++) {
-			if (SQL_ERROR == Sql_Query(mmysql_handle, "INSERT INTO `aa_mobs` (`char_id`,`mob_id`) VALUES (%d, %d)", sd->status.char_id, sd->aa.mobs.id.at(i))) {
+	if(sd->aa.mobs.id.size()){
+		for (int i=0; i<sd->aa.mobs.id.size(); i++){
+			if( SQL_ERROR == Sql_Query( mmysql_handle, "INSERT INTO `aa_mobs` (`char_id`,`mob_id`) VALUES (%d, %d)", sd->status.char_id, sd->aa.mobs.id.at(i) ) ){
 				Sql_ShowDebug(mmysql_handle);
 			}
 		}
 	}
 
 	//clean aa_skills
-	if (SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `aa_skills` WHERE `char_id` = %d", sd->status.char_id)) {
+	if( SQL_ERROR == Sql_Query( mmysql_handle, "DELETE FROM `aa_skills` WHERE `char_id` = %d", sd->status.char_id ) ){
 		Sql_ShowDebug(mmysql_handle);
 	}
 	//insert aa_skills - 0 - autoheal
-	if (sd->aa.autoheal.size()) {
-		for (auto& itAutoheal : sd->aa.autoheal) {
-			if (SQL_ERROR == Sql_Query(mmysql_handle, "INSERT INTO `aa_skills` (`char_id`,`type`,`skill_id`,`skill_lv`,`min_hp`) VALUES (%d, 0, %d, %d, %d)", sd->status.char_id, itAutoheal.skill_id, itAutoheal.skill_lv, itAutoheal.min_hp)) {
+	if(sd->aa.autoheal.size()){
+		for(auto &itAutoheal : sd->aa.autoheal){
+			if( SQL_ERROR == Sql_Query( mmysql_handle, "INSERT INTO `aa_skills` (`char_id`,`type`,`skill_id`,`skill_lv`,`min_hp`) VALUES (%d, 0, %d, %d, %d)", sd->status.char_id, itAutoheal.skill_id, itAutoheal.skill_lv, itAutoheal.min_hp ) ){
 				Sql_ShowDebug(mmysql_handle);
 			}
 		}
 	}
 	//insert aa_skills - 1 - autobuffskills
-	if (sd->aa.autobuffskills.size()) {
-		for (auto& itAutobuffskills : sd->aa.autobuffskills) {
-			if (SQL_ERROR == Sql_Query(mmysql_handle, "INSERT INTO `aa_skills` (`char_id`,`type`,`skill_id`,`skill_lv`) VALUES (%d, 1, %d, %d)", sd->status.char_id, itAutobuffskills.skill_id, itAutobuffskills.skill_lv)) {
+	if(sd->aa.autobuffskills.size()){
+		for(auto &itAutobuffskills : sd->aa.autobuffskills){
+			if( SQL_ERROR == Sql_Query( mmysql_handle, "INSERT INTO `aa_skills` (`char_id`,`type`,`skill_id`,`skill_lv`) VALUES (%d, 1, %d, %d)", sd->status.char_id, itAutobuffskills.skill_id, itAutobuffskills.skill_lv ) ){
 				Sql_ShowDebug(mmysql_handle);
 			}
 		}
 	}
 
 	//insert aa_skills - 2 - autoattackskills
-	if (sd->aa.autoattackskills.size()) {
-		for (auto& itAutoattackskills : sd->aa.autoattackskills) {
-			if (SQL_ERROR == Sql_Query(mmysql_handle, "INSERT INTO `aa_skills` (`char_id`,`type`,`skill_id`,`skill_lv`) VALUES (%d, 2, %d, %d)", sd->status.char_id, itAutoattackskills.skill_id, itAutoattackskills.skill_lv)) {
+	if(sd->aa.autoattackskills.size()){
+		for(auto &itAutoattackskills : sd->aa.autoattackskills){
+			if( SQL_ERROR == Sql_Query( mmysql_handle, "INSERT INTO `aa_skills` (`char_id`,`type`,`skill_id`,`skill_lv`) VALUES (%d, 2, %d, %d)", sd->status.char_id, itAutoattackskills.skill_id, itAutoattackskills.skill_lv ) ){
 				Sql_ShowDebug(mmysql_handle);
 			}
 		}
 	}
 
-	if (SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `aa_flee_mobs` WHERE `char_id` = %d", sd->status.char_id)) {
+	if( SQL_ERROR == Sql_Query( mmysql_handle, "DELETE FROM `aa_flee_mobs` WHERE `char_id` = %d", sd->status.char_id ) ){
 		Sql_ShowDebug(mmysql_handle);
 	}
-	if (sd->aa.flee_mobs.size()) {
-		for (int i = 0; i < sd->aa.flee_mobs.size(); i++) {
-			if (SQL_ERROR == Sql_Query(mmysql_handle, "INSERT INTO `aa_flee_mobs` (`char_id`,`mob_id`) VALUES (%d, %d)", sd->status.char_id, sd->aa.flee_mobs.at(i))) {
+	if(sd->aa.flee_mobs.size()){
+		for (int i=0; i<sd->aa.flee_mobs.size(); i++){
+			if( SQL_ERROR == Sql_Query( mmysql_handle, "INSERT INTO `aa_flee_mobs` (`char_id`,`mob_id`) VALUES (%d, %d)", sd->status.char_id, sd->aa.flee_mobs.at(i) ) ){
 				Sql_ShowDebug(mmysql_handle);
 			}
 		}
 	}
 }
+
 
 /**
  * Saves character data.

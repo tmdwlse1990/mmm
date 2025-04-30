@@ -10761,6 +10761,7 @@
 	export_constant(GET_INFO_SKILL_RATE);
 	export_constant(GET_INFO_FLEE_MOB);
 	export_constant(GET_INFO_FOCUS_MOB);
+	export_constant(GET_INFO_MONK_COMBO);
 
 	export_constant(SKILL_INFO_ATTACK);
 	export_constant(SKILL_INFO_SUPPORT);

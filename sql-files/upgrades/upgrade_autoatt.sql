@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS `aa_common_config` (
   `skill_rate` int(10) unsigned NOT NULL DEFAULT 0,
   `teleport_boss` tinyint(1) NOT NULL DEFAULT 0,
   `focus_mob` tinyint(1) NOT NULL DEFAULT 0,
+  `monk_combo` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`char_id`),
   UNIQUE KEY `char_id` (`char_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=tis620;

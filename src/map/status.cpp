@@ -14121,7 +14121,7 @@ TIMER_FUNC(status_change_timer){
 				break;
 			}
 
-			int at_index = 0;
+			int32 at_index = 0;
 			struct status_data *status = status_get_status_data(sd->bl);
 			time_t last_time   = time(NULL);
 			t_tick last_tick   = gettick();
@@ -14188,8 +14188,7 @@ TIMER_FUNC(status_change_timer){
 				if(!sd->aa.autoheal.empty() && hit_tick > 2000){
 					if(last_tick >= sd->aa.skill_cd){
 						for(auto &itAutoheal : sd->aa.autoheal){
-							if(((status->hp * 100 / itAutoheal.min_hp) < sd->status.max_hp) && pc_checkskill(sd, itAutoheal.skill_id) >= itAutoheal.skill_lv)
-							{
+							if (((status->hp * 100 / itAutoheal.min_hp) < status->max_hp) && pc_checkskill(sd, itAutoheal.skill_id) >= itAutoheal.skill_lv){
 								if(last_tick >= itAutoheal.last_use){
 									if(unit_skilluse_id(bl, bl->id, itAutoheal.skill_id, itAutoheal.skill_lv)){
 										itAutoheal.last_use = last_tick + + pc_get_skillcooldown(sd, itAutoheal.skill_id, itAutoheal.skill_lv);
@@ -14216,14 +14215,14 @@ TIMER_FUNC(status_change_timer){
 				if(sd->aa.autopotion.size()){
 					for(auto &itAutopotion : sd->aa.autopotion){
 						//HP
-						if(itAutopotion.min_hp > 0 && ((status->hp * 100 / itAutopotion.min_hp) < sd->status.max_hp)){
+						if (itAutopotion.min_hp > 0 && status->hp < ((status->max_hp * itAutopotion.min_hp) / 100) && status->hp < status->max_hp) {
 							at_index = pc_search_inventory(sd, itAutopotion.item_id);
 
 							if (at_index >= 0)
 								pc_useitem(sd, at_index);
 						}
 						//SP
-						if(itAutopotion.min_sp > 0 && ((status->sp * 100 / itAutopotion.min_sp) < sd->status.max_sp)){
+						if (itAutopotion.min_sp > 0 && status->sp < ((status->max_sp * itAutopotion.min_sp) / 100) && status->sp < status->max_sp) {
 							at_index = pc_search_inventory(sd, itAutopotion.item_id);
 
 							if (at_index >= 0)
@@ -14238,15 +14237,17 @@ TIMER_FUNC(status_change_timer){
                 if (sd->aa.autositregen.is_active) {
                     bool overweight = false;
 #ifdef RENEWAL
-                    overweight = 0;
+                    if (pc_getpercentweight(*sd) >= 70)
+						overweight = true;
 #else
-                    overweight = pc_is50overweight(sd);
+					if (pc_getpercentweight(*sd) >= 50)
+						overweight = true;
 #endif
 
                     // Sit down if HP/SP are below the configured minimum thresholds and not overweight
                     if (!pc_issit(sd) &&
-                        ((sd->aa.autositregen.min_hp > 0 && (status->hp * 100 / sd->status.max_hp) < sd->aa.autositregen.min_hp) ||
-                        (sd->aa.autositregen.min_sp > 0 && (status->sp * 100 / sd->status.max_sp) < sd->aa.autositregen.min_sp)) &&
+                        ((sd->aa.autositregen.min_hp > 0 && (status->hp * 100 / status->max_hp) < sd->aa.autositregen.min_hp) ||
+                        (sd->aa.autositregen.min_sp > 0 && (status->sp * 100 / status->max_sp) < sd->aa.autositregen.min_sp)) &&
                         hit_tick >= 5000 && !overweight) {
 
                         pc_setsit(sd);
@@ -14255,8 +14256,8 @@ TIMER_FUNC(status_change_timer){
 
                     // Stand up if HP or SP meet the maximum thresholds (ignore HP or SP check if max_hp or max_sp is 0)
                     } else if (pc_issit(sd) &&
-                            ((sd->aa.autositregen.max_hp == 0 || (status->hp * 100 / sd->status.max_hp) >= sd->aa.autositregen.max_hp) &&
-                                (sd->aa.autositregen.max_sp == 0 || (status->sp * 100 / sd->status.max_sp) >= sd->aa.autositregen.max_sp))) {
+                            ((sd->aa.autositregen.max_hp == 0 || (status->hp * 100 / status->max_hp) >= sd->aa.autositregen.max_hp) &&
+                                (sd->aa.autositregen.max_sp == 0 || (status->sp * 100 / status->max_sp) >= sd->aa.autositregen.max_sp))) {
 
                         pc_setstand(sd, false);
                         skill_sit(sd, 0);
@@ -16850,9 +16851,9 @@ bool aa_elemallowed(struct mob_data *md, int ele){
 bool aa_possible_heal_attack(map_session_data *sd, struct mob_data *md)
 {
 	if(md->status.def_ele != ELE_UNDEAD || md->status.race != RC_UNDEAD)
-		return false;
+		return true;
 
-	return true;
+	return false;
 }
 
 TIMER_FUNC(aa_delay_combo) {
@@ -16877,6 +16878,9 @@ void aa_monk_combo(struct block_list *src, struct block_list *bl, uint16 skill_i
 
 	map_session_data *sd;
 	sd = BL_CAST(BL_PC,src);
+
+	if(!sd->aa.enable_combo)
+	return;
 
 	if(!sd->sc.getSCE(SC_AUTOATTACK))
 		return;

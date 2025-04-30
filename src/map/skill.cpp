@@ -26362,7 +26362,7 @@ static bool skill_parse_row_skilldamage( char* split[], size_t columns, size_t c
 	return true;
 }
 
-int get_ai_skill_type(uint16 skill_id)
+int32 get_ai_skill_type(uint16 skill_id)
 {
 	std::shared_ptr<s_skill_db> skill = skill_db.find(skill_id);
 
@@ -26449,7 +26449,7 @@ static bool skill_parse_ai_sphere_skills(char* fields[], size_t columns, size_t 
 		return false;
 	}
 
-	int amount = atoi(fields[1]);
+	int32 amount = atoi(fields[1]);
 
 	std::shared_ptr<s_ai_sphere_skill> sphere = util::map_find(skill_ai_sphere, skill_id);
 

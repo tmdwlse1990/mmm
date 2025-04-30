@@ -27777,7 +27777,7 @@ BUILDIN_FUNC(mesitemicon){
 */
 BUILDIN_FUNC(skillstrinfo)
 {
-	int skill_id;
+	int32 skill_id;
 	TBL_PC* sd;
 
 	if( !script_rid2sd(sd) )
@@ -27802,7 +27802,7 @@ BUILDIN_FUNC(skillstrinfo)
 */
 BUILDIN_FUNC(skillintinfo)
 {
-	int skill_id, id;
+	int32 skill_id, id;
 	TBL_PC* sd;
 	bool skill_status = false;
 
@@ -27868,7 +27868,7 @@ BUILDIN_FUNC(skillintinfo)
 */
 BUILDIN_FUNC(autoattackstrinfo)
 {
-	int index = 0, id;
+	int32 index = 0, id;
 	TBL_PC* sd;
 	std::string buf = "";
 	std::shared_ptr<s_skill_db> skill;
@@ -27889,7 +27889,7 @@ BUILDIN_FUNC(autoattackstrinfo)
 	switch(id){
 		case GET_INFO_HEAL:	// heal skills
 			if(index == -1){ // Show all buff skills available
-				for(int i=0;i<MAX_SKILL;i++){
+				for(int32 i=0;i<MAX_SKILL;i++){
 					if(sd->status.skill[i].id > 0 && sd->status.skill[i].lv > 0){
 						skill = skill_db.find(sd->status.skill[i].id);
 						if (skill->ai_skill_type&SKILL_TYPE_HEAL){
@@ -27915,7 +27915,7 @@ BUILDIN_FUNC(autoattackstrinfo)
 
 		case GET_INFO_POTION:	// HP / SP Potions
 			if(index == -1) { // Show the list of all potions set
-				for(int i = 0; i < MAX_INVENTORY; i++){
+				for(int32 i = 0; i < MAX_INVENTORY; i++){
 					if( ( item_data = item_db.find(sd->inventory.u.items_inventory[i].nameid) ) == NULL )
 						break;
 
@@ -27975,7 +27975,7 @@ BUILDIN_FUNC(autoattackstrinfo)
 
 		case GET_INFO_SUPPORT_SKILL:	// auto buff skill desc
 			if(index == -1){ // Show all buff skills available
-				for(int i=0;i<MAX_SKILL;i++){
+				for(int32 i=0;i<MAX_SKILL;i++){
 					if(sd->status.skill[i].id > 0 && sd->status.skill[i].lv > 0){
 						skill = skill_db.find(sd->status.skill[i].id);
 						if (skill->ai_skill_type&SKILL_TYPE_SUPPORT){
@@ -28001,7 +28001,7 @@ BUILDIN_FUNC(autoattackstrinfo)
 
 		case GET_INFO_ATTACK_SKILL:	// auto attack skill desc
 			if(index == -1){ // Show all attack skills available
-				for(int i=0;i<MAX_SKILL;i++){
+				for(int32 i=0;i<MAX_SKILL;i++){
 					if(sd->status.skill[i].id > 0 && sd->status.skill[i].lv > 0){
 						skill = skill_db.find(sd->status.skill[i].id);
 						if (skill->ai_skill_type&SKILL_TYPE_ATTACK){
@@ -28049,7 +28049,7 @@ BUILDIN_FUNC(autoattackstrinfo)
 						item_lists.push_back(itAiItemBuff.itemid);
 					}
 
-					for (int i = 0; i < MAX_INVENTORY; i++){
+					for (int32 i = 0; i < MAX_INVENTORY; i++){
 
 						if(sd->inventory.u.items_inventory[i].nameid == 0 || !util::vector_exists(item_lists, sd->inventory.u.items_inventory[i].nameid))
 							continue;
@@ -28063,7 +28063,7 @@ BUILDIN_FUNC(autoattackstrinfo)
 					}
 				}
 			}
-
+			
 			script_pushstrcopy(st, buf.c_str());
 			break;
 
@@ -28188,6 +28188,14 @@ BUILDIN_FUNC(autoattackstrinfo)
 
 			script_pushstrcopy(st, buf.c_str());
 			break;
+		case GET_INFO_MONK_COMBO:
+			if(sd->aa.enable_combo)
+				buf += msg_txt(NULL,1649);
+			else
+				buf += msg_txt(NULL,1648);
+
+			script_pushstrcopy(st, buf.c_str());
+			break;
 	}
 
 	return SCRIPT_CMD_SUCCESS;
@@ -28212,9 +28220,9 @@ BUILDIN_FUNC(autoattackstrinfo)
 */
 BUILDIN_FUNC(autoattackintinfo)
 {
-	int index = 0, id;
+	int32 index = 0, id;
 	TBL_PC* sd;
-	int num = 0, i;
+	int32 num = 0, i;
 	std::shared_ptr<s_skill_db> skill;
 	std::shared_ptr<item_data> item_data;
 
@@ -28324,6 +28332,10 @@ BUILDIN_FUNC(autoattackintinfo)
 		case GET_INFO_FOCUS_MOB:
 			script_pushint(st, sd->aa.focus_mob);
 			break;
+			
+		case GET_INFO_MONK_COMBO:
+			script_pushint(st, sd->aa.enable_combo);
+			break;
 
 		default:
 			script_pushint(st, 0);
@@ -28351,7 +28363,7 @@ BUILDIN_FUNC(autoattackset)
 	const char delim = ';';
 	std::vector<std::string> result;
 	std::string item, str;
-	int id = -1;
+	int32 id = -1;
 
 	std::shared_ptr<s_skill_db> skill;
 	std::shared_ptr<item_data> item_data;
@@ -28374,8 +28386,8 @@ BUILDIN_FUNC(autoattackset)
 			case GET_INFO_HEAL:
 				if(result.size() == 5){ // id = 0 - autoheal (is_active;skill_id;skill_lv;min_hp)
 					struct s_autoheal autoheal = {};
-					int skill_id = std::stoi(result.at(2));
-					int is_active = std::stoi(result.at(1));
+					int32 skill_id = std::stoi(result.at(2));
+					int32 is_active = std::stoi(result.at(1));
 
 					//check if skill exist and is support type
 					skill = skill_db.find(skill_id);
@@ -28410,9 +28422,9 @@ BUILDIN_FUNC(autoattackset)
 				if(result.size() == 5){ // id = 1 - autopotion (is_active;item_id;min_hp;min_sp)
 					struct s_autopotion autopotion = {};
 					t_itemid nameid = std::stoi(result.at(2));
-					int is_active = std::stoi(result.at(1));
-					int min_hp = std::stoi(result.at(3));
-					int min_sp = std::stoi(result.at(4));
+					int32 is_active = std::stoi(result.at(1));
+					int32 min_hp = std::stoi(result.at(3));
+					int32 min_sp = std::stoi(result.at(4));
 
 					//check if item exist
 					if( ( item_data = item_db.find(nameid) ) == NULL )
@@ -28446,11 +28458,11 @@ BUILDIN_FUNC(autoattackset)
 
 			case GET_INFO_SIT:
 				if(result.size() == 6){ // id = 2 - sit regen (is_active;min_hp;max_hp;min_sp;max_sp)
-					int is_active = std::stoi(result.at(1));
-					int min_hp = std::stoi(result.at(2));
-					int max_hp = std::stoi(result.at(3));
-					int min_sp = std::stoi(result.at(4));
-					int max_sp = std::stoi(result.at(5));
+					int32 is_active = std::stoi(result.at(1));
+					int32 min_hp = std::stoi(result.at(2));
+					int32 max_hp = std::stoi(result.at(3));
+					int32 min_sp = std::stoi(result.at(4));
+					int32 max_sp = std::stoi(result.at(5));
 
 					if(!is_active)
 						sd->aa.autositregen.is_active = false;
@@ -28467,14 +28479,14 @@ BUILDIN_FUNC(autoattackset)
 			case GET_INFO_SUPPORT_SKILL:
 				if(result.size() == 4){ // id = 3 - autobuffskills (is_active;skill_id;skill_lv)
 					struct s_autobuffskills autobuffskills = {};
-					int skill_id = std::stoi(result.at(2));
-					int is_active = std::stoi(result.at(1));
+					int32 skill_id = std::stoi(result.at(2));
+					int32 is_active = std::stoi(result.at(1));
 
 					//check if skill exist and is support type and has status change
 					skill = skill_db.find(skill_id);
 					e_cast_type type = skill_get_casttype(skill_id);
 					if (!skill || ~skill->ai_skill_type&SKILL_TYPE_SUPPORT)
-						return SCRIPT_CMD_FAILURE;
+						return SCRIPT_CMD_SUCCESS;
 
 					if(!is_active){
 						sd->aa.autobuffskills.erase(
@@ -28501,14 +28513,14 @@ BUILDIN_FUNC(autoattackset)
 			case GET_INFO_ATTACK_SKILL:
 				if(result.size() == 4){ // id = 4 - autoattackskills (is_active;skill_id;skill_lv)
 					struct s_autoattackskills autoattackskills = {};
-					int skill_id = std::stoi(result.at(2));
-					int is_active = std::stoi(result.at(1));
+					int32 skill_id = std::stoi(result.at(2));
+					int32 is_active = std::stoi(result.at(1));
 
 					//check if skill exist and is support type and has status change
 					skill = skill_db.find(skill_id);
 					e_cast_type type = skill_get_casttype(skill_id);
 					if (!skill || ~skill->ai_skill_type&SKILL_TYPE_ATTACK)
-						return SCRIPT_CMD_FAILURE;
+						return SCRIPT_CMD_SUCCESS;
 
 					if(!is_active){
 						sd->aa.autoattackskills.erase(
@@ -28536,11 +28548,11 @@ BUILDIN_FUNC(autoattackset)
 				if(result.size() == 3){ // id = 5 - autobuffitems (is_active;item_id)
 					struct s_autobuffitems autobuffitems = {};
 					t_itemid nameid = std::stoi(result.at(2));
-					int is_active = std::stoi(result.at(1));
+					int32 is_active = std::stoi(result.at(1));
 
 					//check if item exist
 					if( ( item_data = item_db.find(nameid) ) == NULL )
-						return SCRIPT_CMD_FAILURE;
+						return SCRIPT_CMD_SUCCESS;
 
 					bool check = false;
 					if(ai_item_buff.size()){
@@ -28551,7 +28563,7 @@ BUILDIN_FUNC(autoattackset)
 					}
 
 					if(!check)
-						return SCRIPT_CMD_FAILURE;
+						return SCRIPT_CMD_SUCCESS;
 
 					if(!is_active){
 						sd->aa.autobuffitems.erase(
@@ -28580,7 +28592,7 @@ BUILDIN_FUNC(autoattackset)
 
 			case GET_INFO_TELEPORT:
 				if(result.size() == 3){ // id = 7 - teleport (index,value)
-					int index = std::stoi(result.at(1));
+					int32 index = std::stoi(result.at(1));
 					switch(index){
 						case 0:
 							sd->aa.teleport.use_teleport = std::stoi(result.at(2));
@@ -28604,9 +28616,9 @@ BUILDIN_FUNC(autoattackset)
 			case GET_INFO_MOB:
 				if(result.size() == 4){ // id = 8 - monster (is_active;monster_id;aggressive_behavior)
 					uint32 mob_id = std::stoi(result.at(2));
-					int status = std::stoi(result.at(1));
+					int32 status = std::stoi(result.at(1));
 					bool monster_found = false;
-					int i;
+					int32 i;
 
 					if(status == -1){
 						sd->aa.mobs.id.clear();
@@ -28616,7 +28628,7 @@ BUILDIN_FUNC(autoattackset)
 					//check if mob exist
 					if(mob_id > 0){
 						if( ( mob = mob_db.find(mob_id) ) == NULL )
-							return SCRIPT_CMD_FAILURE;
+							return SCRIPT_CMD_SUCCESS;
 					}
 
 					if(sd->aa.mobs.id.size() > battle_config.autoattack_max_moblist)
@@ -28649,9 +28661,9 @@ BUILDIN_FUNC(autoattackset)
 
 			case GET_INFO_PICKUP_ITEM:
 				if(result.size() == 3){ // id = 9 - item pickup (is_active;item_id)
-					int i;
+					int32 i;
 					t_itemid nameid = std::stoi(result.at(2));
-					int status = std::stoi(result.at(1));
+					int32 status = std::stoi(result.at(1));
 					bool item_found = false;
 
 					switch(status){
@@ -28671,7 +28683,7 @@ BUILDIN_FUNC(autoattackset)
 						case 1:
 							//check if item exist
 							if( ( item_data = item_db.find(nameid) ) == NULL )
-								return SCRIPT_CMD_FAILURE;
+								return SCRIPT_CMD_SUCCESS;
 
 							if(sd->aa.pickup_item_id.size() >= battle_config.autoattack_max_itemlist)
 								break;
@@ -28703,8 +28715,8 @@ BUILDIN_FUNC(autoattackset)
 
 			case GET_INFO_FLEE_MOB:
 				if(result.size() == 3){ // id = 13 - flee mob (is_active;monster_id)
-					int i;
-					int status = std::stoi(result.at(1));
+					int32 i;
+					int32 status = std::stoi(result.at(1));
 					uint32 mob_id = std::stoi(result.at(2));
 					bool monster_found = false;
 
@@ -28713,7 +28725,7 @@ BUILDIN_FUNC(autoattackset)
 
 					if(mob_id > 0){
 						if( ( mob = mob_db.find(mob_id) ) == NULL )
-							return SCRIPT_CMD_FAILURE;
+							return SCRIPT_CMD_SUCCESS;
 					}
 
 					if(!status){
@@ -28739,6 +28751,12 @@ BUILDIN_FUNC(autoattackset)
 					sd->aa.focus_mob = std::stoi(result.at(1));
 				}
 				break;
+				
+			case GET_INFO_MONK_COMBO:
+				if(result.size() == 2){
+					sd->aa.enable_combo = std::stoi(result.at(1));
+				}
+				break;
 		}
 	}
 
@@ -28754,7 +28772,7 @@ BUILDIN_FUNC(autoattackclear)
 	if( !script_rid2sd(sd) )
 		return SCRIPT_CMD_SUCCESS;
 
-	int mode = script_getnum(st,2);
+	int32 mode = script_getnum(st,2);
 
 	switch (mode)
 	{
@@ -28793,7 +28811,7 @@ BUILDIN_FUNC(sc_check)
 	if (!script_rid2sd(sd))
 		return SCRIPT_CMD_FAILURE;
 
-	int type = script_getnum(st, 2);
+	int32 type = script_getnum(st, 2);
 
 	if(sd->sc.getSCE((sc_type)type))
 		script_pushint(st, 1);
@@ -28803,7 +28821,7 @@ BUILDIN_FUNC(sc_check)
 	return SCRIPT_CMD_SUCCESS;
 }
 
-static int sub_pc_send_hattect(struct block_list* bl,va_list ap)
+static int32 sub_pc_send_hattect(struct block_list* bl,va_list ap)
 {
 	map_session_data *msd;
 
@@ -28824,7 +28842,7 @@ static int sub_pc_send_hattect(struct block_list* bl,va_list ap)
 	return 0;
 }
 
-int sub_pc_clear_hattect(struct block_list* bl,va_list ap)
+int32 sub_pc_clear_hattect(struct block_list* bl,va_list ap)
 {
 	map_session_data *msd;
 
@@ -28857,7 +28875,7 @@ BUILDIN_FUNC(autostart)
 		return SCRIPT_CMD_SUCCESS;
 	}
 
-	int mode = script_getnum(st, 2);
+	int32 mode = script_getnum(st, 2);
 	t_tick duration = 0;
 
 	if (script_hasdata(st,3))
@@ -28885,7 +28903,7 @@ BUILDIN_FUNC(autostart)
 */
 BUILDIN_FUNC(skillinfocheck)
 {
-	int type,skill_id;
+	int32 type,skill_id;
 
 	TBL_PC* sd;
 
@@ -28900,7 +28918,7 @@ BUILDIN_FUNC(skillinfocheck)
 
 	switch(type){
 		case SKILL_INFO_ATTACK:
-				for(int i=0;i<MAX_SKILL;i++){
+				for(int32 i=0;i<MAX_SKILL;i++){
 					if(sd->status.skill[i].id > 0 && sd->status.skill[i].lv > 0){
 						skill = skill_db.find(sd->status.skill[i].id);
 						if (skill && skill->ai_skill_type&SKILL_TYPE_ATTACK){
@@ -28911,7 +28929,7 @@ BUILDIN_FUNC(skillinfocheck)
 			break;
 
 		case SKILL_INFO_SUPPORT:
-				for(int i=0;i<MAX_SKILL;i++){
+				for(int32 i=0;i<MAX_SKILL;i++){
 					if(sd->status.skill[i].id > 0 && sd->status.skill[i].lv > 0){
 						skill = skill_db.find(sd->status.skill[i].id);
 						if (skill && skill->ai_skill_type&SKILL_TYPE_SUPPORT){
@@ -28922,7 +28940,7 @@ BUILDIN_FUNC(skillinfocheck)
 			break;
 
 		case SKILL_INFO_HEAL:
-				for(int i=0;i<MAX_SKILL;i++){
+				for(int32 i=0;i<MAX_SKILL;i++){
 					if(sd->status.skill[i].id > 0 && sd->status.skill[i].lv > 0){
 						skill = skill_db.find(sd->status.skill[i].id);
 						if (skill && skill->ai_skill_type&SKILL_TYPE_HEAL){

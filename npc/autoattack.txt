@@ -1,3 +1,4 @@
+
 //
 //	Author		Shakto
 //
@@ -10,7 +11,7 @@ function	script	F_AutoAT	{
 	*/
 
 	// กำหนดเวลา AI
-	@ai_timer = 43200000;
+	@ai_timer = 21600000;
 	doevent "AutoAI_Main::OnMainMenu";
 	end;
 }
@@ -68,7 +69,8 @@ config_menu:
 			" ^ff0000~^000000 กำหนดการเก็บไอเทม",pickupitems_menu,
 			" ^ff0000~^000000 ล้างการกำหนดเป้าหมาย",reset_mob_menu,
 			" ^ff0000~^000000 ล้างการกำหนดไอเทม",reset_item_menu,
-			" ^ff0000~^000000 หลบหนีมอน",flee_mob_menu;
+			" ^ff0000~^000000 หลบหนีมอน",flee_mob_menu,
+			" ^ff0000~^000000 Monk Combo",monk_combo_menu;
 	end;
 
 pickupitems_menu:
@@ -130,7 +132,7 @@ pickupitems_menu:
 					}
 					break;
 			}
-			autoattackset("9;2;" + .@pickup_config_choice);
+			autoattackset(GET_INFO_PICKUP_ITEM+";2;" + .@pickup_config_choice);
 			break;
 		case 2:
 			clear();
@@ -140,7 +142,7 @@ pickupitems_menu:
 			if(.@itempickup_id <= 0 )
 				goto(pickupitems_menu);
 
-			autoattackset("9;1;" + .@itempickup_id);
+			autoattackset(GET_INFO_PICKUP_ITEM+";1;" + .@itempickup_id);
 
 			break;
 		case 3:
@@ -150,7 +152,7 @@ pickupitems_menu:
 				if(.@itempickup_id <= 0 )
 					goto(pickupitems_menu);
 
-				autoattackset("9;0;" + .@itempickup_id);
+				autoattackset(GET_INFO_PICKUP_ITEM+";0;" + .@itempickup_id);
 			} else {
 				clear();
 				mes .@menu$;
@@ -160,7 +162,7 @@ pickupitems_menu:
 
 			break;
 		case 4:
-			autoattackset("9;-1;0");
+			autoattackset(GET_INFO_PICKUP_ITEM+";-1;0");
 			break;
 
 		case 5:
@@ -189,7 +191,7 @@ monsters_menu:
 			if(.@mob_id <= 0 )
 				goto(monsters_menu);
 
-			autoattackset("8;1;" + .@mob_id + ";" + autoattackintinfo(GET_INFO_MOB));
+			autoattackset(GET_INFO_MOB+";1;" + .@mob_id + ";" + autoattackintinfo(GET_INFO_MOB));
 			break;
 
 		case 2:
@@ -199,7 +201,7 @@ monsters_menu:
 				if(.@mob_id <= 0 )
 					goto(monsters_menu);
 
-				autoattackset("8;0;" + .@mob_id + ";" + autoattackintinfo(GET_INFO_MOB));
+				autoattackset(GET_INFO_MOB+";0;" + .@mob_id + ";" + autoattackintinfo(GET_INFO_MOB));
 			} else {
 				clear();
 				mes .@menu$;
@@ -209,14 +211,14 @@ monsters_menu:
 			break;
 
 		case 3:
-			autoattackset("8;-1;0;0");
+			autoattackset(GET_INFO_MOB+";-1;0;0");
 			break;
 
 		case 4:
 			if(autoattackintinfo(GET_INFO_MOB))
-				autoattackset("8;0;0;0");
+				autoattackset(GET_INFO_MOB+";0;0;0");
 			else
-				autoattackset("8;0;0;1");
+				autoattackset(GET_INFO_MOB+";0;0;1");
 			break;
 
 		case 5:
@@ -258,15 +260,15 @@ teleport_menu:
 	switch(.@teleport_menu){
 		case 1:
 			if(autoattackintinfo(GET_INFO_TELEPORT))
-				autoattackset("7;0;0");
+				autoattackset(GET_INFO_TELEPORT+";0;0");
 			else
-				autoattackset("7;0;1");
+				autoattackset(GET_INFO_TELEPORT+";0;1");
 			break;
 		case 2:
 			if(autoattackintinfo(GET_INFO_TELEPORT,1))
-				autoattackset("7;1;0");
+				autoattackset(GET_INFO_TELEPORT+";1;0");
 			else
-				autoattackset("7;1;1");
+				autoattackset(GET_INFO_TELEPORT+";1;1");
 			break;
 		case 3:
 			do {
@@ -276,7 +278,7 @@ teleport_menu:
 				mes "ขั้นต่ำคือ 5, สูงสุดคือ 90 (0 ปิดใช้งาน)";
 				input .@teleport_minhpvalue;
 			} while(.@teleport_minhpvalue != 0 && (.@teleport_minhpvalue < 5 || .@teleport_minhpvalue > 90));
-			autoattackset("7;2;"+.@teleport_minhpvalue);
+			autoattackset(GET_INFO_TELEPORT+";2;"+.@teleport_minhpvalue);
 			break;
 		case 4:
 			do {
@@ -286,11 +288,11 @@ teleport_menu:
 				mes "ขั้นต่ำคือ 2, สูงสุดคือ 600 (0 ปิดใช้งาน)";
 				input .@teleport_delayvalue;
 			} while(.@teleport_delayvalue != 0 && (.@teleport_delayvalue < 2 || .@teleport_delayvalue > 600));
-			autoattackset("7;3;"+.@teleport_delayvalue);
+			autoattackset(GET_INFO_TELEPORT+";3;"+.@teleport_delayvalue);
 			break;
 		case 5:
 			.@fbt = !autoattackintinfo(GET_INFO_TELEPORT,4);
-			autoattackset("7;4;"+.@fbt);
+			autoattackset(GET_INFO_TELEPORT+";4;"+.@fbt);
 			break;
 		default:
 			goto(config_menu);
@@ -311,9 +313,9 @@ melee_attack:
 
 	if( .@melee_menu == 1 ){
 		if(autoattackintinfo(GET_INFO_ATTACK))
-			autoattackset("6;0");
+			autoattackset(GET_INFO_ATTACK+";0");
 		else
-			autoattackset("6;1");
+			autoattackset(GET_INFO_ATTACK+";1");
 		clear();
 
 		goto(melee_attack);
@@ -333,9 +335,9 @@ focus_menu:
 
 	if( .@focus_menu == 1 ){
 		if(autoattackintinfo(GET_INFO_FOCUS_MOB))
-			autoattackset("12;0");
+			autoattackset(GET_INFO_FOCUS_MOB+";0");
 		else
-			autoattackset("12;1");
+			autoattackset(GET_INFO_FOCUS_MOB+";1");
 		clear();
 
 		goto(focus_menu);
@@ -389,7 +391,7 @@ heal_menu:
 			mes "[" + skillstrinfo(.@heal_skillid) + "]" + " - Lv : " + .@heal_skilllv;
 			input .@heal_minhpvalue;
 		} while(.@heal_minhpvalue < 5 || .@heal_minhpvalue > 90);
-		autoattackset("0;1;"+ .@heal_skillid + ";" + .@heal_skilllv + ";" + .@heal_minhpvalue);
+		autoattackset(GET_INFO_HEAL+";1;"+ .@heal_skillid + ";" + .@heal_skilllv + ";" + .@heal_minhpvalue);
 		clear();
 		goto(heal_menu);
 	}
@@ -406,7 +408,7 @@ heal_menu:
 			if(.@heal_skillid < 1 )
 				goto(heal_menu);
 
-			autoattackset("0;0;"+ .@heal_skillid + ";0;0");
+			autoattackset(GET_INFO_HEAL+";0;"+ .@heal_skillid + ";0;0");
 			goto(heal_menu);
 		}
 	}
@@ -453,7 +455,7 @@ potion_menu:
 			input .@potion_minspvalue;
 		} while(.@potion_minspvalue != 0 && (.@potion_minspvalue < 5 || .@potion_minspvalue > 90));
 
-		autoattackset("1;1;"+ .@potion_id + ";" + .@potion_minhpvalue + ";" + .@potion_minspvalue);
+		autoattackset(GET_INFO_POTION+";1;"+ .@potion_id + ";" + .@potion_minhpvalue + ";" + .@potion_minspvalue);
 		clear();
 
 		goto(potion_menu);
@@ -468,7 +470,7 @@ potion_menu:
 		} else {
 			mes "โปรดระบุเลขไอดียาปั้มที่ต้องการลบ";
 			input .@potion_id;
-			autoattackset("1;0;"+ .@potion_id + ";0;0");
+			autoattackset(GET_INFO_POTION+";0;"+ .@potion_id + ";0;0");
 			goto(potion_menu);
 		}
 	}
@@ -530,10 +532,10 @@ sit_regen_menu:
 			} while((.@sit_regen_maxspvalue != 0 && (.@sit_regen_maxspvalue < 5 || .@sit_regen_maxspvalue > 90)) || (.@sit_regen_minspvalue >= .@sit_regen_maxspvalue));
 		}
 
-		autoattackset("2;1;"+ .@sit_regen_minhpvalue + ";" + .@sit_regen_maxhpvalue + ";" + .@sit_regen_minspvalue + ";" + .@sit_regen_maxspvalue);
+		autoattackset(GET_INFO_SIT+";1;"+ .@sit_regen_minhpvalue + ";" + .@sit_regen_maxhpvalue + ";" + .@sit_regen_minspvalue + ";" + .@sit_regen_maxspvalue);
 
 	} else if( .@sit_regen_menu == 1 && autoattackintinfo(2,0)){
-		autoattackset("2;0;0;0;0;0");
+		autoattackset(GET_INFO_SIT+";0;0;0;0;0");
 	} else {
 		clear();
 		goto(regeneration_menu);
@@ -588,7 +590,7 @@ buffskills_menu:
 			input .@buff_skilllv;
 		} while(.@buff_skilllv < 1 || .@buff_skilllv > getskilllv(.@buff_skillid));
 
-		autoattackset("3;1;"+ .@buff_skillid + ";" + .@buff_skilllv);
+		autoattackset(GET_INFO_SUPPORT_SKILL+";1;"+ .@buff_skillid + ";" + .@buff_skilllv);
 		clear();
 
 		goto(buffskills_menu);
@@ -611,7 +613,7 @@ buffskills_menu:
 				next;
 				goto(buffskills_menu);
 			}
-			autoattackset("3;0;"+ .@buff_skillid + ";0");
+			autoattackset(GET_INFO_SUPPORT_SKILL+";0;"+ .@buff_skillid + ";0");
 			goto(buffskills_menu);
 		}
 	}
@@ -658,7 +660,7 @@ attackskills_menu:
 			input .@attack_skilllv;
 		} while(.@attack_skilllv < 1 || .@attack_skilllv > getskilllv(.@attack_skillid));
 
-		autoattackset("4;1;"+ .@attack_skillid + ";" + .@attack_skilllv);
+		autoattackset(GET_INFO_ATTACK_SKILL+";1;"+ .@attack_skillid + ";" + .@attack_skilllv);
 		clear();
 
 		goto(attackskills_menu);
@@ -681,7 +683,7 @@ attackskills_menu:
 				next;
 				goto(attackskills_menu);
 			}
-			autoattackset("4;0;"+ .@attack_skillid + ";0");
+			autoattackset(GET_INFO_ATTACK_SKILL+";0;"+ .@attack_skillid + ";0");
 			goto(attackskills_menu);
 		}
 	} else if(.@attackskills_menu == 4) {
@@ -690,7 +692,7 @@ attackskills_menu:
 		mes autoattackstrinfo(GET_INFO_SKILL_RATE,0);
 		mes "โปรดระบุ % โอกาสใช้สกิล (0-100)";
 		input .@attack_rate,0,100;
-		autoattackset("10;"+ .@attack_rate);
+		autoattackset(GET_INFO_SKILL_RATE+";"+ .@attack_rate);
 		goto(attackskills_menu);
 	}
 
@@ -713,7 +715,7 @@ buffitems_menu:
 		if(.@buffitem_id <= 0 )
 			goto(buffitems_menu);
 
-		autoattackset("5;1;"+ .@buffitem_id + ";");
+		autoattackset(GET_INFO_BUFF_ITEM+";1;"+ .@buffitem_id + ";");
 		clear();
 
 		goto(buffitems_menu);
@@ -728,7 +730,7 @@ buffitems_menu:
 		} else {
 			mes "ระบุไอเทมไอดีที่ต้องการลบออกจากรายการ";
 
-			autoattackset("5;0;"+ .@buffitem_id + ";");
+			autoattackset(GET_INFO_BUFF_ITEM+";0;"+ .@buffitem_id + ";");
 			goto(buffitems_menu);
 		}
 	}
@@ -763,7 +765,7 @@ flee_mob_menu:
 			if(.@mob_id <= 0 )
 				goto(flee_mob_menu);
 
-			autoattackset("11;1;" + .@mob_id + ";");
+			autoattackset(GET_INFO_FLEE_MOB+";1;" + .@mob_id + ";");
 			break;
 
 		case 2:
@@ -773,7 +775,7 @@ flee_mob_menu:
 				if(.@mob_id <= 0 )
 					goto(flee_mob_menu);
 
-				autoattackset("11;0;" + .@mob_id + ";");
+				autoattackset(GET_INFO_FLEE_MOB+";0;" + .@mob_id + ";");
 			} else {
 				clear();
 				mes .@menu$;
@@ -792,5 +794,27 @@ flee_mob_menu:
 	}
 
 	goto(flee_mob_menu);
+	end;
+
+monk_combo_menu:
+	clear2();
+	.@menu$ = "[^FF0000•^000000 ^2f00ffMonk Combo^000000 ^FF0000•^000000]";
+
+	mes .@menu$;
+	mes autoattackstrinfo(GET_INFO_MONK_COMBO);
+
+	.@melee_menu = select(!autoattackintinfo(GET_INFO_MONK_COMBO)?"^ff0000~^000000 เปิดใช้งาน":"^ff0000~^000000 ปิดใช้งาน","^ff0000~^000000 ยกเลิก");
+
+	if( .@melee_menu == 1 ){
+		if(autoattackintinfo(GET_INFO_MONK_COMBO))
+			autoattackset(GET_INFO_MONK_COMBO+";0");
+		else
+			autoattackset(GET_INFO_MONK_COMBO+";1");
+		clear();
+
+		goto(monk_combo_menu);
+	}
+
+	goto(config_menu);
 	end;
 }

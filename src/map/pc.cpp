@@ -2249,7 +2249,7 @@ void pc_aa_load(map_session_data* sd)
 {
 	nullpo_retv(sd);
 
-	int type;
+	int32 type;
 	t_tick tick = gettick();
 
 	// aa_common_config
@@ -2279,6 +2279,7 @@ void pc_aa_load(map_session_data* sd)
 			Sql_GetData(mmysql_handle, 12, &data, NULL); sd->aa.skill_use_rate 				= atoi(data);
 			Sql_GetData(mmysql_handle, 13, &data, NULL); sd->aa.teleport.facing_boss		= atoi(data);
 			Sql_GetData(mmysql_handle, 14, &data, NULL); sd->aa.focus_mob					= atoi(data);
+			Sql_GetData(mmysql_handle, 15, &data, NULL); sd->aa.enable_combo				= atoi(data);
 		}
 	} else {
 		sd->aa.stopmelee 					= 0;
@@ -2296,6 +2297,7 @@ void pc_aa_load(map_session_data* sd)
 		sd->aa.teleport.delay_nomobmeet 	= 0;
 		sd->aa.teleport.facing_boss			= true;
 		sd->aa.focus_mob 					= true;
+		sd->aa.enable_combo 				= false;
 	}
 
 	Sql_FreeResult(mmysql_handle);

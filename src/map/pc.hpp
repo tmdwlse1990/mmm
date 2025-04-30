@@ -434,7 +434,7 @@ struct s_autobuffitems {
 };
 
 struct s_lastposition {
-	int map; // Previous map on Map Change
+	int16 map; // Previous map on Map Change
 	short x,y;
 	short dx,dy;
 };
@@ -453,8 +453,8 @@ struct s_mobs {
 };
 
 struct s_position_history {
-    int x;
-    int y;
+    int32 x;
+    int32 y;
     time_t timestamp;
 };
 
@@ -467,19 +467,20 @@ struct s_autoattack {
 	time_t last_pickup;
 	t_tick skill_cd;
 	t_tick last_hit;
-	int attack_target_id;
-	int target_id;
-	int itempick_id;
+	int32 attack_target_id;
+	int32 target_id;
+	int32 itempick_id;
 	bool stopmelee;
 	bool focus_mob;
-	int skill_use_rate;
-	unsigned int pickup_item_config;
+	bool enable_combo;
+	int32 skill_use_rate;
+	uint32 pickup_item_config;
 	struct s_teleport teleport;
 	struct s_lastposition lastposition;
 	struct s_autositregen autositregen;
 	struct s_mobs mobs;
 	struct s_position_history aa_last_move[MAX_HISTORY];
-	int aa_last_move_index;
+	int32 aa_last_move_index;
 	std::vector<s_autoheal> autoheal;
 	std::vector<s_autopotion> autopotion;
 	std::vector<s_autobuffskills> autobuffskills;

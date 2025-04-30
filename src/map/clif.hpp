@@ -1560,7 +1560,7 @@ void clif_noask_sub( map_session_data& sd, map_session_data& tsd, int32 type );
 
 void clif_specialpopup(map_session_data& sd, int32 id);
 
-int clif_getareachar(struct block_list* bl,va_list ap);
+int32 clif_getareachar(struct block_list* bl,va_list ap);
 void clif_autoattack_effect(struct block_list* bl);
 void clif_autoattack_effect_off(struct block_list* bl);
 void clif_getareachar_unit( map_session_data* sd,struct block_list *bl );

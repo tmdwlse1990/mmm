@@ -3680,7 +3680,7 @@ struct s_ai_ammo {
 	aa_ai_ammo_type type;
 	t_itemid itemid;
 	e_element ele;
-	int atk;
+	int32 atk;
 	t_itemid quiver;
 };
 

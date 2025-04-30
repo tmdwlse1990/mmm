@@ -2893,6 +2893,7 @@ enum e_get_info_string : uint8 {
 	GET_INFO_SKILL_RATE		= 10,
 	GET_INFO_FLEE_MOB		= 11,
 	GET_INFO_FOCUS_MOB		= 12,
+	GET_INFO_MONK_COMBO		= 13,
 };
 
 enum e_skill_info_type : uint8 {

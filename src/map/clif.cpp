@@ -21533,6 +21533,23 @@ void clif_hat_effects( map_session_data& sd, block_list& bl, enum send_target ta
 #endif
 }
 
+/// Send a single hat effect to the client.
+/// 0A3B <Length>.W <AID>.L <Status>.B { <HatEffectId>.W } (ZC_EQUIPMENT_EFFECT)
+void clif_hat_effect_single(map_session_data& sd, uint16 effectId, bool enable) {
+#if PACKETVER_MAIN_NUM >= 20150507 || PACKETVER_RE_NUM >= 20150429 || defined(PACKETVER_ZERO)
+	PACKET_ZC_EQUIPMENT_EFFECT* p = reinterpret_cast<PACKET_ZC_EQUIPMENT_EFFECT*>(packet_buffer);
+
+	p->packetType = HEADER_ZC_EQUIPMENT_EFFECT;
+	p->packetLength = sizeof(*p);
+	p->aid = sd.bl.id;
+	p->status = enable;
+	p->effects[0] = effectId;
+	p->packetLength += static_cast<decltype(p->packetLength)>(sizeof(p->effects[0]));
+
+	clif_send(p, p->packetLength, &sd.bl, AREA);
+#endif
+}
+
 void clif_autoattack_effect(struct block_list* bl){
 #if PACKETVER_MAIN_NUM >= 20150507 || PACKETVER_RE_NUM >= 20150429 || defined(PACKETVER_ZERO)
 
@@ -21573,22 +21590,6 @@ void clif_autoattack_effect_off(struct block_list* bl){
 #endif
 }
 
-/// Send a single hat effect to the client.
-/// 0A3B <Length>.W <AID>.L <Status>.B { <HatEffectId>.W } (ZC_EQUIPMENT_EFFECT)
-void clif_hat_effect_single( map_session_data& sd, uint16 effectId, bool enable ){
-#if PACKETVER_MAIN_NUM >= 20150507 || PACKETVER_RE_NUM >= 20150429 || defined(PACKETVER_ZERO)
-	PACKET_ZC_EQUIPMENT_EFFECT* p = reinterpret_cast<PACKET_ZC_EQUIPMENT_EFFECT*>( packet_buffer );
-
-	p->packetType = HEADER_ZC_EQUIPMENT_EFFECT;
-	p->packetLength = sizeof( *p );
-	p->aid = sd.bl.id;
-	p->status = enable;
-	p->effects[0] = effectId;
-	p->packetLength += static_cast<decltype(p->packetLength)>( sizeof( p->effects[0] ) );
-
-	clif_send( p, p->packetLength, &sd.bl, AREA );
-#endif
-}
 
 
 /// Notify the client that a sale has started
