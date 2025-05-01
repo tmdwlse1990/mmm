@@ -2255,7 +2255,8 @@ void pc_aa_load(map_session_data* sd)
 	// aa_common_config
 	if (Sql_Query(mmysql_handle,"SELECT `stopmelee`,`pickup_item_config`,`aggressive_behavior`,`autositregen_conf`,"
 		"`autositregen_maxhp`,`autositregen_minhp`,`autositregen_maxsp`,`autositregen_minsp`,`tp_use_teleport`,"
-		"`tp_use_flywing`,`tp_min_hp`,`tp_delay_nomobmeet`,`skill_rate`,`teleport_boss`,`focus_mob` FROM `aa_common_config` WHERE `char_id` = %d",
+		"`tp_use_flywing`,`tp_min_hp`,`tp_delay_nomobmeet`,`skill_rate`,`teleport_boss`,`focus_mob`,`monk_combo`"
+		" FROM `aa_common_config` WHERE `char_id` = %d",
 		sd->status.char_id ) != SQL_SUCCESS ){
 		Sql_ShowDebug(mmysql_handle);
 		return;
@@ -9796,6 +9797,8 @@ static TIMER_FUNC(pc_respawn_timer){
  *------------------------------------------*/
 void pc_damage(map_session_data *sd,struct block_list *src,uint32 hp, uint32 sp, uint32 ap)
 {
+	struct status_data *status = status_get_status_data(sd->bl);
+	
 	if (ap) clif_updatestatus(*sd,SP_AP);
 	if (sp) clif_updatestatus(*sd,SP_SP);
 	if (hp) clif_updatestatus(*sd,SP_HP);
@@ -9821,7 +9824,8 @@ void pc_damage(map_session_data *sd,struct block_list *src,uint32 hp, uint32 sp,
 	if(battle_config.prevent_logout_trigger&PLT_DAMAGE)
 		sd->canlog_tick = gettick();
 
-	if((!sd->aa.teleport.use_teleport || !sd->aa.teleport.use_flywing) && sd->aa.teleport.min_hp && (sd->status.hp * 100 / sd->aa.teleport.min_hp) < sd->status.max_hp)
+
+	if((!sd->aa.teleport.use_teleport || !sd->aa.teleport.use_flywing) && sd->aa.teleport.min_hp && (status->hp * 100 / sd->aa.teleport.min_hp) < sd->status.max_hp)
 		aa_teleport(sd);
 
 	if(!sd->aa.target_id && !sd->aa.mobs.aggressive_behavior && src->type == BL_MOB){

@@ -26373,8 +26373,6 @@ int32 get_ai_skill_type(uint16 skill_id)
 	return SKILL_TYPE_NONE;
 }
 
-/**
- */
 static bool skill_parse_ai_attack_skills(char* fields[], size_t columns, size_t current)
 {
 	std::string skill_name = fields[0];
@@ -26395,8 +26393,6 @@ static bool skill_parse_ai_attack_skills(char* fields[], size_t columns, size_t 
 	return true;
 }
 
-/**
- */
 static bool skill_parse_ai_support_skills(char* fields[], size_t columns, size_t current)
 {
 	std::string skill_name = fields[0];
@@ -26417,8 +26413,6 @@ static bool skill_parse_ai_support_skills(char* fields[], size_t columns, size_t
 	return true;
 }
 
-/**
- */
 static bool skill_parse_ai_heal_skills(char* fields[], size_t columns, size_t current)
 {
 	std::string skill_name = fields[0];

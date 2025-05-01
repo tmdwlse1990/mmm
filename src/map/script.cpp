@@ -27771,10 +27771,6 @@ BUILDIN_FUNC(mesitemicon){
 	return SCRIPT_CMD_SUCCESS;
 }
 
-/*
- * skillstrinfo(<skill id>)
- * Returns the description of a skill.
-*/
 BUILDIN_FUNC(skillstrinfo)
 {
 	int32 skill_id;
@@ -27794,12 +27790,6 @@ BUILDIN_FUNC(skillstrinfo)
 	return SCRIPT_CMD_SUCCESS;
 }
 
-/*
- * skillintinfo(<id>,<skill_id>)
- * id
- * 1 = Check if skill is available for auto buff
- * 2 = Check if skill is available for auto attack
-*/
 BUILDIN_FUNC(skillintinfo)
 {
 	int32 skill_id, id;
@@ -27849,23 +27839,6 @@ BUILDIN_FUNC(skillintinfo)
 	return SCRIPT_CMD_SUCCESS;
 }
 
-/*
- * get info of player on autoattack
- *
- * getautoattackstring(<id>,<value>{,<index>})
- * id
- * 0 = Auto Heal (is_active;skill_id;skill_lv;min_hp)
- * 1 = HP / SP Potions
- * 2 = Auto sit to rest
- * 3 = auto buff skill
- * 4 = auto attack skill
- * 5 = auto buff items
- * 6 = melee attack
- * 7 = teleport
- * 8 = mob
- * 9 = item pickup
- * 10 = skill rate
-*/
 BUILDIN_FUNC(autoattackstrinfo)
 {
 	int32 index = 0, id;
@@ -28063,7 +28036,7 @@ BUILDIN_FUNC(autoattackstrinfo)
 					}
 				}
 			}
-			
+
 			script_pushstrcopy(st, buf.c_str());
 			break;
 
@@ -28112,7 +28085,7 @@ BUILDIN_FUNC(autoattackstrinfo)
 				buf += std::string(msg_txt(NULL,1610));
 
 			if(sd->aa.mobs.id.size() > 0){
-				for (int i=0; i<sd->aa.mobs.id.size(); i++){
+				for (int32 i=0; i<sd->aa.mobs.id.size(); i++){
 					mob = mob_db.find(sd->aa.mobs.id.at(i));
 					if (mob == nullptr)
 						continue;
@@ -28188,6 +28161,7 @@ BUILDIN_FUNC(autoattackstrinfo)
 
 			script_pushstrcopy(st, buf.c_str());
 			break;
+
 		case GET_INFO_MONK_COMBO:
 			if(sd->aa.enable_combo)
 				buf += msg_txt(NULL,1649);
@@ -28201,23 +28175,6 @@ BUILDIN_FUNC(autoattackstrinfo)
 	return SCRIPT_CMD_SUCCESS;
 }
 
-/*
- * Set info of player on autoattack
- *
- * autoattackintinfo(<id>,<value>{,<index>})
- * id
- * 0 = Auto Heal
- * 1 = HP / SP Potions
- * 2 = Auto sit to rest
- * 3 = auto buff skill
- * 4 = auto attack skill
- * 5 = auto buff items
- * 6 = melee attack
- * 7 = teleport
- * 8 = mob
- * 9 = item pickup
- * 10 = skill rate
-*/
 BUILDIN_FUNC(autoattackintinfo)
 {
 	int32 index = 0, id;
@@ -28332,7 +28289,7 @@ BUILDIN_FUNC(autoattackintinfo)
 		case GET_INFO_FOCUS_MOB:
 			script_pushint(st, sd->aa.focus_mob);
 			break;
-			
+
 		case GET_INFO_MONK_COMBO:
 			script_pushint(st, sd->aa.enable_combo);
 			break;
@@ -28345,18 +28302,6 @@ BUILDIN_FUNC(autoattackintinfo)
 	return SCRIPT_CMD_SUCCESS;
 }
 
-/*
- * id = 1 // autopotion (is_active;item_id;min_hp;min_sp)
- * id = 2 // sit regen (is_active;min_hp;max_hp;min_sp;max_sp)
- * id = 3 // auto buff skill (is_active;skill_id;skill_lv)
- * id = 4 // auto attack skill (is_active;skill_id;skill_lv)
- * id = 5 // auto buff items (is_active;item_id;delay)
- * id = 6 // melee attack (is_active)
- * id = 7 // teleport (use_teleport;use_flywing;min_hp;delay_nomobmeet)
- * id = 8 // mob (aggressive_behavior;mob_id)
- * id = 9 // item pickup (item_id;config)
- * id = 10 // skill_rate
-*/
 BUILDIN_FUNC(autoattackset)
 {
 	TBL_PC* sd;
@@ -28751,7 +28696,7 @@ BUILDIN_FUNC(autoattackset)
 					sd->aa.focus_mob = std::stoi(result.at(1));
 				}
 				break;
-				
+
 			case GET_INFO_MONK_COMBO:
 				if(result.size() == 2){
 					sd->aa.enable_combo = std::stoi(result.at(1));
@@ -28763,8 +28708,6 @@ BUILDIN_FUNC(autoattackset)
 	return SCRIPT_CMD_SUCCESS;
 }
 
-/*
-*/
 BUILDIN_FUNC(autoattackclear)
 {
 	TBL_PC* sd;
@@ -28790,9 +28733,6 @@ BUILDIN_FUNC(autoattackclear)
 	return SCRIPT_CMD_SUCCESS;
 }
 
-/// Clears the dialog and continues the script without a next button.
-///
-/// clear;
 BUILDIN_FUNC(clear2)
 {
 	TBL_PC* sd;
@@ -28898,9 +28838,6 @@ BUILDIN_FUNC(autostart)
 	return SCRIPT_CMD_SUCCESS;
 }
 
-/*
- * skillinfocheck(<type>,<skill_id>)
-*/
 BUILDIN_FUNC(skillinfocheck)
 {
 	int32 type,skill_id;
@@ -28957,6 +28894,7 @@ BUILDIN_FUNC(skillinfocheck)
 		script_pushint(st, 0);
 	return SCRIPT_CMD_SUCCESS;
 }
+
 
 #include <custom/script.inc>
 
