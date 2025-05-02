@@ -34,7 +34,7 @@ function	script	F_AutoAT	{
 	*/
 
 	// กำหนดเวลา AI
-	@ai_timer = 86400000;
+	@ai_timer = 21600000;
 	doevent "AutoAI_Main::OnMainMenu";
 	end;
 }
