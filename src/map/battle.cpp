@@ -8373,7 +8373,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 
 				switch(skill_id) {
 					case MG_NAPALMBEAT:
-						skillratio += -30 + 10 * skill_lv;
+						skillratio += 70 + 10 * skill_lv;
 						break;
 					case MG_FIREBALL:
 #ifdef RENEWAL
@@ -8386,7 +8386,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						break;
 					case MG_SOULSTRIKE:
 						if (battle_check_undead(tstatus->race,tstatus->def_ele))
-							skillratio += 5 * skill_lv;
+							skillratio += 5 * min(skill_lv,10);
 						break;
 					case MG_FIREWALL:
 						skillratio -= 50;
@@ -8415,7 +8415,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 #endif
 						break;
 					case MG_FROSTDIVER:
-						skillratio += 10 * skill_lv;
+						skillratio += 200 + 10 * skill_lv;
 						break;
 					case AL_HOLYLIGHT:
 						skillratio += 25;

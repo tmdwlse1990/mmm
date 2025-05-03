@@ -966,7 +966,7 @@ std::shared_ptr<s_enchantgradelevel> EnchantgradeDatabase::findCurrentLevelInfo(
 	}else if( data.type == IT_ARMOR ){
 		level = data.armor_level;
 	} else if( data.type == IT_SHADOWGEAR || data.type == IT_CHARM ){
-		level = 1; // à¸à¸³à¸«à¸™à¸” level à¹€à¸›à¹‡à¸™ 1 à¹€à¸¡à¸·à¹ˆà¸­à¹€à¸›à¹‡à¸™à¸Šà¸™à¸´à¸” IT_SHADOWGEAR à¸«à¸£à¸·à¸­ IT_CHARM
+		level = 1; // à¸ÿà¸³à¸«à¸ÿà¸” level à¹€à¸ÿà¹ÿà¸ÿ 1 à¹€à¸¡à¸·à¹ÿà¸­à¹€à¸ÿà¹ÿà¸ÿà¸ÿà¸ÿà¸´à¸” IT_SHADOWGEAR à¸«à¸£à¸·à¸­ IT_CHARM
 	}
 
 	const auto& enchantgradelevels = enchantgrade->levels.find( level );
@@ -2908,6 +2908,14 @@ int32 status_calc_mob_(struct mob_data* md, uint8 opt)
 		}
 	}
 
+	// [Raw Upgrade Mob]
+	status->str += md->level;
+	status->vit += md->level;
+	status->int_ += md->level;
+	status->luk += md->level;
+	status->def += md->level + (md->state.boss ? 2 * md->level : 0 );
+	status->mdef += md->level + (md->state.boss ? 2 * md->level : 0 );
+	
 	status_calc_misc(&md->bl, status, md->level);
 
 	if(flag&4) { // Strengthen Guardians - custom value +10% / lv
@@ -2936,21 +2944,6 @@ int32 status_calc_mob_(struct mob_data* md, uint8 opt)
 		}
 	}
 
-			// [Raw Upgrade Mob]
-			status->batk += 2 * md->level + (md->state.boss ? 7 * md->level : 0 );
-			status->rhw.atk += 2 * md->level + (md->state.boss ? 7 * md->level : 0 );
-			status->rhw.atk2 += 2 * md->level + (md->state.boss ? 7 * md->level : 0 );
-			status->aspd_rate -= 2 * md->level;
-			status->max_hp *= 2 + ( md->level + 10 ) / 10;
-			status->max_sp *= 2 + ( md->level + 10 ) / 10;
-			status->hp = status->max_hp;
-			status->sp = status->max_sp;
-			status->str += md->level;
-			status->vit += md->level;
-			status->int_ += md->level;
-			status->def2 += md->level*2 + (md->state.boss ? 3 * md->level : 0 );
-			status->mdef2 += md->level*2 + (md->state.boss ? 5 * md->level : 0 );
-	
 	if (flag&16 && mbl) { // Max HP setting from Summon Flora/marine Sphere
 		struct unit_data *ud = unit_bl2ud(mbl);
 		// Remove special AI when this is used by regular mobs.

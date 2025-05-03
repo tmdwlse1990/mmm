@@ -5733,7 +5733,7 @@ int32 pc_insert_card(map_session_data* sd, int32 idx_card, int32 idx_equip)
 	if( itemdb_isspecial(sd->inventory.u.items_inventory[idx_equip].card[0]) )
 		return 0; // card slots reserved for other purposes
 	if (!isEnchantment) { // [Start's] Skip location checking for Enchantment
-		if ((item_eq->equip & (item_card->equip) == 0))
+		if ((item_eq->equip && (item_card->equip) == 0))
 			return 0; // card cannot be compounded on this item type
 		if ((item_eq->type == IT_WEAPON) && (item_card->equip == EQP_SHIELD))
 			return 0; // attempted to place shield card on left-hand weapon.
