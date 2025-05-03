@@ -1029,3 +1029,136 @@ Body:
                 Amount: 15
               - Material: Wis_Meteorite_Fragment
                 Amount: 10
+  - Id: 301
+    TargetItems:
+      Ring_Of_Fallen: true
+      Ring_Of_Disaster: true
+    Reset:
+      Chance: 100000
+      Price: 500000
+      Materials:
+        - Material: Orcish_Voucher
+          Amount: 50
+    Order:
+      - Slot: 3
+      - Slot: 2
+    Slots:
+      - Slot: 3
+        Price: 500000
+        Materials:
+          - Material: Orcish_Cuspid
+            Amount: 20
+        Enchants:
+          - Enchantgrade: 0
+            Items:
+              - Item: Strength1
+                Chance: 10000
+              - Item: Strength2
+                Chance: 5000
+              - Item: Strength3
+                Chance: 1000
+              - Item: Strength4
+                Chance: 500
+              - Item: Strength5
+                Chance: 100
+              - Item: Agility1
+                Chance: 10000
+              - Item: Agility2
+                Chance: 5000
+              - Item: Agility3
+                Chance: 1000
+              - Item: Agility4
+                Chance: 500
+              - Item: Agility5
+                Chance: 100
+              - Item: Inteligence1
+                Chance: 10000
+              - Item: Inteligence2
+                Chance: 5000
+              - Item: Inteligence3
+                Chance: 1000
+              - Item: Inteligence4
+                Chance: 500
+              - Item: Inteligence5
+                Chance: 100
+              - Item: Vitality1
+                Chance: 10000
+              - Item: Vitality2
+                Chance: 5000
+              - Item: Vitality3
+                Chance: 1000
+              - Item: Vitality4
+                Chance: 500
+              - Item: Vitality5
+                Chance: 100
+              - Item: Dexterity1
+                Chance: 10000
+              - Item: Dexterity2
+                Chance: 5000
+              - Item: Dexterity3
+                Chance: 1000
+              - Item: Dexterity4
+                Chance: 500
+              - Item: Dexterity5
+                Chance: 100
+              - Item: Luck1
+                Chance: 10000
+              - Item: Luck2 
+                Chance: 5000
+              - Item: Luck3
+                Chance: 1000
+              - Item: Luck4
+                Chance: 500
+              - Item: Luck5
+                Chance: 100
+      - Slot: 2
+        Price: 1000000
+        Materials:
+          - Material: Orcish_Cuspid
+            Amount: 30
+        Enchants:
+          - Enchantgrade: 0
+            Items:
+              - Item: Fighting_Spirit3
+                Chance: 10000
+              - Item: Fighting_Spirit4
+                Chance: 5000
+              - Item: Fighting_Spirit5
+                Chance: 600
+              - Item: Sharp1
+                Chance: 10000
+              - Item: Sharp2
+                Chance: 5000
+              - Item: Sharp3
+                Chance: 600
+              - Item: Atk1
+                Chance: 2000
+              - Item: Atk2
+                Chance: 400
+              - Item: Spell3
+                Chance: 10000
+              - Item: Spell4
+                Chance: 800
+              - Item: Spell5
+                Chance: 600
+              - Item: Expert_Archer1
+                Chance: 500
+              - Item: Fatal0
+                Chance: 10000
+              - Item: Fatal1
+                Chance: 5000
+              - Item: Fatal2
+                Chance: 600
+              - Item: Matk1p
+                Chance: 2000
+              - Item: Matk2p
+                Chance: 400
+              - Item: MSP1
+                Chance: 10000
+              - Item: Heal_Amount2
+                Chance: 10000
+              - Item: Heal_Amount3
+                Chance: 8000
+              - Item: Atk_Speed1
+                Chance: 200
+
