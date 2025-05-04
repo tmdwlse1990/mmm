@@ -1,6 +1,6 @@
 
 icecastle,175,216,4	script	Kafra Service#ice	113,{
-	cutin "kafra_moe01.bmp",2;
+	cutin "kafra_moe01.png",2;
 	mes "[Kafra Leilah]";
 	mes "Hm...?";
 	mes "Oh, welcome to";

@@ -1,5 +1,5 @@
 icecastle,178,200,5	script	Fairy	10509,{
-		cutin "fairy_mq01.bmp",2;
+		cutin "fairy_mq01.png",2;
 	// เช็คสถานะเควส
 	if (MQ == 1) {  // ไปหาผู้ใหญ่บ้าน (เริ่มเควส)
 		mes "[Fairy]";
@@ -92,6 +92,7 @@ icecastle,178,200,5	script	Fairy	10509,{
 		mes "ฉัน... จะอยู่ตรงนี้แหละ ไม่ไปไหนหรอก";
 		
 		// เปลี่ยนสถานะเควสเป็น 1 (เริ่มไปหาผู้ใหญ่บ้าน)
+		set #SSQcheck, 0;
 		set MQ, 1;
 		cutin "",255;
 		close;
