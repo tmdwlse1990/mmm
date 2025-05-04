@@ -7346,6 +7346,8 @@ static uint16 status_calc_crt(struct block_list *bl, status_change *sc, int32 cr
  */
 static uint16 status_calc_batk(struct block_list *bl, status_change *sc, int32 batk)
 {
+	TBL_PC* sd = BL_CAST(BL_PC, bl);
+	
 	if(sc == nullptr || sc->empty())
 		return cap_value(batk,0,USHRT_MAX);
 
@@ -7369,7 +7371,7 @@ static uint16 status_calc_batk(struct block_list *bl, status_change *sc, int32 b
 		batk += sc->getSCE(SC_ZANGETSU)->val2;
 #ifdef RENEWAL
 	if (sc->getSCE(SC_LOUD))
-		batk += 30;
+		batk += 30 + 5 * pc_checkskill(sd,MC_IDENTIFY);
 	if (sc->getSCE(SC_NIBELUNGEN) && sc->getSCE(SC_NIBELUNGEN)->val2 == RINGNBL_ATKRATE)
 		batk += batk * 20 / 100;
 #endif
@@ -8259,7 +8261,7 @@ static uint16 status_calc_speed(struct block_list *bl, status_change *sc, int32 
 
 	// GetSpeed()
 	if( sd && pc_iscarton(sd) )
-		speed += speed * (50 - 5 * pc_checkskill(sd,MC_PUSHCART)) / 100;
+		speed += speed * ( (pc_checkskill(sd,MC_PUSHCART) <=10) ? (50 - 5 * pc_checkskill(sd,MC_PUSHCART)) : pc_checkskill(sd,MC_PUSHCART) - 10 ) / 100;
 	if( sc->getSCE(SC_PARALYSE) && sc->getSCE(SC_PARALYSE)->val3 == 1 )
 		speed += speed * 50 / 100;
 	if( speed_rate != 100 )
@@ -14563,9 +14565,9 @@ TIMER_FUNC(status_change_timer){
 		if (sce->val4 >= 0 && !sc->getSCE(SC_SLOWPOISON)) {
 			uint32 damage = 0;
 			if (sd)
-				damage = (type == SC_DPOISON) ? 2 + status->max_hp / 50 : 2 + status->max_hp * 3 / 200;
+				damage = (type == SC_DPOISON) ? 2 + status->max_hp / 25 : 2 + status->max_hp * 3 / 100;
 			else
-				damage = (type == SC_DPOISON) ? 2 + status->max_hp / 100 : 2 + status->max_hp / 200;
+				damage = (type == SC_DPOISON) ? 2 + status->max_hp / 50 : 2 + status->max_hp / 100;
 			if (status->hp > umax(status->max_hp / 4, damage)) // Stop damaging after 25% HP left.
 				status_zap(bl, damage, 0);
 		}

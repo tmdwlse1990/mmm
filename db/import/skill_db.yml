@@ -1396,12 +1396,12 @@ Body:
   - Id: 22
     Name: AL_DP
     Description: Divine Protection
-    MaxLevel: 10
+    MaxLevel: 15
     Type: Weapon
   - Id: 23
     Name: AL_DEMONBANE
     Description: Demon Bane
-    MaxLevel: 10
+    MaxLevel: 15
     Type: Weapon
   - Id: 24
     Name: AL_RUWACH
@@ -1513,7 +1513,7 @@ Body:
   - Id: 28
     Name: AL_HEAL
     Description: Heal
-    MaxLevel: 10
+    MaxLevel: 15
     Type: Magic
     TargetType: Support
     DamageFlags:
@@ -1567,25 +1567,25 @@ Body:
     AfterCastActDelay: 1000
     Duration1:
       - Level: 1
-        Time: 60000
-      - Level: 2
-        Time: 80000
-      - Level: 3
-        Time: 100000
-      - Level: 4
-        Time: 120000
-      - Level: 5
-        Time: 140000
-      - Level: 6
-        Time: 160000
-      - Level: 7
         Time: 180000
+      - Level: 2
+        Time: 360000
+      - Level: 3
+        Time: 540000
+      - Level: 4
+        Time: 720000
+      - Level: 5
+        Time: 900000
+      - Level: 6
+        Time: 1080000
+      - Level: 7
+        Time: 1260000
       - Level: 8
-        Time: 200000
+        Time: 1440000
       - Level: 9
-        Time: 220000
+        Time: 1620000
       - Level: 10
-        Time: 240000
+        Time: 1800000
     FixedCastTime: 200
     Requires:
       HpCost: 15
@@ -1626,27 +1626,27 @@ Body:
     AfterCastActDelay: 1000
     Duration1:
       - Level: 1
-        Time: 40000
+        Time: 180000
       - Level: 2
-        Time: 50000
+        Time: 360000
       - Level: 3
-        Time: 60000
+        Time: 540000
       - Level: 4
-        Time: 70000
+        Time: 720000
       - Level: 5
-        Time: 80000
+        Time: 900000
       - Level: 6
-        Time: 90000
+        Time: 1080000
       - Level: 7
-        Time: 100000
+        Time: 1260000
       - Level: 8
-        Time: 110000
+        Time: 1440000
       - Level: 9
-        Time: 120000
+        Time: 1620000
       - Level: 10
-        Time: 130000
+        Time: 1800000
       - Level: 11
-        Time: 130000
+        Time: 3000000
     FixedCastTime: 250
     Requires:
       SpCost:
@@ -1694,17 +1694,16 @@ Body:
     Type: Magic
     TargetType: Self
     DamageFlags:
-      NoDamage: true
       Splash: true
     Hit: Single
     HitCount: 1
-    SplashArea: 15
-    CastTime: 350
+    Element: Holy
+    SplashArea: 5
+    CastTime: 2000
     AfterCastActDelay: 2000
     FixedCastTime: 150
     Requires:
-      SpCost: 35
-    Status: SignumCrucis
+      SpCost: 55
   - Id: 33
     Name: AL_ANGELUS
     Description: Angelus
@@ -1721,25 +1720,25 @@ Body:
     AfterCastActDelay: 3500
     Duration1:
       - Level: 1
-        Time: 30000
-      - Level: 2
-        Time: 60000
-      - Level: 3
-        Time: 90000
-      - Level: 4
-        Time: 120000
-      - Level: 5
-        Time: 150000
-      - Level: 6
         Time: 180000
+      - Level: 2
+        Time: 360000
+      - Level: 3
+        Time: 540000
+      - Level: 4
+        Time: 720000
+      - Level: 5
+        Time: 900000
+      - Level: 6
+        Time: 1080000
       - Level: 7
-        Time: 210000
+        Time: 1260000
       - Level: 8
-        Time: 240000
+        Time: 1440000
       - Level: 9
-        Time: 270000
+        Time: 1620000
       - Level: 10
-        Time: 300000
+        Time: 1800000
     FixedCastTime: 150
     Requires:
       SpCost:
@@ -1777,25 +1776,25 @@ Body:
     HitCount: 1
     Duration1:
       - Level: 1
-        Time: 60000
-      - Level: 2
-        Time: 80000
-      - Level: 3
-        Time: 100000
-      - Level: 4
-        Time: 120000
-      - Level: 5
-        Time: 140000
-      - Level: 6
-        Time: 160000
-      - Level: 7
         Time: 180000
+      - Level: 2
+        Time: 360000
+      - Level: 3
+        Time: 540000
+      - Level: 4
+        Time: 720000
+      - Level: 5
+        Time: 900000
+      - Level: 6
+        Time: 1080000
+      - Level: 7
+        Time: 1260000
       - Level: 8
-        Time: 200000
+        Time: 1440000
       - Level: 9
-        Time: 220000
+        Time: 1620000
       - Level: 10
-        Time: 240000
+        Time: 1800000
     Requires:
       SpCost:
         - Level: 1
@@ -1841,20 +1840,20 @@ Body:
   - Id: 37
     Name: MC_DISCOUNT
     Description: Discount
-    MaxLevel: 10
+    MaxLevel: 15
   - Id: 38
     Name: MC_OVERCHARGE
     Description: Overcharge
-    MaxLevel: 10
+    MaxLevel: 15
   - Id: 39
     Name: MC_PUSHCART
     Description: Pushcart
-    MaxLevel: 10
+    MaxLevel: 15
     Range: 1
   - Id: 40
     Name: MC_IDENTIFY
     Description: Item Appraisal
-    MaxLevel: 1
+    MaxLevel: 5
     TargetType: Self
     DamageFlags:
       NoDamage: true
@@ -1883,7 +1882,7 @@ Body:
   - Id: 42
     Name: MC_MAMMONITE
     Description: Mammonite
-    MaxLevel: 10
+    MaxLevel: 15
     Type: Weapon
     TargetType: Attack
     Flags:
@@ -1898,27 +1897,7 @@ Body:
         Reproduce: true
     Requires:
       SpCost: 5
-      ZenyCost:
-        - Level: 1
-          Amount: 100
-        - Level: 2
-          Amount: 200
-        - Level: 3
-          Amount: 300
-        - Level: 4
-          Amount: 400
-        - Level: 5
-          Amount: 500
-        - Level: 6
-          Amount: 600
-        - Level: 7
-          Amount: 700
-        - Level: 8
-          Amount: 800
-        - Level: 9
-          Amount: 900
-        - Level: 10
-          Amount: 1000
+      ZenyCost: 800
   - Id: 43
     Name: AC_OWL
     Description: Owl's Eye
@@ -1943,23 +1922,23 @@ Body:
       - Level: 1
         Time: 60000
       - Level: 2
-        Time: 80000
-      - Level: 3
-        Time: 100000
-      - Level: 4
         Time: 120000
-      - Level: 5
-        Time: 140000
-      - Level: 6
-        Time: 160000
-      - Level: 7
+      - Level: 3
         Time: 180000
-      - Level: 8
-        Time: 200000
-      - Level: 9
-        Time: 220000
-      - Level: 10
+      - Level: 4
         Time: 240000
+      - Level: 5
+        Time: 300000
+      - Level: 6
+        Time: 360000
+      - Level: 7
+        Time: 420000
+      - Level: 8
+        Time: 480000
+      - Level: 9
+        Time: 540000
+      - Level: 10
+        Time: 600000
     Requires:
       SpCost:
         - Level: 1
@@ -1986,7 +1965,7 @@ Body:
   - Id: 46
     Name: AC_DOUBLE
     Description: Double Strafe
-    MaxLevel: 10
+    MaxLevel: 15
     Type: Weapon
     TargetType: Attack
     Flags:
@@ -2011,7 +1990,7 @@ Body:
   - Id: 47
     Name: AC_SHOWER
     Description: Arrow Shower
-    MaxLevel: 10
+    MaxLevel: 15
     Type: Weapon
     TargetType: Ground
     DamageFlags:
@@ -2045,6 +2024,16 @@ Body:
         Area: 2
       - Level: 10
         Area: 2
+      - Level: 11
+        Area: 3
+      - Level: 12
+        Area: 3
+      - Level: 13
+        Area: 3
+      - Level: 14
+        Area: 3
+      - Level: 15
+        Area: 4   
     Knockback: 2
     CopyFlags:
       Skill:
@@ -2061,8 +2050,8 @@ Body:
       AmmoAmount: 1
   - Id: 48
     Name: TF_DOUBLE
-    Description: Double Attack
-    MaxLevel: 10
+    Description: Multi Attack
+    MaxLevel: 15
     Type: Weapon
     DamageFlags:
       Critical: true
@@ -2073,7 +2062,7 @@ Body:
   - Id: 49
     Name: TF_MISS
     Description: Improve Dodge
-    MaxLevel: 10
+    MaxLevel: 15
     Type: Weapon
   - Id: 50
     Name: TF_STEAL
@@ -2130,7 +2119,7 @@ Body:
   - Id: 52
     Name: TF_POISON
     Description: Envenom
-    MaxLevel: 10
+    MaxLevel: 15
     Type: Weapon
     TargetType: Attack
     Range: -2

@@ -156,9 +156,9 @@ Body:
           - Name: AC_VULTURE
             Level: 1
       - Name: AC_DOUBLE
-        MaxLevel: 10
+        MaxLevel: 15
       - Name: AC_SHOWER
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: AC_DOUBLE
             Level: 5
@@ -171,9 +171,9 @@ Body:
       Novice: true
     Tree:
       - Name: AL_DP
-        MaxLevel: 10
+        MaxLevel: 15
       - Name: AL_DEMONBANE
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: AL_DP
             Level: 3
@@ -195,7 +195,7 @@ Body:
           - Name: AL_TELEPORT
             Level: 2
       - Name: AL_HEAL
-        MaxLevel: 10
+        MaxLevel: 15
       - Name: AL_INCAGI
         MaxLevel: 10
         Requires:
@@ -237,29 +237,29 @@ Body:
       - Name: MC_INCCARRY
         MaxLevel: 10
       - Name: MC_DISCOUNT
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: MC_INCCARRY
             Level: 3
       - Name: MC_OVERCHARGE
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: MC_DISCOUNT
             Level: 3
       - Name: MC_PUSHCART
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: MC_INCCARRY
             Level: 5
       - Name: MC_IDENTIFY
-        MaxLevel: 1
+        MaxLevel: 5
       - Name: MC_VENDING
         MaxLevel: 10
         Requires:
           - Name: MC_PUSHCART
             Level: 3
       - Name: MC_MAMMONITE
-        MaxLevel: 10
+        MaxLevel: 15
       - Name: MC_CARTREVOLUTION
         MaxLevel: 1
       - Name: MC_CHANGECART
@@ -278,9 +278,9 @@ Body:
       Novice: true
     Tree:
       - Name: TF_DOUBLE
-        MaxLevel: 10
+        MaxLevel: 15
       - Name: TF_MISS
-        MaxLevel: 10
+        MaxLevel: 15
       - Name: TF_STEAL
         MaxLevel: 10
       - Name: TF_HIDING
@@ -289,7 +289,7 @@ Body:
           - Name: TF_STEAL
             Level: 5
       - Name: TF_POISON
-        MaxLevel: 10
+        MaxLevel: 15
       - Name: TF_DETOXIFY
         MaxLevel: 1
         Requires:

@@ -3417,7 +3417,8 @@ static bool is_attack_hitting(struct Damage* wd, struct block_list *src, struct 
 				break;
 		}
 	} else if (sd && wd->type&DMG_MULTI_HIT && wd->div_ == 2) // +1 hit per level of Double Attack on a successful double attack (making sure other multi attack skills do not trigger this) [helvetica]
-		hitrate += pc_checkskill(sd,TF_DOUBLE);
+		//hitrate += pc_checkskill(sd,TF_DOUBLE);
+		hitrate += 0;
 
 	if (sd) {
 		int32 skill = 0;
@@ -4549,19 +4550,22 @@ static void battle_calc_multi_attack(struct Damage* wd, struct block_list *src,s
 			|| ( sd->bonus.double_rate > 0 && sd->weapontype1 != W_FIST ) // Will fail bare-handed
 			|| ( sc && sc->getSCE(SC_KAGEMUSYA) && sd->weapontype1 != W_FIST )) // Will fail bare-handed
 		{	//Success chance is not added, the higher one is used [Skotlex]
-			int32 max_rate = 0;
+			int32 max_rate,max_rate2 = 0;
 
 			if (sc && sc->getSCE(SC_KAGEMUSYA))
 				max_rate = sc->getSCE(SC_KAGEMUSYA)->val1 * 10; // Same rate as even levels of TF_DOUBLE
 			else
 #ifdef RENEWAL
-				max_rate = max(7 * skill_lv, sd->bonus.double_rate);
+				max_rate = max(15 + 3 * skill_lv, sd->bonus.double_rate);
+				max_rate2 = (2 * skill_lv) - 2;
 #else
 				max_rate = max(5 * skill_lv, sd->bonus.double_rate);
 #endif
 
 			if( rnd()%100 < max_rate ) {
 				wd->div_ = skill_get_num(TF_DOUBLE,skill_lv?skill_lv:1);
+				if( rnd()%100 < max_rate2 )
+					wd->div_ += 1;
 				wd->type = DMG_MULTI_HIT;
 			}
 		}
@@ -8297,6 +8301,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 			case PR_SANCTUARY:
 			case AB_HIGHNESSHEAL:
 				ad.damage = skill_calc_heal(src, target, skill_id, skill_lv, false);
+				skillratio += skill_lv * 3;
 				break;
 			case PR_ASPERSIO:
 				ad.damage = 40;
@@ -8372,6 +8377,9 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 				}
 
 				switch(skill_id) {
+					case AL_CRUCIS:
+						skillratio += -60 + 10 * skill_lv;
+						break;
 					case MG_NAPALMBEAT:
 						skillratio += 70 + 10 * skill_lv;
 						break;
@@ -8394,6 +8402,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 					case MG_FIREBOLT:
 					case MG_COLDBOLT:
 					case MG_LIGHTNINGBOLT:
+						skillratio += 2 * skill_lv;
 						if (sc) {
 							if ((skill_id == MG_FIREBOLT && sc->getSCE(SC_FLAMETECHNIC_OPTION)) ||
 								(skill_id == MG_COLDBOLT && sc->getSCE(SC_COLD_FORCE_OPTION)) ||
