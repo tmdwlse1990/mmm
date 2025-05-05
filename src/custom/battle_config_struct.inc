@@ -27,6 +27,11 @@
  int32 config_monster_rank_drop_bonus_mode;
  int32 config_enchantment_clickable;
  int32 config_enchantment_maximum;
+ int config_all_equipment_refinable;
+ int config_all_equipment_gradable;
+ int config_all_equipment_skip_gender;
+ int config_all_equipment_skip_class;
+ int config_all_equipment_skip_job;
  // auto attack
  int32 autoattack_skillheal;
  int32 autoattack_item_potion;

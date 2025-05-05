@@ -332,7 +332,13 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			item->slots = 0;
 	}
 
-	if (this->nodeExists(node, "Jobs")) {
+	if (battle_config.config_all_equipment_skip_job) {
+		// [Start's]
+		item->class_base[0] = item->class_base[1] = item->class_base[2] = 0;
+
+		itemdb_jobid2mapid(item->class_base, MAPID_ALL, true);
+	}
+	else if (this->nodeExists(node, "Jobs")) {
 		const ryml::NodeRef& jobNode = node["Jobs"];
 
 		item->class_base[0] = item->class_base[1] = item->class_base[2] = 0;
@@ -378,7 +384,11 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		}
 	}
 
-	if (this->nodeExists(node, "Classes")) {
+	if (battle_config.config_all_equipment_skip_class) {
+		// [Start's]
+		item->class_upper = ITEMJ_ALL;
+	}
+	else if (this->nodeExists(node, "Classes")) {
 		const auto& classNode = node["Classes"];
 
 		if (this->nodeExists(classNode, "All")) {
@@ -425,7 +435,11 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			item->class_upper = ITEMJ_ALL;
 	}
 
-	if (this->nodeExists(node, "Gender")) {
+	if (battle_config.config_all_equipment_skip_gender) {
+		// [Start's]
+		item->sex = SEX_BOTH;
+	}
+	else if (this->nodeExists(node, "Gender")) {
 		std::string gender;
 
 		if (!this->asString(node, "Gender", gender))
@@ -574,28 +588,42 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			item->elvmax = MAX_LEVEL;
 	}
 
-	if (this->nodeExists(node, "Refineable")) {
-		bool refine;
+	if (battle_config.config_all_equipment_refinable) {
+		// [Start's]
+		item->flag.no_refine = false;
+	}
+	else {
+		if (this->nodeExists(node, "Refineable")) {
+			bool refine;
 
-		if (!this->asBool(node, "Refineable", refine))
-			return 0;
+			if (!this->asBool(node, "Refineable", refine))
+				return 0;
 
-		item->flag.no_refine = !refine;
-	} else {
-		if (!exists)
-			item->flag.no_refine = true;
+			item->flag.no_refine = !refine;
+		}
+		else {
+			if (!exists)
+				item->flag.no_refine = true;
+		}
 	}
 
-	if (this->nodeExists(node, "Gradable")) {
-		bool gradable;
+	if (battle_config.config_all_equipment_gradable) {
+		// [Start's]
+		item->flag.gradable = true;
+	}
+	else {
+		if (this->nodeExists(node, "Gradable")) {
+			bool gradable;
 
-		if (!this->asBool(node, "Gradable", gradable))
-			return 0;
+			if (!this->asBool(node, "Gradable", gradable))
+				return 0;
 
-		item->flag.gradable = gradable;
-	} else {
-		if (!exists)
-			item->flag.gradable = false;
+			item->flag.gradable = gradable;
+		}
+		else {
+			if (!exists)
+				item->flag.gradable = false;
+		}
 	}
 
 	if (this->nodeExists(node, "View")) {

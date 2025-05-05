@@ -26,6 +26,11 @@
  { "config_monster_rank_drop_bonus_mode", &battle_config.config_monster_rank_drop_bonus_mode, 0, 0, 1 },
  { "config_enchantment_clickable", &battle_config.config_enchantment_clickable, 1, 0, 1 },
  { "config_enchantment_maximum", &battle_config.config_enchantment_maximum, 1, 0, 4 },
+ { "config_all_equipment_refinable", &battle_config.config_all_equipment_refinable, 1, 0, 1 },
+ { "config_all_equipment_gradable", &battle_config.config_all_equipment_gradable, 1, 0, 1 },
+ { "config_all_equipment_skip_gender", &battle_config.config_all_equipment_skip_gender, 0, 0, 1 },
+ { "config_all_equipment_skip_class", &battle_config.config_all_equipment_skip_class, 0, 0, 1 },
+ { "config_all_equipment_skip_job", &battle_config.config_all_equipment_skip_job, 0, 0, 1 },
  //autoattack
  { "autoattack_skillheal",				&battle_config.autoattack_skillheal,			1,		0,		1,				},
  { "autoattack_item_potion",				&battle_config.autoattack_item_potion,			1,		0,		1,				},
