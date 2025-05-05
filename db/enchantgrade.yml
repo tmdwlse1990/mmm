@@ -57,5 +57,6 @@ Header:
 Footer:
   Imports:
   - Path: db/re/enchantgrade.yml
-    Mode: Renewal
+#    Mode: Renewal
+#  - Path: db/import/enchantgrade.yml
   - Path: db/import/enchantgrade.yml

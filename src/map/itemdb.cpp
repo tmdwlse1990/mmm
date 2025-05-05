@@ -588,11 +588,7 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			item->elvmax = MAX_LEVEL;
 	}
 
-	if (battle_config.config_all_equipment_refinable) {
-		// [Start's]
-		item->flag.no_refine = false;
-	}
-	else {
+
 		if (this->nodeExists(node, "Refineable")) {
 			bool refine;
 
@@ -602,16 +598,11 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			item->flag.no_refine = !refine;
 		}
 		else {
+			bool refine;
 			if (!exists)
-				item->flag.no_refine = true;
+				item->flag.no_refine = (battle_config.config_all_equipment_refinable ? !refine : false);
 		}
-	}
 
-	if (battle_config.config_all_equipment_gradable) {
-		// [Start's]
-		item->flag.gradable = true;
-	}
-	else {
 		if (this->nodeExists(node, "Gradable")) {
 			bool gradable;
 
@@ -621,10 +612,10 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			item->flag.gradable = gradable;
 		}
 		else {
+			bool gradable;
 			if (!exists)
-				item->flag.gradable = false;
+				item->flag.gradable = (battle_config.config_all_equipment_gradable ? gradable : false);
 		}
-	}
 
 	if (this->nodeExists(node, "View")) {
 		uint32 look;

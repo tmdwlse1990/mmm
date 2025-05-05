@@ -53,3 +53,1926 @@
 Header:
   Type: ENCHANTGRADE_DB
   Version: 3
+
+Body:
+  - Type: Armor
+    Levels:
+      - Level: 1
+        Grades:
+          - Grade: None
+            Chances:
+              - Refine: 10
+                Chance: 5000
+              - Refine: 11
+                Chance: 5500
+              - Refine: 12
+                Chance: 6000
+              - Refine: 13
+                Chance: 6500
+              - Refine: 14
+                Chance: 7000
+              - Refine: 15
+                Chance: 7500
+              - Refine: 16
+                Chance: 8000
+              - Refine: 17
+                Chance: 8500
+              - Refine: 18
+                Chance: 9000
+              - Refine: 19
+                Chance: 9500
+              - Refine: 20
+                Chance: 10000
+            Bonus: 10
+            Catalyst:
+                Item: Blacksmith_Blessing
+                AmountPerStep: 1
+                MaximumSteps: 10
+                ChanceIncrease: 200
+            Options:
+              - Option: 0
+                Item: Blue_Jewel
+                Amount: 1
+                Zeny: 175000
+                BreakingRate: 10000
+              - Option: 1
+                Item: Blue_Jewel
+                Amount: 5
+                Zeny: 875000
+                DowngradeAmount: 1
+              - Option: 2
+                Item: Blue_Jewel
+                Amount: 10
+                Zeny: 1750000
+          - Grade: D
+            Chances:
+              - Refine: 10
+                Chance: 5000
+              - Refine: 11
+                Chance: 5500
+              - Refine: 12
+                Chance: 6000
+              - Refine: 13
+                Chance: 6500
+              - Refine: 14
+                Chance: 7000
+              - Refine: 15
+                Chance: 7500
+              - Refine: 16
+                Chance: 8000
+              - Refine: 17
+                Chance: 8500
+              - Refine: 18
+                Chance: 9000
+              - Refine: 19
+                Chance: 9500
+              - Refine: 20
+                Chance: 10000
+            Bonus: 30
+            Catalyst:
+                Item: Blacksmith_Blessing
+                AmountPerStep: 1
+                MaximumSteps: 10
+                ChanceIncrease: 200
+            Options:
+              - Option: 0
+                Item: Golden_Jewel
+                Amount: 1
+                Zeny: 175000
+                BreakingRate: 10000
+              - Option: 1
+                Item: Golden_Jewel
+                Amount: 5
+                Zeny: 875000
+                DowngradeAmount: 1
+              - Option: 2
+                Item: Golden_Jewel
+                Amount: 10
+                Zeny: 1750000
+          - Grade: C 
+            Chances:
+              - Refine: 10
+                Chance: 5000
+              - Refine: 11
+                Chance: 5500
+              - Refine: 12
+                Chance: 6000
+              - Refine: 13
+                Chance: 6500
+              - Refine: 14
+                Chance: 7000
+              - Refine: 15
+                Chance: 7500
+              - Refine: 16
+                Chance: 8000
+              - Refine: 17
+                Chance: 8500
+              - Refine: 18
+                Chance: 9000
+              - Refine: 19
+                Chance: 9500
+              - Refine: 20
+                Chance: 10000
+            Bonus: 50
+            Catalyst:
+                Item: Blacksmith_Blessing
+                AmountPerStep: 1
+                MaximumSteps: 10
+                ChanceIncrease: 150
+            Options:
+              - Option: 0
+                Item: Bluish_Green_Jewel
+                Amount: 1
+                Zeny: 175000
+                BreakingRate: 10000
+              - Option: 1
+                Item: Bluish_Green_Jewel
+                Amount: 5
+                Zeny: 875000
+                DowngradeAmount: 1
+              - Option: 2
+                Item: Bluish_Green_Jewel
+                Amount: 10
+                Zeny: 1750000
+          - Grade: B
+            Chances:
+              - Refine: 10
+                Chance: 5000
+              - Refine: 11
+                Chance: 5500
+              - Refine: 12
+                Chance: 6000
+              - Refine: 13
+                Chance: 6500
+              - Refine: 14
+                Chance: 7000
+              - Refine: 15
+                Chance: 7500
+              - Refine: 16
+                Chance: 8000
+              - Refine: 17
+                Chance: 8500
+              - Refine: 18
+                Chance: 9000
+              - Refine: 19
+                Chance: 9500
+              - Refine: 20
+                Chance: 10000
+            Bonus: 100
+            Catalyst:
+                Item: Blacksmith_Blessing
+                AmountPerStep: 1
+                MaximumSteps: 10
+                ChanceIncrease: 150
+            Options:
+              - Option: 0
+                Item: Azure_Jewel
+                Amount: 1
+                Zeny: 175000
+                BreakingRate: 10000
+              - Option: 1
+                Item: Azure_Jewel
+                Amount: 5
+                Zeny: 875000
+                DowngradeAmount: 1
+              - Option: 2
+                Item: Azure_Jewel 
+                Amount: 10 
+                Zeny: 1750000
+          - Grade: A
+            Chances:
+              - Refine: 10
+                Chance: 3000
+              - Refine: 11
+                Chance: 3300
+              - Refine: 12
+                Chance: 3600
+              - Refine: 13
+                Chance: 3900
+              - Refine: 14
+                Chance: 4200
+              - Refine: 15
+                Chance: 4500
+              - Refine: 16
+                Chance: 4800
+              - Refine: 17
+                Chance: 5200
+              - Refine: 18
+                Chance: 5500
+              - Refine: 19
+                Chance: 5800
+              - Refine: 20
+                Chance: 6100
+            Bonus: 150
+            Catalyst:
+                Item: Blacksmith_Blessing
+                AmountPerStep: 1
+                MaximumSteps: 10
+                ChanceIncrease: 100
+            Options:
+              - Option: 0 
+                Item: Cardinal_Jewel 
+                Amount: 1 
+                Zeny: 175000 
+                BreakingRate: 10000 
+              - Option: 1 
+                Item: Cardinal_Jewel 
+                Amount: 5 
+                Zeny: 875000 
+                DowngradeAmount: 1 
+              - Option: 2 
+                Item: Cardinal_Jewel 
+                Amount: 10 
+                Zeny: 1750000
+          - Grade: R
+            Chances:
+              - Refine: 10
+                Chance: 2000
+              - Refine: 11
+                Chance: 2200
+              - Refine: 12
+                Chance: 2400
+              - Refine: 13
+                Chance: 2600
+              - Refine: 14
+                Chance: 2800
+              - Refine: 15
+                Chance: 3000
+              - Refine: 16
+                Chance: 3200
+              - Refine: 17
+                Chance: 3400
+              - Refine: 18
+                Chance: 3600
+              - Refine: 19
+                Chance: 3800
+              - Refine: 20
+                Chance: 4000
+            Bonus: 250
+            Catalyst:
+                Item: Blacksmith_Blessing
+                AmountPerStep: 1
+                MaximumSteps: 10
+                ChanceIncrease: 100
+            Options:
+              - Option: 0 
+                Item: Crystal_Jewel 
+                Amount: 1 
+                Zeny: 175000 
+                BreakingRate: 10000 
+              - Option: 1 
+                Item: Crystal_Jewel 
+                Amount: 5 
+                Zeny: 875000 
+                DowngradeAmount: 1 
+              - Option: 2 
+                Item: Crystal_Jewel 
+                Amount: 10 
+                Zeny: 1750000
+          - Grade: S
+            Chances:
+              - Refine: 10
+                Chance: 1000
+              - Refine: 11
+                Chance: 1100
+              - Refine: 12
+                Chance: 1200
+              - Refine: 13
+                Chance: 1300
+              - Refine: 14
+                Chance: 1400
+              - Refine: 15
+                Chance: 1500
+              - Refine: 16
+                Chance: 1600
+              - Refine: 17
+                Chance: 1700
+              - Refine: 18
+                Chance: 1800
+              - Refine: 19
+                Chance: 1900
+              - Refine: 20
+                Chance: 2000
+            Bonus: 400
+            Catalyst:
+                Item: Blacksmith_Blessing
+                AmountPerStep: 1
+                MaximumSteps: 10
+                ChanceIncrease: 100
+            Options:
+              - Option: 0 
+                Item: Amber 
+                Amount: 1 
+                Zeny: 175000 
+                BreakingRate: 10000 
+              - Option: 1 
+                Item: Amber 
+                Amount: 5 
+                Zeny: 875000 
+                DowngradeAmount: 1 
+              - Option: 1 
+                Item: Amber
+                Amount: 10 
+                Zeny: 1750000
+      - Level: 2
+        Grades:
+          - Grade: None
+            Chances:
+              - Refine: 9
+                Chance: 1000
+              - Refine: 10
+                Chance: 2000
+              - Refine: 11
+                Chance: 7000
+              - Refine: 12
+                Chance: 7000
+              - Refine: 13
+                Chance: 7000
+              - Refine: 14
+                Chance: 7000
+              - Refine: 15
+                Chance: 7000
+              - Refine: 16
+                Chance: 8000
+              - Refine: 17
+                Chance: 8000
+              - Refine: 18
+                Chance: 8000
+              - Refine: 19
+                Chance: 8000
+              - Refine: 20
+                Chance: 8000
+            Bonus: 10
+            Catalyst:
+                Item: Blessed_Etel_Dust
+                AmountPerStep: 1
+                MaximumSteps: 10
+                ChanceIncrease: 100
+            Options:
+              - Option: 0
+                Item: Etel_Skyblue_Jewel
+                Amount: 1
+                Zeny: 175000
+                BreakingRate: 10000
+              - Option: 1
+                Item: Etel_Skyblue_Jewel
+                Amount: 5
+                Zeny: 875000
+          - Grade: D
+            Chances:
+              - Refine: 10
+                Chance: 2000
+              - Refine: 11
+                Chance: 6000
+              - Refine: 12
+                Chance: 6000
+              - Refine: 13
+                Chance: 6000
+              - Refine: 14
+                Chance: 6000
+              - Refine: 15
+                Chance: 6000
+              - Refine: 16
+                Chance: 7000
+              - Refine: 17
+                Chance: 7000
+              - Refine: 18
+                Chance: 7000
+              - Refine: 19
+                Chance: 7000
+              - Refine: 20
+                Chance: 7000
+            Bonus: 30
+            Catalyst:
+                Item: Blessed_Etel_Dust
+                AmountPerStep: 3
+                MaximumSteps: 10
+                ChanceIncrease: 100
+            Options:
+              - Option: 0
+                Item: Etel_Topaz
+                Amount: 1
+                Zeny: 175000
+                BreakingRate: 10000
+              - Option: 1
+                Item: Etel_Topaz
+                Amount: 5
+                Zeny: 875000
+          - Grade: C
+            Chances:
+              - Refine: 11
+                Chance: 5000
+              - Refine: 12
+                Chance: 5000
+              - Refine: 13
+                Chance: 5000
+              - Refine: 14
+                Chance: 5000
+              - Refine: 15
+                Chance: 5000
+              - Refine: 16
+                Chance: 6000
+              - Refine: 17
+                Chance: 6000
+              - Refine: 18
+                Chance: 6000
+              - Refine: 19
+                Chance: 6000
+              - Refine: 20
+                Chance: 6000
+            Bonus: 50
+            AnnounceFail: true
+            Catalyst:
+                Item: Blessed_Etel_Dust
+                AmountPerStep: 5
+                MaximumSteps: 10
+                ChanceIncrease: 100
+            Options:
+              - Option: 0
+                Item: Etel_Violet_Jewel
+                Amount: 1
+                Zeny: 175000
+                BreakingRate: 10000
+              - Option: 1
+                Item: Etel_Violet_Jewel
+                Amount: 5
+                Zeny: 875000
+          - Grade: B
+            Chances:
+              - Refine: 11
+                Chance: 4000
+              - Refine: 12
+                Chance: 4000
+              - Refine: 13
+                Chance: 4000
+              - Refine: 14
+                Chance: 4000
+              - Refine: 15
+                Chance: 4000
+              - Refine: 16
+                Chance: 5000
+              - Refine: 17
+                Chance: 5000
+              - Refine: 18
+                Chance: 5000
+              - Refine: 19
+                Chance: 5000
+              - Refine: 20
+                Chance: 5000
+            Bonus: 100
+            AnnounceFail: true
+            Catalyst:
+                Item: Blessed_Etel_Dust
+                AmountPerStep: 7
+                MaximumSteps: 10
+                ChanceIncrease: 100
+            Options:
+              - Option: 0
+                Item: Etel_Amber
+                Amount: 2
+                Zeny: 175000
+                BreakingRate: 10000
+              - Option: 1
+                Item: Etel_Amber
+                Amount: 10
+                Zeny: 875000
+  - Type: Weapon
+    Levels:
+      - Level: 1
+        Grades:
+          - Grade: None
+            Chances:
+              - Refine: 10
+                Chance: 7000
+              - Refine: 11
+                Chance: 7000
+              - Refine: 12
+                Chance: 7000
+              - Refine: 13
+                Chance: 7000
+              - Refine: 14
+                Chance: 7000
+              - Refine: 15
+                Chance: 7000
+              - Refine: 16
+                Chance: 7000
+              - Refine: 17
+                Chance: 7000
+              - Refine: 18
+                Chance: 7000
+              - Refine: 19
+                Chance: 7000
+              - Refine: 20
+                Chance: 7000
+            Bonus: 10
+            Catalyst:
+                Item: Blacksmith_Blessing
+                AmountPerStep: 1
+                MaximumSteps: 10
+                ChanceIncrease: 300
+            Options:
+              - Option: 0
+                Item: Blue_Jewel
+                Amount: 1
+                Zeny: 175000
+                BreakingRate: 10000
+              - Option: 1
+                Item: Blue_Jewel
+                Amount: 5
+                Zeny: 875000
+                DowngradeAmount: 1
+              - Option: 2
+                Item: Blue_Jewel
+                Amount: 10
+                Zeny: 1750000
+          - Grade: D
+            Chances:
+              - Refine: 10
+                Chance: 7000
+              - Refine: 11
+                Chance: 7000
+              - Refine: 12
+                Chance: 7000
+              - Refine: 13
+                Chance: 7000
+              - Refine: 14
+                Chance: 7000
+              - Refine: 15
+                Chance: 7000
+              - Refine: 16
+                Chance: 7000
+              - Refine: 17
+                Chance: 7000
+              - Refine: 18
+                Chance: 7000
+              - Refine: 19
+                Chance: 7000
+              - Refine: 20
+                Chance: 7000
+            Bonus: 30
+            Catalyst:
+                Item: Blacksmith_Blessing
+                AmountPerStep: 1
+                MaximumSteps: 10
+                ChanceIncrease: 300
+            Options:
+              - Option: 0
+                Item: Golden_Jewel
+                Amount: 1
+                Zeny: 175000
+                BreakingRate: 10000
+              - Option: 1
+                Item: Golden_Jewel
+                Amount: 5
+                Zeny: 875000
+                DowngradeAmount: 1
+              - Option: 2
+                Item: Golden_Jewel
+                Amount: 10
+                Zeny: 1750000
+          - Grade: C 
+            Chances:
+              - Refine: 10
+                Chance: 7000
+              - Refine: 11
+                Chance: 7000
+              - Refine: 12
+                Chance: 7000
+              - Refine: 13
+                Chance: 7000
+              - Refine: 14
+                Chance: 7000
+              - Refine: 15
+                Chance: 7000
+              - Refine: 16
+                Chance: 7000
+              - Refine: 17
+                Chance: 7000
+              - Refine: 18
+                Chance: 7000
+              - Refine: 19
+                Chance: 7000
+              - Refine: 20
+                Chance: 7000
+            Bonus: 50
+            Catalyst:
+                Item: Blacksmith_Blessing
+                AmountPerStep: 1
+                MaximumSteps: 10
+                ChanceIncrease: 300
+            Options:
+              - Option: 0
+                Item: Bluish_Green_Jewel
+                Amount: 1
+                Zeny: 175000
+                BreakingRate: 10000
+              - Option: 1
+                Item: Bluish_Green_Jewel
+                Amount: 5
+                Zeny: 875000
+                DowngradeAmount: 1
+              - Option: 2
+                Item: Bluish_Green_Jewel
+                Amount: 10
+                Zeny: 1750000
+          - Grade: B
+            Chances:
+              - Refine: 10
+                Chance: 7000
+              - Refine: 11
+                Chance: 7000
+              - Refine: 12
+                Chance: 7000
+              - Refine: 13
+                Chance: 7000
+              - Refine: 14
+                Chance: 7000
+              - Refine: 15
+                Chance: 7000
+              - Refine: 16
+                Chance: 7000
+              - Refine: 17
+                Chance: 7000
+              - Refine: 18
+                Chance: 7000
+              - Refine: 19
+                Chance: 7000
+              - Refine: 20
+                Chance: 7000
+            Bonus: 100
+            Catalyst:
+                Item: Blacksmith_Blessing
+                AmountPerStep: 1
+                MaximumSteps: 10
+                ChanceIncrease: 300
+            Options:
+              - Option: 0
+                Item: Azure_Jewel
+                Amount: 1
+                Zeny: 175000
+                BreakingRate: 10000
+              - Option: 1
+                Item: Azure_Jewel
+                Amount: 5
+                Zeny: 875000
+                DowngradeAmount: 1
+              - Option: 2
+                Item: Azure_Jewel 
+                Amount: 10 
+                Zeny: 1750000
+          - Grade: A
+            Chances:
+              - Refine: 10
+                Chance: 4000
+              - Refine: 11
+                Chance: 4000
+              - Refine: 12
+                Chance: 4000
+              - Refine: 13
+                Chance: 4000
+              - Refine: 14
+                Chance: 4000
+              - Refine: 15
+                Chance: 4000
+              - Refine: 16
+                Chance: 4000
+              - Refine: 17
+                Chance: 4000
+              - Refine: 18
+                Chance: 4000
+              - Refine: 19
+                Chance: 4000
+              - Refine: 20
+                Chance: 4000
+            Bonus: 150
+            Catalyst:
+                Item: Blacksmith_Blessing
+                AmountPerStep: 1
+                MaximumSteps: 10
+                ChanceIncrease: 300
+            Options:
+              - Option: 0 
+                Item: Cardinal_Jewel 
+                Amount: 1 
+                Zeny: 175000 
+                BreakingRate: 10000 
+              - Option: 1 
+                Item: Cardinal_Jewel 
+                Amount: 5 
+                Zeny: 875000 
+                DowngradeAmount: 1 
+              - Option: 2 
+                Item: Cardinal_Jewel 
+                Amount: 10 
+                Zeny: 1750000
+          - Grade: R
+            Chances:
+              - Refine: 10
+                Chance: 4000
+              - Refine: 11
+                Chance: 4000
+              - Refine: 12
+                Chance: 4000
+              - Refine: 13
+                Chance: 4000
+              - Refine: 14
+                Chance: 4000
+              - Refine: 15
+                Chance: 4000
+              - Refine: 16
+                Chance: 4000
+              - Refine: 17
+                Chance: 4000
+              - Refine: 18
+                Chance: 4000
+              - Refine: 19
+                Chance: 4000
+              - Refine: 20
+                Chance: 4000
+            Bonus: 250
+            Catalyst:
+                Item: Blacksmith_Blessing
+                AmountPerStep: 1
+                MaximumSteps: 10
+                ChanceIncrease: 100
+            Options:
+              - Option: 0 
+                Item: Crystal_Jewel 
+                Amount: 1 
+                Zeny: 175000 
+                BreakingRate: 10000 
+              - Option: 1 
+                Item: Crystal_Jewel 
+                Amount: 5 
+                Zeny: 875000 
+                DowngradeAmount: 1 
+              - Option: 2 
+                Item: Crystal_Jewel 
+                Amount: 10 
+                Zeny: 1750000
+          - Grade: S
+            Chances:
+              - Refine: 10
+                Chance: 2000
+              - Refine: 11
+                Chance: 2000
+              - Refine: 12
+                Chance: 2000
+              - Refine: 13
+                Chance: 2000
+              - Refine: 14
+                Chance: 2000
+              - Refine: 15
+                Chance: 2000
+              - Refine: 16
+                Chance: 2000
+              - Refine: 17
+                Chance: 2000
+              - Refine: 18
+                Chance: 2000
+              - Refine: 19
+                Chance: 2000
+              - Refine: 20
+                Chance: 4000
+            Bonus: 400
+            Catalyst:
+                Item: Blacksmith_Blessing
+                AmountPerStep: 1
+                MaximumSteps: 10
+                ChanceIncrease: 100
+            Options:
+              - Option: 0 
+                Item: Amber 
+                Amount: 1 
+                Zeny: 175000 
+                BreakingRate: 10000 
+              - Option: 1 
+                Item: Amber 
+                Amount: 5 
+                Zeny: 875000 
+                DowngradeAmount: 1 
+              - Option: 1 
+                Item: Amber
+                Amount: 10 
+                Zeny: 1750000
+              - Option: 2 
+                Item: Amber
+                Amount: 15 
+                Zeny: 2625000
+              - Option: 3 
+                Item: Amber
+                Amount: 20 
+                Zeny: 3500000
+      - Level: 2
+        Grades:
+          - Grade: None
+            Chances:
+              - Refine: 10
+                Chance: 7000
+              - Refine: 11
+                Chance: 7000
+              - Refine: 12
+                Chance: 7000
+              - Refine: 13
+                Chance: 7000
+              - Refine: 14
+                Chance: 7000
+              - Refine: 15
+                Chance: 7000
+              - Refine: 16
+                Chance: 7000
+              - Refine: 17
+                Chance: 7000
+              - Refine: 18
+                Chance: 7000
+              - Refine: 19
+                Chance: 7000
+              - Refine: 20
+                Chance: 7000
+            Bonus: 10
+            Catalyst:
+                Item: Blacksmith_Blessing
+                AmountPerStep: 1
+                MaximumSteps: 10
+                ChanceIncrease: 300
+            Options:
+              - Option: 0
+                Item: Blue_Jewel
+                Amount: 1
+                Zeny: 175000
+                BreakingRate: 10000
+              - Option: 1
+                Item: Blue_Jewel
+                Amount: 5
+                Zeny: 875000
+                DowngradeAmount: 1
+              - Option: 2
+                Item: Blue_Jewel
+                Amount: 10
+                Zeny: 1750000
+          - Grade: D
+            Chances:
+              - Refine: 10
+                Chance: 7000
+              - Refine: 11
+                Chance: 7000
+              - Refine: 12
+                Chance: 7000
+              - Refine: 13
+                Chance: 7000
+              - Refine: 14
+                Chance: 7000
+              - Refine: 15
+                Chance: 7000
+              - Refine: 16
+                Chance: 7000
+              - Refine: 17
+                Chance: 7000
+              - Refine: 18
+                Chance: 7000
+              - Refine: 19
+                Chance: 7000
+              - Refine: 20
+                Chance: 7000
+            Bonus: 30
+            Catalyst:
+                Item: Blacksmith_Blessing
+                AmountPerStep: 1
+                MaximumSteps: 10
+                ChanceIncrease: 300
+            Options:
+              - Option: 0
+                Item: Golden_Jewel
+                Amount: 1
+                Zeny: 175000
+                BreakingRate: 10000
+              - Option: 1
+                Item: Golden_Jewel
+                Amount: 5
+                Zeny: 875000
+                DowngradeAmount: 1
+              - Option: 2
+                Item: Golden_Jewel
+                Amount: 10
+                Zeny: 1750000
+          - Grade: C 
+            Chances:
+              - Refine: 10
+                Chance: 7000
+              - Refine: 11
+                Chance: 7000
+              - Refine: 12
+                Chance: 7000
+              - Refine: 13
+                Chance: 7000
+              - Refine: 14
+                Chance: 7000
+              - Refine: 15
+                Chance: 7000
+              - Refine: 16
+                Chance: 7000
+              - Refine: 17
+                Chance: 7000
+              - Refine: 18
+                Chance: 7000
+              - Refine: 19
+                Chance: 7000
+              - Refine: 20
+                Chance: 7000
+            Bonus: 50
+            Catalyst:
+                Item: Blacksmith_Blessing
+                AmountPerStep: 1
+                MaximumSteps: 10
+                ChanceIncrease: 300
+            Options:
+              - Option: 0
+                Item: Bluish_Green_Jewel
+                Amount: 1
+                Zeny: 175000
+                BreakingRate: 10000
+              - Option: 1
+                Item: Bluish_Green_Jewel
+                Amount: 5
+                Zeny: 875000
+                DowngradeAmount: 1
+              - Option: 2
+                Item: Bluish_Green_Jewel
+                Amount: 10
+                Zeny: 1750000
+          - Grade: B
+            Chances:
+              - Refine: 10
+                Chance: 7000
+              - Refine: 11
+                Chance: 7000
+              - Refine: 12
+                Chance: 7000
+              - Refine: 13
+                Chance: 7000
+              - Refine: 14
+                Chance: 7000
+              - Refine: 15
+                Chance: 7000
+              - Refine: 16
+                Chance: 7000
+              - Refine: 17
+                Chance: 7000
+              - Refine: 18
+                Chance: 7000
+              - Refine: 19
+                Chance: 7000
+              - Refine: 20
+                Chance: 7000
+            Bonus: 100
+            Catalyst:
+                Item: Blacksmith_Blessing
+                AmountPerStep: 1
+                MaximumSteps: 10
+                ChanceIncrease: 300
+            Options:
+              - Option: 0
+                Item: Azure_Jewel
+                Amount: 1
+                Zeny: 175000
+                BreakingRate: 10000
+              - Option: 1
+                Item: Azure_Jewel
+                Amount: 5
+                Zeny: 875000
+                DowngradeAmount: 1
+              - Option: 2
+                Item: Azure_Jewel 
+                Amount: 10 
+                Zeny: 1750000
+          - Grade: A
+            Chances:
+              - Refine: 10
+                Chance: 4000
+              - Refine: 11
+                Chance: 4000
+              - Refine: 12
+                Chance: 4000
+              - Refine: 13
+                Chance: 4000
+              - Refine: 14
+                Chance: 4000
+              - Refine: 15
+                Chance: 4000
+              - Refine: 16
+                Chance: 4000
+              - Refine: 17
+                Chance: 4000
+              - Refine: 18
+                Chance: 4000
+              - Refine: 19
+                Chance: 4000
+              - Refine: 20
+                Chance: 4000
+            Bonus: 150
+            Catalyst:
+                Item: Blacksmith_Blessing
+                AmountPerStep: 1
+                MaximumSteps: 10
+                ChanceIncrease: 300
+            Options:
+              - Option: 0 
+                Item: Cardinal_Jewel 
+                Amount: 1 
+                Zeny: 175000 
+                BreakingRate: 10000 
+              - Option: 1 
+                Item: Cardinal_Jewel 
+                Amount: 5 
+                Zeny: 875000 
+                DowngradeAmount: 1 
+              - Option: 2 
+                Item: Cardinal_Jewel 
+                Amount: 10 
+                Zeny: 1750000
+          - Grade: R
+            Chances:
+              - Refine: 10
+                Chance: 4000
+              - Refine: 11
+                Chance: 4000
+              - Refine: 12
+                Chance: 4000
+              - Refine: 13
+                Chance: 4000
+              - Refine: 14
+                Chance: 4000
+              - Refine: 15
+                Chance: 4000
+              - Refine: 16
+                Chance: 4000
+              - Refine: 17
+                Chance: 4000
+              - Refine: 18
+                Chance: 4000
+              - Refine: 19
+                Chance: 4000
+              - Refine: 20
+                Chance: 4000
+            Bonus: 250
+            Catalyst:
+                Item: Blacksmith_Blessing
+                AmountPerStep: 1
+                MaximumSteps: 10
+                ChanceIncrease: 100
+            Options:
+              - Option: 0 
+                Item: Crystal_Jewel 
+                Amount: 1 
+                Zeny: 175000 
+                BreakingRate: 10000 
+              - Option: 1 
+                Item: Crystal_Jewel 
+                Amount: 5 
+                Zeny: 875000 
+                DowngradeAmount: 1 
+              - Option: 2 
+                Item: Crystal_Jewel 
+                Amount: 10 
+                Zeny: 1750000
+          - Grade: S
+            Chances:
+              - Refine: 10
+                Chance: 2000
+              - Refine: 11
+                Chance: 2000
+              - Refine: 12
+                Chance: 2000
+              - Refine: 13
+                Chance: 2000
+              - Refine: 14
+                Chance: 2000
+              - Refine: 15
+                Chance: 2000
+              - Refine: 16
+                Chance: 2000
+              - Refine: 17
+                Chance: 2000
+              - Refine: 18
+                Chance: 2000
+              - Refine: 19
+                Chance: 2000
+              - Refine: 20
+                Chance: 4000
+            Bonus: 400
+            Catalyst:
+                Item: Blacksmith_Blessing
+                AmountPerStep: 1
+                MaximumSteps: 10
+                ChanceIncrease: 100
+            Options:
+              - Option: 0 
+                Item: Amber 
+                Amount: 1 
+                Zeny: 175000 
+                BreakingRate: 10000 
+              - Option: 1 
+                Item: Amber 
+                Amount: 5 
+                Zeny: 875000 
+                DowngradeAmount: 1 
+              - Option: 1 
+                Item: Amber
+                Amount: 10 
+                Zeny: 1750000
+      - Level: 3
+        Grades:
+          - Grade: None
+            Chances:
+              - Refine: 10
+                Chance: 5000
+              - Refine: 11
+                Chance: 5500
+              - Refine: 12
+                Chance: 6000
+              - Refine: 13
+                Chance: 6500
+              - Refine: 14
+                Chance: 7000
+              - Refine: 15
+                Chance: 7500
+              - Refine: 16
+                Chance: 8000
+              - Refine: 17
+                Chance: 8500
+              - Refine: 18
+                Chance: 9000
+              - Refine: 19
+                Chance: 9500
+              - Refine: 20
+                Chance: 10000
+            Bonus: 10
+            Catalyst:
+                Item: Blacksmith_Blessing
+                AmountPerStep: 1
+                MaximumSteps: 10
+                ChanceIncrease: 200
+            Options:
+              - Option: 0
+                Item: Blue_Jewel
+                Amount: 1
+                Zeny: 175000
+                BreakingRate: 10000
+              - Option: 1
+                Item: Blue_Jewel
+                Amount: 5
+                Zeny: 875000
+                DowngradeAmount: 1
+              - Option: 2
+                Item: Blue_Jewel
+                Amount: 10
+                Zeny: 1750000
+          - Grade: D
+            Chances:
+              - Refine: 10
+                Chance: 5000
+              - Refine: 11
+                Chance: 5500
+              - Refine: 12
+                Chance: 6000
+              - Refine: 13
+                Chance: 6500
+              - Refine: 14
+                Chance: 7000
+              - Refine: 15
+                Chance: 7500
+              - Refine: 16
+                Chance: 8000
+              - Refine: 17
+                Chance: 8500
+              - Refine: 18
+                Chance: 9000
+              - Refine: 19
+                Chance: 9500
+              - Refine: 20
+                Chance: 10000
+            Bonus: 30
+            Catalyst:
+                Item: Blacksmith_Blessing
+                AmountPerStep: 1
+                MaximumSteps: 10
+                ChanceIncrease: 200
+            Options:
+              - Option: 0
+                Item: Golden_Jewel
+                Amount: 1
+                Zeny: 175000
+                BreakingRate: 10000
+              - Option: 1
+                Item: Golden_Jewel
+                Amount: 5
+                Zeny: 875000
+                DowngradeAmount: 1
+              - Option: 2
+                Item: Golden_Jewel
+                Amount: 10
+                Zeny: 1750000
+          - Grade: C 
+            Chances:
+              - Refine: 10
+                Chance: 5000
+              - Refine: 11
+                Chance: 5500
+              - Refine: 12
+                Chance: 6000
+              - Refine: 13
+                Chance: 6500
+              - Refine: 14
+                Chance: 7000
+              - Refine: 15
+                Chance: 7500
+              - Refine: 16
+                Chance: 8000
+              - Refine: 17
+                Chance: 8500
+              - Refine: 18
+                Chance: 9000
+              - Refine: 19
+                Chance: 9500
+              - Refine: 20
+                Chance: 10000
+            Bonus: 50
+            Catalyst:
+                Item: Blacksmith_Blessing
+                AmountPerStep: 1
+                MaximumSteps: 10
+                ChanceIncrease: 150
+            Options:
+              - Option: 0
+                Item: Bluish_Green_Jewel
+                Amount: 1
+                Zeny: 175000
+                BreakingRate: 10000
+              - Option: 1
+                Item: Bluish_Green_Jewel
+                Amount: 5
+                Zeny: 875000
+                DowngradeAmount: 1
+              - Option: 2
+                Item: Bluish_Green_Jewel
+                Amount: 10
+                Zeny: 1750000
+          - Grade: B
+            Chances:
+              - Refine: 10
+                Chance: 5000
+              - Refine: 11
+                Chance: 5500
+              - Refine: 12
+                Chance: 6000
+              - Refine: 13
+                Chance: 6500
+              - Refine: 14
+                Chance: 7000
+              - Refine: 15
+                Chance: 7500
+              - Refine: 16
+                Chance: 8000
+              - Refine: 17
+                Chance: 8500
+              - Refine: 18
+                Chance: 9000
+              - Refine: 19
+                Chance: 9500
+              - Refine: 20
+                Chance: 10000
+            Bonus: 100
+            Catalyst:
+                Item: Blacksmith_Blessing
+                AmountPerStep: 1
+                MaximumSteps: 10
+                ChanceIncrease: 150
+            Options:
+              - Option: 0
+                Item: Azure_Jewel
+                Amount: 1
+                Zeny: 175000
+                BreakingRate: 10000
+              - Option: 1
+                Item: Azure_Jewel
+                Amount: 5
+                Zeny: 875000
+                DowngradeAmount: 1
+              - Option: 2
+                Item: Azure_Jewel 
+                Amount: 10 
+                Zeny: 1750000
+          - Grade: A
+            Chances:
+              - Refine: 10
+                Chance: 3000
+              - Refine: 11
+                Chance: 3300
+              - Refine: 12
+                Chance: 3600
+              - Refine: 13
+                Chance: 3900
+              - Refine: 14
+                Chance: 4200
+              - Refine: 15
+                Chance: 4500
+              - Refine: 16
+                Chance: 4800
+              - Refine: 17
+                Chance: 5200
+              - Refine: 18
+                Chance: 5500
+              - Refine: 19
+                Chance: 5800
+              - Refine: 20
+                Chance: 6100
+            Bonus: 150
+            Catalyst:
+                Item: Blacksmith_Blessing
+                AmountPerStep: 1
+                MaximumSteps: 10
+                ChanceIncrease: 100
+            Options:
+              - Option: 0 
+                Item: Cardinal_Jewel 
+                Amount: 1 
+                Zeny: 175000 
+                BreakingRate: 10000 
+              - Option: 1 
+                Item: Cardinal_Jewel 
+                Amount: 5 
+                Zeny: 875000 
+                DowngradeAmount: 1 
+              - Option: 2 
+                Item: Cardinal_Jewel 
+                Amount: 10 
+                Zeny: 1750000
+          - Grade: R
+            Chances:
+              - Refine: 10
+                Chance: 2000
+              - Refine: 11
+                Chance: 2200
+              - Refine: 12
+                Chance: 2400
+              - Refine: 13
+                Chance: 2600
+              - Refine: 14
+                Chance: 2800
+              - Refine: 15
+                Chance: 3000
+              - Refine: 16
+                Chance: 3200
+              - Refine: 17
+                Chance: 3400
+              - Refine: 18
+                Chance: 3600
+              - Refine: 19
+                Chance: 3800
+              - Refine: 20
+                Chance: 4000
+            Bonus: 250
+            Catalyst:
+                Item: Blacksmith_Blessing
+                AmountPerStep: 1
+                MaximumSteps: 10
+                ChanceIncrease: 100
+            Options:
+              - Option: 0 
+                Item: Crystal_Jewel 
+                Amount: 1 
+                Zeny: 175000 
+                BreakingRate: 10000 
+              - Option: 1 
+                Item: Crystal_Jewel 
+                Amount: 5 
+                Zeny: 875000 
+                DowngradeAmount: 1 
+              - Option: 2 
+                Item: Crystal_Jewel 
+                Amount: 10 
+                Zeny: 1750000
+          - Grade: S
+            Chances:
+              - Refine: 10
+                Chance: 1000
+              - Refine: 11
+                Chance: 1100
+              - Refine: 12
+                Chance: 1200
+              - Refine: 13
+                Chance: 1300
+              - Refine: 14
+                Chance: 1400
+              - Refine: 15
+                Chance: 1500
+              - Refine: 16
+                Chance: 1600
+              - Refine: 17
+                Chance: 1700
+              - Refine: 18
+                Chance: 1800
+              - Refine: 19
+                Chance: 1900
+              - Refine: 20
+                Chance: 2000
+            Bonus: 400
+            Catalyst:
+                Item: Blacksmith_Blessing
+                AmountPerStep: 1
+                MaximumSteps: 10
+                ChanceIncrease: 100
+            Options:
+              - Option: 0 
+                Item: Amber 
+                Amount: 1 
+                Zeny: 175000 
+                BreakingRate: 10000 
+              - Option: 1 
+                Item: Amber 
+                Amount: 5 
+                Zeny: 875000 
+                DowngradeAmount: 1 
+              - Option: 1 
+                Item: Amber
+                Amount: 10 
+                Zeny: 1750000
+      - Level: 4
+        Grades:
+          - Grade: None
+            Chances:
+              - Refine: 10
+                Chance: 5000
+              - Refine: 11
+                Chance: 5500
+              - Refine: 12
+                Chance: 6000
+              - Refine: 13
+                Chance: 6500
+              - Refine: 14
+                Chance: 7000
+              - Refine: 15
+                Chance: 7500
+              - Refine: 16
+                Chance: 8000
+              - Refine: 17
+                Chance: 8500
+              - Refine: 18
+                Chance: 9000
+              - Refine: 19
+                Chance: 9500
+              - Refine: 20
+                Chance: 10000
+            Bonus: 10
+            Catalyst:
+                Item: Blacksmith_Blessing
+                AmountPerStep: 1
+                MaximumSteps: 10
+                ChanceIncrease: 200
+            Options:
+              - Option: 0
+                Item: Blue_Jewel
+                Amount: 1
+                Zeny: 175000
+                BreakingRate: 10000
+              - Option: 1
+                Item: Blue_Jewel
+                Amount: 5
+                Zeny: 875000
+                DowngradeAmount: 1
+              - Option: 2
+                Item: Blue_Jewel
+                Amount: 10
+                Zeny: 1750000
+          - Grade: D
+            Chances:
+              - Refine: 10
+                Chance: 5000
+              - Refine: 11
+                Chance: 5500
+              - Refine: 12
+                Chance: 6000
+              - Refine: 13
+                Chance: 6500
+              - Refine: 14
+                Chance: 7000
+              - Refine: 15
+                Chance: 7500
+              - Refine: 16
+                Chance: 8000
+              - Refine: 17
+                Chance: 8500
+              - Refine: 18
+                Chance: 9000
+              - Refine: 19
+                Chance: 9500
+              - Refine: 20
+                Chance: 10000
+            Bonus: 30
+            Catalyst:
+                Item: Blacksmith_Blessing
+                AmountPerStep: 1
+                MaximumSteps: 10
+                ChanceIncrease: 200
+            Options:
+              - Option: 0
+                Item: Golden_Jewel
+                Amount: 1
+                Zeny: 175000
+                BreakingRate: 10000
+              - Option: 1
+                Item: Golden_Jewel
+                Amount: 5
+                Zeny: 875000
+                DowngradeAmount: 1
+              - Option: 2
+                Item: Golden_Jewel
+                Amount: 10
+                Zeny: 1750000
+          - Grade: C 
+            Chances:
+              - Refine: 10
+                Chance: 5000
+              - Refine: 11
+                Chance: 5500
+              - Refine: 12
+                Chance: 6000
+              - Refine: 13
+                Chance: 6500
+              - Refine: 14
+                Chance: 7000
+              - Refine: 15
+                Chance: 7500
+              - Refine: 16
+                Chance: 8000
+              - Refine: 17
+                Chance: 8500
+              - Refine: 18
+                Chance: 9000
+              - Refine: 19
+                Chance: 9500
+              - Refine: 20
+                Chance: 10000
+            Bonus: 50
+            Catalyst:
+                Item: Blacksmith_Blessing
+                AmountPerStep: 1
+                MaximumSteps: 10
+                ChanceIncrease: 150
+            Options:
+              - Option: 0
+                Item: Bluish_Green_Jewel
+                Amount: 1
+                Zeny: 175000
+                BreakingRate: 10000
+              - Option: 1
+                Item: Bluish_Green_Jewel
+                Amount: 5
+                Zeny: 875000
+                DowngradeAmount: 1
+              - Option: 2
+                Item: Bluish_Green_Jewel
+                Amount: 10
+                Zeny: 1750000
+          - Grade: B
+            Chances:
+              - Refine: 10
+                Chance: 5000
+              - Refine: 11
+                Chance: 5500
+              - Refine: 12
+                Chance: 6000
+              - Refine: 13
+                Chance: 6500
+              - Refine: 14
+                Chance: 7000
+              - Refine: 15
+                Chance: 7500
+              - Refine: 16
+                Chance: 8000
+              - Refine: 17
+                Chance: 8500
+              - Refine: 18
+                Chance: 9000
+              - Refine: 19
+                Chance: 9500
+              - Refine: 20
+                Chance: 10000
+            Bonus: 100
+            Catalyst:
+                Item: Blacksmith_Blessing
+                AmountPerStep: 1
+                MaximumSteps: 10
+                ChanceIncrease: 150
+            Options:
+              - Option: 0
+                Item: Azure_Jewel
+                Amount: 1
+                Zeny: 175000
+                BreakingRate: 10000
+              - Option: 1
+                Item: Azure_Jewel
+                Amount: 5
+                Zeny: 875000
+                DowngradeAmount: 1
+              - Option: 2
+                Item: Azure_Jewel 
+                Amount: 10 
+                Zeny: 1750000
+          - Grade: A
+            Chances:
+              - Refine: 10
+                Chance: 3000
+              - Refine: 11
+                Chance: 3300
+              - Refine: 12
+                Chance: 3600
+              - Refine: 13
+                Chance: 3900
+              - Refine: 14
+                Chance: 4200
+              - Refine: 15
+                Chance: 4500
+              - Refine: 16
+                Chance: 4800
+              - Refine: 17
+                Chance: 5200
+              - Refine: 18
+                Chance: 5500
+              - Refine: 19
+                Chance: 5800
+              - Refine: 20
+                Chance: 6100
+            Bonus: 150
+            Catalyst:
+                Item: Blacksmith_Blessing
+                AmountPerStep: 1
+                MaximumSteps: 10
+                ChanceIncrease: 100
+            Options:
+              - Option: 0 
+                Item: Cardinal_Jewel 
+                Amount: 1 
+                Zeny: 175000 
+                BreakingRate: 10000 
+              - Option: 1 
+                Item: Cardinal_Jewel 
+                Amount: 5 
+                Zeny: 875000 
+                DowngradeAmount: 1 
+              - Option: 2 
+                Item: Cardinal_Jewel 
+                Amount: 10 
+                Zeny: 1750000
+          - Grade: R
+            Chances:
+              - Refine: 10
+                Chance: 2000
+              - Refine: 11
+                Chance: 2200
+              - Refine: 12
+                Chance: 2400
+              - Refine: 13
+                Chance: 2600
+              - Refine: 14
+                Chance: 2800
+              - Refine: 15
+                Chance: 3000
+              - Refine: 16
+                Chance: 3200
+              - Refine: 17
+                Chance: 3400
+              - Refine: 18
+                Chance: 3600
+              - Refine: 19
+                Chance: 3800
+              - Refine: 20
+                Chance: 4000
+            Bonus: 250
+            Catalyst:
+                Item: Blacksmith_Blessing
+                AmountPerStep: 1
+                MaximumSteps: 10
+                ChanceIncrease: 100
+            Options:
+              - Option: 0 
+                Item: Crystal_Jewel 
+                Amount: 1 
+                Zeny: 175000 
+                BreakingRate: 10000 
+              - Option: 1 
+                Item: Crystal_Jewel 
+                Amount: 5 
+                Zeny: 875000 
+                DowngradeAmount: 1 
+              - Option: 2 
+                Item: Crystal_Jewel 
+                Amount: 10 
+                Zeny: 1750000
+          - Grade: S
+            Chances:
+              - Refine: 10
+                Chance: 1000
+              - Refine: 11
+                Chance: 1100
+              - Refine: 12
+                Chance: 1200
+              - Refine: 13
+                Chance: 1300
+              - Refine: 14
+                Chance: 1400
+              - Refine: 15
+                Chance: 1500
+              - Refine: 16
+                Chance: 1600
+              - Refine: 17
+                Chance: 1700
+              - Refine: 18
+                Chance: 1800
+              - Refine: 19
+                Chance: 1900
+              - Refine: 20
+                Chance: 2000
+            Bonus: 400
+            Catalyst:
+                Item: Blacksmith_Blessing
+                AmountPerStep: 1
+                MaximumSteps: 10
+                ChanceIncrease: 100
+            Options:
+              - Option: 0 
+                Item: Amber 
+                Amount: 1 
+                Zeny: 175000 
+                BreakingRate: 10000 
+              - Option: 1 
+                Item: Amber 
+                Amount: 5 
+                Zeny: 875000 
+                DowngradeAmount: 1 
+              - Option: 1 
+                Item: Amber
+                Amount: 10 
+                Zeny: 1750000
+      - Level: 5
+        Grades:
+          - Grade: None
+            Chances:
+              - Refine: 9
+                Chance: 1000
+              - Refine: 10
+                Chance: 2000
+              - Refine: 11
+                Chance: 7000
+              - Refine: 12
+                Chance: 7000
+              - Refine: 13
+                Chance: 7000
+              - Refine: 14
+                Chance: 7000
+              - Refine: 15
+                Chance: 7000
+              - Refine: 16
+                Chance: 8000
+              - Refine: 17
+                Chance: 8000
+              - Refine: 18
+                Chance: 8000
+              - Refine: 19
+                Chance: 8000
+              - Refine: 20
+                Chance: 8000
+            Bonus: 10
+            Catalyst:
+                Item: Blessed_Etel_Dust
+                AmountPerStep: 1
+                MaximumSteps: 10
+                ChanceIncrease: 100
+            Options:
+              - Option: 0
+                Item: Etel_Skyblue_Jewel
+                Amount: 1
+                Zeny: 175000
+                BreakingRate: 10000
+              - Option: 1
+                Item: Etel_Skyblue_Jewel
+                Amount: 5
+                Zeny: 875000
+          - Grade: D
+            Chances:
+              - Refine: 10
+                Chance: 2000
+              - Refine: 11
+                Chance: 6000
+              - Refine: 12
+                Chance: 6000
+              - Refine: 13
+                Chance: 6000
+              - Refine: 14
+                Chance: 6000
+              - Refine: 15
+                Chance: 6000
+              - Refine: 16
+                Chance: 7000
+              - Refine: 17
+                Chance: 7000
+              - Refine: 18
+                Chance: 7000
+              - Refine: 19
+                Chance: 7000
+              - Refine: 20
+                Chance: 7000
+            Bonus: 30
+            Catalyst:
+                Item: Blessed_Etel_Dust
+                AmountPerStep: 3
+                MaximumSteps: 10
+                ChanceIncrease: 100
+            Options:
+              - Option: 0
+                Item: Etel_Topaz
+                Amount: 1
+                Zeny: 175000
+                BreakingRate: 10000
+              - Option: 1
+                Item: Etel_Topaz
+                Amount: 5
+                Zeny: 875000
+          - Grade: C
+            Chances:
+              - Refine: 11
+                Chance: 5000
+              - Refine: 12
+                Chance: 5000
+              - Refine: 13
+                Chance: 5000
+              - Refine: 14
+                Chance: 5000
+              - Refine: 15
+                Chance: 5000
+              - Refine: 16
+                Chance: 6000
+              - Refine: 17
+                Chance: 6000
+              - Refine: 18
+                Chance: 6000
+              - Refine: 19
+                Chance: 6000
+              - Refine: 20
+                Chance: 6000
+            Bonus: 50
+            AnnounceFail: true
+            Catalyst:
+                Item: Blessed_Etel_Dust
+                AmountPerStep: 5
+                MaximumSteps: 10
+                ChanceIncrease: 100
+            Options:
+              - Option: 0
+                Item: Etel_Violet_Jewel
+                Amount: 1
+                Zeny: 175000
+                BreakingRate: 10000
+              - Option: 1
+                Item: Etel_Violet_Jewel
+                Amount: 5
+                Zeny: 875000
+          - Grade: B
+            Chances:
+              - Refine: 11
+                Chance: 4000
+              - Refine: 12
+                Chance: 4000
+              - Refine: 13
+                Chance: 4000
+              - Refine: 14
+                Chance: 4000
+              - Refine: 15
+                Chance: 4000
+              - Refine: 16
+                Chance: 5000
+              - Refine: 17
+                Chance: 5000
+              - Refine: 18
+                Chance: 5000
+              - Refine: 19
+                Chance: 5000
+              - Refine: 20
+                Chance: 5000
+            Bonus: 100
+            AnnounceFail: true
+            Catalyst:
+                Item: Blessed_Etel_Dust
+                AmountPerStep: 7
+                MaximumSteps: 10
+                ChanceIncrease: 100
+            Options:
+              - Option: 0
+                Item: Etel_Amber
+                Amount: 2
+                Zeny: 175000
+                BreakingRate: 10000
+              - Option: 1
+                Item: Etel_Amber
+                Amount: 10
+                Zeny: 875000
