@@ -843,7 +843,11 @@
 	export_constant2("bAddItemSPHealRate", SP_ADD_ITEM_SPHEAL_RATE);
 	export_constant2("bAddItemGroupSPHealRate", SP_ADD_ITEMGROUP_SPHEAL_RATE);
 	export_constant2("bWeaponSubSize", SP_WEAPON_SUBSIZE);
-
+	
+	// [Custom Bonus]
+	
+	export_constant2("bIgnoreDef",SP_IGNORE_DEF_POINTS);
+	export_constant2("bIgnoreMDef",SP_IGNORE_MDEF_POINTS);
 	/* equip indices */
 	export_constant(EQI_COMPOUND_ON);
 	export_constant(EQI_HEAD_TOP);

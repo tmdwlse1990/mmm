@@ -113,10 +113,10 @@ Body:
       bonus bMdef,adv_mdef*3;
       bonus bHit,adv_hit*3;
       bonus bFlee,adv_flee*3;
-      bonus bCritical,adv_Crit;
-      bonus baspdrate,adv_aspd;
       bonus bmaxhp,adv_hp*100;
       bonus bmaxsp,adv_sp*25;
+      bonus bIgnoreDef,adv_igdef;
+      bonus bIgnoreMDef,adv_igmdef;
   - Id: 2000002
     AegisName: S_Alpha
     Name: S

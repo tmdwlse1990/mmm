@@ -150,6 +150,42 @@ Body:
       - Item: Gold_Picky_Card
         Rate: 1
         StealProtected: true
+  - Id: 21634
+    AegisName: HIDDEN_MOB_WARP_GREEN
+    Name: Monster
+    JapaneseName: Hidden Mob
+    Level: 151
+    Hp: 10000
+    Sp: 200
+    Attack2: 1000
+    Defense: 200
+    MagicDefense: 10
+    Str: 200
+    Agi: 200
+    Vit: 200
+    Int: 200
+    Dex: 200
+    Luk: 200
+    AttackRange: 7
+    SkillRange: 12
+    ChaseRange: 12
+    Size: Small
+    Race: Insect
+    RaceGroups:
+      Ogh_Hidden: true
+    Element: Ghost
+    ElementLevel: 4
+    WalkSpeed: 1000
+    AttackMotion: 1000
+    ClientAttackMotion: 768
+    Ai: 10
+    Class: Battlefield
+    Modes:
+      Detector: true
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
 # eAthena Dev Team
 #=============================================================
 #  - Id: 1900

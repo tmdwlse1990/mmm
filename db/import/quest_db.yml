@@ -59,6 +59,16 @@ Body: #ให้ใช้ ID ไม่เกิน 1000
         Count: 1000
       - Mob: POPORING
         Count: 1000
+  - Id: 11
+    Title: Rank E Condition
+    Targets: 
+      - Mob: MD_KING_PORING
+        Count: 1
+    Drops:
+      - Mob: MD_KING_PORING
+        Item: Poring_Loofah
+        Count: 1
+        Rate: 10000
 # // Main Quest ให้ใช้ตั้งแต่ 100 ขึ้นไป จะได้จัดระเบียบถูก มีดรอปของพิเศษเฉพาะตอนมีเควสด้วย ดูด้านบนเอา
   - Id: 101
     Title: Golden Savage

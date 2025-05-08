@@ -1380,9 +1380,19 @@ int32 skill_additional_effect( struct block_list* src, struct block_list *bl, ui
 							skill_castend_damage_id(src, bl, WH_HAWKRUSH, skill, tick, 0);
 					}
 					// Gank
+					/*
 					if(dstmd && sd->status.weapon != W_BOW &&
 						(skill=pc_checkskill(sd,RG_SNATCHER)) > 0 &&
 						(skill*15 + 55) + pc_checkskill(sd,TF_STEAL)*10 > rnd()%1000) {
+						if(pc_steal_item(sd,bl,pc_checkskill(sd,TF_STEAL)))
+							clif_skill_nodamage(src,*bl,TF_STEAL,skill);
+						else
+							clif_skill_fail( *sd, RG_SNATCHER );
+					}
+					*/
+					if(dstmd && sd->status.weapon != W_BOW &&
+						(skill=pc_checkskill(sd,RG_SNATCHER)) > 0 &&
+						(skill*5 + 10) + pc_checkskill(sd,TF_STEAL)*5 > rnd()%1000) {
 						if(pc_steal_item(sd,bl,pc_checkskill(sd,TF_STEAL)))
 							clif_skill_nodamage(src,*bl,TF_STEAL,skill);
 						else

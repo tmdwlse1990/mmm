@@ -1,6 +1,4 @@
 icecastle,209,170,4	script	อัพเกรดบัตรนักพจญภัย	4_EP21_HEINE_TAB,{
-	.@limit = 10;
-	setarray .@zeny,10,10,10,10,10,10,10,10,10,10;
 	mes "";
 	mes "_oo0oo_";
 	mes "o8888888o";
@@ -34,18 +32,50 @@ icecastle,209,170,4	script	อัพเกรดบัตรนักพจญภัย	4_EP21_HEINE_TAB,{
 		mes "ถ้ามีกรุณาสวมใส่ด้วย";
 		end;
 	}
+	// [adv_clas = ตัวบอกคราส]
+	// [1 = F , 2 = E,..... ]
+	if(!adv_clas) adv_clas = 1;
+	switch(adv_clas) {
+		case 1:	//[F Class]
+			setarray .@zeny,10,50,100,300,500,800,1000,1250,1500,2000;
+			.@multiple = 1000;
+			break;
+		case 2:	//[E Class]
+			setarray .@zeny,1000,2000,3000,4000,5000,6000,7000,8000,9000,10000;
+			.@multiple = 1000;
+			break;
+		case 3:	//[D Class]
+			setarray .@zeny,11,12,13,14,15,16,17,18,19,20;
+			.@multiple = 1000000;
+			break;
+		case 4:	//[C Class]
+			setarray .@zeny,22,24,26,28,30,32,34,36,38,40;
+			.@multiple = 1000000;
+			break;
+		case 5:	//[B Class]
+			setarray .@zeny,44,48,52,56,60,64,68,72,76,80;
+			.@multiple = 1000000;
+			break;
+		case 6:	//[A Class]
+			setarray .@zeny,100,110,120,130,140,150,160,170,180,190;
+			.@multiple = 1000000;
+			break;
+	}
+	setarray .@rankname$[1],"F","E","D","C","B","A";
 	.@menu$ = "";
 	for(.@i=0;.@i <= getarraysize($class$); .@i++) 
 	.@menu$ = .@menu$ + $class$[.@i] + ":";
 	.@menu = select(.@menu$)-1;
 	// [Check Money For upgrade]
-		.@lvl = getd($stats$[.@menu]);
-		.@usezeny = .@zeny[.@lvl]*1000;
+		//.@lvl = (adv_clas * 10 ) - getd($stats$[.@menu]);
+		// case adv = 1 and adv = 2
+		.@lvl = (getd($stats$[.@menu]) >= 10 ? getd($stats$[.@menu]) : getd($stats$[.@menu]) % 10);
+		.@usezeny = .@zeny[.@lvl]*.@multiple;
+		dispbottom ""+.@lvl+" . "+.@zeny[.@lvl]+" * "+.@multiple;
 		if(!.@usezeny) {
-			mes "ท่านอัพถึงระดับสูงสุดของ Rank F ในด้านนี้แล้ว";
+			mes "ท่านอัพถึงระดับสูงสุดของ Rank "+.@rankname$[adv_clas]+" ในด้านนี้แล้ว";
 			mes "ท่านต้องผ่านการทดสอบของทางกิล เพื่อทำการเลื่อนระดับแรงค์";
-			mes "ปัจจุบันผู้ทดสอบยังไม่สะดวก กรุณาเร่ง Admin";
-			mes "ขอบคุณนะ <3";
+			mes "กรุณาติดต่อ Guild Master";
 			end;
 		}
 		if(zeny < .@usezeny ) {
@@ -59,30 +89,33 @@ icecastle,209,170,4	script	อัพเกรดบัตรนักพจญภัย	4_EP21_HEINE_TAB,{
 			mes "เอาเลยไหม";
 			if(select("เอาเลย:ยังก่อน") == 2 ) end;
 		}
-			
 	zeny -= .@usezeny;
-	setd($stats$[.@menu]),getd($stats$[.@menu])+1;
+	setd($stats$[.@menu]),getd($stats$[.@menu]) + 1;
 	mes "เรียบร้อยแถมบัพให้ด้วย";
 	// [Give Free Buff after Training]
 		specialeffect2 EF_INCAGILITY;
 		sc_start SC_INCREASEAGI,600000,10;
 		specialeffect2 EF_BLESSING;
 		sc_start SC_BLESSING,600000,10;
-	unequip EQI_SHADOW_ACC_L;
+	if(getequipid(EQI_SHADOW_ACC_L) > 0) unequip EQI_SHADOW_ACC_L;
 	end;
 Oninit:
-	setarray $stats$,"adv_atk","adv_matk","adv_def","adv_mdef","adv_hit","adv_flee","adv_Crit","adv_aspd","adv_hp","adv_sp","adv_igdef","adv_igmdef";
+	deletearray $stats$[0],getarraysize($stats$);
+	deletearray $class$[0],getarraysize($class$);
 	
-	setarray $class$,"Atk","Matk","Def","Mdef","Hit","Flee","Critical","Attack Speed","Max HP","Max SP","Ignore Def","Ignore MDef";
+	setarray $stats$,"adv_atk","adv_matk","adv_def","adv_mdef","adv_hit","adv_flee","adv_hp","adv_sp","adv_igdef","adv_igmdef";
+	
+	setarray $class$,"Atk","Matk","Def","Mdef","Hit","Flee","Max HP","Max SP","Ignore Def","Ignore MDef";
 	
 	end;
+	
 }
 
 icecastle,201,171,4	script	พนักงานต้อนรับ	4_EP21_GALAXIA_B,{
 	cutin "ep21_galaxia01.png",2;
 	mes "สวัสดีนักพจญภัย ท่านต้องการบริการด้านใดค่ะ";
 	next;
-	switch(select("ตรวจสอบข้อมูลการอัพเกรด:ตรวจสอบค่าใช้จ่ายแต่ละระดับ:ไม่มีอะไรมาดูหน้าเฉยๆ") ) {
+	switch(select("ตรวจสอบข้อมูลการอัพเกรด:ตรวจสอบค่าใช้จ่ายแต่ละระดับ:ติดต่อกิลมาสเตอร์:ไม่มีอะไรมาดูหน้าเฉยๆ") ) {
 		case 1:
 
 			mes "ปัจจุบันของท่านได้รับความสามารถตามนี้";
@@ -90,27 +123,27 @@ icecastle,201,171,4	script	พนักงานต้อนรับ	4_EP21_GALAXIA_B,{
 				mes ""+$class$[.@i]+" : "+getd($stats$[.@i])*10+" หน่วย.";
 			for(.@i=2;.@i <= 5; .@i++)
 				mes ""+$class$[.@i]+" : "+getd($stats$[.@i])*3+" หน่วย.";
-			for(.@i=6;.@i <= 7; .@i++)
-				mes ""+$class$[.@i]+" : "+getd($stats$[.@i])+" %.";
-			for(.@i=8;.@i <= 8; .@i++)
+			for(.@i=6;.@i <= 6; .@i++)
 				mes ""+$class$[.@i]+" : "+getd($stats$[.@i])*100+" หน่วย.";
-			for(.@i=9;.@i <= 9; .@i++)
+			for(.@i=7;.@i <= 7; .@i++)
 				mes ""+$class$[.@i]+" : "+getd($stats$[.@i])*25+" หน่วย.";
-			for(.@i=10;.@i <= 11; .@i++)
-				mes ""+$class$[.@i]+" : "+getd($stats$[.@i])+" %.";
+			for(.@i=8;.@i <= 9; .@i++)
+				mes ""+$class$[.@i]+" : "+getd($stats$[.@i])+" หน่วย.";
 			mes "ตามนี้";
 			setdialogsize(400,500);
 			next;
 		break;
 		case 2:
 			mes "ปัจจุบันมีแต่การอัพระดับของคราส F ขึ้นเป็นคราส E";
-			// F to E (K)
-			setarray .@zeny,10,50,100,300,500,800,1000,1250,1500,2000;
 			for(.@i = 0; .@i < getarraysize(.@zeny); .@i++)
-				mes ""+(.@i+1)+". "+callfunc("F_InsertComma",.@zeny[.@i]*1000)+" Zeny";
+				mes ""+(.@i+1)+". "+callfunc("F_InsertComma",.@zeny[.@i])+" Zeny";
 			mes "ตามนี้";
 			setdialogsize(400,500);
 			next;
+		break;
+		case 3:
+			warp "icas_in",108,54;
+			close;
 		break;
 		default:
 			mes "จ้า สู้ๆนะ";
@@ -123,3 +156,106 @@ icecastle,201,171,4	script	พนักงานต้อนรับ	4_EP21_GALAXIA_B,{
 Oninit:
 	end;
 }
+
+//	มอนสเตอร์ อัพ Rank
+pay_fild04,201,178	boss_monster	King Poring	3810,1,10800000,600000,0		// E Rank
+// =================
+
+icas_in,108,60,4	script	Guild Master#prog	22180,{
+	function RGBToHex;
+	setarray .@rankname$[1],"F","E","D","C","B","A";
+	.@npcname$ = "[ Master Of Shalarm ]";
+	mes .@npcname$;
+	for(.@i =0; .@i < getarraysize(.@rankname$); .@i++) {
+		.@questid = 10+.@i;
+		if( checkquest(.@questid,HUNTING) >= 2 ) {
+			mes "ทำได้ดี จะเลื่อนขั้นให้ก็แล้วกัน";
+			specialeffect2 8;
+			specialeffect2 12;
+			specialeffect2 17;
+			completequest .@questid;
+			adv_clas++;
+			end;
+		}
+	}
+	mes "ธุระคือ?";
+	next;
+	if(select("- ขอเลื่อนคราสหน่อยครับ:- ไม่มีอะไรครับ") == 2 ) { warp "save",0,0; end; }
+	.@checklvl = adv_clas;
+	mes .@npcname$;
+	mes "จะเลือนแรงค์ตัวเองหรอ เจ้านี่อยู่แค่แรงค์ " +.@rankname$[.@checklvl]+" "+ (.@checklvl < 5 ? "เองหรอ.":"แล้วหรอเนี่ย โตขึ้นเยอะนี่.");
+	mes "อยากทำสอบเลยไหมหละ ?";
+	next;
+	if(select("- พร้อมครับ:- ยังไม่พร้อมเลยครับ") == 2 ) { warp "save",0,0; end; }
+	switch (.@checklvl) {
+		case 1:
+			mes .@npcname$;
+			for(.@i = 0; .@i < getarraysize($stats$); .@i++) {
+				.@checkstats = (getd($stats$[.@i]) >= 10 ? getd($stats$[.@i]) : getd($stats$[.@i]) % 10);
+				if(.@checkstats < 10) {
+					@notenought++;	
+					do {
+						// สุ่มค่า RGB
+						set .@r, rand(0, 255);
+						set .@g, rand(0, 255);
+						set .@b, rand(0, 255);
+
+						// คำนวณ brightness แบบใกล้เคียง (ใช้ int ทั้งหมด)
+						set .@brightness, (.@r * 299 + .@g * 587 + .@b * 114) / 1000;
+					} while (.@brightness > 127); // เฉพาะโทนเข้ม (brightness <= 127)
+					// เรียกฟังก์ชันแปลงเป็น HEX สี HTML
+						set .@color$, RGBToHex(.@r, .@g, .@b);
+					mes "ดูเหมือนว่าค่าสถานะ ^"+ .@color$ + $class$[.@i]+"^000000 ยังไม่เก่งพอ^FF0000(ขาด "+(10 - getd($stats$[.@i]))+ " ขั้น)^000000";
+				}
+			}
+			if(@notenought) {setdialogsize(400,500); end;}
+			if(checkquest(11) <= 0 ) {
+				setquest 11;
+			mes "ไปที่ป่าโปริ่งสิ ไปนำสมบัติของ King มาให้ข้า";
+			mes "ถ้าทำได้หละนะ";
+			}
+			else {
+				mes "อย่าเหลี่ยมเลื่อนแรงค์ซ้ำซี่";
+				mes "จงติดอยู่แรงค์นี้ตลอดชีวิตซะเถอะ";
+			}
+			break;
+		case 2:
+		case 3:
+		case 4:
+		case 5:
+		case 6:
+		case 7:
+			mes .@npcname$;
+			mes "พักไปก่อน ยังไม่มีคำขอมาตอนนี้";
+		break;
+		default:
+			mes "เกิดข้อผิดพลาด";
+			mes "กรุณาติดต่อ Admin";
+			end;
+		break;
+	}
+end;
+
+
+	// ฟังก์ชันแปลง RGB เป็น HEX
+	function RGBToHex {
+		function Hex2;
+
+		set .@r$, Hex2(getarg(0));
+		set .@g$, Hex2(getarg(1));
+		set .@b$, Hex2(getarg(2));
+
+		return .@r$ + .@g$ + .@b$;
+	}
+
+	// แปลงเลข 0–255 เป็น HEX 2 หลัก
+	function Hex2 {
+		setarray .@hex$[0], "0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F";
+		set .@value, getarg(0);
+		set .@hi, .@value / 16;
+		set .@lo, .@value % 16;
+		return .@hex$[.@hi] + .@hex$[.@lo];
+	}
+	
+}
+

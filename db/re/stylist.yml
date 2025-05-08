@@ -52,169 +52,169 @@ Body:
       - Index: 1
         Value: 1
         CostsHuman:
-            Price: 100000
+            Price: 2000000
         CostsDoram:
-            Price: 100000
+            Price: 2000000
       - Index: 2
         Value: 2
         CostsHuman:
-            Price: 100000
+            Price: 2000000
         CostsDoram:
-            Price: 100000
+            Price: 2000000
       - Index: 3
         Value: 3
         CostsHuman:
-            Price: 100000
+            Price: 2000000
         CostsDoram:
-            Price: 100000
+            Price: 2000000
       - Index: 4
         Value: 4
         CostsHuman:
-            Price: 100000
+            Price: 2000000
         CostsDoram:
-            Price: 100000
+            Price: 2000000
       - Index: 5
         Value: 5
         CostsHuman:
-            Price: 100000
+            Price: 2000000
         CostsDoram:
-            Price: 100000
+            Price: 2000000
       - Index: 6
         Value: 6
         CostsHuman:
-            Price: 100000
+            Price: 2000000
         CostsDoram:
-            Price: 100000
+            Price: 2000000
       - Index: 7
         Value: 7
         CostsHuman:
-            Price: 100000
+            Price: 2000000
         CostsDoram:
-            Price: 100000
+            Price: 2000000
       - Index: 8
         Value: 8
         CostsHuman:
-            Price: 100000
+            Price: 2000000
         CostsDoram:
-            Price: 100000
+            Price: 2000000
   - Look: Hair
     Options:
       - Index: 1
         Value: 1
         CostsHuman:
-            Price: 100000
+            Price: 2000000
         CostsDoram:
-            Price: 100000
+            Price: 2000000
       - Index: 2
         Value: 2
         CostsHuman:
-            Price: 100000
+            Price: 2000000
         CostsDoram:
-            Price: 100000
+            Price: 2000000
       - Index: 3
         Value: 3
         CostsHuman:
-            Price: 100000
+            Price: 2000000
         CostsDoram:
-            Price: 100000
+            Price: 2000000
       - Index: 4
         Value: 4
         CostsHuman:
-            Price: 100000
+            Price: 2000000
         CostsDoram:
-            Price: 100000
+            Price: 2000000
       - Index: 5
         Value: 5
         CostsHuman:
-            Price: 100000
+            Price: 2000000
         CostsDoram:
-            Price: 100000
+            Price: 2000000
       - Index: 6
         Value: 6
         CostsHuman:
-            Price: 100000
+            Price: 2000000
         CostsDoram:
-            Price: 100000
+            Price: 2000000
       - Index: 7
         Value: 7
         CostsHuman:
-            Price: 100000
+            Price: 2000000
         CostDoram:
             RequiredItem: J_Shop_Coupon2
             RequiredItemBox: J_Shop_Coupon2
       - Index: 8
         Value: 8
         CostsHuman:
-            Price: 100000
+            Price: 2000000
         CostDoram:
             RequiredItem: J_Shop_Coupon2
             RequiredItemBox: J_Shop_Coupon2
       - Index: 9
         Value: 9
         CostsHuman:
-            Price: 100000
+            Price: 2000000
         CostDoram:
             RequiredItem: J_Shop_Coupon2
             RequiredItemBox: J_Shop_Coupon2
       - Index: 10
         Value: 10
         CostsHuman:
-            Price: 100000
+            Price: 2000000
         CostDoram:
             RequiredItem: J_Shop_Coupon2
             RequiredItemBox: J_Shop_Coupon2
       - Index: 11
         Value: 11
         CostsHuman:
-            Price: 100000
+            Price: 2000000
       - Index: 12
         Value: 12
         CostsHuman:
-            Price: 100000
+            Price: 2000000
       - Index: 13
         Value: 13
         CostsHuman:
-            Price: 100000
+            Price: 2000000
       - Index: 14
         Value: 14
         CostsHuman:
-            Price: 100000
+            Price: 2000000
       - Index: 15
         Value: 15
         CostsHuman:
-            Price: 100000
+            Price: 2000000
       - Index: 16
         Value: 16
         CostsHuman:
-            Price: 100000
+            Price: 2000000
       - Index: 17
         Value: 17
         CostsHuman:
-            Price: 100000
+            Price: 2000000
       - Index: 18
         Value: 18
         CostsHuman:
-            Price: 100000
+            Price: 2000000
       - Index: 19
         Value: 19
         CostsHuman:
-            Price: 100000
+            Price: 2000000
       - Index: 20
         Value: 20
         CostsHuman:
-            Price: 100000
+            Price: 2000000
       - Index: 21
         Value: 21
         CostsHuman:
-            Price: 100000
+            Price: 2000000
       - Index: 22
         Value: 22
         CostsHuman:
-            Price: 100000
+            Price: 2000000
       - Index: 23
         Value: 23
         CostsHuman:
-            Price: 100000
+            Price: 2000000
       - Index: 24
         Value: 24
         CostsHuman:
@@ -258,47 +258,47 @@ Body:
       - Index: 32
         Value: 32
         CostsHuman:
-            Price: 100000
+            Price: 2000000
       - Index: 33
         Value: 33
         CostsHuman:
-            Price: 3000000
+            Price: 2000000
       - Index: 34
         Value: 34
         CostsHuman:
-            Price: 3000000
+            Price: 2000000
       - Index: 35
         Value: 35
         CostsHuman:
-            Price: 3000000
+            Price: 2000000
       - Index: 36
         Value: 36
         CostsHuman:
-            Price: 3000000
+            Price: 2000000
       - Index: 37
         Value: 37
         CostsHuman:
-            Price: 3000000
+            Price: 2000000
       - Index: 38
         Value: 38
         CostsHuman:
-            Price: 3000000
+            Price: 2000000
       - Index: 39
         Value: 39
         CostsHuman:
-            Price: 3000000
+            Price: 2000000
       - Index: 40
         Value: 40
         CostsHuman:
-            Price: 3000000
+            Price: 2000000
       - Index: 41
         Value: 41
         CostsHuman:
-            Price: 3000000
+            Price: 2000000
       - Index: 42
         Value: 42
         CostsHuman:
-            Price: 3000000
+            Price: 2000000
   - Look: Clothes_Color
     Options:
       - Index: 1

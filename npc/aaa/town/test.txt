@@ -1,0 +1,39 @@
+icecastle,189,206,5	script	chicken test	800,{
+	function RGBToHex;
+
+	do {
+		// สุ่มค่าสี R G B
+		set .r, rand(0, 255);
+		set .g, rand(0, 255);
+		set .b, rand(0, 255);
+	} while (.r == 255 && .g == 255 && .b == 255); // ยกเว้น #FFFFFF
+
+	// เรียกฟังก์ชันแปลงเป็น HEX สี HTML
+	set .color$, RGBToHex(.r, .g, .b);
+
+	mes "[Color Generator]";
+	mes "รหัสสี HTML สุ่มของคุณคือ:";
+	mes "^" + .color$ + "#" + .color$ + "^"; // แสดงตัวอย่างสีจริง
+	mes "HEX: #" + .color$;
+	close;
+
+	// ฟังก์ชันแปลง RGB เป็น HEX
+	function RGBToHex {
+		function Hex2;
+
+		set .@r$, Hex2(getarg(0));
+		set .@g$, Hex2(getarg(1));
+		set .@b$, Hex2(getarg(2));
+
+		return .@r$ + .@g$ + .@b$;
+	}
+
+	// แปลงเลข 0–255 เป็น HEX 2 หลัก
+	function Hex2 {
+		setarray .@hex$[0], "0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F";
+		set .@value, getarg(0);
+		set .@hi, .@value / 16;
+		set .@lo, .@value % 16;
+		return .@hex$[.@hi] + .@hex$[.@lo];
+	}
+}

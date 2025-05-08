@@ -315,6 +315,8 @@ bonus4 bSetMDefRace,r,n,t,y;	Set MDEF to y of an enemy of race r at n% for t mil
 
 Ignore Def
 ----------
+bonus bIgnoreDef,n;				Decrease n DEF against enemies
+bonus bIgnoreMDef,n;			Decrease n MDEF against enemies
 bonus bIgnoreDefEle,e;  		Disregard DEF against enemies of element e
 bonus bIgnoreDefRace,r; 		Disregard DEF against enemies of race r
 bonus bIgnoreDefClass,c;		Disregard DEF against enemies of class c

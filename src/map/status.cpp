@@ -2909,12 +2909,14 @@ int32 status_calc_mob_(struct mob_data* md, uint8 opt)
 	}
 
 	// [Raw Upgrade Mob]
-	status->str += md->level;
-	status->vit += md->level;
-	status->int_ += md->level;
-	status->luk += md->level;
-	status->def += md->level + (md->state.boss ? 2 * md->level : 0 );
-	status->mdef += md->level + (md->state.boss ? 2 * md->level : 0 );
+	status->str += md->level*2;
+	status->vit += md->level*2;
+	status->int_ += md->level*2;
+	status->luk += md->level*2;
+	status->rhw.atk += status->rhw.atk * (md->level) / 100;
+	status->rhw.atk2 += md->level * (md->level) / 100;
+	status->def += (md->level * 3) + (md->state.boss ? 3 * md->level : 0 );
+	status->mdef += (md->level * 3) + (md->state.boss ? 5 * md->level : 0 );
 	
 	status_calc_misc(&md->bl, status, md->level);
 

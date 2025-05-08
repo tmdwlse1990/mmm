@@ -1,0 +1,7 @@
+icecastle,199,177,4	script	ฉันสวยไหม#prog	4_ED_SCHMIDT,{
+	openstylist();
+	end;
+Oninit:
+	waitingroom "แต่งตัวแบบใหม่แบบสับ",0;
+	end;
+}

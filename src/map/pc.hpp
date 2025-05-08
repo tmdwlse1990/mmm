@@ -750,6 +750,8 @@ public:
 
 	// zeroed vars start here.
 	struct s_bonus {
+		int32 ignoredef_point,ignoremdef_point;
+		// [Custom Bonus]
 		int32 hp, sp, ap;
 		int32 atk_rate;
 		int32 arrow_atk,arrow_ele,arrow_cri,arrow_hit;

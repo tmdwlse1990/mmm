@@ -6968,8 +6968,11 @@ static void battle_calc_defense_reduction(struct Damage* wd, struct block_list *
 	int16 vit_def;
 	defType def1 = status_get_def(target); //Don't use tstatus->def1 due to skill timer reductions.
 	int16 def2 = tstatus->def2;
-
+	// New Bonus for decreases Def target
 	if (sd) {
+		int32 d = sd->bonus.ignoredef_point;
+		def1 = def1 - d;
+			if (def1 < 0) def1 = 0;
 		int32 i = sd->indexed_bonus.ignore_def_by_race[tstatus->race] + sd->indexed_bonus.ignore_def_by_race[RC_ALL];
 		i += sd->indexed_bonus.ignore_def_by_class[tstatus->class_] + sd->indexed_bonus.ignore_def_by_class[CLASS_ALL];
 		if (i) {
@@ -9434,12 +9437,14 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 			// Bonuses ignoring Mdef are added together
 			defType mdef = tstatus->mdef;
 			int32 mdef2 = tstatus->mdef2;
+			int32 d;
 			i = 0;	// Bonus ratio that ignores Mdef
 
 			if (sc != nullptr && sc->getSCE(SC_EXPIATIO))
 				i += 5 * sc->getSCE(SC_EXPIATIO)->val1;
 
 			if (sd != nullptr) {
+				d = sd->bonus.ignoremdef_point;
 				i += sd->indexed_bonus.ignore_mdef_by_race[tstatus->race] + sd->indexed_bonus.ignore_mdef_by_race[RC_ALL] +
 					sd->indexed_bonus.ignore_mdef_by_class[tstatus->class_] + sd->indexed_bonus.ignore_mdef_by_class[CLASS_ALL];
 
@@ -9452,11 +9457,16 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 			i = cap_value(i, 0, 100);
 
 #ifdef RENEWAL
+			// New Bonus for decreases Mdef target
+			if (d > 0) {
+				mdef = mdef - d;
+			}
+				
 			// On renewal, Mdef is rounded after calculation
 			if (i > 0) {
 				mdef = (defType)( (float)(mdef - mdef * i / 100.) );
 			}
-
+			
 			/**
 			 * RE MDEF Reduction
 			 * Damage = Magic Attack * (1000+eMDEF)/(1000+eMDEF) - sMDEF

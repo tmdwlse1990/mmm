@@ -3855,6 +3855,21 @@ void pc_bonus(map_session_data *sd,int32 type,int32 val)
 	status = &sd->base_status;
 
 	switch(type){
+		case SP_IGNORE_DEF_POINTS:
+			if (sd->state.lr_flag != LR_FLAG_ARROW)
+				sd->bonus.ignoredef_point += val;
+			break;
+		case SP_IGNORE_MDEF_POINTS:
+			if (sd->state.lr_flag != LR_FLAG_ARROW)
+				sd->bonus.ignoremdef_point += val;
+			break;
+		/*
+		case SP_PERFECT_HIT_ADD_RATE:
+			if (sd->state.lr_flag != LR_FLAG_ARROW)
+				sd->bonus.perfect_hit_add += val;
+			break;
+		// [Custom Bonus Upper is example]	
+		*/
 		case SP_STR:
 		case SP_AGI:
 		case SP_VIT:
@@ -10339,6 +10354,9 @@ int64 pc_readparam(map_session_data* sd,int64 type)
 	nullpo_ret(sd);
 
 	switch(type) {
+		case SP_IGNORE_DEF_POINTS:	val = val = sd->bonus.ignoredef_point; break;
+		case SP_IGNORE_MDEF_POINTS:	val = val = sd->bonus.ignoremdef_point; break;
+		// [Custom Bonus]
 		case SP_SKILLPOINT:      val = sd->status.skill_point; break;
 		case SP_STATUSPOINT:     val = sd->status.status_point; break;
 		case SP_TRAITPOINT:      val = sd->status.trait_point; break;
