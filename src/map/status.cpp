@@ -966,7 +966,7 @@ std::shared_ptr<s_enchantgradelevel> EnchantgradeDatabase::findCurrentLevelInfo(
 	}else if( data.type == IT_ARMOR ){
 		level = data.armor_level;
 	} else if( data.type == IT_SHADOWGEAR || data.type == IT_CHARM ){
-		level = 1; // ��ำห��ด level เ������ 1 เมื��อเ����������ิด IT_SHADOWGEAR หรือ IT_CHARM
+		level = 1; // à¸ÿà¸³à¸«à¸ÿà¸” level à¹€à¸ÿà¹ÿà¸ÿ 1 à¹€à¸¡à¸·à¹ÿà¸­à¹€à¸ÿà¹ÿà¸ÿà¸ÿà¸ÿà¸´à¸” IT_SHADOWGEAR à¸«à¸£à¸·à¸­ IT_CHARM
 	}
 
 	const auto& enchantgradelevels = enchantgrade->levels.find( level );
@@ -2704,6 +2704,19 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int32 l
 		status->crate = cap_value(stat, 0, SHRT_MAX);
 	}
 
+	// MOB
+	if (bl->type == BL_MOB) {
+		status->str += level;
+		status->vit += level;
+		status->int_ += level;
+		status->luk += level;
+		//status->rhw.atk += status->rhw.atk * (100 + level / 100);
+		status->rhw.atk += status->rhw.atk * level / 300;
+		//status->rhw.atk2 += status->rhw.atk2 * (100 + level / 100);
+		status->rhw.atk2 += status->rhw.atk * level / 300;
+		status->def += level;
+		status->mdef += level;
+	}
 	// ATK
 	if (bl->type != BL_PC) {
 		status->rhw.atk2 = status_base_atk_max(bl, status, level);
@@ -2907,19 +2920,19 @@ int32 status_calc_mob_(struct mob_data* md, uint8 opt)
 			status->luk *= 2;
 		}
 	}
-
-	// [Raw Upgrade Mob]
-	status->str += md->level*2;
-	status->vit += md->level*2;
-	status->int_ += md->level*2;
-	status->luk += md->level*2;
-	status->rhw.atk += status->rhw.atk * (md->level) / 100;
-	status->rhw.atk2 += md->level * (md->level) / 100;
-	status->def += (md->level * 3) + (md->state.boss ? 3 * md->level : 0 );
-	status->mdef += (md->level * 3) + (md->state.boss ? 5 * md->level : 0 );
 	
 	status_calc_misc(&md->bl, status, md->level);
-
+	/*
+	// [Raw Upgrade Mob]
+	status->str += md->level*md->rank;
+	status->vit += md->level*md->rank;
+	status->int_ += md->level*md->rank;
+	status->luk += md->level*md->rank;
+	status->rhw.atk += status->rhw.atk * (md->level) / 100;
+	status->rhw.atk2 += status->rhw.atk2 * (md->level) / 100;
+	status->def += 1000 + (md->level * md->rank) + (md->state.boss ? 3 * md->level : 0 );
+	status->mdef += (md->level * md->rank) + (md->state.boss ? 5 * md->level : 0 );
+	*/
 	if(flag&4) { // Strengthen Guardians - custom value +10% / lv
 		struct map_data *mapdata = map_getmapdata(md->bl.m);
 		std::shared_ptr<guild_castle> gc = castle_db.mapname2gc(mapdata->name);

@@ -1221,7 +1221,7 @@ int32 mob_spawn (struct mob_data *md)
 	md->last_canmove = tick;
 	md->last_skillcheck = tick;
 	md->trickcasting = 0;
-	//md->rank = rnd() % battle_config.config_random_monster_rank; // [Start's] Rank 0~90
+	if(!md->rank) md->rank = rnd() % battle_config.config_random_monster_rank; // [Start's] Rank 0~90
 
 	for (i = 0; i < MAX_MOBSKILL; i++)
 		md->skilldelay[i] = 0;

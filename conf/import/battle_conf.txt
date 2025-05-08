@@ -40,7 +40,7 @@ config_enchantment_maximum: 1
 config_equipment_drop_auto_identify: 1
 
 // Monster ที่ Spawn ปกติมี Rank 0~(n-1)
-config_random_monster_rank: 4
+config_random_monster_rank: 3
 
 // Rank ของ Monster จะเพิ่ม Damage ให้ Monster แบบใด
 // 0 = % ถ้า Rank 1 ก็เพิ่ม Damage 1%

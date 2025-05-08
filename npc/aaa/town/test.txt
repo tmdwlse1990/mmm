@@ -1,6 +1,6 @@
 icecastle,189,206,5	script	chicken test	800,{
-	monster "icecastle", 184, 211, "Ranked 1 Poring", 1002, 1,1;
-	monster "icecastle", 187, 211, "Ranked 2 Poring", 1002, 1,2;
-	monster "icecastle", 181, 211, "Ranked 3 Poring", 1002, 1,3;
+	monster "icecastle", 184, 211, "Ranked 1 Poring", 2410, 1,1;
+	monster "icecastle", 187, 211, "Ranked 2 Poring", 2410, 1,2;
+	monster "icecastle", 181, 211, "Ranked 3 Poring", 2410, 1,3;
 	end;
 }
