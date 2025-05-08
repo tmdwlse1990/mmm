@@ -2067,7 +2067,7 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 				damage = i64max((damage * (100 - (cap_value(md->rank, 0, 99)))) / 100, 1);
 			// [Start's] Example: Rank 1 will divide damage by 2
 			else
-				damage = i64max(damage * (4 - md->rank) / 4  , 1);
+				damage = i64max(damage / (md->rank + 1), 1);
 		}
 	}
 	
