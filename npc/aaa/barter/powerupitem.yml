@@ -46,213 +46,166 @@ Header:
   Version: 1
 
 Body:
-  - Name: barter_refine_1
+  - Name: PowerupItem
     Items:
       - Index: 0
-        Item: Oridecon
-        RequiredItems:
-          - Index: 0
-            Item: Oridecon_Stone
-            Amount: 5
-      - Index: 1
-        Item: Elunium
-        RequiredItems:
-          - Index: 0
-            Item: Elunium_Stone
-            Amount: 5
-      - Index: 2
-        Item: Bradium
-        Zeny: 50000
-        RequiredItems:
-          - Index: 0
-            Item: Oridecon
-            Amount: 3
-      - Index: 3
-        Item: Carnium
-        Zeny: 50000
-        RequiredItems:
-          - Index: 0
-            Item: Elunium
-            Amount: 3
-      - Index: 4
-        Item: Carnium
-        Zeny: 50000
-        RequiredItems:
-          - Index: 0
-            Item: Purified_Bradium
-      - Index: 5
-        Item: Enriched_Elunium
-        Zeny: 200000
-        RequiredItems:
-          - Index: 0
-            Item: Elunium
-            Amount: 5
-      - Index: 6
-        Item: HD_Elunium
-        Zeny: 500000
-        RequiredItems:
-          - Index: 0
-            Item: Elunium
-            Amount: 5
-      - Index: 7
-        Item: Enriched_Oridecon
-        Zeny: 200000
-        RequiredItems:
-          - Index: 0
-            Item: Oridecon
-            Amount: 5
-      - Index: 8
-        Item: HD_Oridecon
-        Zeny: 500000
-        RequiredItems:
-          - Index: 0
-            Item: Oridecon
-            Amount: 5
-      - Index: 9
-        Item: Blacksmith_Blessing
-        Zeny: 1000000
-        RequiredItems:
-          - Index: 0
-            Item: HD_Oridecon
-          - Index: 1
-            Item: HD_Elunium
-  - Name: barter_refine_2
-    Items:
-      - Index: 0
-        Item: Ethernium
+        Item: Ancient_Gold_Coin
         Zeny: 10000
-        RequiredItems:
-          - Index: 0
-            Item: Etel_Dust
-          - Index: 1
-            Item: Elunium
       - Index: 1
-        Item: Etherdeocon
-        Zeny: 10000
+        Item: Small_Life_Potion
         RequiredItems:
           - Index: 0
-            Item: Etel_Dust
-          - Index: 1
-            Item: Oridecon
+            Item: Ancient_Gold_Coin
+            Amount: 4
       - Index: 2
-        Item: Etel_Bradium
-        Zeny: 50000
+        Item: Med_Life_Potion
         RequiredItems:
           - Index: 0
-            Item: Etel_Dust
-            Amount: 3
-          - Index: 1
-            Item: Bradium
+            Item: Ancient_Gold_Coin
+            Amount: 6
       - Index: 3
-        Item: Etel_Carnium
-        Zeny: 50000
+        Item: Mysterious_Water
         RequiredItems:
           - Index: 0
-            Item: Etel_Dust
-            Amount: 3
-          - Index: 1
-            Item: Carnium
+            Item: Ancient_Gold_Coin
+            Amount: 6
       - Index: 4
-        Item: Enriched_Ethernium
-        Zeny: 20000
+        Item: Small_Mana_Potion
         RequiredItems:
           - Index: 0
-            Item: Etel_Dust
-            Amount: 2
-          - Index: 1
-            Item: Enriched_Elunium
+            Item: Ancient_Gold_Coin
+            Amount: 5
       - Index: 5
-        Item: Enriched_Etherdeocon
-        Zeny: 20000
+        Item: M_DEFScroll
         RequiredItems:
           - Index: 0
-            Item: Etel_Dust
-            Amount: 2
-          - Index: 1
-            Item: Enriched_Oridecon
+            Item: Ancient_Gold_Coin
+            Amount: 6
       - Index: 6
-        Item: HD_Ethernium
-        Zeny: 50000
+        Item: Almighty
         RequiredItems:
           - Index: 0
-            Item: Etel_Dust
-            Amount: 3
-          - Index: 1
-            Item: HD_Elunium
+            Item: Ancient_Gold_Coin
+            Amount: 30
       - Index: 7
-        Item: HD_Etherdeocon
-        Zeny: 50000
+        Item: Limit_Power_Booster
         RequiredItems:
           - Index: 0
-            Item: Etel_Dust
-            Amount: 3
-          - Index: 1
-            Item: HD_Oridecon
+            Item: Ancient_Gold_Coin
+            Amount: 15
       - Index: 8
-        Item: HD_Ethernium
-        Zeny: 50000
+        Item: Infinity_Drink
         RequiredItems:
           - Index: 0
-            Item: Etel_Dust
-            Amount: 3
-          - Index: 1
-            Item: LI_HD_Elunium
+            Item: Ancient_Gold_Coin
+            Amount: 15
       - Index: 9
-        Item: HD_Etherdeocon
-        Zeny: 50000
+        Item: Red_Booster
         RequiredItems:
           - Index: 0
-            Item: Etel_Dust
-            Amount: 3
-          - Index: 1
-            Item: LI_HD_Oridecon
+            Item: Ancient_Gold_Coin
+            Amount: 10
       - Index: 10
-        Item: HD_Etel_Bradium
-        Zeny: 50000
+        Item: ASPD_Potion
         RequiredItems:
           - Index: 0
-            Item: Etel_Dust
-            Amount: 3
-          - Index: 1
-            Item: HD_Bradium
+            Item: Ancient_Gold_Coin
+            Amount: 6
       - Index: 11
-        Item: HD_Etel_Carnium
-        Zeny: 50000
+        Item: Tyr's_Blessing
         RequiredItems:
           - Index: 0
-            Item: Etel_Dust
-            Amount: 3
-          - Index: 1
-            Item: HD_Carnium
+            Item: Ancient_Gold_Coin
+            Amount: 5
       - Index: 12
-        Item: HD_Etel_Bradium
-        Zeny: 50000
+        Item: Mental_Potion
         RequiredItems:
           - Index: 0
-            Item: Etel_Dust
-            Amount: 3
-          - Index: 1
-            Item: LI_HD_Bradium
-      - Index: 13
-        Item: HD_Etel_Carnium
-        Zeny: 50000
-        RequiredItems:
-          - Index: 0
-            Item: Etel_Dust
-            Amount: 3
-          - Index: 1
-            Item: LI_HD_Carnium
-  - Name: barter_refine_3
+            Item: Ancient_Gold_Coin
+            Amount: 5
+  - Name: PowerupItemCombine
     Items:
       - Index: 0
-        Item: Shadowdecon
+        Item: G_Small_Life_Potion
         RequiredItems:
           - Index: 0
-            Item: Shadowdecon_Ore
-            Amount: 20
+            Item: Small_Life_Potion
+            Amount: 6
       - Index: 1
-        Item: Zelunium
+        Item: G_Med_Life_Potion
         RequiredItems:
           - Index: 0
-            Item: Zelunium_Ore
-            Amount: 20
+            Item: Med_Life_Potion
+            Amount: 6
+      - Index: 2
+        Item: G_Mysterious_Water
+        RequiredItems:
+          - Index: 0
+            Item: Mysterious_Water
+            Amount: 6
+      - Index: 3
+        Item: G_Small_Mana_Potion
+        RequiredItems:
+          - Index: 0
+            Item: Small_Mana_Potion
+            Amount: 6
+      - Index: 4
+        Item: G_M_DEFScroll
+        RequiredItems:
+          - Index: 0
+            Item: M_DEFScroll
+            Amount: 6
+      - Index: 5
+        Item: G_Almighty
+        RequiredItems:
+          - Index: 0
+            Item: Almighty
+            Amount: 2
+      - Index: 6
+        Item: G_Limit_Power_Booster
+        RequiredItems:
+          - Index: 0
+            Item: Limit_Power_Booster
+            Amount: 2
+      - Index: 7
+        Item: G_Infinity_Drink
+        RequiredItems:
+          - Index: 0
+            Item: Infinity_Drink
+            Amount: 2
+      - Index: 8
+        Item: G_Red_Booster
+        RequiredItems:
+          - Index: 0
+            Item: Red_Booster
+            Amount: 6
+      - Index: 9
+        Item: G_ASPD_Potion
+        RequiredItems:
+          - Index: 0
+            Item: ASPD_Potion
+            Amount: 4
+      - Index: 10
+        Item: G_Tyrs_Blessing
+        RequiredItems:
+          - Index: 0
+            Item: Tyr's_Blessing
+            Amount: 12
+      - Index: 11
+        Item: G_Mental_Potion
+        RequiredItems:
+          - Index: 0
+            Item: Mental_Potion
+            Amount: 2
+      - Index: 12
+        Item: Real_Battle_Manual
+        RequiredItems:
+          - Index: 0
+            Item: Core_Battle_Manual
+            Amount: 4
+      - Index: 13
+        Item: Core_Battle_Manual
+        RequiredItems:
+          - Index: 0
+            Item: Battle_Manual
+            Amount: 2

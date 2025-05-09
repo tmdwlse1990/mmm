@@ -1,0 +1,9 @@
+icecastle,83,222,0	script	Drug Dealer	4_ED_ORB,{
+	mes "เลือกซะซิ";
+	if(select("- ซื้อยาโดป:- ผสมยาโดป") == 1 ) 
+		callshop "PowerupItem";
+	else
+		callshop "PowerupItemCombine";
+	close2;
+	end;
+}

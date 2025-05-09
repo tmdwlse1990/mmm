@@ -31,3 +31,169 @@
 Header:
   Type: ITEM_CASH_DB
   Version: 1
+
+Body:
+  - Tab: New
+    Items:
+      - Item: Elunium_Box
+        Price: 100
+      - Item: Oridecon_Box
+        Price: 100
+      - Item: Enriched_Elunium
+        Price: 50
+      - Item: Enriched_Elunium_Box
+        Price: 200
+      - Item: Enriched_Oridecon
+        Price: 50
+      - Item: Enriched_Oridecon_Box
+        Price: 200
+      - Item: HD_Elunium
+        Price: 50
+      - Item: HD_Elunium_Box
+        Price: 200
+      - Item: HD_Oridecon
+        Price: 50
+      - Item: HD_Oridecon_Box
+        Price: 200
+      - Item: Convex_Mirror_Box5
+        Price: 250
+      - Item: F_Max_Weight_Up_Box
+        Price: 100
+      - Item: Max_Weight_Up_Box
+        Price: 1000
+  - Tab: Hot
+    Items:
+      - Item: Battle_Manual
+        Price: 10
+      - Item: Battle_Manual_Box
+        Price: 69
+      - Item: Bubble_Gum
+        Price: 50
+      - Item: Bubble_Gum_Box
+        Price: 300
+      - Item: Kafra_Card_Box
+        Price: 100
+  - Tab: Consumables
+    Items:
+      - Item: Grape_Box
+        Price: 20
+      - Item: Light_Red_Pot_Box
+        Price: 25
+      - Item: Light_Orange_Pot_Box
+        Price: 50
+      - Item: Light_Yellow_Pot_Box
+        Price: 75
+      - Item: Light_White_Pot_Box
+        Price: 100
+      - Item: Blue_Potion_Box
+        Price: 150
+      - Item: Str_Dish10_ 
+        Price: 50
+      - Item: Agi_Dish10_
+        Price: 50
+      - Item: Vit_Dish10_
+        Price: 50
+      - Item: Int_Dish10_
+        Price: 50
+      - Item: Dex_Dish10_
+        Price: 50
+      - Item: Luk_Dish10_
+        Price: 50
+      - Item: Str_Dish_Box
+        Price: 399
+      - Item: Agi_Dish_Box
+        Price: 399
+      - Item: Vit_Dish_Box
+        Price: 399
+      - Item: Int_Dish_Box
+        Price: 399
+      - Item: Dex_Dish_Box
+        Price: 399
+      - Item: Luk_Dish_Box
+        Price: 399
+      - Item: Abrasive_Box10
+        Price: 300
+  - Tab: Scrolls
+    Items:
+      - Item: Megaphone_Box
+        Price: 10
+      - Item: Blessing_10_Scroll_Box
+        Price: 49
+      - Item: Inc_Agi_10_Scroll_Box
+        Price: 49
+      - Item: Aspersio_5_Scroll_Box
+        Price: 89
+      - Item: Magnificat_5_Scroll_Box
+        Price: 99
+      - Item: White_Herb_Box
+        Price: 200
+      - Item: Blue_Herb_Box
+        Price: 200
+  - Tab: Rental
+    Items:
+      - Item: Infiltrator_Box
+        Price: 1500
+      - Item: Muramasa_Box
+        Price: 1500
+      - Item: Excalibur_Box
+        Price: 1500
+      - Item: Combat_Knife_Box
+        Price: 1500
+      - Item: Counter_Dagger_Box
+        Price: 1500
+      - Item: Kaiser_Knuckle_Box
+        Price: 1500
+      - Item: Pole_Axe_Box
+        Price: 1500
+      - Item: Mighty_Staff_Box
+        Price: 1500
+      - Item: Right_Epsilon_Box
+        Price: 1500
+      - Item: Balistar_Box
+        Price: 1500
+      - Item: Diary_Of_Great_Sage_Box
+        Price: 1500
+      - Item: Asura_Box
+        Price: 1500
+      - Item: Apple_Of_Archer_Box
+        Price: 1500
+      - Item: Bunny_Band_Box
+        Price: 1500
+      - Item: Sahkkat_Box
+        Price: 1500
+      - Item: Critical_Ring_Box
+        Price: 1500
+      - Item: Earring_Box
+        Price: 1500
+      - Item: Ring_Box
+        Price: 1500
+      - Item: Necklace_Box
+        Price: 1500
+      - Item: Brooch_Box
+        Price: 1500
+      - Item: Glove_Box
+        Price: 1500
+      - Item: Rosary_Box
+        Price: 1500
+      - Item: Safety_Ring_Box
+        Price: 1500
+      - Item: Beholder_Ring_Box2
+        Price: 1500
+      - Item: Hallow_Ring_Box2
+        Price: 1500
+      - Item: Clamorous_Ring_Box2
+        Price: 1500
+      - Item: Chemical_Ring_Box2
+        Price: 1500
+      - Item: Insecticide_Ring_Box2
+        Price: 1500
+      - Item: Fisher_Ring_Box2
+        Price: 1500
+      - Item: Decussate_Ring_Box2
+        Price: 1500
+      - Item: Bloody_Ring_Box2
+        Price: 1500
+      - Item: Satanic_Ring_Box2
+        Price: 1500
+      - Item: Dragoon_Ring_Box2
+        Price: 1500

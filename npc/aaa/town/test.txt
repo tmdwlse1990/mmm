@@ -1,6 +1,7 @@
 icecastle,189,206,5	script	chicken test	800,{
-	monster "icecastle", 184, 211, "Ranked 1 Poring", 2410, 1,1;
-	monster "icecastle", 187, 211, "Ranked 2 Poring", 2410, 1,2;
-	monster "icecastle", 181, 211, "Ranked 3 Poring", 2410, 1,3;
-	end;
+	
+Oninit:
+	questinfo( QTYPE_QUEST, QMARK_NONE, "BaseLevel > 50" );
+	questinfo( QTYPE_QUEST2, QMARK_NONE, "BaseLevel > 50" );
+end;
 }
