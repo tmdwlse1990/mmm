@@ -90,7 +90,7 @@ gef_fild10,242,202,0	script	Dimensional Gorge Piece	406,{
 	//============================================================
 	
 					.@level_mode = select(
-						"[ Level 30+ ] Normal", 
+						"[ Level 50+ ] Normal", 
 						"[ Level 99+ ] Veteran", 
 						"[ Level 120+ ] Nightmare",
 						"[ Level 150+ ] Hell",
@@ -99,7 +99,7 @@ gef_fild10,242,202,0	script	Dimensional Gorge Piece	406,{
 					$ORCSMODE[getcharid(1)] = .@level_mode;
 					set .@required_level, 0;
 
-					if (.@level_mode == 1) { .@required_level = 30; }
+					if (.@level_mode == 1) { .@required_level = 50; }
 					else if (.@level_mode == 2) { .@required_level = 99; }
 					else if (.@level_mode == 3) { .@required_level = 120; }
 					else if (.@level_mode == 4) { .@required_level = 150; }
@@ -107,7 +107,7 @@ gef_fild10,242,202,0	script	Dimensional Gorge Piece	406,{
 
 					if (!instance_check_party(getcharid(1), .@online_members_count, .@required_level)) {
 						mes "สมาชิกในปาร์ตี้ทุกคนต้องมีเลเวลอย่างน้อย " + .@required_level + " เพื่อเข้าสู่ดันเจี้ยน."; 
-						close;				
+						close;
 					} 
 					
 					mes "ปาร์ตี้ของคุณผ่านข้อกำหนดของ Memorial Dungeon แล้ว.";

@@ -370,7 +370,7 @@ Body:
                 Amount: 5 
                 Zeny: 875000 
                 DowngradeAmount: 1 
-              - Option: 1 
+              - Option: 2
                 Item: Amber
                 Amount: 10 
                 Zeny: 1750000
@@ -851,18 +851,10 @@ Body:
                 Amount: 5 
                 Zeny: 875000 
                 DowngradeAmount: 1 
-              - Option: 1 
+              - Option: 2
                 Item: Amber
                 Amount: 10 
                 Zeny: 1750000
-              - Option: 2 
-                Item: Amber
-                Amount: 15 
-                Zeny: 2625000
-              - Option: 3 
-                Item: Amber
-                Amount: 20 
-                Zeny: 3500000
       - Level: 2
         Grades:
           - Grade: None
