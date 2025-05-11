@@ -105,7 +105,7 @@ gef_fild10,242,202,0	script	Dimensional Gorge Piece	406,{
 					else if (.@level_mode == 4) { .@required_level = 150; }
 					else if (.@level_mode == 5) { .@required_level = 200; }
 
-					if (!instance_check_party(getcharid(1), .@online_members_count, .@required_level, 260)) {
+					if (!instance_check_party(getcharid(1), .@online_members_count, .@required_level)) {
 						mes "สมาชิกในปาร์ตี้ทุกคนต้องมีเลเวลอย่างน้อย " + .@required_level + " เพื่อเข้าสู่ดันเจี้ยน."; 
 						close;				
 					} 
@@ -1225,6 +1225,7 @@ function	script	F_Orcs_Monster_Summon	{
 			.@bonus_mdef += $@easy_mode_variables[4];
 			.@bonus_hit += $@easy_mode_variables[5];			
 			.@bonus_flee += $@easy_mode_variables[6];
+			.@rank += $@easy_mode_variables[7];
 			break;
 		case 2://Veteran
 			.@bonus_hp_rate += $@veteran_mode_variables[0];
@@ -1233,7 +1234,8 @@ function	script	F_Orcs_Monster_Summon	{
 			.@bonus_def += $@veteran_mode_variables[3];
 			.@bonus_mdef += $@veteran_mode_variables[4];
 			.@bonus_hit += $@veteran_mode_variables[5];			
-			.@bonus_flee += $@veteran_mode_variables[6];		
+			.@bonus_flee += $@veteran_mode_variables[6];	
+			.@rank += $@veteran_mode_variables[7];	
 			break;
 		case 3://Nightmare
 			.@bonus_hp_rate += $@nightmare_mode_variables[0];
@@ -1242,16 +1244,18 @@ function	script	F_Orcs_Monster_Summon	{
 			.@bonus_def += $@nightmare_mode_variables[3];
 			.@bonus_mdef += $@nightmare_mode_variables[4];
 			.@bonus_hit += $@nightmare_mode_variables[5];			
-			.@bonus_flee += $@nightmare_mode_variables[6];					
+			.@bonus_flee += $@nightmare_mode_variables[6];		
+			.@rank += $@nightmare_mode_variables[7];			
 			break;
 		case 4://Hell
-			.@bonus_hp_rate += .@hell_mode_variables[0];
-			.@bonus_dmg_rate += .@hell_mode_variables[1];
-			.@bonus_damagetaken += .@hell_mode_variables[2];
-			.@bonus_def += .@hell_mode_variables[3];
-			.@bonus_mdef += .@hell_mode_variables[4];
-			.@bonus_hit += .@hell_mode_variables[5];			
-			.@bonus_flee += .@hell_mode_variables[6];			
+			.@bonus_hp_rate += $@hell_mode_variables[0];
+			.@bonus_dmg_rate += $@hell_mode_variables[1];
+			.@bonus_damagetaken += $@hell_mode_variables[2];
+			.@bonus_def += $@hell_mode_variables[3];
+			.@bonus_mdef += $@hell_mode_variables[4];
+			.@bonus_hit += $@hell_mode_variables[5];			
+			.@bonus_flee += $@hell_mode_variables[6];			
+			.@rank += $@hell_mode_variables[7];
 			break;
 		case 5://Torment
 			.@bonus_hp_rate += $@torment_mode_variables[0];
@@ -1260,12 +1264,13 @@ function	script	F_Orcs_Monster_Summon	{
 			.@bonus_def += $@torment_mode_variables[3];
 			.@bonus_mdef += $@torment_mode_variables[4];
 			.@bonus_hit += $@torment_mode_variables[5];			
-			.@bonus_flee += $@torment_mode_variables[6];				
+			.@bonus_flee += $@torment_mode_variables[6];		
+			.@rank += $@torment_mode_variables[7];		
 			break;
 	}
 	
 	deletearray $@mobid,getarraysize($@mobid);
-	monster .@map$, .@x1, .@y1, .@mob_name$, .@mob_id, .@amount, .@label$;
+	monster .@map$, .@x1, .@y1, .@mob_name$, .@mob_id, .@amount,.@rank , .@label$;
 	copyarray .@GID, $@mobid, getarraysize($@mobid);
 	getunitdata .@GID, .@ST;
 
@@ -1476,7 +1481,9 @@ function	script	F_Orcs_Settings	{
 									, 0			//bonus_def
 									, 0			//bonus_mdef
 									, 0			//bonus_hit
-									, 0;		//bonus_flee
+									, 0			//bonus_flee
+									, 0			//Rank
+									;
 									
 	setarray $@veteran_mode_variables, 100		//bonus_hp_rate
 									, 100		//bonus_dmg_rate
@@ -1484,7 +1491,9 @@ function	script	F_Orcs_Settings	{
 									, 100		//bonus_def
 									, 100		//bonus_mdef
 									, 100		//bonus_hit
-									, 100;		//bonus_flee
+									, 100		//bonus_flee
+									, 1			//Rank
+									;
 									
 	setarray $@nightmare_mode_variables, 200		//bonus_hp_rate
 									, 200		//bonus_dmg_rate
@@ -1492,7 +1501,9 @@ function	script	F_Orcs_Settings	{
 									, 200		//bonus_def
 									, 200		//bonus_mdef
 									, 200		//bonus_hit
-									, 200;		//bonus_flee
+									, 200		//bonus_flee
+									, 3			//Rank
+									;
 									
 	setarray $@hell_mode_variables, 400			//bonus_hp_rate
 									, 400		//bonus_dmg_rate
@@ -1500,7 +1511,9 @@ function	script	F_Orcs_Settings	{
 									, 400		//bonus_def
 									, 400		//bonus_mdef
 									, 400		//bonus_hit
-									, 400;		//bonus_flee
+									, 400		//bonus_flee
+									, 5			//Rank
+									;
 									
 	setarray $@torment_mode_variables, 1000		//bonus_hp_rate
 									, 1000		//bonus_dmg_rate
@@ -1508,7 +1521,9 @@ function	script	F_Orcs_Settings	{
 									, 1000		//bonus_def
 									, 1000		//bonus_mdef
 									, 1000		//bonus_hit
-									, 1000;		//bonus_flee
+									, 1000		//bonus_flee
+									, 10		//Rank
+									;
 									
 	setarray $@bonus_exp[1], 1					//easy_bonus_exp
 						, 2					//veteran_bonus_exp
