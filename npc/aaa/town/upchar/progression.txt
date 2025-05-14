@@ -71,7 +71,7 @@ icecastle,209,170,4	script	อัพเกรดบัตรนักพจญภัย	4_EP21_HEINE_TAB,{
 		// case adv = 1 and adv = 2
 		.@lvl = (getd($stats$[.@menu]) >= 10 ? getd($stats$[.@menu]) : getd($stats$[.@menu]) % 10);
 		.@usezeny = .@zeny[.@lvl]*.@multiple;
-		dispbottom ""+.@lvl+" . "+.@zeny[.@lvl]+" * "+.@multiple;
+		//dispbottom ""+.@lvl+" . "+.@zeny[.@lvl]+" * "+.@multiple;
 		if(!.@usezeny) {
 			mes "ท่านอัพถึงระดับสูงสุดของ Rank "+.@rankname$[adv_clas]+" ในด้านนี้แล้ว";
 			mes "ท่านต้องผ่านการทดสอบของทางกิล เพื่อทำการเลื่อนระดับแรงค์";

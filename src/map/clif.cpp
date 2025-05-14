@@ -24366,6 +24366,7 @@ void clif_parse_enchantgrade_start( int32 fd, map_session_data* sd ){
 			log_pick_pc( sd, LOG_TYPE_ENCHANTGRADE, 1, &sd->inventory.u.items_inventory[index] );
 			// Show downgrade
 			clif_enchantgrade_result( *sd, index, ENCHANTGRADE_UPGRADE_DOWNGRADE );
+			clif_inventorylist(sd);
 		// Only show failure, but dont do anything
 		}else{
 			clif_enchantgrade_result( *sd, index, ENCHANTGRADE_UPGRADE_FAILED );
