@@ -1,5 +1,5 @@
 
-CREATE TABLE IF NOT EXISTS `storage_collection` (
+CREATE TABLE IF NOT EXISTS `COLLECTION_STORAGE` (
   `id` int(11) unsigned NOT NULL auto_increment,
   `account_id` int(11) unsigned NOT NULL default '0',
   `nameid` int(10) unsigned NOT NULL default '0',

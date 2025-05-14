@@ -36,7 +36,7 @@ if (delay == 0) {  // ตรวจสอบว่า delay ยังไม่ได้ถูกกำหนด
 	menu "ก็มาสิวะ!!",Lok,"แม่บอกไม่ให้ยุ่งกับคนแปลกหน้า....",Lno;
 	
 		Lok:
-			if(countitem(501)>=100){
+			if(countitem(569)>=100){
 			delitem 569,100;
 			set .@rightnum,rand(0,100);
 			mes "[Walter Right]";

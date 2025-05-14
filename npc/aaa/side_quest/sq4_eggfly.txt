@@ -24,7 +24,34 @@ icecastle,147,85,5	script	Henry ºŸÈÀ‘«‚´	870,{
 				next;
 				mes "[Henry]";
 				mes "¢Õ∫§ÿ≥æ’Ëπ– º¡‰¡Ë¡’Õ–‰√®–„ÀÈæ’Ë‡≈¬ æ’Ë‡Õ“Õ—ππ’È‰ª≈–°—ππ–!!";
-				getitem 603,1;
+				set .@rightnum,rand(0,100); // ÿË¡À‘πstat 1-2 (70%/30%)|| 4700 4710 4720 4730 4740 4750 (stat+1) /4701 4711 4721 4731 4741 4751 (stat+2)
+				if (.@rightnum >70)
+					{
+						 set .@getstonestat, rand(1, 6);  // Randomize +2 Stat Stone
+						 switch(.@getstonestat)
+						 {
+								case 1: getitem 4701,1;
+								case 2: getitem 4711,1;
+								case 3: getitem 4721,1;
+								case 4: getitem 4731,1;
+								case 5: getitem 4741,1;
+								case 6: getitem 4751,1;
+						 } 
+					}
+					else 
+					{
+						set .@getstonestat, rand(1, 6);  // Randomize +1 Stat Stone
+						 switch(.@getstonestat)
+						 {
+								case 1: getitem 4700,1;
+								case 2: getitem 4710,1;
+								case 3: getitem 4720,1;
+								case 4: getitem 4730,1;
+								case 5: getitem 4740,1;
+								case 6: getitem 4750,1;
+						 } 
+					}
+
 				specialeffect EF_HEAL2;
 				set SQfour,2;
 				set SQhidden,1; //‰«È‡æ‘Ë¡‡§« ·¡Ë‡¥Á° §“‡√πππππππππππππ

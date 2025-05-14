@@ -34,6 +34,6 @@ Header:
 
 Footer:
   Imports:
-  - Path: db/re/level_penalty.yml
-    Mode: Renewal
+#  - Path: db/re/level_penalty.yml
+#    Mode: Renewal
   - Path: db/import/level_penalty.yml

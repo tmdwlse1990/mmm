@@ -1,0 +1,284 @@
+//---------------------- ตัวเริ่ม secret quest --------------------------------
+icecastle,245,138,4	script	 #secret1	10371,{
+	if(#SSQone == 1) {  
+			mes "ของประหลาดที่ติดป้ายเขียนว่า"; 
+			mes " ";
+			mes " ^FF0000รอแมวมาแก้...";
+			mes " ";
+			end;
+			} else {
+			enablenpc "Tech Support#temp";// เรียกให้ Tech โผล่มา
+			mes "[Tech Support]";
+			mes "อ๊าาาา ไอ้แมวมันทำบัคเต็มไปหมด!!";
+			next;
+			mes "[Tech Support]";
+			mes "เอ็งมาก็ดีละ!! เวลาไปเวลอ่ะ ลองเดินๆหาดู อาจจะเจออะไรแปลกๆแบบนี้";
+			next;
+			mes "[Tech Support]";
+			mes "เอานี่ไป...ค่าทำงาน ละก็ไปหาจุดอื่นเสร็จละมาแจ้งไอ้แมวมันด้วยนะ!!";
+			getitem 12221,1; 
+			getitem 668,3; 
+			next;
+			// ต่อด้วยบทพูดของ Tech
+			mes "[Tech Support]";
+			mes "เฮ้อ~!! ทำอะไรไม่เคยจะไม่มีปัญหาซักเรื่อง!!";
+			next;
+			mes "[Tech Support]";
+			mes "ตูไปอู้ก่อนละ ฝากจัดการหาที่เหลือต่อด้วยนะ!!";
+			set #SSQone,1;
+			set #SSQreward, #SSQreward+1;
+			close2;
+
+			// หายไปหลังคุยเสร็จ
+			disablenpc "Tech Support#temp";
+			end;
+		}
+}
+
+
+-	script	NPC_Template	-1,{
+	end;
+}
+
+// NPC B ตัวจริง (duplicate)
+icecastle,243,136,4	duplicate(NPC_Template)	Tech Support#temp	10346
+
+// ปิด NPC B ตอนเริ่ม (หลังจากที่มีการ duplicate แล้ว)
+icecastle,0,0,0	script	init_TechSupport_hide	-1,{
+	disablenpc "Tech Support#temp";
+	end;
+}
+
+//------------------------------ปิดตัวเริ่ม secret quest --------------------
+
+prt_fild08,334,367,4	script	 #secret2	10288,{ //จุดที่ 2 ล่างพรอน
+	if(#SSQtwo == 1) {  
+			mes "ของประหลาดที่ติดป้ายเขียนว่า"; 
+			mes " ";
+			mes " ^FF0000รอแมวมาแก้...";
+			mes " ";
+			end;
+			} else {
+			mes "[Tech Support]";
+			mes "นี่คือการติดต่อทางไกล ไม่ต้องมองหาตูหรอก";
+			next;
+			mes "[Tech Support]";
+			mes "เอานี่ไป...ค่าทำงาน ละก็ไปหาจุดอื่นเสร็จละมาแจ้งไอ้แมวมันด้วยนะ!!";
+			getitem 12221,1; 
+			getitem 668,3; 
+			// ต่อด้วยบทพูดของ Tech
+			set #SSQtwo,1;
+			set #SSQreward, #SSQreward+1;
+			end;
+		}
+}
+
+moc_fild07,157,332,4	script	 #secret3	10561,{ //จุดที่ 3 บนมอ
+	if (#SSQthree == 1) {
+		mes "ของประหลาดที่ติดป้ายเขียนว่า";
+		mes " ";
+		mes " ^FF0000รอแมวมาแก้...";
+		mes " ";
+		end;
+	} else {
+		mes "[Tech Support]";
+		mes "นี่คือการติดต่อทางไกล ไม่ต้องมองหาตูหรอก";
+		next;
+		mes "[Tech Support]";
+		mes "เอานี่ไป...ค่าทำงาน ละก็ไปหาจุดอื่นเสร็จละมาแจ้งไอ้แมวมันด้วยนะ!!";
+		getitem 12221,1; 
+		getitem 668,3; 
+		set #SSQthree, 1;
+		set #SSQreward, #SSQreward + 1;
+		end;
+	}
+}
+
+alberta,70,125,4	script	 #secret4	10593,{ //จุดที่ 4 Alberta
+	if (#SSQfour == 1) {
+		mes "ของประหลาดที่ติดป้ายเขียนว่า";
+		mes " ";
+		mes " ^FF0000รอแมวมาแก้...";
+		mes " ";
+		end;
+	} else {
+		mes "[Tech Support]";
+		mes "นี่คือการติดต่อทางไกล ไม่ต้องมองหาตูหรอก";
+		next;
+		mes "[Tech Support]";
+		mes "เอานี่ไป...ค่าทำงาน ละก็ไปหาจุดอื่นเสร็จละมาแจ้งไอ้แมวมันด้วยนะ!!";
+		getitem 12221,1; 
+		getitem 668,3; 
+		set #SSQfour, 1;
+		set #SSQreward, #SSQreward + 1;
+		end;
+	}
+}
+
+pay_dun00,164,141,4	script	 #secret5	1934,{ //จุดที่ 5 ย่อนดันชั้น1
+	if (#SSQfive == 1) {
+		mes "ของประหลาดที่ติดป้ายเขียนว่า";
+		mes " ";
+		mes " ^FF0000รอแมวมาแก้...";
+		mes " ";
+		end;
+	} else {
+		mes "[Tech Support]";
+		mes "นี่คือการติดต่อทางไกล ไม่ต้องมองหาตูหรอก";
+		next;
+		mes "[Tech Support]";
+		mes "เอานี่ไป...ค่าทำงาน ละก็ไปหาจุดอื่นเสร็จละมาแจ้งไอ้แมวมันด้วยนะ!!";
+		getitem 12221,1; 
+		getitem 668,3; 
+		set #SSQfive, 1;
+		set #SSQreward, #SSQreward + 1;
+		end;
+	}
+}
+
+in_orcs01,30,187,4	script	 #secret6	1932,{ //จุดที่ 6 ก่อนเข้า orc dungeon
+	if (#SSQsix == 1) {
+		mes "ของประหลาดที่ติดป้ายเขียนว่า";
+		mes " ";
+		mes " ^FF0000รอแมวมาแก้...";
+		mes " ";
+		end;
+	} else {
+		mes "[Tech Support]";
+		mes "นี่คือการติดต่อทางไกล ไม่ต้องมองหาตูหรอก";
+		next;
+		mes "[Tech Support]";
+		mes "เอานี่ไป...ค่าทำงาน ละก็ไปหาจุดอื่นเสร็จละมาแจ้งไอ้แมวมันด้วยนะ!!";
+		getitem 12221,1; 
+		getitem 668,3; 
+		set #SSQsix, 1;
+		set #SSQreward, #SSQreward + 1;
+		end;
+	}
+}
+
+treasure02,61,36,4	script	 #secret7	10029,{ //จุดที่ 7 sunken 2
+	if (#SSQseven == 1) {
+		mes "ของประหลาดที่ติดป้ายเขียนว่า";
+		mes " ";
+		mes " ^FF0000รอแมวมาแก้...";
+		mes " ";
+		end;
+	} else {
+		mes "[Tech Support]";
+		mes "นี่คือการติดต่อทางไกล ไม่ต้องมองหาตูหรอก";
+		next;
+		mes "[Tech Support]";
+		mes "เอานี่ไป...ค่าทำงาน ละก็ไปหาจุดอื่นเสร็จละมาแจ้งไอ้แมวมันด้วยนะ!!";
+		getitem 12221,1; 
+		getitem 668,3; 
+		set #SSQseven, 1;
+		set #SSQreward, #SSQreward + 1;
+		end;
+	}
+}
+
+prt_sewb3,96,62,4	script	 #secret8	10001,{ //จุดที่ 8 ท่อแมงสาบชั้น3
+	if (#SSQeight == 1) {
+		mes "ของประหลาดที่ติดป้ายเขียนว่า";
+		mes " ";
+		mes " ^FF0000รอแมวมาแก้...";
+		mes " ";
+		end;
+	} else {
+		mes "[Tech Support]";
+		mes "นี่คือการติดต่อทางไกล ไม่ต้องมองหาตูหรอก";
+		next;
+		mes "[Tech Support]";
+		mes "เอานี่ไป...ค่าทำงาน ละก็ไปหาจุดอื่นเสร็จละมาแจ้งไอ้แมวมันด้วยนะ!!";
+		getitem 12221,1; 
+		getitem 668,3; 
+		set #SSQeight, 1;
+		set #SSQreward, #SSQreward + 1;
+		end;
+	}
+}
+
+payon,141,104,4	script	 #secret9	10083,{ //จุดที่ 9 payon
+	if (#SSQnine == 1) {
+		mes "ของประหลาดที่ติดป้ายเขียนว่า";
+		mes " ";
+		mes " ^FF0000รอแมวมาแก้...";
+		mes " ";
+		end;
+	} else {
+		mes "[Tech Support]";
+		mes "นี่คือการติดต่อทางไกล ไม่ต้องมองหาตูหรอก";
+		next;
+		mes "[Tech Support]";
+		mes "เอานี่ไป...ค่าทำงาน ละก็ไปหาจุดอื่นเสร็จละมาแจ้งไอ้แมวมันด้วยนะ!!";
+		getitem 12221,1; 
+		getitem 668,3; 
+		set #SSQnine, 1;
+		set #SSQreward, #SSQreward + 1;
+		end;
+	}
+}
+
+alb2trea,91,65,4	script	 #secret10	409,{ //จุดที่ 10 ก่อนเข้าเรือล่ม
+	if (#SSQten == 1) {
+		mes "ของประหลาดที่ติดป้ายเขียนว่า";
+		mes " ";
+		mes " ^FF0000รอแมวมาแก้...";
+		mes " ";
+		end;
+	} else {
+		mes "[Tech Support]";
+		mes "นี่คือการติดต่อทางไกล ไม่ต้องมองหาตูหรอก";
+		next;
+		mes "[Tech Support]";
+		mes "เอานี่ไป...ค่าทำงาน ละก็ไปหาจุดอื่นเสร็จละมาแจ้งไอ้แมวมันด้วยนะ!!";
+		getitem 12221,1; 
+		getitem 668,3; 
+		set #SSQten, 1;
+		set #SSQreward, #SSQreward + 1;
+		end;
+	}
+}
+
+gef_fild11,187,41,9	script	 #secret11	614,{ //จุดที่ 11 geffen field 11 กบ
+	if (#SSQeleven == 1) {
+		mes "ของประหลาดที่ติดป้ายเขียนว่า";
+		mes " ";
+		mes " ^FF0000รอแมวมาแก้...";
+		mes " ";
+		end;
+	} else {
+		mes "[Tech Support]";
+		mes "นี่คือการติดต่อทางไกล ไม่ต้องมองหาตูหรอก";
+		next;
+		mes "[Tech Support]";
+		mes "เอานี่ไป...ค่าทำงาน ละก็ไปหาจุดอื่นเสร็จละมาแจ้งไอ้แมวมันด้วยนะ!!";
+		getitem 12221,1; 
+		getitem 668,3; 
+		set #SSQeleven, 1;
+		set #SSQreward, #SSQreward + 1;
+		end;
+	}
+}
+
+prt_in,52,56,9	script	 #secret12	409,{ //จุดที่ 12 ห้องตีบวกพรอน
+	if (#SSQtwelve == 1) {
+		mes "ของประหลาดที่ติดป้ายเขียนว่า";
+		mes " ";
+		mes " ^FF0000รอแมวมาแก้...";
+		mes " ";
+		end;
+	} else {
+		mes "[Tech Support]";
+		mes "นี่คือการติดต่อทางไกล ไม่ต้องมองหาตูหรอก";
+		next;
+		mes "[Tech Support]";
+		mes "เอานี่ไป...ค่าทำงาน ละก็ไปหาจุดอื่นเสร็จละมาแจ้งไอ้แมวมันด้วยนะ!!";
+		getitem 12221,1; 
+		getitem 668,3; 
+		set #SSQtwelve, 1;
+		set #SSQreward, #SSQreward + 1;
+		end;
+	}
+}
