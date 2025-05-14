@@ -18,11 +18,11 @@ prontera,154,171,4	script	ช่างทำขนม	80,{
 	mes "";
 	mes "^FF0000Side Quest 7";
 	next;
-	mes "นายใช่ไหม?!? ไปเตรียมมาให้ชั้นใหม่เลยนะ รู้ไหมว่า ^0000FF" + getitemlink(.@item_req) + "^000000 มันคือน้ำตาลหนะ!!";
+	mes "นายใช่ไหม?!? ไปเตรียมมาให้ชั้นใหม่เลยนะ รู้ไหมว่า ^i[.@item_req] มันคือน้ำตาลหนะ!!";
 	mes "";
 	mes "^FF0000Side Quest 7";
 	next;
-	mes "ไปเอา " + getitemlink(.@item_req) + " มาคืนให้ชั้นเลยนะ " + .@item_req_amt + " ชิ้น!!!";
+	mes "ไปเอา ^i[.@item_req] มาคืนให้ชั้นเลยนะ " + .@item_req_amt + " ชิ้น!!!";
 	mes "";
 	mes "^FF0000Side Quest 7";
 	next;
@@ -56,6 +56,6 @@ prontera,154,171,4	script	ช่างทำขนม	80,{
 	// แจ้งผู้เล่นว่าได้รับรางวัล
 	mes "[ช่างทำขนม]";
 	mes "มาซะที!! เอ้า!! ข้าให้!!";
-	mes getitemlink(.@reward_id[.@reward_index]) + " จำนวน " + .@reward_amt[.@reward_index] + " ชิ้น!";
+	mes "^i[(.@reward_id[.@reward_index])] จำนวน " + .@reward_amt[.@reward_index] + " ชิ้น!";
 	close;
 }

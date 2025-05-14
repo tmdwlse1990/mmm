@@ -130,10 +130,10 @@ in_orcs01,42,173,3	script	Lina	906,{ //เปิด ep2
 }
 
 // NPC แฟรี่ (duplicate)
-in_orcs01,40,175,5	duplicate(NPC_Template)	Fairy#temp	10509
+in_orcs01,40,175,5	duplicate(Fairy)	Fairy#temp	10509
 
 // ปิด NPC B ตอนเริ่ม (หลังจากที่มีการ duplicate แล้ว)
-in_orcs01,5,5,0	script	init_TechSupport_hide	-1,{
+in_orcs01,5,5,0	script	init_TechSupport_hide#1	-1,{
 	disablenpc "Fairy#temp";
 	end;
 }
