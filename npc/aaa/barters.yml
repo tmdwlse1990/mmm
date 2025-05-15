@@ -48,3 +48,4 @@ Header:
 Footer:
   Imports:
   - Path: npc/aaa/barter/powerupitem.yml
+  - Path: npc/aaa/barter/hat_quest.yml

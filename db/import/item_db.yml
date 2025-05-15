@@ -263,6 +263,27 @@ Body:
     Weight: 200
     Script: |
       callfunc("F_MVPReward",1);
+#   [Enchant Item]
+  - Id: 2099001
+    AegisName: All_STATS1_NT
+    Name: All Stats +1
+    Type: Card
+    SubType: Enchant
+    Buy: 20
+    Weight: 10
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Script: |
+      bonus bAllStats,1;
 #   [Card Item]
   - Id: 2230001
     AegisName: GOLDEN_SAVAGE_Card
