@@ -548,6 +548,7 @@ public:
 		bool pending_vending_ui; // flag whether the vending packet should still be sent to this player or not
 		uint32 warping : 1;//states whether you're in the middle of a warp processing
 		uint32 permanent_speed : 1; // When 1, speed cannot be changed through status_calc_pc().
+		uint32 hideslave;
 		bool hold_recalc;
 		uint32 banking : 1; //1 when we using the banking system 0 when closed
 		uint32 hpmeter_visible : 1;
