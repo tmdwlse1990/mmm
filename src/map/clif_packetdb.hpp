@@ -2053,6 +2053,7 @@
 	parseable_packet( HEADER_CZ_GM_CHECKER, sizeof( struct PACKET_CZ_GM_CHECKER ), clif_parse_macro_checker, 0 );
 #endif
 
+
 #if (PACKETVER_MAIN_NUM >= 20230925)
 	parseable_packet(HEADER_CZ_REQ_EMOTION2, sizeof(PACKET_CZ_REQ_EMOTION2), clif_parse_emotion2, 0);
 	packet(HEADER_ZC_EMOTION2, sizeof(PACKET_ZC_EMOTION2));
@@ -2079,6 +2080,10 @@
 
 #if (PACKETVER_MAIN_NUM >= 20240516)
 	parseable_packet(HEADER_CZ_QUEST_STATUS_REQ, -1, clif_parse_quest_status, 0);
+#endif
+
+#if PACKETVER_MAIN_NUM >= 20250122
+	parseable_packet( 0xc22, 12, clif_parse_dull, 0 );
 #endif
 
 #endif /* CLIF_PACKETDB_HPP */

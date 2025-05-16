@@ -124,8 +124,8 @@ int64 battle_calc_bg_damage(struct block_list *src,struct block_list *bl,int64 d
 int64 battle_calc_pk_damage(block_list &src, block_list &bl, int64 damage, uint16 skill_id, int32 flag);
 int64 battle_calc_debuff_damage(struct block_list* src, struct block_list* bl, int64 damage);
 
-int32 battle_damage(struct block_list *src, struct block_list *target, int64 damage, int16 div_, uint16 skill_lv, uint16 skill_id, enum damage_lv dmg_lv, uint16 attack_type, bool additional_effects, t_tick tick, bool spdamage);
-int32 battle_delay_damage (t_tick tick, int32 amotion, struct block_list *src, struct block_list *target, int32 attack_type, uint16 skill_id, uint16 skill_lv, int64 damage, enum damage_lv dmg_lv, int16 div_, bool additional_effects, bool spdamage);
+int32 battle_damage(struct block_list *src, struct block_list *target, int64 damage, int16 div_, uint16 skill_lv, uint16 skill_id, enum damage_lv dmg_lv, uint16 attack_type, bool additional_effects, t_tick tick, bool isspdamage, bool is_norm_attacked = false);
+int32 battle_delay_damage (t_tick tick, int32 amotion, struct block_list *src, struct block_list *target, int32 attack_type, uint16 skill_id, uint16 skill_lv, int64 damage, enum damage_lv dmg_lv, int16 div_, bool additional_effects, bool isspdamage, bool is_norm_attacked = false);
 int32 battle_fix_damage(struct block_list* src, struct block_list* target, int64 damage, int16 div_, uint16 skill_id);
 
 int32 battle_calc_chorusbonus(map_session_data *sd);
@@ -188,6 +188,7 @@ struct Battle_Config
 	int32 attr_recover;
 	int32 item_auto_get;
 	int32 flooritem_lifetime;
+	int32 first_attack_loot_bonus;
 	int32 item_first_get_time;
 	int32 item_second_get_time;
 	int32 item_third_get_time;
@@ -439,6 +440,7 @@ struct Battle_Config
 	int32 default_walk_delay;
 	int32 no_skill_delay;
 	int32 attack_walk_delay;
+	int32 damage_walk_delay;
 	int32 require_glory_guild;
 	int32 idle_no_share;
 	int32 party_update_interval;
@@ -663,6 +665,8 @@ struct Battle_Config
 	int32 tarotcard_equal_chance; //Official or equal chance for each card
 	int32 change_party_leader_samemap;
 	int32 dispel_song; //Can songs be dispelled?
+	int32 refresh_song; // Can song durations be refreshed?
+	int32 refresh_song_icon; // Should the song icon duration be refreshed?
 	int32 guild_maprespawn_clones; // Should clones be killed by maprespawnguildid?
 	int32 hide_fav_sell;
 	int32 mail_daily_count;
@@ -775,6 +779,7 @@ struct Battle_Config
 	int32 assist_range;
 	int32 open_box_weight_rate;
 	int32 major_overweight_rate;
+	int32 trade_count_stackable;
 
 #include <custom/battle_config_struct.inc>
 };
