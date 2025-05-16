@@ -35,3 +35,48 @@
 Header:
   Type: LAPHINE_SYNTHESIS_DB
   Version: 1
+
+Body:
+  - Item: Common2rare
+    RewardGroup: COMMON2RARE_PET
+    RequiredRequirementsCount: 4
+    Requirements:
+      - Item: Drops_Egg
+      - Item: Poporing_Egg
+      - Item: Lunatic_Egg
+      - Item: Picky_Egg
+      - Item: Chonchon_Egg
+      - Item: Savage_Bebe_Egg
+      - Item: Baby_Desert_Wolf_Egg
+      - Item: Rocker_Egg
+      - Item: Spore_Egg
+      - Item: PecoPeco_Egg
+  - Item: Rare2epic
+    RewardGroup: RARE2EPIC_PET
+    RequiredRequirementsCount: 4
+    Requirements:
+      - Item: Orc_Warrior_Egg
+      - Item: Sohee_Egg
+      - Item: Isis_Egg
+      - Item: Green_Petite_Egg
+      - Item: Deviruchi_Egg
+      - Item: Bapho_Jr._Egg
+      - Item: Bongun_Egg
+      - Item: Alice_Egg
+      - Item: Succubus_Egg
+      - Item: Incubus_Egg
+      - Item: Smokie_Egg
+  - Item: Epic2Legend
+    RewardGroup: EPIC2LEGEND_PET
+    RequiredRequirementsCount: 4
+    Requirements:
+      - Item: Angeling_Egg
+      - Item: Cat_O_Nine_Tail_Egg
+      - Item: Dark_Illusion_Egg
+      - Item: Ghostring_Egg
+      - Item: Gryphon_Egg
+      - Item: Hydro_Egg
+      - Item: Mutant_Dragon_Egg
+      - Item: Owl_Baron_Egg
+      - Item: Ep17_2_C_Admin1_Egg
+      - Item: Ep17_2_C_Admin2_Egg

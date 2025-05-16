@@ -186,6 +186,11 @@ Body:
       IgnoreMelee: true
       IgnoreMisc: true
       IgnoreRanged: true
+# New
+  - Id: 23000
+    AegisName: DARK_ILLUSION2
+    Name: Dark Illusion
+    JapaneseName: Dark Illusion
 # eAthena Dev Team
 #=============================================================
 #  - Id: 1900

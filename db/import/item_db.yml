@@ -237,6 +237,34 @@ Body:
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
+  - Id: 2001901
+    AegisName: Common2rare
+    Name: Combine Common Pet
+    Type: DelayConsume
+    Weight: 10
+    Script: |
+      laphine_synthesis();
+  - Id: 2001902
+    AegisName: Rare2epic
+    Name: Combine Rare Pet
+    Type: DelayConsume
+    Weight: 10
+    Script: |
+      laphine_synthesis();
+  - Id: 2001903
+    AegisName: Epic2Legend
+    Name: Combine Epic Pet
+    Type: DelayConsume
+    Weight: 10
+    Script: |
+      laphine_synthesis();
+  - Id: 2001904
+    AegisName: ALLRAND_PET
+    Name: All Pet Random
+    Type: DelayConsume
+    Weight: 10
+    Script: |
+      laphine_synthesis();
   - Id: 2002000
     AegisName: AI_Item
     Name: AI Item

@@ -89,6 +89,213 @@ Header:
   Version: 3
 
 Body:
+#  [Common Pet]
+  - Id: 9001
+    AegisName: Poring_Egg
+    Name: Poring Egg
+    Type: Petegg
+    Buy: 20
+  - Id: 9002
+    AegisName: Drops_Egg
+    Name: Drops Egg
+    Type: Petegg
+    Buy: 20
+  - Id: 9003
+    AegisName: Poporing_Egg
+    Name: Poporing Egg
+    Type: Petegg
+    Buy: 20
+  - Id: 9004
+    AegisName: Lunatic_Egg
+    Name: Lunatic Egg
+    Type: Petegg
+    Buy: 20
+  - Id: 9005
+    AegisName: Picky_Egg
+    Name: Picky Egg
+    Type: Petegg
+    Buy: 20
+  - Id: 9006
+    AegisName: Chonchon_Egg
+    Name: Chonchon Egg
+    Type: Petegg
+    Buy: 20
+  - Id: 9009
+    AegisName: Savage_Bebe_Egg
+    Name: Savage Babe Egg
+    Type: Petegg
+    Buy: 20
+  - Id: 9010
+    AegisName: Baby_Desert_Wolf_Egg
+    Name: Baby Desert Wolf Egg
+    Type: Petegg
+    Buy: 20
+  - Id: 9011
+    AegisName: Rocker_Egg
+    Name: Rocker Egg
+    Type: Petegg
+    Buy: 20
+  - Id: 9012
+    AegisName: Spore_Egg
+    Name: Spore Egg
+    Type: Petegg
+    Buy: 20
+  - Id: 9014
+    AegisName: PecoPeco_Egg
+    Name: Peco Peco Egg
+    Type: Petegg
+    Buy: 20
+#  [Rare Pet]20
+  - Id: 9017
+    AegisName: Orc_Warrior_Egg
+    Name: Orc Warrior Egg
+    Type: Petegg
+    Buy: 20
+  - Id: 9020
+    AegisName: Sohee_Egg
+    Name: Sohee Egg
+    Type: Petegg
+    Buy: 20
+  - Id: 9021
+    AegisName: Isis_Egg
+    Name: Isis Egg
+    Type: Petegg
+    Buy: 20
+  - Id: 9022
+    AegisName: Green_Petite_Egg
+    Name: Green Petite Egg
+    Type: Petegg
+    Buy: 20
+  - Id: 9023
+    AegisName: Deviruchi_Egg
+    Name: Deviruchi Egg
+    Type: Petegg
+    Buy: 20
+  - Id: 9024
+    AegisName: Bapho_Jr._Egg
+    Name: Bapho Jr. Egg
+    Type: Petegg
+    Buy: 20
+  - Id: 9025
+    AegisName: Bongun_Egg
+    Name: Bongun Egg
+    Type: Petegg
+    Buy: 20
+  - Id: 9027
+    AegisName: Alice_Egg
+    Name: Alice Egg
+    Type: Petegg
+    Buy: 20
+  - Id: 9055
+    AegisName: Succubus_Egg
+    Name: Succubus Egg
+    Type: Petegg
+    Buy: 20
+  - Id: 9052
+    AegisName: Incubus_Egg
+    Name: Incubus Egg
+    Type: Petegg
+    Buy: 20
+  - Id: 9015
+    AegisName: Smokie_Egg
+    Name: Smokie Egg
+    Type: Petegg
+    Buy: 20
+#  [Epic Pet]
+  - Id: 9088
+    AegisName: Angeling_Egg
+    Name: Angeling Egg
+    Type: Petegg
+    Buy: 20
+  - Id: 9096
+    AegisName: Cat_O_Nine_Tail_Egg
+    Name: Cat o Nine Tail Egg
+    Type: Petegg
+    Buy: 20
+  - Id: 9139
+    AegisName: Dark_Illusion_Egg
+    Name: Dark Illusion Egg
+    Type: PetEgg
+  - Id: 9251
+    AegisName: Ghostring_Egg
+    Name: Ghostring Egg
+    Type: PetEgg
+  - Id: 9252
+    AegisName: Gryphon_Egg
+    Name: Gryphon Egg
+    Type: PetEgg
+  - Id: 9253
+    AegisName: Hydro_Egg
+    Name: Hydro Egg
+    Type: PetEgg
+  - Id: 9254
+    AegisName: Mutant_Dragon_Egg
+    Name: Mutant Dragon Egg
+    Type: PetEgg
+  - Id: 9255
+    AegisName: Owl_Baron_Egg
+    Name: Owl Baron Egg
+    Type: PetEgg
+  - Id: 9123
+    AegisName: Ep17_2_C_Admin1_Egg
+    Name: Child Admin Beta Egg
+    Type: Petegg
+    Buy: 20
+  - Id: 9124
+    AegisName: Ep17_2_C_Admin2_Egg
+    Name: Child Admin Alpha Egg
+    Type: Petegg
+    Buy: 20
+#  [Legendary Pet]
+  - Id: 9271
+    AegisName: DOPPELGANGER_EGG
+    Name: Doppelganger Egg
+    Type: PetEgg
+  - Id: 9272
+    AegisName: Orc_Lord_Egg_
+    Name: Orc Lord Egg
+    Type: PetEgg
+    Buy: 20
+  - Id: 9273
+    AegisName: MAYA_EGG
+    Name: Maya Egg
+    Type: PetEgg
+  - Id: 9112
+    AegisName: Moonlight_Egg
+    Name: Moonlight Egg
+    Type: Petegg
+  - Id: 9137
+    AegisName: Baphomet_Egg
+    Name: Baphomet Egg
+    Type: PetEgg
+  - Id: 9193
+    AegisName: Mistress_Egg
+    Name: Mistress Egg
+    Type: PetEgg
+  - Id: 9142
+    AegisName: Eddga_Egg2
+    Name: Eddga Egg
+    Type: PetEgg
+  - Id: 9274
+    AegisName: OSIRIS_EGG
+    Name: Osiris Egg
+    Type: PetEgg
+  - Id: 9275
+    AegisName: DRACULA_EGG
+    Name: Dracula Egg
+    Type: PetEgg
+  - Id: 9276
+    AegisName: DARK_SNAKE_LORD_EGG
+    Name: Dark Snake Lord Egg
+    Type: PetEgg
+  - Id: 9277
+    AegisName: TURTLE_GENERAL_EGG
+    Name: Turtle General Egg
+    Type: PetEgg
+  - Id: 9278
+    AegisName: RANDGRIS_EGG
+    Name: Randgris Egg
+    Type: PetEgg
 #  [Armor]
   - Id: 2130001
     AegisName: Chicken_Armor
