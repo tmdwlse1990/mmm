@@ -71,6 +71,7 @@ icecastle,188,221,4	script	Chief Baron	EP18_NPC_SUAD,{
 			mes "[ผู้ใหญ่บ้าน]";
 			mes "ถ้าเธอล่ามันได้... จะมีรางวัลให้แน่นอน!";
 			set MQ, 4;
+			if(!isbegin_quest(101)) setquest 101;
 			close;
 		}
 	}
@@ -112,6 +113,7 @@ icecastle,188,221,4	script	Chief Baron	EP18_NPC_SUAD,{
 			delitem 507, 5;
 			delitem 511, 5;
 			delitem 6249, 1;
+			completequest 101;
 			next;
 			mes "[ผู้ใหญ่บ้าน]";
 			mes "รอสักครู่...";
@@ -133,6 +135,7 @@ icecastle,188,221,4	script	Chief Baron	EP18_NPC_SUAD,{
 			close;
 		} else {
 			mes "[ผู้ใหญ่บ้าน]";
+			mes "ไปหาสมุนไพรสีแดงๆ กับสีเขียวๆมาให้ข้าอย่างละ 5 ชิ้นนะ!";
 			mes "ยังไม่ครบ 10 ชิ้นหรอกนะ!";
 			emotion e_no;
 			mes "ไปหามาให้ครบก่อนแล้วค่อยกลับมาหาผม!";
@@ -162,3 +165,5 @@ icecastle,188,221,4	script	Chief Baron	EP18_NPC_SUAD,{
 		close;
 	}
 }
+
+mjolnir_09,0,0	monster	GOLDEN SAVAGE(BABY)	1840,1,3600000

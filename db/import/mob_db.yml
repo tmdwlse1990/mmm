@@ -139,7 +139,7 @@ Body:
     AttackMotion: 720
     ClientAttackMotion: 432
     DamageMotion: 432
-    Ai: 06
+    Ai: 25
     Class: Boss
     Modes:
       IgnoreMagic: true
