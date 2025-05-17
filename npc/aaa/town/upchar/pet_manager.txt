@@ -1,0 +1,27 @@
+-	script	#pet_manager	-1,{
+	mes "เลือกระดับสิ อยากผสมระดับไหน";
+	switch(select("Common:Rare:Epic:Legend") ) {
+		case 1:
+			laphine_synthesis(2001901);
+			break;
+		case 2:
+			laphine_synthesis(2001902);
+			break;
+		case 3:
+			laphine_synthesis(2001903);
+			break;
+		case 4:
+			mes "ระดับนี้ยังไม่เปิดให้บริการ";
+			//laphine_synthesis(2001904);
+			break;
+		default:
+			break;
+	}
+	close;
+Oninit:
+	waitingroom "Pet Manager",0;
+	end;
+}
+
+//icecastle,208,158,0	script	Pet Manager#icecastle	802
+icecastle,208,158,0	duplicate(#pet_manager)	Pet Manager#ice1	802
