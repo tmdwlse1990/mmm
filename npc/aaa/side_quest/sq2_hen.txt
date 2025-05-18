@@ -1,4 +1,6 @@
 //-----------------------Side Quest 2 แม่ไก่ --------------
+moc_fild12,0,0	monster	GOLDEN PICKY	27001,10,5000
+moc_fild07,0,0	monster	GOLDEN PICKY	27001,10,5000
 
 icecastle,61,223,5	script	แม่ไก่	10285,{
 	if(SQtwo == 2){
@@ -22,6 +24,7 @@ icecastle,61,223,5	script	แม่ไก่	10285,{
 			mes "เรียบร้อย!! รับไปสิ";
 			getitem 2130002,1; //ได้ชุดไก่ WingZap
 			set SQtwo,2; //ปิดเควส
+			completequest 501;
 			end;
 			
 		}else
@@ -48,6 +51,7 @@ icecastle,61,223,5	script	แม่ไก่	10285,{
 						mes "[แม่ไก่พลังลมปราณ]";
 						mes "ได้มาแล้ว ก็นำมาให้ข้านะ!!";
 						set SQtwo,1; //เข้าเควสหาของ
+						if(!isbegin_quest(501)) Setquest 501;
 						close;
 					
 					case 2:

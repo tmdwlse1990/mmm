@@ -1977,6 +1977,7 @@
 	export_constant(SC_SBUNSHIN);
 	export_constant(SC_CONTENTS_34);
 	export_constant(SC_CONTENTS_35);
+	export_constant(SC_NOACTION);
 
 /// Do not modify code below this, until the end of the API hook, since it will be automatically generated again
 /// @APIHOOK_START(EFST_CONST)
@@ -7185,6 +7186,11 @@
 	export_constant(IG_LI_NYANGVINE_BOX2_38);
 	export_constant(IG_LI_NYANGVINE_BOX3_38);
 
+	// [Custom IG]
+	export_constant(IG_COMMON2RARE_PET);
+	export_constant(IG_RARE2EPIC_PET);
+	export_constant(IG_EPIC2LEGEND_PET);
+	export_constant(IG_ALLRAND_PET);
 	/* unit stop walking */
 	export_constant(USW_NONE);
 	export_constant(USW_FIXPOS);

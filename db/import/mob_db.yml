@@ -139,7 +139,7 @@ Body:
     AttackMotion: 720
     ClientAttackMotion: 432
     DamageMotion: 432
-    Ai: 06
+    Ai: 25
     Class: Boss
     Modes:
       IgnoreMagic: true
@@ -186,6 +186,11 @@ Body:
       IgnoreMelee: true
       IgnoreMisc: true
       IgnoreRanged: true
+# New
+  - Id: 23000
+    AegisName: DARK_ILLUSION2
+    Name: Dark Illusion
+    JapaneseName: Dark Illusion
 # eAthena Dev Team
 #=============================================================
 #  - Id: 1900

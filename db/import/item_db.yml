@@ -195,6 +195,10 @@ Body:
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
+  - Id: 2000007
+    AegisName: Costume_Ticket_Pass
+    Name: Random Costume Ticket
+    Type: Etc
 #   [Side Quest Item]
   - Id: 2005001
     AegisName: Golden_Egg
@@ -237,6 +241,104 @@ Body:
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
+  - Id: 2001003
+    AegisName: 2stats_select_box 
+    Name: Stats Option Seletion box
+    Type: DelayConsume
+    Flags:
+      BuyingStore: true
+  - Id: 2001004
+    AegisName: 3stats_select_box 
+    Name: Stats Option Seletion box
+    Type: DelayConsume
+    Flags:
+      BuyingStore: true
+  - Id: 2001005
+    AegisName: 4stats_select_box 
+    Name: Stats Option Seletion box
+    Type: DelayConsume
+    Flags:
+      BuyingStore: true
+  - Id: 2001101
+    AegisName: Yee_Bubble_Gum
+    Name: Yee Gum
+    Type: Usable
+    Buy: 2
+    Weight: 10
+    Delay:
+      Duration: 60
+      Status: Reuse_Limit_D
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoSell: true
+      NoCart: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Script: |
+      sc_start SC_ITEMBOOST,60000,777;
+  - Id: 2001901
+    AegisName: Common2rare
+    Name: Combine Common Pet
+    Type: DelayConsume
+    Weight: 10
+    Script: |
+      laphine_synthesis();
+  - Id: 2001902
+    AegisName: Rare2epic
+    Name: Combine Rare Pet
+    Type: DelayConsume
+    Weight: 10
+    Script: |
+      laphine_synthesis();
+  - Id: 2001903
+    AegisName: Epic2Legend
+    Name: Combine Epic Pet
+    Type: DelayConsume
+    Weight: 10
+    Script: |
+      laphine_synthesis();
+  - Id: 2001904
+    AegisName: ALLRAND_PET
+    Name: All Pet Random
+    Type: DelayConsume
+    Weight: 10
+    Script: |
+      laphine_synthesis();
+  - Id: 2001951
+    AegisName: Donate_Pet_Box
+    Name: Donate Pet Box
+    Type: Usable
+    Buy: 2000
+    Weight: 200
+    Flags:
+      BuyingStore: true
+      Container: true
+    Trade:
+      NoSell: true
+    Script: |
+      getitem callfunc("F_Rand",9123,9124),1;
+  - Id: 2001952
+    AegisName: Random_Pet_Box
+    Name: Random Pet Box
+    Type: Usable
+    Buy: 2000
+    Weight: 200
+    Flags:
+      BuyingStore: true
+      Container: true
+    Trade:
+      NoSell: true
+    Script: |
+      if(rand(10) != 0)
+        getgroupitem(COMMON2RARE_PET);
+      else
+        getgroupitem(RARE2EPIC_PET);
+  - Id: 36000
+    AegisName: test_Item_size
+    Name: AI Item
+    Type: etc
   - Id: 2002000
     AegisName: AI_Item
     Name: AI Item
@@ -263,6 +365,27 @@ Body:
     Weight: 200
     Script: |
       callfunc("F_MVPReward",1);
+#   [Enchant Item]
+  - Id: 2099001
+    AegisName: All_STATS1_NT
+    Name: All Stats +1
+    Type: Card
+    SubType: Enchant
+    Buy: 20
+    Weight: 10
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Script: |
+      bonus bAllStats,1;
 #   [Card Item]
   - Id: 2230001
     AegisName: GOLDEN_SAVAGE_Card

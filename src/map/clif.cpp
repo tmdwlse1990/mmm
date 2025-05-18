@@ -401,6 +401,8 @@ static bool clif_session_isValid(map_session_data *sd) {
 static int32 clif_send_sub(struct block_list *bl, va_list ap)
 {
 	struct block_list *src_bl;
+	struct block_list* tbl;
+	struct block_list* mbl;
 	map_session_data *sd;
 	unsigned char *buf;
 	int32 len, type, fd;
@@ -417,6 +419,81 @@ static int32 clif_send_sub(struct block_list *bl, va_list ap)
 	len = va_arg(ap,int32);
 	nullpo_ret(src_bl = va_arg(ap,struct block_list*));
 	type = va_arg(ap,int32);
+	
+	if (src_bl->type == BL_PET){ // target 3 == AREA_WOS
+		switch(RBUFW(buf, 0)) {
+			case spawn_unitType: // clif_spawn_unit
+			case unit_walkingType:
+				tbl = map_id2bl(RBUFL(buf,5));
+				if(sd->state.hideslave&1
+					&&((pet_data*)tbl)->master && ((pet_data*)tbl)->master->bl.id != sd->bl.id)
+						return 0;
+					break;
+			case 0x86: // clif_move
+			case 0x1aa: // pet emotion
+				tbl = map_id2bl(RBUFL(buf,2));
+				if(sd->state.hideslave&1
+					&&((pet_data*)tbl)->master && ((pet_data*)tbl)->master->bl.id != sd->bl.id)
+						return 0;
+					break;
+		}
+	} else if(src_bl->type == BL_HOM){
+		switch(RBUFW(buf, 0)) {
+			case spawn_unitType: // clif_spawn_unit
+			case unit_walkingType:
+				tbl = map_id2bl(RBUFL(buf,5));
+				if(sd->state.hideslave&2
+					&&((homun_data*)tbl)->master && ((homun_data*)tbl)->master->bl.id != sd->bl.id)
+						return 0;
+					break;
+			case 0x86: // clif_move
+				tbl = map_id2bl(RBUFL(buf,2));
+				if(sd->state.hideslave&2
+					&&((homun_data*)tbl)->master && ((homun_data*)tbl)->master->bl.id != sd->bl.id)
+						return 0;
+					break;
+		}
+	} else if(src_bl->type == BL_MOB){
+		switch(RBUFW(buf, 0)) {
+			case spawn_unitType: // clif_spawn_unit
+			case unit_walkingType:
+				tbl = map_id2bl(RBUFL(buf,5));
+				if(((mob_data*)tbl)->master_id > 0){
+					mbl = map_id2bl(((mob_data*)tbl)->master_id);
+					if(sd->state.hideslave&4
+						&&mbl->type == BL_PC && mbl->id != sd->bl.id)
+							return 0;
+				}
+					break;
+			case 0x86: // clif_move
+				tbl = map_id2bl(RBUFL(buf,2));
+				if(((mob_data*)tbl)->master_id > 0){
+					mbl = map_id2bl(((mob_data*)tbl)->master_id);
+					if(sd->state.hideslave&4
+						&&mbl->type == BL_PC && mbl->id != sd->bl.id)
+							return 0;
+				}
+					break;
+		}
+	} else {
+		switch(RBUFW(buf, 0)) {
+			case 0x86: // clif_move
+				tbl = map_id2bl(RBUFL(buf,2));
+				if(tbl->type == BL_PET && sd->state.hideslave&1
+					&&((pet_data*)tbl)->master && ((pet_data*)tbl)->master->bl.id != sd->bl.id)
+						return 0;
+				else if(tbl->type == BL_HOM && sd->state.hideslave&2
+					&&((homun_data*)tbl)->master && ((homun_data*)tbl)->master->bl.id != sd->bl.id)
+						return 0;
+				else if(tbl->type == BL_MOB && ((mob_data*)tbl)->master_id > 0){
+						mbl = map_id2bl(((mob_data*)tbl)->master_id);
+						if (sd->state.hideslave&4
+						&&mbl->type == BL_PC && mbl->id != sd->bl.id)
+							return 0;
+				}
+					break;
+		}
+	}
 
 	switch(type) {
 	case AREA_WOS:
@@ -498,6 +575,8 @@ static int32 clif_send_sub(struct block_list *bl, va_list ap)
 int32 clif_send(const void* buf, int32 len, struct block_list* bl, enum send_target type)
 {
 	int32 i;
+	struct block_list* tbl;
+	struct block_list* mbl;
 	map_session_data *sd, *tsd;
 	struct party_data *p = nullptr;
 	std::shared_ptr<s_battleground_data> bg;
@@ -641,6 +720,58 @@ int32 clif_send(const void* buf, int32 len, struct block_list* bl, enum send_tar
 		break;
 
 	case SELF:
+		if (bl->type== BL_PET){ // target 3 == AREA_WOS
+			switch(RBUFW(buf, 0)) {
+				case unit_walkingType: // clif_spawn_unit
+					tbl = map_id2bl(RBUFL(buf,5));
+					if(sd->state.hideslave&1
+						&&((pet_data*)tbl)->master && ((pet_data*)tbl)->master->bl.id != sd->bl.id)
+						return 0;
+					break;
+			}
+		} else if (bl->type== BL_HOM){
+			switch(RBUFW(buf, 0)) {
+				case unit_walkingType: // clif_spawn_unit
+					tbl = map_id2bl(RBUFL(buf,5));
+					if(sd->state.hideslave&2
+						&&((homun_data*)tbl)->master && ((homun_data*)tbl)->master->bl.id != sd->bl.id)
+						return 0;
+					break;
+			}
+		} else if (bl->type== BL_MOB){
+			switch(RBUFW(buf, 0)) {
+				case unit_walkingType: // clif_spawn_unit
+					tbl = map_id2bl(RBUFL(buf,5));
+					if(((mob_data*)tbl)->master_id > 0){
+						mbl = map_id2bl(((mob_data*)tbl)->master_id);
+						if(sd->state.hideslave&4
+							&&mbl->type == BL_PC && mbl->id != sd->bl.id)
+								return 0;
+					}
+					break;
+			}
+		} else {
+			switch(RBUFW(buf, 0)) {
+				case unit_walkingType: // clif move
+				case idle_unitType:
+					tbl = map_id2bl(RBUFL(buf,5));
+					if(tbl->type== BL_PET && sd->state.hideslave&1
+						&&((pet_data*)tbl)->master && ((pet_data*)tbl)->master->bl.id != sd->bl.id)
+						return 0;
+					else if(tbl->type== BL_HOM && sd->state.hideslave&2
+						&&((homun_data*)tbl)->master && ((homun_data*)tbl)->master->bl.id != sd->bl.id)
+						return 0;
+					else if(tbl->type== BL_MOB){
+						if(((mob_data*)tbl)->master_id > 0){
+							mbl = map_id2bl(((mob_data*)tbl)->master_id);
+							if(sd->state.hideslave&4
+								&&mbl->type == BL_PC && mbl->id != sd->bl.id)
+									return 0;
+						}
+					}
+					break;
+			}
+		}
 		if( clif_session_isValid(sd) ){
 			fd = sd->fd;
 			WFIFOHEAD(fd,len);
@@ -4835,11 +4966,17 @@ void clif_tradeadditem( map_session_data* sd, map_session_data* tsd, int32 index
 ///     0 = success
 ///     1 = overweight
 ///     2 = trade canceled
+///     3 = inventory full
+///     4 = stacked item amount exceeded
 void clif_tradeitemok(map_session_data& sd, int32 index, e_exitem_add_result result)
 {
 	PACKET_ZC_ACK_ADD_EXCHANGE_ITEM p = {};
 	p.packetType = HEADER_ZC_ACK_ADD_EXCHANGE_ITEM;
 	p.index = client_index(index);
+#if PACKETVER < 20110705
+	if (result > EXITEM_ADD_FAILED_CLOSED)
+		result = EXITEM_ADD_FAILED_OVERWEIGHT;
+#endif
 	p.result = static_cast<uint8>(result);
 
 	clif_send(&p, sizeof(p), &sd.bl, SELF);

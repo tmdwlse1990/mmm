@@ -1,0 +1,284 @@
+
+#
+# Barter Settings
+#
+###########################################################################
+#  - Name               NPC name.
+#    Map                Map name. (Default: not on a map)
+#    X                  Map x coordinate. (Default: 0)
+#    Y                  Map y coordinate. (Default: 0)
+#    Direction          Direction the NPC is looking. (Default: North)
+#    Sprite             Sprite name of the NPC. (Default: FakeNpc)
+#    Items:             List of sold items.
+#      - Index          Index of the item inside the shop. (0-...)
+#                       Maximum index depends on client.
+#        Item           Aegis name of the item.
+#        Stock          Amount of item in stock. 0 means unlimited. (Default: 0)
+#        Zeny           Cost of them item in Zeny. (Default: 0)
+#        RequiredItems: List of required items (Optional)
+#          - Index      Index of the required item. (0-4)
+#            Item       Aegis name of required item.
+#            Amount     Amount of required item. (Default: 1)
+#            Refine     Refine level of required item. (Default: 0)
+###########################################################################
+
+Header:
+  Type: BARTER_DB
+  Version: 1
+
+Body:
+  - Name: Hat Maker
+    Map: icecastle
+    X: 75
+    Y: 229
+    Direction: South
+    Sprite: 4_EP19_TAMARIN
+    Items:
+      - Index: 0
+        Item: Sales_Signboard
+        Zeny: 500000
+        RequiredItems:
+          - Index: 0
+            Item: Wooden_Block
+            Amount: 100
+          - Index: 1
+            Item: Tree_Of_Archer_3
+            Amount: 30
+          - Index: 2
+            Item: Tree_Of_Archer_2
+            Amount: 20
+          - Index: 3
+            Item: Tree_Of_Archer_1
+            Amount: 10
+      - Index: 1
+        Item: Close_Helmet
+        Zeny: 500000
+        RequiredItems:
+          - Index: 0
+            Item: Helm
+            Amount: 1
+            Refine: 5
+      - Index: 2
+        Item: Sheep_Hat
+        Zeny: 500000
+        RequiredItems:
+          - Index: 0
+            Item: Gaoat's_Skin
+            Amount: 100
+      - Index: 3
+        Item: Geographer_Band
+        Zeny: 500000
+        RequiredItems:
+          - Index: 0
+            Item: Fancy_Flower
+            Amount: 1
+          - Index: 1
+            Item: Sunflower
+            Amount: 1
+          - Index: 2
+            Item: Blossom_Of_Maneater
+            Amount: 100
+      - Index: 4
+        Item: Flying_Angel
+        Zeny: 500000
+        RequiredItems:
+          - Index: 0
+            Item: Angelic_Chain
+            Amount: 1
+          - Index: 1
+            Item: Soft_Feather
+            Amount: 500
+      - Index: 5
+        Item: Mini_Propeller_
+        Zeny: 500000
+        RequiredItems:
+          - Index: 0
+            Item: Mini_Propeller
+            Amount: 1
+          - Index: 1
+            Item: Steel
+            Amount: 100
+      - Index: 6
+        Item: White_Deviruchi_Cap
+        Zeny: 500000
+        RequiredItems:
+          - Index: 0
+            Item: Petite_DiablOfs_Horn 
+            Amount: 100
+          - Index: 1
+            Item: Petite_DiablOfs_Wing 
+            Amount: 100
+      - Index: 7
+        Item: Deviling_Hat 
+        Zeny: 500000
+        RequiredItems:
+          - Index: 0
+            Item: Satanic_Chain
+            Amount: 1
+          - Index: 1
+            Item: Blade_Lost_In_Darkness
+            Amount: 10
+      - Index: 8
+        Item: Chick_Hat
+        Zeny: 500000
+        RequiredItems:
+          - Index: 0
+            Item: Picky_Card 
+            Amount: 1
+          - Index: 1
+            Item: Feather_Of_Birds 
+            Amount: 300
+          - Index: 2
+            Item: Feather  
+            Amount: 300
+      - Index: 9
+        Item: Water_Lily_Crown 
+        Zeny: 500000
+        RequiredItems:
+          - Index: 0
+            Item: Illusion_Flower 
+            Amount: 5
+          - Index: 1
+            Item: Flower 
+            Amount: 150
+      - Index: 10
+        Item: Pecopeco_Hairband 
+        Zeny: 500000
+        RequiredItems:
+          - Index: 0
+            Item: Hair_Band 
+            Amount: 1
+          - Index: 1
+            Item: Peco_Wing_Feather 
+            Amount: 300
+      - Index: 11
+        Item: Poring_Hat
+        Zeny: 500000
+        RequiredItems:
+          - Index: 0
+            Item: Poring_Card 
+            Amount: 1
+          - Index: 1
+            Item: Jellopy 
+            Amount: 1000
+      - Index: 12
+        Item: Vane_Hairpin
+        Zeny: 500000
+        RequiredItems:
+          - Index: 0
+            Item: Blade_Of_Pinwheel 
+            Amount: 150
+      - Index: 13
+        Item: Vanilmirth_Hat 
+        Zeny: 500000
+        RequiredItems:
+          - Index: 0
+            Item: Jejellopy
+            Amount: 10
+          - Index: 1
+            Item: Large_Jellopy
+            Amount: 100
+          - Index: 2
+            Item: Jellopy
+            Amount: 500
+      - Index: 14
+        Item: Kettle_Hat
+        Zeny: 500000
+        RequiredItems:
+          - Index: 0
+            Item: Battered_Kettle
+            Amount: 100
+      - Index: 15
+        Item: Ramen_Hat 
+        Zeny: 500000
+        RequiredItems:
+          - Index: 0
+            Item: Apple_of_Archer
+            Amount: 1
+            Refine: 5
+          - Index: 1
+            Item: Flour
+            Amount: 300
+      - Index: 16
+        Item: J_Captain_Hat
+        Zeny: 500000
+        RequiredItems:
+          - Index: 0
+            Item: Pirate_Bandana
+            Amount: 1
+            Refine: 7
+          - Index: 0
+            Item: Apple_of_Archer
+            Amount: 1
+            Refine: 7
+      - Index: 17
+        Item: Satanic_Chain_P
+        Zeny: 500000
+        RequiredItems:
+          - Index: 0
+            Item: Satanic_Chain
+            Amount: 1
+          - Index: 0
+            Item: Petite_DiablOfs_Wing
+            Amount: 100
+      - Index: 18
+        Item: Sahkkat
+        Zeny: 500000
+        RequiredItems:
+          - Index: 0
+            Item: Wooden_Block
+            Amount: 120
+      - Index: 19
+        Item: Rabbit_Ear_Hat
+        Zeny: 500000
+        RequiredItems:
+          - Index: 0
+            Item: Sahkkat
+            Amount: 1
+            Refine: 5
+      - Index: 22
+        Item: Noble_Hat
+        Zeny: 500000
+        RequiredItems:
+          - Index: 0
+            Item: Crystal_Jewel
+            Amount: 100
+          - Index: 1
+            Item: Crystal_Jewel_
+            Amount: 15
+          - Index: 2
+            Item: Crystal_Jewel__
+            Amount: 5
+      - Index: 25
+        Item: Lunatic_Hat
+        Zeny: 500000
+        RequiredItems:
+          - Index: 0
+            Item: Clover
+            Amount: 300
+          - Index: 1
+            Item: Feather
+            Amount: 300
+          - Index: 2
+            Item: Carrot
+            Amount: 100
+      - Index: 26
+        Item: Wild_Rose_Hat
+        Zeny: 500000
+        RequiredItems:
+          - Index: 0
+            Item: Witherless_Rose
+            Amount: 50
+          - Index: 1
+            Item: Big_Sis'_Ribbon
+            Amount: 1
+      - Index: 27
+        Item: White_Musang_Hat
+        Zeny: 500000
+        RequiredItems:
+          - Index: 0
+            Item: Witherless_Rose
+            Amount: 50
+          - Index: 1
+            Item: Wild_Rose_Hat
+            Amount: 1
