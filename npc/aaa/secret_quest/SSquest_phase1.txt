@@ -3,7 +3,7 @@ icecastle,245,138,4	script	 #secret1	10371,{
 	if(#SSQone == 1) {  
 			mes "ของประหลาดที่ติดป้ายเขียนว่า"; 
 			mes " ";
-			mes " ^FF0000รอแมวมาแก้...";
+			mes " ^FF0000รอแมวมาแก้...(เริ่มทำSecret Questได้!!)";
 			mes " ";
 			end;
 			} else {

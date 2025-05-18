@@ -127,13 +127,18 @@ in_orcs01,42,173,3	script	Lina	906,{ //เปิด ep2
 		mes "เจ้ามีอะไรให้ฉันช่วยหรือเปล่า?? หรือคิดถึงข้ากันหละ....";
 		close;
 	}
+	Oninit:
+			questinfo ( QTYPE_QUEST, QMARK_NONE, "MQ == 7");
+			questinfo ( QTYPE_QUEST2, QMARK_NONE, "MQ == 7");
+			
+	end;
 }
 
 // NPC แฟรี่ (duplicate)
 in_orcs01,40,175,5	duplicate(NPC_Template)	Fairy#temp	10509
 
 // ปิด NPC B ตอนเริ่ม (หลังจากที่มีการ duplicate แล้ว)
-in_orcs01,5,5,0	script	init_TechSupport_hide	-1,{
+in_orcs01,5,5,0	script	init_Fairy_hide	-1,{
 	disablenpc "Fairy#temp";
 	end;
 }
@@ -209,6 +214,11 @@ gef_fild10,73,349,4	script	Lazy Orc Warrior	433,{
 		set MQ, 11;
 		close;
 	}
+	Oninit:
+			questinfo ( QTYPE_QUEST, QMARK_NONE, "MQ == 9");
+			questinfo ( QTYPE_QUEST2, QMARK_NONE, "MQ == 9");
+			
+	end;
 }
 
 gef_fild10,1,1,0	script	hide_lazy_orc	-1,{
