@@ -33,6 +33,10 @@ Header:
   Version: 1
 
 Body:
+  - Tab: Other
+    Items:
+      - Item: Random_Pet_Box
+        Price: 590
   - Tab: New
     Items:
       - Item: Elunium_Box

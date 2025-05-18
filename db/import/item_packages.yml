@@ -39,6 +39,66 @@ Header:
   Version: 1
 
 Body:
+  - Item: 2stats_select_box
+    Groups:
+      - Group: 0
+        Items:
+          - Item: Strength2
+      - Group: 1
+        Items:
+          - Item: Inteligence2
+      - Group: 2
+        Items:
+          - Item: Dexterity2
+      - Group: 3
+        Items:
+          - Item: Agility2
+      - Group: 4
+        Items:
+          - Item: Vitality2
+      - Group: 5
+        Items:
+          - Item: Luck2
+  - Item: 3stats_select_box
+    Groups:
+      - Group: 0
+        Items:
+          - Item: Strength3
+      - Group: 1
+        Items:
+          - Item: Inteligence3
+      - Group: 2
+        Items:
+          - Item: Dexterity3
+      - Group: 3
+        Items:
+          - Item: Agility3
+      - Group: 4
+        Items:
+          - Item: Vitality3
+      - Group: 5
+        Items:
+          - Item: Luck3
+  - Item: 4stats_select_box
+    Groups:
+      - Group: 0
+        Items:
+          - Item: Strength4
+      - Group: 1
+        Items:
+          - Item: Inteligence4
+      - Group: 2
+        Items:
+          - Item: Dexterity4
+      - Group: 3
+        Items:
+          - Item: Agility4
+      - Group: 4
+        Items:
+          - Item: Vitality4
+      - Group: 5
+        Items:
+          - Item: Luck4
   - Item: Paradise_Weap_1
     Groups:
       - Group: 0
