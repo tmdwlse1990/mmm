@@ -323,8 +323,6 @@ Body:
     AegisName: Random_Pet_Box
     Name: Random Pet Box
     Type: Usable
-    Buy: 2000
-    Weight: 200
     Flags:
       BuyingStore: true
       Container: true
@@ -332,9 +330,9 @@ Body:
       NoSell: true
     Script: |
       if(rand(10) != 0)
-        getgroupitem(COMMON2RARE_PET);
+        getgroupitem(IG_COMMON2RARE_PET);
       else
-        getgroupitem(RARE2EPIC_PET);
+        getgroupitem(IG_RARE2EPIC_PET);
   - Id: 36000
     AegisName: test_Item_size
     Name: AI Item
