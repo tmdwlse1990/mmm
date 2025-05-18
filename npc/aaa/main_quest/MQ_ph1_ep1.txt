@@ -164,6 +164,12 @@ icecastle,188,221,4	script	Chief Baron	EP18_NPC_SUAD,{
 		emotion e_hmm;
 		close;
 	}
+	Oninit:
+			questinfo ( QTYPE_QUEST, QMARK_NONE, "MQ == 1");
+			questinfo ( QTYPE_QUEST2, QMARK_NONE, "MQ == 1");
+	
+	end;
 }
+
 
 mjolnir_09,0,0	monster	GOLDEN SAVAGE(BABY)	1840,1,3600000
