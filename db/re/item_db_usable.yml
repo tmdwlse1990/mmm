@@ -9289,6 +9289,7 @@ Body:
     Name: Repair A
     Type: Usable
     Buy: 200
+    Sell: 10
     Weight: 1
     Jobs:
       Blacksmith: true
@@ -9306,6 +9307,7 @@ Body:
     Name: Repair B
     Type: Usable
     Buy: 500
+    Sell: 10
     Weight: 1
     Jobs:
       Blacksmith: true

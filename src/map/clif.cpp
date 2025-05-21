@@ -5714,7 +5714,7 @@ void clif_skillunit_update( block_list& bl ){
 /*==========================================
  *
  *------------------------------------------*/
-static int32 clif_getareachar(struct block_list* bl,va_list ap)
+int32 clif_getareachar(struct block_list* bl,va_list ap)
 {
 	map_session_data *sd;
 

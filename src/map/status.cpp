@@ -2583,7 +2583,7 @@ uint16 status_base_matk_min(struct block_list *bl, const struct status_data* sta
 		case BL_PC:
 		default:
 			//return status->int_ + (status->int_ / 2) + (status->dex / 5) + (status->luk / 3) + (level / 4) + 5 * status->spl;
-			return status->int_ * 10 + (status->dex / 5) + status->luk;
+			return status->int_ * 4 + status->luk;
 	}
 }
 
@@ -2603,7 +2603,7 @@ uint16 status_base_matk_max(struct block_list *bl, const struct status_data* sta
 		case BL_PC:
 		default:
 			//return status->int_ + (status->int_ / 2) + (status->dex / 5) + (status->luk / 3) + (level / 4) + 5 * status->spl;
-			return status->int_ * 10 + (status->dex / 5) + status->luk;
+			return status->int_ * 4 + status->luk;
 	}
 }
 #endif

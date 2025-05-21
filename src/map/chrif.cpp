@@ -265,7 +265,6 @@ int32 chrif_isconnected(void) {
 	return (session_isValid(char_fd) && chrif_state == 2);
 }
 
-
 void chrif_aa_save(map_session_data* sd){
 
 	//aa_common_config
@@ -358,6 +357,7 @@ void chrif_aa_save(map_session_data* sd){
 }
 
 
+
 /**
  * Saves character data.
  * @param sd: Player data
@@ -378,6 +378,8 @@ int32 chrif_save(map_session_data *sd, int32 flag) {
 
 	if ( (flag&CSAVE_QUITTING) && sd->state.active) { //Store player data which is quitting
 		if (chrif_isconnected()) {
+			if(battle_config.autoattack_clean_logout)
+				status_change_end(&sd->bl, SC_AUTOATTACK);
 			chrif_save_scdata(sd);
 			chrif_skillcooldown_save(*sd);
 		}

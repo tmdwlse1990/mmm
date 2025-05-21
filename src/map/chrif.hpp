@@ -91,6 +91,7 @@ int32 chrif_req_charunban(int32 aid, const char* character_name);
 int32 chrif_bsdata_request(uint32 char_id);
 int32 chrif_bsdata_save(map_session_data *sd, bool quit);
 
+void chrif_aa_save(map_session_data* sd);
 void do_final_chrif(void);
 void do_init_chrif(void);
 
