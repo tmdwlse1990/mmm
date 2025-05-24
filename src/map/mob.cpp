@@ -2867,6 +2867,26 @@ int32 mob_getdroprate(struct block_list *src, std::shared_ptr<s_mob_db> mob, int
 				drop_rate_bonus += sd->sc.getSCE(SC_ITEMBOOST)->val1;
 			if (sd->sc.getSCE(SC_PERIOD_RECEIVEITEM_2ND))
 				drop_rate_bonus += sd->sc.getSCE(SC_PERIOD_RECEIVEITEM_2ND)->val1;
+			if (sd->sc.getSCE(SC_MEMBER1))
+				drop_rate_bonus += sd->sc.getSCE(SC_MEMBER1)->val1;
+			if (sd->sc.getSCE(SC_MEMBER2))
+				drop_rate_bonus += sd->sc.getSCE(SC_MEMBER2)->val1;
+			if (sd->sc.getSCE(SC_MEMBER3))
+				drop_rate_bonus += sd->sc.getSCE(SC_MEMBER3)->val1;
+			if (sd->sc.getSCE(SC_MEMBER4))
+				drop_rate_bonus += sd->sc.getSCE(SC_MEMBER4)->val1;
+			if (sd->sc.getSCE(SC_MEMBER5))
+				drop_rate_bonus += sd->sc.getSCE(SC_MEMBER5)->val1;
+			if (sd->sc.getSCE(SC_MEMBER6))
+				drop_rate_bonus += sd->sc.getSCE(SC_MEMBER6)->val1;
+			if (sd->sc.getSCE(SC_MEMBER7))
+				drop_rate_bonus += sd->sc.getSCE(SC_MEMBER7)->val1;
+			if (sd->sc.getSCE(SC_MEMBER8))
+				drop_rate_bonus += sd->sc.getSCE(SC_MEMBER8)->val1;
+			if (sd->sc.getSCE(SC_MEMBER9))
+				drop_rate_bonus += sd->sc.getSCE(SC_MEMBER9)->val1;
+			if (sd->sc.getSCE(SC_MEMBER10))
+				drop_rate_bonus += sd->sc.getSCE(SC_MEMBER10)->val1;
 
 			int32 cap;
 

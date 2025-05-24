@@ -89,6 +89,86 @@ Header:
   Version: 3
 
 Body:
+  - Id: 23207
+    AegisName: Premium_Box
+    Name: "[30Day] Premium Subscription Box"
+    Type: Usable
+    Weight: 10
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoSell: true
+      NoCart: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Script: |
+      atcommand "@vip +30d "+strcharinfo(0);
+      callfunc "F_VIPbufficon";
+  - Id: 23209
+    AegisName: Premium_Box_1d
+    Name: "[1Day] Premium Subscription Box"
+    Type: Usable
+    Weight: 10
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoSell: true
+      NoCart: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Script: |
+      atcommand "@vip +1d "+strcharinfo(0);
+      callfunc "F_VIPbufficon";
+  - Id: 23210
+    AegisName: Premium_Box_4d
+    Name: "[4Day] Premium Subscription Box"
+    Type: Usable
+    Weight: 10
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoSell: true
+      NoCart: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Script: |
+      atcommand "@vip +4d "+strcharinfo(0);
+      callfunc "F_VIPbufficon";
+  - Id: 23213
+    AegisName: Premium_Box_5d7
+    Name: "[7Day] Premium Subscription Box"
+    Type: Usable
+    Weight: 10
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoSell: true
+      NoCart: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Script: |
+      atcommand "@vip +7d "+strcharinfo(0);
+      callfunc "F_VIPbufficon";
+  - Id: 23216
+    AegisName: Premium_Box_10d
+    Name: "[10Day] Premium Subscription"
+    Type: Usable
+    Weight: 10
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoSell: true
+      NoCart: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Script: |
+      atcommand "@vip +10d "+strcharinfo(0);
+      callfunc "F_VIPbufficon";
 #   [Core Item Main]
   - Id: 2000001
     AegisName: Adventure_Card
@@ -198,6 +278,10 @@ Body:
   - Id: 2000007
     AegisName: Costume_Ticket_Pass
     Name: Random Costume Ticket
+    Type: Etc
+  - Id: 2000008
+    AegisName: Gacha_Ticket_Pass
+    Name: Gacha Ticket
     Type: Etc
 #   [Side Quest Item]
   - Id: 2005001
@@ -333,10 +417,6 @@ Body:
         getgroupitem(IG_COMMON2RARE_PET);
       else
         getgroupitem(IG_RARE2EPIC_PET);
-  - Id: 36000
-    AegisName: test_Item_size
-    Name: AI Item
-    Type: etc
   - Id: 2002000
     AegisName: AI_Item
     Name: AI Item

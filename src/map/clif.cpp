@@ -7228,8 +7228,17 @@ void clif_use_card(map_session_data *sd,int32 idx)
 			if ( (sd->inventory_data[i]->type != IT_WEAPON) && (sd->inventory_data[i]->type != IT_ARMOR) && (sd->inventory_data[i]->type != IT_SHADOWGEAR))
 				continue;
 		}
-		if (isEnchantment && sd->inventory_data[i]->flag.trade_restriction.trade == 1)
+		if (isEnchantment && ( sd->inventory_data[i]->flag.trade_restriction.trade == 1	) )
 			continue;
+
+		if (isEnchantment && ( (sd->inventory_data[i]->equip == EQP_COSTUME_HEAD_TOP) ||
+							   (sd->inventory_data[i]->equip == EQP_COSTUME_HEAD_MID) ||
+							   (sd->inventory_data[i]->equip == EQP_COSTUME_HEAD_LOW) ||
+							   (sd->inventory_data[i]->equip == EQP_COSTUME_GARMENT)
+							)
+			)
+			continue;
+
 		if(itemdb_isspecial(sd->inventory.u.items_inventory[i].card[0])) //Can't slot it
 			continue;
 

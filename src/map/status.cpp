@@ -3726,6 +3726,27 @@ bool status_calc_weight(map_session_data *sd, enum e_status_calc_weight_opt flag
 			sd->max_weight += 2000 * skill;
 		if (pc_ismadogear(sd))
 			sd->max_weight += 15000;
+		
+		if (sd->sc.getSCE(SC_MEMBER1))
+			sd->max_weight += sd->sc.getSCE(SC_MEMBER1)->val1*1000;
+		if (sd->sc.getSCE(SC_MEMBER2))
+			sd->max_weight += sd->sc.getSCE(SC_MEMBER2)->val1*1000;
+		if (sd->sc.getSCE(SC_MEMBER3))
+			sd->max_weight += sd->sc.getSCE(SC_MEMBER3)->val1*1000;
+		if (sd->sc.getSCE(SC_MEMBER4))
+			sd->max_weight += sd->sc.getSCE(SC_MEMBER4)->val1*1000;
+		if (sd->sc.getSCE(SC_MEMBER5))
+			sd->max_weight += sd->sc.getSCE(SC_MEMBER5)->val1*1000;
+		if (sd->sc.getSCE(SC_MEMBER6))
+			sd->max_weight += sd->sc.getSCE(SC_MEMBER6)->val1*1000;
+		if (sd->sc.getSCE(SC_MEMBER7))
+			sd->max_weight += sd->sc.getSCE(SC_MEMBER7)->val1*1000;
+		if (sd->sc.getSCE(SC_MEMBER8))
+			sd->max_weight += sd->sc.getSCE(SC_MEMBER8)->val1*1000;
+		if (sd->sc.getSCE(SC_MEMBER9))
+			sd->max_weight += sd->sc.getSCE(SC_MEMBER9)->val1*1000;
+		if (sd->sc.getSCE(SC_MEMBER10))
+			sd->max_weight += sd->sc.getSCE(SC_MEMBER10)->val1*1000;
 	}
 
 	// Update the client if the new weight calculations don't match
@@ -6876,7 +6897,12 @@ static uint16 status_calc_str(struct block_list *bl, status_change *sc, int32 st
 		str += sc->getSCE(SC_UNIVERSESTANCE)->val2;
 	if (sc->getSCE(SC_ALL_STAT_DOWN))
 		str -= sc->getSCE(SC_ALL_STAT_DOWN)->val2;
-
+	if (sc->getSCE(SC_MEMBER6) || sc->getSCE(SC_MEMBER7) || sc->getSCE(SC_MEMBER8))
+		str += 1;
+	if (sc->getSCE(SC_MEMBER9))
+		str += 2;
+	if (sc->getSCE(SC_MEMBER10))
+		str += 3;
 	//TODO: Stat points should be able to be decreased below 0
 	return (uint16)cap_value(str,0,USHRT_MAX);
 }
@@ -6949,6 +6975,12 @@ static uint16 status_calc_agi(struct block_list *bl, status_change *sc, int32 ag
 		agi += sc->getSCE(SC_UNIVERSESTANCE)->val2;
 	if (sc->getSCE(SC_ALL_STAT_DOWN))
 		agi -= sc->getSCE(SC_ALL_STAT_DOWN)->val2;
+	if (sc->getSCE(SC_MEMBER6) || sc->getSCE(SC_MEMBER7) || sc->getSCE(SC_MEMBER8))
+		agi += 1;
+	if (sc->getSCE(SC_MEMBER9))
+		agi += 2;
+	if (sc->getSCE(SC_MEMBER10))
+		agi += 3;
 
 	//TODO: Stat points should be able to be decreased below 0
 	return (uint16)cap_value(agi,0,USHRT_MAX);
@@ -7010,6 +7042,12 @@ static uint16 status_calc_vit(struct block_list *bl, status_change *sc, int32 vi
 		vit += sc->getSCE(SC_UNIVERSESTANCE)->val2;
 	if (sc->getSCE(SC_ALL_STAT_DOWN))
 		vit -= sc->getSCE(SC_ALL_STAT_DOWN)->val2;
+	if (sc->getSCE(SC_MEMBER6) || sc->getSCE(SC_MEMBER7) || sc->getSCE(SC_MEMBER8))
+		vit += 1;
+	if (sc->getSCE(SC_MEMBER9))
+		vit += 2;
+	if (sc->getSCE(SC_MEMBER10))
+		vit += 3;
 
 	//TODO: Stat points should be able to be decreased below 0
 	return (uint16)cap_value(vit,0,USHRT_MAX);
@@ -7088,6 +7126,12 @@ static uint16 status_calc_int(struct block_list *bl, status_change *sc, int32 in
 #endif
 	if (sc->getSCE(SC_ALL_STAT_DOWN))
 		int_ -= sc->getSCE(SC_ALL_STAT_DOWN)->val2;
+	if (sc->getSCE(SC_MEMBER6) || sc->getSCE(SC_MEMBER7) || sc->getSCE(SC_MEMBER8))
+		int_ += 1;
+	if (sc->getSCE(SC_MEMBER9))
+		int_ += 2;
+	if (sc->getSCE(SC_MEMBER10))
+		int_ += 3;
 
 	//TODO: Stat points should be able to be decreased below 0
 	return (uint16)cap_value(int_,0,USHRT_MAX);
@@ -7163,6 +7207,12 @@ static uint16 status_calc_dex(struct block_list *bl, status_change *sc, int32 de
 		dex += sc->getSCE(SC_UNIVERSESTANCE)->val2;
 	if (sc->getSCE(SC_ALL_STAT_DOWN))
 		dex -= sc->getSCE(SC_ALL_STAT_DOWN)->val2;
+	if (sc->getSCE(SC_MEMBER6) || sc->getSCE(SC_MEMBER7) || sc->getSCE(SC_MEMBER8))
+		dex += 1;
+	if (sc->getSCE(SC_MEMBER9))
+		dex += 2;
+	if (sc->getSCE(SC_MEMBER10))
+		dex += 3;
 
 	//TODO: Stat points should be able to be decreased below 0
 	return (uint16)cap_value(dex,0,USHRT_MAX);
@@ -7224,6 +7274,12 @@ static uint16 status_calc_luk(struct block_list *bl, status_change *sc, int32 lu
 		luk += sc->getSCE(SC_UNIVERSESTANCE)->val2;
 	if (sc->getSCE(SC_ALL_STAT_DOWN))
 		luk -= sc->getSCE(SC_ALL_STAT_DOWN)->val2;
+	if (sc->getSCE(SC_MEMBER6) || sc->getSCE(SC_MEMBER7) || sc->getSCE(SC_MEMBER8))
+		luk += 1;
+	if (sc->getSCE(SC_MEMBER9))
+		luk += 2;
+	if (sc->getSCE(SC_MEMBER10))
+		luk += 3;
 
 	//TODO: Stat points should be able to be decreased below 0
 	return (uint16)cap_value(luk,0,USHRT_MAX);

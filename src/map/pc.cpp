@@ -8543,6 +8543,27 @@ static void pc_calcexp(map_session_data *sd, t_exp *base_exp, t_exp *job_exp, st
 	if (sd->sc.getSCE(SC_PERIOD_PLUSEXP_2ND))
 		bonus += sd->sc.getSCE(SC_PERIOD_PLUSEXP_2ND)->val1;
 
+	if (sd->sc.getSCE(SC_MEMBER1))
+		bonus += sd->sc.getSCE(SC_MEMBER1)->val1;
+	if (sd->sc.getSCE(SC_MEMBER2))
+		bonus += sd->sc.getSCE(SC_MEMBER2)->val1;
+	if (sd->sc.getSCE(SC_MEMBER3))
+		bonus += sd->sc.getSCE(SC_MEMBER3)->val1;
+	if (sd->sc.getSCE(SC_MEMBER4))
+		bonus += sd->sc.getSCE(SC_MEMBER4)->val1;
+	if (sd->sc.getSCE(SC_MEMBER5))
+		bonus += sd->sc.getSCE(SC_MEMBER5)->val1;
+	if (sd->sc.getSCE(SC_MEMBER6))
+		bonus += sd->sc.getSCE(SC_MEMBER6)->val1;
+	if (sd->sc.getSCE(SC_MEMBER7))
+		bonus += sd->sc.getSCE(SC_MEMBER7)->val1;
+	if (sd->sc.getSCE(SC_MEMBER8))
+		bonus += sd->sc.getSCE(SC_MEMBER8)->val1;
+	if (sd->sc.getSCE(SC_MEMBER9))
+		bonus += sd->sc.getSCE(SC_MEMBER9)->val1;
+	if (sd->sc.getSCE(SC_MEMBER10))
+		bonus += sd->sc.getSCE(SC_MEMBER10)->val1;
+
 	if (*base_exp) {
 		t_exp exp = (t_exp)(*base_exp + ((double)*base_exp * ((bonus + vip_bonus_base) / 100.)));
 		*base_exp = cap_value(exp, 1, MAX_EXP);

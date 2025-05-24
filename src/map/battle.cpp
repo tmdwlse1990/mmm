@@ -2075,6 +2075,16 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 		}
 	}
 	
+	if (sc != nullptr && !sc->empty()) {
+		int32 f_dm;
+		if (sc->getSCE(SC_MEMBER5)) f_dm = 1;
+		if (sc->getSCE(SC_MEMBER6)) f_dm = 2;
+		if (sc->getSCE(SC_MEMBER7)) f_dm = 3;
+		if (sc->getSCE(SC_MEMBER8)) f_dm = 4;
+		if (sc->getSCE(SC_MEMBER9)) f_dm = 5;
+		if (sc->getSCE(SC_MEMBER10)) f_dm = 10;
+		damage = i64max(damage * (100+f_dm) / 100, 1);
+	}
 	if (tsc != nullptr && !tsc->empty()) {
 		if (!battle_status_block_damage(src, bl, tsc, d, damage, skill_id, skill_lv)) // Statuses that reduce damage to 0.
 			return 0;

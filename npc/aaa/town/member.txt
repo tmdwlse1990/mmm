@@ -1,0 +1,41 @@
+icecastle,196,206,3	script	Member	4_EP21_GALAXIA_A,{
+	.@npcname$ = "[Member Ship]";
+	setarray .@memberlevel[1],100,300,500,1000,3000,5000,10000,20000,50000,100000;
+	mes .@npcname$;
+	mes "สวัสดีเราคือผู้จัดการเงินทุนของเซิฟเวอร์";
+	mes "อยากจะตรวจสอบสถานะใดของท่าน ?";
+Mainmenu:
+	switch(select("• ตรวจสอบระดับ Member:• ข้อมูลขั้นบรรไดของ Member:• ไม่มีอะไรเลิฟยูจุ๊ฟๆ") ) {
+		clear;
+		case 1:
+			setdialogsize(300,200);
+			mes .@npcname$;
+			mes "ระดับของคุณคือ ^000fffMember : ^FF0000"+#MEMBER+"^000000 (ยอดรวม:"+callfunc("F_InsertComma",#donatestack)+")";
+			mes "สิทธิประโยชน์ที่ได้รับปัจจุบันคือ >>";
+			mes "   • ^d3c600Exp^000000 และ ^d3c600Drop^000000 + "+(#MEMBER*5)+"%";
+			mes "   • ^00bf00แบกน้ำหนักได้เพิ่มขึ้น^000000 :"+callfunc("F_InsertComma",(#MEMBER*500))+" หน่วย.";
+			if(#member >=6)
+				mes "   • ^000fffFinal Damage + ^000000 : "+(#member <10 ? (#member-5):10)+"%.";
+			if(#member >=6 && #member <= 8)
+				mes "   • ^000fffAll Stats + ^000000 : 1 หน่วย.";
+			if(#member == 9)
+				mes "   • ^000fffAll Stats + ^000000 : 2 หน่วย.";
+			if(#member == 10)
+				mes "   • ^000fffAll Stats + ^000000 : 3 หน่วย.";
+			goto Mainmenu;
+		case 2:
+			setdialogsize(280,400);
+			mes .@npcname$;
+			mes "แต่ละระดับคือยอดเติมเงินสะสมที่","เติมเงินผ่านหน้าเวปเท่านั้น";
+			mes "การเติมในโปรโมชั่นของแมว","จะไม่ถูกนับรวมกับยอดสะสมนี้";
+			mes "=====================";
+			for(.@i=1;.@i < getarraysize(.@memberlevel); .@i++) {
+				mes "  "+.@i+". สะสมครบ: "+callfunc("F_InsertComma",.@memberlevel[.@i])+" บาท."+(.@i == #member ? "^FF0000ระดับของท่าน^000000":"");
+			}
+			mes "=====================";
+			goto Mainmenu;
+		default:
+			close;
+	}
+end;
+}

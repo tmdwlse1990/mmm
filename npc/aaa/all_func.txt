@@ -21,3 +21,18 @@ function	script	F_MVPReward	{
 	getitem .@getitemid,1;
 	return;
 }
+
+
+function	script	F_VIPbufficon	{
+	if(vip_status(VIP_STATUS_ACTIVE))
+		sc_start SC_PREMIUMSERVICE,vip_status(VIP_STATUS_REMAINING)*1000,1;
+	if(#MEMBER) {
+		sc_start (SC_MEMBER1+(#MEMBER-1)),INFINITE_TICK,#MEMBER*5;
+	}
+}
+
+-	script	#viptimer	-1,{
+OnPCLoginEvent:
+	callfunc "F_VIPbufficon";
+	end;
+}

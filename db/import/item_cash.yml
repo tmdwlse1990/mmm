@@ -33,11 +33,27 @@ Header:
   Version: 1
 
 Body:
+  - Tab: New
+    Items:
+      - Item: Costume_Ticket_Pass
+        Price: 100
+      - Item: Gacha_Ticket_Pass
+        Price: 190
   - Tab: Other
     Items:
       - Item: Random_Pet_Box
         Price: 590
-  - Tab: New
+      - Item: Premium_Box
+        Price: 1890
+      - Item: Premium_Box_1d
+        Price: 100
+      - Item: Premium_Box_4d
+        Price: 380
+      - Item: Premium_Box_5d7
+        Price: 630
+      - Item: Premium_Box_10d
+        Price: 800
+  - Tab: Limited
     Items:
       - Item: Elunium_Box
         Price: 100
@@ -61,6 +77,8 @@ Body:
         Price: 100
       - Item: Max_Weight_Up_Box
         Price: 1000
+      - Item: Inventory_Ex
+        Price: 100
   - Tab: Hot
     Items:
       - Item: Battle_Manual
