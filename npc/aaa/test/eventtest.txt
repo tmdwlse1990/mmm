@@ -1,0 +1,139 @@
+// NPC สำหรับผู้เล่นกดเข้าร่วมกิจกรรม (วาปทันที)
+prontera,162,186,4	script	Danger Zone Master	800,{
+	mes "[Danger Zone Master]";
+	mes "กิจกรรม Danger Zone กำลังจะเริ่มเร็วๆ นี้!";
+	mes "กดเข้าร่วมกิจกรรมเพื่อวาปเข้าแมพกิจกรรม";
+	mes "GM จะเป็นผู้เริ่มกิจกรรมเอง";
+
+	if (select("เข้าร่วมกิจกรรม!:ไม่เข้าร่วม") == 1) {
+		warp "5@tower", 81, 83;
+		mes "คุณถูกวาปเข้าแมพกิจกรรมแล้ว รอจนกิจกรรมเริ่ม";
+	} else {
+		mes "ยกเลิกการเข้าร่วม";
+	}
+	close;
+}
+
+// NPC สำหรับ GM สั่งเริ่มกิจกรรม
+prontera,162,184,4	script	Danger Zone GM Control	800,{
+	if (getgmlevel() < 99) {
+		mes "คุณไม่มีสิทธิ์เริ่มกิจกรรมนี้!";
+		close;
+	}
+
+	mes "[Danger Zone GM Control]";
+	mes "คุณต้องการเริ่มกิจกรรมตอนนี้หรือไม่?";
+	if (select("เริ่มกิจกรรม:ยังก่อน") == 1) {
+		announce "Danger Zone: กิจกรรมจะเริ่มใน 1 นาที! ขอให้ผู้เล่นทุกคนเตรียมตัว!", bc_all;
+		donpcevent "dangerzone_event::OnStart";
+	}
+	close;
+}
+
+// ตัวควบคุมกิจกรรม
+-	script	dangerzone_event	-1,{
+
+	OnStart:
+	set .@countdown, 60;
+
+	while (.@countdown > 0) {
+		if (.@countdown == 45)
+			announce "Danger Zone: กิจกรรมจะเริ่มในอีก 45 วินาที!", bc_all;
+		else if (.@countdown == 30)
+			announce "Danger Zone: กิจกรรมจะเริ่มในอีก 30 วินาที!", bc_all;
+		else if (.@countdown == 15)
+			announce "Danger Zone: 15 วินาทีสุดท้าย!", bc_all;
+
+		sleep 1000;
+		set .@countdown, .@countdown - 1;
+	}
+
+	set .@round, 1;
+
+	while (.@round <= 4) {
+		if (.@round < 4)
+			mapannounce "5@tower", "Danger Zone: รอบที่ "+.@round+" กำลังจะเริ่ม!", bc_map;
+		else
+			mapannounce "5@tower", "Danger Zone: รอบสุดท้ายเริ่มต้น! ใครจะรอด!", bc_map;
+
+		sleep 3000;
+
+		if (.@round < 4) {
+			callsub OnRedZone;
+			sleep 6000;
+			callsub OnEliminate;
+		} else {
+			while (getmapusers("5@tower") > 1) {
+				callsub OnRedZone;
+				sleep 6000;
+				callsub OnEliminate;
+				sleep 6000;
+			}
+			break;
+		}
+		sleep 5000;
+		set .@round, .@round + 1;
+	}
+
+	if (getmapusers("5@tower") == 1) {
+		addrid(1);
+		announce "ผู้ชนะกิจกรรม Danger Zone คือ "+strcharinfo(0)+"!", bc_all;
+		getitem 501, 10;
+		warp "prontera",150,180;
+	}
+
+	sleep 3000;
+	areawarp "5@tower",0,0,400,400,"prontera",150,180;
+	end;
+
+	// Subroutine: สุ่มหลายจุดอันตราย
+	OnRedZone:
+	set .zones, rand(3, 6); // จำนวนจุดอันตรายในรอบนี้
+
+	// สุ่มจุดเริ่มต้นและบันทึกไว้
+	for (set .i, 0; .i < .zones; set .i, .i + 1) {
+		set .start_x[.i], rand(66, 109); // ปรับให้ไม่เกินขอบแมพ
+		set .start_y[.i], rand(68, 112); // ปรับให้ไม่เกินขอบแมพ
+	}
+
+	// ใช้ playeffect แสดงเอฟเฟกต์บนพื้นสำหรับทุกๆ จุดอันตราย
+	setarray .@users$, getmapusers("5@tower");
+
+	for (set .@u, 0; .@u < getarraysize(.@users$); set .@u, .@u + 1) {
+		attachrid(.@users$[.@u]);
+
+		// วาดพื้นที่อันตราย 4x4 ต่อ zone
+		for (set .i, 0; .i < .zones; set .i, .i + 1) {
+			for (set .x, .start_x[.i]; .x <= .start_x[.i] + 3; set .x, .x + 1) {
+				for (set .y, .start_y[.i]; .y <= .start_y[.i] + 3; set .y, .y + 1) {
+					playeffect .x, .y, EF_FIREPILLARBOMB;
+				}
+			}
+		}
+	}
+
+	detachrid;
+	mapannounce "5@tower", "พื้นที่อันตรายปรากฏหลายจุด! หลีกเลี่ยงทันที!", bc_map;
+	end;
+
+	detachrid;
+	mapannounce "5@tower", "พื้นที่อันตรายปรากฏหลายจุด! หลีกเลี่ยงทันที!", bc_map;
+	end;
+
+	// Subroutine: คัดคนในพื้นที่อันตราย
+	OnEliminate:
+		setarray .@userlist$, getmapusers("5@tower");
+		for (set .@i, 0; .@i < getarraysize(.@userlist$); set .@i, .@i + 1) {
+			attachrid(.@userlist$[.@i]);
+			getmapxy(.@map$, .@x, .@y, 0);
+			for (set .j, 0; .j < .zones; set .j, .j + 1) {
+				if (.@x >= .start_x[.j] && .@x <= (.start_x[.j] + 3) &&
+					.@y >= .start_y[.j] && .@y <= (.start_y[.j] + 3)) {
+					warp "prontera",150,180;
+					announce strcharinfo(0)+" ถูกคัดออกจากกิจกรรม!", bc_map, "5@tower";
+					break;
+				}
+			}
+		}
+		end;
+}

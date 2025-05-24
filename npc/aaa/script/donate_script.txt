@@ -1,0 +1,122 @@
+-	script	F_DONATE_SYSTEM	-1,{
+	end;
+
+OnInit:
+
+	deletearray .d_id[0],getarraysize(.d_id);
+	deletearray .d_aid[0],getarraysize(.d_aid);
+	deletearray .d_amt[0],getarraysize(.d_amt);
+
+	freeloop(1);
+	while (1){
+		query_sql "SELECT `id`,`account_id`,`amount` FROM `web_cash_send` WHERE `status` = 0 LIMIT 50",.d_id,.d_aid,.d_amt;
+		sleep 500;
+
+		if (getarraysize(.d_id)) {
+			for (.i = 0; .i < getarraysize(.d_id); .i++) {
+				if(attachrid(.d_aid[.i])){
+
+					set #CASHPOINTS,(#CASHPOINTS + .d_amt[.i]);
+					dispbottom "[ Donate ] : คุณได้รับ " + callfunc("F_InsertComma", .d_amt[.i]) + " Cash รวมเป็น "+callfunc("F_InsertComma",#CASHPOINTS)+" Cash",0xAEFF00;
+
+					//set #CASHBONUS,(#CASHBONUS + (.d_amt[.i]/10));
+					//dispbottom "[ Donate ] : คุณได้รับ " + callfunc("F_InsertComma", .d_amt[.i]/10) + " Cash Bonus รวมเป็น "+callfunc("F_InsertComma",#CASHBONUS)+" Cash Bonus",0xAEFF00;
+					
+					
+					callfunc "F_CalculateMember",.d_aid;
+					callfunc "F_VIPbufficon";
+					
+					query_sql "UPDATE `web_cash_send` SET `status` = 1, send_date = NOW() WHERE `id` = " + .d_id[.i];
+					detachrid();
+				}
+			}
+			deletearray .d_id[0],getarraysize(.d_id);
+			deletearray .d_amt[0],getarraysize(.d_amt);
+			deletearray .d_aid[0],getarraysize(.d_aid);
+		}
+
+		sleep 15000;
+	}
+	freeloop(0);
+	end;
+}
+
+-	script	F_DONATE_ITEM	-1,{
+	end;
+
+OnInit:
+
+	deletearray .i_id[0]		,getarraysize(.i_id);
+	deletearray .i_aid[0]		,getarraysize(.i_aid);
+	deletearray .i_cid[0]		,getarraysize(.i_cid);
+	deletearray .i1_id[0]		,getarraysize(.i1_id);
+	deletearray .i1_amt[0]		,getarraysize(.i1_amt);
+	deletearray .i1_refine[0]	,getarraysize(.i1_refine);
+	deletearray .i2_id[0]		,getarraysize(.i2_id);
+	deletearray .i2_amt[0]		,getarraysize(.i2_amt);
+	deletearray .i2_refine[0]	,getarraysize(.i2_refine);
+	deletearray .i3_id[0]		,getarraysize(.i3_id);
+	deletearray .i3_amt[0]		,getarraysize(.i3_amt);
+	deletearray .i3_refine[0]	,getarraysize(.i3_refine);
+	deletearray .i4_id[0]		,getarraysize(.i4_id);
+	deletearray .i4_amt[0]		,getarraysize(.i4_amt);
+	deletearray .i4_refine[0]	,getarraysize(.i4_refine);
+	deletearray .i5_id[0]		,getarraysize(.i5_id);
+	deletearray .i5_amt[0]		,getarraysize(.i5_amt);
+	deletearray .i5_refine[0]	,getarraysize(.i5_refine);
+
+	freeloop(1);
+	while (1){
+		query_sql "SELECT `id`,`account_id`,`char_id`,`item1_id`,`item1_amount`,`item1_refine`,`item2_id`,`item2_amount`,`item2_refine`,`item3_id`,`item3_amount`,`item3_refine`,`item4_id`,`item4_amount`,`item4_refine`,`item5_id`,`item5_amount`,`item5_refine` FROM `web_item_send` WHERE `status` = 0 LIMIT 50",
+		.i_id,.i_aid,.i_cid,.i1_id,.i1_amt,.i1_refine,.i2_id,.i2_amt,.i2_refine,.i3_id,.i3_amt,.i3_refine,.i4_id,.i4_amt,.i4_refine,.i5_id,.i5_amt,.i5_refine;
+		sleep 500;
+
+		if (getarraysize(.i_id)) {
+			for (.i = 0; .i < getarraysize(.i_id); .i++) {
+
+                .charid = .i_cid[.i];
+                .sender$ = "System";
+                .title$ = "Donate Item";
+                .body$ = "Item from Donate";
+                .zeny = 0;
+                setarray .mailitem[0], .i1_id[.i], .i2_id[.i], .i3_id[.i], .i4_id[.i], .i5_id[.i];
+                setarray .mailamount[0], .i1_amt[.i], .i2_amt[.i], .i3_amt[.i], .i4_amt[.i], .i5_amt[.i];
+                setarray .mailrefine[0], .i1_refine[.i], .i2_refine[.i], .i3_refine[.i], .i4_refine[.i], .i5_refine[.i];
+                setarray .mailbound[0], 0, 0, 0, 0, 0;
+                setarray .mailcard0[0], 0, 0, 0, 0, 0;
+                setarray .mailcard1[0], 0, 0, 0, 0, 0;
+                setarray .mailcard2[0], 0, 0, 0, 0, 0;
+                setarray .mailcard3[0], 0, 0, 0, 0, 0;
+                setarray .mailrndopt_id0[0], 0, 0, 0, 0, 0;
+                setarray .mailrndopt_val0[0], 0, 0, 0, 0, 0;
+                setarray .mailrndopt_prm0[0], 0, 0, 0, 0, 0;
+                mail .charid, .sender$, .title$, .body$, .zeny, .mailitem, .mailamount, .mailrefine, .mailbound, .mailcard0, .mailcard1, .mailcard2, .mailcard3, .mailrndopt_id0, .mailrndopt_val0, .mailrndopt_prm0;
+
+                query_sql "UPDATE `web_item_send` SET `status` = 1, send_date = NOW() WHERE `id` = " + .i_id[.i];
+			}
+			
+			deletearray .i_id[0]		,getarraysize(.i_id);
+			deletearray .i_aid[0]		,getarraysize(.i_aid);
+			deletearray .i_cid[0]		,getarraysize(.i_cid);
+			deletearray .i1_id[0]		,getarraysize(.i1_id);
+			deletearray .i1_amt[0]		,getarraysize(.i1_amt);
+			deletearray .i1_refine[0]	,getarraysize(.i1_refine);
+			deletearray .i2_id[0]		,getarraysize(.i2_id);
+			deletearray .i2_amt[0]		,getarraysize(.i2_amt);
+			deletearray .i2_refine[0]	,getarraysize(.i2_refine);
+			deletearray .i3_id[0]		,getarraysize(.i3_id);
+			deletearray .i3_amt[0]		,getarraysize(.i3_amt);
+			deletearray .i3_refine[0]	,getarraysize(.i3_refine);
+			deletearray .i4_id[0]		,getarraysize(.i4_id);
+			deletearray .i4_amt[0]		,getarraysize(.i4_amt);
+			deletearray .i4_refine[0]	,getarraysize(.i4_refine);
+			deletearray .i5_id[0]		,getarraysize(.i5_id);
+			deletearray .i5_amt[0]		,getarraysize(.i5_amt);
+			deletearray .i5_refine[0]	,getarraysize(.i5_refine);
+		}
+
+		sleep 15000;
+	}
+	freeloop(0);
+	end;
+}

@@ -71,7 +71,6 @@ icecastle,188,221,4	script	Chief Baron	EP18_NPC_SUAD,{
 			mes "[ผู้ใหญ่บ้าน]";
 			mes "ถ้าเธอล่ามันได้... จะมีรางวัลให้แน่นอน!";
 			set MQ, 4;
-			if(!isbegin_quest(101)) setquest 101;
 			close;
 		}
 	}
@@ -113,7 +112,6 @@ icecastle,188,221,4	script	Chief Baron	EP18_NPC_SUAD,{
 			delitem 507, 5;
 			delitem 511, 5;
 			delitem 6249, 1;
-			completequest 101;
 			next;
 			mes "[ผู้ใหญ่บ้าน]";
 			mes "รอสักครู่...";

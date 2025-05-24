@@ -1,0 +1,50 @@
+icecastle,184,221,5	script	Jack The Chicken Catcher	800,{
+    if (getgmlevel() >= 99) {
+        if ($@status_event_active) {
+            mes "[Jack The Chicken Catcher]";
+            mes "กิจกรรมจับไก่กำลังดำเนินอยู่แล้ว.";
+            close;
+        }
+
+        mes "[Jack The Chicken Catcher]";
+        mes "ต้องการเริ่มกิจกรรมจับไก่ Picky หรือไม่?";
+        if (select("เริ่มกิจกรรม:ยกเลิก") == 2) close;
+
+        // ตั้งค่ากิจกรรมเริ่มต้น
+        $@status_event_active = 1;
+        $@status_event_chickens_left = 5;  // กำหนดจำนวนไก่ที่หลุด
+
+        announce "[กิจกรรมจับไก่] ไก่ Picky หลุดแล้ว! รีบไปจับกันเถอะ!", bc_all;
+
+        // สุ่มพิกัดและสร้างไก่ Picky 5 ตัวในแผนที่ icecastle
+        for (.@i = 0; .@i < 5; .@i++) {
+            getrandpos("icecastle", .@x, .@y);  // สุ่มตำแหน่งในแผนที่
+            monster "icecastle", .@x, .@y, "Picky", 1049, 1; // สร้างมอนสเตอร์ Picky
+        }
+
+        close;
+    }
+    end;
+}
+
+// การตรวจสอบการฆ่ามอนสเตอร์ Picky
+OnMonsterKill:
+    // ตรวจสอบว่าเป็นมอนสเตอร์ Picky หรือไม่
+    if (getmonsterinfo(.@monster_id, 0) == 1049) {
+        // ลดจำนวนไก่ที่เหลือ
+        $@status_event_chickens_left--;
+
+        // ประกาศว่าใครจับไก่ได้
+        announce strcharinfo(0) + " จับไก่ Picky ได้!", bc_all;
+        getitem 2001101, 1;  // ให้รางวัล (ไอเทม ขาไก่ทอด)
+
+        // ตรวจสอบจำนวนไก่ที่เหลือ
+        if ($@status_event_chickens_left <= 0) {
+            announce "[กิจกรรมจับไก่] กิจกรรมสิ้นสุดแล้ว! ไก่ Picky โดนจับครบแล้ว!", bc_all;
+            $@status_event_active = 0;  // ปิดกิจกรรม
+        } else {
+            // ประกาศจำนวนไก่ที่เหลือ
+            announce "[กิจกรรมจับไก่] เหลือไก่ Picky " + $@status_event_chickens_left + " ตัว", bc_all;
+        }
+    }
+    end;
