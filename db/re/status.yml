@@ -9785,3 +9785,15 @@ Body:
       StopAttacking: true
       StopCasting: true
       BossResist: true
+  - Status: Assassincross
+    Icon: EFST_ASSASSINCROSS
+    CalcFlags:
+      Aspd: true
+    Flags:
+      BlEffect: true
+      NoClearbuff: true
+      NoDispell: true
+      NoBanishingBuster: true
+      NoClearance: true
+    Fail:
+      Quagmire: true

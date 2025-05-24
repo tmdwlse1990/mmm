@@ -2814,6 +2814,7 @@ int32 status_calc_mob_(struct mob_data* md, uint8 opt)
 		else
 			md->level = md->db->lv;
 		md->damagetaken = md->db->damagetaken;
+		md->damagereduction = MOBDATA_DAMAGE_REDUCTION_0;
 	}
 
 	// Check if we need custom base-status
@@ -6083,6 +6084,10 @@ void status_calc_bl_main(struct block_list& bl, std::bitset<SCB_MAX> flag)
 			status->watk2 = status_calc_watk(&bl, sc, b_status->watk2);
 		}
 		else status->watk = status_calc_watk(&bl, sc, b_status->watk);
+
+		// Monsters still use these in renewal so they are necessary
+		status->rhw.atk = status_calc_watk(&bl, sc, b_status->rhw.atk);
+		status->rhw.atk2 = status_calc_watk(&bl, sc, b_status->rhw.atk2);
 #endif
 	}
 
@@ -6280,6 +6285,10 @@ void status_calc_bl_main(struct block_list& bl, std::bitset<SCB_MAX> flag)
 	* if(flag[SCB_RANGE])
 	**/
 
+	if (flag[SCB_RANGE]) {
+		status->rhw.range = b_status->rhw.range;
+	}
+
 	if(flag[SCB_MAXHP]) {
 		if( bl.type == BL_PC ) {
 			status->max_hp = status_calc_maxhp_pc( *sd, status->vit );
@@ -6367,6 +6376,9 @@ void status_calc_bl_main(struct block_list& bl, std::bitset<SCB_MAX> flag)
 #else
 		// MATK = StatusMATK + WeaponMATK + ExtraMATK
 		int32 lv = status_get_lv(&bl);
+
+		// We are using status instead of base_status to include INT changes, but base MATK isn't yet in status so copy it.
+		status->rhw.matk = b_status->rhw.matk;
 
 		// StatusMATK
 		int32 matk_min = status_base_matk_min(&bl, status, lv);
@@ -8656,6 +8668,8 @@ static int16 status_calc_aspd_rate(struct block_list *bl, status_change *sc, int
 		aspd_rate -= 100;
 	if (sc->getSCE(SC_STARSTANCE))
 		aspd_rate -= 10 * sc->getSCE(SC_STARSTANCE)->val2;
+	if( sc->getSCE(SC_ASSASSINCROSS) )
+		aspd_rate -= sc->getSCE(SC_ASSASSINCROSS)->val2 * 10;
 
 	return (int16)cap_value(aspd_rate,0,SHRT_MAX);
 }
@@ -12110,6 +12124,12 @@ int32 status_change_start(struct block_list* src, struct block_list* bl,enum sc_
 				if( pc_isriding(sd) ) pc_setriding(sd, 0);
 				if( pc_isridingdragon(sd) ) pc_setoption(sd, sd->sc.option&~OPTION_DRAGON);
 			}
+			break;
+		case SC_ASSASSINCROSS:
+			if( val1 == 10 )
+				val2 = 20;
+			else
+				val2 = val1 * 2 - 1; // ASPD Increases.
 			break;
 		case SC_GLOOMYDAY_SK:
 			// Random number between [15 ~ (Voice Lesson Skill Level x 5) + (Skill Level x 10)] %.

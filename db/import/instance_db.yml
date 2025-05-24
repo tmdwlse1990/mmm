@@ -40,3 +40,18 @@
 Header:
   Type: INSTANCE_DB
   Version: 2
+
+Body:
+  - Id: 500
+    Name: Lake of fire
+    Enter:
+      Map: 1@f_lake
+      X: 23
+      Y: 192
+    TimeLimit: 1800
+  - Id: 501
+    Name: Hall of life
+    Enter:
+      Map: 1@ba_go
+      X: 53
+      Y: 42

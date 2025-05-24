@@ -18469,6 +18469,178 @@ Body:
     Cooldown: 3000
     Requires:
       SpCost: 1
+  - Id: 785
+    Name: NPC_TARGET_MARKER
+    Description: NPC_TARGET_MARKER
+    MaxLevel: 7
+    Type: Magic
+    TargetType: Self
+    Flags:
+      IsNpc: true
+    DamageFlags:
+      NoDamage: true
+      Splash: true
+    Hit: Single
+    HitCount: 1
+    SplashArea:
+      - Level: 1
+        Area: 1
+      - Level: 2
+        Area: 3
+      - Level: 3
+        Area: 5
+      - Level: 4
+        Area: 7
+      - Level: 5
+        Area: 9
+      - Level: 6
+        Area: 11
+      - Level: 7
+        Area: 13
+    Duration1: 30000
+    Status: Target_Marker
+  - Id: 786
+    Name: NPC_AIMED_SHOWER
+    Description: NPC_AIMED_SHOWER
+    MaxLevel: 10
+    Type: Magic   # Don't display "miss"
+    TargetType: Self
+    Flags:
+      IsNpc: true
+    Range: 1
+    Hit: Multi_Hit
+    HitCount: 5  # 5 hits level 2
+    DamageFlags:
+      Splash: true
+    SplashArea: 13
+  - Id: 787
+    Name: NPC_BLAZING_ERUPTION
+    Description: NPC_BLAZING_ERUPTION
+    MaxLevel: 10
+    Type: Magic   # Don't display "miss"
+    TargetType: Self
+    Range: 1
+    Hit: Multi_Hit
+    HitCount: -1  # unknown
+    Element: Fire
+    DamageFlags:
+      Splash: true
+    SplashArea: 13
+  - Id: 788
+    Name: NPC_BLOCK_SEAL
+    Description: NPC_BLOCK_SEAL
+    MaxLevel: 10
+    Type: Magic
+    TargetType: Self
+    Flags:
+      IsNpc: true
+    DamageFlags:
+      NoDamage: true
+      Splash: true
+    Hit: Single
+    HitCount: 1
+    SplashArea: 13
+    Duration1: 30000
+    Status: Block_Seal
+  - Id: 789
+    Name: NPC_BLOCK_EXPLOSION
+    Description: NPC_BLOCK_EXPLOSION
+    MaxLevel: 10
+    Type: Magic
+    TargetType: Self
+    DamageFlags:
+      NoDamage: true
+      Splash: true
+    Hit: Single
+    HitCount: 1
+    SplashArea: 13
+  - Id: 790
+    Name: NPC_FROST_FIELD
+    Description: NPC_FROST_FIELD
+    MaxLevel: 10
+    Type: Magic
+    TargetType: Self
+    Flags:
+      IsNpc: true
+    DamageFlags:
+      NoDamage: true
+      Splash: true
+    Hit: Single
+    HitCount: 1
+    SplashArea: 13
+    Duration1:
+      - Level: 1
+        Time: 6000
+      - Level: 2
+        Time: 12000
+      - Level: 3
+        Time: 18000
+      - Level: 4
+        Time: 24000
+      - Level: 5
+        Time: 30000
+      - Level: 6
+        Time: 36000
+      - Level: 7
+        Time: 42000
+      - Level: 8
+        Time: 48000
+      - Level: 9
+        Time: 54000
+      - Level: 10
+        Time: 60000
+    Status: Frost_Storm
+  - Id: 791
+    Name: NPC_LIGHTNING_JUDGEMENT
+    Description: NPC_LIGHTNING_JUDGEMENT
+    MaxLevel: 10
+    Type: Weapon  # skill can miss
+    TargetType: Self
+    Flags:
+      IsNpc: true
+    Range: 1
+    Hit: Multi_Hit
+    HitCount: -1
+    # Element: Wind  # Unknown
+    DamageFlags:
+      Splash: true
+    SplashArea: 13
+  - Id: 792
+    Name: NPC_GROGGY_ON
+    Description: NPC_GROGGY_ON
+    MaxLevel: 5
+    Type: Weapon
+    TargetType: Self
+    DamageFlags:
+      NoDamage: true
+    Flags:
+      IsNpc: true
+    Hit: Single
+    HitCount: 1
+    Duration1: # unknown
+      - Level: 1
+        Time: 10000
+      - Level: 2
+        Time: 11000
+      - Level: 3
+        Time: 12000
+      - Level: 4
+        Time: 13000
+      - Level: 5
+        Time: 14000
+    Status: Groggy
+  - Id: 793
+    Name: NPC_RESET_EFST
+    Description: NPC_RESET_EFST
+    MaxLevel: 1
+    Type: Magic
+    TargetType: Self
+    DamageFlags:
+      NoDamage: true
+    Flags:
+      IsNpc: true
+    Hit: Single
+    HitCount: 1
   - Id: 1001
     Name: KN_CHARGEATK
     Description: Charge Attack

@@ -3645,6 +3645,13 @@ int64 skill_attack (int32 attack_type, struct block_list* src, struct block_list
 
 	dmg = battle_calc_attack(attack_type,src,bl,skill_id,skill_lv,flag&0xFFF);
 
+	// Increase skill damage of monsters
+	mob_data *md = BL_CAST(BL_MOB, src);
+	
+	if (md != nullptr && md->damagemodifier > 0) {
+		dmg.damage += dmg.damage * md->damagemodifier / 100;
+	}
+
 	//If the damage source is a unit, the damage is not delayed
 	if (src != dsrc)
 		dmg.amotion = 0;
@@ -5887,6 +5894,10 @@ int32 skill_castend_damage_id (struct block_list* src, struct block_list *bl, ui
 	case SKE_SUNSET_BLAST:
 	case SKE_NOON_BLAST:
 	case SS_KINRYUUHOU:
+	case NPC_DISSONANCE:
+	case NPC_BLAZING_ERUPTION:
+	case NPC_AIMED_SHOWER:
+	case NPC_LIGHTNING_JUDGEMENT:
 	case AL_CRUCIS:
 		if( flag&1 ) {//Recursive invocation
 			int32 sflag = skill_area_temp[0] & 0xFFF;
@@ -5915,6 +5926,18 @@ int32 skill_castend_damage_id (struct block_list* src, struct block_list *bl, ui
 			// If a enemy player is standing next to a mob when splash Es- skill is casted, the player won't get hurt.
 			if ((skill_id == SP_SHA || skill_id == SP_SWHOO) && !battle_config.allow_es_magic_pc && bl->type != BL_MOB)
 				break;
+
+			if (skill_id == NPC_AIMED_SHOWER || skill_id == NPC_BLAZING_ERUPTION) {
+				if (tsc == nullptr || !tsc->getSCE(SC_TARGET_MARKER)) {
+					break;
+				}
+				status_change_end( bl, SC_TARGET_MARKER );
+			}
+			if (skill_id == NPC_LIGHTNING_JUDGEMENT && tsc && tsc->getSCE(SC_FROST_STORM)) {
+				status_change_end(bl, SC_FROST_STORM);
+
+				sflag |= SKILL_ALTDMG_FLAG;
+			}
 
 			heal = (int32)skill_attack(skill_get_type(skill_id), src, src, bl, skill_id, skill_lv, tick, sflag);
 
@@ -8990,6 +9013,7 @@ int32 skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, 
 	case SKE_DAWN_BREAK:
 	case SKE_RISING_MOON:
 	case SKE_MIDNIGHT_KICK:
+	case NPC_DISSONANCE:
 	case AL_CRUCIS:
 	{
 		int32 starget = BL_CHAR|BL_SKILL;
@@ -9143,6 +9167,14 @@ int32 skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, 
 		map_foreachinrange(skill_area_sub, bl, skill_get_splash(skill_id, skill_lv), BL_CHAR|BL_SKILL, src, skill_id, skill_lv, tick, flag|BCT_ENEMY|SD_SPLASH|1, skill_castend_damage_id);
 		break;
 
+	case NPC_BLAZING_ERUPTION:
+	case NPC_AIMED_SHOWER:
+	case NPC_LIGHTNING_JUDGEMENT:
+		skill_area_temp[1] = 0;
+		clif_skill_nodamage(src,*bl,skill_id,skill_lv);
+		map_foreachinrange(skill_area_sub, bl, skill_get_splash(skill_id, skill_lv), BL_CHAR|BL_SKILL, src, skill_id, skill_lv, tick, flag|BCT_ENEMY|SD_SPLASH|1, skill_castend_damage_id);
+		break;
+
 	case SR_TIGERCANNON:
 	case SR_WINDMILL:
 	case GN_CART_TORNADO:
@@ -9214,7 +9246,7 @@ int32 skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, 
 	case NPC_SELFDESTRUCTION:
 		//Self Destruction hits everyone in range (allies+enemies)
 		//Except for Summoned Marine spheres on non-versus maps, where it's just enemies and your own slaves.
-		if ((md == nullptr || md->special_state.ai == AI_SPHERE) && !map_flag_vs(src->m)) {
+		if ((md == nullptr || md->special_state.ai == AI_SPHERE) && !map_flag_vs(src->m) || md && map_getmapflag(src->m, MF_NO_NPC_SELFDESTRUCTION_ON_ALL)) {
 			// Enable Marine Spheres to damage own Homunculus and summons outside PVP
 			if (battle_config.alchemist_summon_setting&8)
 				i = BCT_ENEMY|BCT_SLAVE;
@@ -11296,6 +11328,25 @@ int32 skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, 
 				skill_castend_nodamage_id);
 		}
 		break;
+		
+	case NPC_UGLYDANCE:
+		if( flag&1 ) {
+			int32 rate = 20 + 5 * skill_lv;
+			int32 succress = rnd() % 100;
+			if ( succress <= rate) {
+				status_percent_damage(src, bl, 0, 10+2*skill_lv, false);
+			}
+			//ShowDebug("UGLYDANCE: succress = %d, rate = %d (skill_lv = %d)\n", succress, rate, skill_lv);
+		} else {
+			skill_area_temp[2] = 0; //For SD_PREAMBLE
+			clif_skill_nodamage(src,*bl,skill_id,skill_lv);
+			map_foreachinallrange(skill_area_sub, bl,
+				skill_get_splash(skill_id, skill_lv),BL_CHAR,
+				src,skill_id,skill_lv,tick, flag|BCT_ENEMY|SD_PREAMBLE|1,
+				skill_castend_nodamage_id);
+		}
+		break;
+		
 	case NPC_FIRESTORM: {
 		int32 sflag = flag;
 
@@ -11305,6 +11356,17 @@ int32 skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, 
 		map_foreachinshootrange(skill_area_sub,src,skill_get_splash(skill_id,skill_lv),splash_target(src),src,
 			skill_id,skill_lv,tick,sflag|BCT_ENEMY|SD_ANIMATION|1,skill_castend_damage_id);
 		}
+		break;
+	case NPC_RESET_EFST:
+		// Remove some debuff on self (unknown list except those)
+		status_change_end(bl, SC_MAGIC_POISON);	// WL_COMET
+		status_change_end(bl, SC_DARKCROW);		// GC_DARKCROW
+
+		clif_skill_nodamage(src, *bl, skill_id, skill_lv);
+		break;
+	case NPC_GROGGY_ON:
+		status_change_start(src, src, type, 10000, skill_lv, 0, 0, 0, skill_get_time(skill_id,skill_lv), SCSTART_NOAVOID|SCSTART_NOTICKDEF|SCSTART_NORATEDEF);
+		clif_skill_nodamage(src, *bl, skill_id, skill_lv);
 		break;
 	case ALL_PARTYFLEE:
 		if( sd  && !(flag&1) ) {
@@ -11562,6 +11624,16 @@ int32 skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, 
 		else {
 			map_foreachinallrange(skill_area_sub, src, skill_get_splash(skill_id, skill_lv), BL_CHAR,
 				src, skill_id, skill_lv, tick, flag|BCT_ENEMY|1, skill_castend_nodamage_id);
+			clif_skill_nodamage(src, *bl, skill_id, skill_lv);
+		}
+		break;
+		
+	case NPC_ASSASSINCROSS:
+		if( flag&1 )
+			sc_start(src,bl, type, 100, skill_lv, skill_get_time(skill_id, skill_lv));
+		else {
+			map_foreachinallrange(skill_area_sub, src, skill_get_splash(skill_id, skill_lv), BL_MOB,
+				src, skill_id, skill_lv, tick, flag|BCT_PARTY|1, skill_castend_nodamage_id);
 			clif_skill_nodamage(src, *bl, skill_id, skill_lv);
 		}
 		break;
@@ -13666,6 +13738,40 @@ int32 skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, 
 		}
 		break;
 
+	case NPC_FROST_FIELD:
+	case NPC_TARGET_MARKER:
+		if (flag&1) {
+			status_change_start(src, bl, type, 10000, skill_lv, src->id, 0, 0, skill_get_time(skill_id,skill_lv), SCSTART_NOAVOID|SCSTART_NOTICKDEF|SCSTART_NORATEDEF);
+		}
+		else {
+			clif_skill_nodamage(src, *bl, skill_id, skill_lv);
+			map_foreachinrange(skill_area_sub, bl, skill_get_splash(skill_id, skill_lv), BL_CHAR, src, skill_id, skill_lv, tick, flag|BCT_ENEMY|1, skill_castend_nodamage_id);
+		}
+		break;
+
+	case NPC_BLOCK_SEAL:
+		if (flag&1) {
+			if (tsc && tsc->getSCE(SC_TARGET_MARKER)) {
+				status_change_end(bl, SC_TARGET_MARKER);
+				status_change_start(src, bl, type, 10000, skill_lv, src->id, 0, 0, skill_get_time(skill_id,skill_lv), SCSTART_NOAVOID|SCSTART_NOTICKDEF|SCSTART_NORATEDEF);
+			}
+		}
+		else {
+			clif_skill_nodamage(src, *bl, skill_id, skill_lv);
+			map_foreachinrange(skill_area_sub, bl, skill_get_splash(skill_id, skill_lv), BL_CHAR, src, skill_id, skill_lv, tick, flag|BCT_ENEMY|1, skill_castend_nodamage_id);
+		}
+		break;
+
+	case NPC_BLOCK_EXPLOSION:
+		if (flag&1) {
+			clif_skill_nodamage(src, *bl, skill_id, skill_lv);
+			status_change_end(bl, SC_BLOCK_SEAL);
+		}
+		else {
+			clif_skill_nodamage(src, *bl, skill_id, skill_lv);
+			map_foreachinrange(skill_area_sub, bl, skill_get_splash(skill_id, skill_lv), BL_CHAR, src, skill_id, skill_lv, tick, flag|BCT_ENEMY|1, skill_castend_nodamage_id);
+		}
+		break;
 	default: {
 		std::shared_ptr<s_skill_db> skill = skill_db.find(skill_id);
 		ShowWarning("skill_castend_nodamage_id: missing code case for skill %s(%d)\n", skill ? skill->name : "UNKNOWN", skill_id);

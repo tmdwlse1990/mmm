@@ -1,0 +1,72 @@
+//============================================================ 
+//===== rAthena Script =======================================
+//= Global Functions
+//===== Description: =========================================
+//= General script functions.
+//===== Changelogs: ==========================================
+//= 1.0 Added generic functions. [Atemo]
+//============================================================
+
+function	script	F_CheckStep	{
+	if ('step != getarg(0))
+		end;
+	return;
+}
+function	script	F_CheckLeader	{
+	if (is_party_leader() == false)
+		end;
+	return;
+}
+
+
+// Return false and put the boss in an invincible state if a party member is dead, otherwise invincible is removed and true is returned.
+// For convenience sc_start is used instead of NPC_INVINCIBLE, the result is visually the same.
+// Predetermined instance variables :
+// 'boss_gid
+// 'party_id
+// 'party_count
+// 'previous_state_invincible
+function	script	F_IsPartyAlive	{
+	.@map$ = getarg(0);
+
+	if ('party_id == 0 || 'party_count == 0 || 'boss_gid == 0) {
+		debugmes "F_IsPartyAlive: One of the prerequisite variable is not defined, please check.";
+		return 2;
+	}
+
+	// All members are alive
+	if (callsub( S_Alive, .@map$ ) == true) {
+		sc_end( SC_INVINCIBLE, 'boss_gid );
+		
+		if ('previous_state_invincible == true) {
+			'previous_state_invincible = false;
+			return 1;	// Display that the boss is no longer invincible (1 announce only)
+		}
+		return 2;
+	}
+	// At least 1 member is dead
+	sc_start SC_INVINCIBLE,300000,1,10000,SCSTART_NOTICKDEF,'boss_gid;
+	
+	if ('previous_state_invincible == false) {
+		'previous_state_invincible = true;
+	}
+	return 0;	// Spam that the boss is invincible
+
+S_Alive:
+	.@map$ = getarg(0);
+	getpartymember 'party_id, 1, .@char_id;
+
+	if ($@partymembercount != 'party_count)
+		return false;
+
+	for ( .@i = 0; .@i < 'party_count; ++.@i ) {
+		.@account_id = convertpcinfo(.@char_id[.@i], CPC_ACCOUNT);
+		if (.@account_id == 0)
+			return false;
+		if (isdead(.@account_id))
+			return false;
+		if (strcharinfo(3,.@char_id[.@i]) != .@map$)
+			return false;
+	}
+	return true;
+}

@@ -29468,6 +29468,53 @@ Body:
         - Level: 2
           Amount: 100
     Status: Odins_Power
+  - Id: 2539
+    Name: NPC_ASSASSINCROSS
+    Description: Assassin Cross at Sunset
+    MaxLevel: 10
+    Type: Magic
+    TargetType: Self
+    DamageFlags:
+      NoDamage: true
+      Splash: true
+    Flags:
+      IsNpc: true
+      ShowScale: true
+    Hit: Single
+    HitCount: 1
+    SplashArea: 15
+    Duration1: 180000
+    Status: Assassincross
+  - Id: 2540
+    Name: NPC_DISSONANCE
+    Description: Unchained Serenade
+    MaxLevel: 5
+    Type: Magic
+    TargetType: Self
+    DamageFlags:
+      Splash: true
+      IgnoreFlee: true
+    Flags:
+      IsNpc: true
+      ShowScale: true
+    Hit: Multi_Hit
+    HitCount: 1
+    Element: Neutral
+    SplashArea: 4
+  - Id: 2541
+    Name: NPC_UGLYDANCE
+    Description: Hip Shaker
+    MaxLevel: 5
+    TargetType: Self
+    DamageFlags:
+      NoDamage: true
+      Splash: true
+    Flags:
+      IsNpc: true
+      ShowScale: true
+    Hit: Single
+    HitCount: 1
+    SplashArea: 4
   - Id: 2543
     Name: ALL_RAY_OF_PROTECTION
     Description: Ray of Protection

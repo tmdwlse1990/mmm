@@ -2061,8 +2061,20 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 	if (bl->type == BL_MOB) { // Reduces damage received for Green Aura MVP
 		mob_data *md = BL_CAST(BL_MOB, bl);
 
-		if (md && md->damagetaken != 100)
-			damage = i64max(damage * md->damagetaken / 100, 1);
+		if (md != nullptr) {
+			if (md->damagetaken != 100)
+				damage = i64max(damage * md->damagetaken / 100, 1);
+
+			// Additional damage reduction (note: damage can be reduced to 0)
+			if (md->damagereduction & MOBDATA_DAMAGE_REDUCTION_10)
+				damage = i64max(damage / 10, 0);
+			if (md->damagereduction & MOBDATA_DAMAGE_REDUCTION_100)
+				damage = i64max(damage / 100, 0);
+			if (md->damagereduction & MOBDATA_DAMAGE_REDUCTION_1000)
+				damage = i64max(damage / 1000, 0);
+			if (md->damagereduction & MOBDATA_DAMAGE_REDUCTION_10000)
+				damage = i64max(damage / 10000, 0);
+		}
 		
 		if (md && (md->rank != 0))
 		{
@@ -6719,6 +6731,12 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 			if (wd->miscflag & SKILL_ALTDMG_FLAG)
 				skillratio = skillratio * 3 / 10;
 			break;
+		case NPC_LIGHTNING_JUDGEMENT:
+			skillratio += -100 + 200 + 50 * skill_lv;	// Unknown value
+
+			if (wd->miscflag & SKILL_ALTDMG_FLAG)
+				skillratio *= 2;	// Ratio between 1.5 and 2
+			break;
 	}
 	return skillratio;
 }
@@ -8583,6 +8601,9 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						if (sd)
 							skillratio += 3 * pc_checkskill(sd, BA_MUSICALLESSON);
 						break;
+					case NPC_DISSONANCE:
+						skillratio += 100 + ( skill_lv * 10 );
+						break;
 					case HW_GRAVITATION:
 						skillratio += -100 + 100 * skill_lv;
 						RE_LVL_DMOD(100);
@@ -9368,6 +9389,12 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						RE_LVL_DMOD(100);
 						if (mflag & SKILL_ALTDMG_FLAG)
 							skillratio = skillratio * 3 / 10;
+						break;
+					case NPC_AIMED_SHOWER:
+						skillratio += -100 + 400 + 100 * skill_lv;	// Unknown value
+						break;
+					case NPC_BLAZING_ERUPTION:
+						skillratio += -100 + 1500 + 500 * skill_lv;	// Unknown value
 						break;
 				}
 
@@ -10716,6 +10743,13 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 	}
 
 	wd = battle_calc_attack(BF_WEAPON, src, target, 0, 0, flag);
+
+	// Increase basic damage of monsters
+	mob_data *md = BL_CAST(BL_MOB, src);
+	
+	if (md != nullptr && md->damagemodifier > 0) {
+		wd.damage += wd.damage * md->damagemodifier / 100;
+	}
 
 	if (sd && wd.damage + wd.damage2 > 0 && battle_vellum_damage(sd, target, &wd))
 		vellum_damage = true;

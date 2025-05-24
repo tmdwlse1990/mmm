@@ -81,6 +81,477 @@ Header:
   Version: 4
 
 Body:
+  - Id: 20582
+    AegisName: MD_MANHOLE4
+    Name: Manhole
+    Level: 200
+    Hp: 200000
+    BaseExp: 0
+    JobExp: 0
+    Attack: 10000
+    Attack2: 10000
+    Str: 3000
+    Agi: 1
+    Vit: 1
+    Int: 1
+    Dex: 2000
+    Luk: 1
+    AttackRange: 7
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Small
+    Race: Formless
+    Element: Neutral
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    Class: Boss
+    Modes:
+      KnockBackImmune: true
+      TeleportBlock: true
+
+  - Id: 21809
+    AegisName: 20TH_GATE_GREEN_M
+    Name: Dummy
+  - Id: 21810
+    AegisName: 20TH_GATE_GREEN_S
+    Name: Dummy
+  - Id: 21811
+    AegisName: 20TH_GATE_PURPLE_M
+    Name: Dummy
+  - Id: 21812
+    AegisName: 20TH_GATE_PURPLE_S
+    Name: Dummy
+  - Id: 21813
+    AegisName: 20TH_GATE_RED_M
+    Name: Dummy
+  - Id: 21814
+    AegisName: 20TH_GATE_RED_S
+    Name: Dummy
+  - Id: 22174
+    AegisName: MD_PRI_RIGEL
+    Name: Dummy
+
+  - Id: 22175
+    AegisName: MD_PRI_RIGEL_AC
+    # Name: Dimensional Criminal Rigel
+    Name: Criminal Rigel
+    Level: 275
+    Hp: 800000000
+    BaseExp: 0
+    JobExp: 0
+    Attack: 30260
+    Attack2: 12603
+    Defense: 358
+    MagicDefense: 138
+    Resistance: 1833
+    MagicResistance: 850
+    Str: 515
+    Agi: 330
+    Vit: 413
+    Int: 408
+    Dex: 584
+    Luk: 580
+    AttackRange: 10
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Formless
+    Element: Neutral
+    ElementLevel: 2
+    WalkSpeed: 120
+    AttackDelay: 230
+    AttackMotion: 1152
+    DamageMotion: 432    # unknown
+    Ai: 21
+    Class: Boss
+
+  - Id: 22176
+    AegisName: MD_PRI_RIGEL_ACS
+    Name: Rigel's Illusion
+    Level: 275
+    Hp: 800000000
+    BaseExp: 0
+    JobExp: 0
+    Attack: 30260
+    Attack2: 12603
+    Defense: 358
+    MagicDefense: 138
+    Resistance: 1833
+    MagicResistance: 850
+    Str: 515
+    Agi: 330
+    Vit: 413
+    Int: 408
+    Dex: 584
+    Luk: 580
+    AttackRange: 10
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Formless
+    Element: Neutral
+    ElementLevel: 2
+    WalkSpeed: 120
+    AttackDelay: 230
+    AttackMotion: 1152
+    DamageMotion: 432    # unknown
+    Class: Boss
+    Ai: 10  # aggressive, immobile
+
+  - Id: 22177
+    AegisName: MD_PRI_DRAGON_1
+    Name: Floral Pegasus
+    Level: 275
+    Hp: 700000000
+    BaseExp: 0
+    JobExp: 0
+    #MvpExp:
+    Attack: 55810
+    Attack2: 10828
+    Defense: 347
+    MagicDefense: 134
+    Resistance: 1741
+    MagicResistance: 807
+    Str: 486
+    Agi: 390
+    Vit: 386
+    Int: 311
+    Dex: 552
+    Luk: 520
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Angel
+    Element: Poison
+    ElementLevel: 1
+    WalkSpeed: 130
+    AttackDelay: 324
+    AttackMotion: 1080
+    DamageMotion: 432    # unknown
+    DamageTaken: 1
+    Ai: 21
+    Class: Boss
+    MvpDrops:
+      - Item: Energy_Of_Spring
+        Rate: 5000
+      - Item: Old_Card_Album
+        Rate: 2500
+      - Item: Magic_Card_Album
+        Rate: 2500
+    Drops:
+      - Item: Energy_Of_Spring
+        Index: 0
+        Rate: 2000
+      - Item: Energy_Of_Spring
+        Index: 1
+        Rate: 1000
+      - Item: MD_Hol_Fragment
+        Index: 2
+        Rate: 1000
+      - Item: Spring_Material_1
+        Index: 3
+        Rate: 500
+      - Item: Spring_Material_2
+        Index: 4
+        Rate: 500
+      - Item: Spring_Material_3
+        Index: 5
+        Rate: 500
+
+  - Id: 22178
+    AegisName: MD_PRI_DRAGON_2
+    Name: Coral Marine
+    Level: 275
+    Hp: 700000000
+    BaseExp: 0
+    JobExp: 0
+    #MvpExp:
+    Attack: 54008
+    Attack2: 11133
+    Defense: 213
+    MagicDefense: 241
+    Resistance: 1020
+    MagicResistance: 1682
+    Str: 324
+    Agi: 303
+    Vit: 330
+    Int: 445
+    Dex: 521
+    Luk: 520
+    AttackRange: 3
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Fish
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 150
+    AttackDelay: 306
+    AttackMotion: 1224
+    DamageMotion: 432    # unknown
+    DamageTaken: 1
+    Ai: 21
+    Class: Boss
+    MvpDrops:
+      - Item: Energy_Of_Summer
+        Rate: 5000
+      - Item: Old_Card_Album
+        Rate: 2500
+      - Item: Magic_Card_Album
+        Rate: 2500
+    Drops:
+      - Item: Energy_Of_Summer
+        Index: 0
+        Rate: 2000
+      - Item: Energy_Of_Summer
+        Index: 1
+        Rate: 1000
+      - Item: MD_Hol_Fragment
+        Index: 2
+        Rate: 1000
+      - Item: Summer_Material_1
+        Index: 3
+        Rate: 500
+      - Item: Summer_Material_2
+        Index: 4
+        Rate: 500
+      - Item: Summer_Material_3
+        Index: 5
+        Rate: 500
+
+  - Id: 22179
+    AegisName: MD_PRI_DRAGON_3
+    Name: Maple Tree
+    Level: 275
+    Hp: 700000000
+    BaseExp: 0
+    JobExp: 0
+    #MvpExp:
+    Attack: 43450
+    Attack2: 12337
+    Defense: 213
+    MagicDefense: 241
+    Resistance: 1399
+    MagicResistance: 2324
+    Str: 415
+    Agi: 428
+    Vit: 467
+    Int: 485
+    Dex: 532
+    Luk: 525
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Plant
+    Element: Wind
+    ElementLevel: 1
+    WalkSpeed: 150
+    AttackDelay: 288
+    AttackMotion: 1440
+    DamageMotion: 432    # unknown
+    DamageTaken: 1
+    Ai: 21
+    Class: Boss
+    MvpDrops:
+      - Item: Energy_Of_Autumn
+        Rate: 5000
+      - Item: Old_Card_Album
+        Rate: 2500
+      - Item: Magic_Card_Album
+        Rate: 2500
+    Drops:
+      - Item: Energy_Of_Autumn
+        Index: 0
+        Rate: 2000
+      - Item: Energy_Of_Autumn
+        Index: 1
+        Rate: 1000
+      - Item: MD_Hol_Fragment
+        Index: 2
+        Rate: 1000
+      - Item: Autumn_Material_1
+        Index: 3
+        Rate: 500
+      - Item: Autumn_Material_2
+        Index: 4
+        Rate: 500
+      - Item: Autumn_Material_3
+        Index: 5
+        Rate: 500
+
+  - Id: 22180
+    AegisName: MD_PRI_DRAGON_4
+    Name: Monarch Penguin
+    Level: 275
+    Hp: 700000000
+    BaseExp: 0
+    JobExp: 0
+    #MvpExp:
+    Attack: 56282
+    Attack2: 11147
+    Defense: 347
+    MagicDefense: 134
+    Resistance: 1741
+    MagicResistance: 807
+    Str: 486
+    Agi: 390
+    Vit: 386
+    Int: 311
+    Dex: 552
+    Luk: 515
+    AttackRange: 3
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Dragon
+    Element: Water
+    ElementLevel: 1
+    WalkSpeed: 130
+    AttackDelay: 345
+    AttackMotion: 1152
+    DamageMotion: 432    # unknown
+    DamageTaken: 1
+    Ai: 21
+    Class: Boss
+    MvpDrops:
+      - Item: Energy_Of_Winter
+        Rate: 5000
+      - Item: Old_Card_Album
+        Rate: 2500
+      - Item: Magic_Card_Album
+        Rate: 2500
+    Drops:
+      - Item: Energy_Of_Winter
+        Index: 0
+        Rate: 2000
+      - Item: Energy_Of_Winter
+        Index: 1
+        Rate: 1000
+      - Item: MD_Hol_Fragment
+        Index: 2
+        Rate: 1000
+      - Item: Winter_Material_1
+        Index: 3
+        Rate: 500
+      - Item: Winter_Material_2
+        Index: 4
+        Rate: 500
+      - Item: Winter_Material_3
+        Index: 5
+        Rate: 500
+
+  - Id: 22181
+    AegisName: MD_COMMON_P
+    Name: Dummy
+    Level: 99
+    Hp: 200000
+    Sp: 0
+    BaseExp: 0
+    JobExp: 0
+    Attack: 700
+    Attack2: 120
+    Defense: 62
+    MagicDefense: 20
+    Resistance: 0
+    MagicResistance: 0
+    Str: 0
+    Agi: 0
+    Vit: 0
+    Int: 0
+    Dex: 0
+    Luk: 0
+    AttackRange: 3
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Small
+    Race: Formless
+    Element: Neutral
+    ElementLevel: 1
+    WalkSpeed: 150
+    AttackDelay: 400
+    AttackMotion: 864
+    DamageMotion: 432
+    Ai: 06
+
+  - Id: 22182
+    AegisName: MD_COMMON_SG
+    Name: Dummy
+    Level: 99
+    Hp: 200000
+    Sp: 0
+    BaseExp: 0
+    JobExp: 0
+    Attack: 700
+    Attack2: 120
+    Defense: 62
+    MagicDefense: 20
+    Resistance: 0
+    MagicResistance: 0
+    Str: 0
+    Agi: 0
+    Vit: 0
+    Int: 0
+    Dex: 0
+    Luk: 0
+    AttackRange: 3
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Small
+    Race: Formless
+    Element: Neutral
+    ElementLevel: 1
+    WalkSpeed: 150
+    AttackDelay: 400
+    AttackMotion: 864
+    DamageMotion: 432
+    Ai: 06
+
+  - Id: 22183
+    AegisName: MD_MANASTORM
+    Name: Mana Storm
+
+  - Id: 22184
+    AegisName: MD_MANABARRIER
+    Name: Mana Barrier
+    Level: 1
+    Hp: 1000
+    BaseExp: 0
+    JobExp: 0
+    Attack: 15000    # custom
+    Attack2: 3000    # custom
+    Defense: 0
+    MagicDefense: 0
+    Resistance: 0
+    MagicResistance: 0
+    Str: 400    # custom
+    Agi: 240    # custom
+    Vit: 220    # custom
+    Int: 380    # custom
+    Dex: 300    # custom
+    Luk: 180    # custom
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Formless
+    Element: Neutral
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    Class: Boss
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+      TeleportBlock: true
   - Id: 1840
     AegisName: GOLDEN_SAVAGE
     Name: Golden Savage

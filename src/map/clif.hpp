@@ -1551,6 +1551,9 @@ void clif_macro_checker( map_session_data& sd, e_macro_checker_result result );
 
 void clif_dynamicnpc_result( map_session_data& sd, e_dynamicnpc_result result );
 
+// Body Size Controller
+void clif_body_size(struct block_list* bl, int val1);
+
 void clif_set_dialog_align(map_session_data& sd, int32 npcid, e_say_dialog_align align);
 void clif_set_npc_window_size(map_session_data& sd, int32 width, int32 height);
 void clif_set_npc_window_pos(map_session_data& sd, int32 x, int32 y);

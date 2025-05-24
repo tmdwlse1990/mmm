@@ -1,0 +1,757 @@
+//===== rAthena Script =======================================
+//= Lake Of Fire instance
+//===== Description: =========================================
+//= [Walkthrough Conversion]
+//===== Changelog: ===========================================
+//= 1.0 Initial release [Atemo]
+//============================================================
+
+// mapflags
+1@f_lake	mapflag	nomemo
+1@f_lake	mapflag	nosave	SavePoint
+1@f_lake	mapflag	nobranch
+1@f_lake	mapflag	nowarp
+1@f_lake	mapflag	nowarpto
+1@f_lake	mapflag	noteleport
+1@f_lake	mapflag	noicewall
+1@f_lake	mapflag	partylock
+1@f_lake	mapflag	no_npc_selfdestruction_on_all
+1@f_lake	mapflag	restricted	6
+
+
+// t_garden,158,235,2	script(CLOAKED)	Dimension Prison#1	GATE_SKYBLUE,2,2,{	// unknown OnTouch effect
+t_garden,158,235,2	script(CLOAKED)	Dimension Prison#1	GATE_SKYBLUE,{
+	if (isbegin_quest(12597) != 2)
+		end;
+	if (checkweight(1201,1) == 0) {	// unknown ID
+		mes "^ff0000It seems that you are overweight. Please organize your inventory.^000000";
+		close;
+	}
+	if (getcharid(1) < 1) {
+		mes "^0000ffPlease form a party of at least one person and continue.^000000";
+		close;
+	}
+	switch( checkquest(12611,PLAYTIME) ) {
+	case -1:
+		break;
+	case 0:
+	case 1:
+		mes "^0000ffYou need more time to enter the dungeon.^000000";
+		close;
+	case 2:
+		erasequest 12611;
+		break;
+	}
+	.@md_name$ = "Lake of fire";
+	.@current_instance_name$ = instance_live_info(ILI_NAME, instance_id(IM_PARTY));
+
+	if (.@current_instance_name$ == .@md_name$)
+		.@md_name_ready$ = .@md_name$;
+	else if (is_party_leader() == true) {
+		if (select( "Cancel", "Create access permission for " + .@md_name$ + "" ) == 1)
+			end;
+		instance_create(.@md_name$);
+		end;
+	}
+
+	if (.@md_name_ready$ != "")
+		.@menu$ = "Enter " + .@md_name_ready$ + "";
+
+	if (select( "Cancel", .@menu$ ) == 1)
+		end;
+
+	switch( instance_enter(.@md_name_ready$) ) {
+	case IE_OTHER:
+		mes "^ff0000An unknown error occurred.^000000";
+		close;
+	case IE_NOINSTANCE:
+	case IE_NOMEMBER:
+		end;
+	case IE_OK:
+		if (isbegin_quest(12613) > 0)
+			erasequest 12613;
+		if (isbegin_quest(12614) > 0)
+			erasequest 12614;
+		if (isbegin_quest(12615) > 0)
+			erasequest 12615;
+		if (isbegin_quest(12616) > 0)
+			erasequest 12616;
+		setquest 12611;
+		mapannounce "t_garden", "Adventurer " + strcharinfo(0) + " enters " + .@md_name_ready$ + ".", bc_map, 0xFFAA;
+		// warp "1@f_lake",23,192;
+		end;
+	}
+	end;
+}
+
+1@f_lake,23,192,0	script	#q_control	HIDDEN_WARP_NPC,2,2,{
+	end;
+OnTouch:
+	if (isbegin_quest('quest_id) == 0)
+		setquest 'quest_id;	// Give quest according to the boss ID
+	end;
+
+OnInstanceInit:
+	'step = 0;
+	'count_damage_reduction = 0;
+	'map_f_lake$ = instance_mapname("1@f_lake");
+
+
+	// Settings
+	//-------------------------
+	// Base Boss hp regen/second (unknown values).
+	'hp_regen_boss = 1000000;
+	//-------------------------
+
+
+	// Others
+	switch( rand(4) ) {
+	case 0:
+		'beast_type = 22177;	// MD_PRI_DRAGON_1
+		'quest_id = 12613;
+		'spirit_type$ = "Spring Spirit";
+		break;
+	case 1:
+		'beast_type = 22178;	// MD_PRI_DRAGON_2
+		'quest_id = 12614;
+		'spirit_type$ = "Summer Spirit";
+		break;
+	case 2:
+		'beast_type = 22179;	// MD_PRI_DRAGON_3
+		'quest_id = 12615;
+		'spirit_type$ = "Autumn Divine Tree";
+		break;
+	default:
+		'beast_type = 22180;	// MD_PRI_DRAGON_4
+		'quest_id = 12616;
+		'spirit_type$ = "Winter Mystery Tree";
+		break;
+	}
+
+	setnpcdisplay( instance_npcname("#md_lake_boss_control"), 'beast_type );
+	end;
+}
+
+// 1@f_lake,16,192,5	script	#boss_control	MD_PRI_DRAGON_3,1,1,{	// unknown OnTouch effect
+1@f_lake,16,192,5	script	#md_lake_boss_control	CLEAR_NPC,{
+	F_CheckStep(0);
+	F_CheckLeader();	// unknown text for party member
+
+	mes "^0000ff" + 'spirit_type$ + " glances at you and then closes his eyes indifferently. It looks like it doesn't want to deal with you.^000000";
+	next;
+	if (select( "Stop talking", "I would like to receive a prison key" ) == 1)
+		end;
+	F_CheckStep(0);
+	F_CheckLeader();
+
+	'step = 1;
+	'party_id = getcharid(1);
+	getpartymember 'party_id, 1;
+	'party_count = $@partymembercount;
+	donpcevent instance_npcname("md_lake_main_spawn") + "::OnStart";
+	end;
+}
+
+
+1@f_lake,1,1,0	script	md_lake_main_spawn	-1,{
+	end;
+OnStart:
+	// Disable #q_control which give a quest according to the boss class
+	disablenpc instance_npcname("#q_control");
+
+	switch( 'beast_type ) {
+	case 22177:	// MD_PRI_DRAGON_1
+		mapannounce 'map_f_lake$, "" + 'spirit_type$ + ": Want the prison key? From the looks of it, it appears to be a seed sent by a false prophet. It won't go smoothly.", bc_map, 0x33FFCC;
+		break;
+	case 22178:	// MD_PRI_DRAGON_2
+		mapannounce 'map_f_lake$, "" + 'spirit_type$ + ": You came here after being deceived by sugarcoating. It's pitiful, but there's nothing I can do. I'll just do my duty.", bc_map, 0x33FFCC;
+		break;
+	case 22179:	// MD_PRI_DRAGON_3
+		mapannounce 'map_f_lake$, "" + 'spirit_type$ + ": How dare you come to harm it? Trying to reach a truly noble being with the body of a lowly mortal!", bc_map, 0x33FFCC;
+		break;
+	case 22180:	// MD_PRI_DRAGON_4
+		mapannounce 'map_f_lake$, "" + 'spirit_type$ + ": You know nothing! Anyone who is deceived by false stories and tries to harm it will be destroyed!", bc_map, 0x33FFCC;
+		break;
+	}
+	specialeffect EF_BEGINSPELL6;
+	specialeffect EF_SCREEN_QUAKE;
+	initnpctimer;
+	end;
+OnTimer2000:
+	'previous_state_invincible = false;
+
+	monster 'map_f_lake$,16,192,"--en--", 'beast_type,1,0, instance_npcname("md_lake_main_dead") + "::OnBossDead";
+	'boss_gid = $@mobid[0];
+
+	getunitdata( 'boss_gid, .@data );
+	setunittitle( 'boss_gid, 'spirit_type$ );
+
+	// Damage on the boss on start are : 1/(100 * 1000 * 10000) = 1/(1,000,000,000)
+	setunitdata 'boss_gid, UMOB_DAMAGE_REDUCTION, (MOBDATA_DAMAGE_REDUCTION_100 | MOBDATA_DAMAGE_REDUCTION_1000 | MOBDATA_DAMAGE_REDUCTION_10000);
+
+	// MD_MVP mode given here
+	setunitdata 'boss_gid, UMOB_MODE, ( .@data[UMOB_MODE] | MD_MVP );	// mvp (bug: icon not updated)
+
+	disablenpc instance_npcname("#md_lake_boss_control");
+	setnpcdisplay( instance_npcname("#md_lake_boss_control"), 844 );	// CLEAR_NPC
+
+	// Event that start immediately.
+	donpcevent instance_npcname("md_lake_party_check") + "::OnStart";
+	donpcevent instance_npcname("md_lake_hp_regen") + "::OnStart";
+
+	// Enable Groggy traps
+	enablenpc instance_npcname("#trap_lake_1");
+	enablenpc instance_npcname("#trap_lake_2");
+	enablenpc instance_npcname("#trap_lake_3");
+	enablenpc instance_npcname("#trap_lake_4");
+	enablenpc instance_npcname("#trap_lake_5");
+	enablenpc instance_npcname("#trap_lake_6");
+	enablenpc instance_npcname("#trap_lake_7");
+	end;
+OnTimer2500:
+	stopnpctimer;
+
+	// Events start 2.5s after spawn (NPC_SELFDESTRUCTION).
+	donpcevent instance_npcname("md_lake_skill_welcome") + "::OnStart";
+	end;
+
+OnStop:
+	stopnpctimer;
+	end;
+}
+
+
+1@f_lake,1,1,0	script	md_lake_main_dead	-1,{
+	end;
+OnBossDead:
+	initnpctimer;
+	killmonster 'map_f_lake$, instance_npcname("md_lake_main_dead") + "::OnBossDead";
+
+	donpcevent instance_npcname("md_lake_main_spawn") + "::OnStop";
+
+	// Stop: NPC spawn monsters using NPC_SELFDESTRUCTION around the Boss (part 1)
+	donpcevent instance_npcname("md_lake_skill_welcome") + "::OnStop";
+
+	// Stop: check party data
+	donpcevent instance_npcname("md_lake_party_check") + "::OnStop";
+
+	// Stop: boss regen
+	donpcevent instance_npcname("md_lake_hp_regen") + "::OnStop";
+
+	// Stop: move the player and Boss to the final area
+	donpcevent instance_npcname("md_lake_moveto_part_2") + "::OnStop";
+
+	// Stop: spawn MD_MANABARRIER and show effect on them (also stop special event for MD_PRI_DRAGON_4)
+	donpcevent instance_npcname("md_lake_manabarrier_random") + "::OnStop";
+	end;
+OnTimer2000:
+	mapannounce 'map_f_lake$, "All party members will be moved near the portal for dimensional movement. Be careful of shock.", bc_map, 0x33FFCC;
+	end;
+OnTimer7000:
+	stopnpctimer;
+	instance_warpall 'map_f_lake$,176,163,instance_id();
+
+	// Reward/exit
+	enablenpc instance_npcname("#end_npc");
+
+	F_CheckStep(2);
+	'step = 3;
+	end;
+}
+
+
+// Spawn monsters using NPC_SELFDESTRUCTION around the Boss
+1@f_lake,1,1,0	script	md_lake_skill_welcome	-1,{
+	end;
+OnStart:
+	'event_skill_welcome = true;
+	initnpctimer;
+	end;
+OnStop:
+	stopnpctimer;
+	'event_skill_welcome = false;
+	end;
+OnStopEvent:
+	'event_skill_welcome = false;
+	end;
+
+OnTimer1400:
+	getunitdata( 'boss_gid, .@data );
+	'x_boss = .@data[UMOB_X];
+	'y_boss = .@data[UMOB_Y];
+
+	callsub( S_Spawn, 'x_boss,'y_boss );
+	sleep 150;
+	callsub( S_Spawn, 'x_boss,'y_boss );
+	sleep 150;
+	callsub( S_Spawn, 'x_boss,'y_boss );
+	sleep 150;
+	callsub( S_Spawn, 'x_boss,'y_boss );
+	sleep 150;
+	if ('event_skill_welcome == true)
+		initnpctimer;
+	end;
+OnMobDead:
+	end;
+
+S_Spawn:
+	getfreecell( 'map_f_lake$,.@x,.@y,getarg(0),getarg(1),10,10 );
+
+	// The system spawn and kill the same beast type with 1 hp.
+	monster 'map_f_lake$,.@x,.@y,"--en--", 'beast_type,1,0, instance_npcname("md_lake_skill_welcome") + "::OnMobDead";
+	.@mob_id = $@mobid[0];
+
+	// NPC_SELFDESTRUCTION deal no damage to player (damage skill depends on remaining src hp)
+	setunitdata( .@mob_id, UMOB_HP, 1 );
+	setunitdata( .@mob_id, UMOB_NODROP, true );
+
+	// Make the mob small (visually) and transparent
+	setunitdata .@mob_id, UMOB_BODYSIZE, 30;
+	sc_start SC_SHOW_EFFECT1, 49,809,10000, SCSTART_NOTICKDEF | SCSTART_NOAVOID | SCSTART_NORATEDEF, .@mob_id;
+	sc_start SC_SHOW_EFFECT2, 49,537,10000, SCSTART_NOTICKDEF | SCSTART_NOAVOID | SCSTART_NORATEDEF, .@mob_id;
+	sleep 50;
+	if (unitexists(.@mob_id) == true) {
+		unitskilluseid .@mob_id,"NPC_SELFDESTRUCTION",1,.@mob_id,-100;
+		killmonster 'map_f_lake$, instance_npcname("md_lake_skill_welcome") + "::OnMobDead";
+	}
+	return;
+}
+
+
+// Check party data every 2s
+1@f_lake,1,1,0	script	md_lake_party_check	-1,{
+	end;
+OnStart:
+	initnpctimer;
+	end;
+OnTimer2000:
+	switch( F_IsPartyAlive('map_f_lake$) ) {
+	case 0:	// state invincible (spam mapannounce)
+		mapannounce 'map_f_lake$, "A fatality occurred due to the divine beast's strike. Infinite power is given to the divine beast until the deceased is resurrected.", bc_map, 0xCCFF00;
+		break;
+	case 1:	// invincible removed (mapannounce x1)
+		mapannounce 'map_f_lake$, "The infinite power that overflowed in the body of the divine beast has disappeared.", bc_map, 0xCCFF00;
+		break;
+	case 2:	// no change
+		break;
+	}
+	initnpctimer;
+	end;
+OnStop:
+	stopnpctimer;
+	end;
+}
+
+
+1@f_lake,1,1,0	script	md_lake_hp_regen	-1,{
+	end;
+OnStart:
+	initnpctimer;
+	end;
+OnTimer1000:
+	getunitdata( 'boss_gid, .@data );
+
+	if (.@data[UMOB_HP] < .@data[UMOB_MAXHP]) {
+		.@new_hp = .@data[UMOB_HP] + 'hp_regen_boss;
+		if (.@new_hp > .@data[UMOB_MAXHP])
+			.@new_hp = .@data[UMOB_MAXHP];
+		setunitdata( 'boss_gid, UMOB_HP, .@new_hp );
+	}
+	initnpctimer;
+	end;
+OnStop:
+	stopnpctimer;
+	end;
+}
+
+
+// Increases damage on the boss each time the Boss walks on the NPC, regardless of NPC position. Final damage reduction are 1/100.
+// 1@f_lake,24,154,5	script(DISABLED)	#trap_1	MD_MANASTORM,1,1,{
+1@f_lake,24,154,5	script(DISABLED)	#trap_lake_1	MD_MANASTORM,1,1,{
+	end;
+OnTouchNPC:
+	// Mob with same class can trigger the traps (including mobs from NPC_SELFDESTRUCTION)
+	.@gid = getattachedrid();
+	if (getunittype(.@gid) != BL_MOB)
+		end;
+	getunitdata( .@gid, .@data );
+	if (.@data[UMOB_CLASS] != 'beast_type)
+		end;
+
+	specialeffect EF_GUARD2;
+	disablenpc();
+
+	mapannounce 'map_f_lake$, "" + 'spirit_type$ + " is affected by the lava field barrier and lost a lot of armor.", bc_map, 0xFFFFCC;
+
+	// SC_GROGGY is used instead (SC should be more reliable)
+	// unitskilluseid 'boss_gid,"NPC_GROGGY_ON",1;
+	sc_start SC_GROGGY, 2000,1,10000, SCSTART_NOTICKDEF | SCSTART_NOAVOID | SCSTART_NORATEDEF, 'boss_gid;
+	'count_damage_reduction++:
+
+	switch( 'count_damage_reduction ) {
+	case 1:
+		.@mask = (MOBDATA_DAMAGE_REDUCTION_10 | MOBDATA_DAMAGE_REDUCTION_1000 | MOBDATA_DAMAGE_REDUCTION_10000);	// 1/(100,000,000)
+		break;
+	case 2:
+		.@mask = (MOBDATA_DAMAGE_REDUCTION_1000 | MOBDATA_DAMAGE_REDUCTION_10000);	// 1/(10,000,000)
+		break;
+	case 3:
+		.@mask = (MOBDATA_DAMAGE_REDUCTION_100 | MOBDATA_DAMAGE_REDUCTION_10000);	// 1/(1,000,000)
+		break;
+	case 4:
+		.@mask = (MOBDATA_DAMAGE_REDUCTION_10 | MOBDATA_DAMAGE_REDUCTION_10000);	// 1/(100,000)
+		break;
+	case 5:
+		.@mask = MOBDATA_DAMAGE_REDUCTION_10000;	// 1/(10,000)
+		break;
+	case 6:
+		.@mask = MOBDATA_DAMAGE_REDUCTION_1000;	// 1/(1,000)
+		break;
+	case 7:
+		.@mask = MOBDATA_DAMAGE_REDUCTION_100;	// 1/(100)
+
+		// (Event continues until the end of timer)
+		donpcevent instance_npcname("md_lake_skill_welcome") + "::OnStopEvent";
+
+		// Spawn MD_MANABARRIER and show effect on them
+		if ('beast_type == 22180)	// MD_PRI_DRAGON_4
+			donpcevent instance_npcname( "md_lake_manabarrier_carre_4" ) + "::OnStart";
+		else
+			donpcevent instance_npcname("md_lake_manabarrier_random") + "::OnStart";
+
+		// Move the player and Boss to the final area
+		donpcevent instance_npcname("md_lake_moveto_part_2") + "::OnStart";
+		break;
+	default:
+		end;
+	}
+	setunitdata 'boss_gid, UMOB_DAMAGE_REDUCTION, .@mask;
+	end;
+}
+1@f_lake,95,182,5	duplicate(#trap_lake_1)	#trap_lake_2	MD_MANASTORM,1,1
+1@f_lake,51,93,5	duplicate(#trap_lake_1)	#trap_lake_3	MD_MANASTORM,1,1
+1@f_lake,93,58,5	duplicate(#trap_lake_1)	#trap_lake_4	MD_MANASTORM,1,1
+1@f_lake,129,58,5	duplicate(#trap_lake_1)	#trap_lake_5	MD_MANASTORM,1,1
+1@f_lake,94,35,5	duplicate(#trap_lake_1)	#trap_lake_6	MD_MANASTORM,1,1
+1@f_lake,43,35,5	duplicate(#trap_lake_1)	#trap_lake_7	MD_MANASTORM,1,1
+
+
+// Event to move the player and Boss to the final area
+1@f_lake,1,1,0	script	md_lake_moveto_part_2	-1,{
+	end;
+OnStart:
+	initnpctimer;
+	end;
+OnTimer3000:
+	// unknown position (seem random)
+	.@x = rand(164,184);
+	.@y = rand(157,177);
+	unitwarp( 'boss_gid, 'map_f_lake$,.@x,.@y );
+	end;
+OnTimer4000:
+	mapannounce 'map_f_lake$, "" + 'spirit_type$ + " : It looks like you want to see blood after all. I'll do as you want!", bc_map, 0x33FFCC;
+	end;
+OnTimer8000:
+	stopnpctimer;
+	instance_warpall 'map_f_lake$,176,163,instance_id();
+	F_CheckStep(1);
+	'step = 2;
+	end;
+OnStop:
+	stopnpctimer;
+	end;
+}
+
+
+// Spawn MD_MANABARRIER and show effect on them.
+// Event only for MD_PRI_DRAGON_1, MD_PRI_DRAGON_2 and MD_PRI_DRAGON_3.
+1@f_lake,1,1,4	script	md_lake_manabarrier_random	-1,{
+	end;
+OnStart:
+	getunitdata( 'boss_gid, .@data );
+	'x_boss = .@data[UMOB_X];
+	'y_boss = .@data[UMOB_Y];
+
+	.@x_min = 'x_boss - 10;
+	.@x_max = 'x_boss + 10;
+	.@y_min = 'y_boss - 10;
+	.@y_max = 'y_boss + 10;
+
+	.@event$ = instance_npcname("md_lake_manabarrier_random") + "::OnMobDead";
+
+	// Spawn monsters around the boss regardless of mapcell.
+	// Monsters can overlap.
+	for ( .@i = 0; .@i < 11; ++.@i ) {
+		.@x = rand(.@x_min,.@x_max);
+		.@y = rand(.@y_min,.@y_max);
+
+		monster 'map_f_lake$,.@x,.@y,"--en--",22184,1,0, .@event$;	// MD_MANABARRIER
+		'manabarrier_random[.@i] = .@mob_id = $@mobid[0];
+		unitskilluseid .@mob_id, 135, 1;	// AS_CLOAKING
+		// force to display the efst because of AS_CLOAKING
+		sc_start SC_SHOW_EFFECT1, 2999,2401,10000, SCSTART_NOTICKDEF | SCSTART_NOAVOID | SCSTART_NORATEDEF, .@mob_id;
+	}
+	initnpctimer;
+	end;
+OnTimer2000:
+	// Display 1423 EFST on the monsters.
+	for ( .@i = 0; .@i < 11; ++.@i ) {
+		if (unitexists('manabarrier_random[.@i]) == false)
+			continue;
+		sc_start SC_SHOW_EFFECT2, 999,374,10000, SCSTART_NOTICKDEF | SCSTART_NOAVOID | SCSTART_NORATEDEF, 'manabarrier_random[.@i];
+	}
+	end;
+OnTimer2500:
+	// NPC_TARGET_MARKER on player around
+	for ( .@i = 0; .@i < 11; ++.@i ) {
+		if (unitexists('manabarrier_random[.@i]) == false)
+			continue;
+		unitskilluseid 'manabarrier_random[.@i], 785, 2;	// NPC_TARGET_MARKER
+	}
+	end;
+OnTimer3000:
+	killmonster 'map_f_lake$, instance_npcname("md_lake_manabarrier_random") + "::OnMobDead";
+	end;
+OnTimer7000:
+	.@event$ = instance_npcname("md_lake_manabarrier_random") + "::OnMobDead2";
+
+	// Spawn additionnal monsters around the boss regardless of mapcell according to x, y of the boss saved previously.
+	monster 'map_f_lake$,('x_boss-10),('y_boss-10),"--en--",22184,1,0, .@event$;	// MD_MANABARRIER
+	'mana_carre[0] = $@mobid[0];
+	unitskilluseid 'mana_carre[0], 135, 1;	// AS_CLOAKING
+
+	monster 'map_f_lake$,('x_boss+10),('y_boss-10),"--en--",22184,1,0, .@event$;
+	'mana_carre[1] = $@mobid[0];
+	unitskilluseid 'mana_carre[1], 135, 1;	// AS_CLOAKING
+
+	monster 'map_f_lake$,('x_boss-10),('y_boss+10),"--en--",22184,1,0, .@event$;
+	'mana_carre[2] = $@mobid[0];
+	unitskilluseid 'mana_carre[2], 135, 1;	// AS_CLOAKING
+
+	monster 'map_f_lake$,('x_boss+10),('y_boss+10),"--en--",22184,1,0, .@event$;
+	'mana_carre[3] = $@mobid[0];
+	unitskilluseid 'mana_carre[3], 135, 1;	// AS_CLOAKING
+
+	// ("md_lake_manabarrier_random" event re-starts at the end of those events)
+	if ('beast_type == 22177)	// MD_PRI_DRAGON_1
+		donpcevent instance_npcname( "md_lake_manabarrier_carre_1" ) + "::OnStart";
+	else if ('beast_type == 22178)	// MD_PRI_DRAGON_2
+		donpcevent instance_npcname( "md_lake_manabarrier_carre_2" ) + "::OnStart";
+	else if ('beast_type == 22179)	// MD_PRI_DRAGON_3
+		donpcevent instance_npcname( "md_lake_manabarrier_carre_3" ) + "::OnStart";
+	// else if ('beast_type == 22180)	// MD_PRI_DRAGON_4
+		// donpcevent instance_npcname( "md_lake_manabarrier_carre_4" ) + "::OnStart";
+	end;
+OnStop:
+	stopnpctimer;
+	killmonster 'map_f_lake$, instance_npcname("md_lake_manabarrier_random") + "::OnMobDead";
+	killmonster 'map_f_lake$, instance_npcname("md_lake_manabarrier_random") + "::OnMobDead2";
+
+	donpcevent instance_npcname("md_lake_manabarrier_carre_2") + "::OnStop";
+	donpcevent instance_npcname("md_lake_manabarrier_carre_3") + "::OnStop";
+	donpcevent instance_npcname("md_lake_manabarrier_carre_4") + "::OnStop";
+
+	// Confirmed that this events continue until the end of it timer.
+	// donpcevent instance_npcname("md_lake_manabarrier_carre_1") + "::OnStop";
+	end;
+OnMobDead:
+OnMobDead2:
+	end;
+}
+
+
+// Sub event of "md_lake_manabarrier_random" : NPC_AIMED_SHOWER
+1@f_lake,1,1,4	script	md_lake_manabarrier_carre_1	-1,{
+	end;
+OnStart:
+	initnpctimer;
+	for ( .@i = 0; .@i < 4; ++.@i ) {
+		if (unitexists('mana_carre[.@i]) == false)
+			continue;
+		// (skill used 2 times)
+		// NPC_AIMED_SHOWER deal damages to players which have SC_TARGET_MARKER
+		unitskilluseid 'mana_carre[.@i], 786, 2;	// NPC_AIMED_SHOWER
+		unitskilluseid 'mana_carre[.@i], 786, 2;	// NPC_AIMED_SHOWER
+	}
+	end;
+OnTimer500:
+	killmonster 'map_f_lake$, instance_npcname("md_lake_manabarrier_random") + "::OnMobDead2";
+	end;
+OnTimer1000:
+	stopnpctimer;
+	donpcevent instance_npcname("md_lake_manabarrier_random") + "::OnStart";
+	end;
+OnStop:
+	stopnpctimer;
+	end;
+}
+
+
+// Sub event of "md_lake_manabarrier_random" : NPC_BLOCK_SEAL
+1@f_lake,1,1,4	script	md_lake_manabarrier_carre_2	-1,{
+	end;
+OnStart:
+	initnpctimer;
+	end;
+OnTimer300:
+	for ( .@i = 0; .@i < 4; ++.@i ) {
+		if (unitexists('mana_carre[.@i]) == false)
+			continue;
+		// NPC_BLOCK_SEAL is used on players which have SC_TARGET_MARKER
+		unitskilluseid 'mana_carre[.@i], 788, 1;	// NPC_BLOCK_SEAL
+	}
+	end;
+OnTimer4000:
+	for ( .@i = 0; .@i < 4; ++.@i ) {
+		if (unitexists('mana_carre[.@i]) == false)
+			continue;
+		// Remove NPC_BLOCK_SEAL on players
+		unitskilluseid 'mana_carre[.@i], 789, 2;	// NPC_BLOCK_EXPLOSION
+	}
+	end;
+OnTimer4500:
+	killmonster 'map_f_lake$, instance_npcname("md_lake_manabarrier_random") + "::OnMobDead2";
+	end;
+OnTimer5000:
+	stopnpctimer;
+	donpcevent instance_npcname("md_lake_manabarrier_random") + "::OnStart";
+	end;
+OnStop:
+	stopnpctimer;
+	end;
+}
+
+
+// Sub event of "md_lake_manabarrier_random" : NPC_BLAZING_ERUPTION
+1@f_lake,1,1,4	script	md_lake_manabarrier_carre_3	-1,{
+	end;
+OnStart:
+	initnpctimer;
+	end;
+OnTimer300:
+	for ( .@i = 0; .@i < 4; ++.@i ) {
+		if (unitexists('mana_carre[.@i]) == false)
+			continue;
+		// (skill used 2 times)
+		// NPC_BLAZING_ERUPTION deal damages to players which have SC_TARGET_MARKER
+		unitskilluseid 'mana_carre[.@i], 787, 2;	// NPC_BLAZING_ERUPTION
+		unitskilluseid 'mana_carre[.@i], 787, 2;	// NPC_BLAZING_ERUPTION
+	}
+	end;
+OnTimer500:
+	killmonster 'map_f_lake$, instance_npcname("md_lake_manabarrier_random") + "::OnMobDead2";
+	end;
+OnTimer1000:
+	stopnpctimer;
+	donpcevent instance_npcname("md_lake_manabarrier_random") + "::OnStart";
+	end;
+OnStop:
+	stopnpctimer;
+	end;
+}
+
+
+// Special event for MD_PRI_DRAGON_4 (winter) : NPC_FROST_FIELD
+1@f_lake,1,1,4	script	md_lake_manabarrier_carre_4	-1,{
+	end;
+OnStart:
+	getunitdata( 'boss_gid, .@data );
+	'x_boss = .@data[UMOB_X];
+	'y_boss = .@data[UMOB_Y];
+
+	if (rand(1,2) == 1)
+		.@x_center = 'x_boss - 2;
+	else
+		.@x_center = 'x_boss + 2;
+	if (rand(1,2) == 1)
+		.@y_center = 'y_boss - 2;
+	else
+		.@y_center = 'y_boss + 2;
+
+	.@x_min = .@x_center - 10;
+	.@x_max = .@x_center + 10;
+	.@y_min = .@y_center - 10;
+	.@y_max = .@y_center + 10;
+
+	.@event$ = instance_npcname("md_lake_manabarrier_carre_4") + "::OnMobDead";
+
+	// Spawn monsters around a center. Center is +2/-2 around the boss.
+	for ( .@x = .@x_min; .@x <= .@x_max; .@x += 5 ) {
+		for ( .@y = .@y_min; .@y <= .@y_max; .@y += 5 ) {
+			monster 'map_f_lake$,.@x,.@y,"--en--",22184,1,0, .@event$;	// MD_MANABARRIER
+			.@mob_id = $@mobid[0];
+			unitskilluseid .@mob_id, 135, 1;	// AS_CLOAKING
+			sc_start SC_SHOW_EFFECT1, 2499,374,10000, SCSTART_NOTICKDEF | SCSTART_NOAVOID | SCSTART_NORATEDEF, .@mob_id;
+
+			// Save the GID of the mob in the middle.
+			if (.@x == .@x_center && .@y == .@y_center) {
+				'gid_manabarrier_clone_center = $@mobid[0];
+				sc_start SC_SHOW_EFFECT2, 2499,374,10000, SCSTART_NOTICKDEF | SCSTART_NOAVOID | SCSTART_NORATEDEF, .@mob_id;
+			}
+		}
+	}
+	initnpctimer;
+	end;
+OnTimer2000:
+	// Mob in the middle uses NPC_FROST_FIELD which give SC_FROST_STORM on players around (unknown status effect when used alone).
+	if (unitexists('gid_manabarrier_clone_center) == true) {
+		unitskilluseid 'gid_manabarrier_clone_center, 790, 5;	// NPC_FROST_FIELD
+	}
+	end;
+OnTimer2500:
+	killmonster 'map_f_lake$, instance_npcname("md_lake_manabarrier_carre_4") + "::OnMobDead";
+	end;
+OnTimer4000:
+	donpcevent instance_npcname("md_lake_manabarrier_carre_4") + "::OnStart";
+	end;
+OnStop:
+	stopnpctimer;
+	killmonster 'map_f_lake$, instance_npcname("md_lake_manabarrier_carre_4") + "::OnMobDead";
+	end;
+OnMobDead:
+	end;
+}
+
+
+// Exit/reward NPC
+// 1@f_lake,176,166,5	script(DISABLED)	#end_npc	PORTAL,1,1,{	// Unknown OnTouch effect
+1@f_lake,176,166,5	script(DISABLED)	#end_npc	PORTAL,{
+	// note: no hunting quest
+	if (isbegin_quest('quest_id) == 1 && 'step == 3) {
+		if ('quest_id == 12613)
+			.@item_id = 1001440;	// Energy of Spring
+		else if ('quest_id == 12614)
+			.@item_id = 1001441;	// Energy of Summer
+		else if ('quest_id == 12615)
+			.@item_id = 1001442;	// Energy of Autumn
+		else
+			.@item_id = 1001443;	// Energy of Winter
+
+		if (checkweight(1001415,1, 1001414,10, .@item_id,5) == 0) {	// custom text
+			mes "^ff0000It seems that you are overweight. Please organize your inventory.^000000";
+			close;
+		}
+		getitem 1001415,1;
+		getitem 1001414,10;
+		getitem .@item_id,5;
+		mes "======== Reward ========";
+		mes "You got";
+		mes "1 " + mesitemlink(1001415) + "";	// Hall of Life Key
+		mes "10 " + mesitemlink(1001414) + "";	// Dimensional Crystal Fragment
+		mes "5 " + mesitemlink(.@item_id) + "";
+		erasequest 'quest_id;
+		close;
+	}
+	mes "^0000ffDo you want to get out of the prison?^000000";
+	next;
+	if (select( "Cancel conversation", "Exit" ) == 1)
+		end;
+	warp "t_garden",166,230;
+	end;
+}
+
+
+// NPC with unknown effect
+// 1@f_lake,123,77,5	script	#port_01	GATE_SKYBLUE,2,2
+// 1@f_lake,72,40,5	script	#port_03	GATE_SKYBLUE,2,2
+// 1@f_lake,132,24,5	script	#port_04	GATE_SKYBLUE,2,2

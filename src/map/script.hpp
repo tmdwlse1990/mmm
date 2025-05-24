@@ -500,6 +500,11 @@ enum unitdata_mobtypes {
 	UMOB_RES,
 	UMOB_MRES,
 	UMOB_DAMAGETAKEN,
+	UMOB_BODYSIZE,
+	UMOB_DAMAGE_REDUCTION,
+	UMOB_DAMAGE_MODIFIER,
+	UMOB_MATK,
+	UMOB_NODROP,
 };
 
 enum unitdata_homuntypes {
@@ -718,6 +723,7 @@ enum unitdata_npctypes {
 	UNPC_BODY2,
 	UNPC_DEADSIT,
 	UNPC_GROUP_ID,
+	UNPC_BODYSIZE,
 };
 
 enum navigation_service {

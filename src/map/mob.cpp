@@ -3288,7 +3288,8 @@ int32 mob_dead(struct mob_data *md, struct block_list *src, int32 type)
 		!md->special_state.ai || //Non special mob
 		battle_config.alchemist_summon_reward == 2 || //All summoned give drops
 		(md->special_state.ai==AI_SPHERE && battle_config.alchemist_summon_reward == 1) //Marine Sphere Drops items.
-		) )
+		) && !md->nodrop
+		)
 	{ // Item Drop
 		int32 drop_rate, drop_modifier = 100;
 
@@ -3525,7 +3526,7 @@ int32 mob_dead(struct mob_data *md, struct block_list *src, int32 type)
 			pc_gainexp( mvp_sd, &md->bl, log_mvp_exp, 0, 0 );
 		}
 
-		if( !(map_getmapflag(m, MF_NOMVPLOOT) || type&1) ) {
+		if( !(map_getmapflag(m, MF_NOMVPLOOT) || type&1) && !md->nodrop ) {
 			// Create a copy of the MVP drops vector
 			std::vector<std::shared_ptr<s_mob_drop>> mdrop = md->db->mvpitem;
 

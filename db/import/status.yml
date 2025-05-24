@@ -46,6 +46,99 @@ Header:
   Version: 4
 
 Body:
+    # Recast refreshs the status.
+    # Removed by NPC_LIGHTNING_JUDGEMENT even when the skill miss.
+  - Status: FROST_STORM
+    Icon: EFST_FROST_STORM
+    DurationLookup: NPC_FROST_FIELD
+    Flags:
+      BlEffect: true
+      DisplayPc: true
+      NoDispell: true
+      NoBanishingBuster: true
+      NoClearance: true
+    # Prerequisite for NPC_AIMED_SHOWER, NPC_BLAZING_ERUPTION and BLOCK_SEAL to deal damage.
+    # Removed even when the skills miss.
+  - Status: TARGET_MARKER
+    Icon: EFST_TARGET_MARKER
+    DurationLookup: NPC_TARGET_MARKER
+    Flags:
+      BlEffect: true
+      DisplayPc: true
+      NoDispell: true
+      NoBanishingBuster: true
+      NoClearance: true
+    # Debuff.
+  - Status: BLOCK_SEAL
+    Icon: EFST_BLOCK_SEAL
+    DurationLookup: NPC_BLOCK_SEAL
+    States:
+      NoMove: true
+      NoCast: true
+      NoAttack: true
+      NoInteract: true
+    Flags:
+      BlEffect: true
+      DisplayPc: true
+      NoDispell: true
+      NoBanishingBuster: true
+      NoClearance: true
+      BossResist: true
+      StopAttacking: true
+      StopCasting: true
+    Fail:
+      Block_seal: true
+      Warm_shield: true
+    # Block BLOCK_SEAL.
+  - Status: WARM_SHIELD
+    Icon: EFST_WARM_SHIELD
+    Flags:
+      BlEffect: true
+      DisplayPc: true
+      NoDispell: true
+      NoBanishingBuster: true
+      NoClearance: true
+    # An effect that look like a "Stun".
+  - Status: Groggy
+    Icon: EFST_GROGGY
+    DurationLookup: NPC_GROGGY_ON
+    States:
+      NoMove: true
+      NoCast: true
+      NoAttack: true
+      NoInteract: true
+    Flags:
+      BlEffect: true
+#      DisplayMob: true
+      NoDispell: true
+      NoBanishingBuster: true
+      NoClearance: true
+      BossResist: true
+      StopAttacking: true
+      StopCasting: true
+    Fail:
+      Refresh: true
+      Stun: true
+    # Display the given EF_* on val1.
+  - Status: SHOW_EFFECT1
+    Icon: EFST_SHOW_EFFECT1
+    Flags:
+      BlEffect: true
+#      DisplayMob: true
+      NoDispell: true
+      NoBanishingBuster: true
+      NoClearance: true
+      SendVal1: true
+    # Like SHOW_EFFECT1.
+  - Status: SHOW_EFFECT2
+    Icon: EFST_SHOW_EFFECT2
+    Flags:
+      BlEffect: true
+#      DisplayMob: true
+      NoDispell: true
+      NoBanishingBuster: true
+      NoClearance: true
+      SendVal1: true
   - Status: AutoAttack
     Icon: EFST_AUTOATTACK
     Flags:

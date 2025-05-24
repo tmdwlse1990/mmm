@@ -1,0 +1,1835 @@
+//===== rAthena Script =======================================
+//= MD Hall of Life
+//===== Description: =========================================
+//= [Walkthrough Conversion]
+//===== Changelog: ===========================================
+//= 1.0 Initial release [Atemo]
+//============================================================
+
+// Score
+t_garden,162,222,5	script	#lank_board	4_4JOB_PHANTOMBOOK1,{
+function swap;
+
+	mes "- 금주의 공략 순위 -";
+	for ( .@i = 0; .@i < 5; ++.@i ) {
+		if (.point[.@i] <= 0)
+			mes "" + (.@i+1) + "위 - 없음";
+		else
+			mes "" + (.@i+1) + "위 - " + .point[.@i] + "점 - ^0000ff" + .leader_name$[.@i] + "^000000 외 ^0000ff" + .party_count[.@i] + "^000000명";
+	}
+	mes "-----------------";
+	mes "※ 공략 기록은 5분단위로 갱신됩니다.";
+	mes "   즉시 기록이 되지않을 경우 잠시 기다린 후 확인 해 주세요.";
+	close;
+
+OnInit:
+	initnpctimer;
+	end;
+OnTimer300000:
+	// "The strategy record is updated every 5 minutes"
+	specialeffect EF_REDLINE;
+
+	// Update the score when party fail
+	.@size = getarraysize($@md_rigel_leader_name$);
+	
+	freeloop 1;
+	
+	for ( .@i = 0; .@i < .@size; ++.@i ) {
+		if ($@md_rigel_instance_id[.@i] == 0) {
+			if ($@md_rigel_point[.@i] < 1 && $@md_rigel_leader_name$[.@i] != "") {
+				.@delete_id[ .@size_delete ] = .@i;
+				.@size_delete++;
+			}
+			continue;
+		}
+		if (instance_live_info(ILI_MODE, $@md_rigel_instance_id[.@i]) != -1)
+			continue;	// instance still alive
+		
+		// Instance doesn't exist : party failed
+		$@md_rigel_point[.@i] = $@md_rigel_point[.@i] - ($@md_rigel_barrier_level[.@i] * 10000 + 3600);
+		
+		if ($@md_rigel_point[.@i] < 1) {
+			.@delete_id[ .@size_delete ] = .@i;
+			.@size_delete++;
+		}
+		$@md_rigel_instance_id[.@i] = 0;
+		$@md_rigel_barrier_level[.@i] = 0;
+	}
+	
+	// delete useless data
+	if (.@size_delete > 0) {
+		for ( .@i = .@size_delete -1; .@i >= 0; --.@i ) {
+			.@index = .@delete_id[.@i];
+			deletearray $@md_rigel_leader_name$[.@index],1;
+			deletearray $@md_rigel_instance_id[.@index],1;
+			deletearray $@md_rigel_barrier_level[.@index],1;
+			deletearray $@md_rigel_party_count[.@index],1;
+			deletearray $@md_rigel_point[.@index],1;
+		}
+	}
+
+	// sort arrays by points
+	.@size = getarraysize($@md_rigel_leader_name$);
+	
+	for ( .@i = 0; .@i < .@size; ++.@i ) {
+		for ( .@j = (.@i+1); .@j < .@size; ++.@j ) {
+			if ($@md_rigel_point[.@i] < $@md_rigel_point[.@j]) {
+				swap( 1, $@md_rigel_leader_name$[.@i], $@md_rigel_leader_name$[.@j] );
+				swap( 0, $@md_rigel_party_count[.@i], $@md_rigel_party_count[.@j] );
+				swap( 0, $@md_rigel_point[.@i], $@md_rigel_point[.@j] );
+			}
+		}
+	}
+
+	// Update the board
+	copyarray .@point[0], $@md_rigel_point[0], 5;
+	
+	for ( .@i = 0; .@i < 5; ++.@i ) {
+		.leader_name$[.@i] = $@md_rigel_leader_name$[.@i];
+		.party_count[.@i] = $@md_rigel_party_count[.@i];
+		.point[.@i] = $@md_rigel_point[.@i];
+	}
+	initnpctimer;
+	end;
+
+function swap {
+	if (getarg(0) == 0) {	// swap int
+		.@temp = getarg(1);
+		set getarg(1), getarg(2);
+		set getarg(2), .@temp;
+	}
+	else {	// swap string
+		.@temp$ = getarg(1);
+		set getarg(1), getarg(2);
+		set getarg(2), .@temp$;
+	}
+	return;
+}
+}
+
+
+// mapflags
+1@ba_go	mapflag	nomemo
+1@ba_go	mapflag	nosave	SavePoint
+1@ba_go	mapflag	nobranch
+1@ba_go	mapflag	nowarp
+1@ba_go	mapflag	nowarpto
+1@ba_go	mapflag	noteleport
+1@ba_go	mapflag	monster_noteleport
+1@ba_go	mapflag	noicewall
+1@ba_go	mapflag	partylock
+1@ba_go	mapflag	restricted	6
+
+
+// t_garden,173,235,2	script(CLOAKED)	차원 감옥#2	GATE_SKYBLUE,2,2,{	// unknown OnTouch effect
+t_garden,173,235,2	script(CLOAKED)	차원 감옥#2	GATE_SKYBLUE,{
+	if (isbegin_quest(12597) != 2)	// Pre-requisite quest
+		end;
+	if (checkweight(420231,1) == 0) {
+		mes "^ff0000보유한 물건의 종류나 무게가 너무 많은 것 같습니다. 인벤토리를 정리해주세요.^000000";
+		close;
+	}
+	if (getcharid(1) < 1) {
+		mes "^0000ff최소 1인 이상의 파티를 구성하고 진행 해 주시기 바랍니다.^000000";
+		close;
+	}
+	switch( checkquest(12619,PLAYTIME) ) {
+	case -1:
+		break;
+	case 0:
+	case 1:
+		mes "^ff0000아직 후유증이 가시지 않았습니다. 잠시 기다렸다가 다시 시도해주십시오.^000000";
+		close;
+	case 2:
+		erasequest 12619;
+		break;
+	}
+	if (countitem(1001415) < 1) {
+		mes "^0000ff생명의 전당에 입장하기 위한 열쇠를 갖고 있지 않습니다. 파티원들에게 빠르게 현재 상황을 알리고 파티를 이탈하십시오^000000";
+		close;
+	}
+	if (getequipid(EQI_HEAD_LOW) != 420231) {
+		cutin "rigel_halfeyes01.png",2;
+		mes "[리겔]";
+		mes "가호를 장착하지 않고 있군요. 그 상태로는 입장할 수 없다는걸 잊지 않았겠죠? 가호를 장착하고 다시 찾아오세요.";
+		next;
+		if (select( "알겠습니다", "가호를 잃어버렸어요" ) == 1) {
+			cutin "",255;
+			end;
+		}
+		mes "[리겔]";
+		mes "봉인용 정령석에 여분의 가호가 담겨있을거예요. 정령석을 통해 가호를 재발급 받도록 하세요.";
+		close3;
+	}
+
+	if (isbegin_quest(12617) == 1) {	// Party failed, barrier level lowered.
+		.@enchant_id = getequipcardid( EQI_HEAD_LOW,3 );
+		switch( .@enchant_id ) {
+		case 312453:	// MD_Hol_Barrier_1
+			cutin "rigel_halfeyes01.png",2;
+			mes "[리겔]";
+			mes "교정에 실패할 수도 있는 법이죠. 지금은 가장 낮은 수준이니 더 낮은 수준으로 결계를 조정하진 않을거예요.";
+			next;
+			mes "[리겔]";
+			mes "하지만 2단계 이상의 결계를 해제하고 차원범죄자를 상대하다 실패했을 땐 안전을 위해 결계의 등급을 더 낮출 거에요 기억 해 두도록 하세요.";
+			close2;
+			cutin "",255;
+			erasequest 12617;
+			end;
+		case 312454:	// MD_Hol_Barrier_2
+		case 312455:	// MD_Hol_Barrier_3
+		case 312456:	// MD_Hol_Barrier_4
+		case 312457:	// MD_Hol_Barrier_5
+		case 312458:	// MD_Hol_Barrier_6
+		case 312459:	// MD_Hol_Barrier_7
+		case 312460:	// MD_Hol_Barrier_8
+		case 312461:	// MD_Hol_Barrier_9
+		case 312462:	// MD_Hol_Barrier_10
+		case 312463:	// MD_Hol_Barrier_11
+		case 312464:	// MD_Hol_Barrier_12
+		case 312465:	// MD_Hol_Barrier_13
+		case 312466:	// MD_Hol_Barrier_14
+		case 312467:	// MD_Hol_Barrier_15
+		case 312468:	// MD_Hol_Barrier_16
+		case 312469:	// MD_Hol_Barrier_17
+		case 312470:	// MD_Hol_Barrier_18
+		case 312471:	// MD_Hol_Barrier_19
+		case 312472:	// MD_Hol_Barrier_20
+			// custom, unknown text
+			cutin "rigel_halfeyes01.png",2;
+			mes "[리겔]";
+			mes "교정에 실패할 수도 있는 법이죠. 지금은 가장 낮은 수준이니 더 낮은 수준으로 결계를 조정하진 않을거예요.";
+			next;
+			mes "[리겔]";
+			mes "하지만 2단계 이상의 결계를 해제하고 차원범죄자를 상대하다 실패했을 땐 안전을 위해 결계의 등급을 더 낮출 거에요 기억 해 두도록 하세요.";
+			close2;
+			cutin "",255;
+			.@new_enchant = .@enchant_id - 1;
+			delequip EQI_HEAD_LOW;
+			getitem2 420231,1,1,0,0,0,0,0,.@new_enchant;	// MD_Hol_Protection
+			erasequest 12617;
+			.@level = .@enchant_id - 312452;
+			end;
+		}
+		end;
+	}
+
+	// .@md_name$ = "생명의 전당";	// Hall of life
+	.@md_name$ = "Hall of life";	// Hall of life
+
+	// Enter MD
+	if (instance_live_info(ILI_NAME, instance_id(IM_PARTY)) == .@md_name$) {
+		if (select( "취소", "" + .@md_name$ + " 입장" ) == 1)
+			end;
+		if (countitem(1001415) < 1)	// shouldn't happen
+			end;
+		switch( instance_enter(.@md_name$) ) {
+		case IE_OTHER:
+			mes "^ff0000An unknown error occurred.^000000";
+			close;
+		case IE_NOINSTANCE:
+		case IE_NOMEMBER:
+			end;
+		case IE_OK:
+			setquest 12617;
+			setquest 12619;
+			mapannounce "t_garden", "모험가 " + strcharinfo(0) + " 님이 " + .@md_name$ + " 에 입장합니다.", bc_map, 0xFFAA;
+			delitem 1001415,1;	// MD_Hol_Key
+			// warp "1@ba_go",53,42;
+			end;
+		}
+	}
+	
+	// Create MD
+	if (is_party_leader() == true)
+		.@menu$ = "" + .@md_name$ + " 출입권한 생성";
+
+	if (select( "취소", .@menu$ ) == 1)
+		end;
+	instance_create(.@md_name$);
+	end;
+}
+
+
+1@ba_go,1,1,4	script	md_rigel_setting	-1,{
+function BossStats;
+function BossStats2;
+function BossGrowthStats;
+function CloneStats;
+function ManaStats;
+
+OnInstanceInit:
+	// Variables initialization
+	//-------------------------
+	'step = 0;
+	'previous_state_invincible = false;
+	'boss_is_groggy = false;
+	'increases_attack_power = 0;
+	
+	'boss_sanctuary_event = 0;
+
+	'boss_phase_2 = false;
+
+	'param_boss_stat_size = 0;
+	'param_boss_growth_size = 0;
+	'param_clone_stat_size = 0;
+	'param_mana_stat_size = 0;
+	
+	deletearray 'param_boss_stat_dummy_check;
+	deletearray 'param_boss_growth_dummy_check;
+	deletearray 'param_clone_stat_dummy_check;
+	deletearray 'param_mana_stat_dummy_check;
+	deletearray 'player_registered;
+
+	'map_bago$ = instance_mapname("1@ba_go");
+	//-------------------------
+
+	// Settings
+	//-------------------------
+
+	// Base statistics of the BOSS by barrier level. Those values are set on spawn and reset.
+	// Note: UMOB_MAXHP and UMOB_DAMAGE_REDUCTION can't be defined here.
+	BossStats( UMOB_MATK, 4000,5000,6000,7000,8000, 9000,10000,11000,12000,13000, 14000,15000,16000,17000,18000, 19000,20000,21000,22000,23000 );
+	BossStats( UMOB_DEF,  527,537,547,557,567, 577,587,597,607,617, 627,637,647,657,667, 677,687,697,707,717 );
+	BossStats( UMOB_MDEF, 286,296,306,316,326, 336,346,356,366,376, 386,396,406,416,426, 436,446,456,466,476 );
+	BossStats( UMOB_RES,  250,260,270,280,290, 300,310,320,330,340, 350,360,370,380,390, 400,410,420,430,440 );
+	BossStats( UMOB_MRES, 250,260,270,280,290, 300,310,320,330,340, 350,360,370,380,390, 400,410,420,430,440 );
+	// (custom) increases final mob damage (skill, base attack) by barrier level.
+	// Example: 200 => means bonus damage +200% (base 100% + bonus 200% = 300% = attack x3)
+	BossStats( UMOB_DAMAGE_MODIFIER, 0,20,30,40,50, 60,70,80,90,100, 110,120,130,140,150, 160,170,180,190,200 );
+
+	// Growth statistics of the BOSS by barrier level. Each time a player touchs a trap, the stats increase by that amount (flat value).
+	BossGrowthStats( UMOB_STR, 100,110,120,130,140, 150,160,170,180,190, 200,210,220,230,240, 250,260,270,280,290 );
+	BossGrowthStats( UMOB_MATK, 100,110,120,130,140, 150,160,170,180,190, 200,210,220,230,240, 250,260,270,280,290 );
+	BossGrowthStats( UMOB_DEF,  10,20,30,40,50, 60,70,80,90,100, 110,120,130,140,150, 160,170,180,190,200 );
+	BossGrowthStats( UMOB_MDEF, 10,20,30,40,50, 60,70,80,90,100, 110,120,130,140,150, 160,170,180,190,200 );
+	BossGrowthStats( UMOB_RES,  10,20,30,40,50, 60,70,80,90,100, 110,120,130,140,150, 160,170,180,190,200 );
+	BossGrowthStats( UMOB_MRES, 10,20,30,40,50, 60,70,80,90,100, 110,120,130,140,150, 160,170,180,190,200 );
+	BossGrowthStats( UMOB_DAMAGE_MODIFIER, 30,30,30,30,30, 30,30,30,30,30, 30,30,30,30,30, 30,30,30,30,30 );
+
+	// Base statistics of the CLONE by barrier level. Those values are only set on spawn.
+	CloneStats( UMOB_MAXHP,
+		11000000,11000000,11000000,11000000,11000000,
+		11000000,11000000,11000000,11000000,11000000,
+		11000000,11000000,11000000,11000000,11000000,
+		11000000,11000000,11000000,11000000,11000000 );
+	CloneStats( UMOB_MATK, 4000,5000,6000,7000,8000, 9000,10000,11000,12000,13000, 14000,15000,16000,17000,18000, 19000,20000,21000,22000,23000 );
+	CloneStats( UMOB_DEF,  62,72,82,92,102, 112,122,132,142,152, 162,172,182,192,202, 212,222,232,242,252 );
+	CloneStats( UMOB_MDEF, 20,30,40,50, 60,  70, 80, 90,100,110, 120,130,140,150,160, 170,180,190,200,210 );
+	CloneStats( UMOB_RES,  250,260,270,280,290, 300,310,320,330,340, 350,360,370,380,390, 400,410,420,430,440 );
+	CloneStats( UMOB_MRES, 250,260,270,280,290, 300,310,320,330,340, 350,360,370,380,390, 400,410,420,430,440 );
+	// Damage on the sub boss (at least with barrier level 1) are : 1/100
+	CloneStats( UMOB_DAMAGE_REDUCTION, 0x2,0x2,0x2,0x2,0x2, 0x2,0x2,0x2,0x2,0x2, 0x2,0x2,0x2,0x2,0x2, 0x2,0x2,0x2,0x2,0x2 );
+	// (custom) increases final mob damage of the clone(skill, base attack) by barrier level.
+	CloneStats( UMOB_DAMAGE_MODIFIER, 200,220,230,240,250, 260,270,280,290,300, 310,320,330,340,350, 360,370,380,390,400 );
+
+	// Base statistics of MD_MANABARRIER monster by barrier level. Those values are only set on spawn.
+	// ManaStats( UMOB_MATK, 4000,5000,6000,7000,8000, 9000,10000,11000,12000,13000, 14000,15000,16000,17000,18000, 19000,20000,21000,22000,23000 );
+	ManaStats( UMOB_HIT, 200,300,400,500,600, 700,800,900,1000,1100, 1200,1300,1400,1500,1600, 1700,1800,1900,2000,2000 );
+	ManaStats( UMOB_DAMAGE_MODIFIER, 0,220,230,240,250, 260,270,280,290,300, 310,320,330,340,350, 360,370,380,390,400 );
+
+	// Damage on the boss at start (at least with barrier level 1) are : 1/1000
+	// Note for UMOB_DAMAGE_REDUCTION :
+	//   MOBDATA_DAMAGE_REDUCTION_10 = 0x1,			// 1/10 damage received
+	//   MOBDATA_DAMAGE_REDUCTION_100 = 0x2,		// 1/100
+	//   MOBDATA_DAMAGE_REDUCTION_1000 = 0x4,		// 1/1000
+	//   MOBDATA_DAMAGE_REDUCTION_10000 = 0x8,		// 1/10000
+
+	setarray 'damage_reduction_boss_normal[1],
+		0x4,0x4,0x4,0x4,0x4,
+		0x4,0x4,0x4,0x4,0x4,
+		0x4,0x4,0x4,0x4,0x4,
+		0x4,0x4,0x4,0x4,0x4;
+
+	// Damage on the boss on groggy state (at least with barrier level 1) are : 1/100
+	setarray 'damage_reduction_boss_groggy[1],
+		0x2,0x2,0x2,0x2,0x2,
+		0x2,0x2,0x2,0x2,0x2,
+		0x2,0x2,0x2,0x2,0x2,
+		0x2,0x2,0x2,0x2,0x2;
+
+	// (Custom) Set the maximum number growth stats can increase (increased by touching traps) by barrier level to avoid stats overflow.
+	// Example: UMOB_DEF from BossGrowthStats can increase to the maximum of (UMOB_DEF * 'max_stat_num).
+	setarray 'max_stat_num[1],
+		10,10,10,10,10,
+		10,10,10,10,10,
+		10,10,10,10,10,
+		10,10,10,10,10;
+
+	// Boss max hp by barrier level (value set on the boss on spawn only) (unknown values for barrier != 1).
+	// Note: Defined here (not in BossStats) to not spam UMOB_MAXHP.
+	setarray 'hp_boss_part_1[1],
+		500000000,500000000,500000000,500000000,500000000,
+		500000000,500000000,500000000,500000000,500000000,
+		500000000,500000000,500000000,500000000,500000000,
+		500000000,500000000,500000000,500000000,500000000;
+
+	// BASE Boss hp regen/second by barrier level in NORMAL state (unknown values).
+	setarray 'hp_regen_base_boss_part_1[1],
+		1000000,1000000,1000000,1000000,1000000,
+		1000000,1000000,1000000,1000000,1000000,
+		1000000,1000000,1000000,1000000,1000000,
+		1000000,1000000,1000000,1000000,1000000;
+	
+	// BASE Boss hp regen/second by barrier level in GROGGY state (unknown values).
+	// "The moment the inner world is purified, the recovery rate decreases sharply during the time the dimensional criminal is in a groggy state."
+	setarray 'hp_regen_groggy_boss[1],
+		100000,100000,100000,100000,100000,
+		100000,100000,100000,100000,100000,
+		100000,100000,100000,100000,100000,
+		100000,100000,100000,100000,100000;
+	
+	// BONUS Boss hp regen/second by barrier level (unknown values).
+	// ".. recovery also increases in proportion to the number of people who use the portal to purify the underworld.."
+	// Example: 2 players fight the clone, the boss have a bonus regen of = 'hp_regen_base_boss_part_1 + ('hp_regen_bonus_boss_part_1 * 2).
+	setarray 'hp_regen_bonus_boss_part_1[1],
+		100000,100000,100000,100000,100000,
+		100000,100000,100000,100000,100000,
+		100000,100000,100000,100000,100000,
+		100000,100000,100000,100000,100000;
+	//-----------------------
+		
+		
+	// Instance - Boss Part 2
+	//-----------------------
+	// Base statistics of the BOSS by barrier level. Those values are set on spawn and they don't change after.
+	BossStats2( UMOB_MATK, 4000,5000,6000,7000,8000, 9000,10000,11000,12000,13000, 14000,15000,16000,17000,18000, 19000,20000,21000,22000,23000 );
+	BossStats2( UMOB_DEF,  527,537,547,557,567, 577,587,597,607,617, 627,637,647,657,667, 677,687,697,707,717 );
+	BossStats2( UMOB_MDEF, 286,296,306,316,326, 336,346,356,366,376, 386,396,406,416,426, 436,446,456,466,476 );
+	BossStats2( UMOB_RES,  250,260,270,280,290, 300,310,320,330,340, 350,360,370,380,390, 400,410,420,430,440 );
+	BossStats2( UMOB_MRES, 250,260,270,280,290, 300,310,320,330,340, 350,360,370,380,390, 400,410,420,430,440 );
+	BossStats2( UMOB_DAMAGE_MODIFIER, 200,220,230,240,250, 260,270,280,290,300, 310,320,330,340,350, 360,370,380,390,400 );
+
+	// Damage on the boss (at least with barrier level 1) are : 1/100
+	// (Defined here for convenience)
+	setarray 'damage_reduction_boss_part_2[1],
+		0x4,0x4,0x4,0x4,0x4,
+		0x4,0x4,0x4,0x4,0x4,
+		0x4,0x4,0x4,0x4,0x4,
+		0x4,0x4,0x4,0x4,0x4;
+
+	// Boss max hp by barrier level (value set on the boss on spawn only) (unknown values for barrier != 1).
+	// (Defined here for convenience)
+	setarray 'hp_boss_part_2[1],
+		150000000,150000000,150000000,150000000,150000000,
+		150000000,150000000,150000000,150000000,150000000,
+		150000000,150000000,150000000,150000000,150000000,
+		150000000,150000000,150000000,150000000,150000000;
+
+	// BASE Boss hp regen/second by barrier level in NORMAL state (unknown values).
+	setarray 'hp_regen_base_boss_part_2[1],
+		1000000,1000000,1000000,1000000,1000000,
+		1000000,1000000,1000000,1000000,1000000,
+		1000000,1000000,1000000,1000000,1000000,
+		1000000,1000000,1000000,1000000,1000000;
+	
+	// BONUS Boss hp regen/second by barrier level when the EVENT regen is ON (unknown values, +10M according to some player).
+	// Example: 2 players are around the boss, the boss have a bonus regen of = 'hp_regen_base_boss_part_2 + (10M * 2).
+	setarray 'hp_regen_bonus_boss_part_2[1],
+		10000000,10000000,10000000,10000000,10000000,
+		10000000,10000000,10000000,10000000,10000000,
+		10000000,10000000,10000000,10000000,10000000,
+		10000000,10000000,10000000,10000000,10000000;
+	end;
+
+function BossStats {
+	.@param = getarg(0);
+	.@size = getargcount();
+
+	if (.@size != 21) {
+		debugmes "Invalid variable size for MD Rigiel, please check.";
+		return;
+	}
+
+	if ('param_boss_stat_dummy_check[.@param] == 0) {
+		'param_boss_stat_list['param_boss_stat_size] = .@param;
+		'param_boss_stat_size++;
+
+		'param_boss_stat_dummy_check[.@param] = 1;
+	}
+
+	for ( .@i = 1; .@i < .@size; ++.@i ) {
+		.@string$ = "'u_boss_" + .@param + "_stats[" + .@i + "]";
+		setd( .@string$, getarg(.@i) );
+	}
+	return;
+}
+function BossStats2 {
+	.@param = getarg(0);
+	.@size = getargcount();
+
+	if (.@size != 21) {
+		debugmes "Invalid variable size for MD Rigiel, please check.";
+		return;
+	}
+
+	if ('param_boss_stat2_dummy_check[.@param] == 0) {
+		'param_boss_stat2_list['param_boss_stat2_size] = .@param;
+		'param_boss_stat2_size++;
+
+		'param_boss_stat2_dummy_check[.@param] = 1;
+	}
+
+	for ( .@i = 1; .@i < .@size; ++.@i ) {
+		.@string$ = "'u_boss_" + .@param + "_stats2[" + .@i + "]";
+		setd( .@string$, getarg(.@i) );
+	}
+	return;
+}
+function BossGrowthStats {
+	.@param = getarg(0);
+	.@size = getargcount();
+
+	if (.@size != 21) {
+		debugmes "Invalid variable size for MD Rigiel, please check.";
+		return;
+	}
+
+	if ('param_boss_growth_dummy_check[.@param] == 0) {
+		'param_boss_growth_list['param_boss_growth_size] = .@param;
+		'param_boss_growth_size++;
+
+		'param_boss_growth_dummy_check[.@param] = 1;
+	}
+
+	for ( .@i = 1; .@i < .@size; ++.@i ) {
+		.@string$ = "'u_boss_" + .@param + "_growth[" + .@i + "]";
+		setd( .@string$, getarg(.@i) );
+	}
+	return;
+}
+
+function CloneStats {
+	.@param = getarg(0);
+	.@size = getargcount();
+
+	if (.@size != 21) {
+		debugmes "Invalid variable size for MD Rigiel, please check.";
+		return;
+	}
+
+	if ('param_clone_stat_dummy_check[.@param] == 0) {
+		'param_clone_stat_list['param_clone_stat_size] = .@param;
+		'param_clone_stat_size++;
+
+		'param_clone_stat_dummy_check[.@param] = 1;
+	}
+	
+	for ( .@i = 1; .@i < .@size; ++.@i ) {
+		.@string$ = "'u_clone_" + .@param + "_stats[" + .@i + "]";
+		setd( .@string$, getarg(.@i) );
+	}
+	return;
+}
+function ManaStats {
+	.@param = getarg(0);
+	.@size = getargcount();
+
+	if (.@size != 21) {
+		debugmes "Invalid variable size for MD Rigiel, please check.";
+		return;
+	}
+
+	if ('param_mana_stat_dummy_check[.@param] == 0) {
+		'param_mana_stat_list['param_mana_stat_size] = .@param;
+		'param_mana_stat_size++;
+
+		'param_mana_stat_dummy_check[.@param] = 1;
+	}
+	
+	for ( .@i = 1; .@i < .@size; ++.@i ) {
+		.@string$ = "'u_mana_" + .@param + "_stats[" + .@i + "]";
+		setd( .@string$, getarg(.@i) );
+	}
+	return;
+}
+}
+
+
+// 1@ba_go,54,55,4	script	#inter_con	MD_PRI_RIGEL,1,1,{	// unknown OnTouch effect
+1@ba_go,54,55,4	script	#inter_con	MD_PRI_RIGEL,{
+	F_CheckStep(0);
+	F_CheckLeader();	// unknown text
+
+	if (getequipid(EQI_HEAD_LOW) != 420231) {
+		mes "^ff0000성좌의 가호를 장착하고 있지않으면 교류할 수 없습니다^000000";
+		close;
+	}
+	.@enchant_id = getequipcardid( EQI_HEAD_LOW,3 );
+	
+	if (.@enchant_id < 312453 || .@enchant_id > 312472)
+		end;
+	.@barrier_level = .@enchant_id - 312453 + 1;	// Barrier level range : 1-20
+
+	mes "^0000ff눈앞의 차원 범죄자는 생명의 성좌 리겔과 놀라울만큼 똑같은 모습입니다. 성좌의 가호를 가까이 가져가 그녀를 봉인한 결계와 공명시켜 봅시다.^000000";
+	next;
+	if (select( "취소한다", "결계 " + .@barrier_level + "단계 해금" ) == 1)
+		end;
+	close2;	// Custom : prevent stuck on rathena
+	F_CheckStep(0);
+	F_CheckLeader();
+
+	'step = 1;
+	'barrier_level = .@barrier_level;
+	'party_id = getcharid(1);
+	getpartymember 'party_id, 1, .@char_id;
+	'party_count = $@partymembercount;
+
+	for ( .@i = 0; .@i < 'party_count; ++.@i ) {
+		.@account_id = convertpcinfo(.@char_id[.@i], CPC_ACCOUNT);
+		if (.@account_id == 0)
+			continue;
+		if (strcharinfo(3,.@char_id[.@i]) != 'map_bago$)
+			continue;
+		// Save player CID for reward NPC
+		'player_registered[ .@char_id[.@i] ] = 1;
+	}
+
+	.@leader_name$ = strcharinfo(0);
+	.@size = getarraysize($@md_rigel_leader_name$);
+	
+	.@index = inarray( $@md_rigel_leader_name$, .@leader_name$ );
+	if (.@index == -1)
+		.@index = .@size;
+	$@md_rigel_leader_name$[.@index] = .@leader_name$;
+	$@md_rigel_instance_id[.@index] = instance_id(IM_PARTY);
+	$@md_rigel_party_count[.@index] = 'party_count;
+	$@md_rigel_barrier_level[.@index] = 'barrier_level;
+	
+	// save the timer for the score (custom)
+	'instance_timer = gettimetick(0);
+	
+	npctalk "당신들은 속고 있군요. 이 감옥 밖의 그녀가 무슨 말을 했는지 모르겠지만 저는 가짜가 아니예요.";
+	sleep 3000;
+	npctalk "... 하지만 당신이 그만둘 것 같진 않군요. 어쩔 수 없죠. 당신들을 해치고 싶진 않지만 제 힘이 제어될 지 모르겠어요.";
+	sleep 1500;
+	disablenpc();
+	setnpcdisplay( instance_npcname("#inter_con"), 844 );	// CLEAR_NPC
+
+	donpcevent instance_npcname("md_rigel_main_part_1") + "::OnStart";
+	end;
+}
+
+
+1@ba_go,1,1,4	script	md_rigel_main_part_1	-1,{
+function FillBaseStat;
+function UpdateBossStat;
+
+OnStart:
+	monster 'map_bago$,54,55,"--en--",22175,1, instance_npcname("md_rigel_main_part_1") + "::OnBossDead";	// MD_PRI_RIGEL_AC
+	'boss_gid = $@mobid[0];
+
+	// Set damage reduction of the boss on spawn.
+	setunitdata 'boss_gid, UMOB_DAMAGE_REDUCTION, 'damage_reduction_boss_normal['barrier_level];
+
+	// Set the boss max hp on spawn.
+	setunitdata 'boss_gid, UMOB_MAXHP, 'hp_boss_part_1['barrier_level];
+	setunitdata 'boss_gid, UMOB_HP, 'hp_boss_part_1['barrier_level];
+	
+	// If the parameters from growth do not exist in the base statistic, set the parameter as the current mob statistic (used for reset boss stat later).
+	FillBaseStat();
+
+	// Update boss stats according to the stats defined under OnInstanceInit and barrier level.
+	UpdateBossStat();
+
+	// Events that start immediately.
+	donpcevent instance_npcname("md_rigel_hp_regen_part_1") + "::OnStart";
+	donpcevent instance_npcname("md_rigel_invincible") + "::OnStart";
+	initnpctimer;
+	end;
+OnTimer2000:
+	// Events start 2s after spawn.
+	donpcevent instance_npcname("md_rigel_reset_efst") + "::OnStart";
+	donpcevent instance_npcname("md_rigel_manabarrier_random") + "::OnStart";
+	donpcevent instance_npcname("md_rigel_trap") + "::OnStart";
+	stopnpctimer;
+	end;
+
+OnPowerup:
+	// Increase attack power and update boss stats according to barrier level, base and (growth * 'increases_attack_power) stats
+	'increases_attack_power++;
+	if ('increases_attack_power > 'max_stat_num['barrier_level])
+		'increases_attack_power = 'max_stat_num['barrier_level];
+	UpdateBossStat();
+	end;
+
+OnResetStat:
+	// Reset attack power and update boss stats
+	'increases_attack_power = 0;
+	UpdateBossStat();
+	end;
+	
+OnBossDead:
+	stopnpctimer;
+	killmonster 'map_bago$, instance_npcname("md_rigel_main_part_1") + "::OnBossDead";
+	'boss_gid = 0;
+
+	donpcevent instance_npcname("md_rigel_hp_regen_part_1") + "::OnStop";
+	donpcevent instance_npcname("md_rigel_invincible") + "::OnStop";
+	donpcevent instance_npcname("md_rigel_reset_efst") + "::OnStop";
+	donpcevent instance_npcname("md_rigel_manabarrier_random") + "::OnStop";
+	donpcevent instance_npcname("md_rigel_trap") + "::OnStop";
+	
+	// Stop all events related to clone area
+	donpcevent instance_npcname("md_rigel_sub_boss") + "::OnStop";
+	
+	// Start part 2 (npctalk and boss re-spawn)
+	donpcevent instance_npcname("md_rigel_start_part_2") + "::OnStart";
+	end;
+
+function UpdateBossStat {
+	for ( .@i = 0; .@i < 'param_boss_stat_size; ++.@i ) {
+		.@param = 'param_boss_stat_list[.@i];
+
+		.@string$ = "'u_boss_" + .@param + "_stats[" + 'barrier_level + "]";
+		.@base_value = getd( .@string$ );
+		
+		if ('param_boss_growth_dummy_check[.@param] == 1) {
+			.@string$ = "'u_boss_" + .@param + "_growth[" + 'barrier_level + "]";
+			.@growth_value = getd( .@string$ );
+		}
+		.@value = .@base_value + 'increases_attack_power * .@growth_value;
+
+		setunitdata 'boss_gid, .@param, .@value;
+	}
+	return;
+}
+
+function FillBaseStat {
+	getunitdata( 'boss_gid, .@data );
+
+	for ( .@i = 0; .@i < 'param_boss_growth_size; ++.@i ) {
+		.@param = 'param_boss_growth_list[.@i];
+		
+		if ('param_boss_stat_dummy_check[.@param] == 0) {
+			'param_boss_stat_list['param_boss_stat_size] = .@param;
+			'param_boss_stat_size++;
+			'param_boss_stat_dummy_check[.@param] = 1;
+			
+			for ( .@j = 1; .@j < 21; ++.@j ) {
+				.@string$ = "'u_boss_" + .@param + "_stats[" + .@j + "]";
+				setd( .@string$, .@data[.@param] );
+			}
+		}
+	}
+	return;
+}
+}
+
+
+// Systems related to the Boss - Rigiel
+// ------------------------------------
+1@ba_go,1,1,0	script	md_rigel_hp_regen_part_1	-1,{
+	end;
+OnStart:
+	initnpctimer;
+	end;
+OnTimer1000:
+	getunitdata( 'boss_gid, .@data );
+
+	if (.@data[UMOB_HP] < 'hp_boss_part_1[ 'barrier_level ]) {
+		.@num = getareausers( 'map_bago$, 333,30,371,68 );	// Rigiel clone area
+		
+		if ('boss_is_groggy == true)
+			.@new_hp = .@data[UMOB_HP] + 'hp_regen_groggy_boss[ 'barrier_level ] + (.@num * 'hp_regen_bonus_boss_part_1[ 'barrier_level ]);
+		else
+			.@new_hp = .@data[UMOB_HP] + 'hp_regen_base_boss_part_1[ 'barrier_level ] + (.@num * 'hp_regen_bonus_boss_part_1[ 'barrier_level ]);
+		if (.@new_hp > 'hp_boss_part_1[ 'barrier_level ])
+			.@new_hp = 'hp_boss_part_1[ 'barrier_level ];
+		
+		setunitdata 'boss_gid, UMOB_HP, .@new_hp;
+	}
+	initnpctimer;
+	end;
+OnStop:
+	stopnpctimer;
+	end;
+}
+
+
+1@ba_go,1,1,0	script	md_rigel_invincible	-1,{
+	end;
+OnStart:
+	initnpctimer;
+	end;
+OnTimer1000:
+	// Additionnal event when sanctuary event ON
+	callsub( S_Invincible );
+	end;
+OnTimer2000:
+	switch( F_IsPartyAlive('map_bago$) ) {
+	case 0:	// state invincible (spam mapannounce)
+		mapannounce 'map_bago$, "성좌의 일격에 사망자가 발생했습니다. 사망자가 부활할때까지 차원 범죄자에게 무한한 힘이 주어집니다.", bc_map, 0xCCFF00;
+		break;
+	case 1:	// invincible removed
+		// unknown text
+		break;
+	case 2:	// no state change
+		break;
+	}
+	
+	// Additionnal event when sanctuary event ON
+	callsub( S_Invincible );
+	
+	initnpctimer;
+	end;
+OnStop:
+	stopnpctimer;
+	end;
+	
+S_Invincible:
+	// Sanctuary event in part 2 didn't start
+	if ('boss_sanctuary_event == false)
+		return;
+
+	getunitdata( 'boss_gid, .@data );
+	
+	if (.@data[UMOB_X] >= 'x_sanctuary_min && .@data[UMOB_X] <= 'x_sanctuary_max && .@data[UMOB_Y] >= 'y_sanctuary_min && .@data[UMOB_Y] <= 'y_sanctuary_max) {
+		// boss is in sanctuary, damage reduction increases significantly
+		setunitdata 'boss_gid, UMOB_DAMAGE_REDUCTION, (MOBDATA_DAMAGE_REDUCTION_100 | MOBDATA_DAMAGE_REDUCTION_1000 | MOBDATA_DAMAGE_REDUCTION_10000);
+	}
+	else {
+		// boss is not in sanctuary, damage reduction (same as on spawn) is re-applied
+		setunitdata 'boss_gid, UMOB_DAMAGE_REDUCTION, 'damage_reduction_boss_part_2['barrier_level];
+	}
+	return;
+}
+
+
+// NPC_RESET_EFST and NPC_SEEDTRAP
+1@ba_go,1,1,4	script	md_rigel_reset_efst	-1,{
+	end;
+OnStart:
+	if ('boss_is_groggy == false) {
+		// "May this place be filled with the energy of life..."
+		unittalk 'boss_gid, "이곳에 생명의 기운이 가득하길...";
+		unitskilluseid 'boss_gid, 793, 1;	// NPC_RESET_EFST
+		sc_start SC_SHOW_EFFECT1, 9999,842,10000, SCSTART_NOTICKDEF | SCSTART_NOAVOID | SCSTART_NORATEDEF, 'boss_gid;
+	}
+	initnpctimer;
+	end;
+OnTimer2000:
+	// TODO : the system pick a player around (even if dead) and place the trap
+	// if ('boss_is_groggy == false) {
+		// unitskilluseid 'boss_id, 775, 4, .@data[UMOB_TARGETID];	// NPC_SEEDTRAP
+	// }
+	end;
+OnTimer4000:
+	// TODO
+	// if ('boss_is_groggy == false) {
+		// unitskilluseid 'boss_id, 775, 4, .@data[UMOB_TARGETID];	// NPC_SEEDTRAP
+	// }
+	end;
+OnTimer6000:
+	if ('boss_is_groggy == false) {
+		unitskilluseid 'boss_gid, 793, 1;	// NPC_RESET_EFST
+	}
+	end;
+OnTimer12000:
+	initnpctimer;
+	end;
+OnStop:
+	stopnpctimer;
+	end;
+}
+
+
+// Spawn MD_MANABARRIER and show effect on them
+1@ba_go,1,1,4	script	md_rigel_manabarrier_random	-1,{
+function UpdateManaStat;
+
+OnStart:
+	switch( rand(1,38) ) {
+	case 1:  setarray .@coord[0], 54,46, 41,37, 52,37, 58,62, 56,50; break;
+	case 2:  setarray .@coord[0], 42,38, 47,38, 52,38, 57,38, 62,38, 67,38, 42,43, 47,43, 52,43, 57,43, 62,43, 67,43, 42,48, 47,48, 52,48, 57,48, 62,48, 67,48; break;
+	case 3:  setarray .@coord[0], 57,52, 45,39, 53,64, 56,48, 55,54; break;
+	case 4:  setarray .@coord[0], 42,50, 47,50, 52,50, 57,50, 62,50, 67,50, 42,55, 47,55, 52,55, 57,55, 62,55, 67,55, 42,60, 47,60, 52,60, 57,60, 62,60, 67,60; break;
+	case 5:  setarray .@coord[0], 42,56, 47,56, 52,56, 57,56, 62,56, 67,56, 42,61, 47,61, 52,61, 57,61, 62,61, 67,61; break;
+	case 6:  setarray .@coord[0], 42,51, 47,51, 52,51, 57,51, 62,51, 67,51, 42,56, 47,56, 52,56, 57,56, 62,56, 67,56, 42,61, 47,61, 52,61, 57,61, 62,61, 67,61; break;
+	case 7:  setarray .@coord[0], 67,54, 64,62, 65,43, 50,44, 54,53, 61,44, 63,46; break;
+	case 8:  setarray .@coord[0], 58,64, 45,48, 57,61, 61,63, 66,47, 42,64, 53,38; break;
+	case 9:  setarray .@coord[0], 42,41, 47,41, 52,41, 57,41, 62,41, 67,41, 42,46, 47,46, 52,46, 57,46, 62,46, 67,46, 42,51, 47,51, 52,51, 57,51, 62,51, 67,51; break;
+	case 10: setarray .@coord[0], 45,48, 68,64, 62,43, 68,46, 54,38, 69,40; break;
+	case 11: setarray .@coord[0], 42,45, 47,45, 52,45, 57,45, 62,45, 67,45, 42,50, 47,50, 52,50, 57,50, 62,50, 67,50, 42,55, 47,55, 52,55, 57,55, 62,55, 67,55; break;
+	case 12: setarray .@coord[0], 42,36, 47,36, 52,36, 57,36, 62,36, 67,36, 42,41, 47,41, 52,41, 57,41, 62,41, 67,41, 42,46, 47,46, 52,46, 57,46, 62,46, 67,46; break;
+	case 13: setarray .@coord[0], 42,54, 47,54, 52,54, 57,54, 62,54, 67,54, 42,59, 47,59, 52,59, 57,59, 62,59, 67,59, 42,64, 47,64, 52,64, 57,64, 62,64, 67,64; break;
+	case 14: setarray .@coord[0], 42,39, 47,39, 52,39, 57,39, 62,39, 67,39, 42,44, 47,44, 52,44, 57,44, 62,44, 67,44; break;
+	case 15: setarray .@coord[0], 42,39, 47,39, 52,39, 57,39, 62,39, 67,39, 42,44, 47,44, 52,44, 57,44, 62,44, 67,44, 42,49, 47,49, 52,49, 57,49, 62,49, 67,49; break;
+	case 16: setarray .@coord[0], 42,43, 47,43, 52,43, 57,43, 62,43, 67,43, 42,48, 47,48, 52,48, 57,48, 62,48, 67,48, 42,53, 47,53, 52,53, 57,53, 62,53, 67,53; break;
+	case 17: setarray .@coord[0], 53,56, 62,63, 43,46, 61,50, 70,49, 64,55, 47,52, 52,60, 44,61; break;
+	case 18: setarray .@coord[0], 45,43, 68,36, 47,51, 58,64, 56,56, 59,57; break;
+	case 19: setarray .@coord[0], 42,48, 47,48, 52,48, 57,48, 62,48, 67,48, 42,53, 47,53, 52,53, 57,53, 62,53, 67,53, 42,58, 47,58, 52,58, 57,58, 62,58, 67,58; break;
+	case 20: setarray .@coord[0], 52,62, 44,54, 49,57, 59,45, 51,52, 61,59, 43,45, 45,54, 57,43, 52,46; break;
+	case 21: setarray .@coord[0], 53,62, 56,52, 48,64, 48,57, 70,45, 70,36, 52,41, 53,50, 47,38; break;
+	case 22: setarray .@coord[0], 70,57, 61,62, 51,48, 69,46, 52,60, 67,48, 56,62, 52,37, 44,56; break;
+	case 23: setarray .@coord[0], 42,40, 47,40, 52,40, 57,40, 62,40, 67,40, 42,45, 47,45, 52,45, 57,45, 62,45, 67,45, 42,50, 47,50, 52,50, 57,50, 62,50, 67,50; break;
+	case 24: setarray .@coord[0], 61,60, 59,48, 66,40, 57,45, 52,48, 46,49, 63,37, 68,60; break;
+	case 25: setarray .@coord[0], 43,47, 57,40, 59,49, 47,60, 54,62, 54,56, 70,55, 64,52, 51,45; break;
+	case 26: setarray .@coord[0], 42,37, 47,37, 52,37, 57,37, 62,37, 67,37, 42,42, 47,42, 52,42, 57,42, 62,42, 67,42, 42,47, 47,47, 52,47, 57,47, 62,47, 67,47; break;
+	case 27: setarray .@coord[0], 42,42, 47,42, 52,42, 57,42, 62,42, 67,42, 42,47, 47,47, 52,47, 57,47, 62,47, 67,47, 42,52, 47,52, 52,52, 57,52, 62,52, 67,52; break;
+	case 28: setarray .@coord[0], 66,60, 67,62, 69,61, 53,55, 61,51, 58,43, 44,64, 59,40, 59,38, 51,44, 50,50, 64,53; break;
+	case 29: setarray .@coord[0], 45,43, 52,64, 61,58, 57,64, 68,47, 68,61, 62,55, 68,59, 43,49; break;
+	case 30: setarray .@coord[0], 52,42, 55,40, 46,49, 43,63, 55,36, 52,64, 68,59, 66,56; break;
+	case 31: setarray .@coord[0], 42,45, 57,46, 48,58, 70,64, 70,53, 42,46, 44,36; break;
+	case 32: setarray .@coord[0], 70,41, 68,58, 59,52, 58,50, 59,64, 42,46, 57,61, 50,57, 47,40, 70,38, 62,41; break;
+	case 33: setarray .@coord[0], 62,37, 61,50, 55,63, 67,56, 52,56, 65,44, 42,52, 45,53, 51,36, 46,51; break;
+	case 34: setarray .@coord[0], 57,63, 47,44, 66,58, 68,55, 43,41, 56,53, 55,39, 42,39; break;
+	case 35: setarray .@coord[0], 57,37, 57,47, 56,42, 49,48, 60,43, 70,61, 67,61, 63,42, 54,44; break;
+	case 36: setarray .@coord[0], 42,55, 47,55, 52,55, 57,55, 62,55, 67,55, 42,60, 47,60, 52,60, 57,60, 62,60, 67,60; break;
+	case 37: setarray .@coord[0], 43,55, 61,48, 42,64, 43,37, 59,55, 56,44, 57,52; break;
+	case 38: setarray .@coord[0], 42,48, 47,48, 52,48, 57,48, 62,48; break;
+	}
+
+	'manabarrier_random_size = getarraysize(.@coord) / 2;
+	.@event$ = instance_npcname("md_rigel_manabarrier_random") + "::OnMobDead";
+
+	for ( .@i = 0; .@i < 'manabarrier_random_size; ++.@i ) {
+		.@j = .@i * 2;
+		monster 'map_bago$,.@coord[.@j],.@coord[.@j+1],"--en--",22184,1, .@event$;	// MD_MANABARRIER
+		'manabarrier_random[.@i] = $@mobid[0];
+		unitskilluseid 'manabarrier_random[.@i], 135, 1;	// AS_CLOAKING
+		UpdateManaStat( 'manabarrier_random[.@i] );
+		sc_start SC_SHOW_EFFECT1, 5499,2401,10000, SCSTART_NOTICKDEF | SCSTART_NOAVOID | SCSTART_NORATEDEF, 'manabarrier_random[.@i];
+	}
+	initnpctimer;
+	end;
+OnTimer4000:
+	for ( .@i = 0; .@i < 'manabarrier_random_size; ++.@i ) {
+		if (unitexists('manabarrier_random[.@i]) == false)
+			continue;
+		sc_start SC_SHOW_EFFECT2, 999,374,10000, SCSTART_NOTICKDEF | SCSTART_NOAVOID | SCSTART_NORATEDEF, 'manabarrier_random[.@i];
+	}
+	end;
+OnTimer5000:
+	// NPC_TARGET_MARKER
+	for ( .@i = 0; .@i < 'manabarrier_random_size; ++.@i ) {
+		if (unitexists('manabarrier_random[.@i]) == false)
+			continue;
+		unitskilluseid 'manabarrier_random[.@i], 785, 2;	// NPC_TARGET_MARKER
+	}
+	end;
+OnTimer5500:
+	killmonster 'map_bago$, instance_npcname("md_rigel_manabarrier_random") + "::OnMobDead";
+	end;
+OnTimer9500:
+	stopnpctimer;
+	.@event$ = instance_npcname("md_rigel_manabarrier_random") + "::OnMobDead2";
+
+	monster 'map_bago$,47,40,"--en--",22184,1, .@event$;	// MD_MANABARRIER
+	'mana_carre[0] = $@mobid[0];
+	UpdateManaStat( 'mana_carre[0] );
+	monster 'map_bago$,47,58,"--en--",22184,1, .@event$;
+	'mana_carre[1] = $@mobid[0];
+	UpdateManaStat( 'mana_carre[1] );
+	monster 'map_bago$,66,40,"--en--",22184,1, .@event$;
+	'mana_carre[2] = $@mobid[0];
+	UpdateManaStat( 'mana_carre[2] );
+	monster 'map_bago$,66,58,"--en--",22184,1, .@event$;
+	'mana_carre[3] = $@mobid[0];
+	UpdateManaStat( 'mana_carre[3] );
+
+	// "md_rigel_manabarrier_random" event re-starts at the end of the other events.
+	// Only NPC_BLOCK_SEAL is ON in phase 2.
+	if ('boss_phase_2 == true)
+		donpcevent instance_npcname( "md_rigel_manabarrier_carre_3" ) + "::OnStart";
+	else
+		donpcevent instance_npcname( "md_rigel_manabarrier_carre_" + rand(1,3) ) + "::OnStart";
+	end;
+OnStop:
+	stopnpctimer;
+	killmonster 'map_bago$, instance_npcname("md_rigel_manabarrier_random") + "::OnMobDead";
+	killmonster 'map_bago$, instance_npcname("md_rigel_manabarrier_random") + "::OnMobDead2";
+	
+	donpcevent instance_npcname("md_rigel_manabarrier_carre_1") + "::OnStop";
+	donpcevent instance_npcname("md_rigel_manabarrier_carre_2") + "::OnStop";
+	donpcevent instance_npcname("md_rigel_manabarrier_carre_3") + "::OnStop";
+	end;
+OnMobDead:
+OnMobDead2:
+	end;
+
+function UpdateManaStat {
+	.@gid = getarg(0);
+
+	for ( .@i = 0; .@i < 'param_mana_stat_size; ++.@i ) {
+		.@param = 'param_mana_stat_list[.@i];
+
+		.@string$ = "'u_mana_" + .@param + "_stats[" + 'barrier_level + "]";
+		.@base_value = getd( .@string$ );
+
+		setunitdata .@gid, .@param, .@base_value;
+	}
+	return;
+}
+}
+
+
+// Sub event of "md_rigel_manabarrier_random" : NPC_AIMED_SHOWER
+1@ba_go,1,1,4	script	md_rigel_manabarrier_carre_1	-1,{
+	end;
+OnStart:
+	initnpctimer;
+	end;
+OnTimer300:
+	for ( .@i = 0; .@i < 4; ++.@i ) {
+		if (unitexists('mana_carre[.@i]) == false)
+			continue;
+		// (skill used 2 times)
+		unitskilluseid 'mana_carre[.@i], 786, 2;	// NPC_AIMED_SHOWER
+		unitskilluseid 'mana_carre[.@i], 786, 2;	// NPC_AIMED_SHOWER
+	}
+	end;
+OnTimer500:
+	killmonster 'map_bago$, instance_npcname("md_rigel_manabarrier_random") + "::OnMobDead2";
+	end;
+OnTimer1000:
+	stopnpctimer;
+	donpcevent instance_npcname("md_rigel_manabarrier_random") + "::OnStart";
+	end;
+OnStop:
+	stopnpctimer;
+	end;
+}
+
+
+// Sub event of "md_rigel_manabarrier_random" : NPC_BLAZING_ERUPTION
+1@ba_go,1,1,4	script	md_rigel_manabarrier_carre_2	-1,{
+	end;
+OnStart:
+	initnpctimer;
+	end;
+OnTimer300:
+	for ( .@i = 0; .@i < 4; ++.@i ) {
+		if (unitexists('mana_carre[.@i]) == false)
+			continue;
+		// (skill used 2 times)
+		unitskilluseid 'mana_carre[.@i], 787, 2;	// NPC_BLAZING_ERUPTION
+		unitskilluseid 'mana_carre[.@i], 787, 2;	// NPC_BLAZING_ERUPTION
+	}
+	end;
+OnTimer500:
+	killmonster 'map_bago$, instance_npcname("md_rigel_manabarrier_random") + "::OnMobDead2";
+	end;
+OnTimer1000:
+	stopnpctimer;
+	donpcevent instance_npcname("md_rigel_manabarrier_random") + "::OnStart";
+	end;
+OnStop:
+	stopnpctimer;
+	end;
+}
+
+
+// Sub event of "md_rigel_manabarrier_random" : NPC_BLOCK_SEAL
+1@ba_go,1,1,4	script	md_rigel_manabarrier_carre_3	-1,{
+	end;
+OnStart:
+	initnpctimer;
+	end;
+OnTimer300:
+	for ( .@i = 0; .@i < 4; ++.@i ) {
+		if (unitexists('mana_carre[.@i]) == false)
+			continue;
+		unitskilluseid 'mana_carre[.@i], 788, 1;	// NPC_BLOCK_SEAL
+	}
+	end;
+OnTimer500:
+	// Spawn mobs (A) using NPC_WIDELEASH (move target on mob location) and spawn another mobs using area skills around mobs A
+	.@event$ = instance_npcname("md_rigel_manabarrier_carre_3") + "::OnMobDead";
+	monster 'map_bago$,45,40," ",20582,1, .@event$; // MD_MANHOLE4
+	setunitdata $@mobid[0], UMOB_AI, 10;
+	monster 'map_bago$,45,58," ",20582,1, .@event$;
+	setunitdata $@mobid[0], UMOB_AI, 10;
+	monster 'map_bago$,63,40," ",20582,1, .@event$;
+	setunitdata $@mobid[0], UMOB_AI, 10;
+	monster 'map_bago$,63,58," ",20582,1, .@event$;
+	setunitdata $@mobid[0], UMOB_AI, 10;
+	end;
+OnTimer2500:
+	killmonster 'map_bago$, instance_npcname("md_rigel_manabarrier_carre_3") + "::OnMobDead";
+	end;
+OnTimer4000:
+	for ( .@i = 0; .@i < 4; ++.@i ) {
+		if (unitexists('mana_carre[.@i]) == false)
+			continue;
+		// NPC_BLOCK_EXPLOSION seems to remove NPC_BLOCK_SEAL effect (30s by default) (strange behaviour)
+		unitskilluseid 'mana_carre[.@i], 789, 1;	// NPC_BLOCK_EXPLOSION
+	}
+	end;
+OnTimer4500:
+	killmonster 'map_bago$, instance_npcname("md_rigel_manabarrier_random") + "::OnMobDead2";
+	end;
+OnTimer5000:
+	stopnpctimer;
+	donpcevent instance_npcname("md_rigel_manabarrier_random") + "::OnStart";
+	end;
+OnStop:
+	stopnpctimer;
+	killmonster 'map_bago$, instance_npcname("md_rigel_manabarrier_carre_3") + "::OnMobDead";
+	end;
+OnMobDead:
+	end;
+}
+
+
+// NPC traps
+1@ba_go,1,1,4	script	md_rigel_trap	-1,{
+	end;
+OnStart:
+	initnpctimer;
+	end;
+OnTimer8000:
+	donpcevent instance_npcname("#trap_1_rigiel") + "::OnStart";
+	donpcevent instance_npcname("#trap_2_rigiel") + "::OnStart";
+	donpcevent instance_npcname("#trap_3_rigiel") + "::OnStart";
+	donpcevent instance_npcname("#trap_4_rigiel") + "::OnStart";
+	end;
+OnTimer16000:
+	donpcevent instance_npcname("#trap_5_rigiel") + "::OnStart";
+	donpcevent instance_npcname("#trap_6_rigiel") + "::OnStart";
+	donpcevent instance_npcname("#trap_7_rigiel") + "::OnStart";
+	donpcevent instance_npcname("#trap_8_rigiel") + "::OnStart";
+	end;
+OnTimer24000:
+	donpcevent instance_npcname("#trap_9_rigiel") + "::OnStart";
+	donpcevent instance_npcname("#trap_10_rigiel") + "::OnStart";
+	donpcevent instance_npcname("#trap_11_rigiel") + "::OnStart";
+	donpcevent instance_npcname("#trap_12_rigiel") + "::OnStart";
+
+	// Open a portal and start the systems on Rigiel Clone area.
+	donpcevent instance_npcname("md_rigel_sub_boss") + "::OnStart";
+	end;
+OnTimer32000:
+	donpcevent instance_npcname("#trap_13_rigiel") + "::OnStart";
+	donpcevent instance_npcname("#trap_14_rigiel") + "::OnStart";
+	donpcevent instance_npcname("#trap_15_rigiel") + "::OnStart";
+	donpcevent instance_npcname("#trap_16_rigiel") + "::OnStart";
+	end;
+OnTimer40000:
+	donpcevent instance_npcname("#trap_17_rigiel") + "::OnStart";
+	donpcevent instance_npcname("#trap_18_rigiel") + "::OnStart";
+	donpcevent instance_npcname("#trap_19_rigiel") + "::OnStart";
+	donpcevent instance_npcname("#trap_20_rigiel") + "::OnStart";
+	end;
+OnTimer48000:
+	donpcevent instance_npcname("#trap_21_rigiel") + "::OnStart";
+	donpcevent instance_npcname("#trap_22_rigiel") + "::OnStart";
+	donpcevent instance_npcname("#trap_23_rigiel") + "::OnStart";
+	donpcevent instance_npcname("#trap_24_rigiel") + "::OnStart";
+	end;
+OnTimer56000:
+	donpcevent instance_npcname("#trap_25_rigiel") + "::OnStart";
+	donpcevent instance_npcname("#trap_26_rigiel") + "::OnStart";
+	stopnpctimer;
+	end;
+OnStop:
+	stopnpctimer;
+	for ( .@i = 1; .@i < 27; ++.@i )
+		donpcevent instance_npcname("#trap_" + .@i + "_rigiel") + "::OnStop";
+	// Note: the traps need to be moved to their original coordinates?
+	end;
+}
+
+
+1@ba_go,59,31,8	script(DISABLED)	#trap_1_rigiel	20TH_GATE_PURPLE_S,1,1,{
+	end;
+OnStart:
+	enablenpc();
+	.@npc_id = getnpcid(0);
+	
+	.@string$ = replacestr( strnpcinfo(2), "trap_", "" );
+	.@string$ = replacestr( .@string$, "_rigiel", "" );
+	.@num = atoi( .@string$ );
+
+	getmapxy( .@map$, .@x, .@y, BL_NPC );
+	'x_trap[.@npc_id] = .@x;
+	'y_trap[.@npc_id] = .@y;
+
+	switch( .@num ) {
+	case 1:
+	case 5:
+	case 6:
+	case 9:
+	case 10:
+	case 18:
+	case 22:
+		'sign_x[.@npc_id] = -1;
+		break;
+	case 2:
+	case 13:
+	case 14:
+	case 17:
+	case 21:
+	case 25:
+		'sign_x[.@npc_id] = 1;
+		break;
+	case 3:
+	case 11:
+	case 12:
+	case 15:
+	case 16:
+	case 19:
+	case 20:
+	case 23:
+		'sign_y[.@npc_id] = 1;
+		break;
+	case 4:
+	case 7:
+	case 8:
+	case 24:
+	case 26:
+		'sign_y[.@npc_id] = -1;
+		break;
+	}
+	if (.@num < 5) {
+		'speed_min[.@npc_id] = 80;
+		'speed_max[.@npc_id] = 100;
+	}
+	else {
+		'speed_min[.@npc_id] = 30 + .@num * 20;
+		'speed_max[.@npc_id] = 50 + .@num * 20;
+	}
+	
+	unitstopwalk getnpcid(0),USW_FORCE_STOP;
+	donpcevent instance_npcname( strnpcinfo(0) ) + "::OnMove";
+	end;
+OnMove:
+	.@npc_id = getnpcid(0);
+	npcspeed rand('speed_min[.@npc_id], 'speed_max[.@npc_id]);
+	
+	if ('sign_x[.@npc_id] != 0) {
+		if ('x_trap[.@npc_id] == 35 || 'x_trap[.@npc_id] == 73)
+			'sign_x[.@npc_id] *= -1;
+		'x_trap[.@npc_id] += 'sign_x[.@npc_id];
+	}
+	else if ('sign_y[.@npc_id] != 0) {
+		if ('y_trap[.@npc_id] == 30 || 'y_trap[.@npc_id] == 68)
+			'sign_y[.@npc_id] *= -1;
+		'y_trap[.@npc_id] += 'sign_y[.@npc_id];
+	}
+	
+	unitwalk .@npc_id, 'x_trap[.@npc_id],'y_trap[.@npc_id], instance_npcname( strnpcinfo(0) ) + "::OnMove";
+	end;
+OnStop:
+	unitstopwalk getnpcid(0),USW_FORCE_STOP;
+	disablenpc();
+	end;
+
+OnTouch:
+	// "The danger of this trap varies depending on the level of the barrier,
+	// and its destructive power becomes more powerful the further away you are from the center of the prison."
+	.@x_center = 54;
+	.@y_center = 49;
+	getmapxy( .@map$,.@x,.@y, BL_NPC );
+	.@d = distance( .@x,.@y, .@x_center,.@y_center );
+	
+	// Note: value = .@d/3 ~= 6 (max). Hpmax -6% (max) at barrier level 1, -100% at level 20.
+	.@value = (.@d / 3) * 'barrier_level;
+	percentheal -.@value,0;	// (placeholder)
+	specialeffect2 EF_CLAYMORE;
+	specialeffect2 EF_ACIDDEMON;
+	
+	// "Also, each time you or an ally takes damage from a trap, the Criminal's attack power become stronger."
+	donpcevent instance_npcname("md_rigel_main_part_1") + "::OnPowerup";
+	end;
+}
+1@ba_go,54,67,5	duplicate(#trap_1_rigiel)	#trap_2_rigiel	20TH_GATE_PURPLE_S,1,1
+1@ba_go,36,49,5	duplicate(#trap_1_rigiel)	#trap_3_rigiel	20TH_GATE_PURPLE_S,1,1
+1@ba_go,72,49,5	duplicate(#trap_1_rigiel)	#trap_4_rigiel	20TH_GATE_GREEN_S,1,1
+1@ba_go,54,34,5	duplicate(#trap_1_rigiel)	#trap_5_rigiel	20TH_GATE_GREEN_S,1,1
+1@ba_go,54,64,5	duplicate(#trap_1_rigiel)	#trap_6_rigiel	20TH_GATE_GREEN_S,1,1
+1@ba_go,39,49,5	duplicate(#trap_1_rigiel)	#trap_7_rigiel	20TH_GATE_GREEN_S,1,1
+1@ba_go,69,49,5	duplicate(#trap_1_rigiel)	#trap_8_rigiel	20TH_GATE_GREEN_S,1,1
+1@ba_go,54,37,5	duplicate(#trap_1_rigiel)	#trap_9_rigiel	20TH_GATE_GREEN_S,1,1
+1@ba_go,54,61,5	duplicate(#trap_1_rigiel)	#trap_10_rigiel	20TH_GATE_GREEN_S,1,1
+1@ba_go,42,49,5	duplicate(#trap_1_rigiel)	#trap_11_rigiel	20TH_GATE_GREEN_S,1,1
+1@ba_go,66,49,5	duplicate(#trap_1_rigiel)	#trap_12_rigiel	20TH_GATE_GREEN_S,1,1
+1@ba_go,54,40,5	duplicate(#trap_1_rigiel)	#trap_13_rigiel	20TH_GATE_GREEN_S,1,1
+1@ba_go,54,58,5	duplicate(#trap_1_rigiel)	#trap_14_rigiel	20TH_GATE_GREEN_S,1,1
+1@ba_go,45,49,5	duplicate(#trap_1_rigiel)	#trap_15_rigiel	20TH_GATE_GREEN_S,1,1
+1@ba_go,63,49,5	duplicate(#trap_1_rigiel)	#trap_16_rigiel	20TH_GATE_GREEN_S,1,1
+1@ba_go,54,43,5	duplicate(#trap_1_rigiel)	#trap_17_rigiel	20TH_GATE_GREEN_S,1,1
+1@ba_go,54,55,5	duplicate(#trap_1_rigiel)	#trap_18_rigiel	20TH_GATE_GREEN_S,1,1
+1@ba_go,48,49,5	duplicate(#trap_1_rigiel)	#trap_19_rigiel	20TH_GATE_GREEN_S,1,1
+1@ba_go,60,49,5	duplicate(#trap_1_rigiel)	#trap_20_rigiel	20TH_GATE_GREEN_S,1,1
+1@ba_go,54,46,5	duplicate(#trap_1_rigiel)	#trap_21_rigiel	20TH_GATE_GREEN_S,1,1
+1@ba_go,54,52,5	duplicate(#trap_1_rigiel)	#trap_22_rigiel	20TH_GATE_GREEN_S,1,1
+1@ba_go,51,49,5	duplicate(#trap_1_rigiel)	#trap_23_rigiel	20TH_GATE_GREEN_S,1,1
+1@ba_go,57,49,5	duplicate(#trap_1_rigiel)	#trap_24_rigiel	20TH_GATE_GREEN_S,1,1
+1@ba_go,54,49,5	duplicate(#trap_1_rigiel)	#trap_25_rigiel	20TH_GATE_GREEN_S,1,1
+1@ba_go,54,49,5	duplicate(#trap_1_rigiel)	#trap_26_rigiel	20TH_GATE_GREEN_S,1,1
+
+
+
+
+// Systems related to the Clone of Rigiel area
+// -------------------------------------------
+1@ba_go,54,68,5	script(DISABLED)	#trap_0_rigiel	GATE_SKYBLUE,3,3,{
+	end;
+OnTouch:
+	warp 'map_bago$,352,48;
+	end;
+}
+
+
+1@ba_go,1,1,4	script	md_rigel_sub_boss	-1,{
+function UpdateCloneStat;
+
+OnStart:
+	// Enable the gate (entrance to the clone area).
+	mapannounce 'map_bago$, "생명의 전당 이면세계로 통하는 차원포탈이 열렸습니다.", bc_map, 0xFFFF;
+	enablenpc instance_npcname("#trap_0_rigiel");
+
+	// Disable the gate (exit from the clone area).
+	donpcevent instance_npcname("#bs_summon") + "::OnDisable";
+	initnpctimer;
+	end;
+
+OnTimer2000:
+	.@event$ = instance_npcname("md_rigel_sub_boss") + "::OnMobDead";
+
+	monster 'map_bago$,333,30,"--en--",22176,1, .@event$;	// MD_PRI_RIGEL_ACS
+	UpdateCloneStat( $@mobid[0] );
+	
+	monster 'map_bago$,371,30,"--en--",22176,1, .@event$;
+	UpdateCloneStat( $@mobid[0] );
+	
+	monster 'map_bago$,371,68,"--en--",22176,1, .@event$;
+	UpdateCloneStat( $@mobid[0] );
+	
+	monster 'map_bago$,333,68,"--en--",22176,1, .@event$;
+	UpdateCloneStat( $@mobid[0] );
+
+	// Display an effect on the (not visible) gate (exit).
+	donpcevent instance_npcname("#bs_summon") + "::OnStart";
+
+	// Activate the manabarrier system on clone area.
+	donpcevent instance_npcname("md_rigel_manabarrier_clone") + "::OnStart";
+
+	stopnpctimer;
+	end;
+
+OnMobDead:
+	if (mobcount('map_bago$, instance_npcname("md_rigel_sub_boss") + "::OnMobDead") > 0)
+		end;
+	mapannounce 'map_bago$, "차원의 이면에서 공격 당한 여파로 차원 범죄자 리겔의 모든 힘이 일정시간 하락합니다.", bc_map, 0xCCFF00;
+	
+	// Disable the gate (entrance).
+	disablenpc instance_npcname("#trap_0_rigiel");
+
+	// Deactivate the manabarrier system on clone area.
+	donpcevent instance_npcname("md_rigel_manabarrier_clone") + "::OnStop";
+
+	// Enable the gate (exit from clone area).
+	donpcevent instance_npcname("#bs_summon") + "::OnEnable";
+	
+	// Put the boss in groggy state.
+	donpcevent instance_npcname("md_rigel_groggy") + "::OnStart";
+	
+	// Disable all the traps on boss area.
+	donpcevent instance_npcname("md_rigel_trap") + "::OnStop";
+
+	// Start the traps system again.
+	donpcevent instance_npcname("md_rigel_trap") + "::OnStart";
+	end;
+
+OnStop:
+	stopnpctimer;
+	killmonster 'map_bago$, instance_npcname("md_rigel_sub_boss") + "::OnMobDead";
+
+	// Disable the gate (entrance to clone area).
+	disablenpc instance_npcname("#trap_0_rigiel");
+
+	// Deactivate the manabarrier system on clone area.
+	donpcevent instance_npcname("md_rigel_manabarrier_clone") + "::OnStop";
+
+	// Enable the gate (exit from clone area).
+	donpcevent instance_npcname("#bs_summon") + "::OnEnable";
+	end;
+	
+function UpdateCloneStat {
+	.@gid = getarg(0);
+	
+	for ( .@i = 0; .@i < 'param_clone_stat_size; ++.@i ) {
+		.@param = 'param_clone_stat_list[.@i];
+
+		.@string$ = "'u_clone_" + .@param + "_stats[" + 'barrier_level + "]";
+		.@base_value = getd( .@string$ );
+
+		setunitdata .@gid, .@param, .@base_value;
+	}
+	return;
+}
+}
+
+
+// Spawn MD_MANABARRIER and show effect on them
+1@ba_go,1,1,4	script	md_rigel_manabarrier_clone	-1,{
+function UpdateManaStat;
+
+OnStart:
+	initnpctimer;
+
+	switch( rand(1,4) ) {
+	case 1:	// top left
+		setarray .@x[0], 335,340,345,350,355, 335,340,345,350,355, 335,340,345,350,355, 335,340,345,350,355, 335,340,345,350,355;
+		setarray .@y[0],  46, 46, 46, 46, 46,  51, 51, 51, 51, 51,  56, 56, 56, 56, 56,  61, 61, 61, 61, 61,  66, 66, 66, 66, 66;
+		.@x_center = 345;
+		.@y_center = 56;
+		break;
+	case 2:	// bottom left
+		setarray .@x[0], 335,340,345,350,355, 335,340,345,350,355, 335,340,345,350,355, 335,340,345,350,355, 335,340,345,350,355;
+		setarray .@y[0],  32, 32, 32, 32, 32,  37, 37, 37, 37, 37,  42, 42, 42, 42, 42,  47, 47, 47, 47, 47,  52, 52, 52, 52, 52;
+		.@x_center = 345;
+		.@y_center = 42;
+		break;
+	case 3:	// top right
+		setarray .@x[0], 349,354,359,364,369, 349,354,359,364,369, 349,354,359,364,369, 349,354,359,364,369, 349,354,359,364,369;
+		setarray .@y[0],  46, 46, 46, 46, 46,  51, 51, 51, 51, 51,  56, 56, 56, 56, 56,  61, 61, 61, 61, 61,  66, 66, 66, 66, 66;
+		.@x_center = 359;
+		.@y_center = 56;
+		break;
+	case 4:	// bottom right
+		setarray .@x[0], 349,354,359,364,369, 349,354,359,364,369, 349,354,359,364,369, 349,354,359,364,369, 349,354,359,364,369;
+		setarray .@y[0],  32, 32, 32, 32, 32,  37, 37, 37, 37, 37,  42, 42, 42, 42, 42,  47, 47, 47, 47, 47,  52, 52, 52, 52, 52;
+		.@x_center = 359;
+		.@y_center = 42;
+		break;
+	}
+
+	.@size = getarraysize(.@x);	// assuming same size of .@y
+	.@event$ = instance_npcname("md_rigel_manabarrier_clone") + "::OnMobDead";
+
+	for ( .@i = 0; .@i < .@size; ++.@i ) {
+		monster 'map_bago$,.@x[.@i],.@y[.@i],"--en--",22184,1, .@event$;	// MD_MANABARRIER
+		.@mob_id = $@mobid[0];
+		unitskilluseid .@mob_id, 135, 1;	// AS_CLOAKING
+		UpdateManaStat( .@mob_id );
+		sc_start SC_SHOW_EFFECT1, 2999,2401,10000, SCSTART_NOTICKDEF | SCSTART_NOAVOID | SCSTART_NORATEDEF, .@mob_id;
+		
+		// Save the GID of the mob in the middle.
+		if (.@x[.@i] == .@x_center && .@y[.@i] == .@y_center)
+			'gid_manabarrier_clone_center = $@mobid[0];
+	}
+	end;
+OnTimer2000:
+	if (unitexists('gid_manabarrier_clone_center) == true) {
+		if (rand(1,2) == 1)
+			unitskilluseid 'gid_manabarrier_clone_center, 791, 5;	// NPC_LIGHTNING_JUDGEMENT
+		else
+			unitskilluseid 'gid_manabarrier_clone_center, 790, 5;	// NPC_FROST_FIELD
+	}
+	end;
+OnTimer3000:
+	killmonster 'map_bago$, instance_npcname("md_rigel_manabarrier_clone") + "::OnMobDead";
+	end;
+OnTimer4000:
+	donpcevent instance_npcname("md_rigel_manabarrier_clone") + "::OnStart";
+	end;
+OnStop:
+	stopnpctimer;
+	killmonster 'map_bago$, instance_npcname("md_rigel_manabarrier_clone") + "::OnMobDead";
+	end;
+OnMobDead:
+	end;
+
+function UpdateManaStat {
+	.@gid = getarg(0);
+
+	for ( .@i = 0; .@i < 'param_mana_stat_size; ++.@i ) {
+		.@param = 'param_mana_stat_list[.@i];
+
+		.@string$ = "'u_mana_" + .@param + "_stats[" + 'barrier_level + "]";
+		.@base_value = getd( .@string$ );
+
+		setunitdata .@gid, .@param, .@base_value;
+	}
+	return;
+}
+}
+
+
+// Put the boss in groggy state. Time seems random on official server.
+1@ba_go,1,1,4	script	md_rigel_groggy	-1,{
+	end;
+OnStart:
+	// Reset boss power up
+	donpcevent instance_npcname("md_rigel_main_part_1") + "::OnResetStat";
+
+	setunitdata 'boss_gid, UMOB_DAMAGE_REDUCTION, 'damage_reduction_boss_groggy['barrier_level];
+	'boss_is_groggy = true;
+	.@time = rand(6000,18000);	// Timer seems to be random, between 6 and 18s.
+	sc_start SC_GROGGY, .@time,1,10000, SCSTART_NOTICKDEF | SCSTART_NOAVOID | SCSTART_NORATEDEF, 'boss_gid;
+	// unitskilluseid 'boss_gid,"NPC_GROGGY_ON",1;
+	sleep .@time;
+	if (unitexists('boss_gid) == true) {
+		setunitdata 'boss_gid, UMOB_DAMAGE_REDUCTION, 'damage_reduction_boss_normal['barrier_level];
+		'boss_is_groggy = false;
+	}
+	end;
+}
+
+
+// Warp out of Clone area.
+// 1@ba_go,352,50,5	script(DISABLED)	#bs_summon	GATE_SKYBLUE,2,2,{
+1@ba_go,352,50,5	script(CLOAKED)	#bs_summon	GATE_SKYBLUE,2,2,{	// CLOAKED is used instead of DISABLED on rAthena to display an effect on the hidden NPC.
+	end;
+OnTouch:
+	warp 'map_bago$,54,47;
+	end;
+
+OnEnable:
+	cloakoffnpc();
+	stopnpctimer;
+	end;
+OnDisable:
+	cloakonnpc();
+	end;
+OnStart:
+	initnpctimer;
+	end;
+OnTimer2000:
+	specialeffect EF_FREEZING;
+	initnpctimer;
+	end;
+}
+
+
+// Spawn the boss again
+1@ba_go,1,1,4	script	md_rigel_start_part_2	-1,{
+	end;
+OnStart:
+	instance_warpall 'map_bago$,54,49,instance_id();
+	setnpcdisplay( instance_npcname("#inter_con"), 22174 );	// MD_PRI_RIGEL
+	enablenpc instance_npcname("#inter_con");
+	initnpctimer;
+	end;
+OnTimer1000:
+	npctalk "미런다고 생명의 성좌를 죽일 순 없머요.", instance_npcname("#inter_con");
+	// unknown if there is more text
+	end;
+OnTimer9000:
+	stopnpctimer;
+	disablenpc instance_npcname("#inter_con");
+	setnpcdisplay( instance_npcname("#inter_con"), 844 );	// CLEAR_NPC
+
+	'boss_phase_2 = true;
+	donpcevent instance_npcname("md_rigel_main_part_2") + "::OnStart";
+	end;
+}
+
+
+1@ba_go,1,1,4	script	md_rigel_main_part_2	-1,{
+function UpdateBossStat;
+
+OnStart:
+	monster 'map_bago$,54,55,"--en--",22175,1, instance_npcname("md_rigel_main_part_2") + "::OnBossDead";	// MD_PRI_RIGEL_AC
+	'boss_gid = $@mobid[0];
+
+	// Set the boss max hp and damage reduction on spawn.
+	setunitdata 'boss_gid, UMOB_MAXHP, 'hp_boss_part_2['barrier_level];
+	setunitdata 'boss_gid, UMOB_HP, 'hp_boss_part_2['barrier_level];
+	setunitdata 'boss_gid, UMOB_DAMAGE_REDUCTION, 'damage_reduction_boss_part_2['barrier_level];
+
+	// Update boss stats according to the stats defined under OnInstanceInit and barrier level.
+	UpdateBossStat();
+
+	// Events that start immediately.
+	donpcevent instance_npcname("md_rigel_hp_regen_part_2") + "::OnStart";
+	donpcevent instance_npcname("md_rigel_invincible") + "::OnStart";
+	initnpctimer;
+	end;
+OnTimer2000:
+	// Events start 2s after spawn.
+	donpcevent instance_npcname("md_rigel_reset_efst") + "::OnStart";
+	donpcevent instance_npcname("md_rigel_manabarrier_random") + "::OnStart";
+	donpcevent instance_npcname("md_rigel_sanctuary_part_2") + "::OnStart";
+	stopnpctimer;
+	end;
+
+OnBossDead:
+	stopnpctimer;
+	killmonster 'map_bago$, instance_npcname("md_rigel_main_part_2") + "::OnBossDead";
+	'boss_gid = 0;
+
+	donpcevent instance_npcname("md_rigel_hp_regen_part_2") + "::OnStop";
+	donpcevent instance_npcname("md_rigel_invincible") + "::OnStop";
+	donpcevent instance_npcname("md_rigel_reset_efst") + "::OnStop";
+	donpcevent instance_npcname("md_rigel_manabarrier_random") + "::OnStop";
+	donpcevent instance_npcname("md_rigel_sanctuary_part_2") + "::OnStop";
+	
+	// Reward NPC
+	'step = 2;
+	enablenpc instance_npcname("#reward_npc");
+
+	// Update the variable score
+	.@instance_id = instance_id();
+	.@index = inarray( $@md_rigel_instance_id, .@instance_id );
+	
+	if (.@index == -1)
+		end;
+
+	// 0 to skip the check in #lank_board NPC
+	$@md_rigel_instance_id[.@index] = 0;
+	$@md_rigel_barrier_level[.@index] = 0;
+	
+	// Update the points (custom formula)
+	.@point_timer = gettimetick(0) - 'instance_timer;
+	$@md_rigel_point[.@index] = $@md_rigel_point[.@index] + ('barrier_level * 10000 + .@point_timer);
+	end;
+
+function UpdateBossStat {
+	for ( .@i = 0; .@i < 'param_boss_stat2_size; ++.@i ) {
+		.@param = 'param_boss_stat2_list[.@i];
+
+		.@string$ = "'u_boss_" + .@param + "_stats2[" + 'barrier_level + "]";
+		.@base_value = getd( .@string$ );
+
+		setunitdata 'boss_gid, .@param, .@base_value;
+	}
+	return;
+}
+}
+
+
+// Systems related to the Boss - Part 2
+// ------------------------------------
+1@ba_go,1,1,0	script	md_rigel_hp_regen_part_2	-1,{
+	end;
+OnStart:
+	initnpctimer;
+	end;
+OnTimer1000:
+	getunitdata( 'boss_gid, .@data );
+
+	if (.@data[UMOB_HP] < 'hp_boss_part_2[ 'barrier_level ]) {
+		if ('boss_sanctuary_event == true) {
+			// Bonus regen by player in 14x14 area around the boss
+			.@num = getareausers( 'map_bago$, 'x_sanctuary_min,'y_sanctuary_min, 'x_sanctuary_max,'y_sanctuary_max );
+		}
+		.@new_hp = .@data[UMOB_HP] + 'hp_regen_base_boss_part_2[ 'barrier_level ] + (.@num * 'hp_regen_bonus_boss_part_2[ 'barrier_level ]);
+		
+		if (.@new_hp > 'hp_boss_part_2[ 'barrier_level ])
+			.@new_hp = 'hp_boss_part_2[ 'barrier_level ];
+		
+		setunitdata 'boss_gid, UMOB_HP, .@new_hp;
+	}
+	initnpctimer;
+	end;
+OnStop:
+	stopnpctimer;
+	end;
+}
+
+
+1@ba_go,1,1,0	script	md_rigel_sanctuary_part_2	-1,{
+	end;
+OnStart:
+	'boss_sanctuary_event = true;
+
+	// Boss invincible in 14x14 area
+	getunitdata( 'boss_gid, .@data );
+
+	'x_sanctuary_min = .@data[UMOB_X] - 6;
+	'x_sanctuary_max = .@data[UMOB_X] + 6;
+	'y_sanctuary_min = .@data[UMOB_Y] - 6;
+	'y_sanctuary_max = .@data[UMOB_Y] + 6;
+
+	.@event$ = instance_npcname("md_rigel_sanctuary_part_2") + "::OnMobDead";
+
+	// Spawn monsters around the boss.
+	for ( .@x = 'x_sanctuary_min; .@x <= 'x_sanctuary_max; .@x += 2 ) {
+		for ( .@y = 'y_sanctuary_min; .@y <= 'y_sanctuary_max; .@y += 2 ) {
+			// unknown mob spawn (placeholder)
+			monster 'map_bago$,.@x,.@y," ",22181,1, .@event$; // MD_COMMON_P
+			.@mob_id = $@mobid[0];
+			setunitdata .@mob_id, UMOB_DMGIMMUNE, true;
+			unitskilluseid .@mob_id, 135, 1;	// AS_CLOAKING
+			// Hack to not show the dead monster to the player (unknown mob ID on official, unknown what they do)
+			setunitdata .@mob_id, UMOB_CLASS, 20582;	// MD_MANHOLE4
+			sc_start SC_SHOW_EFFECT1, 5999, 114, 10000, SCSTART_NOTICKDEF | SCSTART_NOAVOID | SCSTART_NORATEDEF, .@mob_id;
+		}
+	}
+	initnpctimer;
+	end;
+OnTimer6000:
+	'boss_sanctuary_event = false;
+	setunitdata 'boss_gid, UMOB_DAMAGE_REDUCTION, 'damage_reduction_boss_part_2['barrier_level];
+	killmonster 'map_bago$, instance_npcname("md_rigel_sanctuary_part_2") + "::OnMobDead";
+	end;
+OnTimer14000:
+	donpcevent instance_npcname("md_rigel_sanctuary_part_2") + "::OnStart";
+	end;
+OnMobDead:
+	end;
+OnStop:
+	stopnpctimer;
+	killmonster 'map_bago$, instance_npcname("md_rigel_sanctuary_part_2") + "::OnMobDead";
+	end;
+}
+
+// 1@ba_go,54,55,4	script(DISABLED)	#reward_npc	PORTAL,1,1,{
+1@ba_go,54,55,4	script(DISABLED)	#reward_npc	PORTAL,{
+	F_CheckStep(2);
+	
+	// Player succeed
+	if (isbegin_quest(12617) > 0)
+		erasequest 12617;
+
+	switch( checkquest(12612,PLAYTIME) ) {
+	case -1:
+		break;
+	case 0:
+	case 1:
+		// Reward already taken, player can only leave
+		mes "이번주 보상을 받은 상태에서는 다음";
+		mes "주가 될때까지 추가적인 결계 등급을";
+		mes "올리는 행위가 불가능합니다. 출입에";
+		mes "주의하시기 바랍니다.";
+		mes "이제 감옥 바깥으로 나가시겠습니까?";
+		next;
+		// custom from here
+		if (select( "Cancel", "Leave" ) == 1)
+			end;
+		warp "t_garden",166,219;
+		end;
+	case 2:
+		erasequest 12612;
+		break;
+	}
+	// Player can raise the barrier level or get reward
+	if ('player_registered[ getcharid(0) ] == 1) {
+		if (getequipid(EQI_HEAD_LOW) != 420231) {	// custom text
+			mes "[리겔]";
+			mes "가호를 장착하지 않고 있군요. 그 상태로는 입장할 수 없다는걸 잊지 않았겠죠? 가호를 장착하고 다시 찾아오세요.";
+			close;
+		}
+		mes "^ff0000- " + 'barrier_level + "등급 결계 -^000000";
+		mes "좌수 교정작업을 완료 하셨군요.";
+		mes "지금 바로 해당 등급에 맞는 보상을";
+		mes "받거나. 보상을 잠시 미릭두고 결계";
+		mes "출입등급을 한 단계 올리실 수";
+		mes "있습니다.";
+		next;
+		// custom from here
+		switch( select( "Cancel", "Raise my barrier level", "Get reward" ) ) {
+		case 1:
+			end;
+		case 2:
+			if (getequipid(EQI_HEAD_LOW) != 420231)
+				end;
+			.@enchant_id = getequipcardid( EQI_HEAD_LOW,3 );
+			switch( .@enchant_id ) {
+			case 312453:	// MD_Hol_Barrier_1
+			case 312454:	// MD_Hol_Barrier_2
+			case 312455:	// MD_Hol_Barrier_3
+			case 312456:	// MD_Hol_Barrier_4
+			case 312457:	// MD_Hol_Barrier_5
+			case 312458:	// MD_Hol_Barrier_6
+			case 312459:	// MD_Hol_Barrier_7
+			case 312460:	// MD_Hol_Barrier_8
+			case 312461:	// MD_Hol_Barrier_9
+			case 312462:	// MD_Hol_Barrier_10
+			case 312463:	// MD_Hol_Barrier_11
+			case 312464:	// MD_Hol_Barrier_12
+			case 312465:	// MD_Hol_Barrier_13
+			case 312466:	// MD_Hol_Barrier_14
+			case 312467:	// MD_Hol_Barrier_15
+			case 312468:	// MD_Hol_Barrier_16
+			case 312469:	// MD_Hol_Barrier_17
+			case 312470:	// MD_Hol_Barrier_18
+			case 312471:	// MD_Hol_Barrier_19
+				'player_registered[ getcharid(0) ] = 0;
+
+				.@new_enchant = .@enchant_id + 1;
+				delequip EQI_HEAD_LOW;
+				getitem2 420231,1,1,0,0,0,0,0,.@new_enchant;	// MD_Hol_Protection
+				
+				.@level = .@new_enchant - 312452;
+				mes "Your barrier level has been raised to ^ff0000- " + .@level + "^000000.";
+				close;
+			case 312472:	// MD_Hol_Barrier_20
+				mes "Your barrier level is already max level.";
+				close;
+			}
+			end;
+		case 3:
+			// Reward according to player barrier level (not instance level).
+			// The rewards are totally custom (no data).
+			if (getequipid(EQI_HEAD_LOW) != 420231)
+				end;
+			.@enchant_id = getequipcardid( EQI_HEAD_LOW,3 );
+			switch( .@enchant_id ) {
+			case 312453:	// MD_Hol_Barrier_1
+			case 312454:	// MD_Hol_Barrier_2
+			case 312455:	// MD_Hol_Barrier_3
+			case 312456:	// MD_Hol_Barrier_4
+			case 312457:	// MD_Hol_Barrier_5
+			case 312458:	// MD_Hol_Barrier_6
+			case 312459:	// MD_Hol_Barrier_7
+			case 312460:	// MD_Hol_Barrier_8
+			case 312461:	// MD_Hol_Barrier_9
+			case 312462:	// MD_Hol_Barrier_10
+			case 312463:	// MD_Hol_Barrier_11
+			case 312464:	// MD_Hol_Barrier_12
+			case 312465:	// MD_Hol_Barrier_13
+			case 312466:	// MD_Hol_Barrier_14
+			case 312467:	// MD_Hol_Barrier_15
+			case 312468:	// MD_Hol_Barrier_16
+			case 312469:	// MD_Hol_Barrier_17
+			case 312470:	// MD_Hol_Barrier_18
+			case 312471:	// MD_Hol_Barrier_19
+			case 312472:	// MD_Hol_Barrier_20
+				break;
+			default:
+				end;	// shouldn't happen
+			}
+			// Make amount equal to player barrier level
+			.@amount = .@enchant_id - 312452;
+			
+			.@check = checkweight(
+				1001445,.@amount, 1001446,.@amount,
+				1001448,.@amount, 1001449,.@amount,
+				1001451,.@amount, 1001452,.@amount,
+				1001454,.@amount, 1001455,.@amount
+			);
+			if (.@check == 0) {
+				mes "^ff0000It seems that you are overweight. Please organize your inventory.^000000";
+				close;
+			}
+			'player_registered[ getcharid(0) ] = 0;
+			getitem 1001445, .@amount;
+			getitem 1001446, .@amount;
+			getitem 1001448, .@amount;
+			getitem 1001449, .@amount;
+			getitem 1001451, .@amount;
+			getitem 1001452, .@amount;
+			getitem 1001454, .@amount;
+			getitem 1001455, .@amount;
+			mes "======== Reward ========";
+			mes "You got";
+			mes "" + .@amount + " " + mesitemlink(1001445) + "";
+			mes "" + .@amount + " " + mesitemlink(1001446) + "";
+			mes "" + .@amount + " " + mesitemlink(1001448) + "";
+			mes "" + .@amount + " " + mesitemlink(1001449) + "";
+			mes "" + .@amount + " " + mesitemlink(1001451) + "";
+			mes "" + .@amount + " " + mesitemlink(1001452) + "";
+			mes "" + .@amount + " " + mesitemlink(1001454) + "";
+			mes "" + .@amount + " " + mesitemlink(1001455) + "";
+			
+			// Cooldown : reset monday 4h
+			setquest 12612;
+			close;
+		}
+		end;
+	}
+	// custom
+	if (select( "Cancel", "Leave" ) == 1)
+		end;
+	warp "t_garden",166,219;
+	end;
+}
+
+// Unknown NPCs
+// 1@ba_go,35,51,5	script	#tr_admin	CLEAR_NPC,1,1,{
+// 1@ba_go,54,55,4	script	#fail_npc	PORTAL,1,1,{

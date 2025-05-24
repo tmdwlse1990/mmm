@@ -169,6 +169,12 @@ Body:
     Script: |
       atcommand "@vip +10d "+strcharinfo(0);
       callfunc "F_VIPbufficon";
+  - Id: 102433    # Unsealing_Scroll
+    Script: |
+      sc_end SC_BLOCK_SEAL;
+  - Id: 102434    # Warm_Shield_Scroll
+    Script: |
+      sc_start SC_WARM_SHIELD,60000,0;
 #   [Core Item Main]
   - Id: 2000001
     AegisName: Adventure_Card

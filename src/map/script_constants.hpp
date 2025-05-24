@@ -522,6 +522,7 @@
 	export_constant(MF_NOBANK);
 	export_constant(MF_SPECIALPOPUP);
 	export_constant(MF_NOMACROCHECKER);
+	export_constant(MF_NO_NPC_SELFDESTRUCTION_ON_ALL);
 	export_constant(MF_DROPRATE);
 
 	/* setcell types */
@@ -1977,7 +1978,15 @@
 	export_constant(SC_SBUNSHIN);
 	export_constant(SC_CONTENTS_34);
 	export_constant(SC_CONTENTS_35);
+	export_constant(SC_TARGET_MARKER);
+	export_constant(SC_BLOCK_SEAL);
+	export_constant(SC_FROST_STORM);
+	export_constant(SC_GROGGY);
+	export_constant(SC_WARM_SHIELD);
+	export_constant(SC_SHOW_EFFECT1);
+	export_constant(SC_SHOW_EFFECT2);
 	export_constant(SC_NOACTION);
+	export_constant(SC_ASSASSINCROSS);
 
 /// Do not modify code below this, until the end of the API hook, since it will be automatically generated again
 /// @APIHOOK_START(EFST_CONST)
@@ -4026,6 +4035,7 @@
 	export_constant(UMOB_ATKMAX);
 	export_constant(UMOB_MATKMIN);
 	export_constant(UMOB_MATKMAX);
+	export_constant(UMOB_MATK);
 	export_constant(UMOB_DEF);
 	export_constant(UMOB_MDEF);
 	export_constant(UMOB_HIT);
@@ -4046,6 +4056,11 @@
 	export_constant(UMOB_RES);
 	export_constant(UMOB_MRES);
 	export_constant(UMOB_DAMAGETAKEN);
+	export_constant(UMOB_BODYSIZE);
+	export_constant(UMOB_DAMAGE_REDUCTION);
+	export_constant(UMOB_DAMAGE_MODIFIER);
+	export_constant(UMOB_MATK);
+	export_constant(UMOB_NODROP);
 
 	/* unit control - homunculus */
 	export_constant(UHOM_SIZE);
@@ -4259,6 +4274,7 @@
 	export_constant(UNPC_BODY2);
 	export_constant(UNPC_DEADSIT);
 	export_constant(UNPC_GROUP_ID);
+	export_constant(UNPC_BODYSIZE);
 
 	export_constant(NAV_NONE);
 	export_constant(NAV_AIRSHIP_ONLY);
@@ -10814,7 +10830,12 @@
 	export_constant(AI_AMMO_KUNAI);
 	export_constant(AI_AMMO_CANNON);
 
-
+	export_constant(MOBDATA_DAMAGE_REDUCTION_0);
+	export_constant(MOBDATA_DAMAGE_REDUCTION_10);
+	export_constant(MOBDATA_DAMAGE_REDUCTION_100);
+	export_constant(MOBDATA_DAMAGE_REDUCTION_1000);
+	export_constant(MOBDATA_DAMAGE_REDUCTION_10000);
+	
 	/* searchstore constants */
 	export_constant(SEARCHSTORE_EFFECT_NORMAL);
 	export_constant(SEARCHSTORE_EFFECT_REMOTE);

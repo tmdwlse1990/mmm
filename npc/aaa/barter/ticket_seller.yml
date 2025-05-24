@@ -49,7 +49,7 @@ Body:
   - Name: Gacha Ticket
     Map: icecastle
     X: 81
-    Y: 127
+    Y: 217
     Direction: West
     Sprite: 4_GACHA_MACHINE
     Items:

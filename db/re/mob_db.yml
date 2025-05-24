@@ -115009,18 +115009,18 @@ Body:
 #    AegisName: MD_PRI_RIGEL_AC
 #  - Id: 22176
 #    AegisName: MD_PRI_RIGEL_ACS
-  - Id: 22177
-    AegisName: MD_PRI_DRAGON_1
-    Name: MD_PRI_DRAGON_1
-  - Id: 22178
-    AegisName: MD_PRI_DRAGON_2
-    Name: MD_PRI_DRAGON_2
-  - Id: 22179
-    AegisName: MD_PRI_DRAGON_3
-    Name: MD_PRI_DRAGON_3
-  - Id: 22180
-    AegisName: MD_PRI_DRAGON_4
-    Name: MD_PRI_DRAGON_4
+#  - Id: 22177
+#    AegisName: MD_PRI_DRAGON_1
+#    Name: MD_PRI_DRAGON_1
+#  - Id: 22178
+#    AegisName: MD_PRI_DRAGON_2
+#    Name: MD_PRI_DRAGON_2
+#  - Id: 22179
+#    AegisName: MD_PRI_DRAGON_3
+#    Name: MD_PRI_DRAGON_3
+#  - Id: 22180
+#    AegisName: MD_PRI_DRAGON_4
+#    Name: MD_PRI_DRAGON_4
 #  - Id: 22181
 #    AegisName: MD_COMMON_P
 #  - Id: 22182

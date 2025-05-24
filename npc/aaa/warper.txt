@@ -561,6 +561,10 @@ G8: Restrict("RE");
 // --------------------------------------------------
 	Instances:
 // --------------------------------------------------
+menu
+	"Orc's Memory",I16
+	;
+/*
 menu	"Bakonawa Lake",I1, "Bangungot Hospital 2F",I2, "Buwaya Cave",I3,
 		"Devil Tower",I4, "Eclage Interior",I5, "Endless Tower",I6,
 		"Faceworms Nest",I7, "Geffen Magic Tournament",I8, "Ghost Palace",I9,
@@ -568,7 +572,7 @@ menu	"Bakonawa Lake",I1, "Bangungot Hospital 2F",I2, "Buwaya Cave",I3,
 		"Nidhoggur's Nest",I13, "Octopus Cave",I14, "Old Glast Heim",I15,
 		"Orc's Memory",I16, "Sarah and Fenrir",I17, "Sara Memory",I18,
 		"Sealed Shrine",I19, "Wolfchev's Laboratory",I20;
-
+*/
 I1: Restrict("RE");
 	Go("ma_scene01",172,175);
 I2: Restrict("RE");

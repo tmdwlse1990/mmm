@@ -9,3 +9,5 @@
  **/
 
 //BUILDIN_DEF(example,""),
+
+BUILDIN_DEF(specialeffect3,"iii"), // skill effect on unit

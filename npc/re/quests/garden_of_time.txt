@@ -660,19 +660,20 @@ OnInit:
 	end;
 }
 
-
-// t_garden,162,222,5	script	#lank_board	4_4JOB_PHANTOMBOOK1,{
-	// mes "--- Strategy ranking ---";
-	// mes "1st place - none";
-	// mes "2nd place - none";
-	// mes "3rd place - none";
-	// mes "4th place - none";
-	// mes "5th place - none";
-	// mes "-----------------";
-	// mes "¡Ø The strategy record is updated every 5 minutes.";
-	// mes "If recording does not occur immediately, please wait for a while and check.";
-	// close;
-// }
+/*
+t_garden,162,222,5	script	#lank_board	4_4JOB_PHANTOMBOOK1,{
+	mes "--- Strategy ranking ---";
+	mes "1st place - none";
+	mes "2nd place - none";
+	mes "3rd place - none";
+	mes "4th place - none";
+	mes "5th place - none";
+	mes "-----------------";
+	mes "¡Ø The strategy record is updated every 5 minutes.";
+	mes "If recording does not occur immediately, please wait for a while and check.";
+	close;
+}
+*/
 
 // t_garden,166,235,0	script	#wp12	HIDDEN_WARP_NPC,3,3,{	// (NPC name is not unique)
 t_garden,166,235,0	script	#wp12_t_garden	HIDDEN_WARP_NPC,3,3,{
@@ -686,8 +687,8 @@ OnTouch:
 		end;
 	case 2:
 		cloakoffnpcself( "Sealing Spirit Stone#life2" );
-		cloakoffnpcself( "Dimensional Prison#1" );
-		cloakoffnpcself( "Dimensional Prison#2" );
+		cloakoffnpcself( "Dimension Prison#1" );
+		cloakoffnpcself( "Dimension Prison#2" );
 		end;
 	}
 	end;
@@ -977,7 +978,7 @@ OnInit:
 	end;
 }
 
-
+/*
 // t_garden,158,235,2	script(CLOAKED)	Dimension Prison#1	GATE_SKYBLUE,2,2,{	// unknown OnTouch effect
 t_garden,158,235,2	script(CLOAKED)	Dimension Prison#1	GATE_SKYBLUE,{
 	if (isbegin_quest(12597) != 2)
@@ -1005,7 +1006,7 @@ t_garden,173,235,2	script(CLOAKED)	Dimension Prison#2	GATE_SKYBLUE,{
 	// ...
 	end;
 }
-
+*/
 
 
 // Daily Quests

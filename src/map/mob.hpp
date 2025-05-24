@@ -193,6 +193,14 @@ enum e_aegis_monsterclass : int8 {
 	CLASS_MAX,
 };
 
+enum e_mob_damagereduction {
+	MOBDATA_DAMAGE_REDUCTION_0 = 0x0,
+	MOBDATA_DAMAGE_REDUCTION_10 = 0x1,
+	MOBDATA_DAMAGE_REDUCTION_100 = 0x2,
+	MOBDATA_DAMAGE_REDUCTION_1000 = 0x4,
+	MOBDATA_DAMAGE_REDUCTION_10000 = 0x8,
+};
+
 struct s_mob_skill {
 	enum MobSkillState state;
 	uint16 skill_id,skill_lv;
@@ -277,6 +285,8 @@ struct s_mob_db {
 	uint32 option;
 	std::vector<std::shared_ptr<s_mob_skill>> skill;
 	uint16 damagetaken;
+	e_mob_damagereduction damagereduction{};
+	uint16 damagemodifier;
 
 	e_mob_bosstype get_bosstype();
 	s_mob_db();
@@ -397,6 +407,9 @@ struct mob_data {
 	 **/
 	int32 tomb_nid;
 	uint16 damagetaken;
+	e_mob_damagereduction damagereduction;
+	bool nodrop;
+	uint16 damagemodifier;
 	uint16 rank; // [Start's]
 
 	e_mob_bosstype get_bosstype();

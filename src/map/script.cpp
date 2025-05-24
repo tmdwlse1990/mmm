@@ -19171,6 +19171,7 @@ BUILDIN_FUNC(getunitdata)
 			getunitdata_sub(UMOB_ATKMAX, md->status.rhw.atk2);
 			getunitdata_sub(UMOB_MATKMIN, md->status.matk_min);
 			getunitdata_sub(UMOB_MATKMAX, md->status.matk_max);
+			getunitdata_sub(UMOB_MATK, md->status.rhw.matk);
 			getunitdata_sub(UMOB_DEF, md->status.def);
 			getunitdata_sub(UMOB_MDEF, md->status.mdef);
 			getunitdata_sub(UMOB_HIT, md->status.hit);
@@ -19191,6 +19192,9 @@ BUILDIN_FUNC(getunitdata)
 			getunitdata_sub(UMOB_RES, md->status.res);
 			getunitdata_sub(UMOB_MRES, md->status.mres);
 			getunitdata_sub(UMOB_DAMAGETAKEN, md->damagetaken);
+			getunitdata_sub(UMOB_DAMAGE_REDUCTION, md->damagereduction);
+			getunitdata_sub(UMOB_DAMAGE_MODIFIER, md->damagemodifier);
+			getunitdata_sub(UMOB_NODROP, md->nodrop);
 			} break;
 
 		case BL_HOM: {
@@ -19535,6 +19539,7 @@ BUILDIN_FUNC(setunitdata)
 			case UMOB_ATKMAX: md->base_status->rhw.atk2 = (uint16)value; calc_status = true; break;
 			case UMOB_MATKMIN: md->base_status->matk_min = (uint16)value; calc_status = true; break;
 			case UMOB_MATKMAX: md->base_status->matk_max = (uint16)value; calc_status = true; break;
+			case UMOB_MATK: md->base_status->rhw.matk = (unsigned short)value; calc_status = true; break;
 			case UMOB_DEF: md->base_status->def = (defType)value; calc_status = true; break;
 			case UMOB_MDEF: md->base_status->mdef = (defType)value; calc_status = true; break;
 			case UMOB_HIT: md->base_status->hit = (int16)value; calc_status = true; break;
@@ -19567,6 +19572,16 @@ BUILDIN_FUNC(setunitdata)
 			case UMOB_RES: md->base_status->res = (int16)value; calc_status = true; break;
 			case UMOB_MRES: md->base_status->mres = (int16)value; calc_status = true; break;
 			case UMOB_DAMAGETAKEN: md->damagetaken = (uint16)value; break;
+			case UMOB_BODYSIZE: {
+				struct unit_data* ud = unit_bl2ud(bl);
+				ud->body_size = cap_value(value, 1, 255);	// 100 = normal size
+
+				clif_body_size(bl, ud->body_size);
+				break;
+			}
+			case UMOB_DAMAGE_REDUCTION: md->damagereduction = static_cast<e_mob_damagereduction>(value); break;
+			case UMOB_DAMAGE_MODIFIER: md->damagemodifier = (uint16)value; break;
+			case UMOB_NODROP: md->nodrop = (value > 0); break;
 			default:
 				ShowError("buildin_setunitdata: Unknown data identifier %d for BL_MOB.\n", type);
 				return SCRIPT_CMD_FAILURE;
@@ -19885,6 +19900,13 @@ BUILDIN_FUNC(setunitdata)
 			case UNPC_BODY2: clif_changelook(bl, LOOK_BODY2, (uint16)value); break;
 			case UNPC_DEADSIT: nd->vd.dead_sit = (char)value; unit_refresh(bl); break;
 			case UNPC_GROUP_ID: nd->ud.group_id = value; unit_refresh(bl); break;
+			case UNPC_BODYSIZE: {
+				struct unit_data* ud = unit_bl2ud(bl);
+				ud->body_size = value;
+
+				clif_body_size(bl, ud->body_size);
+				break;
+			}
 			default:
 				ShowError("buildin_setunitdata: Unknown data identifier %d for BL_NPC.\n", type);
 				return SCRIPT_CMD_FAILURE;
