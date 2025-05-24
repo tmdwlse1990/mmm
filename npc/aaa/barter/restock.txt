@@ -1,0 +1,9 @@
+-	script	#restockbarter	-1,{
+
+	OnInit:
+		bindatcmd "restock",strnpcinfo(3) + "::OnAtcommand",99;
+		end;
+	OnAtcommand:
+		specialeffect2 EF_ANGEL2;
+		end;
+}

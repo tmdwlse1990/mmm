@@ -39,3 +39,20 @@ Mainmenu:
 	}
 end;
 }
+
+function	script	F_CalculateMember	{
+	
+	deletearray .dm_sum[0],getarraysize(.dm_sum);
+	
+	query_sql "SELECT SUM(total_amount) FROM `web_payment` WHERE account_id = "+getarg(0),.dm_sum;
+	setarray .@memberlevel[0],100,300,500,1000,3000,5000,10000,20000,50000,100000,9999999;
+	for(.@i=0; .@i <= getarraysize(.@memberlevel); .@i++) {
+		if(.dm_sum < .@memberlevel[.@i] || !.@memberlevel[.@i]) {
+			.@numberrank = .@i;
+		}
+		if(.@numberrank) break;
+	}
+	set #donatestack,.dm_sum;
+	set #Member,.@numberrank;
+	return;
+}

@@ -27,8 +27,11 @@ function	script	F_VIPbufficon	{
 	if(vip_status(VIP_STATUS_ACTIVE))
 		sc_start SC_PREMIUMSERVICE,vip_status(VIP_STATUS_REMAINING)*1000,1;
 	if(#MEMBER) {
+		for(.@i=0;.@i<10;.@i++)
+			sc_end SC_MEMBER1+.@i;
 		sc_start (SC_MEMBER1+(#MEMBER-1)),INFINITE_TICK,#MEMBER*5;
 	}
+	return;
 }
 
 -	script	#viptimer	-1,{

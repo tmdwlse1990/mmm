@@ -45,8 +45,19 @@ Header:
   Type: BARTER_DB
   Version: 1
 
-Footer:
-  Imports:
-  - Path: npc/aaa/barter/powerupitem.yml
-  - Path: npc/aaa/barter/hat_quest.yml
-  - Path: npc/aaa/barter/ticket_seller.yml
+Body:
+  - Name: Gacha Ticket
+    Map: icecastle
+    X: 81
+    Y: 127
+    Direction: West
+    Sprite: 4_GACHA_MACHINE
+    Items:
+      - Index: 0
+        Item: Costume_Ticket_Pass
+        Stock: 99
+        Zeny: 3000000
+      - Index: 1
+        Item: Gacha_Ticket_Pass
+        Stock: 99
+        Zeny: 5000000

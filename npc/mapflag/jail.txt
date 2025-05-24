@@ -46,3 +46,7 @@ sec_pri	mapflag	hidemobhpbar
 
 // Item and Skill restrictions
 sec_pri	mapflag	restricted	2
+
+//No Rodex and No Bank
+sec_pri	mapflag	nobank
+sec_pri	mapflag	norodex
