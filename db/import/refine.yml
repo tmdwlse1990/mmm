@@ -111,7 +111,7 @@ Body:
                 Price: 2000
                 Material: Enriched_Elunium
           - Level: 5
-            Bonus: 3000
+            Bonus: 2500
             Chances:
               - Type: Normal
                 Rate: 6000
@@ -129,7 +129,7 @@ Body:
                 Material: Enriched_Elunium
                 DowngradeAmount: 1
           - Level: 6
-            Bonus: 4000
+            Bonus: 3000
             Chances:
               - Type: Normal
                 Rate: 4000
@@ -147,7 +147,7 @@ Body:
                 Material: Enriched_Elunium
                 DowngradeAmount: 1
           - Level: 7
-            Bonus: 5000
+            Bonus: 3500
             BlacksmithBlessingAmount: 1
             Chances:
               - Type: Normal
@@ -166,7 +166,7 @@ Body:
                 Material: Enriched_Elunium
                 DowngradeAmount: 2
           - Level: 8
-            Bonus: 6000
+            Bonus: 4000
             BlacksmithBlessingAmount: 2
             Chances:
               - Type: Normal
@@ -185,7 +185,7 @@ Body:
                 Material: Enriched_Elunium
                 DowngradeAmount: 2
           - Level: 9
-            Bonus: 7500
+            Bonus: 4500
             BlacksmithBlessingAmount: 3
             Chances:
               - Type: Normal
@@ -204,7 +204,7 @@ Body:
                 Material: Enriched_Elunium
                 DowngradeAmount: 3
           - Level: 10
-            Bonus: 9000
+            Bonus: 5000
             BlacksmithBlessingAmount: 4
             Chances:
               - Type: Normal
@@ -223,7 +223,7 @@ Body:
                 Material: Enriched_Elunium
                 DowngradeAmount: 3
           - Level: 11
-            Bonus: 10500
+            Bonus: 6000
             BlacksmithBlessingAmount: 7
             Chances:
               - Type: Normal
@@ -237,7 +237,7 @@ Body:
                 Material: HD_Carnium
                 DowngradeAmount: 1
           - Level: 12
-            Bonus: 12000
+            Bonus: 7000
             BlacksmithBlessingAmount: 11
             Chances:
               - Type: Normal
@@ -251,7 +251,7 @@ Body:
                 Material: HD_Carnium
                 DowngradeAmount: 1
           - Level: 13
-            Bonus: 14000
+            Bonus: 8000
             BlacksmithBlessingAmount: 16
             BroadcastSuccess: true
             BroadcastFailure: true
@@ -267,7 +267,7 @@ Body:
                 Material: HD_Carnium
                 DowngradeAmount: 1
           - Level: 14
-            Bonus: 16000
+            Bonus: 9000
             BlacksmithBlessingAmount: 22
             BroadcastSuccess: true
             BroadcastFailure: true
@@ -283,7 +283,7 @@ Body:
                 Material: HD_Carnium
                 DowngradeAmount: 1
           - Level: 15
-            Bonus: 18000
+            Bonus: 10000
             BlacksmithBlessingAmount: 35
             BroadcastSuccess: true
             BroadcastFailure: true
@@ -299,7 +299,7 @@ Body:
                 Material: HD_Carnium
                 DowngradeAmount: 1
           - Level: 16
-            Bonus: 20000
+            Bonus: 12000
             BroadcastSuccess: true
             BroadcastFailure: true
             Chances:
@@ -314,7 +314,7 @@ Body:
                 Material: HD_Carnium
                 DowngradeAmount: 1
           - Level: 17
-            Bonus: 25000
+            Bonus: 14000
             BroadcastSuccess: true
             BroadcastFailure: true
             Chances:
@@ -330,7 +330,7 @@ Body:
                 Material: HD_Carnium
                 DowngradeAmount: 1
           - Level: 18
-            Bonus: 30000
+            Bonus: 16000
             BroadcastSuccess: true
             BroadcastFailure: true
             Chances:
@@ -346,7 +346,7 @@ Body:
                 Material: HD_Carnium
                 DowngradeAmount: 1
           - Level: 19
-            Bonus: 40000
+            Bonus: 18000
             BroadcastSuccess: true
             BroadcastFailure: true
             Chances:
@@ -362,7 +362,7 @@ Body:
                 Material: HD_Carnium
                 DowngradeAmount: 1
           - Level: 20
-            Bonus: 50000
+            Bonus: 20000
             BroadcastSuccess: true
             BroadcastFailure: true
             Chances:

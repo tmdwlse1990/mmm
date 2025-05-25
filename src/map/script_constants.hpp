@@ -4059,7 +4059,6 @@
 	export_constant(UMOB_BODYSIZE);
 	export_constant(UMOB_DAMAGE_REDUCTION);
 	export_constant(UMOB_DAMAGE_MODIFIER);
-	export_constant(UMOB_MATK);
 	export_constant(UMOB_NODROP);
 
 	/* unit control - homunculus */

@@ -1,0 +1,123 @@
+-	shop	#gacha_preview	-1,501:-1
+
+icecastle,81,210,2	script	Gacha Item#Salter	4_VENDING_MACHINE2,{
+	.@npcname$ = "[Salt Giver]";
+	mes .@npcname$;
+	mes "สวัสดี เราคนขายเกลือ";
+	mes "ในคลังของเรามีเกลือมากมาย";
+	mes "สนใจไหม";
+Maincostume:
+	switch(select(" - สุ่มกาชา: - ตัวอย่างของ RARE: - ไม่เป็นไร") ) {
+		clear;
+		case 1:
+			mes .@npcname$;
+			mes "อยากจะลุ้นดวงงั้นสิ";
+			mes "ได้นะค่าบริการคือ : "+(zeny >= .zenypercos ? "^2aff2a":"^FF0000")+""+callfunc("F_InsertComma",.zenypercos)+"^000000 Zeny";
+			mes "หรืออีกอันที่ใช้แทน Zeny ก็คือ "+mesitemlink(.itempass)+" มันจะใช้ออโต้เลยหละ";
+			mes "สนบ่?";
+			setdialogsize(300,300);
+			if(select(" - สนอยู่: - บ่สน") == 2 ) goto Maincostume;
+		Contirandom:
+			if(countitem(.itempass)) {
+				@usepass = 1;
+				delitem .itempass,1;
+			}
+			else {
+				@usepass = 0;
+				if( zeny < .zenypercos ) {
+					clear;
+					mes .@npcname$;
+					mes "บักอันนี้ เงินมันบ่พอ";
+					mes "ต้องมีท่อนี่ : "+(zeny >= .zenypercos ? "^2aff2a":"^FF0000")+""+callfunc("F_InsertComma",.zenypercos)+"^000000 Zeny";
+					mes "ไปหามาตื่ม..";
+					close;
+				}
+				zeny -= .zenypercos;
+			}
+			
+			set .@size, getarraysize(.item_ids);
+
+			// === คำนวณน้ำหนักรวมทั้งหมด ===
+			set .@total_weight, 0;
+			for (set .@i, 0; .@i < .@size; set .@i, .@i + 1) {
+				set .@total_weight, .@total_weight + .item_weights[.@i];
+			}
+
+			// === สุ่มตัวเลขจาก 1 ถึง total_weight ===
+			set .@rand, rand(1, .@total_weight);
+			set .@accum, 0;
+
+			// === วนลูปเลือกไอเท็มตามน้ำหนัก ===
+			for (set .@i, 0; .@i < .@size; set .@i, .@i + 1) {
+				set .@accum, .@accum + .item_weights[.@i];
+				if (.@rand <= .@accum) {
+					.@itemid = .item_ids[.@i];
+					break;
+				}
+			}
+
+			//.@itemid = .gacha[rand(getarraysize(.gacha))];
+			clear;
+			mes .@npcname$;
+			mes "เชื่อในสิ่งที่ทำ และทำในสิ่งที่เชื่้อ";
+			mes "อันที่เจ้าได้คืออันนี้ : "+mesitemlink(.@itemid);
+			if( .@i < .raresize) {
+				mes "^FF0000RARE^000000 Item";
+				//announce "<text>",<flag>{,<fontColor>{,<fontType>{,<fontSize>{,<fontAlign>{,<fontY>{,<char_id>}}}}}};
+				announce "ท่าน "+strcharinfo(0)+" ได้รับ "+itemlink(.@itemid)+" จากกาชา Item",bc_pc;
+			}
+			if(.@usepass)
+				mes "^FF0000รอบนี้ใช้ตั๋ว "+mesitemlink(.itempass)+" นะ.";
+			mes "สุ่มอีกบ่?";
+			getitem .@itemid,1;
+			if(select(" - ต่อดิ: - เงินหมดแล้ว") == 1 ) goto Contirandom;
+			close;
+		case 2:
+			mes .@npcname$;
+			mes "กด ENTER แล้วจะมองเห็น";
+			close2;
+			callshop "#gacha_preview",1;
+			npcshopattach "#gacha_preview";
+			end;
+		default:
+			close;
+	}
+	end;
+OnBuyItem:
+	end;
+	
+Oninit:
+	deletearray .item_ids,getarraysize(.item_ids);
+	deletearray .item_weights,getarraysize(.item_weights);
+	
+	// === กำหนดไอเท็ม และน้ำหนัก (weight) ===
+	// รองรับได้เกิน 100+ ชิ้น
+	setarray .item_ids, 
+	18936,18956,5478,5181,5779,5186,101047,2001952,6635
+	; // ใส่ item ID RARE
+	set .raresize,getarraysize(.item_ids);
+	setarray .item_ids[getarraysize(.item_ids)], 
+	6635,7620,7619,6240,6241,12909,12208,12210,
+	13515,13534,13810,
+	12202,12203,12204,12205,12206,12207,12913,12914
+	; // ใส่ item ID Common
+	
+	setarray .item_weights, 
+	1,1,1,1,1,1,1,1,2
+	; // น้ำหนัก ยิ่งมาก โอกาสยิ่งเยอะ RARE
+	
+	setarray .item_weights[getarraysize(.item_weights)],
+	2,3,3,3,3,3,4,4,
+	5,5,5,
+	10,10,10,10,10,10,10,10
+	; // น้ำหนัก ยิ่งมาก โอกาสยิ่งเยอะ COMMON
+	
+	npcshopdelitem "#gacha_preview",501;
+	for(.@i=0; .@i < .raresize; .@i++) {
+		npcshopadditem "#gacha_preview",.item_ids[.@i],.item_weights[.@i];
+	}
+	set .zenypercos,8000000;
+	set .itempass,2000008;
+		waitingroom "กาชาไอเท็ม",0;
+	end;
+}

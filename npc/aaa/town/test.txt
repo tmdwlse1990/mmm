@@ -1,8 +1,4 @@
 icecastle,189,206,5	script	chicken test	800,{
-	input .@number;
-	if(getitemname(.@number) == "null")
-		mes "Don't have that item "+getitemname(.@number);
-	else
-		mes "Have item "+mesitemlink(.@number);
+	macro_detector();
 end;
 }

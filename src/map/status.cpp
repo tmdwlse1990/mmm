@@ -4084,6 +4084,9 @@ int32 status_calc_pc_sub(map_session_data* sd, uint8 opt)
 				refinedef += info->bonus;
 
 #ifdef RENEWAL
+				if( enchantgrade_info != nullptr ){
+					refinedef += ( ( info->bonus * enchantgrade_info->bonus ) / 100 );
+				}
 				if( sd->inventory_data[index]->armor_level == 2 ){
 					base_status->res += sd->inventory.u.items_inventory[index].refine * 2;
 					base_status->mres += sd->inventory.u.items_inventory[index].refine * 2;

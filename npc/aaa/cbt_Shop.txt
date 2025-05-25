@@ -1,0 +1,11 @@
+-	shop	beta_shop	-1,6635:100
+icecastle,185,217,4	script	Beta-Shopper	4_F_BIJOU,{
+	
+	zeny = INT_MAX;
+	#CASHPOINTS = 65535;
+	callshop "beta_shop",1;
+	end;
+Oninit:
+	waitingroom "ของทดสอบช่วง Beta",0;
+	end;
+}

@@ -4,16 +4,17 @@
 	end;
 	
 OnInit:
-	initnpctimer;
+	//initnpctimer;
 	end;
 	
-OnTimer1800000:
-	initnpctimer;
-	addrid(0);
+//OnTimer1800000:
+OnNPCKillEvent:
 	//เพิ่มแมพที่ยกเว้นการตรวจ
-	if((strcharinfo(3) != "prontera") && (strcharinfo(3) != "icecastle")&& (strcharinfo(3) != "ptr_in") && (strcharinfo(3) != "grademk")
-			&& (strcharinfo(3) != "sec_pri"))
-	macro_detector();
+	if(rand(10000) < 10) 
+		if((strcharinfo(3) != "prontera") && (strcharinfo(3) != "icecastle")&& (strcharinfo(3) != "ptr_in") && (strcharinfo(3) != "grademk")
+				&& (strcharinfo(3) != "sec_pri"))
+			if(!instance_id() || !sc_check(SC_AUTOATTACK))
+				macro_detector();
 	end;
 }
 
