@@ -96,4 +96,5 @@ Footer:
     Mode: Renewal
   - Path: db/import/item_db.yml
   - Path: db/import/item_db_charm.yml
+  - Path: db/import/item_db_cos.yml
   - Path: db/import/item_db_equip.yml

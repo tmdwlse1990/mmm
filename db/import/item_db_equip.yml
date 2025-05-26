@@ -296,6 +296,10 @@ Body:
     AegisName: RANDGRIS_EGG
     Name: Randgris Egg
     Type: PetEgg
+  - Id: 9500
+    AegisName: GM_ERROR_EGG
+    Name: GM ERROR Egg
+    Type: PetEgg
 #  [Armor]
   - Id: 2130001
     AegisName: Chicken_Armor

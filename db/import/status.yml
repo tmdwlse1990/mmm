@@ -158,6 +158,8 @@ Body:
       NoForcedEnd: true
   - Status: Member1
     Icon: EFST_MEMBER1
+    CalcFlags:
+      All: true
     Flags:
       NoRemoveOnDead: true
       NoSave: true
@@ -168,6 +170,8 @@ Body:
       SendVal1: true
   - Status: Member2
     Icon: EFST_MEMBER2
+    CalcFlags:
+      All: true
     Flags:
       NoRemoveOnDead: true
       NoSave: true
@@ -178,6 +182,8 @@ Body:
       SendVal1: true
   - Status: Member3
     Icon: EFST_MEMBER3
+    CalcFlags:
+      All: true
     Flags:
       NoRemoveOnDead: true
       NoSave: true
@@ -188,6 +194,8 @@ Body:
       SendVal1: true
   - Status: Member4
     Icon: EFST_MEMBER4
+    CalcFlags:
+      All: true
     Flags:
       NoRemoveOnDead: true
       NoSave: true
@@ -198,6 +206,8 @@ Body:
       SendVal1: true
   - Status: Member5
     Icon: EFST_MEMBER5
+    CalcFlags:
+      All: true
     Flags:
       NoRemoveOnDead: true
       NoSave: true
@@ -208,6 +218,8 @@ Body:
       SendVal1: true
   - Status: Member6
     Icon: EFST_MEMBER6
+    CalcFlags:
+      All: true
     Flags:
       NoRemoveOnDead: true
       NoSave: true
@@ -218,6 +230,8 @@ Body:
       SendVal1: true
   - Status: Member7
     Icon: EFST_MEMBER7
+    CalcFlags:
+      All: true
     Flags:
       NoRemoveOnDead: true
       NoSave: true
@@ -228,6 +242,8 @@ Body:
       SendVal1: true
   - Status: Member8
     Icon: EFST_MEMBER8
+    CalcFlags:
+      All: true
     Flags:
       NoRemoveOnDead: true
       NoSave: true
@@ -238,6 +254,8 @@ Body:
       SendVal1: true
   - Status: Member9
     Icon: EFST_MEMBER9
+    CalcFlags:
+      All: true
     Flags:
       NoRemoveOnDead: true
       NoSave: true
@@ -248,6 +266,8 @@ Body:
       SendVal1: true
   - Status: Member10
     Icon: EFST_MEMBER10
+    CalcFlags:
+      All: true
     Flags:
       NoRemoveOnDead: true
       NoSave: true
