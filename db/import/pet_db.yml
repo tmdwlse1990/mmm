@@ -55,6 +55,24 @@ Header:
   Version: 1
 
 Body:
+  - Mob: MD_Error
+    EggItem: GM_ERROR_EGG
+    FoodItem: 17Carat_Dia
+    Fullness: 0
+    IntimacyFed: 1000
+    IntimacyOverfed: 1000
+    IntimacyHungry: 50
+    IntimacyOwnerDie: 50
+    CaptureRate: 0
+    AllowAutoFeed: true
+    Script: >
+      bonus bPow,100;
+      bonus bCrt,100;
+      bonus bCon,100;
+      bonus bSta,100;
+      bonus bWis,100;
+      bonus bSpl,100;
+      bonus bMaxHP,10000000;
 # Common Pet Settings
   - Mob: PORING
     TameItem: Unripe_Apple

@@ -87,3 +87,14 @@
 Header:
   Type: ITEM_DB
   Version: 3
+
+Body:
+  - Id: 1810001
+    AegisName: C_Error
+    Name: Costume Error
+    Type: Armor
+    Locations:
+      Costume_Head_Low: true
+    ArmorLevel: 1
+    EquipLevelMin: 1
+    View: 3001

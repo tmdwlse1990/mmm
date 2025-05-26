@@ -81,6 +81,40 @@ Header:
   Version: 4
 
 Body:
+
+  - Id: 30001
+    AegisName: MD_Error
+    Name: Dummy
+    Level: 275
+    Hp: 800000000
+    BaseExp: 0
+    JobExp: 0
+    Attack: 30260
+    Attack2: 12603
+    Defense: 358
+    MagicDefense: 138
+    Resistance: 1833
+    MagicResistance: 850
+    Str: 515
+    Agi: 330
+    Vit: 413
+    Int: 408
+    Dex: 584
+    Luk: 580
+    AttackRange: 10
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Formless
+    Element: Neutral
+    ElementLevel: 2
+    WalkSpeed: 120
+    AttackDelay: 230
+    AttackMotion: 1152
+    DamageMotion: 432    # unknown
+    Ai: 21
+    Class: Boss
+
   - Id: 20582
     AegisName: MD_MANHOLE4
     Name: Manhole
