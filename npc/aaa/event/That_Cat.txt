@@ -1,4 +1,4 @@
-icecastle,184,221,5	script	This Is A Cat	10537,{
+icecastle,183,221,5	script	This Is A Cat	10537,{
 
 	// ===============================
 	// GM เริ่ม / หยุด กิจกรรม
@@ -112,5 +112,9 @@ OnTimer1000:
 	}
 
 	addtimer 1000, "This Is A Cat::OnTimer1000";
+	end;
+	
+	Oninit:
+	waitingroom "Event : That Cat",0;
 	end;
 }

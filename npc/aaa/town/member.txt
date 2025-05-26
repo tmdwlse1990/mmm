@@ -5,7 +5,7 @@ icecastle,196,206,3	script	Member	4_EP21_GALAXIA_A,{
 	mes "สวัสดีเราคือผู้จัดการเงินทุนของเซิฟเวอร์";
 	mes "อยากจะตรวจสอบสถานะใดของท่าน ?";
 Mainmenu:
-	switch(select("• ตรวจสอบระดับ Member:• ข้อมูลขั้นบรรไดของ Member:• ไม่มีอะไรเลิฟยูจุ๊ฟๆ") ) {
+	switch(select("• ตรวจสอบระดับ Member:• ข้อมูลแต่ละระดับของ Member:• ไม่มีอะไรเลิฟยูจุ๊ฟๆ") ) {
 		clear;
 		case 1:
 			setdialogsize(300,200);

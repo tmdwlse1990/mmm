@@ -1,5 +1,5 @@
 -	shop	beta_shop	-1,6635:100
-icecastle,185,217,4	script	Beta-Shopper	4_F_BIJOU,{
+icecastle,196,211,4	script	Beta-Shopper	4_F_BIJOU,{
 	
 	zeny = INT_MAX;
 	#CASHPOINTS = 65535;

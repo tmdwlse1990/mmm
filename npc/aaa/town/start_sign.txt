@@ -144,4 +144,7 @@ icecastle,193,201,3	script	ป้ายแนะนำเซิร์ฟเวอร์	837,{
 				}
 			end;
 	}
+	Oninit:
+	waitingroom "ป้ายผู้เล่นใหม่",0;
+	end;
 }
