@@ -1,38 +1,140 @@
-icecastle,188,199,1	script	ออเดิร์ฟ#new_commer	4_M_NOV_RUMIN,{
-	.@npcname$ = "[ Old Minister ]";
-	switch( checkquest(1) ) {
-		case -1:
-			mes .@npcname$;
-			mes "โฮ๊ๆ เจ้าคงเป็นผู้มาใหม่";
-			mes "ก็ขอต้อนรับด้วยภารกิจทดสอบฝีมือนิดหน่อยละกัน";
-			setquest 1;
-			break;
-		case 0:
-		case 1:
-		switch( checkquest(1,HUNTING) ) {
-			case 0:
-			case 1:
+alberta,211,129,5	script	แมวที่หิวโหย	4_EP20_NYAR,{
+	.@npcname$ = "[ แมวของโลก ]";
+	.@itemquest = 579;
+		if(!isbegin_quest(5) ) {
+			if(!isbegin_quest(4) ) {
+				if(!isbegin_quest(3) ) {
+					if(!isbegin_quest(2) ) {
+						mes .@npcname$;
+						mes "โอยยย หิวเหลือเกินน";
+						mes "อยากกินปลาที่ขายโดยพ่อค้าที่อยู่ทางซ้ายของเราจัง";
+						mes "อยากจะกินปลาาาาาา";
+						mes "เอาปลามาาาา";
+						setquest 2;
+						close;
+					}// check quest 2
+					else if (isbegin_quest(2) == 1 && !countitem(.@itemquest)) {
+						mes .@npcname$;
+						mes "จะกินปลาโว้ยยย";
+						mes "ปลาตัวนี้ "+mesitemlink(.@itemquest);
+						end;
+					}
+					else {
+						delitem .@itemquest,1;
+						completequest 2;
+						mes .@npcname$;
+						mes "อร่อยจริงงงงงงง";
+						mes "แต่ยังไม่อิ่มเลยอะ เอามาอีกดิ๊";
+						specialeffect2 800;
+						specialeffect2 804;
+						setquest 3;
+						close;
+					}
+				} // check quest 3
+				else if (isbegin_quest(3) == 1 && countitem(.@itemquest) < 3000) {
+						mes .@npcname$;
+						mes "จะกินปลาโว้ยยย";
+						mes "ปลาตัวนี้ "+mesitemlink(.@itemquest);
+						mes "ไปเอามาถวายอีก 3,000 ตัว";
+						end;
+						
+				}
+				else {
+						delitem .@itemquest,countitem(.@itemquest);
+						completequest 3;
+						mes .@npcname$;
+						mes "อร่อยจริงงงงงงง";
+						mes "แต่ก็ยังไม่อิ่มอยู่ดี ไปเอามาอีกหน่อย";
+						specialeffect2 800;
+						specialeffect2 804;
+						setquest 4;
+						close;
+				}
+			}// check quest 4
+			else if ( (isbegin_quest(4) == 1 && !countitem(.@itemquest) ) && Fish_for_meow < 30000) {
 				mes .@npcname$;
-				mes "ยังทำภารกิจไม่สำเร็จเลยนี่";
-				mes "ไปทำภารกิจก่อนเถอะ";
-				end;
-			case 2:
-				mes .@npcname$;
-				mes "ทำดีนี่น่า ถือว่าเป็นค่าตอบแทน";
-				mes "และต้อนรับสำหรับผู้มาใหม่ก็แล้วกันนะ";
-				completequest 1;
-				getitem 2000002,1;
-				next;
-				break;
-			default:
-				mes "Error Please contract Admin";
-				end;
+				mes "ปลามันเยอะจริงๆนั่นแหละ อาจจะส่งทีเดียวไม่หมด ทยอยส่งก็ได้นะ เดี๋ยวจะนับเลขให้";
+				mes "อยากได้ทั้งหมด ^ff0000300,000 ตัว^000000";
+				mes "เจ้าส่งมาแค่ "+callfunc("F_InsertComma",Fish_for_meow)+" ตัวเอง";
+				mes "ไปเอามาเพิ่มมมมม";
+				close;
 			}
-		case 2:
-		default:
+			else if ( (isbegin_quest(4) == 1 && countitem(.@itemquest) ) && Fish_for_meow < 30000) {
+				mes .@npcname$;
+				mes "อืมๆ ทำได้ดี ได้มาเพิ่มอีก "+countitem(.@itemquest)+" ตัว.";
+				Fish_for_meow += countitem(.@itemquest);
+				delitem .@itemquest,countitem(.@itemquest);
+				next;
+				if (Fish_for_meow >= 30000) {
+					mes .@npcname$;
+					mes "เจ้าถวายครบแล้วสินะดีมากๆ";
+					mes "เริ่มรู้สึกอิ่มนิดๆหน่อยๆแล้วหละ";
+					next;
+					mes .@npcname$;
+					mes "แต่ยังไม่อิ่มดีเท่าไหร่ ขออีก";
+					mes "1,000,000 ตัวน่าจะอิ่มพอดี";
+					mes "รีบๆหามาหละเจ้าทาส";
+					specialeffect2 800;
+					specialeffect2 804;
+					Fish_for_meow = 0;
+					completequest 4;
+					setquest 5;
+				}
+				else {
+					mes .@npcname$;
+					mes "อาาาาาาาา ยังไม่ครบเลยน้า";
+					mes "ไปหามาอีกหน่อยซิ";
+					mes "ขาดอีก ^ff0000"+callfunc("F_InsertComma",(30000-Fish_for_meow))+" ตัวนะ.";
+					close;
+				}
+			}
+		}// check quest 5
+		else if ( (isbegin_quest(5) == 1 && !countitem(.@itemquest) ) && Fish_for_meow < 300000) {
+				mes .@npcname$;
+				mes "ปลามันเยอะจริงๆนั่นแหละ อาจจะส่งทีเดียวไม่หมด ทยอยส่งก็ได้นะ เดี๋ยวจะนับเลขให้";
+				mes "อยากได้ทั้งหมด ^ff00001,000,000 ตัว^000000";
+				mes "เจ้าส่งมาแค่ "+callfunc("F_InsertComma",Fish_for_meow)+" ตัวเอง";
+				mes "ไปเอามาเพิ่มมมมม";
+				close;
+		}
+		else if ( (isbegin_quest(5) == 1 && countitem(.@itemquest) ) && Fish_for_meow < 300000) {
 			mes .@npcname$;
-			mes "ขอบคุณมากๆนะ";
-			break;
-	}
+			mes "อืมๆ ทำได้ดี ได้มาเพิ่มอีก "+countitem(.@itemquest)+" ตัว.";
+			Fish_for_meow += countitem(.@itemquest);
+			delitem .@itemquest,countitem(.@itemquest);
+			next;
+			if (Fish_for_meow >= 300000) {
+				mes .@npcname$;
+				mes "เจ้าถวายครบแล้วสินะดีมากๆ";
+				completequest 5;
+				mes "รับไปรางวัลของเจ้า เจ้าคนศรัทธาชั้นสูง";
+				specialeffect2 800;
+				specialeffect2 804;
+				getitem 2000003,1;
+				next;
+				mes .@npcname$;
+				mes "จริงๆเทพหมาก็มีปัญหานะ";
+				mes "เทพหมาจะอยู่บนเกาะสูงๆ แถวศาลเจ้าหนะ";
+				mes "ถ้าศรัทธาหมาด้วยก็ลองไปช่วยดูนะ";
+				close;
+			}
+			else {
+				mes .@npcname$;
+				mes "อาาาาาาาา ยังไม่ครบเลยน้า";
+				mes "ไปหามาอีกหน่อยซิ";
+				mes "ขาดอีก ^ff0000"+callfunc("F_InsertComma",(300000-Fish_for_meow))+" ตัวนะ.";
+				close;
+			}
+		}
+		else {
+			mes .@npcname$;
+			mes "ไงเจ้าทาส";
+			mes "ข้าจะให้พรละกัน";
+			mes "ขอให้ปลาลอยมาที่ข้า ++";
+			close;
+		}
+	end;
+Oninit:
+	questinfo QTYPE_QUEST, QMARK_NONE, "!isbegin_quest(2)";
 	end;
 }

@@ -1,38 +1,59 @@
-icecastle,188,199,1	script	ออเดิร์ฟ#new_commer	4_M_NOV_RUMIN,{
-	.@npcname$ = "[ Old Minister ]";
-	switch( checkquest(1) ) {
-		case -1:
-			mes .@npcname$;
-			mes "โฮ๊ๆ เจ้าคงเป็นผู้มาใหม่";
-			mes "ก็ขอต้อนรับด้วยภารกิจทดสอบฝีมือนิดหน่อยละกัน";
-			setquest 1;
-			break;
-		case 0:
-		case 1:
-		switch( checkquest(1,HUNTING) ) {
+gonryun,123,161,5	script	หมามหากาฬ	4_SNOWDOG,{
+	.@npcname$ = "[ เทพเจ้าหมา ]";
+	if(!isbegin_quest(6) ) {
+		switch(rand(4)) {
 			case 0:
+				mes .@npcname$;
+				mes "ยังไงก็มีเรื่องที่เศร้าอยู่เสมอสินะ";
+				end;
 			case 1:
 				mes .@npcname$;
-				mes "ยังทำภารกิจไม่สำเร็จเลยนี่";
-				mes "ไปทำภารกิจก่อนเถอะ";
+				mes "ข้ากำลังกลุ้มใจ อย่าพึ่งมายุ่งกับข้า";
 				end;
 			case 2:
 				mes .@npcname$;
-				mes "ทำดีนี่น่า ถือว่าเป็นค่าตอบแทน";
-				mes "และต้อนรับสำหรับผู้มาใหม่ก็แล้วกันนะ";
-				completequest 1;
-				getitem 2000002,1;
-				next;
-				break;
-			default:
-				mes "Error Please contract Admin";
+				mes "เจ้ามนุษย์นี่ ถ้าคุยกับข้า จะกัดคอเจ้า";
+				percentheal 50,50;
 				end;
-			}
-		case 2:
-		default:
-			mes .@npcname$;
-			mes "ขอบคุณมากๆนะ";
-			break;
+			case 3:
+				mes .@npcname$;
+				mes "ข้ายืมกำลังเจ้าหน่อยได้ไหม";
+				if(select("ไม่ได้หรอก แกจะกัดชั้น:ได้ซิ เพื่อท่านเทพ") == 1 ) end;
+				setquest 6;
+				end;
+		}
 	}
+	else if (isbegin_quest(6) == 1 && !countitem(2268) ) {
+		mes .@npcname$;
+		mes "เรื่องกลุ้มใจของข้า คือ";
+		mes "มันมีแมวซุกซนมาเล่นแถวๆบ้านข้า";
+		mes "แล้วดันเอาวัตถุมงคลของข้าไป";
+		mes "ไปเอามาให้หน่อยสิ ";
+		mes "มันคืออันนี้นะ ^[2268]";
+		end;
+	}
+	else if (isbegin_quest(6) == 1 && countitem(2268) ) {
+		mes .@npcname$;
+		mes "โอ้ ขอบคุณมากๆ";
+		mes "เกรงใจเจ้าแล้ว";
+		mes "อย่างน้อยๆรับสินน้ำใจจากข้าแล้วกันนะ";
+		delitem 2268,1;
+		getitem 2000004,1;
+		getitem 5220,1;
+		completequest 6;
+		next;
+		mes .@npcname$;
+		mes "จะว่าไป เจ้าหนังสือศักดิ์สิทธิ์มันติดสาวอยู่ ไปช่วยแก้นิสัยมันด้วยนะ";
+		mes "มันสิงแต่ในโบสดู กกน. เหล่า Prist กับ Acolyte แถวนั้น";
+		end;
+	}
+	else {
+		mes .@npcname$;
+		mes "ค่าสักการะบูชา 100 zeny ต่อท่านน";
+		close;
+	}
+	end;
+Oninit:
+	questinfo QTYPE_QUEST, QMARK_NONE, "!isbegin_quest(6)";
 	end;
 }

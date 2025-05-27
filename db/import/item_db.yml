@@ -268,7 +268,7 @@ Body:
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
-  - Id: 2000006
+  - Id: 2000009
     AegisName: SHARK_Combine
     Name: Shark
     Type: Etc
@@ -281,6 +281,11 @@ Body:
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
+    CollectionScript: |
+      bonus bAllStats,10;
+      bonus bAtkrate,10;
+      bonus bMatkrate,10;
+      bonus2 bSubRace,RC_All,10;
   - Id: 2000007
     AegisName: Costume_Ticket_Pass
     Name: Random Costume Ticket

@@ -1,38 +1,46 @@
-icecastle,188,199,1	script	ออเดิร์ฟ#new_commer	4_M_NOV_RUMIN,{
-	.@npcname$ = "[ Old Minister ]";
-	switch( checkquest(1) ) {
-		case -1:
-			mes .@npcname$;
-			mes "โฮ๊ๆ เจ้าคงเป็นผู้มาใหม่";
-			mes "ก็ขอต้อนรับด้วยภารกิจทดสอบฝีมือนิดหน่อยละกัน";
-			setquest 1;
-			break;
-		case 0:
-		case 1:
-		switch( checkquest(1,HUNTING) ) {
-			case 0:
-			case 1:
-				mes .@npcname$;
-				mes "ยังทำภารกิจไม่สำเร็จเลยนี่";
-				mes "ไปทำภารกิจก่อนเถอะ";
-				end;
-			case 2:
-				mes .@npcname$;
-				mes "ทำดีนี่น่า ถือว่าเป็นค่าตอบแทน";
-				mes "และต้อนรับสำหรับผู้มาใหม่ก็แล้วกันนะ";
-				completequest 1;
-				getitem 2000002,1;
-				next;
-				break;
-			default:
-				mes "Error Please contract Admin";
-				end;
-			}
-		case 2:
-		default:
-			mes .@npcname$;
-			mes "ขอบคุณมากๆนะ";
-			break;
+prt_church,91,125,1	script	ไบเบิ้ลโรคจิต	4_EP18_PAPERS,{
+	.@npcname$ = "[ Bible ]";
+	if(!isbegin_quest(7) ) {
+		mes .@npcname$;
+		mes "กางเกงในเป็นของดี";
+		mes "ถ้าเจ้าศรัทธาข้า";
+		mes "ก็เอาเกงในมา ไม่งั้นตายยยยย!!!";
+		next;
+		setquest 7;
+		percentheal -100,-100;
+		end;
 	}
+	else if (isbegin_quest(7) == 1 && countitem(2339) < 100) {
+		mes .@npcname$;
+		mes "ไม่พอ ^i[2339] ไปเอามาเพิ่มอีก เยอะๆๆๆ!!!!";
+		end;
+	}
+	else if (isbegin_quest(7) == 1 && countitem(2339) >= 100 ) {
+		mes .@npcname$;
+		mes "มีแต่กางเกงในโหลยโท่ย";
+		mes "แต่เห็นถึงความตั้งใจ";
+		delitem 2339,100;
+		getitem 2371,1;
+		getitem 2000005,1;
+		completequest 7;
+		next;
+		mes .@npcname$;
+		mes "ไหนๆก็ทำให้ขนาดนี้";
+		mes "พระเจ้าต้องการความช่วยเหลืออยู่นะ";
+		mes "ถ้าช่วยพระเจ้าได้ เจ้าอาจจะได้เศษพลังท่านมาก็ได้นะ";
+		end;
+	}
+	else {
+		mes .@npcname$;
+		mes "กางเกงในสดชื่นชะมัด";
+		mes "มากวนเวลาดูกางเกงในสาวๆของข้า";
+		mes "ตายยยยย!!!";
+		sleep 2000;
+		percentheal -100,-100;
+		end;
+	}
+	end;
+Oninit:
+	questinfo QTYPE_QUEST, QMARK_NONE, "!isbegin_quest(7)";
 	end;
 }

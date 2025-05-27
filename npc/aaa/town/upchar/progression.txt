@@ -163,11 +163,11 @@ pay_fild04,201,178	boss_monster	King Poring	3810,1,10800000,600000,0		// E Rank
 
 icas_in,108,60,4	script	Guild Master#prog	22180,{
 	function RGBToHex;
-	setarray .@rankname$[1],"F","E","D","C","B","A";
+	setarray .@rankname$[0],"F","E","D","C","B","A";
 	.@npcname$ = "[ Master Of Shalarm ]";
 	mes .@npcname$;
 	for(.@i =0; .@i < getarraysize(.@rankname$); .@i++) {
-		.@questid = 10+.@i;
+		.@questid = 81+.@i;
 		if( checkquest(.@questid,HUNTING) >= 2 ) {
 			mes "ทำได้ดี จะเลื่อนขั้นให้ก็แล้วกัน";
 			specialeffect2 8;
@@ -188,7 +188,7 @@ icas_in,108,60,4	script	Guild Master#prog	22180,{
 	next;
 	if(select("- พร้อมครับ:- ยังไม่พร้อมเลยครับ") == 2 ) { warp "save",0,0; end; }
 	switch (.@checklvl) {
-		case 1:
+		case 0:
 			mes .@npcname$;
 			for(.@i = 0; .@i < getarraysize($stats$); .@i++) {
 				.@checkstats = (getd($stats$[.@i]) >= 10 ? getd($stats$[.@i]) : getd($stats$[.@i]) % 10);
@@ -209,8 +209,8 @@ icas_in,108,60,4	script	Guild Master#prog	22180,{
 				}
 			}
 			if(@notenought) {setdialogsize(400,500); end;}
-			if(checkquest(11) <= 0 ) {
-				setquest 11;
+			if(checkquest(81) <= 0 ) {
+				setquest 81;
 			mes "ไปที่ป่าโปริ่งสิ ไปนำสมบัติของ King มาให้ข้า";
 			mes "ถ้าทำได้หละนะ";
 			}
@@ -219,12 +219,11 @@ icas_in,108,60,4	script	Guild Master#prog	22180,{
 				mes "จงติดอยู่แรงค์นี้ตลอดชีวิตซะเถอะ";
 			}
 			break;
+		case 1:
 		case 2:
 		case 3:
 		case 4:
 		case 5:
-		case 6:
-		case 7:
 			mes .@npcname$;
 			mes "พักไปก่อน ยังไม่มีคำขอมาตอนนี้";
 		break;
