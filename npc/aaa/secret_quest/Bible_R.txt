@@ -1,4 +1,4 @@
-prt_church,91,125,1	script	‰∫‡∫‘È≈‚√§®‘µ	4_EP18_PAPERS,{
+prt_church,98,131,1	script	‰∫‡∫‘È≈‚√§®‘µ	4_EP18_PAPERS,{
 	.@npcname$ = "[ Bible ]";
 	if(!isbegin_quest(7) ) {
 		mes .@npcname$;
