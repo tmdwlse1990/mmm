@@ -691,11 +691,110 @@ Body:
       IgnoreMelee: true
       IgnoreMisc: true
       IgnoreRanged: true
+  - Id: 27002
+    AegisName: MAYBEPECO
+    Name: Maybe Peco
+    Level: 57
+    Hp: 55000
+    Attack: 91
+    Attack2: 70
+    Defense: 47
+    MagicDefense: 38
+    Str: 10
+    Agi: 10
+    Vit: 10
+    Int: 10
+    Dex: 21
+    Luk: 10
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Small
+    Race: Brute
+    Element: Fire
+    ElementLevel: 1
+    WalkSpeed: 130
+    AttackDelay: 160
+    AttackMotion: 180
+    ClientAttackMotion: 130
+    DamageMotion: 100
+    Ai: 20
+  - Id: 27003
+    AegisName: BABY_KING_WOLF
+    Name: Baby King Wolf
+    Level: 51
+    Hp: 55000
+    Attack: 165
+    Attack2: 114
+    Defense: 53
+    MagicDefense: 82
+    Str: 11
+    Agi: 44
+    Vit: 44
+    Int: 44
+    Dex: 44
+    Luk: 11
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Small
+    Race: Brute
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 190
+    AttackDelay: 744
+    AttackMotion: 587
+    ClientAttackMotion: 521
+    DamageMotion: 725
+    Ai: 20
+  - Id: 27004
+    AegisName: KING_RING
+    Name: King Ring
+    Level: 66
+    Hp: 55000
+    Attack: 514
+    Attack2: 514
+    Defense: 47
+    MagicDefense: 38
+    Str: 91
+    Agi: 43
+    Vit: 31
+    Int: 65
+    Dex: 39
+    Luk: 2
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Plant
+    Element: Water
+    ElementLevel: 2
+    WalkSpeed: 160
+    AttackDelay: 460
+    AttackMotion: 580
+    ClientAttackMotion: 530
+    DamageMotion: 400
+    Ai: 20
 # New
   - Id: 23000
     AegisName: DARK_ILLUSION2
     Name: Dark Illusion
     JapaneseName: Dark Illusion
+  - Id: 20423
+    AegisName: BACSOJIN2
+    Name: Bascojin
+  - Id: 20424
+    AegisName: MOONLIGHT2
+    Name: Moonlight
+  - Id: 20425
+    AegisName: PHREEONI2
+    Name: Pheeoni
+  - Id: 21290
+    AegisName: KIEL_D_01_2
+    Name: Kiel D 01
+  - Id: 20619
+    AegisName: GLOOMUNDERNIGHT2
+    Name: Gloom Under Night
 # eAthena Dev Team
 #=============================================================
 #  - Id: 1900
