@@ -48,12 +48,12 @@ icecastle,43,164,5	script	 “¬≈—∫µ“∫Õ¥BB	888,{ //µ—«‡ª‘¥‡§« Main Phase 2
 						 set .@getstonestat, rand(1, 6);  // Randomize +2 Stat Stone
 						 switch(.@getstonestat)
 						 {
-								case 1: getitem 4701,1;
-								case 2: getitem 4711,1;
-								case 3: getitem 4721,1;
-								case 4: getitem 4731,1;
-								case 5: getitem 4741,1;
-								case 6: getitem 4751,1;
+								case 1: getitem 4701,1; break;
+								case 2: getitem 4711,1; break;
+								case 3: getitem 4721,1; break;
+								case 4: getitem 4731,1; break;
+								case 5: getitem 4741,1; break;
+								case 6: getitem 4751,1; break;
 						 } 
 					}
 					else 
@@ -61,12 +61,12 @@ icecastle,43,164,5	script	 “¬≈—∫µ“∫Õ¥BB	888,{ //µ—«‡ª‘¥‡§« Main Phase 2
 						set .@getstonestat, rand(1, 6);  // Randomize +1 Stat Stone
 						 switch(.@getstonestat)
 						 {
-								case 1: getitem 4700,1;
-								case 2: getitem 4710,1;
-								case 3: getitem 4720,1;
-								case 4: getitem 4730,1;
-								case 5: getitem 4740,1;
-								case 6: getitem 4750,1;
+								case 1: getitem 4700,1; break;
+								case 2: getitem 4710,1; break;
+								case 3: getitem 4720,1; break;
+								case 4: getitem 4730,1; break;
+								case 5: getitem 4740,1; break;
+								case 6: getitem 4750,1; break;
 						 } 
 					}
 				getexp 30000,30000;

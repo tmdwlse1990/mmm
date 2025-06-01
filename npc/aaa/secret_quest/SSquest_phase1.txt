@@ -17,7 +17,7 @@ icecastle,245,138,4	script	 #secret1	10371,{
 			mes "[Tech Support]";
 			mes "เอานี่ไป...ค่าทำงาน ละก็ไปหาจุดอื่นเสร็จละมาแจ้งไอ้แมวมันด้วยนะ!!";
 			getitem 12221,1; 
-			getitem 668,3; 
+			getitem 7959,10; 
 			next;
 			// ต่อด้วยบทพูดของ Tech
 			mes "[Tech Support]";
@@ -65,7 +65,7 @@ prt_fild08,334,367,4	script	 #secret2	10288,{ //จุดที่ 2 ล่างพรอน
 			mes "[Tech Support]";
 			mes "เอานี่ไป...ค่าทำงาน ละก็ไปหาจุดอื่นเสร็จละมาแจ้งไอ้แมวมันด้วยนะ!!";
 			getitem 12221,1; 
-			getitem 668,3; 
+			getitem 7959,10; 
 			// ต่อด้วยบทพูดของ Tech
 			set #SSQtwo,1;
 			set #SSQreward, #SSQreward+1;
@@ -87,7 +87,7 @@ moc_fild07,157,332,4	script	 #secret3	10561,{ //จุดที่ 3 บนมอ
 		mes "[Tech Support]";
 		mes "เอานี่ไป...ค่าทำงาน ละก็ไปหาจุดอื่นเสร็จละมาแจ้งไอ้แมวมันด้วยนะ!!";
 		getitem 12221,1; 
-		getitem 668,3; 
+		getitem 7959,10; 
 		set #SSQthree, 1;
 		set #SSQreward, #SSQreward + 1;
 		end;
@@ -108,7 +108,7 @@ alberta,70,125,4	script	 #secret4	10593,{ //จุดที่ 4 Alberta
 		mes "[Tech Support]";
 		mes "เอานี่ไป...ค่าทำงาน ละก็ไปหาจุดอื่นเสร็จละมาแจ้งไอ้แมวมันด้วยนะ!!";
 		getitem 12221,1; 
-		getitem 668,3; 
+		getitem 7959,10; 
 		set #SSQfour, 1;
 		set #SSQreward, #SSQreward + 1;
 		end;
@@ -129,7 +129,7 @@ pay_dun00,164,141,4	script	 #secret5	1934,{ //จุดที่ 5 ย่อนดันชั้น1
 		mes "[Tech Support]";
 		mes "เอานี่ไป...ค่าทำงาน ละก็ไปหาจุดอื่นเสร็จละมาแจ้งไอ้แมวมันด้วยนะ!!";
 		getitem 12221,1; 
-		getitem 668,3; 
+		getitem 7959,10; 
 		set #SSQfive, 1;
 		set #SSQreward, #SSQreward + 1;
 		end;
@@ -150,7 +150,7 @@ in_orcs01,30,187,4	script	 #secret6	1932,{ //จุดที่ 6 ก่อนเข้า orc dungeon
 		mes "[Tech Support]";
 		mes "เอานี่ไป...ค่าทำงาน ละก็ไปหาจุดอื่นเสร็จละมาแจ้งไอ้แมวมันด้วยนะ!!";
 		getitem 12221,1; 
-		getitem 668,3; 
+		getitem 7959,10; 
 		set #SSQsix, 1;
 		set #SSQreward, #SSQreward + 1;
 		end;
@@ -171,7 +171,7 @@ treasure02,61,36,4	script	 #secret7	10029,{ //จุดที่ 7 sunken 2
 		mes "[Tech Support]";
 		mes "เอานี่ไป...ค่าทำงาน ละก็ไปหาจุดอื่นเสร็จละมาแจ้งไอ้แมวมันด้วยนะ!!";
 		getitem 12221,1; 
-		getitem 668,3; 
+		getitem 7959,10; 
 		set #SSQseven, 1;
 		set #SSQreward, #SSQreward + 1;
 		end;
@@ -192,7 +192,7 @@ prt_sewb3,96,62,4	script	 #secret8	10001,{ //จุดที่ 8 ท่อแมงสาบชั้น3
 		mes "[Tech Support]";
 		mes "เอานี่ไป...ค่าทำงาน ละก็ไปหาจุดอื่นเสร็จละมาแจ้งไอ้แมวมันด้วยนะ!!";
 		getitem 12221,1; 
-		getitem 668,3; 
+		getitem 7959,10; 
 		set #SSQeight, 1;
 		set #SSQreward, #SSQreward + 1;
 		end;
@@ -213,7 +213,7 @@ payon,141,104,4	script	 #secret9	10083,{ //จุดที่ 9 payon
 		mes "[Tech Support]";
 		mes "เอานี่ไป...ค่าทำงาน ละก็ไปหาจุดอื่นเสร็จละมาแจ้งไอ้แมวมันด้วยนะ!!";
 		getitem 12221,1; 
-		getitem 668,3; 
+		getitem 7959,10; 
 		set #SSQnine, 1;
 		set #SSQreward, #SSQreward + 1;
 		end;
@@ -234,7 +234,7 @@ alb2trea,91,65,4	script	 #secret10	409,{ //จุดที่ 10 ก่อนเข้าเรือล่ม
 		mes "[Tech Support]";
 		mes "เอานี่ไป...ค่าทำงาน ละก็ไปหาจุดอื่นเสร็จละมาแจ้งไอ้แมวมันด้วยนะ!!";
 		getitem 12221,1; 
-		getitem 668,3; 
+		getitem 7959,10; 
 		set #SSQten, 1;
 		set #SSQreward, #SSQreward + 1;
 		end;
@@ -255,7 +255,7 @@ gef_fild11,187,41,9	script	 #secret11	614,{ //จุดที่ 11 geffen field 11 กบ
 		mes "[Tech Support]";
 		mes "เอานี่ไป...ค่าทำงาน ละก็ไปหาจุดอื่นเสร็จละมาแจ้งไอ้แมวมันด้วยนะ!!";
 		getitem 12221,1; 
-		getitem 668,3; 
+		getitem 7959,10; 
 		set #SSQeleven, 1;
 		set #SSQreward, #SSQreward + 1;
 		end;
@@ -276,7 +276,7 @@ prt_in,52,56,9	script	 #secret12	409,{ //จุดที่ 12 ห้องตีบวกพรอน
 		mes "[Tech Support]";
 		mes "เอานี่ไป...ค่าทำงาน ละก็ไปหาจุดอื่นเสร็จละมาแจ้งไอ้แมวมันด้วยนะ!!";
 		getitem 12221,1; 
-		getitem 668,3; 
+		getitem 7959,10; 
 		set #SSQtwelve, 1;
 		set #SSQreward, #SSQreward + 1;
 		end;

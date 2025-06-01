@@ -1,71 +1,82 @@
+mal_in01,170,36,4	script	Kaya	877,{
+	// ยังไม่ได้ปลดล็อกเควส
+	if (SQhidden != 2) {
+		emotion e_omg; // แสดงตกใจ
+		mes "[Kaya]";
+		mes "เมี๊ยว? เจ้าเป็นใครหนะ โจรลักพาตัวรึเปล่า!?!...";
+		close;
+	}
+
+	// ถ้าเรียนรู้ภาษาแมวแล้ว
+	if (@cat_lang == 1) {
+		mes "[Kaya]";
+		mes "เมี๊ยว~ เจ้าเข้าใจภาษาของแมวอยู่แล้วนี่นา!";
+		mes "ไปลองคุยกับแมวดูสิ พวกเขาน่ารักนะ~";
+		close;
+	}
+
+	// ยังไม่ได้เรียน
+	mes "[Kaya]";
+	mes "อ๊ะ... เจ้ายังฟังภาษาของพวกแมวไม่รู้เรื่องเหรอ?";
+	next;
+	mes "[Kaya]";
+	mes "อยากเรียนภาษาของแมวใช่ไหม~?";
+	next;
+	mes "[Kaya]";
+	mes "โอเค งั้นตั้งใจฟังดีๆ นะ เมี๊ยว ง่าวว~ งิ๊ง~ บรื้ออ~";
+	specialeffect2 EF_ENLIGHTENING;
+	next;
+	mes "[Kaya]";
+	mes "แปลว่า 'สวัสดี! ยินดีที่ได้พบเจ้า' ล่ะ!";
+	next;
+	mes "[Kaya]";
+	mes "ตอนนี้เจ้าเข้าใจภาษาของพวกเราละ เมี๊ยว~!";
+	set @cat_lang, 1;
+	close;
+}
+
+
 // NPC เช็คจำนวน Secret Quest รับของ
 icecastle,223,170,4	script	Mokonar	876,{
+	if (#cat_lang != 1) {
+		mes "[แมวรับทุกปัญหา....แต่ไม่แก้]";
+		mes "ฅ^•?•^ฅ เมี๊ยวบุบุบุ... ง้าววว~";
+		mes "ฅ’?’ฅ ง่าวว~ งิ๊งงิ๊ง บรื้ออ~!!";
+		close;
+	}
+
+	mes "[แมวรับทุกปัญหา....แต่ไม่แก้]";
+	if (#SSQreward > 0) {
+		mes "ตอนนี้เจ้าพบพื้นที่ลับไปแล้วทั้งหมด " + #SSQreward + " ที่!";
+	} else {
+		mes "ยังไม่เจอพื้นที่ลับเลยซักที่นะ~";
+	}
+	next;
+
 	if (#SSQreward > #SSQcheck) {
 		mes "[แมวรับทุกปัญหา....แต่ไม่แก้]";
-		mes "ไหนดูซิ...."; 
-		mes "เจอมาจุดแปลกๆมาทั้งหมด " + #SSQreward + " ที่";
 		mes "เก่งมากกก ช่วยงานได้เยอะเลย!!";
 		next;
 		mes "[แมวรับทุกปัญหา....แต่ไม่แก้]";
 		mes "มารับค่าปิดปากไปนะ.....";
+		next;
 
+		for ( .@i = #SSQcheck + 1; .@i <= #SSQreward && .@i <= 12; .@i++ ) {
+			if (.@i == 6 || .@i == 12) {
+				getitem 2099001, 1;
+			} else {
+				getitem 12259, 1;
+			}
+			set #SSQcheck, .@i;
+		}
 
-		// รับรางวัลสำหรับทุกระดับที่ผู้เล่นข้ามไป
-		if (#SSQreward >= 1 && #SSQcheck < 1) {
-			getitem 12259, 1; // Miracle Tonic 1 ea
-			set #SSQcheck, 1;
-		}
-		if (#SSQreward >= 2 && #SSQcheck < 2) {
-			getitem 12259, 1; // Miracle Tonic 1 ea
-			set #SSQcheck, 2;
-		}
-		if (#SSQreward >= 3 && #SSQcheck < 3) {
-			getitem 12259, 1; // Miracle Tonic 1 ea
-			set #SSQcheck, 3;
-		}
-		if (#SSQreward >= 4 && #SSQcheck < 4) {
-			getitem 12259, 1; // Miracle Tonic 1 ea
-			set #SSQcheck, 4;
-		}
-		if (#SSQreward >= 5 && #SSQcheck < 5) {
-			getitem 12259, 1; // Miracle Tonic 1 ea
-			set #SSQcheck, 5;
-		}
-		if (#SSQreward >= 6 && #SSQcheck < 6) {
-			getitem 2099001, 1; // หินออฟ all stat +1
-			set #SSQcheck, 6;
-		}
-		if (#SSQreward >= 7 && #SSQcheck < 7) {
-			getitem 12259, 1; // Miracle Tonic 1 ea
-			set #SSQcheck, 7;
-		}
-		if (#SSQreward >= 8 && #SSQcheck < 8) {
-			getitem 12259, 1; // Miracle Tonic 1 ea
-			set #SSQcheck, 8;
-		}
-		if (#SSQreward >= 9 && #SSQcheck < 9) {
-			getitem 12259, 1; // Miracle Tonic 1 ea
-			set #SSQcheck, 9;
-		}
-		if (#SSQreward >= 10 && #SSQcheck < 10) {
-			getitem 12259, 1; // Miracle Tonic 1 ea
-			set #SSQcheck, 10;
-		}
-		if (#SSQreward >= 11 && #SSQcheck < 11) {
-			getitem 12259, 1; // Miracle Tonic 1 ea
-			set #SSQcheck, 11;
-		}
-		if (#SSQreward >= 12 && #SSQcheck < 12) {
-			getitem 2099001, 1; // หินออฟ all stat +1 เม็ดที่2
+		if (#SSQcheck == 12) {
 			mes "เจ้าหาพื้นที่ลับครบทั้งหมดแล้ว... รอแมวมาอัพเดทเพิ่มนะ..";
-			set #SSQcheck, 12;
-			close;
 		}
-	end;
+		close; // ? ปิดตรงนี้ก็พอ
 	} else {
 		mes "[แมวรับทุกปัญหา....แต่ไม่แก้]";
-		mes "ฅ^•?•^ฅ เมี๊ยวบุบุบุ... ง้าววว~";
-		mes "ฅ’?’ฅ ง่าวว~ งิ๊งงิ๊ง บรื้ออ~!!";
-		end;
+		mes "ไม่มีรางวัลเพิ่มเติมในตอนนี้เมี๊ยว~ ลองไปหาพื้นที่ลับเพิ่มดูนะ!";
+		close; // ? ปิดกรณีไม่มีของแจก
 	}
 }

@@ -1,0 +1,38 @@
+icecastle,188,199,1	script	ออเดิร์ฟ#new_commer	4_M_NOV_RUMIN,{
+	.@npcname$ = "[ Old Minister ]";
+	switch( checkquest(1) ) {
+		case -1:
+			mes .@npcname$;
+			mes "โฮ๊ๆ เจ้าคงเป็นผู้มาใหม่";
+			mes "ก็ขอต้อนรับด้วยภารกิจทดสอบฝีมือนิดหน่อยละกัน";
+			setquest 1;
+			break;
+		case 0:
+		case 1:
+		switch( checkquest(1,HUNTING) ) {
+			case 0:
+			case 1:
+				mes .@npcname$;
+				mes "ยังทำภารกิจไม่สำเร็จเลยนี่";
+				mes "ไปทำภารกิจก่อนเถอะ";
+				end;
+			case 2:
+				mes .@npcname$;
+				mes "ทำดีนี่น่า ถือว่าเป็นค่าตอบแทน";
+				mes "และต้อนรับสำหรับผู้มาใหม่ก็แล้วกันนะ";
+				completequest 1;
+				getitem 2000002,1;
+				next;
+				break;
+			default:
+				mes "Error Please contract Admin";
+				end;
+			}
+		case 2:
+		default:
+			mes .@npcname$;
+			mes "ขอบคุณมากๆนะ";
+			break;
+	}
+	end;
+}

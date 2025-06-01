@@ -71,6 +71,9 @@ icecastle,228,159,4	script	Quest Guide	627,{
 			mes "ข้าไม่รู้ว่าหน้านั้นคืออะไรนะ ลองใหม่อีกทีสิ!";
 			close;
 		}
+		Oninit:
+	waitingroom "Side Quest Guide",0;
+	end;
 end;
 }
 //---------------------------------------------------------

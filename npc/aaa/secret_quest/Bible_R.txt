@@ -1,25 +1,37 @@
 prt_church,98,131,1	script	ไบเบิ้ลโรคจิต	4_EP18_PAPERS,{
-	.@npcname$ = "[ Bible ]";
+	.@npcname$ = "[ Vomars ]";
 	if(!isbegin_quest(7) ) {
 		mes .@npcname$;
-		mes "กางเกงในเป็นของดี";
-		mes "ถ้าเจ้าศรัทธาข้า";
-		mes "ก็เอาเกงในมา ไม่งั้นตายยยยย!!!";
+		mes "You must apply for .... ฮะ เฮ้ยยยย";
+		mes "เจ้ามาอ่านหนังสือส่วนตัวของข้าได้ยังไง";
+		mes "ส่งมันมานี่!!!";
 		next;
+		mes "[ผัวะ!!! ตุ๊บ!! ผลั๊กกก!!]";
 		setquest 7;
-		percentheal -100,-100;
+		percentheal -99,-99;
+		next;
+		mes .@npcname$;
+		mes "มันคือ นะ หนังสือศักสิทธิ์หนะ ";
+		mes "ข้ากำลังเตรียมพิธีกรรมอยู่พอดีเลย";
+		mes "มันอาจจะแปลกซักหน่อย.....!!!";
+		mes "แต่ข้าอยากได้ เอ่อ....ไอ้นี่หนะ ^i[2339] ";
+		next;
+		mes .@npcname$;
+		mes "ไม่ใช่รสนิยมของข้านะ!! ฮะ แฮ่มมม!!";
+		mes "หะ หามาให้ข้าด้วยหละ!!";
+		mes "เยอะๆนะ.....(กระซิบ)";
 		end;
 	}
-	else if (isbegin_quest(7) == 1 && countitem(2339) < 100) {
+	else if (isbegin_quest(7) == 1 && countitem(2339) < 77) {
 		mes .@npcname$;
 		mes "ไม่พอ ^i[2339] ไปเอามาเพิ่มอีก เยอะๆๆๆ!!!!";
 		end;
 	}
-	else if (isbegin_quest(7) == 1 && countitem(2339) >= 100 ) {
+	else if (isbegin_quest(7) == 1 && countitem(2339) >= 77 ) {
 		mes .@npcname$;
-		mes "มีแต่กางเกงในโหลยโท่ย";
+		mes "มีแต่กางเกงในไม่มีเกรดเลย.....";
 		mes "แต่เห็นถึงความตั้งใจ";
-		delitem 2339,100;
+		delitem 2339,77;
 		getitem 2371,1;
 		getitem 2000005,1;
 		completequest 7;
@@ -32,11 +44,14 @@ prt_church,98,131,1	script	ไบเบิ้ลโรคจิต	4_EP18_PAPERS,{
 	}
 	else {
 		mes .@npcname$;
-		mes "กางเกงในสดชื่นชะมัด";
-		mes "มากวนเวลาดูกางเกงในสาวๆของข้า";
-		mes "ตายยยยย!!!";
-		sleep 2000;
-		percentheal -100,-100;
+		mes "ซื้ดดด.....กางเกงในสดชื่นชะมัด";
+		mes "เจ้ากลับมาอีกทำไม ข้ากำลังเริ่มพิธีกรรม";
+		mes "คนนอกห้ามเข้า!!!!!";
+		next;
+		mes "[ผัวะ!!! ตุ๊บ!! ผลั๊กกก!!]";
+		next;
+		percentheal -99,-99;
+		warp "prontera",234,314;
 		end;
 	}
 	end;

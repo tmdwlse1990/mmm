@@ -30,12 +30,12 @@ icecastle,147,85,5	script	Henry ผู้หิวโซ	870,{
 						 set .@getstonestat, rand(1, 6);  // Randomize +2 Stat Stone
 						 switch(.@getstonestat)
 						 {
-								case 1: getitem 4701,1;
-								case 2: getitem 4711,1;
-								case 3: getitem 4721,1;
-								case 4: getitem 4731,1;
-								case 5: getitem 4741,1;
-								case 6: getitem 4751,1;
+								case 1: getitem 4701,1; break;
+								case 2: getitem 4711,1; break;
+								case 3: getitem 4721,1; break;
+								case 4: getitem 4731,1; break;
+								case 5: getitem 4741,1; break;
+								case 6: getitem 4751,1; break;
 						 } 
 					}
 					else 
@@ -43,12 +43,12 @@ icecastle,147,85,5	script	Henry ผู้หิวโซ	870,{
 						set .@getstonestat, rand(1, 6);  // Randomize +1 Stat Stone
 						 switch(.@getstonestat)
 						 {
-								case 1: getitem 4700,1;
-								case 2: getitem 4710,1;
-								case 3: getitem 4720,1;
-								case 4: getitem 4730,1;
-								case 5: getitem 4740,1;
-								case 6: getitem 4750,1;
+								case 1: getitem 4700,1; break;
+								case 2: getitem 4710,1; break;
+								case 3: getitem 4720,1; break;
+								case 4: getitem 4730,1; break;
+								case 5: getitem 4740,1; break;
+								case 6: getitem 4750,1; break;
 						 } 
 					}
 
@@ -106,3 +106,67 @@ icecastle,147,85,5	script	Henry ผู้หิวโซ	870,{
 }
 
 //---------------- จบ SQ 4 ----------------------------------
+
+//---------------- Hidden Reward เพื่อรู้ภาษาแมว --------------------
+
+icecastle,157,206,4	script	Karen	918,{
+
+	// ? เคยคุยกับ Kaya แล้ว เข้าใจภาษาแมว
+	if (@cat_lang == 1 && SQhidden == 2) {
+		mes "[Karen]";
+		mes "อืม... ดูเหมือนว่าเธอไปเจอเด็กหูแมวคนนั้นมาแล้วสินะ...";
+		emotion ET_THINK;
+		next;
+		mes "[Karen]";
+		mes "พูดอะไรไม่ออกเลยแฮะ... บางทีแมวพวกนั้นก็น่ารักเหมือนกันนะ...";
+		emotion ET_SHY;
+		close;
+	}
+
+	// ? ยังไม่ผ่าน SQfour
+	if (SQfour != 2) {
+		mes "[Karen]";
+		mes "อะไรยะ!? มายืนจ้องหน้าฉันทำไม?";
+		emotion ET_FRET;
+		next;
+		mes "[Karen]";
+		mes "คนสมัยนี้ไม่รู้จักมารยาทเลย! จะเข้ามาคุยก็ไม่ยอมแนะนำตัวก่อน!";
+		emotion ET_FRET;
+		next;
+		mes "[Karen]";
+		mes "ฉันไม่มีเวลาว่างให้คนแปลกหน้า ถ้าไม่มีธุระจริงๆ ก็ไปซะ!";
+		emotion ET_FRET;
+		close;
+	}
+
+	// ? เคยคุยแล้ว แต่ยังไม่ไปเจอ Kaya
+	if (SQhidden >= 2) {
+		mes "[Karen]";
+		mes "ยังอยู่แถวนี้อีกเหรอ!? ฉันก็บอกที่อยู่เด็กหูแมวไปแล้วนี่!";
+		emotion ET_FRET;
+		mes "เธอชื่อ Kaya อยู่ที่เกาะอุ้งมือแมวที่ชั้นเคยไปเที่ยว แถวๆกระป๋องยักษ์นั้นแหละ!!";
+		mes "อย่าทำตัวน่ารำคาญนักนะ!";
+		close;
+	}
+
+	// ? ผ่าน SQfour แล้ว ป้ายอมเปิดเผยข้อมูล
+	mes "[Karen]";
+	mes "หืม... อ๊ะ! นี่เธอนี่นา คนที่ช่วยลูกฉันวันนั้นไว้!";
+	next;
+	mes "[Karen]";
+	mes "จะว่าไปฉันก็ติดหนี้บุญคุณอยู่... ถึงจะไม่อยากยอมรับก็เถอะ!";
+	next;
+	mes "[Karen]";
+	mes "งั้นฟังให้ดีๆ — ชั้นจะไม่บอกซ้ำหรอกนะ!! มีเด็กหูแมวคนหนึ่งชื่อ Kaya... ";
+	mes "เธออยู่ที่เกาะอุ้งมือแมวที่ชั้นเคยไปเที่ยวกับสามีชั้น แถวๆกระป๋องปลายักษ์เหม็นๆนั้นแหละ!!";
+	next;
+	emotion e_swt;
+	mes "[Karen]";
+	mes "ไม่ใช่เรื่องของฉันหรอก แต่เธออาจอยากไปหา...";
+	next;
+	mes "[Karen]";
+	mes "ถือว่าหนี้เราสองคนเป็นอันจบกันละนะ!";
+	specialeffect2 EF_ENHANCE;
+	set SQhidden, 2;
+	close;
+}
