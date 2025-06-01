@@ -91,5 +91,5 @@ Header:
 Footer:
   Imports:
   - Path: db/re/item_db_usable.yml
-  - Path: db/re/item_db_equip.yml
+  - Path: db/re/item_db_equip_c_nostats.yml
   - Path: db/re/item_db_etc.yml

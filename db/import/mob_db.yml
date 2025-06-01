@@ -719,6 +719,10 @@ Body:
     ClientAttackMotion: 130
     DamageMotion: 100
     Ai: 20
+    Drops:
+      - Item: Peco_Feather_Maybe
+        Rate: 100
+        StealProtected: true
   - Id: 27003
     AegisName: BABY_KING_WOLF
     Name: Baby King Wolf
@@ -747,6 +751,10 @@ Body:
     ClientAttackMotion: 521
     DamageMotion: 725
     Ai: 20
+    Drops:
+      - Item: Wolf_Jaw
+        Rate: 100
+        StealProtected: true
   - Id: 27004
     AegisName: KING_RING
     Name: King Ring
@@ -775,6 +783,10 @@ Body:
     ClientAttackMotion: 530
     DamageMotion: 400
     Ai: 20
+    Drops:
+      - Item: Broken_Poring_Card
+        Rate: 100
+        StealProtected: true
 # New
   - Id: 23000
     AegisName: DARK_ILLUSION2

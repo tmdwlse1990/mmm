@@ -11,14 +11,7 @@ function	script	F_AutoAT	{
 	*/
 
 	// กำหนดเวลา AI
-	//@ai_timer = 3600000; 1 hour;
-	if(gettime(DT_DAYOFMONTH) != DAYOFMONTH) {
-		DAYOFMONTH = gettime(DT_DAYOFMONTH);
-		Free_hour += 2;
-		if(Free_hour >= 8)
-			Free_hour = 8;
-	showscript "ได้รับชั่วโมง AI ฟรี 2 ชั่วโมง";
-	}
+	//ai_timer = 3600000; 1 hour;
 	doevent "AutoAI_Main::OnMainMenu";
 	end;
 }
@@ -28,35 +21,13 @@ function	script	F_AutoAT	{
 
 OnMainAI:
 	if(!sc_check(SC_AUTOATTACK)){
-		clear2();
-		set .@zenyuse,100000;
-		.@sum_timer = ai_timer;
-		if(Free_hour >= ai_timer) {
-			.@sum_timer = ai_timer;
-			if(zeny >= .@zenyuse * .@sum_timer) Free_hour -= ai_timer;
-		}
-		else if (Free_hour < ai_timer) {
-			.@sum_timer = ai_timer - Free_hour;
-			if(zeny >= .@zenyuse * .@sum_timer) Free_hour = 0;
-		}
-		if(zeny < .@zenyuse * .@sum_timer) {
-			
-			 mes "รวมเป็นเงินที่ต้องใช้คือ ^ff0000:"+callfunc("F_InsertComma",.@zenyuse * .@sum_timer)+" Zeny^000000";
-			 mes "ยอดเงินภายในตัวไม่เพียงพอในการใช้บริการ";
-			 showscript "ยอดเงินไม่เพียงพอทำรายการ";
-			 end;
-		}
-		zeny -= .@zenyuse * .@sum_timer;
-		// showscript "เปิดระบบ Auto Attack";
-		if(ai_timer)
-			autostart(true,ai_timer*3600000);
-		else {
-			clear2();
-			mes "กรุณาตั้งเวลาก่อน";
-			showscript "กรุณาตั้งเวลาก่อน";
-		}
+		showscript "เปิดระบบ Auto Attack";
+		if(@ai_timer)
+			autostart(true,@ai_timer);
+		else
+			autostart(true);
 	}else{
-		// showscript "ปิดระบบ Auto Attack";
+		showscript "ปิดระบบ Auto Attack";
 		autostart(false);
 	}
 	end;
@@ -66,10 +37,6 @@ main_menu:
 	clear2();
 	.@menu$ = "[^FF0000•^000000 ^2f00ffAuto Attack^000000 ^FF0000•^000000]";
 	mes .@menu$;
-	mes "ขณะนี้มีเวลาบอทฟรีสะสม :"+Free_hour+" ชั่วโมง";
-	mes "เวลาที่ตั้งค่าจะเปิดใช้งานบอท :"+ai_timer+" ชั่วโมง";
-	mes "บอทจะคิดเวลาใช้งาน ชั่วโมงละ ^ff0000100,000 zeny";
-	mes "กรณีที่เปิดไปแล้ว ปิดก่อนกำหนดเวลาบอท จะไม่คืนเงินทุกกรณี.^000000";
 
 	if(sc_check(SC_AUTOATTACK))
 		.@main_menu = select(" ^ff0000~^000000 ปิดระบบ Auto Attack"," ^ff0000~^000000 ตั้งค่า"," ^ff0000~^000000 ยกเลิก");
@@ -91,7 +58,7 @@ config_menu:
 
 	// To disable an option, comment the line
 	menu	" ^ff0000~^000000 ย้อนกลับ",main_menu,
-			" ^ff0000~^000000 กำหนดระยะเวลา",timer_setting,
+			//" ^ff0000~^000000 กำหนดระยะเวลา",timer_setting,
 			" ^ff0000~^000000 โจมตีปกติ",melee_attack,
 			" ^ff0000~^000000 โฟกัส",focus_menu,
 			" ^ff0000~^000000 ฟื้นฟู",regeneration_menu,
