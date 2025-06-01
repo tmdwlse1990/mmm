@@ -1397,7 +1397,9 @@ int32 char_make_new_char( struct char_session_data* sd, char* name_, int32 str, 
 	int32 status_points;
 
 	safestrncpy(name, name_, NAME_LENGTH);
-	normalize_name(name,TRIM_CHARS);
+	#if PACKETVER < 20240711
+		normalize_name(name,TRIM_CHARS);
+	#endif
 	Sql_EscapeStringLen(sql_handle, esc_name, name, strnlen(name, NAME_LENGTH));
 
 	memset( tmp_start_point, 0, sizeof( tmp_start_point ) );

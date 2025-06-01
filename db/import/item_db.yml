@@ -307,6 +307,24 @@ Body:
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
+  - Id: 2005002
+    AegisName: Peco_Feather_Maybe
+    Name: Maybe Peco Feather
+    Type: Etc
+    Buy: 3800
+    Weight: 10
+  - Id: 2005003
+    AegisName: Wolf_Jaw
+    Name: Wolf Jaw
+    Type: Etc
+    Buy: 3800
+    Weight: 10
+  - Id: 2005004
+    AegisName: Broken_Poring_Card
+    Name: Broken Poring Card
+    Type: Etc
+    Buy: 3800
+    Weight: 10
 #   [Useable Item]
   - Id: 2001001
     AegisName: Paradise_Weap_1

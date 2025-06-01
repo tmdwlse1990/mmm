@@ -24,11 +24,11 @@ t_garden,158,235,2	script(CLOAKED)	Dimension Prison#1	GATE_SKYBLUE,{
 	if (isbegin_quest(12597) != 2)
 		end;
 	if (checkweight(1201,1) == 0) {	// unknown ID
-		mes "^ff0000It seems that you are overweight. Please organize your inventory.^000000";
+		mes "^ff0000ไม่สามารถดำเนินการได้เนื่องจากแบกสัมภาระมากเกินไป โปรดจัดการสัมภาระก่อนที่จะดำเนินการ^000000";
 		close;
 	}
 	if (getcharid(1) < 1) {
-		mes "^0000ffPlease form a party of at least one person and continue.^000000";
+		mes "^0000ffกรุณาสร้างปาร์ตี้อย่างน้อย 1 คนก่อนที่จะดำเนินการ^000000";
 		close;
 	}
 	switch( checkquest(12611,PLAYTIME) ) {
@@ -36,33 +36,33 @@ t_garden,158,235,2	script(CLOAKED)	Dimension Prison#1	GATE_SKYBLUE,{
 		break;
 	case 0:
 	case 1:
-		mes "^0000ffYou need more time to enter the dungeon.^000000";
+		mes "^0000ffดูเหมือนจะต้องใช้เวลาอีกสักพักจึงจะสามารถเข้าไปยังพื้นที่นี้ได้อีกครั้ง^000000";
 		close;
 	case 2:
 		erasequest 12611;
 		break;
 	}
-	.@md_name$ = "Lake of fire";
+	.@md_name$ = "Lake of Fire";
 	.@current_instance_name$ = instance_live_info(ILI_NAME, instance_id(IM_PARTY));
 
 	if (.@current_instance_name$ == .@md_name$)
 		.@md_name_ready$ = .@md_name$;
 	else if (is_party_leader() == true) {
-		if (select( "Cancel", "Create access permission for " + .@md_name$ + "" ) == 1)
+		if (select( "ยกเลิก", "สร้างทางเข้า " + .@md_name$ + "" ) == 1)
 			end;
 		instance_create(.@md_name$);
 		end;
 	}
 
 	if (.@md_name_ready$ != "")
-		.@menu$ = "Enter " + .@md_name_ready$ + "";
+		.@menu$ = "เข้าสู่ " + .@md_name_ready$ + "";
 
-	if (select( "Cancel", .@menu$ ) == 1)
+	if (select( "ยกเลิก", .@menu$ ) == 1)
 		end;
 
 	switch( instance_enter(.@md_name_ready$) ) {
 	case IE_OTHER:
-		mes "^ff0000An unknown error occurred.^000000";
+		mes "^ff0000เกิดข้อผิดพลาดโดยไม่ทราบสาเหตุ^000000";
 		close;
 	case IE_NOINSTANCE:
 	case IE_NOMEMBER:
@@ -77,7 +77,7 @@ t_garden,158,235,2	script(CLOAKED)	Dimension Prison#1	GATE_SKYBLUE,{
 		if (isbegin_quest(12616) > 0)
 			erasequest 12616;
 		setquest 12611;
-		mapannounce "t_garden", "Adventurer " + strcharinfo(0) + " enters " + .@md_name_ready$ + ".", bc_map, 0xFFAA;
+		mapannounce "t_garden", "ขณะนี้ นักพจญภัย " + strcharinfo(0) + " ได้เข้าสู่ " + .@md_name_ready$ + " แล้ว", bc_map, 0xFFAA;
 		// warp "1@f_lake",23,192;
 		end;
 	}
@@ -137,9 +137,9 @@ OnInstanceInit:
 	F_CheckStep(0);
 	F_CheckLeader();	// unknown text for party member
 
-	mes "^0000ff" + 'spirit_type$ + " glances at you and then closes his eyes indifferently. It looks like it doesn't want to deal with you.^000000";
+	mes "^0000ffสัตว์เทพอสูร " + 'spirit_type$ + " กำลังจ้องมองคุณแล้วหลับตาอย่างเฉยชา ดูเหมือนสัตว์เทพอสูรไม่อยากยุ่งกับคุณ^000000";
 	next;
-	if (select( "Stop talking", "I would like to receive a prison key" ) == 1)
+	if (select( "จบการสนทนา", "ข้าต้องการกุญแจ" ) == 1)
 		end;
 	F_CheckStep(0);
 	F_CheckLeader();
@@ -161,16 +161,16 @@ OnStart:
 
 	switch( 'beast_type ) {
 	case 22177:	// MD_PRI_DRAGON_1
-		mapannounce 'map_f_lake$, "" + 'spirit_type$ + ": Want the prison key? From the looks of it, it appears to be a seed sent by a false prophet. It won't go smoothly.", bc_map, 0x33FFCC;
+		mapannounce 'map_f_lake$, "" + 'spirit_type$ + ": อยากได้กุญแจงั้นเหรอ? จากที่ข้าเห็น ดูเหมือนเจ้าเป็นแค่เพียงเมล็ดพันธุ์ที่อยากจะมาแพร่กระจายอยู่ที่แห่งนี้ ข้าจะไม่ปล่อยให้เจ้ากลับไปโดยดีแน่", bc_map, 0x33FFCC;
 		break;
 	case 22178:	// MD_PRI_DRAGON_2
-		mapannounce 'map_f_lake$, "" + 'spirit_type$ + ": You came here after being deceived by sugarcoating. It's pitiful, but there's nothing I can do. I'll just do my duty.", bc_map, 0x33FFCC;
+		mapannounce 'map_f_lake$, "" + 'spirit_type$ + ": เจ้ามาที่นี่ด้วยคำพูดอันหอมหวานหลอกลวงจากคนพวกนั้นเหรอ? หึ! ช่างน่าสมเพชยิ่งนัก ข้าคงช่วยอะไรไม่ได้หรอกนะ เพราะข้าต้องทำหน้าที่ของข้าในที่แห่งนี้", bc_map, 0x33FFCC;
 		break;
 	case 22179:	// MD_PRI_DRAGON_3
-		mapannounce 'map_f_lake$, "" + 'spirit_type$ + ": How dare you come to harm it? Trying to reach a truly noble being with the body of a lowly mortal!", bc_map, 0x33FFCC;
+		mapannounce 'map_f_lake$, "" + 'spirit_type$ + ": กล้าดีอย่างไรที่เจ้าจะมาทำลายสิ่งนั้น? เจ้าพยายามจะเข้าถึงพลังอันสูงส่งอย่างนั้นเหรอ! มนุษย์พวกนี้ช่างต่ำต้อยซะเหลือเกิน", bc_map, 0x33FFCC;
 		break;
 	case 22180:	// MD_PRI_DRAGON_4
-		mapannounce 'map_f_lake$, "" + 'spirit_type$ + ": You know nothing! Anyone who is deceived by false stories and tries to harm it will be destroyed!", bc_map, 0x33FFCC;
+		mapannounce 'map_f_lake$, "" + 'spirit_type$ + ": เจ้าไม่รู้อะไรเลยสินะ! ใครก็ตามที่ถูกพวกมันหลอกลวงและพยายามที่จะเข้ามาทำลายสิ่งนั้นแล้วล่ะก็ ข้าจะต้องกำจัดให้สิ้นซาก!", bc_map, 0x33FFCC;
 		break;
 	}
 	specialeffect EF_BEGINSPELL6;
@@ -180,7 +180,7 @@ OnStart:
 OnTimer2000:
 	'previous_state_invincible = false;
 
-	monster 'map_f_lake$,16,192,"--en--", 'beast_type,1,0, instance_npcname("md_lake_main_dead") + "::OnBossDead";
+	monster 'map_f_lake$,16,192,"--en--", 'beast_type,1, instance_npcname("md_lake_main_dead") + "::OnBossDead";
 	'boss_gid = $@mobid[0];
 
 	getunitdata( 'boss_gid, .@data );
@@ -245,7 +245,7 @@ OnBossDead:
 	donpcevent instance_npcname("md_lake_manabarrier_random") + "::OnStop";
 	end;
 OnTimer2000:
-	mapannounce 'map_f_lake$, "All party members will be moved near the portal for dimensional movement. Be careful of shock.", bc_map, 0x33FFCC;
+	mapannounce 'map_f_lake$, "สมาชิกปาร์ตี้ทั้งหมดจะถูกเคลื่อนย้ายใกล้ประตูทางเข้าเพื่อเข้าสู่ทางเข้ามิติ โปรดระวังตัวด้วย", bc_map, 0x33FFCC;
 	end;
 OnTimer7000:
 	stopnpctimer;
@@ -298,7 +298,7 @@ S_Spawn:
 	getfreecell( 'map_f_lake$,.@x,.@y,getarg(0),getarg(1),10,10 );
 
 	// The system spawn and kill the same beast type with 1 hp.
-	monster 'map_f_lake$,.@x,.@y,"--en--", 'beast_type,1,0, instance_npcname("md_lake_skill_welcome") + "::OnMobDead";
+	monster 'map_f_lake$,.@x,.@y,"--en--", 'beast_type,1, instance_npcname("md_lake_skill_welcome") + "::OnMobDead";
 	.@mob_id = $@mobid[0];
 
 	// NPC_SELFDESTRUCTION deal no damage to player (damage skill depends on remaining src hp)
@@ -327,10 +327,10 @@ OnStart:
 OnTimer2000:
 	switch( F_IsPartyAlive('map_f_lake$) ) {
 	case 0:	// state invincible (spam mapannounce)
-		mapannounce 'map_f_lake$, "A fatality occurred due to the divine beast's strike. Infinite power is given to the divine beast until the deceased is resurrected.", bc_map, 0xCCFF00;
+		mapannounce 'map_f_lake$, "เกิดเหตุการณ์ร้ายแรงขึ้นจากการโจมตีของสัตว์เทพอสูร สัตว์เทพอสูรได้รับพลังไร้ที่สิ้นสุดจนกว่าจะฟื้นคืนชีพได้อีกครั้ง", bc_map, 0xCCFF00;
 		break;
 	case 1:	// invincible removed (mapannounce x1)
-		mapannounce 'map_f_lake$, "The infinite power that overflowed in the body of the divine beast has disappeared.", bc_map, 0xCCFF00;
+		mapannounce 'map_f_lake$, "พลังอันไร้ที่สิ้นสุดที่ไหลอยู่ภายในร่างกายของสัตว์เทพอสูรได้จางหายไปแล้ว", bc_map, 0xCCFF00;
 		break;
 	case 2:	// no change
 		break;
@@ -381,7 +381,7 @@ OnTouchNPC:
 	specialeffect EF_GUARD2;
 	disablenpc();
 
-	mapannounce 'map_f_lake$, "" + 'spirit_type$ + " is affected by the lava field barrier and lost a lot of armor.", bc_map, 0xFFFFCC;
+	mapannounce 'map_f_lake$, "สัตว์เทพอสูร " + 'spirit_type$ + " ได้รับผลกระทบจากพื้นลาวา ทำให้สูญเสียพลังป้องกันไปส่วนหนึ่ง", bc_map, 0xFFFFCC;
 
 	// SC_GROGGY is used instead (SC should be more reliable)
 	// unitskilluseid 'boss_gid,"NPC_GROGGY_ON",1;
@@ -449,7 +449,7 @@ OnTimer3000:
 	unitwarp( 'boss_gid, 'map_f_lake$,.@x,.@y );
 	end;
 OnTimer4000:
-	mapannounce 'map_f_lake$, "" + 'spirit_type$ + " : It looks like you want to see blood after all. I'll do as you want!", bc_map, 0x33FFCC;
+	mapannounce 'map_f_lake$, "" + 'spirit_type$ + " : ดูเหมือนเจ้าอยากหลั่งเลือดในที่แห่งนี้สินะ ข้าจะทำตามปรารถนาตามที่เจ้าต้องการเอง!", bc_map, 0x33FFCC;
 	end;
 OnTimer8000:
 	stopnpctimer;
@@ -485,7 +485,7 @@ OnStart:
 		.@x = rand(.@x_min,.@x_max);
 		.@y = rand(.@y_min,.@y_max);
 
-		monster 'map_f_lake$,.@x,.@y,"--en--",22184,1,0, .@event$;	// MD_MANABARRIER
+		monster 'map_f_lake$,.@x,.@y,"--en--",22184,1, .@event$;	// MD_MANABARRIER
 		'manabarrier_random[.@i] = .@mob_id = $@mobid[0];
 		unitskilluseid .@mob_id, 135, 1;	// AS_CLOAKING
 		// force to display the efst because of AS_CLOAKING
@@ -516,19 +516,19 @@ OnTimer7000:
 	.@event$ = instance_npcname("md_lake_manabarrier_random") + "::OnMobDead2";
 
 	// Spawn additionnal monsters around the boss regardless of mapcell according to x, y of the boss saved previously.
-	monster 'map_f_lake$,('x_boss-10),('y_boss-10),"--en--",22184,1,0, .@event$;	// MD_MANABARRIER
+	monster 'map_f_lake$,('x_boss-10),('y_boss-10),"--en--",22184,1, .@event$;	// MD_MANABARRIER
 	'mana_carre[0] = $@mobid[0];
 	unitskilluseid 'mana_carre[0], 135, 1;	// AS_CLOAKING
 
-	monster 'map_f_lake$,('x_boss+10),('y_boss-10),"--en--",22184,1,0, .@event$;
+	monster 'map_f_lake$,('x_boss+10),('y_boss-10),"--en--",22184,1, .@event$;
 	'mana_carre[1] = $@mobid[0];
 	unitskilluseid 'mana_carre[1], 135, 1;	// AS_CLOAKING
 
-	monster 'map_f_lake$,('x_boss-10),('y_boss+10),"--en--",22184,1,0, .@event$;
+	monster 'map_f_lake$,('x_boss-10),('y_boss+10),"--en--",22184,1, .@event$;
 	'mana_carre[2] = $@mobid[0];
 	unitskilluseid 'mana_carre[2], 135, 1;	// AS_CLOAKING
 
-	monster 'map_f_lake$,('x_boss+10),('y_boss+10),"--en--",22184,1,0, .@event$;
+	monster 'map_f_lake$,('x_boss+10),('y_boss+10),"--en--",22184,1, .@event$;
 	'mana_carre[3] = $@mobid[0];
 	unitskilluseid 'mana_carre[3], 135, 1;	// AS_CLOAKING
 
@@ -678,7 +678,7 @@ OnStart:
 	// Spawn monsters around a center. Center is +2/-2 around the boss.
 	for ( .@x = .@x_min; .@x <= .@x_max; .@x += 5 ) {
 		for ( .@y = .@y_min; .@y <= .@y_max; .@y += 5 ) {
-			monster 'map_f_lake$,.@x,.@y,"--en--",22184,1,0, .@event$;	// MD_MANABARRIER
+			monster 'map_f_lake$,.@x,.@y,"--en--",22184,1, .@event$;	// MD_MANABARRIER
 			.@mob_id = $@mobid[0];
 			unitskilluseid .@mob_id, 135, 1;	// AS_CLOAKING
 			sc_start SC_SHOW_EFFECT1, 2499,374,10000, SCSTART_NOTICKDEF | SCSTART_NOAVOID | SCSTART_NORATEDEF, .@mob_id;
@@ -728,23 +728,23 @@ OnMobDead:
 			.@item_id = 1001443;	// Energy of Winter
 
 		if (checkweight(1001415,1, 1001414,10, .@item_id,5) == 0) {	// custom text
-			mes "^ff0000It seems that you are overweight. Please organize your inventory.^000000";
+			mes "^ff0000ไม่สามารถดำเนินการได้เนื่องจากแบกสัมภาระมากเกินไป โปรดจัดการสัมภาระก่อนที่จะดำเนินการ^000000";
 			close;
 		}
 		getitem 1001415,1;
 		getitem 1001414,10;
 		getitem .@item_id,5;
-		mes "======== Reward ========";
-		mes "You got";
-		mes "1 " + mesitemlink(1001415) + "";	// Hall of Life Key
-		mes "10 " + mesitemlink(1001414) + "";	// Dimensional Crystal Fragment
-		mes "5 " + mesitemlink(.@item_id) + "";
+		mes "======== ของรางวัล ========";
+		mes " ";
+		mes "คุณได้รับ " + mesitemlink(1001415) + " จำนวน 1 ชิ้น";	// Hall of Life Key
+		mes "คุณได้รับ " + mesitemlink(1001414) + " จำนวน 10 ชิ้น";	// Dimensional Crystal Fragment
+		mes "คุณได้รับ " + mesitemlink(.@item_id) + " จำนวน 15 ชิ้น";
 		erasequest 'quest_id;
 		close;
 	}
-	mes "^0000ffDo you want to get out of the prison?^000000";
+	mes "^0000ffต้องการออกจากที่นี่หรือไม่?^000000";
 	next;
-	if (select( "Cancel conversation", "Exit" ) == 1)
+	if (select( "ยกเลิก", "ออกจากที่นี่" ) == 1)
 		end;
 	warp "t_garden",166,230;
 	end;

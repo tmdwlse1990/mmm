@@ -1,0 +1,700 @@
+//===== rAthena Script ======================================= 
+//= Euphy's WOE Controller
+//===== Changelogs: ==========================================
+//= 1.3a Initial SVN release [Euphy]
+//= 1.3b Fixed WoE SE end labels [Euphy]
+//= 1.4 Added auto kick config [Euphy]
+//= 1.5 Added additional reward configs [Euphy]
+//= 1.5a Fixed hardcoded date constants [Lemongrass]
+//= 1.6 Replaced SQL insert for mail with script command [Capuche]
+//= 1.6a Fixed invalid name Schwaltzvalt [Daegaladh]
+//= 1.6b Fixed hardcoded castle numbers [Lemongrass]
+//= 1.7 Removed direct SQL access [Lemongrass]
+//= 1.8 Fixed invalid checkweight usage [Lemongrass]
+//= 1.9 Fixed reward handout for multiple characters on the same account [Lemongrass]
+//= 2.0 กิลด์วอร์บ้านแบบเปิดปิดสุ่ม สุ่มเปิดบ้านกี่หลังก็ได้ กำหนดเมืองกี่เมืองก็ได้ สุ่มเมือง [ใ จ เ ก เ ร #4644]
+//===== Description: ========================================= 
+//= A controller for War of Emperium designed for
+//= simplicity and ease of use.
+//= Many concepts taken from ToastOfDoom's script,
+//= and "rewards" function originally by Goddameit.
+//=
+//= Be sure to disable the default agit controllers!
+//= npc\guild\agit_controller.txt
+//= npc\guild2\agit_start_se.txt
+//= npc\re\guild3\agit_start_te.txt
+//============================================================
+
+// Information NPC
+//============================================================
+prontera,149,193,4	script	ข้อมูล WoE	835,{
+	if(getgmlevel() < 99) end;
+	doevent "WOE_CONTROL::OnMenu";
+	end;
+OnAgitStart:
+	while(agitcheck() || agitcheck2() || agitcheck3()) {
+		sleep 425;
+		specialeffect EF_BEGINSPELL6;
+	}
+	end;
+}
+
+// Script Core
+//============================================================
+-	script	WOE_CONTROL	-1,{
+function Disp_Owner; function Add_Zero;
+function Region;
+function Castle;
+
+// เพิ่มฟังก์ชันนี้ในส่วนฟังก์ชัน:
+S_Shuffle_Castles:
+	
+	// สุ่มเลือก Region ก่อน
+	for(set .@r, 0; .@r < .total_region; set .@r, .@r + 1) {
+		.ShuffledRegions[.@r] = .@r;
+	}
+	
+	// สลับลำดับ Region
+	for(set .@r, .total_region - 1; .@r > 0; set .@r, .@r - 1) {
+		set .@j, rand(.@r + 1);
+		set .@temp, .ShuffledRegions[.@r];
+		set .ShuffledRegions[.@r], .ShuffledRegions[.@j];
+		set .ShuffledRegions[.@j], .@temp;
+	}
+	
+	// สุ่ม Castle ในแต่ละ Region ที่เลือก
+	set .Active[0], 0;
+	set .Active[1], 0;
+	
+	// เลือกเฉพาะจำนวน Region ที่กำหนด
+	for(set .@i, 0; .@i < min(.CastlesPerWoe, .total_region); set .@i, .@i + 1) {
+		set .@r, .ShuffledRegions[.@i];
+		
+		// สุ่มจำนวน Castle ใน Region นี้ (1-5 หรือไม่เกินจำนวนที่มี)
+		set .@num_castles, rand(.MinCastlesPerRegion, min(.MaxCastlesPerRegion, .size_region[.@r]));
+		
+		// สุ่มเลือก Castle ใน Region นี้
+		for(set .@j, 0; .@j < .size_region[.@r]; set .@j, .@j + 1) {
+			set .@temp[.@j], getd(".castle_index_in_region_" + .@r + "[" + .@j + "]");
+		}
+		
+		// สลับลำดับ Castle
+		for(set .@j, .size_region[.@r] - 1; .@j > 0; set .@j, .@j - 1) {
+			set .@k, rand(.@j + 1);
+			set .@temp, .@temp[.@j];
+			set .@temp[.@j], .@temp[.@k];
+			set .@temp[.@k], .@temp;
+		}
+		
+		// เลือก Castle ตามจำนวนที่สุ่มได้
+		for(set .@j, 0; .@j < .@num_castles; set .@j, .@j + 1) {
+			set .Active[0], .Active[0] | (1 << .@temp[.@j]);
+		}
+		set .Active[1], .Active[1] | (1 << .@r);
+	}
+	
+	set .CastleOrder, 0;
+	return;
+
+OnInit:
+// -----------------------------------------------------------
+//  Configuration settings.
+// -----------------------------------------------------------
+
+	set .CastleWarp,0;		// 1: Always enable all castle warps. | 0: Warp only to active castles.
+	set .AutoKick,1;		// Automatically kick players from inactive castles during WOE? (1:yes / 0:no)
+	set .NoOwner,1; 		// Automatically kick players from unconquered castles outside of WOE? (1:yes / 0:no)
+	set .ExitWarp,0;		// Warp all players from castles when WOE ends? (1:yes / 0:no)
+	set .GMAccess,99;		// GM level required to access Session Manager.
+	set .RandomCastle,1;		// 1: เปิดใช้งานการสุ่ม Castle | 0: ปิดการใช้งาน
+	set .CastleOrder,0;		// ลำดับปัจจุบันของ Castle ที่ใช้
+	set .CastlesPerWoe,1;		// จำนวน Castle ที่จะสุ่มในแต่ละ WoE
+	set .MaxCastlesPerRegion,5;	// จำนวนสูงสุดของ Castle ที่จะสุ่มในแต่ละ Region
+	set .MinCastlesPerRegion,1;	// จำนวนขั้นต่ำของ Castle ต่อ Region
+	setarray .ShuffledRegions[0], 0; // อาร์เรย์เก็บลำดับ Region ที่สุ่มแล้ว
+	setarray .ShuffledCastles[0], 0; // อาร์เรย์เก็บลำดับ Castle ที่สุ่มแล้ว
+	
+
+// -----------------------------------------------------------
+//  Reward options.
+// -----------------------------------------------------------
+//  [1] Enable rewards.
+//  [2] Mail all rewards.
+//      - If not set, players receive items in their inventory.
+//      - Only ONE item can be sent via mail for PACKETVER < 20150513 while later clients are limited to MAIL_MAX_ITEM (5).
+//      - If this setting is not set, offline players do NOT receive rewards in any case.
+//  [4] Only reward Guild Masters.
+//      - If not set, all guild members are rewarded.
+//      - If mailing is enabled (option 2), offline Guild Masters WILL receive rewards.
+//  [8] Duplicate IP check.
+//      - Members in a guild with the same IP address are not rewarded.
+//      - If Guild Masters is enabled (option 4), this feature is not used.
+//  [16] Mail online player only.
+//      - Only available when mailing is enabled (option 2).
+//      - When enabled, offline players do NOT receive rewards.
+// -----------------------------------------------------------
+
+	// Combine values as needed (e.g. 1|8 = 1+8 = 9).
+	set .Options, 1|8;
+
+	// Rewards per castle.
+	//   setarray .reward_id[0],     <itemID>{,<itemID>,...}
+	//   setarray .reward_amount[0], <amount>{,<amount>,...}
+	setarray .reward_id[0],501;
+	setarray .reward_amount[0],1000;
+
+	// Zeny reward:
+	.reward_zeny = 0;
+
+// -----------------------------------------------------------
+//  Castles datas.
+// -----------------------------------------------------------
+
+// Region function defines the region of the castle defined by Castle function.
+// Region("<region name>");
+// Castle("<castle map name>", "<event name when woe end>", "<event killmonster name>", "<map name special warp>",<x>,<y>)
+
+	Region("Prontera");
+		Castle("prtg_cas01", "Agit#prtg_cas01::OnAgitEnd", "Agit#prtg_cas01::OnAgitBreak", "prt_gld",134,65);
+		Castle("prtg_cas02", "Agit#prtg_cas02::OnAgitEnd", "Agit#prtg_cas02::OnAgitBreak", "prt_gld",240,128);
+		Castle("prtg_cas03", "Agit#prtg_cas03::OnAgitEnd", "Agit#prtg_cas03::OnAgitBreak", "prt_gld",153,137);
+		Castle("prtg_cas04", "Agit#prtg_cas04::OnAgitEnd", "Agit#prtg_cas04::OnAgitBreak", "prt_gld",111,240);
+		Castle("prtg_cas05", "Agit#prtg_cas05::OnAgitEnd", "Agit#prtg_cas05::OnAgitBreak", "prt_gld",208,240);
+	Region("Payon");
+		Castle("payg_cas01", "Agit#payg_cas01::OnAgitEnd", "Agit#payg_cas01::OnAgitBreak", "pay_gld",121,233);
+		Castle("payg_cas02", "Agit#payg_cas02::OnAgitEnd", "Agit#payg_cas02::OnAgitBreak", "pay_gld",295,116);
+		Castle("payg_cas03", "Agit#payg_cas03::OnAgitEnd", "Agit#payg_cas03::OnAgitBreak", "pay_gld",317,293);
+		Castle("payg_cas04", "Agit#payg_cas04::OnAgitEnd", "Agit#payg_cas04::OnAgitBreak", "pay_gld",140,160);
+		Castle("payg_cas05", "Agit#payg_cas05::OnAgitEnd", "Agit#payg_cas05::OnAgitBreak", "pay_gld",204,266);
+	Region("Geffen");
+		Castle("gefg_cas01", "Agit#gefg_cas01::OnAgitEnd", "Agit#gefg_cas01::OnAgitBreak", "gef_fild13",214,75);
+		Castle("gefg_cas02", "Agit#gefg_cas02::OnAgitEnd", "Agit#gefg_cas02::OnAgitBreak", "gef_fild13",308,240);
+		Castle("gefg_cas03", "Agit#gefg_cas03::OnAgitEnd", "Agit#gefg_cas03::OnAgitBreak", "gef_fild13",143,240);
+		Castle("gefg_cas04", "Agit#gefg_cas04::OnAgitEnd", "Agit#gefg_cas04::OnAgitBreak", "gef_fild13",193,278);
+		Castle("gefg_cas05", "Agit#gefg_cas05::OnAgitEnd", "Agit#gefg_cas05::OnAgitBreak", "gef_fild13",305,87);
+	Region("Aldebaran");
+		Castle("aldeg_cas01", "Agit#aldeg_cas01::OnAgitEnd", "Agit#aldeg_cas01::OnAgitBreak", "alde_gld",48,83);
+		Castle("aldeg_cas02", "Agit#aldeg_cas02::OnAgitEnd", "Agit#aldeg_cas02::OnAgitBreak", "alde_gld",95,249);
+		Castle("aldeg_cas03", "Agit#aldeg_cas03::OnAgitEnd", "Agit#aldeg_cas03::OnAgitBreak", "alde_gld",142,85);
+		Castle("aldeg_cas04", "Agit#aldeg_cas04::OnAgitEnd", "Agit#aldeg_cas04::OnAgitBreak", "alde_gld",239,242);
+		Castle("aldeg_cas05", "Agit#aldeg_cas05::OnAgitEnd", "Agit#aldeg_cas05::OnAgitBreak", "alde_gld",264,90);
+	Region("Arunafeltz");
+		Castle("arug_cas01", "Manager#arug_cas01::OnAgitEnd2", "Steward#ar01::OnStartArena", "aru_gld",158,272);
+		Castle("arug_cas02", "Manager#arug_cas02::OnAgitEnd2", "Steward#ar02::OnStartArena", "aru_gld",83,47);
+		Castle("arug_cas03", "Manager#arug_cas03::OnAgitEnd2", "Steward#ar03::OnStartArena", "aru_gld",68,155);
+		Castle("arug_cas04", "Manager#arug_cas04::OnAgitEnd2", "Steward#ar04::OnStartArena", "aru_gld",299,345);
+		Castle("arug_cas05", "Manager#arug_cas05::OnAgitEnd2", "Steward#ar05::OnStartArena", "aru_gld",292,107);
+	Region("Schwarzwald");
+		Castle("schg_cas01", "Manager#schg_cas01::OnAgitEnd2", "Steward#sc01::OnStartArena", "sch_gld",293,100);
+		Castle("schg_cas02", "Manager#schg_cas02::OnAgitEnd2", "Steward#sc02::OnStartArena", "sch_gld",288,252);
+		Castle("schg_cas03", "Manager#schg_cas03::OnAgitEnd2", "Steward#sc03::OnStartArena", "sch_gld",97,196);
+		Castle("schg_cas04", "Manager#schg_cas04::OnAgitEnd2", "Steward#sc04::OnStartArena", "sch_gld",137,90);
+		Castle("schg_cas05", "Manager#schg_cas05::OnAgitEnd2", "Steward#sc05::OnStartArena", "sch_gld",71,315);
+
+	if (checkre(0)) {
+		Region("Prontera (TE)");
+			Castle("te_prtcas01", "Manager_TE#Gaebolg::OnAgitEnd3",	"Manager_TE#Gaebolg::OnAgitBreak",	"te_prt_gld",134,65);
+			Castle("te_prtcas02", "Manager_TE#Richard::OnAgitEnd3",	"Manager_TE#Richard::OnAgitBreak",	"te_prt_gld",240,128);
+			Castle("te_prtcas03", "Manager_TE#Wigner::OnAgitEnd3",	"Manager_TE#Wigner::OnAgitBreak",	"te_prt_gld",153,137);
+			Castle("te_prtcas04", "Manager_TE#Heine::OnAgitEnd3",	"Manager_TE#Heine::OnAgitBreak",	"te_prt_gld",111,240);
+			Castle("te_prtcas05", "Manager_TE#Nerious::OnAgitEnd3",	"Manager_TE#Nerious::OnAgitBreak",	"te_prt_gld",208,240);
+		Region("Aldebaran (TE)");
+			Castle("te_aldecas1", "Manager_TE#Glaris::OnAgitEnd3",	"Manager_TE#Glaris::OnAgitBreak",	"te_alde_gld",48,83);
+			Castle("te_aldecas2", "Manager_TE#Defolty::OnAgitEnd3",	"Manager_TE#Defolty::OnAgitBreak",	"te_alde_gld",95,249);
+			Castle("te_aldecas3", "Manager_TE#Sorin::OnAgitEnd3",	"Manager_TE#Sorin::OnAgitBreak",	"te_alde_gld",142,85);
+			Castle("te_aldecas4", "Manager_TE#Bennit::OnAgitEnd3",	"Manager_TE#Bennit::OnAgitBreak",	"te_alde_gld",239,242);
+			Castle("te_aldecas5", "Manager_TE#W::OnAgitEnd3",		"Manager_TE#W::OnAgitBreak",		"te_alde_gld",264,90);
+	}
+
+	setarray .Days$[0],"วันอาทิตย์","วันจันทร์","วันอังคาร","วันพุธ","วันพฤหัสบดี","วันศุกร์","วันเสาร์";
+
+// -----------------------------------------------------------
+
+	.reward_id_size = getarraysize(.reward_id);
+	set .Size, getarraysize($WOE_CONTROL);
+
+	if (.AutoKick || .NoOwner) {
+		for(set .@i,0; .@i<.total_castle; set .@i,.@i+1) {
+			setmapflag .Castles$[.@i], mf_loadevent;
+			setd "."+.Castles$[.@i], .@i;
+		}
+	}
+	else {
+		for(set .@i,0; .@i<.total_castle; set .@i,.@i+1)
+			setd "."+.Castles$[.@i], 0;
+	}
+	if (!agitcheck() && !agitcheck2() && !agitcheck3()) sleep 4000;
+	set .Init,1;
+	.current_region = 0;
+
+OnMinute00:
+	freeloop(1);
+	if (agitcheck() || agitcheck2() || agitcheck3()) {
+		for(set .@i,0; .@i<.Size; set .@i,.@i+4) {
+			if (gettime(DT_DAYOFWEEK) == $WOE_CONTROL[.@i] && gettime(DT_HOUR) == $WOE_CONTROL[.@i+2]) {
+			OnWOEEnd:
+				announce "สงคราม War of Emperium ได้สิ้นสุดลงแล้ว!",bc_all|bc_woe;
+				AgitEnd; AgitEnd2; AgitEnd3;
+				sleep 1000;
+				for(set .@j,0; .@j<.total_castle; set .@j,.@j+1) {
+					if (.Active[0]&(1<<.@j)) Disp_Owner(.Castles$[.@j],1);
+					if (.ExitWarp) maprespawnguildid .Castles$[.@j],0,3;
+				}
+				if ((.Options&1) && .Active[0] && .ForceEnd != 2) callsub OnReward, .Active[0];
+				deletearray .Active[0],2;
+				if (.ForceEnd) { set .ForceEnd,0; end; }
+				break;
+			}
+		}
+	}
+	.@agit_check = (!agitcheck() && !agitcheck2() && !agitcheck3());
+	if (.@agit_check || .Init) {
+		if (.@agit_check) set .Init,0;
+		for(set .@i,0; .@i<.Size; set .@i,.@i+4) {
+			if (gettime(DT_DAYOFWEEK) == $WOE_CONTROL[.@i] && gettime(DT_HOUR) >= $WOE_CONTROL[.@i+1] && gettime(DT_HOUR) < $WOE_CONTROL[.@i+2]) {
+				deletearray .Active[0],2;
+				set .Active[0], $WOE_CONTROL[.@i+3];
+				if (.Init) { AgitEnd; AgitEnd2; AgitEnd3; }
+				else announce "สงคราม War of Emperium ได้เริ่มขึ้นแล้ว!",bc_all|bc_woe;
+				sleep 1000;
+				// เพิ่มส่วนนี้ก่อน AgitStart
+								if (.RandomCastle) {
+					callsub S_Shuffle_Castles;
+					
+					// ประกาศ Region และ Castle ที่ถูกสุ่ม
+					.@regionList$ = "";
+					for(set .@i, 0; .@i < min(.CastlesPerWoe, .total_region); set .@i, .@i + 1) {
+						set .@r, .ShuffledRegions[.@i];
+						.@regionList$ = .@regionList$ + ((.@i > 0) ? ", " : "") + .Regions$[.@r];
+						
+						// ประกาศ Castle ใน Region นี้
+						.@castleList$ = "";
+						for(set .@j, 0; .@j < .size_region[.@r]; set .@j, .@j + 1) {
+							.@index = getd(".castle_index_in_region_" + .@r + "[" + .@j + "]");
+							if (.Active[0] & (1 << .@index)) {
+								.@castleList$ = .@castleList$ + ((.@castleList$ != "") ? ", " : "") + getcastlename(.Castles$[.@index]);
+							}
+						}
+						announce .Regions$[.@r] + ": " + .@castleList$, bc_all|bc_woe;
+					}
+					announce "Selected Regions: " + .@regionList$, bc_all|bc_woe;
+				}
+				AgitStart; AgitStart2; AgitStart3;
+				for(set .@j,0; .@j<.total_castle; set .@j,.@j+1) {
+					if (.Active[0]&(1<<.@j)) {
+						if (!.Init) Disp_Owner(.Castles$[.@j],0);
+						set .Active[1], .Active[1] | (1<<.castle_region[.@j]);
+					} else {
+						donpcevent .event_name_agitend$[.@j];
+						killmonster .Castles$[.@j], .event_name_killmob$[.@j];
+					}
+				}
+				break;
+			}
+		}
+	}
+	set .Init,0;
+	end;
+
+function Disp_Owner {
+	set .@o, getcastledata(getarg(0),1);
+	if (.@o) announce "บ้าน ["+getcastlename(getarg(0))+"] "+((getarg(1))?" ถูกยึดครอง":"ถูกครอบครอง")+" โดยกิลด์ ["+getguildname(.@o)+"]",bc_all|bc_woe;
+	else announce "บ้าน ["+getcastlename(getarg(0))+"] หลังนี้ ยังไม่มีใครครอบครอง",bc_all|bc_woe;
+	return;
+}
+function Add_Zero {
+	return ((getarg(0)<10)?"0":"")+getarg(0)+(getarg(1,0)?".":":")+"00";
+}
+function Castle {
+	.@map$ = getarg(0);
+	if (getd( "." + .@map$ ) > 0) {
+		debugmes sprintf("WOE_CONTROL: map %s already defined.", .@map$);
+		return;
+	}
+	if (.total_castle > 61) {
+		debugmes sprintf("WOE_CONTROL: Maximum of 62 castles defined, %s skipped.", .@map$);
+		return;
+	}
+	.Castles$[.total_castle] = .@map$;
+	.event_name_agitend$[.total_castle] = getarg(1);
+	.event_name_killmob$[.total_castle] = getarg(2);
+	.Map$[.total_castle] = getarg(3);
+	.MapX[.total_castle] = getarg(4);
+	.MapY[.total_castle] = getarg(5);
+	.castle_region[.total_castle] = .current_region;
+
+	setd ".castle_index_in_region_" + .current_region + "[" + .size_region[.current_region] + "]", .total_castle;
+	.total_castle++;
+	.size_region[.current_region]++;
+
+	setd "." + .Castles$[.total_castle-1], .total_castle;
+	return;
+}
+function Region {
+	.@zone$ = getarg(0);
+	for ( .@i = 0; .@i < .total_region; ++.@i ) {
+		if (.Regions$[.@i] == .@zone$) {
+			.current_region = .@index;
+			return;
+		}
+	}
+	.Regions$[.total_region] = .@zone$;
+	.current_region = .total_region;
+	.total_region++;
+	return;
+}
+
+OnReward:
+	if (!.reward_id_size && !.reward_zeny)
+		return;
+
+	if (.Options&2) set .@str$,gettimestr("%B %d, %Y",21);
+	freeloop(1);
+	for(set .@i,0; .@i<.total_castle; set .@i,.@i+1) {
+		if (getarg(0)&(1<<.@i)) {
+			set .@gid, getcastledata(.Castles$[.@i],1);
+			if (!.@gid)
+				continue;
+
+			getguildmember( .@gid, 1, .@cid );
+			.@size_guild = getguildmember( .@gid, 2, .@aid );
+
+			if( .Options&4 ){
+				.@master_cid = getguildmasterid( .@gid );
+				.@index = inarray(.@cid, .@master_cid);
+				.@master_aid = .@aid[.@index];
+
+				cleararray( .@cid, 0, .@size_guild );
+				cleararray( .@aid, 0, .@size_guild );
+
+				.@size_guild = 1;
+				.@cid[0] = .@master_cid;
+				.@aid[0] = .@master_aid;
+			}
+			else if (.Options&8) {
+				for ( .@j = 0; .@j < .@size_guild; ++.@j ) {
+					.@is_online[.@j] = isloggedin( .@aid[.@j], .@cid[.@j] );
+					if (.@is_online[.@j])
+						.@ip$ = replacestr(getcharip(.@aid[.@j]),".","a");
+					else {
+						if (query_sql("SELECT `last_ip` FROM `login` WHERE `account_id` = '" + .@aid[.@j] + "'", .@last_ip$) < 1)
+							continue;
+						.@ip$ = replacestr(.@last_ip$, ".", "a");
+					}
+					.@variable$ = ".@ip_" + .@i + "_" + .@ip$;
+					.@index = getd(.@variable$) - 1;
+				
+					if (.@index >= 0) {
+						if (.@is_online[.@j]) {
+							.@tmp_account_id[.@index] = .@aid[.@j];
+							.@tmp_char_id[.@index] = .@cid[.@j];
+						}
+						continue;
+					}
+					setd .@variable$, .@j+1;
+					.@tmp_account_id[.@k] = .@aid[.@j];
+					.@tmp_char_id[.@k] = .@cid[.@j];
+					.@k++;
+				}
+				copyarray .@aid[0], .@tmp_account_id[0], .@k;
+				copyarray .@cid[0], .@tmp_char_id[0], .@k;
+				.@size_guild = .@k;
+			}
+			for(set .@j,0; .@j<.@size_guild; set .@j,.@j+1) {
+				.@online = isloggedin(.@aid[.@j],.@cid[.@j]);
+				if (.Options&2) {
+					if (.@online || !(.Options&16)) {
+						.@charid = .@cid[.@j];
+						.@sender$ = "ทีมงาน Server PepoRO";
+						.@title$ = "** รางวัลสำหรับการยึดครอง : "+getcastlename(.Castles$[.@i])+" **";
+						.@body$ = "สวัสดีท่านผู้กล้า \r\n \r\n ขอแสดงความยินดีด้วย !\r\n กิลด์ของคุณได้ยึดครอง : "+getcastlename(.Castles$[.@i])+" \r\n ในช่วงสงคราม Emperium ได้สำเร็จ ณ วันที่\r\n "+.@str$+".\r\n \r\n \r\n \r\n \r\n [ และนี่คือรางวัลสำหรับ Guild ของท่าน ]";
+
+						if (.reward_id_size)
+							mail .@charid, .@sender$, .@title$, .@body$, .reward_zeny, .reward_id, .reward_amount;
+						else
+							mail .@charid, .@sender$, .@title$, .@body$, .reward_zeny;
+
+						if (PACKETVER < 20150513 && !getd(".@str_"+.@cid[.@j]) && .@online) {
+							setd ".@str_"+.@cid[.@j],1;
+							message rid2name(.@aid[.@j]),"ท่านได้รับจดหมาย!";
+						}
+					}
+				}
+				else if (.@online) {
+					attachrid( .@aid[.@j], true );
+					.@name$ = strcharinfo( 0 );
+					.@castle_name$ = getcastlename(.Castles$[.@i]);
+					for ( .@k = 0; .@k < .reward_id_size; .@k++ ) {
+						if (checkweight(.reward_id[.@k], .reward_amount[.@k]))
+							getitem .reward_id[.@k], .reward_amount[.@k];
+						else
+							dispbottom "ท่านไม่สามารถรับของรางวัล " + getitemname(.reward_id[.@k]) + " จำนวน " + .reward_amount[.@k] + " ชิ้นได้ สำหรับการยึดบ้าน " + .@castle_name$ + " เนื่องจากมีน้ำหนักเกินตามกำหนด";
+					}
+					Zeny += .reward_zeny;
+					dispbottom "ท่านได้รับรางวัลสำหรับการยึดบ้าน " + .@castle_name$ + "";
+				}
+			}
+		}
+	}
+	return;
+
+OnPCLoadMapEvent:
+	if (!compare(strcharinfo(3),"g_cas")) end;
+	if (((.AutoKick && .Active[0]) || (.NoOwner && !getcastledata(strcharinfo(3),1))) && !(.Active[0]&(1<<getd("."+strcharinfo(3))))) {
+		if (getcharid(2) && getcastledata(strcharinfo(3),1) == getcharid(2)) end;
+		.@castle_name$ = getcastlename(strcharinfo(3));
+		sleep2 1000;
+		message strcharinfo(0), .@castle_name$ + " ยังไม่ถูกยึดครอง";
+		sleep2 5000;
+		if (compare(strcharinfo(3),"g_cas")) warp "SavePoint",0,0;
+	}
+	end;
+
+OnMenu:
+while(1) {
+	mes "[ข้อมูล WoE]";
+	if (agitcheck() || agitcheck2() || agitcheck3()) {
+		if (.Active[0]) {
+			for(set .@i,0; .@i<.Size; set .@i,.@i+4) {
+				if (gettime(DT_DAYOFWEEK) == $WOE_CONTROL[.@i] && gettime(DT_HOUR) >= $WOE_CONTROL[.@i+1] && gettime(DT_HOUR) < $WOE_CONTROL[.@i+2]) {
+					set .@i, $WOE_CONTROL[.@i+2];
+					break;
+				}
+			}
+			mes "ขณะนี้ War of Emperium ^0055FFกำลังดำการเนินอยู่^000000 จนถึงเวลา ^FF0000"+Add_Zero(.@i)+"^000000 ภูมิภาคที่กำลังเปิดอยู่ ณ ตอนนี้ :";
+			mes " ";
+			for(set .@i,0; .@i < .total_region; set .@i,.@i+1)
+				if (.Active[1]&(1<<.@i)) mes " > ^777777"+.Regions$[.@i]+"^000000";
+		} else
+			mes "ขณะนี้ War of Emperium ^0055FFกำลังดำการเนินอยู่^000000";
+	} else {
+		for(set .@i,0; .@i<.Size; set .@i,.@i+4)
+			if ((gettime(DT_DAYOFWEEK) == $WOE_CONTROL[.@i] && gettime(DT_HOUR) <= $WOE_CONTROL[.@i+1]) || gettime(DT_DAYOFWEEK) < $WOE_CONTROL[.@i]) {
+				setarray .@time[0],$WOE_CONTROL[.@i],$WOE_CONTROL[.@i+1];
+				break;
+			}
+		if (!getarraysize(.@time))
+			setarray .@time[0],$WOE_CONTROL[0],$WOE_CONTROL[1];
+		mes "ขณะนี้ War of Emperium ^FF0000ยังไม่เปิด^000000";
+		if (.Size) {
+			mes " ";
+			mes "สงครามรอบถัดไปเริ่ม";
+			mes "ในวัน ^0055FF"+.Days$[.@time[0]]+"^000000 เวลา "+Add_Zero(.@time[1])+"^000000";
+		}
+	}
+	next;
+	switch(select(""+((.CastleWarp || .Active[1])?"^0055FFวาร์ปไปยังปราสาท...^000000":"")+":เช็กตารางเวลา...:เช็กเจ้าของบ้าน...:"+((getgmlevel()<.GMAccess || !getgmlevel())?"":"^FF0000ระบบจัดการ...^000000")+":ยกเลิก")) {
+	case 1:
+		if (.CastleWarp) set .@clr$,"^0055FF";
+		set .@menu$,"";
+		for(set .@i,0; .@i < .total_region; set .@i,.@i+1) {
+			if (.CastleWarp || .Active[1]&(1<<.@i))
+				set .@menu$, .@menu$+"บ้าน "+((.Active[1]&(1<<.@i))?.@clr$:"^777777")+.Regions$[.@i]+"^000000";
+			set .@menu$, .@menu$+":";
+		}
+		set .@i, select(.@menu$)-1;
+		set .@menu$,"";
+		for(set .@j,0; .@j < .size_region[.@i]; set .@j,.@j+1) {
+			.@index = getd( ".castle_index_in_region_" + .@i + "[" + .@j + "]" );
+			if (.CastleWarp || .Active[0]&(1<<.@index))
+				set .@menu$, .@menu$+" "+((.Active[0]&(1<<.@index))?.@clr$:"^777777")+getcastlename(.Castles$[.@index])+"^000000";
+			set .@menu$, .@menu$+":";
+		}
+		set .@j, select(.@menu$)-1;
+		.@index = getd( ".castle_index_in_region_" + .@i + "[" + .@j + "]" );
+		warp .Map$[.@index],.MapX[.@index],.MapY[.@index];
+		close;
+	case 2:
+		mes "[ตารางเวลา]";
+		if (.Size) {
+			freeloop(1);
+			for(set .@i,0; .@i<.Size; set .@i,.@i+4) {
+				mes "> ^FF0000"+.Days$[$WOE_CONTROL[.@i]]+" ("+Add_Zero($WOE_CONTROL[.@i+1])+" - "+Add_Zero($WOE_CONTROL[.@i+2])+")^000000";
+				for(set .@j,0; .@j<.total_castle; set .@j,.@j+1)
+					if ($WOE_CONTROL[.@i+3]&(1<<.@j)) mes "  "+getcastlename(.Castles$[.@j])+" ^777777("+.Castles$[.@j]+")^000000";
+				if (.@i+4 < .Size) mes " ";
+			}
+			freeloop(0);
+		} else
+			mes "ขณะนี้ปราสาทกิลด์ยังไม่ถูกกำหนดเวลา WoE";
+		next;
+		break;
+	case 3:
+		mes "[เจ้าของปราสาท]";
+		for(set .@i,0; .@i < .total_region; set .@i,.@i+1) {
+			set .@k, .@i*5;
+			mes "> ^FF0000"+.Regions$[.@i]+"^000000";
+			for(set .@j,0; .@j<.size_region[.@i]; set .@j,.@j+1) {
+				.@index = getd( ".castle_index_in_region_" + .@i + "[" + .@j + "]" );
+				set .@t, getcastledata(.Castles$[.@index],1);
+				mes "  "+getcastlename(.Castles$[.@index])+": "+((.@t)?"^0055FF"+getguildname(.@t):"^777777ยังไม่ถูกยึดครอง")+"^000000";
+			}
+			if (.@i < 5) mes " ";
+		}
+		next;
+		break;
+	case 4:
+	while(1) {
+		mes "[ตัวจัดการระบบ WoE]";
+		mes "มีรายการทั้งหมด ^0055FF"+(.Size/4)+" รายการ^000000 ที่ถูกกำหนดไว้";
+		mes "ท่านต้องการทำสิ่งใด?";
+		next;
+		switch(select("เพิ่มรายการ...:ลบรายการ...:รีโหลดการตั้งค่า...:"+((agitcheck() || agitcheck2() || agitcheck3())?"สิ้นสุด WoE...":"")+":^777777กลับไปก่อนหน้า^000000")) {
+		case 1:
+			mes "[รายการใหม่]";
+			mes "ระบุวันที่ท่านต้องการเริ่ม WoE";
+			next;
+			set .@Day, select(""+implode(.Days$,":"))-1;
+			mes "[New Session]";
+			mes "เวลาเริ่มสำหรับ WoE คือวัน ^0055FF"+.Days$[.@Day]+"^000000";
+			next;
+			set .@menu$,"";
+			for(set .@i,0; .@i<23; set .@i,.@i+1)
+				set .@menu$, .@menu$+""+Add_Zero(.@i,1)+":";
+			set .@Start, select(.@menu$)-1;
+			mes "[รายการใหม่]";
+			mes "เวลาสิ้นสุดสำหรับ WoE ^0055FF"+.Days$[.@Day]+"^000000";
+			next;
+			set .@menu$,"";
+			for(set .@i,.@Start+1; .@i<24; set.@i,.@i+1)
+				set .@menu$, .@menu$+""+Add_Zero(.@i,1)+":";
+			set .@End, select(.@menu$)+.@Start;
+			for(set .@i,0; .@i<.Size; set .@i,.@i+4)
+				if (.@Day == $WOE_CONTROL[.@i] &&
+				   ((.@Start >= $WOE_CONTROL[.@i+1] && .@Start < $WOE_CONTROL[.@i+2]) ||
+				    (.@End > $WOE_CONTROL[.@i+1] && .@End <= $WOE_CONTROL[.@i+2]) ||
+				    (.@Start <= $WOE_CONTROL[.@i+1] && .@End >= $WOE_CONTROL[.@i+2]))) {
+					mes "[รายการใหม่]";
+					mes "วันและเวลาที่ท่านกำหนดไว้ได้ถูกใช้กับรายการก่อนหน้านี้แล้ว";
+					next;
+					set .@d,1;
+					break;
+				}
+			if (.@d) { set .@d,0; break; }
+			set .@Castle,0;
+			while(1) {
+				mes "[รายการใหม่]";
+				mes "^0055FF"+.Days$[.@Day]+" ("+Add_Zero(.@Start)+" - "+Add_Zero(.@End)+")^000000";
+				mes " > บ้าน :";
+				if (!.@Castle)
+					mes "   ^777777(ยังไม่ถูกเลือก)^000000";
+				else {
+					for(set .@i,0; .@i<.total_castle; set .@i,.@i+1) {
+						.@string$ = ( .@Castle&(1<<.@i) ) ? ""+getcastlename(.Castles$[.@i])+" ("+.Castles$[.@i]+")" : "";
+						mes .@string$;
+					}
+				}
+				next;
+				set .@menu$,((.@Castle)?" ^FF0000สิ้นสุด...^000000":"")+":";
+				for(set .@i,0; .@i<.total_castle; set .@i,.@i+1)
+					set .@menu$, .@menu$+" "+((.@Castle&(1<<.@i))?"^0055FF":"")+getcastlename(.Castles$[.@i])+" ("+.Castles$[.@i]+")^000000:";
+				set .@i, select(.@menu$)-1;
+				if (.@i)
+					set .@Castle, .@Castle^(1<<(.@i-1));
+				else {
+					mes "[รายการใหม่]";
+					mes "ท่านแน่ใจหรือไม่?";
+					next;
+					switch(select("^0055FFเพิ่มรายการ...^000000:ดำเนินการเลือกบ้านต่อ...:^777777ยกเลิก^000000")) {
+					case 1:
+						for(set .@i,0; .@i<.Size; set .@i,.@i+4) {
+							if ((.@Day == $WOE_CONTROL[.@i] && .@End <= $WOE_CONTROL[.@i+1]) || .@Day < $WOE_CONTROL[.@i]) {
+								set .@d,1;
+								break;
+							}
+						}
+						if (!.@d) { set .@d,1; set .@i,.Size; }
+						copyarray $WOE_CONTROL[.@i+4], $WOE_CONTROL[.@i], .Size-.@i;
+						setarray $WOE_CONTROL[.@i], .@Day, .@Start, .@End, .@Castle;
+						set .Size, getarraysize($WOE_CONTROL);
+					case 3:
+						mes "[รายการใหม่]";
+						mes ((.@d)?"เพิ่มรายการ":"ยกเลิกแล้ว");
+						next;
+						set .@d,1;
+					case 2:
+						break;
+					}
+					if (.@d) { set .@d,0; break; }
+				}
+			}
+			break;
+		case 2:
+			mes "[รายการที่นำออก]";
+			if (!.Size) {
+				mes "ไม่มีรายการใดๆ สำหรับการจัดการขณะนี้";
+				next;
+				break;
+			}
+			mes "เลือกรายการที่ต้องการนำออก";
+			next;
+			set .@menu$,"";
+			for(set .@i,0; .@i<.Size; set .@i,.@i+4)
+				set .@menu$, .@menu$+""+.Days$[$WOE_CONTROL[.@i]]+" ("+Add_Zero($WOE_CONTROL[.@i+1],1)+" - "+Add_Zero($WOE_CONTROL[.@i+2],1)+"):";
+			set .@menu$, .@menu$+"^777777ยกเลิก^000000";
+			set .@i, select(.@menu$)-1;
+			if (.@i == (.Size/4)) break;
+			mes "[รายการที่นำออก]";
+			mes "ลบรายการ ^0055FF"+.Days$[$WOE_CONTROL[.@i*4]]+"^000000 นี้หรือไม่?";
+			mes "โปรดระวัง! หากดำเนินการนี้แล้วท่านจะไม่สามารถย้อนกลับไปแก้ไขได้";
+			next;
+			set .@j, select("^FF0000ลบรายการ...^000000:^777777ยกเลิก^000000");
+			mes "[รายการที่นำออก]";
+			if (.@j == 2)
+				mes "ยกเลิกแล้ว";
+			else {
+				deletearray $WOE_CONTROL[.@i*4],4;
+				set .Size, getarraysize($WOE_CONTROL);
+				mes "รายการนี้ถูกลบออกแล้ว";
+			}
+			next;
+			break;
+		case 3:
+			mes "[รีโหลดการตั้งค่า]";
+			mes "การกระทำนี้จะส่งผลกับเหตุการณ์ทั้งหมดที่เกี่ยวข้องกับการกำหนดรายการใหม่ หากท่านดำเนินการอยู่";
+			if (agitcheck() || agitcheck2() || agitcheck3()) {
+				mes " ";
+				mes "โปรดระวังไว้ว่า หากท่านดำเนินรายการนี้จะส่งผลกับรายการที่ท่านได้ตั้งค่าไว้ใน WoE ปัจจุบัน";
+			}
+			next;
+			set .@i, select("^0055FFรีโหลดการตั้งค่า...^000000:^777777ยกเลิก^000000");
+			mes "[รีโหลดการตั้งค่า]";
+			if (.@i == 2) mes "ยกเลิกแล้ว";
+			else {
+				set .Init,1;
+				donpcevent "WOE_CONTROL::OnMinute00";
+				mes "ระบบได้ทำการรีโหลดการตั้งค่าให้ใหม่เรียบร้อยแล้ว";
+			}
+			next;
+			break;
+		case 4:
+			mes "[สิ้นสุด WoE]";
+			if (!agitcheck() && !agitcheck2() && !agitcheck3())  {
+				mes "ขณะนี้ WOE ได้สิ้นสุดลงแล้ว";
+				next;
+				break;
+			}
+			mes "หากท่านต้องการสิ้นสุด WoE นี้จะถูกดำเนินการเหตุการณ์กับคำสั่ง AgitEnd ทั้งหมดอย่างปลอดภัย";
+			mes " ";
+			mes "ท่านต้องการยุติรายการ WOE ปัจจุบันนี้หรือไม่?";
+			next;
+			set .@i, select("^FF0000สิ้นสุด WoE...^000000:"+((.Options&1)?"^FF0000สิ้นสุด WoE โดยไม่ได้รับของรางวัล...^000000":"")+":^777777ยกเลิก^000000");
+			mes "[สิ้นสุด WoE]";
+			if (.@i == 3)
+				mes "ยกเลิกแล้ว";
+			else {
+				set .ForceEnd, .@i;
+				donpcevent "WOE_CONTROL::OnWOEEnd";
+				mes "รายการ WOE ได้สิ้นสุดลงแล้ว";
+			}
+			next;
+			break;
+		case 5:
+			set .@d,1; break;
+		}
+		if (.@d) { set .@d,0; break; }
+		} break;
+	case 5:
+		close;
+	} }
+}

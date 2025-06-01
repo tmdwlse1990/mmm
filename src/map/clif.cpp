@@ -752,8 +752,8 @@ int32 clif_send(const void* buf, int32 len, struct block_list* bl, enum send_tar
 			}
 		} else {
 			switch(RBUFW(buf, 0)) {
-				case unit_walkingType: // clif move
 				case idle_unitType:
+				case unit_walkingType: // clif move
 					tbl = map_id2bl(RBUFL(buf,5));
 					if(tbl->type== BL_PET && sd->state.hideslave&1
 						&&((pet_data*)tbl)->master && ((pet_data*)tbl)->master->bl.id != sd->bl.id)

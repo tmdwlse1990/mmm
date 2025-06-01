@@ -134,12 +134,39 @@ icecastle,201,171,4	script	พนักงานต้อนรับ	4_EP21_GALAXIA_B,{
 			next;
 		break;
 		case 2:
-			mes "ปัจจุบันมีแต่การอัพระดับของคราส F ขึ้นเป็นคราส E";
+			setarray .@rankname$[0],"F","E","D","C","B","A","S";
+			mes "ตามระดับของท่านปัจจุบันแล้ว";
+			mes "ปัจจุบันมีแต่การอัพระดับของคราส "+.@rankname$[adv_clas]+" ขึ้นเป็นคราส "+.@rankname$[adv_clas+1]+"";
+			switch(adv_clas) {
+				case 0:	//[F Class]
+					setarray .@zeny,10,50,100,300,500,800,1000,1250,1500,2000;
+					.@multiple = 1000;
+					break;
+				case 1:	//[E Class]
+					setarray .@zeny,1000,2000,3000,4000,5000,6000,7000,8000,9000,10000;
+					.@multiple = 1000;
+					break;
+				case 2:	//[D Class]
+					setarray .@zeny,11,12,13,14,15,16,17,18,19,20;
+					.@multiple = 1000000;
+					break;
+				case 3:	//[C Class]
+					setarray .@zeny,22,24,26,28,30,32,34,36,38,40;
+					.@multiple = 1000000;
+					break;
+				case 4:	//[B Class]
+					setarray .@zeny,44,48,52,56,60,64,68,72,76,80;
+					.@multiple = 1000000;
+					break;
+				case 5:	//[A Class]
+					setarray .@zeny,100,110,120,130,140,150,160,170,180,190;
+					.@multiple = 1000000;
+					break;
+			}
 			for(.@i = 0; .@i < getarraysize(.@zeny); .@i++)
-				mes ""+(.@i+1)+". "+callfunc("F_InsertComma",.@zeny[.@i])+" Zeny";
+				mes ""+(.@i+1)+". "+callfunc("F_InsertComma",(.@zeny[.@i] * .@multiple))+" Zeny";
 			mes "ตามนี้";
 			setdialogsize(400,500);
-			next;
 		break;
 		case 3:
 			warp "icas_in",108,54;
@@ -150,7 +177,6 @@ icecastle,201,171,4	script	พนักงานต้อนรับ	4_EP21_GALAXIA_B,{
 			cutin "ep21_galaxia03.png",2;
 		break;
 	}
-	mes "ไว้เจอกันใหม่นะ";
 	cutin "",255;
 	end;
 Oninit:

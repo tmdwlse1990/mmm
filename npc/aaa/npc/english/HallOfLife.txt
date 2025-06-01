@@ -10,16 +10,17 @@
 t_garden,162,222,5	script	#lank_board	4_4JOB_PHANTOMBOOK1,{
 function swap;
 
-	mes "- This week's strategy ranking -";
+	mes "- ผลจัดอันดับการต่อสู้ประจำสัปดาห์ -";
 	for ( .@i = 0; .@i < 5; ++.@i ) {
 		if (.point[.@i] <= 0)
-			mes "" + (.@i+1) + "rank - empty";
+			mes "อันดับที่ " + (.@i+1) + " - ว่างเปล่า";
 		else
-			mes "" + (.@i+1) + "rank - " + .point[.@i] + " points - ^0000ff" + .leader_name$[.@i] + "^000000 and ^0000ff" + .party_count[.@i] + "^000000 people.";
+			mes "อันดับที่ " + (.@i+1) + " - " + .point[.@i] + " คะแนน - ^0000ff" + .leader_name$[.@i] + "^000000 และผู้เข้าร่วม ^0000ff" + .party_count[.@i] + "^000000 คน";
 	}
 	mes "-----------------";
-	mes "กุ The strategy record is updated every 5 minutes.";
-	mes "If recording does not occur immediately, please wait for a while and check.";
+	mes "* ผลบันทึกการต่อสู้จะทำการอัปเดททุกๆ 5 นาที";
+	mes "หากผลบันทึกยังไม่อัปเดท โปรดรอสักครู่แล้วกลับมาตรวจสอบใหม่อีกครั้ง";
+	setdialogsize(400,250);
 	close;
 
 OnInit:
@@ -126,11 +127,11 @@ t_garden,173,235,2	script(CLOAKED)	Dimension Prison#2	GATE_SKYBLUE,{
 	if (isbegin_quest(12597) != 2)	// Pre-requisite quest
 		end;
 	if (checkweight(420231,1) == 0) {
-		mes "^ff0000It seems that you have too many types and weights of items. Please organize your inventory.^000000";
+		mes "^ff0000ไม่สามารถดำเนินการได้เนื่องจากแบกสัมภาระมากเกินไป โปรดจัดการสัมภาระก่อนที่จะดำเนินการ^000000";
 		close;
 	}
 	if (getcharid(1) < 1) {
-		mes "^0000ffPlease form a party of at least one person and proceed.^000000";
+		mes "^0000ffกรุณาสร้างปาร์ตี้อย่างน้อย 1 คนก่อนที่จะดำเนินการ^000000";
 		close;
 	}
 	switch( checkquest(12619,PLAYTIME) ) {
@@ -138,27 +139,27 @@ t_garden,173,235,2	script(CLOAKED)	Dimension Prison#2	GATE_SKYBLUE,{
 		break;
 	case 0:
 	case 1:
-		mes "^ff0000The aftereffects have not gone away yet. Please wait a while and try again.^000000";
+		mes "^ff0000ได้รับผลข้างเคียงจากการเข้า Hall of Life โปรดรอสักครู่แล้วลองใหม่อีกครั้ง^000000";
 		close;
 	case 2:
 		erasequest 12619;
 		break;
 	}
 	if (countitem(1001415) < 1) {
-		mes "^0000ffYou do not have the key to enter the Hall of Life. Please quickly inform your party members of the current situation and leave the party^000000.";
+		mes "^0000ffคุณไม่มีกุญแจสำหรับการเข้าสู่ Hall of Life โปรดชี้แจงสมาชิกปาร์ตี้ของคุณให้ทราบก่อนที่จะดำเนินการ^000000";
 		close;
 	}
 	if (getequipid(EQI_HEAD_LOW) != 420231) {
 		cutin "rigel_halfeyes01.png",2;
 		mes "[Rigel]";
-		mes "You don't have the protection equipped. You must have forgotten that you can't enter in that state, right? Equip the protection and come back.";
+		mes "ดูเหมือนว่าท่านไม่ได้สวมใส่ Constellation's Barrier อย่างนั้นใช่ไหม? ท่านคงลืมไปแล้วใช่ไหมว่าไม่สามารถเข้าไปได้หากไม่มี Constellation's Barrier ดังนั้นแล้วอย่าลืมสวมใส่ Constellation's Barrier ก่อนแล้วกลับมาคุยกับข้าใหม่";
 		next;
-		if (select( "I understand", "I lost my protection" ) == 1) {
+		if (select( "เข้าใจแล้ว", "ข้าทำ Constellation's Barrier หาย" ) == 1) {
 			cutin "",255;
 			end;
 		}
 		mes "[Rigel]";
-		mes "The sealing spirit stone will contain extra blessings. Please have the blessings reissued through the spirit stone.";
+		mes "ท่านต้องไปพุดคุยกับ Sealing Spirit Stone เพื่อไปรับ Constellation's Barrier ในการใช้งาน";
 		close3;
 	}
 
@@ -168,10 +169,10 @@ t_garden,173,235,2	script(CLOAKED)	Dimension Prison#2	GATE_SKYBLUE,{
 		case 312453:	// MD_Hol_Barrier_1
 			cutin "rigel_halfeyes01.png",2;
 			mes "[Rigel]";
-			mes "The correction may fail. It is currently at the lowest level, so we will not adjust the barrier to a lower level.";
+			mes "เกิดข้อผิดพลาดเกี่ยวกับการแก้ไขระดับ ตอนนี้ท่านอยู่ในระดับที่ 1 อยู่แล้ว ดังนั้นข้าจะไม่ปรับระดับการป้องกันใดๆ ให้กับท่าน";
 			next;
 			mes "[Rigel]";
-			mes "However, if you fail while disarming a level 2 or higher barrier and dealing with a dimensional criminal, please remember that the level of the barrier will be lowered further for your safety.";
+			mes "อย่างไรก็ตาม หากท่านล้มเหลวในขณะที่ท่านกำลังปลดผนึกที่ระดับที่ 2 หรือมากกว่านั้นสำหรับการต่อสู้กับอาชญากรข้ามมิติ ท่านจะถูกปรับระดับลง 1 ระดับเพื่อความปลอดภัยสำหรับตัวของท่าน";
 			close2;
 			cutin "",255;
 			erasequest 12617;
@@ -198,7 +199,7 @@ t_garden,173,235,2	script(CLOAKED)	Dimension Prison#2	GATE_SKYBLUE,{
 			// custom, unknown text
 			cutin "rigel_halfeyes01.png",2;
 			mes "[Rigel]";
-			mes "The correction may fail. We will adjust the barrier to a lower level.";
+			mes "เกิดข้อผิดพลาดเกี่ยวกับการแก้ไขระดับ ข้าจะทำการปรับระดับของท่านลดลงเพื่อความปลอดภัยของท่าน";
 			close2;
 			cutin "",255;
 			.@new_enchant = .@enchant_id - 1;
@@ -211,17 +212,17 @@ t_garden,173,235,2	script(CLOAKED)	Dimension Prison#2	GATE_SKYBLUE,{
 		end;
 	}
 
-	.@md_name$ = "Hall of life";	// Hall of life
+	.@md_name$ = "Hall of Life";	// Hall of life
 
 	// Enter MD
 	if (instance_live_info(ILI_NAME, instance_id(IM_PARTY)) == .@md_name$) {
-		if (select( "Cancel", "Enter " + .@md_name$ + "" ) == 1)
+		if (select( "ยกเลิก", "เข้าสู่ " + .@md_name$ + "" ) == 1)
 			end;
 		if (countitem(1001415) < 1)	// shouldn't happen
 			end;
 		switch( instance_enter(.@md_name$) ) {
 		case IE_OTHER:
-			mes "^ff0000An unknown error occurred.^000000";
+			mes "^ff0000เกิดข้อผิดพลาดโดยไม่ทราบสาเหตุ^000000";
 			close;
 		case IE_NOINSTANCE:
 		case IE_NOMEMBER:
@@ -229,7 +230,7 @@ t_garden,173,235,2	script(CLOAKED)	Dimension Prison#2	GATE_SKYBLUE,{
 		case IE_OK:
 			setquest 12617;
 			setquest 12619;
-			mapannounce "t_garden", "Adventurer " + strcharinfo(0) + " enters " + .@md_name$ + ".", bc_map, 0xFFAA;
+			mapannounce "t_garden", "ขณะนี้ นักพจญภัย " + strcharinfo(0) + " ได้เข้าสู่ " + .@md_name$ + " แล้ว", bc_map, 0xFFAA;
 			delitem 1001415,1;	// MD_Hol_Key
 			// warp "1@ba_go",53,42;
 			end;
@@ -238,9 +239,9 @@ t_garden,173,235,2	script(CLOAKED)	Dimension Prison#2	GATE_SKYBLUE,{
 	
 	// Create MD
 	if (is_party_leader() == true)
-		.@menu$ = "Create access permission to " + .@md_name$ + "";
+		.@menu$ = "สร้างทางเข้า " + .@md_name$ + "";
 
-	if (select( "Cancel", .@menu$ ) == 1)
+	if (select( "ยกเลิก", .@menu$ ) == 1)
 		end;
 	instance_create(.@md_name$);
 	end;
@@ -548,7 +549,7 @@ function ManaStats {
 	F_CheckLeader();	// unknown text
 
 	if (getequipid(EQI_HEAD_LOW) != 420231) {
-		mes "^ff0000You cannot interact unless you are equipped with the constellation's protection^000000";
+		mes "^ff0000ไม่สามารถพูดคุยได้ เนื่องจากไม่ได้สวมใส่ Constellation's Barrier^000000";
 		close;
 	}
 	.@enchant_id = getequipcardid( EQI_HEAD_LOW,3 );
@@ -557,9 +558,9 @@ function ManaStats {
 		end;
 	.@barrier_level = .@enchant_id - 312453 + 1;	// Barrier level range : 1-20
 
-	mes "^0000ffThe dimensional criminal in front of you looks surprisingly identical to Rigel, the constellation of life. Let's bring the protection of the constellation closer and resonate with the barrier that sealed it. ^000000";
+	mes "^0000ffอาชญากรข้ามมิติตรงหน้าเราดูคล้ายกับ Rigel ที่มาจาก Constellation of Life เป็นอย่างมาก เราจำเป็นต้องปกป้องกลุ่มดาวเพื่อไม่ให้อาชญากรข้ามมิติเข้าถึงและปิดผนึกมันซะ^000000";
 	next;
-	if (select( "Cancel", "Unlock barrier level " + .@barrier_level + "" ) == 1)
+	if (select( "ยกเลิก", "ปลดล็อกผนึกระดับที่ " + .@barrier_level + "" ) == 1)
 		end;
 	close2;	// Custom : prevent stuck on rathena
 	F_CheckStep(0);
@@ -595,9 +596,9 @@ function ManaStats {
 	// save the timer for the score (custom)
 	'instance_timer = gettimetick(0);
 	
-	npctalk "You guys are being fooled. I don't know what she said outside of this prison, but I'm not a fake.";
+	npctalk "พวกท่านโดนเธอหลอกแล้ว ข้าไม่รู้หรอกนะว่าเธอพูดอะไรกับท่านด้านนอกนั้น แต่ข้าบอกไว้ก่อนเลยว่าข้าไม่ใช่ตัวปลอมหรอกนะ";
 	sleep 3000;
-	npctalk "... but I don't think you'll quit. I can't help it. I don't want to hurt you, but I don't know if I can control my powers.";
+	npctalk "...แต่ยังไงข้าก็คิดว่าท่านจะไม่ล้มเลิกความพยายามนั้น ช่วยไม่ได้ล่ะนะ ข้าเองก็ไม่อยากทำร้ายท่านหรอกนะ แต่ข้าเองก็ไม่รู้หรอกนะว่าจะควบคุมพลังของตัวเองได้มากแค่ไหน";
 	sleep 1500;
 	disablenpc();
 	setnpcdisplay( instance_npcname("#inter_con"), 844 );	// CLEAR_NPC
@@ -612,7 +613,7 @@ function FillBaseStat;
 function UpdateBossStat;
 
 OnStart:
-	monster 'map_bago$,54,55,"--en--",22175,1, instance_npcname("md_rigel_main_part_1") + "::OnBossDead";	// MD_PRI_RIGEL_AC
+	monster 'map_bago$,54,55,"Dimension Criminal Rigel",22175,1, instance_npcname("md_rigel_main_part_1") + "::OnBossDead";	// MD_PRI_RIGEL_AC
 	'boss_gid = $@mobid[0];
 
 	// Set damage reduction of the boss on spawn.
@@ -755,10 +756,12 @@ OnTimer1000:
 OnTimer2000:
 	switch( F_IsPartyAlive('map_bago$) ) {
 	case 0:	// state invincible (spam mapannounce)
-		mapannounce 'map_bago$, "The constellation's strike resulted in a fatality. The dimensional criminal is given infinite power until the deceased is resurrected.", bc_map, 0xCCFF00;
+		mapannounce 'map_bago$, "การโจมตีของกลุ่มดาวที่รุนแรงส่งผลทำให้หมดสติลงที่นี่ อาชญากรข้ามมิติได้รับพลังไร้ที่สิ้นสุดจนกว่าจะฟื้นคืนชีพได้อีกครั้ง", bc_map, 0xCCFF00;
 		break;
 	case 1:	// invincible removed
 		// unknown text
+		mapannounce 'map_bago$, "พลังอันไร้ที่สิ้นสุดที่ไหลอยู่ภายในร่างกายของอาชญากรข้ามมิติได้จางหายไปแล้ว", bc_map, 0xCCFF00;
+		break;
 		break;
 	case 2:	// no state change
 		break;
@@ -797,19 +800,20 @@ S_Invincible:
 	end;
 OnStart:
 	if ('boss_is_groggy == false) {
-		unittalk 'boss_gid, "May this place be filled with the energy of life...";
 		unitskilluseid 'boss_gid, 793, 1;	// NPC_RESET_EFST
 		sc_start SC_SHOW_EFFECT1, 9999,842,10000, SCSTART_NOTICKDEF | SCSTART_NOAVOID | SCSTART_NORATEDEF, 'boss_gid;
 	}
 	initnpctimer;
 	end;
 OnTimer2000:
+		unittalk 'boss_gid, "ขอให้สถานที่แห่งนี้เต็มไปด้วยจิตวิญญาณแห่งชีวิต...";
 	// TODO : the system pick a player around (even if dead) and place the trap
 	// if ('boss_is_groggy == false) {
 		// unitskilluseid 'boss_id, 775, 4, .@data[UMOB_TARGETID];	// NPC_SEEDTRAP
 	// }
 	end;
 OnTimer4000:
+		unittalk 'boss_gid, "ความผิดพลาดของท่าน ทำให้ข้าแข็งแกร่งขึ้น";
 	// TODO
 	// if ('boss_is_groggy == false) {
 		// unitskilluseid 'boss_id, 775, 4, .@data[UMOB_TARGETID];	// NPC_SEEDTRAP
@@ -1029,17 +1033,47 @@ OnTimer300:
 	}
 	end;
 OnTimer500:
-	// Spawn mobs (A) using NPC_WIDELEASH (move target on mob location) and spawn another mobs using area skills around mobs A
-	.@event$ = instance_npcname("md_rigel_manabarrier_carre_3") + "::OnMobDead";
-	monster 'map_bago$,45,40," ",20582,1, .@event$; // MD_MANHOLE4
-	setunitdata $@mobid[0], UMOB_AI, 10;
-	monster 'map_bago$,45,58," ",20582,1, .@event$;
-	setunitdata $@mobid[0], UMOB_AI, 10;
-	monster 'map_bago$,63,40," ",20582,1, .@event$;
-	setunitdata $@mobid[0], UMOB_AI, 10;
-	monster 'map_bago$,63,58," ",20582,1, .@event$;
-	setunitdata $@mobid[0], UMOB_AI, 10;
-	end;
+    // Spawn mobs (A) using NPC_WIDELEASH (move target on mob location) and spawn another mobs using area skills around mobs A
+    .@event$ = instance_npcname("md_rigel_manabarrier_carre_3") + "::OnMobDead";
+    monster 'map_bago$,45,40," ",20582,1, .@event$; // MD_MANHOLE4
+    'mob_id = $@mobid[0];
+    unitskilluseid 'mob_id,    135,    3;    // AS_CLOAKING
+    unitskilluseid 'mob_id,    748,    3;    // NPC_WIDELEASH
+    
+    monster 'map_bago$,45,58," ",20582,1, .@event$;
+    'mob_id2 = $@mobid[0];
+    unitskilluseid 'mob_id2, 135, 3;    // AS_CLOAKING
+    unitskilluseid 'mob_id2, 748, 3;    // NPC_WIDELEASH
+    
+    monster 'map_bago$,63,40," ",20582,1, .@event$;
+    'mob_id3 = $@mobid[0];
+    unitskilluseid 'mob_id3, 135, 3;    // AS_CLOAKING
+    unitskilluseid 'mob_id3, 748, 3;    // NPC_WIDELEASH
+    
+    monster 'map_bago$,63,58," ",20582,1, .@event$;
+    'mob_id4 = $@mobid[0];
+    unitskilluseid 'mob_id4, 135, 3;    // AS_CLOAKING
+    unitskilluseid 'mob_id4, 748, 3;    // NPC_WIDELEASH
+    end;
+//OnTimer500:
+//	// Spawn mobs (A) using NPC_WIDELEASH (move target on mob location) and spawn another mobs using area skills around mobs A
+//	.@event$ = instance_npcname("md_rigel_manabarrier_carre_3") + "::OnMobDead";
+//	monster 'map_bago$,45,40," ",20582,1, .@event$; // MD_MANHOLE4
+//	setunitdata $@mobid[1], UMOB_AI, 10;
+//	monster 'map_bago$,45,58," ",20582,1, .@event$;
+//	setunitdata $@mobid[2], UMOB_AI, 10;
+//	monster 'map_bago$,63,40," ",20582,1, .@event$;
+//	setunitdata $@mobid[3], UMOB_AI, 10;
+//	monster 'map_bago$,63,58," ",20582,1, .@event$;
+//	setunitdata $@mobid[4], UMOB_AI, 10;
+//	end;
+//OnTimer1000:
+//	for ( .@i = 0; .@i < 4; ++.@i ) {
+//		if (unitexists('mana_carre[.@i]) == false)
+//			continue;
+//		unitskilluseid 'mana_carre[.@i], 748, 3;	// NPC_WIDELEASH level 3
+//	}
+//	end;
 OnTimer2500:
 	killmonster 'map_bago$, instance_npcname("md_rigel_manabarrier_carre_3") + "::OnMobDead";
 	end;
@@ -1272,7 +1306,7 @@ function UpdateCloneStat;
 
 OnStart:
 	// Enable the gate (entrance to the clone area).
-	mapannounce 'map_bago$, "A dimensional portal to the other side of the Hall of Life has been opened.", bc_map, 0xFFFF;
+	mapannounce 'map_bago$, "ประตูมิติไปยังอีกด้านหนึ่งของ Hall of Life ได้ถูกเปิดออกแล้ว", bc_map, 0xFFFF;
 	enablenpc instance_npcname("#trap_0_rigiel");
 
 	// Disable the gate (exit from the clone area).
@@ -1307,7 +1341,7 @@ OnTimer2000:
 OnMobDead:
 	if (mobcount('map_bago$, instance_npcname("md_rigel_sub_boss") + "::OnMobDead") > 0)
 		end;
-	mapannounce 'map_bago$, "As a result of being attacked from behind the dimension, all of the powers of the dimension criminal Rigel decrease for a certain period of time.", bc_map, 0xCCFF00;
+	mapannounce 'map_bago$, "เนื่องจากมีการต่อสู้อีกทางด้านหนึ่งของมิติ ทำให้พลังทั้งหมดของอาชญากรข้ามมิติลดลงในระยะเวลาหนึ่ง", bc_map, 0xCCFF00;
 	
 	// Disable the gate (entrance).
 	disablenpc instance_npcname("#trap_0_rigiel");
@@ -1452,11 +1486,12 @@ OnStart:
 	donpcevent instance_npcname("md_rigel_main_part_1") + "::OnResetStat";
 
 	setunitdata 'boss_gid, UMOB_DAMAGE_REDUCTION, 'damage_reduction_boss_groggy['barrier_level];
-	'boss_is_groggy = true;
-	.@time = rand(6000,18000);	// Timer seems to be random, between 6 and 18s.
-	sc_start SC_GROGGY, .@time,1,10000, SCSTART_NOTICKDEF | SCSTART_NOAVOID | SCSTART_NORATEDEF, 'boss_gid;
-	// unitskilluseid 'boss_gid,"NPC_GROGGY_ON",1;
-	sleep .@time;
+    'boss_is_groggy = true;
+    .@time = rand(6000,18000);    // Timer seems to be random, between 6 and 18s.
+    sc_start SC_GROGGY, .@time,1,10000, SCSTART_NOTICKDEF | SCSTART_NOAVOID | SCSTART_NORATEDEF, 'boss_gid;
+    sc_start SC_SHOW_EFFECT1, .@time, EF_PORTAL3, 10000, SCSTART_NOTICKDEF | SCSTART_NOAVOID | SCSTART_NORATEDEF, 'boss_gid;
+    // unitskilluseid 'boss_gid,"NPC_GROGGY_ON",1;
+    sleep .@time;
 	if (unitexists('boss_gid) == true) {
 		setunitdata 'boss_gid, UMOB_DAMAGE_REDUCTION, 'damage_reduction_boss_normal['barrier_level];
 		'boss_is_groggy = false;
@@ -1500,7 +1535,11 @@ OnStart:
 	initnpctimer;
 	end;
 OnTimer1000:
-	npctalk "I can't wait to kill the constellation of life myself.", instance_npcname("#inter_con");
+	npctalk "ข้าอดใจไม่ไหวแล้วที่จะทำลาย Constellation of Life ด้วยพลังของข้าเอง", instance_npcname("#inter_con");
+	// unknown if there is more text
+	end;
+OnTimer4000:
+	npctalk "ท่านกำลังถูกคนพวกนั้นหลอกลวงด้วยสิ่งปลอมๆ ที่อยู่ภายข้างนอกนั้น สักวันท่านจะเข้าใจความหมายที่ข้าได้บอกกับท่านไป", instance_npcname("#inter_con");
 	// unknown if there is more text
 	end;
 OnTimer9000:
@@ -1518,7 +1557,7 @@ OnTimer9000:
 function UpdateBossStat;
 
 OnStart:
-	monster 'map_bago$,54,55,"--en--",22175,1, instance_npcname("md_rigel_main_part_2") + "::OnBossDead";	// MD_PRI_RIGEL_AC
+	monster 'map_bago$,54,55,"Dimension Criminal Rigel",22174,1, instance_npcname("md_rigel_main_part_2") + "::OnBossDead";	// MD_PRI_RIGEL_AC
 	'boss_gid = $@mobid[0];
 
 	// Set the boss max hp and damage reduction on spawn.
@@ -1555,7 +1594,7 @@ OnBossDead:
 	
 	// Reward NPC
 	'step = 2;
-	enablenpc instance_npcname("#reward_npc");
+	enablenpc instance_npcname("#reward_npc1");
 
 	// Update the variable score
 	.@instance_id = instance_id();
@@ -1621,6 +1660,8 @@ OnStop:
 	end;
 OnStart:
 	'boss_sanctuary_event = true;
+	
+	unittalk 'boss_gid, "แสงสว่างแห่งชีวิต ช่วยปกป้องข้าด้วยเถิด";
 
 	// Boss invincible in 14x14 area
 	getunitdata( 'boss_gid, .@data );
@@ -1663,8 +1704,8 @@ OnStop:
 	end;
 }
 
-// 1@ba_go,54,55,4	script(DISABLED)	#reward_npc	PORTAL,1,1,{
-1@ba_go,54,55,4	script(DISABLED)	#reward_npc	PORTAL,{
+// 1@ba_go,54,55,4	script(DISABLED)	#reward_npc1	PORTAL,1,1,{
+1@ba_go,54,55,4	script(DISABLED)	#reward_npc1	PORTAL,{
 	F_CheckStep(2);
 	
 	// Player succeed
@@ -1677,11 +1718,11 @@ OnStop:
 	case 0:
 	case 1:
 		// Reward already taken, player can only leave
-		mes "If you have received this week's reward, you will not be able to increase your barrier level until next week. Please be careful when entering and exiting.";
-		mes "Would you like to leave the prison now?";
+		mes "หากคุณรับของรางวัลในสัปดาห์นี้ คุณจะไม่สามารถเพิ่มระดับการปลดผนึกได้จนกว่าจะถึงสัปดาห์หน้า โปรดระมัดระวังเสมอเมื่อทำการเข้าออกที่แห่งนี้";
+		mes "ต้องการออกจากที่แห่งนี้หรือไม่?";
 		next;
 		// custom from here
-		if (select( "Cancel", "Leave" ) == 1)
+		if (select( "ยกเลิก", "ออกจากที่นี่" ) == 1)
 			end;
 		warp "t_garden",166,219;
 		end;
@@ -1693,16 +1734,16 @@ OnStop:
 	if ('player_registered[ getcharid(0) ] == 1) {
 		if (getequipid(EQI_HEAD_LOW) != 420231) {	// custom text
 			mes "[Rigel]";
-			mes "You don't have the protection equipped. You must have forgotten that you can't enter in that state, right? Equip the protection and come back.";
+			mes "ดูเหมือนว่าท่านไม่ได้สวมใส่ Constellation's Barrier อย่างนั้นใช่ไหม? ท่านคงลืมไปแล้วใช่ไหมว่าไม่สามารถเข้าไปได้หากไม่มี Constellation's Barrier ดังนั้นแล้วอย่าลืมสวมใส่ Constellation's Barrier ก่อนแล้วกลับมาคุยกับข้าใหม่";
 			close;
 		}
-		mes "^ff0000- " + 'barrier_level + "Grade barrier -^000000";
-		mes "You have completed the left-hand correction work.";
-		mes "You can receive the reward appropriate for your level right now.";
-		mes "You can postpone the reward for a while and raise your barrier access level by one.";
+		mes "^ff0000- ระดับพลังป้องกันที่ " + 'barrier_level + " -^000000";
+		mes "คุณได้ช่วยเหลืองานของ Rigel เสร็จเรียบร้อยแล้ว";
+		mes "สามารถรับของรางวัลที่เหมาะสมกับระดับของตัวเองได้เลยทันที";
+		mes "หรือสามารถเลื่อนการรับของรางวัลในระดับถัดไปแล้วเพิ่มระดับการเข้าถึงการปลดผนึกอีกหนึ่งระดับได้เช่นกัน";
 		next;
 		// custom from here
-		switch( select( "Cancel", "Raise my barrier level", "Get reward" ) ) {
+		switch( select( "ยกเลิก", "เพิ่มระดับการเข้าถึงการปลดผนึก", "รับของรางวัล" ) ) {
 		case 1:
 			end;
 		case 2:
@@ -1736,10 +1777,10 @@ OnStop:
 				getitem2 420231,1,1,0,0,0,0,0,.@new_enchant;	// MD_Hol_Protection
 				
 				.@level = .@new_enchant - 312452;
-				mes "Your barrier level has been raised to ^ff0000- " + .@level + "^000000.";
+				mes "ระดับการเข้าถึงการปลดผนึกพลังป้องกันอยู่ในระดับที่ - ^ff0000" + .@level + "^000000 - แล้ว";
 				close;
 			case 312472:	// MD_Hol_Barrier_20
-				mes "Your barrier level is already max level.";
+				mes "ระดับการปลดผนึกพลังป้องกันของคุณอยู่ในระดับสูงสุดแล้ว";
 				close;
 			}
 			end;
@@ -1784,7 +1825,7 @@ OnStop:
 				1001454,.@amount, 1001455,.@amount
 			);
 			if (.@check == 0) {
-				mes "^ff0000It seems that you are overweight. Please organize your inventory.^000000";
+				mes "^ff0000ไม่สามารถดำเนินการได้เนื่องจากแบกสัมภาระมากเกินไป โปรดจัดการสัมภาระก่อนที่จะดำเนินการ^000000";
 				close;
 			}
 			'player_registered[ getcharid(0) ] = 0;
@@ -1796,16 +1837,16 @@ OnStop:
 			getitem 1001452, .@amount;
 			getitem 1001454, .@amount;
 			getitem 1001455, .@amount;
-			mes "======== Reward ========";
-			mes "You got";
-			mes "" + .@amount + " " + mesitemlink(1001445) + "";
-			mes "" + .@amount + " " + mesitemlink(1001446) + "";
-			mes "" + .@amount + " " + mesitemlink(1001448) + "";
-			mes "" + .@amount + " " + mesitemlink(1001449) + "";
-			mes "" + .@amount + " " + mesitemlink(1001451) + "";
-			mes "" + .@amount + " " + mesitemlink(1001452) + "";
-			mes "" + .@amount + " " + mesitemlink(1001454) + "";
-			mes "" + .@amount + " " + mesitemlink(1001455) + "";
+			mes "======== ของรางวัล ========";
+			mes " ";
+			mes "คุณได้รับ " + mesitemlink(1001445) + " จำนวน " + .@amount + " ชิ้น";
+			mes "คุณได้รับ " + mesitemlink(1001446) + " จำนวน " + .@amount + " ชิ้น";
+			mes "คุณได้รับ " + mesitemlink(1001448) + " จำนวน " + .@amount + " ชิ้น";
+			mes "คุณได้รับ " + mesitemlink(1001449) + " จำนวน " + .@amount + " ชิ้น";
+			mes "คุณได้รับ " + mesitemlink(1001451) + " จำนวน " + .@amount + " ชิ้น";
+			mes "คุณได้รับ " + mesitemlink(1001452) + " จำนวน " + .@amount + " ชิ้น";
+			mes "คุณได้รับ " + mesitemlink(1001454) + " จำนวน " + .@amount + " ชิ้น";
+			mes "คุณได้รับ " + mesitemlink(1001455) + " จำนวน " + .@amount + " ชิ้น";
 			
 			// Cooldown : reset monday 4h
 			setquest 12612;
@@ -1814,7 +1855,7 @@ OnStop:
 		end;
 	}
 	// custom
-	if (select( "Cancel", "Leave" ) == 1)
+	if (select( "ยกเลิก", "ออกจากที่นี่" ) == 1)
 		end;
 	warp "t_garden",166,219;
 	end;
