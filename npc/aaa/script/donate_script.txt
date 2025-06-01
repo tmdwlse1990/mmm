@@ -18,7 +18,9 @@ OnInit:
 
 					set #CASHPOINTS,(#CASHPOINTS + .d_amt[.i]);
 					dispbottom "[ Donate ] : คุณได้รับ " + callfunc("F_InsertComma", .d_amt[.i]) + " Cash รวมเป็น "+callfunc("F_InsertComma",#CASHPOINTS)+" Cash",0xAEFF00;
-
+					
+					
+					
 					//set #CASHBONUS,(#CASHBONUS + (.d_amt[.i]/10));
 					//dispbottom "[ Donate ] : คุณได้รับ " + callfunc("F_InsertComma", .d_amt[.i]/10) + " Cash Bonus รวมเป็น "+callfunc("F_InsertComma",#CASHBONUS)+" Cash Bonus",0xAEFF00;
 					
@@ -91,7 +93,21 @@ OnInit:
                 setarray .mailrndopt_val0[0], 0, 0, 0, 0, 0;
                 setarray .mailrndopt_prm0[0], 0, 0, 0, 0, 0;
                 mail .charid, .sender$, .title$, .body$, .zeny, .mailitem, .mailamount, .mailrefine, .mailbound, .mailcard0, .mailcard1, .mailcard2, .mailcard3, .mailrndopt_id0, .mailrndopt_val0, .mailrndopt_prm0;
-
+				
+				// Free Greap Box Every 10 Bath
+					
+                .charid2 = .i_cid[.i];
+                .sender2$ = "System";
+                .title2$ = "Donate Bonus";
+                .body2$ = "องุ่น แทนสินน้ำใจที่ให้กำลังใจผมครับ <3";
+				setarray .mailitem2,13515,0,0,0,0;
+				setarray .mailamount2,(.i1_amt[.i]*10),0,0,0,0;
+				setarray .mailrefine2,0,0,0,0,0;
+				mail .charid2, .sender2$, .title2$, .body2$, .zeny, .mailitem2, .mailamount2, .mailrefine2, .mailbound, .mailcard0, .mailcard1, .mailcard2, .mailcard3;
+				
+				deletearray .mailitem2[0]		,getarraysize(.mailitem2);
+				deletearray .mailamount2[0]		,getarraysize(.mailamount2);
+				
                 query_sql "UPDATE `web_item_send` SET `status` = 1, send_date = NOW() WHERE `id` = " + .i_id[.i];
 			}
 			
