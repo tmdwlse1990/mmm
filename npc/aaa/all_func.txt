@@ -1,3 +1,111 @@
+function	script	F_PetRandom	{
+
+	
+	// === กำหนดไอเท็ม และน้ำหนัก (weight) ===
+	.@tier = getarg(0);
+	switch(.@tier) {
+		case 0:
+			.@box = 1;
+			setarray .@item_ids, 
+			9088,9096,9139,9251,9252,9253,9254,9255
+			; // ใส่ item ID RARE
+			set .@raresize,getarraysize(.@item_ids);
+			setarray .@item_ids[getarraysize(.@item_ids)], 
+			9001,9002,9003,9004,9005,9006,9009,9010,9011,9012,9014,
+			9017,9020,9021,9022,9023,9024,9025,9027,9055,9052,9015
+			;
+			setarray .@item_weights, 
+			1,1,1,1,1,1,1,1,
+			10,10,10,10,10,10,10,10,10,10,10,
+			5,5,5,5,5,5,5,5,5,5,5
+			;
+			break;
+		case 1:	// Common 2 Rare
+			// รองรับได้เกิน 100+ ชิ้น
+			setarray .@item_ids, 
+			9017,9020,9021,9022,9023,9024,9025,9027,9055,9052,9015
+			; // ใส่ item ID RARE
+			set .@raresize,getarraysize(.@item_ids);
+			setarray .@item_ids[getarraysize(.@item_ids)], 
+			9001,9002,9003,9004,9005,9006,9009,9010,9011,9012,9014
+			; // ใส่ item ID Common
+			
+			setarray .@item_weights, 
+			1,1,1,1,1,1,1,1,1,1,1
+			; // น้ำหนัก ยิ่งมาก โอกาสยิ่งเยอะ RARE
+			
+			setarray .@item_weights[getarraysize(.@item_weights)],
+			2,2,2,2,2,2,2,2,2,2,2
+			; // น้ำหนัก ยิ่งมาก โอกาสยิ่งเยอะ COMMON
+			break;
+		case 2:	// Rare 2 Epic
+			// รองรับได้เกิน 100+ ชิ้น
+			setarray .@item_ids, 
+			9088,9096,9139,9251,9252,9253,9254,9255
+			; // ใส่ item ID RARE
+			set .@raresize,getarraysize(.@item_ids);
+			setarray .@item_ids[getarraysize(.@item_ids)], 
+			9017,9020,9021,9022,9023,9024,9025,9027,9055,9052,9015
+			; // ใส่ item ID Common
+			
+			setarray .@item_weights, 
+			1,1,1,1,1,1,1,1
+			; // น้ำหนัก ยิ่งมาก โอกาสยิ่งเยอะ RARE
+			
+			setarray .@item_weights[getarraysize(.@item_weights)],
+			5,5,5,5,5,5,5,5,5,5,5
+			; // น้ำหนัก ยิ่งมาก โอกาสยิ่งเยอะ COMMON
+			break;
+		case 3:	// Epic 2 Legend
+			// รองรับได้เกิน 100+ ชิ้น
+			setarray .@item_ids, 
+			9271,9272,9273,9111,9112,9121,9122,9126,9137,9193,9142,9274,9275,9276,9277,9278
+			; // ใส่ item ID RARE
+			set .@raresize,getarraysize(.@item_ids);
+			setarray .@item_ids[getarraysize(.@item_ids)], 
+			9088,9096,9139,9251,9252,9253,9254,9255
+			; // ใส่ item ID Common
+			
+			setarray .@item_weights, 
+			1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+			; // น้ำหนัก ยิ่งมาก โอกาสยิ่งเยอะ RARE
+			
+			setarray .@item_weights[getarraysize(.@item_weights)],
+			20,20,20,20,20,20,20,20
+			; // น้ำหนัก ยิ่งมาก โอกาสยิ่งเยอะ COMMON
+			break;
+	}
+	
+	set .@size, getarraysize(.@item_ids);
+	
+	// === คำนวณน้ำหนักรวมทั้งหมด ===
+	set .@total_weight, 0;
+	for (set .@i, 0; .@i < .@size; set .@i, .@i + 1) {
+		set .@total_weight, .@total_weight + .@item_weights[.@i];
+	}
+
+	// === สุ่มตัวเลขจาก 1 ถึง total_weight ===
+	set .@rand, rand(1, .@total_weight);
+	set .@accum, 0;
+
+	// === วนลูปเลือกไอเท็มตามน้ำหนัก ===
+	for (set .@i, 0; .@i < .@size; set .@i, .@i + 1) {
+		set .@accum, .@accum + .@item_weights[.@i];
+		if (.@rand <= .@accum) {
+			.@itemid = .@item_ids[.@i];
+			break;
+		}
+	}
+	
+	//.@itemid = .gacha[rand(getarraysize(.gacha))];
+	getitem .@itemid,1;
+	if( .@i < .@raresize) {
+		//announce "<text>",<flag>{,<fontColor>{,<fontType>{,<fontSize>{,<fontAlign>{,<fontY>{,<char_id>}}}}}};
+		announce "ท่าน "+strcharinfo(0)+" ได้รับ "+itemlink(.@itemid)+" จาก"+(.@box ? "กล่องสุ่มไข่":"ผสมไข่")+"",bc_pc;
+	}
+	return;
+}
+
 function	script	F_MVPReward	{
 	set .@tier,getarg(0);
 	switch(.@tier) {

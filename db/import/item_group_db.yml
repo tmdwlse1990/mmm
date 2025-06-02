@@ -52,334 +52,355 @@ Body:
   - Group: COMMON2RARE_PET
     SubGroups:
       - SubGroup: 1
-        Algorithm: Random
         List:
           - Index: 0
-            Item: Drops_Egg
-            Rate: 10
-          - Index: 1
-            Item: Poporing_Egg
-            Rate: 10
-          - Index: 2
-            Item: Lunatic_Egg
-            Rate: 10
-          - Index: 3
-            Item: Picky_Egg
-            Rate: 10
-          - Index: 4
-            Item: Chonchon_Egg
-            Rate: 10
-          - Index: 5
-            Item: Savage_Bebe_Egg
-            Rate: 10
-          - Index: 6
-            Item: Baby_Desert_Wolf_Egg
-            Rate: 10
-          - Index: 7
-            Item: Rocker_Egg
-            Rate: 10
-          - Index: 8
-            Item: Spore_Egg
-            Rate: 10
-          - Index: 9
-            Item: PecoPeco_Egg
-            Rate: 10
-          - Index: 10
-            Item: Orc_Warrior_Egg
-            Rate: 1
-          - Index: 11
-            Item: Sohee_Egg
-            Rate: 1
-          - Index: 12
-            Item: Isis_Egg
-            Rate: 1
-          - Index: 13
-            Item: Green_Petite_Egg
-            Rate: 1
-          - Index: 14
-            Item: Deviruchi_Egg
-            Rate: 1
-          - Index: 15
-            Item: Bapho_Jr._Egg
-            Rate: 1
-          - Index: 16
-            Item: Bongun_Egg
-            Rate: 1
-          - Index: 17
-            Item: Alice_Egg
-            Rate: 1
-          - Index: 18
-            Item: Succubus_Egg
-            Rate: 1
-          - Index: 19
-            Item: Incubus_Egg
-            Rate: 1
-          - Index: 20
-            Item: Smokie_Egg
+            Item: Common2Rare_Pet_Box
             Rate: 1
   - Group: RARE2EPIC_PET
     SubGroups:
       - SubGroup: 1
-        Algorithm: Random
         List:
           - Index: 0
-            Item: Orc_Warrior_Egg
-            Rate: 15
-          - Index: 1
-            Item: Sohee_Egg
-            Rate: 15
-          - Index: 2
-            Item: Isis_Egg
-            Rate: 15
-          - Index: 3
-            Item: Green_Petite_Egg
-            Rate: 15
-          - Index: 4
-            Item: Deviruchi_Egg
-            Rate: 15
-          - Index: 5
-            Item: Bapho_Jr._Egg
-            Rate: 15
-          - Index: 6
-            Item: Bongun_Egg
-            Rate: 15
-          - Index: 7
-            Item: Alice_Egg
-            Rate: 15
-          - Index: 8
-            Item: Succubus_Egg
-            Rate: 15
-          - Index: 9
-            Item: Incubus_Egg
-            Rate: 15
-          - Index: 10
-            Item: Smokie_Egg
-            Rate: 15
-          - Index: 11
-            Item: Angeling_Egg
-            Rate: 1
-          - Index: 12
-            Item: Cat_O_Nine_Tail_Egg
-            Rate: 1
-          - Index: 13
-            Item: Dark_Illusion_Egg
-            Rate: 1
-          - Index: 14
-            Item: Ghostring_Egg
-            Rate: 1
-          - Index: 15
-            Item: Gryphon_Egg
-            Rate: 1
-          - Index: 16
-            Item: Hydro_Egg
-            Rate: 1
-          - Index: 17
-            Item: Mutant_Dragon_Egg
-            Rate: 1
-          - Index: 18
-            Item: Owl_Baron_Egg
+            Item: Rare2Epic_Pet_Box
             Rate: 1
   - Group: Epic2Legend_PET
     SubGroups:
       - SubGroup: 1
-        Algorithm: Random
         List:
           - Index: 0
-            Item: Angeling_Egg
-            Rate: 50
-          - Index: 1
-            Item: Cat_O_Nine_Tail_Egg
-            Rate: 50
-          - Index: 2
-            Item: Dark_Illusion_Egg
-            Rate: 50
-          - Index: 3
-            Item: Ghostring_Egg
-            Rate: 50
-          - Index: 4
-            Item: Gryphon_Egg
-            Rate: 50
-          - Index: 5
-            Item: Hydro_Egg
-            Rate: 50
-          - Index: 6
-            Item: Mutant_Dragon_Egg
-            Rate: 50
-          - Index: 7
-            Item: Owl_Baron_Egg
-            Rate: 50
-          - Index: 8
-            Item: DOPPELGANGER_EGG
+            Item: Epic2Legend_Pet_Box
             Rate: 1
-          - Index: 9
-            Item: Orc_Lord_Egg_
-            Rate: 1
-          - Index: 10
-            Item: MAYA_EGG
-            Rate: 1
-          - Index: 11
-            Item: Moonlight_Egg
-            Rate: 1
-          - Index: 12
-            Item: Baphomet_Egg
-            Rate: 1
-          - Index: 13
-            Item: Mistress_Egg
-            Rate: 1
-          - Index: 14
-            Item: Eddga_Egg2
-            Rate: 1
-          - Index: 15
-            Item: OSIRIS_EGG
-            Rate: 1
-          - Index: 16
-            Item: DRACULA_EGG
-            Rate: 1
-          - Index: 17
-            Item: DARK_SNAKE_LORD_EGG
-            Rate: 1
-          - Index: 18
-            Item: TURTLE_GENERAL_EGG
-            Rate: 1
-          - Index: 19
-            Item: RANDGRIS_EGG
-            Rate: 1
-          - Index: 20
-            Item: Phreeoni_Egg
-            Rate: 1
-          - Index: 21
-            Item: Ork_Hero_EGG
-            Rate: 1
-          - Index: 22
-            Item: Gloom_Under_Egg
-            Rate: 1
-          - Index: 23
-            Item: Kiel_Egg
-            Rate: 1
-  - Group: ALLRAND_PET
-    SubGroup:
-      - SubGroup: 1
-        List:
-          - Index: 0
-            Item: Drops_Egg
-            Rate: 1
-          - Index: 1
-            Item: Poporing_Egg
-            Rate: 1
-          - Index: 2
-            Item: Lunatic_Egg
-            Rate: 1
-          - Index: 3
-            Item: Picky_Egg
-            Rate: 1
-          - Index: 4
-            Item: Chonchon_Egg
-            Rate: 1
-          - Index: 5
-            Item: Savage_Bebe_Egg
-            Rate: 1
-          - Index: 6
-            Item: Baby_Desert_Wolf_Egg
-            Rate: 1
-          - Index: 7
-            Item: Rocker_Egg
-            Rate: 1
-          - Index: 8
-            Item: Spore_Egg
-            Rate: 1
-          - Index: 9
-            Item: PecoPeco_Egg
-            Rate: 1
-          - Index: 10
-            Item: Orc_Warrior_Egg
-            Rate: 1
-          - Index: 11
-            Item: Sohee_Egg
-            Rate: 1
-          - Index: 12
-            Item: Isis_Egg
-            Rate: 1
-          - Index: 13
-            Item: Green_Petite_Egg
-            Rate: 1
-          - Index: 14
-            Item: Deviruchi_Egg
-            Rate: 1
-          - Index: 15
-            Item: Bapho_Jr._Egg
-            Rate: 1
-          - Index: 16
-            Item: Bongun_Egg
-            Rate: 1
-          - Index: 17
-            Item: Alice_Egg
-            Rate: 1
-          - Index: 18
-            Item: Succubus_Egg
-            Rate: 1
-          - Index: 19
-            Item: Incubus_Egg
-            Rate: 1
-          - Index: 20
-            Item: Smokie_Egg
-            Rate: 1
-          - Index: 21
-            Item: Angeling_Egg
-            Rate: 1
-          - Index: 22
-            Item: Cat_O_Nine_Tail_Egg
-            Rate: 1
-          - Index: 23
-            Item: Dark_Illusion_Egg
-            Rate: 1
-          - Index: 24
-            Item: Ghostring_Egg
-            Rate: 1
-          - Index: 25
-            Item: Gryphon_Egg
-            Rate: 1
-          - Index: 26
-            Item: Hydro_Egg
-            Rate: 1
-          - Index: 27
-            Item: Mutant_Dragon_Egg
-            Rate: 1
-          - Index: 28
-            Item: Owl_Baron_Egg
-            Rate: 1
-          - Index: 29
-            Item: DOPPELGANGER_EGG
-            Rate: 1
-          - Index: 30
-            Item: Orc_Lord_Egg_
-            Rate: 1
-          - Index: 31
-            Item: MAYA_EGG
-            Rate: 1
-          - Index: 32
-            Item: Moonlight_Egg
-            Rate: 1
-          - Index: 33
-            Item: Baphomet_Egg
-            Rate: 1
-          - Index: 34
-            Item: Mistress_Egg
-            Rate: 1
-          - Index: 35
-            Item: Eddga_Egg2
-            Rate: 1
-          - Index: 36
-            Item: OSIRIS_EGG
-            Rate: 1
-          - Index: 37
-            Item: DRACULA_EGG
-            Rate: 1
-          - Index: 38
-            Item: DARK_SNAKE_LORD_EGG
-            Rate: 1
-          - Index: 39
-            Item: TURTLE_GENERAL_EGG
-            Rate: 1
-          - Index: 40
-            Item: RANDGRIS_EGG
-            Rate: 1
+#  - Group: COMMON2RARE_PET
+#    SubGroups:
+#      - SubGroup: 1
+#        Algorithm: Random
+#        List:
+#          - Index: 0
+#            Item: Drops_Egg
+#            Rate: 10
+#          - Index: 1
+#            Item: Poporing_Egg
+#            Rate: 10
+#          - Index: 2
+#            Item: Lunatic_Egg
+#            Rate: 10
+#          - Index: 3
+#            Item: Picky_Egg
+#            Rate: 10
+#          - Index: 4
+#            Item: Chonchon_Egg
+#            Rate: 10
+#          - Index: 5
+#            Item: Savage_Bebe_Egg
+#            Rate: 10
+#          - Index: 6
+#            Item: Baby_Desert_Wolf_Egg
+#            Rate: 10
+#          - Index: 7
+#            Item: Rocker_Egg
+#            Rate: 10
+#          - Index: 8
+#            Item: Spore_Egg
+#            Rate: 10
+#          - Index: 9
+#            Item: PecoPeco_Egg
+#            Rate: 10
+#          - Index: 10
+#            Item: Orc_Warrior_Egg
+#            Rate: 1
+#          - Index: 11
+#            Item: Sohee_Egg
+#            Rate: 1
+#          - Index: 12
+#            Item: Isis_Egg
+#            Rate: 1
+#          - Index: 13
+#            Item: Green_Petite_Egg
+#            Rate: 1
+#          - Index: 14
+#            Item: Deviruchi_Egg
+#            Rate: 1
+#          - Index: 15
+#            Item: Bapho_Jr._Egg
+#            Rate: 1
+#          - Index: 16
+#            Item: Bongun_Egg
+#            Rate: 1
+#          - Index: 17
+#            Item: Alice_Egg
+#            Rate: 1
+#          - Index: 18
+#            Item: Succubus_Egg
+#            Rate: 1
+#          - Index: 19
+#            Item: Incubus_Egg
+#            Rate: 1
+#          - Index: 20
+#            Item: Smokie_Egg
+#            Rate: 1
+#  - Group: RARE2EPIC_PET
+#    SubGroups:
+#      - SubGroup: 1
+#        Algorithm: Random
+#        List:
+#          - Index: 0
+#            Item: Orc_Warrior_Egg
+#            Rate: 15
+#          - Index: 1
+#            Item: Sohee_Egg
+#            Rate: 15
+#          - Index: 2
+#            Item: Isis_Egg
+#            Rate: 15
+#          - Index: 3
+#            Item: Green_Petite_Egg
+#            Rate: 15
+#          - Index: 4
+#            Item: Deviruchi_Egg
+#            Rate: 15
+#          - Index: 5
+#            Item: Bapho_Jr._Egg
+#            Rate: 15
+#          - Index: 6
+#            Item: Bongun_Egg
+#            Rate: 15
+#          - Index: 7
+#            Item: Alice_Egg
+#            Rate: 15
+#          - Index: 8
+#            Item: Succubus_Egg
+#            Rate: 15
+#          - Index: 9
+#            Item: Incubus_Egg
+#            Rate: 15
+#          - Index: 10
+#            Item: Smokie_Egg
+#            Rate: 15
+#          - Index: 11
+#            Item: Angeling_Egg
+#            Rate: 1
+#          - Index: 12
+#            Item: Cat_O_Nine_Tail_Egg
+#            Rate: 1
+#          - Index: 13
+#            Item: Dark_Illusion_Egg
+#            Rate: 1
+#          - Index: 14
+#            Item: Ghostring_Egg
+#            Rate: 1
+#          - Index: 15
+#            Item: Gryphon_Egg
+#            Rate: 1
+#          - Index: 16
+#            Item: Hydro_Egg
+#            Rate: 1
+#          - Index: 17
+#            Item: Mutant_Dragon_Egg
+#            Rate: 1
+#          - Index: 18
+#            Item: Owl_Baron_Egg
+#            Rate: 1
+#  - Group: Epic2Legend_PET
+#    SubGroups:
+#      - SubGroup: 1
+#        Algorithm: Random
+#        List:
+#          - Index: 0
+#            Item: Angeling_Egg
+#            Rate: 50
+#          - Index: 1
+#            Item: Cat_O_Nine_Tail_Egg
+#            Rate: 50
+#          - Index: 2
+#            Item: Dark_Illusion_Egg
+#            Rate: 50
+#          - Index: 3
+#            Item: Ghostring_Egg
+#            Rate: 50
+#          - Index: 4
+#            Item: Gryphon_Egg
+#            Rate: 50
+#          - Index: 5
+#            Item: Hydro_Egg
+#            Rate: 50
+#          - Index: 6
+#            Item: Mutant_Dragon_Egg
+#            Rate: 50
+#          - Index: 7
+#            Item: Owl_Baron_Egg
+#            Rate: 50
+#          - Index: 8
+#            Item: DOPPELGANGER_EGG
+#            Rate: 1
+#          - Index: 9
+#            Item: Orc_Lord_Egg_
+#            Rate: 1
+#          - Index: 10
+#            Item: MAYA_EGG
+#            Rate: 1
+#          - Index: 11
+#            Item: Moonlight_Egg
+#            Rate: 1
+#          - Index: 12
+#            Item: Baphomet_Egg
+#            Rate: 1
+#          - Index: 13
+#            Item: Mistress_Egg
+#            Rate: 1
+#          - Index: 14
+#            Item: Eddga_Egg2
+#            Rate: 1
+#          - Index: 15
+#            Item: OSIRIS_EGG
+#            Rate: 1
+#          - Index: 16
+#            Item: DRACULA_EGG
+#            Rate: 1
+#          - Index: 17
+#            Item: DARK_SNAKE_LORD_EGG
+#            Rate: 1
+#          - Index: 18
+#            Item: TURTLE_GENERAL_EGG
+#            Rate: 1
+#          - Index: 19
+#            Item: RANDGRIS_EGG
+#            Rate: 1
+#          - Index: 20
+#            Item: Phreeoni_Egg
+#            Rate: 1
+#          - Index: 21
+#            Item: Ork_Hero_EGG
+#            Rate: 1
+#          - Index: 22
+#            Item: Gloom_Under_Egg
+#            Rate: 1
+#          - Index: 23
+#            Item: Kiel_Egg
+#            Rate: 1
+#  - Group: ALLRAND_PET
+#    SubGroup:
+#      - SubGroup: 1
+#        List:
+#          - Index: 0
+#            Item: Drops_Egg
+#            Rate: 1
+#          - Index: 1
+#            Item: Poporing_Egg
+#            Rate: 1
+#          - Index: 2
+#            Item: Lunatic_Egg
+#            Rate: 1
+#          - Index: 3
+#            Item: Picky_Egg
+#            Rate: 1
+#          - Index: 4
+#            Item: Chonchon_Egg
+#            Rate: 1
+#          - Index: 5
+#            Item: Savage_Bebe_Egg
+#            Rate: 1
+#          - Index: 6
+#            Item: Baby_Desert_Wolf_Egg
+#            Rate: 1
+#          - Index: 7
+#            Item: Rocker_Egg
+#            Rate: 1
+#          - Index: 8
+#            Item: Spore_Egg
+#            Rate: 1
+#          - Index: 9
+#            Item: PecoPeco_Egg
+#            Rate: 1
+#          - Index: 10
+#            Item: Orc_Warrior_Egg
+#            Rate: 1
+#          - Index: 11
+#            Item: Sohee_Egg
+#            Rate: 1
+#          - Index: 12
+#            Item: Isis_Egg
+#            Rate: 1
+#          - Index: 13
+#            Item: Green_Petite_Egg
+#            Rate: 1
+#          - Index: 14
+#            Item: Deviruchi_Egg
+#            Rate: 1
+#          - Index: 15
+#            Item: Bapho_Jr._Egg
+#            Rate: 1
+#          - Index: 16
+#            Item: Bongun_Egg
+#            Rate: 1
+#          - Index: 17
+#            Item: Alice_Egg
+#            Rate: 1
+#          - Index: 18
+#            Item: Succubus_Egg
+#            Rate: 1
+#          - Index: 19
+#            Item: Incubus_Egg
+#            Rate: 1
+#          - Index: 20
+#            Item: Smokie_Egg
+#            Rate: 1
+#          - Index: 21
+#            Item: Angeling_Egg
+#            Rate: 1
+#          - Index: 22
+#            Item: Cat_O_Nine_Tail_Egg
+#            Rate: 1
+#          - Index: 23
+#            Item: Dark_Illusion_Egg
+#            Rate: 1
+#          - Index: 24
+#            Item: Ghostring_Egg
+#            Rate: 1
+#          - Index: 25
+#            Item: Gryphon_Egg
+#            Rate: 1
+#          - Index: 26
+#            Item: Hydro_Egg
+#            Rate: 1
+#          - Index: 27
+#            Item: Mutant_Dragon_Egg
+#            Rate: 1
+#          - Index: 28
+#            Item: Owl_Baron_Egg
+#            Rate: 1
+#          - Index: 29
+#            Item: DOPPELGANGER_EGG
+#            Rate: 1
+#          - Index: 30
+#            Item: Orc_Lord_Egg_
+#            Rate: 1
+#          - Index: 31
+#            Item: MAYA_EGG
+#            Rate: 1
+#          - Index: 32
+#            Item: Moonlight_Egg
+#            Rate: 1
+#          - Index: 33
+#            Item: Baphomet_Egg
+#            Rate: 1
+#          - Index: 34
+#            Item: Mistress_Egg
+#            Rate: 1
+#          - Index: 35
+#            Item: Eddga_Egg2
+#            Rate: 1
+#          - Index: 36
+#            Item: OSIRIS_EGG
+#            Rate: 1
+#          - Index: 37
+#            Item: DRACULA_EGG
+#            Rate: 1
+#          - Index: 38
+#            Item: DARK_SNAKE_LORD_EGG
+#            Rate: 1
+#          - Index: 39
+#            Item: TURTLE_GENERAL_EGG
+#            Rate: 1
+#          - Index: 40
+#            Item: RANDGRIS_EGG
+#            Rate: 1

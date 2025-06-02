@@ -442,10 +442,40 @@ Body:
     Trade:
       NoSell: true
     Script: |
-      if(rand(10) != 0)
-        getgroupitem(IG_COMMON2RARE_PET);
-      else
-        getgroupitem(IG_RARE2EPIC_PET);
+      callfunc("F_PetRandom",0);
+  - Id: 2001953
+    AegisName: Common2Rare_Pet_Box
+    Name: Common Combine Pet Box
+    Type: Usable
+    Flags:
+      BuyingStore: true
+      Container: true
+    Trade:
+      NoSell: true
+    Script: |
+      callfunc("F_PetRandom",1);
+  - Id: 2001954
+    AegisName: Rare2Epic_Pet_Box
+    Name: Rare Combine Pet Box
+    Type: Usable
+    Flags:
+      BuyingStore: true
+      Container: true
+    Trade:
+      NoSell: true
+    Script: |
+      callfunc("F_PetRandom",2);
+  - Id: 2001955
+    AegisName: Epic2Legend_Pet_Box
+    Name: Epic Combine Pet Box
+    Type: Usable
+    Flags:
+      BuyingStore: true
+      Container: true
+    Trade:
+      NoSell: true
+    Script: |
+      callfunc("F_PetRandom",3);
   - Id: 2002000
     AegisName: AI_Item
     Name: AI Item
