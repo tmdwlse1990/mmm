@@ -2489,14 +2489,22 @@ uint16 status_base_atk(const struct block_list *bl, const struct status_data *st
 			case W_SHOTGUN:
 			case W_GRENADE:
 				flag = 1;
+				break;
+			case W_BOW:
+			case W_MUSICAL:
+				flag = 2;
+				break;
 		}
-		if(!flag) {
+		if(flag == 1) {
+			dstr = 
+			str = status->int_;
+			dex = status->dex;
+		}
+		else {
 			dstr = 
 			str = status->str;
 			dex = status->dex;
 		}
-		else 
-			dstr = str = dex = 0;
 	/** [Skotlex]
 	* Normally only players have base-atk, but homunc have a different batk
 	* equation, hinting that perhaps non-players should use this for batk.
@@ -2513,7 +2521,7 @@ uint16 status_base_atk(const struct block_list *bl, const struct status_data *st
 		case BL_PC:
 #ifdef RENEWAL
 			//str = (dstr * 10 + dex * 10 / 5 + status->luk * 10 / 3 + level * 10 / 4) / 10 + 5 * status->pow;
-			str = dstr * 10 + status->luk / 3;
+			str = dstr * (flag ? 5:10) + status->luk / 3;
 #else
 			dstr = str / 10;
 			str += dstr*dstr;
