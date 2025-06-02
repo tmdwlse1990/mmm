@@ -58,6 +58,8 @@ enum EEmotionStatus : uint8;
 enum EEmotionExpantionStatus : uint8;
 struct PACKET_ZC_EMOTION2_EXPANTION_LIST_SUB;
 
+#define DMGVAL_IGNORE -30000
+
 enum e_PacketDBVersion { // packet DB
 	MIN_PACKET_DB  = 0x064,
 	MAX_PACKET_DB  = 0xCFF,
