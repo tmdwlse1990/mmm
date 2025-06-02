@@ -5196,7 +5196,7 @@ void npc_parse_mob2(struct spawn_data* mob)
 		* 4 = killerid
 		*/
 		if(md->state.boss){
-			std::string mapregname = "$" + std::to_string(md->db->id) + "_" + std::to_string(md->bl.m);
+			std::string mapregname = "$" + std::to_string(md->db->id) + "_" + std::to_string(md->m);
 
 			if(1 == mapreg_readreg(reference_uid( add_str( mapregname.c_str() ), 0 ))){ //1 = dead - 2 = alive
 				long int timer = static_cast<long int>(mapreg_readreg(reference_uid(add_str(mapregname.c_str()),3)));
@@ -5209,16 +5209,16 @@ void npc_parse_mob2(struct spawn_data* mob)
 				difftime = now - timer - (difftime/1000);
 
 				if(difftime < 0){ //mvp is still dead
-					if (battle_config.mvp_tomb_enabled && map_getmapflag(md->bl.m, MF_NOTOMB) != 1){ //is tomb enabled ?
+					if (battle_config.mvp_tomb_enabled && map_getmapflag(md->m, MF_NOTOMB) != 1){ //is tomb enabled ?
 						std::string mapregnamestr = mapregname + "$";
-						int old_pos_x = md->bl.x;
-						int old_pos_y = md->bl.y;
-						md->bl.x = static_cast<int16>(mapreg_readreg(reference_uid(add_str(mapregname.c_str()),1)));
-						md->bl.y = static_cast<int16>(mapreg_readreg(reference_uid(add_str(mapregname.c_str()),2)));
+						int old_pos_x = md->x;
+						int old_pos_y = md->y;
+						md->x = static_cast<int16>(mapreg_readreg(reference_uid(add_str(mapregname.c_str()),1)));
+						md->y = static_cast<int16>(mapreg_readreg(reference_uid(add_str(mapregname.c_str()),2)));
 						char* killerid = mapreg_readregstr(reference_uid(add_str(mapregnamestr.c_str()),4));
 						mvptomb_create(md, killerid, timer);
-						md->bl.x= old_pos_x;
-						md->bl.y= old_pos_y;
+						md->x= old_pos_x;
+						md->y= old_pos_y;
 					}
 
 					difftime = abs(difftime)*1000;
@@ -5248,7 +5248,7 @@ void npc_parse_mob2(struct spawn_data* mob)
 
 					md->spawn = mob;
 					md->spawn->active++;
-					md->spawn_timer = add_timer(gettick()+difftime,mob_delayspawn,md->bl.id,0);
+					md->spawn_timer = add_timer(gettick()+difftime,mob_delayspawn,md->id,0);
 					continue;
 				}
 			}

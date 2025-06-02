@@ -214,7 +214,7 @@ static enum e_storage_add storage_canAddItem(struct s_storage *stor, int32 idx, 
 
 		if (!data->flag.collection) {
 			sprintf(output, msg_txt(sd, 1542), item_db.create_item_link(data).c_str());
-			clif_messagecolor(&sd->bl, color_table[COLOR_RED], output, false, SELF);
+			clif_messagecolor(sd, color_table[COLOR_RED], output, false, SELF);
 			sd->state.collection_flag |= PCCOLLECTION_RELOAD;
 			return STORAGE_ADD_INVALID;
 		}
@@ -223,7 +223,7 @@ static enum e_storage_add storage_canAddItem(struct s_storage *stor, int32 idx, 
 
 		if (i < stor->max_amount) {
 			sprintf(output, msg_txt(sd, 1543), item_db.create_item_link(data).c_str());
-			clif_messagecolor(&sd->bl, color_table[COLOR_RED], output, false, SELF);
+			clif_messagecolor(sd, color_table[COLOR_RED], output, false, SELF);
 			sd->state.collection_flag |= PCCOLLECTION_RELOAD;
 			return STORAGE_ADD_INVALID;
 		}

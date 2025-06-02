@@ -3979,7 +3979,7 @@ int32 status_calc_pc_sub(map_session_data* sd, uint8 opt)
 		if (!sd->inventory_data[i] || sd->inventory_data[i]->type != IT_CHARM)
 			continue;
 		if (sd->inventory_data[i]->script && sd->inventory_data[i]->elv <= sd->status.base_level && sd->inventory_data[i]->class_upper){
-			run_script(sd->inventory_data[i]->script, 0, sd->bl.id, 0);
+			run_script(sd->inventory_data[i]->script, 0, sd->id, 0);
 			if (!calculating) //Abort, run_script retriggered this. [Skotlex]
 			return 1;
 		}
@@ -4275,7 +4275,7 @@ int32 status_calc_pc_sub(map_session_data* sd, uint8 opt)
 		for (auto &nameid : sd->collection_list ) {
 			std::shared_ptr<item_data> data = item_db.find(nameid);
 			if (data && data->flag.collection && data->collection_script) {
-				run_script(data->collection_script, 0, sd->bl.id, 0);
+				run_script(data->collection_script, 0, sd->id, 0);
 			}
 		}
 		if (!calculating) {
@@ -12613,8 +12613,8 @@ static bool status_change_start_post_delay(block_list* src, block_list* bl, sc_t
 
 			if(sd){
 				sd->aa.lastposition.map = sd->mapindex;
-				sd->aa.lastposition.x = sd->bl.x;
-				sd->aa.lastposition.y = sd->bl.y;
+				sd->aa.lastposition.x = sd->x;
+				sd->aa.lastposition.y = sd->y;
 				sd->aa.lastposition.dx = 0;
 				sd->aa.lastposition.dy = 0;
 			}
@@ -14321,12 +14321,12 @@ TIMER_FUNC(status_change_timer){
 		if (--(sce->val4) > 0) {
 
 			if(pc_isdead(sd)){
-				status_change_end(&sd->bl, SC_AUTOATTACK);
+				status_change_end(sd, SC_AUTOATTACK);
 				break;
 			}
 
 			int at_index = 0;
-			struct status_data *status = status_get_status_data(sd->bl);
+			struct status_data *status = status_get_status_data(*sd);
 			time_t last_time   = time(NULL);
 			t_tick last_tick   = gettick();
 			t_tick idle_tick   = cap_value(DIFF_TICK(last_time, sd->idletime), 0, USHRT_MAX);
@@ -14348,8 +14348,8 @@ TIMER_FUNC(status_change_timer){
 						struct block_list *fitem_bl = map_id2bl(sd->aa.itempick_id);
 						if(fitem_bl){
 							struct flooritem_data* fitem = (struct flooritem_data *)fitem_bl;
-							if(!check_distance_bl(&sd->bl, fitem_bl, 2))
-								unit_walktobl(&sd->bl, fitem_bl, 1, 1);
+							if(!check_distance_bl(sd, fitem_bl, 2))
+								unit_walktobl(sd, fitem_bl, 1, 1);
 							else{
 								if(!sd->aa.last_pickup || DIFF_TICK(last_tick, sd->aa.last_pickup) > 0){
 									pc_takeitem(sd,fitem);
@@ -14403,8 +14403,8 @@ TIMER_FUNC(status_change_timer){
 
 										if(itAutoheal.last_use > sd->aa.skill_cd)
 											sd->aa.skill_cd = itAutoheal.last_use;
-										if(sd->aa.skill_cd < (last_tick + pc_get_skillcooldown(sd, itAutoheal.skill_id, itAutoheal.skill_lv) + skill_castfix(&sd->bl,itAutoheal.skill_id, itAutoheal.skill_lv)))
-											sd->aa.skill_cd = last_tick + pc_get_skillcooldown(sd, itAutoheal.skill_id, itAutoheal.skill_lv) + skill_castfix(&sd->bl,itAutoheal.skill_id, itAutoheal.skill_lv);
+										if(sd->aa.skill_cd < (last_tick + pc_get_skillcooldown(sd, itAutoheal.skill_id, itAutoheal.skill_lv) + skill_castfix(sd,itAutoheal.skill_id, itAutoheal.skill_lv)))
+											sd->aa.skill_cd = last_tick + pc_get_skillcooldown(sd, itAutoheal.skill_id, itAutoheal.skill_lv) + skill_castfix(sd,itAutoheal.skill_id, itAutoheal.skill_lv);
 									}
 								} else
 									skip = true;
@@ -14458,7 +14458,7 @@ TIMER_FUNC(status_change_timer){
 
                         pc_setsit(sd);
                         skill_sit(sd, 1);
-                        clif_sitting(sd->bl);
+                        clif_sitting(*sd);
 
                     // Stand up if HP or SP meet the maximum thresholds (ignore HP or SP check if max_hp or max_sp is 0)
                     } else if (pc_issit(sd) &&
@@ -14467,7 +14467,7 @@ TIMER_FUNC(status_change_timer){
 
                         pc_setstand(sd, false);
                         skill_sit(sd, 0);
-                        clif_standing(sd->bl);
+                        clif_standing(*sd);
 
                     // Stand up if other conditions are met (overweight or early hit_tick)
                     } else if (pc_issit(sd) &&
@@ -14475,7 +14475,7 @@ TIMER_FUNC(status_change_timer){
                             pc_setstand(sd, false)) {
 
                         skill_sit(sd, 0);
-                        clif_standing(sd->bl);
+                        clif_standing(*sd);
                     }
                 }
             }
@@ -14500,11 +14500,11 @@ TIMER_FUNC(status_change_timer){
 								continue;
 
 							if (skill_get_inf(itAutobuffskills.skill_id)&INF_GROUND_SKILL)
-								unit_skilluse_pos(&sd->bl, sd->bl.x, sd->bl.y, itAutobuffskills.skill_id, itAutobuffskills.skill_lv);
+								unit_skilluse_pos(sd, sd->x, sd->y, itAutobuffskills.skill_id, itAutobuffskills.skill_lv);
 							else
-								unit_skilluse_id(&sd->bl, sd->bl.id, itAutobuffskills.skill_id, itAutobuffskills.skill_lv);
+								unit_skilluse_id(sd, sd->id, itAutobuffskills.skill_id, itAutobuffskills.skill_lv);
 
-							sd->aa.skill_cd = itAutobuffskills.last_use = last_tick + skill_delayfix(&sd->bl, itAutobuffskills.skill_id, itAutobuffskills.skill_lv);
+							sd->aa.skill_cd = itAutobuffskills.last_use = last_tick + skill_delayfix(sd, itAutobuffskills.skill_id, itAutobuffskills.skill_lv);
 							skip = true;
 						}
 					}
@@ -14584,14 +14584,14 @@ TIMER_FUNC(status_change_timer){
 										if (aa_skill_range == 0)
 											aa_skill_range = 2;
 
-										if (!check_distance_bl(&sd->bl, target, aa_skill_range)) {
-											unit_walktobl(&sd->bl, target, aa_skill_range, 1);
+										if (!check_distance_bl(sd, target, aa_skill_range)) {
+											unit_walktobl(sd, target, aa_skill_range, 1);
 											continue;
 										}
 
 										if (skill_get_inf(itAutoattackskills.skill_id) & INF_ATTACK_SKILL || skill_get_inf(itAutoattackskills.skill_id) & INF_SUPPORT_SKILL) {
 
-											if (!unit_skilluse_id(&sd->bl, sd->aa.target_id, itAutoattackskills.skill_id, itAutoattackskills.skill_lv))
+											if (!unit_skilluse_id(sd, sd->aa.target_id, itAutoattackskills.skill_id, itAutoattackskills.skill_lv))
 												continue;
 										} else if (skill_get_inf(itAutoattackskills.skill_id) & INF_GROUND_SKILL) {
 
@@ -14599,18 +14599,18 @@ TIMER_FUNC(status_change_timer){
 												continue;
 										}
 									} else if (skill_get_inf(itAutoattackskills.skill_id) & INF_SELF_SKILL) {
-										if (check_distance_bl(&sd->bl, target, 2)) {
+										if (check_distance_bl(sd, target, 2)) {
 
-											if (!unit_skilluse_id(&sd->bl, sd->bl.id, itAutoattackskills.skill_id, itAutoattackskills.skill_lv))
+											if (!unit_skilluse_id(sd, sd->id, itAutoattackskills.skill_id, itAutoattackskills.skill_lv))
 												continue;
 										} else {
-											unit_walktobl(&sd->bl, target, 2, 1);
+											unit_walktobl(sd, target, 2, 1);
 											continue;
 										}
 									}
 
 									sd->idletime = last_time;
-									sd->aa.skill_cd = itAutoattackskills.last_use = last_tick + skill_delayfix(&sd->bl, itAutoattackskills.skill_id, itAutoattackskills.skill_lv);
+									sd->aa.skill_cd = itAutoattackskills.last_use = last_tick + skill_delayfix(sd, itAutoattackskills.skill_id, itAutoattackskills.skill_lv);
 									break;
 								}
 							}
@@ -14644,8 +14644,8 @@ TIMER_FUNC(status_change_timer){
 					int directions[8][2] = {{d, 0}, {-d, 0}, {0, d}, {0, -d}, {d, d}, {-d, -d}, {d, -d}, {-d, d}};
 
 					if (battle_config.autoattack_move_type) {
-						tx = sd->aa.lastposition.dx + sd->bl.x;
-						ty = sd->aa.lastposition.dy + sd->bl.y;
+						tx = sd->aa.lastposition.dx + sd->x;
+						ty = sd->aa.lastposition.dy + sd->y;
 					}
 
 					for (int attempts = 0; attempts < MAX_ATTEMPTS; attempts++) {
@@ -14653,8 +14653,8 @@ TIMER_FUNC(status_change_timer){
 						dx = directions[r][0];
 						dy = directions[r][1];
 
-						int x = sd->bl.x + dx;
-						int y = sd->bl.y + dy;
+						int x = sd->x + dx;
+						int y = sd->y + dy;
 
 						// Check if the area has been visited recently
 						if (has_visited_recently(sd, x, y)) {
@@ -14663,9 +14663,9 @@ TIMER_FUNC(status_change_timer){
 
 						if (battle_config.autoattack_move_type && !dest_checked &&
 							(sd->aa.lastposition.dx != 0 || sd->aa.lastposition.dy != 0) &&
-							((tx != sd->bl.x) || (ty != sd->bl.y)) &&
-							map_getcell(sd->bl.m, tx, ty, CELL_CHKPASS) &&
-							unit_walktoxy(&sd->bl, tx, ty, 0)) {
+							((tx != sd->x) || (ty != sd->y)) &&
+							map_getcell(sd->m, tx, ty, CELL_CHKPASS) &&
+							unit_walktoxy(sd, tx, ty, 0)) {
 
 							sd->aa.last_move = last_tick;
 							add_position_to_history(sd);
@@ -14675,9 +14675,9 @@ TIMER_FUNC(status_change_timer){
 						}
 
 						// Check if the target position is valid and move there
-						if (((x != sd->bl.x) || (y != sd->bl.y)) &&
-							map_getcell(sd->bl.m, x, y, CELL_CHKPASS) &&
-							unit_walktoxy(&sd->bl, x, y, 0)) {
+						if (((x != sd->x) || (y != sd->y)) &&
+							map_getcell(sd->m, x, y, CELL_CHKPASS) &&
+							unit_walktoxy(sd, x, y, 0)) {
 
 							sd->aa.last_move = last_tick;
 							add_position_to_history(sd);
@@ -14698,8 +14698,8 @@ TIMER_FUNC(status_change_timer){
 			if(sd->mapindex != sd->aa.lastposition.map){
 				pc_setpos(sd, sd->aa.lastposition.map, 0, 0, CLR_TELEPORT);
 			} else {
-				sd->aa.lastposition.x = sd->bl.x;
-				sd->aa.lastposition.y = sd->bl.y;
+				sd->aa.lastposition.x = sd->x;
+				sd->aa.lastposition.y = sd->y;
 			}
 
 			sce->timer = add_timer(tick + battle_config.autoattack_interval_timer, status_change_timer, bl->id, data);
@@ -16386,8 +16386,8 @@ void cleanup_old_positions(map_session_data* sd)
 void add_position_to_history(map_session_data* sd)
 {
 	cleanup_old_positions(sd);
-    sd->aa.aa_last_move[sd->aa.aa_last_move_index].x = sd->bl.x;
-    sd->aa.aa_last_move[sd->aa.aa_last_move_index].y = sd->bl.y;
+    sd->aa.aa_last_move[sd->aa.aa_last_move_index].x = sd->x;
+    sd->aa.aa_last_move[sd->aa.aa_last_move_index].y = sd->y;
     sd->aa.aa_last_move[sd->aa.aa_last_move_index].timestamp = gettick(); // Record current time
     sd->aa.aa_last_move_index = (sd->aa.aa_last_move_index + 1) % MAX_HISTORY; // Circular buffer
 }
@@ -16439,7 +16439,7 @@ bool aa_check_item_pickup(map_session_data *sd, struct block_list *bl)
 	if (sd->status.party_id)
 		p = party_search(sd->status.party_id);
 
-	if(bl && bl->type == BL_ITEM && bl->m == sd->bl.m && !pc_cant_act(sd)){
+	if(bl && bl->type == BL_ITEM && bl->m == sd->m && !pc_cant_act(sd)){
 		fitem = (struct flooritem_data *)bl;
         if (fitem->first_get_charid > 0 && fitem->first_get_charid != sd->status.char_id) {
             map_session_data *first_sd = map_charid2sd(fitem->first_get_charid);
@@ -16478,7 +16478,7 @@ bool aa_check_item_pickup(map_session_data *sd, struct block_list *bl)
 			}
 			return false;
 		}
-		if (path_search(NULL, sd->bl.m, sd->bl.x, sd->bl.y, bl->x, bl->y, 1, CELL_CHKNOREACH) && distance_xy(sd->bl.x, sd->bl.y, bl->x, bl->y) < 11){
+		if (path_search(NULL, sd->m, sd->x, sd->y, bl->x, bl->y, 1, CELL_CHKNOREACH) && distance_xy(sd->x, sd->y, bl->x, bl->y) < 11){
 			return true;
 		}
 	}
@@ -16494,7 +16494,7 @@ unsigned int aa_check_item_pickup_onfloor(map_session_data *sd)
 			sd->aa.itempick_id = 0;
 			t_itemid itemid = 0;
 			for (int i = 0; i < battle_config.autoattack_item_range_detection; i++){
-				map_foreachinarea(buildin_autopick_sub, sd->bl.m, sd->bl.x - i, sd->bl.y - i, sd->bl.x + i, sd->bl.y + i, BL_ITEM, &itemid, sd->bl.id);
+				map_foreachinarea(buildin_autopick_sub, sd->m, sd->x - i, sd->y - i, sd->x + i, sd->y + i, BL_ITEM, &itemid, sd->id);
 
 				if (itemid){
 					sd->aa.itempick_id = itemid;
@@ -16510,7 +16510,7 @@ bool aa_check_target(map_session_data *sd, unsigned int id)
 {
 	struct block_list *bl = map_id2bl(id);
 
-	if (bl && path_search(NULL, sd->bl.m, sd->bl.x, sd->bl.y, bl->x, bl->y, 1, CELL_CHKNOREACH) && distance_xy(sd->bl.x, sd->bl.y, bl->x, bl->y) < 11){
+	if (bl && path_search(NULL, sd->m, sd->x, sd->y, bl->x, bl->y, 1, CELL_CHKNOREACH) && distance_xy(sd->x, sd->y, bl->x, bl->y) < 11){
 		TBL_MOB *md = BL_CAST(BL_MOB, bl);
 		e_mob_bosstype bosstype = md->get_bosstype();
 
@@ -16572,7 +16572,7 @@ unsigned int aa_check_target_alive(map_session_data *sd)
 		sd->aa.target_id = 0;
 
 		for (int i = 0; i < battle_config.autoattack_mob_detection; i++){
-			map_foreachinarea(buildin_autoattack_sub, sd->bl.m, sd->bl.x - i, sd->bl.y - i, sd->bl.x + i, sd->bl.y + i, BL_MOB, &target_id, sd->bl.id);
+			map_foreachinarea(buildin_autoattack_sub, sd->m, sd->x - i, sd->y - i, sd->x + i, sd->y + i, BL_MOB, &target_id, sd->id);
 			if (target_id){
 				sd->aa.target_id = target_id;
 					break;
@@ -16626,7 +16626,7 @@ bool aa_teleport(map_session_data *sd)
 		if (pc_checkskill(sd, AL_TELEPORT) > 0){
 			skill_consume_requirement(sd,AL_TELEPORT,1,2);
 			pc_randomwarp(sd, CLR_TELEPORT);
-			status_heal(&sd->bl, 0, -(skill_get_sp(AL_TELEPORT, 1)), 1);
+			status_heal(sd, 0, -(skill_get_sp(AL_TELEPORT, 1)), 1);
 			flywing = true;
 		}
 	}
@@ -16942,7 +16942,7 @@ void aa_ammo_skill_req(map_session_data *sd, struct mob_data *md, uint16 skill_i
 
 // Elemental property decisions for picking an attack spell. 50% or below = not allowed, 125% or more = good
 bool aa_elemstrong(struct mob_data *md, int ele){
-	if(!md || &md->bl == nullptr)
+	if(!md || md == nullptr)
 		return 0;
 
 	if (ele == ELE_GHOST) {
@@ -16996,7 +16996,7 @@ bool aa_elemstrong(struct mob_data *md, int ele){
 }
 
 bool aa_elemallowed(struct mob_data *md, int ele){
-	if(!md || &md->bl == nullptr)
+	if(!md || md == nullptr)
 		return 1;
 
 	if (ele == ELE_GHOST) {
@@ -17107,9 +17107,9 @@ TIMER_FUNC(aa_delay_combo) {
 		return 0;
 
 	if(skill_mode == MO_CHAINCOMBO)
-		unit_skilluse_id(&sd->bl, sd->aa.target_id, MO_CHAINCOMBO, pc_checkskill(sd,MO_CHAINCOMBO));
+		unit_skilluse_id(sd, sd->aa.target_id, MO_CHAINCOMBO, pc_checkskill(sd,MO_CHAINCOMBO));
 	else if (skill_mode == MO_COMBOFINISH && sd->spiritball > 0)
-		unit_skilluse_id(&sd->bl, sd->aa.target_id, MO_COMBOFINISH, pc_checkskill(sd,MO_COMBOFINISH));
+		unit_skilluse_id(sd, sd->aa.target_id, MO_COMBOFINISH, pc_checkskill(sd,MO_COMBOFINISH));
 
 	return 0;
 }
@@ -17133,7 +17133,7 @@ void aa_monk_combo(struct block_list *src, struct block_list *bl, uint16 skill_i
 		if(!sd->aa.target_id)
 			return;
 
-		add_timer(gettick()+150, aa_delay_combo, sd->bl.id, MO_CHAINCOMBO);
+		add_timer(gettick()+150, aa_delay_combo, sd->id, MO_CHAINCOMBO);
 	}
 
 	if(pc_checkskill(sd,MO_COMBOFINISH) && sd->spiritball > 0){
@@ -17141,7 +17141,7 @@ void aa_monk_combo(struct block_list *src, struct block_list *bl, uint16 skill_i
 		if(!sd->aa.target_id)
 			return;
 
-		add_timer(gettick()+300, aa_delay_combo, sd->bl.id, MO_COMBOFINISH);
+		add_timer(gettick()+300, aa_delay_combo, sd->id, MO_COMBOFINISH);
 	}
 }
 
@@ -17152,7 +17152,7 @@ TIMER_FUNC(aa_autoattack_end)
 	if(!sd)
 		return 0;
 
-	status_change_end(&sd->bl, SC_AUTOATTACK);
+	status_change_end(sd, SC_AUTOATTACK);
 	sd->state.autoattack = 0;
 	clif_displaymessage(sd->fd, msg_txt(NULL,1644));
 	return 0;
@@ -17295,7 +17295,7 @@ bool aa_shadowspell(map_session_data *sd, uint16 skill_id, uint16 skill_lv)
 
 	sd->menuskill_id = SC_AUTOSHADOWSPELL;
 	sd->menuskill_val = skill_lv;
-	sc_start(&sd->bl,&sd->bl,SC_STOP,100,skill_lv,INFINITE_TICK);
+	sc_start(sd,sd,SC_STOP,100,skill_lv,INFINITE_TICK);
 	skill_select_menu(*sd, ret_skill);
 	sd->menuskill_id = 0;
 	sd->menuskill_val = 0;

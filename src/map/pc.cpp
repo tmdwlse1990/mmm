@@ -9855,7 +9855,7 @@ static TIMER_FUNC(pc_respawn_timer){
  *------------------------------------------*/
 void pc_damage(map_session_data *sd,struct block_list *src,uint32 hp, uint32 sp, uint32 ap)
 {
-	struct status_data *status = status_get_status_data(sd->bl);
+	struct status_data *status = status_get_status_data(*sd);
 	
 	if (ap) clif_updatestatus(*sd,SP_AP);
 	if (sp) clif_updatestatus(*sd,SP_SP);
@@ -14772,7 +14772,7 @@ void pc_use_emotion(map_session_data* const sd, const uint16 Id, const uint16 Em
 	if (battle_config.client_reshuffle_dice && EmotionId >= ET_DICE1 && EmotionId <= ET_DICE6) // re-roll dice
 	{
 		const uint16 DiceEmotionId = (rnd() % 6 + ET_DICE1);
-		clif_emotion2(&sd->bl, 0, DiceEmotionId);
+		clif_emotion2(sd, 0, DiceEmotionId);
 		return;
 	}
 
@@ -14838,7 +14838,7 @@ void pc_use_emotion(map_session_data* const sd, const uint16 Id, const uint16 Em
 		}
 	}
 
-	clif_emotion2(&sd->bl, Id, EmotionId);
+	clif_emotion2(sd, Id, EmotionId);
 }
 
 void pc_buy_emotion_expantion(map_session_data* const sd, const uint16 Id, const uint16 ItemId, const uint8 Amount)
@@ -16108,7 +16108,7 @@ void pc_set_costume_view(map_session_data *sd) {
 		sd->status.robe = id->look;
 
 	// Costumes check
-	if (!map_getmapflag(sd->m, MF_NOCOSTUME && sd->status.show_costume == false)) {
+	if (!map_getmapflag(sd->m, MF_NOCOSTUME) && sd->status.show_costume == false) {
 		if ((i = sd->equip_index[EQI_COSTUME_HEAD_LOW]) != -1 && (id = sd->inventory_data[i])) {
 			if (!(id->equip&(EQP_COSTUME_HEAD_MID|EQP_COSTUME_HEAD_TOP)))
 				sd->status.head_bottom = id->look;
@@ -16736,7 +16736,7 @@ void pc_collection_update(struct s_storage *stor, map_session_data &sd) {
 
 	if ((sd.state.collection_flag&PCCOLLECTION_LOAD && sd.collection_list.size() > 0) || sd.state.collection_flag&PCCOLLECTION_RECAL) {
 		sprintf(output, msg_txt(&sd,(sd.state.collection_flag&PCCOLLECTION_LOAD ? 1540 : 1541)), sd.collection_list.size());
-		clif_messagecolor(&sd.bl, color_table[COLOR_LIGHT_GREEN], output, false, SELF);
+		clif_messagecolor(&sd, color_table[COLOR_LIGHT_GREEN], output, false, SELF);
 		status_calc_pc(&sd, SCO_FORCE);
 	}
 

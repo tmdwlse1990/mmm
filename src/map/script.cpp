@@ -28850,7 +28850,7 @@ static int32 sub_pc_send_hattect(struct block_list* bl,va_list ap)
 	if(msd == sd)
 		return 0;
 
-	clif_getareachar_unit(sd, &msd->bl);
+	clif_getareachar_unit(sd, msd);
 
 	return 0;
 }
@@ -28871,7 +28871,7 @@ int32 sub_pc_clear_hattect(struct block_list* bl,va_list ap)
 	if(msd == sd)
 		return 0;
 
-	clif_getareachar_unit(sd, &msd->bl);
+	clif_getareachar_unit(sd, msd);
 
 	return 0;
 }
@@ -28883,8 +28883,8 @@ BUILDIN_FUNC(autostart)
 	if (!script_rid2sd(sd))
 		return SCRIPT_CMD_FAILURE;
 
-	if(map_getmapflag(sd->bl.m, MF_NOAUTOATTACK)){
-		clif_showscript(&sd->bl, msg_txt(NULL,1635), SELF);
+	if(map_getmapflag(sd->m, MF_NOAUTOATTACK)){
+		clif_showscript(sd, msg_txt(NULL,1635), SELF);
 		return SCRIPT_CMD_SUCCESS;
 	}
 
@@ -28898,15 +28898,15 @@ BUILDIN_FUNC(autostart)
 
 	// start
 	if(mode == 1){
-		status_change_start(&sd->bl, &sd->bl, SC_AUTOATTACK, 10000, 1, 0, 0, 0, duration, SCSTART_NOAVOID);
-		clif_showscript(&sd->bl, msg_txt(NULL,1631), SELF);
-		map_foreachinallrange(sub_pc_send_hattect,&sd->bl,AREA_SIZE,BL_PC,sd);
+		status_change_start(sd, sd, SC_AUTOATTACK, 10000, 1, 0, 0, 0, duration, SCSTART_NOAVOID);
+		clif_showscript(sd, msg_txt(NULL,1631), SELF);
+		map_foreachinallrange(sub_pc_send_hattect,sd,AREA_SIZE,BL_PC,sd);
 	// stop
 	}else{
-		status_change_end(&sd->bl, SC_AUTOATTACK);
-		clif_showscript(&sd->bl, msg_txt(NULL,1632), SELF);
-		clif_autoattack_effect_off(&sd->bl);
-		map_foreachinallrange(sub_pc_clear_hattect,&sd->bl,AREA_SIZE,BL_PC,sd);
+		status_change_end(sd, SC_AUTOATTACK);
+		clif_showscript(sd, msg_txt(NULL,1632), SELF);
+		clif_autoattack_effect_off(sd);
+		map_foreachinallrange(sub_pc_clear_hattect,sd,AREA_SIZE,BL_PC,sd);
 	}
 	return SCRIPT_CMD_SUCCESS;
 }

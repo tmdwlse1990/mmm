@@ -1051,7 +1051,7 @@ TIMER_FUNC(mob_delayspawn){
 
 	// if monster boss -> do announce
 	if (md->spawn->state.boss || md->db->mexp > 0) {
-		map_setmapflag(md->bl.m, MF_PVP, true);
+		map_setmapflag(md->m, MF_PVP, true);
 
 	std::ostringstream oss;
 
@@ -1062,7 +1062,7 @@ TIMER_FUNC(mob_delayspawn){
 	std::string message = oss.str();
 
 	// Choose appropriate broadcast function based on server settings
-	clif_broadcast(&md->bl, message.c_str(), message.length() + 1, BC_DEFAULT, ALL_CLIENT);
+	clif_broadcast(md, message.c_str(), message.length() + 1, BC_DEFAULT, ALL_CLIENT);
 	// OR
 	// map_broadcast(md->spawn->m, message.c_str(), message.length() + 1, BC_DEFAULT);
 	}
@@ -1159,7 +1159,7 @@ int32 mob_spawn (struct mob_data *md)
 		md->y = md->centerY;
 
 		if (md->spawn->state.boss || md->db->mexp > 0) {
-			map_setmapflag(md->bl.m, MF_PVP, true);
+			map_setmapflag(md->m, MF_PVP, true);
 		}
 
 		// Search can be skipped for boss monster spawns if spawn location is fixed
@@ -1249,7 +1249,7 @@ int32 mob_spawn (struct mob_data *md)
 	mobskill_use(md, tick, MSC_SPAWN);
 
 	if(md->spawn && md->spawn->state.boss){
-		std::string mapregname = "$" + std::to_string(md->mob_id) + "_" + std::to_string(md->bl.m);
+		std::string mapregname = "$" + std::to_string(md->mob_id) + "_" + std::to_string(md->m);
 		mapreg_setreg(reference_uid( add_str( mapregname.c_str() ), 0 ),2);
 	}
 
@@ -3716,17 +3716,17 @@ int32 mob_dead(struct mob_data *md, struct block_list *src, int32 type)
 		mvptomb_create(md, mvp_sd != nullptr ? mvp_sd->status.name : (first_sd != nullptr ? first_sd->status.name : nullptr), time(nullptr));
 	
 	if (md->spawn->state.boss || md->db->mexp > 0) {
-		std::string mapregname = "$" + std::to_string(md->db->id) + "_" + std::to_string(md->bl.m);
+		std::string mapregname = "$" + std::to_string(md->db->id) + "_" + std::to_string(md->m);
 		std::string mapregnamestr = mapregname + "$";
 		mapreg_setreg(reference_uid(add_str(mapregname.c_str()), 0), 1);
-		mapreg_setreg(reference_uid(add_str(mapregname.c_str()), 1), md->bl.x);
-		mapreg_setreg(reference_uid(add_str(mapregname.c_str()), 2), md->bl.y);
+		mapreg_setreg(reference_uid(add_str(mapregname.c_str()), 1), md->x);
+		mapreg_setreg(reference_uid(add_str(mapregname.c_str()), 2), md->y);
 		mapreg_setreg(reference_uid(add_str(mapregname.c_str()), 3), time(NULL));
 		mapreg_setregstr(reference_uid(add_str(mapregnamestr.c_str()), 4), mvp_sd ? mvp_sd->status.name : NULL);
 
 		std::ostringstream oss;
 
-		map_setmapflag(md->bl.m, MF_PVP, false);
+		map_setmapflag(md->m, MF_PVP, false);
 		oss << "[MVP Alert] " << md->name << " ";
 		if (sd != nullptr) {
 			oss << " has been slain by " << sd->status.name << "!";
@@ -3736,7 +3736,7 @@ int32 mob_dead(struct mob_data *md, struct block_list *src, int32 type)
 		}
 		std::string message = oss.str();
 
-		clif_broadcast(&md->bl, message.c_str(), message.length() + 1, BC_DEFAULT, ALL_CLIENT);
+		clif_broadcast(md, message.c_str(), message.length() + 1, BC_DEFAULT, ALL_CLIENT);
 	}
 		// OR
 		// map_broadcast(md->spawn->m, message.c_str(), message.length() + 1, BC_DEFAULT);

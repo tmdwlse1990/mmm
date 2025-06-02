@@ -426,14 +426,14 @@ static int32 clif_send_sub(struct block_list *bl, va_list ap)
 			case unit_walkingType:
 				tbl = map_id2bl(RBUFL(buf,5));
 				if(sd->state.hideslave&1
-					&&((pet_data*)tbl)->master && ((pet_data*)tbl)->master->bl.id != sd->bl.id)
+					&&((pet_data*)tbl)->master && ((pet_data*)tbl)->master->id != sd->id)
 						return 0;
 					break;
 			case 0x86: // clif_move
 			case 0x1aa: // pet emotion
 				tbl = map_id2bl(RBUFL(buf,2));
 				if(sd->state.hideslave&1
-					&&((pet_data*)tbl)->master && ((pet_data*)tbl)->master->bl.id != sd->bl.id)
+					&&((pet_data*)tbl)->master && ((pet_data*)tbl)->master->id != sd->id)
 						return 0;
 					break;
 		}
@@ -443,13 +443,13 @@ static int32 clif_send_sub(struct block_list *bl, va_list ap)
 			case unit_walkingType:
 				tbl = map_id2bl(RBUFL(buf,5));
 				if(sd->state.hideslave&2
-					&&((homun_data*)tbl)->master && ((homun_data*)tbl)->master->bl.id != sd->bl.id)
+					&&((homun_data*)tbl)->master && ((homun_data*)tbl)->master->id != sd->id)
 						return 0;
 					break;
 			case 0x86: // clif_move
 				tbl = map_id2bl(RBUFL(buf,2));
 				if(sd->state.hideslave&2
-					&&((homun_data*)tbl)->master && ((homun_data*)tbl)->master->bl.id != sd->bl.id)
+					&&((homun_data*)tbl)->master && ((homun_data*)tbl)->master->id != sd->id)
 						return 0;
 					break;
 		}
@@ -461,7 +461,7 @@ static int32 clif_send_sub(struct block_list *bl, va_list ap)
 				if(((mob_data*)tbl)->master_id > 0){
 					mbl = map_id2bl(((mob_data*)tbl)->master_id);
 					if(sd->state.hideslave&4
-						&&mbl->type == BL_PC && mbl->id != sd->bl.id)
+						&&mbl->type == BL_PC && mbl->id != sd->id)
 							return 0;
 				}
 					break;
@@ -470,7 +470,7 @@ static int32 clif_send_sub(struct block_list *bl, va_list ap)
 				if(((mob_data*)tbl)->master_id > 0){
 					mbl = map_id2bl(((mob_data*)tbl)->master_id);
 					if(sd->state.hideslave&4
-						&&mbl->type == BL_PC && mbl->id != sd->bl.id)
+						&&mbl->type == BL_PC && mbl->id != sd->id)
 							return 0;
 				}
 					break;
@@ -480,15 +480,15 @@ static int32 clif_send_sub(struct block_list *bl, va_list ap)
 			case 0x86: // clif_move
 				tbl = map_id2bl(RBUFL(buf,2));
 				if(tbl->type == BL_PET && sd->state.hideslave&1
-					&&((pet_data*)tbl)->master && ((pet_data*)tbl)->master->bl.id != sd->bl.id)
+					&&((pet_data*)tbl)->master && ((pet_data*)tbl)->master->id != sd->id)
 						return 0;
 				else if(tbl->type == BL_HOM && sd->state.hideslave&2
-					&&((homun_data*)tbl)->master && ((homun_data*)tbl)->master->bl.id != sd->bl.id)
+					&&((homun_data*)tbl)->master && ((homun_data*)tbl)->master->id != sd->id)
 						return 0;
 				else if(tbl->type == BL_MOB && ((mob_data*)tbl)->master_id > 0){
 						mbl = map_id2bl(((mob_data*)tbl)->master_id);
 						if (sd->state.hideslave&4
-						&&mbl->type == BL_PC && mbl->id != sd->bl.id)
+						&&mbl->type == BL_PC && mbl->id != sd->id)
 							return 0;
 				}
 					break;
@@ -725,7 +725,7 @@ int32 clif_send(const void* buf, int32 len, struct block_list* bl, enum send_tar
 				case unit_walkingType: // clif_spawn_unit
 					tbl = map_id2bl(RBUFL(buf,5));
 					if(sd->state.hideslave&1
-						&&((pet_data*)tbl)->master && ((pet_data*)tbl)->master->bl.id != sd->bl.id)
+						&&((pet_data*)tbl)->master && ((pet_data*)tbl)->master->id != sd->id)
 						return 0;
 					break;
 			}
@@ -734,7 +734,7 @@ int32 clif_send(const void* buf, int32 len, struct block_list* bl, enum send_tar
 				case unit_walkingType: // clif_spawn_unit
 					tbl = map_id2bl(RBUFL(buf,5));
 					if(sd->state.hideslave&2
-						&&((homun_data*)tbl)->master && ((homun_data*)tbl)->master->bl.id != sd->bl.id)
+						&&((homun_data*)tbl)->master && ((homun_data*)tbl)->master->id != sd->id)
 						return 0;
 					break;
 			}
@@ -745,7 +745,7 @@ int32 clif_send(const void* buf, int32 len, struct block_list* bl, enum send_tar
 					if(((mob_data*)tbl)->master_id > 0){
 						mbl = map_id2bl(((mob_data*)tbl)->master_id);
 						if(sd->state.hideslave&4
-							&&mbl->type == BL_PC && mbl->id != sd->bl.id)
+							&&mbl->type == BL_PC && mbl->id != sd->id)
 								return 0;
 					}
 					break;
@@ -756,16 +756,16 @@ int32 clif_send(const void* buf, int32 len, struct block_list* bl, enum send_tar
 				case unit_walkingType: // clif move
 					tbl = map_id2bl(RBUFL(buf,5));
 					if(tbl->type== BL_PET && sd->state.hideslave&1
-						&&((pet_data*)tbl)->master && ((pet_data*)tbl)->master->bl.id != sd->bl.id)
+						&&((pet_data*)tbl)->master && ((pet_data*)tbl)->master->id != sd->id)
 						return 0;
 					else if(tbl->type== BL_HOM && sd->state.hideslave&2
-						&&((homun_data*)tbl)->master && ((homun_data*)tbl)->master->bl.id != sd->bl.id)
+						&&((homun_data*)tbl)->master && ((homun_data*)tbl)->master->id != sd->id)
 						return 0;
 					else if(tbl->type== BL_MOB){
 						if(((mob_data*)tbl)->master_id > 0){
 							mbl = map_id2bl(((mob_data*)tbl)->master_id);
 							if(sd->state.hideslave&4
-								&&mbl->type == BL_PC && mbl->id != sd->bl.id)
+								&&mbl->type == BL_PC && mbl->id != sd->id)
 									return 0;
 						}
 					}
@@ -21060,7 +21060,7 @@ void clif_parse_roulette_open( int32 fd, map_session_data* sd ){
 		ShowError("clif_parse_roulette_open: npcname '%s' not found, operation failed.\n", npcname);
  		return;
  	}
-	run_script(nd->u.scr.script,0,sd->bl.id,nd->bl.id);
+	run_script(nd->u.scr.script,0,sd->id,nd->id);
 	return;
 }
 
@@ -26301,7 +26301,7 @@ void clif_macro_user_report_ack(map_session_data *sd, int32 status, const char* 
 	}
 
 	Packet->Status = status;
-	clif_send(Packet, sizeof(PACKET_ZC_MACRO_USER_REPORT_ACK), &sd->bl, SELF);
+	clif_send(Packet, sizeof(PACKET_ZC_MACRO_USER_REPORT_ACK), sd, SELF);
 #endif
 }
 
@@ -26341,7 +26341,7 @@ void clif_quest_status_ack(map_session_data* const sd, const PACKET_CZ_QUEST_STA
         List[Num].QuestStatus = QuestStatus;
     }
 
-    clif_send(Packet, PacketLength, &sd->bl, SELF);
+    clif_send(Packet, PacketLength, sd, SELF);
     aFree(Buffer);
 }
 
