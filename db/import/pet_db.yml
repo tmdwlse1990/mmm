@@ -987,3 +987,81 @@ Body:
       if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
       if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
       petloot .@a;
+  - Mob: PHREEONI2
+    EggItem: Phreeoni_Egg
+    FoodItem: High_Class_Pet_food
+    Fullness: 2
+    IntimacyFed: 20
+    CaptureRate: 1000
+    SpecialPerformance: true
+    AllowAutoFeed: true
+    Script: >
+      bonus bDex,10;
+      bonus bPerfectHitRate,30;
+    SupportScript: >
+      .@i = getpetinfo(PETINFO_INTIMATE);
+      .@a = 1;
+      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
+      if (.@i > PET_INTIMATE_SHY) .@a += 1;
+      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
+      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      petloot .@a;
+  - Mob: KIEL_D_01_2
+    EggItem: Kiel_Egg
+    FoodItem: High_Class_Pet_food
+    Fullness: 2
+    IntimacyFed: 20
+    CaptureRate: 1000
+    SpecialPerformance: true
+    AllowAutoFeed: true
+    Script: >
+      bonus bDelayrate,-15;
+      bonus bAspdRate,15;
+    SupportScript: >
+      .@i = getpetinfo(PETINFO_INTIMATE);
+      .@a = 1;
+      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
+      if (.@i > PET_INTIMATE_SHY) .@a += 1;
+      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
+      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      petloot .@a;
+  - Mob: GLOOMUNDERNIGHT2
+    EggItem: Gloom_Under_Egg
+    FoodItem: High_Class_Pet_food
+    Fullness: 2
+    IntimacyFed: 20
+    CaptureRate: 1000
+    SpecialPerformance: true
+    AllowAutoFeed: true
+    Script: >
+      bonus bMatk,200;
+      bonus bMatkRate,10;
+      bonus2 bIgnoreMDefClassRate,Class_All,20;
+    SupportScript: >
+      .@i = getpetinfo(PETINFO_INTIMATE);
+      .@a = 1;
+      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
+      if (.@i > PET_INTIMATE_SHY) .@a += 1;
+      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
+      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      petloot .@a;
+  - Mob: ORK_HERO2
+    EggItem: Ork_Hero_EGG
+    FoodItem: High_Class_Pet_food
+    Fullness: 2
+    IntimacyFed: 20
+    CaptureRate: 1000
+    SpecialPerformance: true
+    AllowAutoFeed: true
+    Script: >
+      bonus bBaseAtk,200;
+      bonus bAtkRate,10;
+      bonus2 bIgnoreDefClassRate,Class_All,20;
+    SupportScript: >
+      .@i = getpetinfo(PETINFO_INTIMATE);
+      .@a = 1;
+      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
+      if (.@i > PET_INTIMATE_SHY) .@a += 1;
+      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
+      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      petloot .@a;

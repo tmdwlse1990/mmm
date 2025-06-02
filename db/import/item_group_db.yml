@@ -244,6 +244,18 @@ Body:
           - Index: 19
             Item: RANDGRIS_EGG
             Rate: 1
+          - Index: 20
+            Item: Phreeoni_Egg
+            Rate: 1
+          - Index: 21
+            Item: Ork_Hero_EGG
+            Rate: 1
+          - Index: 22
+            Item: Gloom_Under_Egg
+            Rate: 1
+          - Index: 23
+            Item: Kiel_Egg
+            Rate: 1
   - Group: ALLRAND_PET
     SubGroup:
       - SubGroup: 1

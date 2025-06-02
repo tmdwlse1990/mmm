@@ -616,6 +616,8 @@ Body:
     Ai: 04
     Class: Boss
     Drops:
+      - Item: Gold_Tulip
+        Rate: 100
       - Item: GOLDEN_SAVAGE_Card
         Rate: 1
         StealProtected: true
@@ -792,6 +794,9 @@ Body:
     AegisName: DARK_ILLUSION2
     Name: Dark Illusion
     JapaneseName: Dark Illusion
+  - Id: 20571
+    AegisName: ORK_HERO2
+    Name: Orc Hero
   - Id: 20423
     AegisName: BACSOJIN2
     Name: Bascojin
@@ -807,6 +812,15 @@ Body:
   - Id: 20619
     AegisName: GLOOMUNDERNIGHT2
     Name: Gloom Under Night
+  - Id: 22185
+    AegisName: DARK_LORD2
+    Name: Dark Lord
+  - Id: 22381
+    AegisName: CLB_SS_FC
+    Name: Fei-Chai
+  - Id: 22382
+    AegisName: CLB_SS_TZ
+    Name: Tai-Zi
 # eAthena Dev Team
 #=============================================================
 #  - Id: 1900

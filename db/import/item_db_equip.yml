@@ -260,10 +260,30 @@ Body:
     AegisName: MAYA_EGG
     Name: Maya Egg
     Type: PetEgg
+  - Id: 9111
+    AegisName: Phreeoni_Egg
+    Name: Phreeoni Egg
+    Type: Petegg
+    Buy: 20
   - Id: 9112
     AegisName: Moonlight_Egg
     Name: Moonlight Egg
     Type: Petegg
+  - Id: 9121
+    AegisName: Ork_Hero_EGG
+    Name: Orc Hero Egg
+    Type: Petegg
+    Buy: 20
+  - Id: 9122
+    AegisName: Gloom_Under_Egg
+    Name: Gloom Under Night Egg
+    Type: Petegg
+    Buy: 20
+  - Id: 9126
+    AegisName: Kiel_Egg
+    Name: Kiel-D-01 Egg
+    Type: PetEgg
+    Buy: 20
   - Id: 9137
     AegisName: Baphomet_Egg
     Name: Baphomet Egg
