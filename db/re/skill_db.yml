@@ -5508,10 +5508,13 @@ Body:
     TargetType: Attack
     Flags:
       IsQuest: true
+    DamageFlags:
+      Splash: true
     Range: 9
     Hit: Single
     HitCount: 1
     Element: Holy
+    SplashArea: 1
     CopyFlags:
       Skill:
         Plagiarism: true

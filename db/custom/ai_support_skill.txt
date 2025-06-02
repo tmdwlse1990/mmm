@@ -5,10 +5,20 @@
 // skillname
 // EX. AL_HEAL
 //= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+//Swordman
 SM_PROVOKE
 SM_ENDURE
+
+KN_TWOHANDQUICKEN
+
+// Mage
 MG_SIGHT
 MG_SAFETYWALL
+
+SA_AUTOSPELL
+
+//Acolyte
 AL_RUWACH
 AL_PNEUMA
 AL_INCAGI
@@ -16,16 +26,13 @@ AL_CRUCIS
 AL_ANGELUS
 AL_BLESSING
 AL_CURE
-ASC_EDP
-
-KN_TWOHANDQUICKEN
-
-AC_CONCENTRATION
 
 MO_CALLSPIRITS
+//Merchant
+MC_LOUD
 
-SA_AUTOSPELL
+//Thief
+ASC_EDP
 
-GS_GLITTERING
-
-SC_AUTOSHADOWSPELL
+//Archer
+AC_CONCENTRATION

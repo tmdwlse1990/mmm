@@ -5729,6 +5729,9 @@ int32 skill_castend_damage_id (struct block_list* src, struct block_list *bl, ui
 		break;
 
 	//Splash attack skills.
+	case AL_HOLYLIGHT:
+		status_change_end(bl, SC_P_ALTER);
+		[[fallthrough]];
 	case AS_GRIMTOOTH:
 	case MC_CARTREVOLUTION:
 	case NPC_SPLASHATTACK:
@@ -6515,9 +6518,6 @@ int32 skill_castend_damage_id (struct block_list* src, struct block_list *bl, ui
 		skill_attack(BF_MAGIC,src,src,bl,skill_id,skill_lv,tick,flag);
 		break;
 
-	case AL_HOLYLIGHT:
-		status_change_end(bl, SC_P_ALTER);
-		[[fallthrough]];
 	case MG_SOULSTRIKE:
 	case NPC_DARKSTRIKE:
 	case MG_COLDBOLT:
