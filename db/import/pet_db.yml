@@ -31,7 +31,8 @@
 #   HungryDelay              The amount of time in seconds it takes for hunger to decrease after feeding. (Default: 60)
 #   HungerIncrease           The amount of hunger that is increased every time the pet is fed (Default: 20)
 #   IntimacyStart            Amount of Intimacy the pet starts with. (Default: 250)
-#   IntimacyFed              Amount of Intimacy that is increased when fed. (Default: 50)
+#   IntimacyOwnerDie: 0
+    IntimacyFed              Amount of Intimacy that is increased when fed. (Default: 50)
 #   IntimacyOverfed          Amount of Intimacy that is increased when over-fed. (Default: -100)
 #   IntimacyHungry           Amount of Intimacy that is increased when the pet is hungry. (Default: -5)
 #   IntimacyOwnerDie         Amount of Intimacy that is increased when the pet owner dies. (Default: -20)
@@ -59,10 +60,10 @@ Body:
     EggItem: GM_ERROR_EGG
     FoodItem: 17Carat_Dia
     Fullness: 0
+    IntimacyOwnerDie: 0
     IntimacyFed: 1000
     IntimacyOverfed: 1000
     IntimacyHungry: 50
-    IntimacyOwnerDie: 50
     CaptureRate: 0
     AllowAutoFeed: true
     Script: >
@@ -79,6 +80,7 @@ Body:
     EggItem: Poring_Egg
     FoodItem: Apple_Juice
     Fullness: 3
+    IntimacyOwnerDie: 0
     IntimacyFed: 50
     CaptureRate: 2000
     SpecialPerformance: true
@@ -98,6 +100,7 @@ Body:
     EggItem: Drops_Egg
     FoodItem: Pet_Food
     Fullness: 4
+    IntimacyOwnerDie: 0
     IntimacyFed: 40
     CaptureRate: 1500
     SpecialPerformance: true
@@ -118,6 +121,7 @@ Body:
     EquipItem: Backpack
     FoodItem: Pet_Food
     Fullness: 5
+    IntimacyOwnerDie: 0
     IntimacyFed: 30
     CaptureRate: 1000
     SpecialPerformance: true
@@ -139,6 +143,7 @@ Body:
     EquipItem: Silk_Ribbon
     FoodItem: Pet_Food
     Fullness: 4
+    IntimacyOwnerDie: 0
     IntimacyFed: 40
     CaptureRate: 1500
     SpecialPerformance: true
@@ -159,6 +164,7 @@ Body:
     EquipItem: Tiny_Egg_Shell
     FoodItem: Pet_Food
     Fullness: 4
+    IntimacyOwnerDie: 0
     IntimacyFed: 40
     CaptureRate: 2000
     SpecialPerformance: true
@@ -179,6 +185,7 @@ Body:
     EquipItem: Monster_Oxygen_Mask
     FoodItem: Pet_Food
     Fullness: 6
+    IntimacyOwnerDie: 0
     IntimacyFed: 30
     CaptureRate: 1500
     SpecialPerformance: true
@@ -199,6 +206,7 @@ Body:
     EquipItem: Transparent_Headgear
     FoodItem: Pet_Food
     Fullness: 6
+    IntimacyOwnerDie: 0
     IntimacyFed: 40
     CaptureRate: 1000
     SpecialPerformance: true
@@ -219,6 +227,7 @@ Body:
     EquipItem: Rocker_Glasses
     FoodItem: Pet_Food
     Fullness: 1
+    IntimacyOwnerDie: 0
     IntimacyFed: 30
     CaptureRate: 1500
     SpecialPerformance: true
@@ -239,6 +248,7 @@ Body:
     EquipItem: Bark_Shorts
     FoodItem: Pet_Food
     Fullness: 3
+    IntimacyOwnerDie: 0
     IntimacyFed: 30
     CaptureRate: 1500
     SpecialPerformance: true
@@ -259,6 +269,7 @@ Body:
     EquipItem: Battered_Pot
     FoodItem: Pet_Food
     Fullness: 4
+    IntimacyOwnerDie: 0
     IntimacyFed: 30
     CaptureRate: 1000
     SpecialPerformance: true
@@ -279,6 +290,7 @@ Body:
     EquipItem: Green_Lace
     FoodItem: Pet_Food
     Fullness: 7
+    IntimacyOwnerDie: 0
     IntimacyFed: 40
     CaptureRate: 1500
     SpecialPerformance: true
@@ -300,6 +312,7 @@ Body:
     EquipItem: Wild_Flower
     FoodItem: Pet_Food
     Fullness: 5
+    IntimacyOwnerDie: 0
     IntimacyFed: 20
     CaptureRate: 500
     SpecialPerformance: true
@@ -320,6 +333,7 @@ Body:
     EquipItem: Golden_Bell
     FoodItem: Pet_Food
     Fullness: 3
+    IntimacyOwnerDie: 0
     IntimacyFed: 10
     CaptureRate: 500
     SpecialPerformance: true
@@ -340,6 +354,7 @@ Body:
     EquipItem: Queen's_Hair_Ornament
     FoodItem: Pet_Food
     Fullness: 3
+    IntimacyOwnerDie: 0
     IntimacyFed: 10
     CaptureRate: 500
     SpecialPerformance: true
@@ -360,6 +375,7 @@ Body:
     EquipItem: Stellar_Hairpin
     FoodItem: Pet_Food
     Fullness: 4
+    IntimacyOwnerDie: 0
     IntimacyFed: 20
     CaptureRate: 500
     SpecialPerformance: true
@@ -380,6 +396,7 @@ Body:
     EquipItem: Pacifier
     FoodItem: Pet_Food
     Fullness: 2
+    IntimacyOwnerDie: 0
     IntimacyFed: 10
     CaptureRate: 500
     SpecialPerformance: true
@@ -400,6 +417,7 @@ Body:
     EquipItem: Skull_Helm
     FoodItem: Pet_Food
     Fullness: 2
+    IntimacyOwnerDie: 0
     IntimacyFed: 10
     CaptureRate: 200
     SpecialPerformance: true
@@ -420,6 +438,7 @@ Body:
     EquipItem: Sword_Of_Grave_Keeper
     FoodItem: Pet_Food
     Fullness: 4
+    IntimacyOwnerDie: 0
     IntimacyFed: 30
     CaptureRate: 800
     SpecialPerformance: true
@@ -441,6 +460,7 @@ Body:
     EggItem: Alice_Egg
     FoodItem: Pet_Food
     Fullness: 2
+    IntimacyOwnerDie: 0
     IntimacyFed: 20
     CaptureRate: 800
     SpecialPerformance: true
@@ -461,6 +481,7 @@ Body:
     EquipItem: Ball_Mask
     FoodItem: Pet_Food
     Fullness: 3
+    IntimacyOwnerDie: 0
     IntimacyFed: 10
     CaptureRate: 50
     SpecialPerformance: true
@@ -481,6 +502,7 @@ Body:
     EquipItem: Black_Butterfly_Mask
     FoodItem: Pet_Food
     Fullness: 3
+    IntimacyOwnerDie: 0
     IntimacyFed: 10
     CaptureRate: 200
     SpecialPerformance: true
@@ -501,6 +523,7 @@ Body:
     EquipItem: Red_Muffler
     FoodItem: Pet_Food
     Fullness: 4
+    IntimacyOwnerDie: 0
     IntimacyFed: 30
     CaptureRate: 1000
     SpecialPerformance: true
@@ -522,6 +545,7 @@ Body:
     FoodItem: Pet_Food
     Fullness: 1
     HungryDelay: 120
+    IntimacyOwnerDie: 0
     IntimacyFed: 15
     CaptureRate: 0
     SpecialPerformance: true
@@ -543,6 +567,7 @@ Body:
     FoodItem: Pet_Food
     Fullness: 2
     HungryDelay: 120
+    IntimacyOwnerDie: 0
     IntimacyFed: 15
     CaptureRate: 0
     SpecialPerformance: true
@@ -564,6 +589,7 @@ Body:
     FoodItem: Pet_Food
     Fullness: 2   # unknown
     HungryDelay: 120   # unknown
+    IntimacyOwnerDie: 0
     IntimacyFed: 15   # unknown
     CaptureRate: 0   # unknown
     SpecialPerformance: true   # unknown
@@ -584,6 +610,7 @@ Body:
     EggItem: Ghostring_Egg
     FoodItem: Pet_Food
     Fullness: 2
+    IntimacyOwnerDie: 0
     IntimacyFed: 15
     HungryDelay: 120   # unknown
     CaptureRate: 0
@@ -605,6 +632,7 @@ Body:
     EggItem: Gryphon_Egg
     FoodItem: Pet_Food
     Fullness: 2
+    IntimacyOwnerDie: 0
     IntimacyFed: 15
     HungryDelay: 120   # unknown
     CaptureRate: 0
@@ -626,6 +654,7 @@ Body:
     EggItem: Hydro_Egg
     FoodItem: Pet_Food
     Fullness: 2
+    IntimacyOwnerDie: 0
     IntimacyFed: 15
     HungryDelay: 120   # unknown
     CaptureRate: 0
@@ -647,6 +676,7 @@ Body:
     EggItem: Mutant_Dragon_Egg
     FoodItem: Pet_Food
     Fullness: 2
+    IntimacyOwnerDie: 0
     IntimacyFed: 15
     HungryDelay: 120   # unknown
     CaptureRate: 0
@@ -668,6 +698,7 @@ Body:
     EggItem: Owl_Baron_Egg
     FoodItem: Pet_Food
     Fullness: 2
+    IntimacyOwnerDie: 0
     IntimacyFed: 15
     HungryDelay: 120   # unknown
     CaptureRate: 0
@@ -690,6 +721,7 @@ Body:
     EquipItem: Ep_17_2_C_Admin1_Acc
     FoodItem: Pet_Food
     Fullness: 2
+    IntimacyOwnerDie: 0
     IntimacyFed: 20
     CaptureRate: 1000
     SpecialPerformance: true
@@ -710,6 +742,7 @@ Body:
     EquipItem: Ep_17_2_C_Admin2_Acc
     FoodItem: Pet_Food
     Fullness: 2
+    IntimacyOwnerDie: 0
     IntimacyFed: 20
     CaptureRate: 1000
     AllowAutoFeed: true
@@ -729,6 +762,7 @@ Body:
     EggItem: Doppelganger_Egg
     FoodItem: High_Class_Pet_Food
     Fullness: 2
+    IntimacyOwnerDie: 0
     IntimacyFed: 20
     CaptureRate: 1000
     SpecialPerformance: true
@@ -750,6 +784,7 @@ Body:
     EggItem: Orc_Lord_Egg_
     FoodItem: High_Class_Pet_food
     Fullness: 2
+    IntimacyOwnerDie: 0
     IntimacyFed: 20
     CaptureRate: 1000
     SpecialPerformance: true
@@ -771,6 +806,7 @@ Body:
     EggItem: Maya_Egg
     FoodItem: High_Class_Pet_food
     Fullness: 2
+    IntimacyOwnerDie: 0
     IntimacyFed: 20
     CaptureRate: 1000
     SpecialPerformance: true
@@ -792,6 +828,7 @@ Body:
     EggItem: Moonlight_Egg
     FoodItem: High_Class_Pet_food
     Fullness: 2
+    IntimacyOwnerDie: 0
     IntimacyFed: 20
     CaptureRate: 1000
     SpecialPerformance: true
@@ -813,6 +850,7 @@ Body:
     EggItem: Baphomet_Egg
     FoodItem: High_Class_Pet_food
     Fullness: 2
+    IntimacyOwnerDie: 0
     IntimacyFed: 20
     CaptureRate: 1000
     SpecialPerformance: true
@@ -834,6 +872,7 @@ Body:
     EggItem: Mistress_Egg
     FoodItem: High_Class_Pet_food
     Fullness: 2
+    IntimacyOwnerDie: 0
     IntimacyFed: 20
     CaptureRate: 1000
     SpecialPerformance: true
@@ -855,6 +894,7 @@ Body:
     EggItem: Eddga_Egg2
     FoodItem: High_Class_Pet_food
     Fullness: 2
+    IntimacyOwnerDie: 0
     IntimacyFed: 20
     CaptureRate: 1000
     SpecialPerformance: true
@@ -876,6 +916,7 @@ Body:
     EggItem: Osiris_Egg
     FoodItem: High_Class_Pet_food
     Fullness: 2
+    IntimacyOwnerDie: 0
     IntimacyFed: 20
     CaptureRate: 1000
     SpecialPerformance: true
@@ -899,6 +940,7 @@ Body:
     EggItem: Dracula_Egg
     FoodItem: High_Class_Pet_food
     Fullness: 2
+    IntimacyOwnerDie: 0
     IntimacyFed: 20
     CaptureRate: 1000
     SpecialPerformance: true
@@ -920,6 +962,7 @@ Body:
     EggItem: Dark_Snake_Lord_Egg
     FoodItem: High_Class_Pet_food
     Fullness: 2
+    IntimacyOwnerDie: 0
     IntimacyFed: 20
     CaptureRate: 1000
     SpecialPerformance: true
@@ -945,6 +988,7 @@ Body:
     EggItem: Turtle_General_Egg
     FoodItem: High_Class_Pet_food
     Fullness: 2
+    IntimacyOwnerDie: 0
     IntimacyFed: 20
     CaptureRate: 1000
     SpecialPerformance: true
@@ -969,6 +1013,7 @@ Body:
     EggItem: Randgris_Egg
     FoodItem: High_Class_Pet_food
     Fullness: 2
+    IntimacyOwnerDie: 0
     IntimacyFed: 20
     CaptureRate: 1000
     SpecialPerformance: true
@@ -991,6 +1036,7 @@ Body:
     EggItem: Phreeoni_Egg
     FoodItem: High_Class_Pet_food
     Fullness: 2
+    IntimacyOwnerDie: 0
     IntimacyFed: 20
     CaptureRate: 1000
     SpecialPerformance: true
@@ -1010,6 +1056,7 @@ Body:
     EggItem: Kiel_Egg
     FoodItem: High_Class_Pet_food
     Fullness: 2
+    IntimacyOwnerDie: 0
     IntimacyFed: 20
     CaptureRate: 1000
     SpecialPerformance: true
@@ -1029,6 +1076,7 @@ Body:
     EggItem: Gloom_Under_Egg
     FoodItem: High_Class_Pet_food
     Fullness: 2
+    IntimacyOwnerDie: 0
     IntimacyFed: 20
     CaptureRate: 1000
     SpecialPerformance: true
@@ -1049,6 +1097,7 @@ Body:
     EggItem: Ork_Hero_EGG
     FoodItem: High_Class_Pet_food
     Fullness: 2
+    IntimacyOwnerDie: 0
     IntimacyFed: 20
     CaptureRate: 1000
     SpecialPerformance: true
