@@ -10,7 +10,7 @@ config_global_mvp_drop_rate: 10000
 mob_mvp_skill_rate: 0
 
 //Value item for use val cap
-max_sell_item_cap: 2000
+max_sell_item_cap: 2501
 
 //Vaule item sell cap
 max_seal_item_val: 700

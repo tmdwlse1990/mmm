@@ -16895,8 +16895,6 @@ Body:
     Name: Grape Box
     Type: Cash
     Buy: 20
-    Flags:
-      UniqueId: true
     Trade:
       NoDrop: true
       NoTrade: true

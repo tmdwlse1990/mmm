@@ -598,9 +598,8 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			item->flag.no_refine = !refine;
 		}
 		else {
-			bool refine;
 			if (!exists)
-				item->flag.no_refine = (battle_config.config_all_equipment_refinable ? !refine : false);
+				item->flag.no_refine = true;
 		}
 
 		if (this->nodeExists(node, "Gradable")) {
@@ -612,9 +611,8 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			item->flag.gradable = gradable;
 		}
 		else {
-			bool gradable;
 			if (!exists)
-				item->flag.gradable = (battle_config.config_all_equipment_gradable ? gradable : false);
+				item->flag.gradable = (battle_config.config_all_equipment_gradable ? true : false);
 		}
 
 	if (this->nodeExists(node, "View")) {
