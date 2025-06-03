@@ -127,6 +127,10 @@ gef_fild10,242,202,0	script	Dimensional Gorge Piece	406,{
 					callsub L_Enter,0;
 				case 3:
 					mes "[ ¢ÈÕ¡Ÿ≈√–¥—∫§«“¡¬“° ]";
+					mes "^FF0000ó^FF7F00ó^FFFF00ó^00FF00ó^0000FFó^4B0082ó^8B00FFó^FF0000ó^FF7F00ó^FFFF00ó^00FF00ó^0000FFó^4B0082ó^8B00FFó^FF0000ó^FF7F00ó^FFFF00ó^00FF00ó^0000FFó^4B0082ó^8B00FF";
+					mes "¬—ß¡Ë“¬∫Õ°®ÿÍøÊ √Õ¥ŸµÕπ‡ª‘¥®√‘ßπ– Õ—ππ’È°‘®°√√¡";
+					mes "^FF0000ó^FF7F00ó^FFFF00ó^00FF00ó^0000FFó^4B0082ó^8B00FFó^FF0000ó^FF7F00ó^FFFF00ó^00FF00ó^0000FFó^4B0082ó^8B00FFó^FF0000ó^FF7F00ó^FFFF00ó^00FF00ó^0000FFó^4B0082ó^8B00FF";
+					end;
 					mes "^ff0000-----------------------------------------------------^000000";
 					mes "Difficulty Level: ^ff0000[ Easy ]^000000";
 					mes "Monster max hp: + ^ff0000[ " + $@easy_mode_variables[0] + "% ]^000000";
