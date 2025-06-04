@@ -628,21 +628,21 @@ Body:
       - Name: BS_SKINTEMPER
         MaxLevel: 5
       - Name: BS_HAMMERFALL
-        MaxLevel: 5
+        MaxLevel: 15
       - Name: BS_ADRENALINE
-        MaxLevel: 5
+        MaxLevel: 10
         Requires:
           - Name: BS_HAMMERFALL
             Level: 2
       - Name: BS_WEAPONPERFECT
-        MaxLevel: 5
+        MaxLevel: 10
         Requires:
           - Name: BS_WEAPONRESEARCH
             Level: 2
           - Name: BS_ADRENALINE
             Level: 2
       - Name: BS_OVERTHRUST
-        MaxLevel: 5
+        MaxLevel: 15
         Requires:
           - Name: BS_ADRENALINE
             Level: 3

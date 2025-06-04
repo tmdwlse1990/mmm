@@ -11735,7 +11735,8 @@ static bool status_change_start_post_delay(block_list* src, block_list* bl, sc_t
 				if (type == SC_OVERTHRUST) {
 					// val2 holds if it was casted on self, or is bonus received from others
 #ifdef RENEWAL
-						val3 = (val2) ? 5 * val1 : (val1 > 4) ? 15 : (val1 > 2) ? 10 : 5; // Power increase
+						//val3 = (val2) ? 5 * val1 : (val1 > 4) ? 15 : (val1 > 2) ? 10 : 5; // Power increase
+						val3 = (val2) ? 10 + val1 : val1; // Power increase
 #else
 						val3 = (val2) ? 5 * val1 : 5; // Power increase
 #endif

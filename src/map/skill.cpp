@@ -4644,9 +4644,11 @@ static TIMER_FUNC(skill_timerskill){
 				case PR_STRECOVERY:
 					sc_start(src, target, SC_BLIND, skl->type, skl->skill_lv, skill_get_time2(skl->skill_id, skl->skill_lv));
 					break;
+					/*
 				case BS_HAMMERFALL:
 					sc_start(src, target, SC_STUN, skl->type, skl->skill_lv, skill_get_time2(skl->skill_id, skl->skill_lv));
 					break;
+					*/
 				case MER_LEXDIVINA:
 					sc_start(src, target, SC_SILENCE, skl->type, skl->skill_lv, skill_get_time2(skl->skill_id, skl->skill_lv));
 					break;
@@ -5900,6 +5902,7 @@ int32 skill_castend_damage_id (struct block_list* src, struct block_list *bl, ui
 	case NPC_AIMED_SHOWER:
 	case NPC_LIGHTNING_JUDGEMENT:
 	case AL_CRUCIS:
+	case BS_HAMMERFALL:
 		if( flag&1 ) {//Recursive invocation
 			int32 sflag = skill_area_temp[0] & 0xFFF;
 			int32 heal = 0;
@@ -8956,7 +8959,7 @@ int32 skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, 
 			clif_skill_nodamage(src,*bl,skill_id,skill_lv);
 		}
 		break;
-
+	
 	case BS_HAMMERFALL:
 		skill_addtimerskill(src, tick+1000, bl->id, 0, 0, skill_id, skill_lv, min(20+10*skill_lv, 50+5*skill_lv), flag);
 		break;
@@ -14622,10 +14625,16 @@ int32 skill_castend_pos2(struct block_list* src, int32 x, int32 y, uint16 skill_
 
 	case BS_HAMMERFALL:
 		i = skill_get_splash(skill_id, skill_lv);
+		/*
 		map_foreachinallarea(skill_area_sub,
 			src->m, x-i, y-i, x+i, y+i, BL_CHAR,
 			src, skill_id, skill_lv, tick, flag|BCT_ENEMY|2,
-			skill_castend_nodamage_id);
+			skill_castend_damage_id);
+		*/
+		map_foreachinarea(skill_area_sub
+			,src->m,x-i,y-i,x+i,y+i,BL_CHAR|BL_SKILL
+			,src,skill_id,skill_lv,tick,flag|BCT_ENEMY|1
+			,skill_castend_damage_id);
 		break;
 
 	case HT_DETECTING:

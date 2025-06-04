@@ -4228,30 +4228,17 @@ Body:
   - Id: 110
     Name: BS_HAMMERFALL
     Description: Hammer Fall
-    MaxLevel: 5
+    MaxLevel: 15
     Type: Weapon
     TargetType: Ground
     DamageFlags:
-      NoDamage: true
       Splash: true
     Flags:
       AllowOnMado: true
     Range: 1
     Hit: Single
     HitCount: 1
-    SplashArea:
-      - Level: 1
-        Area: 2
-      - Level: 2
-        Area: 2
-      - Level: 3
-        Area: 2
-      - Level: 4
-        Area: 2
-      - Level: 5
-        Area: 2
-      - Level: 6
-        Area: 12
+    SplashArea: 2
     Duration2: 4500
     Requires:
       SpCost: 10
@@ -4261,11 +4248,10 @@ Body:
         1hAxe: true
         2hAxe: true
         Mace: true
-    Status: Stun
   - Id: 111
     Name: BS_ADRENALINE
     Description: Adrenaline Rush
-    MaxLevel: 5
+    MaxLevel: 10
     Type: Weapon
     TargetType: Self
     DamageFlags:
@@ -4287,6 +4273,16 @@ Body:
         Time: 120000
       - Level: 5
         Time: 150000
+      - Level: 6
+        Time: 180000
+      - Level: 7
+        Time: 210000
+      - Level: 8
+        Time: 240000
+      - Level: 9
+        Time: 270000
+      - Level: 10
+        Time: 600000
     Requires:
       SpCost:
         - Level: 1
@@ -4299,6 +4295,16 @@ Body:
           Amount: 29
         - Level: 5
           Amount: 32
+        - Level: 6
+          Amount: 35
+        - Level: 7
+          Amount: 38
+        - Level: 8
+          Amount: 41
+        - Level: 9
+          Amount: 44
+        - Level: 10
+          Amount: 47
       Weapon:
         1hAxe: true
         2hAxe: true
@@ -4307,7 +4313,7 @@ Body:
   - Id: 112
     Name: BS_WEAPONPERFECT
     Description: Weapon Perfection
-    MaxLevel: 5
+    MaxLevel: 10
     Type: Weapon
     TargetType: Self
     DamageFlags:
@@ -4329,18 +4335,38 @@ Body:
         Time: 40000
       - Level: 5
         Time: 50000
+      - Level: 6
+        Time: 60000
+      - Level: 7
+        Time: 70000
+      - Level: 8
+        Time: 80000
+      - Level: 9
+        Time: 90000
+      - Level: 5
+        Time: 600000
     Requires:
       SpCost:
         - Level: 1
-          Amount: 18
+          Amount: 10
         - Level: 2
-          Amount: 16
+          Amount: 12
         - Level: 3
           Amount: 14
         - Level: 4
-          Amount: 12
+          Amount: 16
         - Level: 5
-          Amount: 10
+          Amount: 18
+        - Level: 6
+          Amount: 20
+        - Level: 7
+          Amount: 22
+        - Level: 8
+          Amount: 24
+        - Level: 9
+          Amount: 26
+        - Level: 10
+          Amount: 30
     Status: WeaponPerfection
   - Id: 113
     Name: BS_OVERTHRUST
@@ -4356,29 +4382,9 @@ Body:
     Hit: Single
     HitCount: 1
     SplashArea: -1
-    Duration1:
-      - Level: 1
-        Time: 20000
-      - Level: 2
-        Time: 40000
-      - Level: 3
-        Time: 60000
-      - Level: 4
-        Time: 80000
-      - Level: 5
-        Time: 100000
+    Duration1: 300000
     Requires:
-      SpCost:
-        - Level: 1
-          Amount: 18
-        - Level: 2
-          Amount: 16
-        - Level: 3
-          Amount: 14
-        - Level: 4
-          Amount: 12
-        - Level: 5
-          Amount: 10
+      SpCost: 50
       Weapon:
         Dagger: true
         1hSword: true
