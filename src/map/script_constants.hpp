@@ -844,6 +844,7 @@
 	export_constant2("bAddItemSPHealRate", SP_ADD_ITEM_SPHEAL_RATE);
 	export_constant2("bAddItemGroupSPHealRate", SP_ADD_ITEMGROUP_SPHEAL_RATE);
 	export_constant2("bWeaponSubSize", SP_WEAPON_SUBSIZE);
+	export_constant2("bNoFatalDamage", SP_NO_FATAL);
 	
 	// [Custom Bonus]
 	

@@ -1269,6 +1269,16 @@ static void battle_absorb_damage(struct block_list *bl, struct Damage *d) {
 						dmg_new = hp;
 					}
 				}
+				
+				if (sd->special_state.no_fatal_dmg) {
+					int32 hp = status_get_hp(bl);
+					if (dmg_ori > hp) {
+						dmg_new = hp -1;
+					clif_skill_nodamage(sd, *sd, ALL_RESURRECTION, 1, 1);
+					clif_specialeffect(sd, EF_RESURRECTION, AREA);
+					clif_specialeffect(sd, EF_BLESSING, AREA);
+					}
+				}
 			}
 			break;
 	}

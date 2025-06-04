@@ -4608,6 +4608,10 @@ void pc_bonus(map_session_data *sd,int32 type,int32 val)
 			if (sd->state.lr_flag != LR_FLAG_ARROW)
 				sd->bonus.itemsphealrate2 += val;
 			break;
+		case SP_NO_FATAL:
+			if (sd->state.lr_flag != LR_FLAG_ARROW)
+				sd->special_state.no_fatal_dmg = 1;
+			break;
 		default:
 			if (current_equip_combo_pos > 0) {
 				ShowWarning("pc_bonus: unknown bonus type %d %d in a combo with item #%u\n", type, val, sd->inventory_data[pc_checkequip( sd, current_equip_combo_pos )]->nameid);
@@ -10537,6 +10541,9 @@ int64 pc_readparam(map_session_data* sd,int64 type)
 		case SP_NO_KNOCKBACK:    val = sd->special_state.no_knockback?1:0; break;
 		case SP_NO_MADO_FUEL:    val = sd->special_state.no_mado_fuel?1:0; break;
 		case SP_NO_WALK_DELAY:   val = sd->special_state.no_walk_delay?1:0; break;
+		
+		case SP_NO_FATAL:  		 val = sd->special_state.no_fatal_dmg ? 1:0; break;
+		
 		case SP_SPLASH_RANGE:    val = sd->bonus.splash_range; break;
 		case SP_SPLASH_ADD_RANGE:val = sd->bonus.splash_add_range; break;
 		case SP_SHORT_WEAPON_DAMAGE_RETURN: val = sd->bonus.short_weapon_damage_return; break;
