@@ -768,12 +768,12 @@ Body:
       Thief: true
     Tree:
       - Name: AS_RIGHT
-        MaxLevel: 5
+        MaxLevel: 10
       - Name: AS_LEFT
-        MaxLevel: 5
+        MaxLevel: 10
         Requires:
           - Name: AS_RIGHT
-            Level: 2
+            Level: 5
       - Name: AS_KATAR
         MaxLevel: 10
       - Name: AS_CLOAKING
@@ -787,10 +787,10 @@ Body:
           - Name: AS_KATAR
             Level: 4
       - Name: AS_GRIMTOOTH
-        MaxLevel: 5
+        MaxLevel: 15
         Requires:
           - Name: AS_CLOAKING
-            Level: 2
+            Level: 10
           - Name: AS_SONICBLOW
             Level: 5
       - Name: AS_ENCHANTPOISON

@@ -5049,12 +5049,12 @@ Body:
   - Id: 132
     Name: AS_RIGHT
     Description: Righthand Mastery
-    MaxLevel: 5
+    MaxLevel: 10
     Type: Weapon
   - Id: 133
     Name: AS_LEFT
     Description: Lefthand Mastery
-    MaxLevel: 5
+    MaxLevel: 10
     Type: Weapon
   - Id: 134
     Name: AS_KATAR
@@ -5141,36 +5141,24 @@ Body:
   - Id: 137
     Name: AS_GRIMTOOTH
     Description: Grimtooth
-    MaxLevel: 5
+    MaxLevel: 15
     Type: Weapon
     TargetType: Attack
     DamageFlags:
       Splash: true
     Flags:
       TargetTrap: true
-      AllowWhenHidden: true
-    Range:
-      - Level: 1
-        Size: 3
-      - Level: 2
-        Size: 4
-      - Level: 3
-        Size: 5
-      - Level: 4
-        Size: 6
-      - Level: 5
-        Size: 7
+    Range: 6
     Hit: Single
     HitCount: 1
     Element: Weapon
     SplashArea: 1
     Duration2: 1000
+    AfterCastActDelay: 500
     Requires:
-      SpCost: 3
+      SpCost: 7
       Weapon:
         Katar: true
-      Status:
-        Hiding: true
   - Id: 138
     Name: AS_ENCHANTPOISON
     Description: Enchant Poison
@@ -5259,6 +5247,7 @@ Body:
         Time: 60000
       - Level: 10
         Time: 65000
+    Cooldown: 60000
     Requires:
       SpCost:
         - Level: 1

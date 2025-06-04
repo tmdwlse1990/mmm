@@ -2424,10 +2424,19 @@ int64 battle_addmastery(map_session_data *sd,struct block_list *target,int64 dmg
 	switch(weapon) {
 		case W_1HSWORD:
 #ifdef RENEWAL
+			
+			if((skill = pc_checkskill(sd,AS_RIGHT)) > 0)
+				damage += (skill * 2);
+			if((skill = pc_checkskill(sd,AS_LEFT)) > 0)
+				damage += (skill * 2);
 			if((skill = pc_checkskill(sd,AM_AXEMASTERY)) > 0)
 				damage += (skill * 3);
 #endif
 		case W_DAGGER:
+			if((skill = pc_checkskill(sd,AS_RIGHT)) > 0)
+				damage += (skill * 2);
+			if((skill = pc_checkskill(sd,AS_LEFT)) > 0)
+				damage += (skill * 2);
 			if((skill = pc_checkskill(sd,SM_SWORD)) > 0)
 				damage += (skill * 4);
 			if((skill = pc_checkskill(sd,GN_TRAINING_SWORD)) > 0)
@@ -2450,6 +2459,10 @@ int64 battle_addmastery(map_session_data *sd,struct block_list *target,int64 dmg
 			}
 			break;
 		case W_1HAXE:
+			if((skill = pc_checkskill(sd,AS_RIGHT)) > 0)
+				damage += (skill * 2);
+			if((skill = pc_checkskill(sd,AS_LEFT)) > 0)
+				damage += (skill * 2);
 		case W_2HAXE:
 			if((skill = pc_checkskill(sd,AM_AXEMASTERY)) > 0)
 				damage += (skill * 3);
@@ -7340,11 +7353,11 @@ static void battle_calc_attack_left_right_hands(struct Damage* wd, struct block_
 			if (is_attack_right_handed(src, skill_id) && wd->damage) {
 				if( (sd->class_&MAPID_BASEMASK) == MAPID_THIEF ) {
 					skill = pc_checkskill(sd,AS_RIGHT);
-					ATK_RATER(wd->damage, 50 + (skill * 10))
+					ATK_RATER(wd->damage, 10 + (skill * 10))
 				}
 				else if(sd->class_ == MAPID_KAGEROUOBORO) {
 					skill = pc_checkskill(sd,KO_RIGHT);
-					ATK_RATER(wd->damage, 70 + (skill * 10))
+					ATK_RATER(wd->damage, 10 + (skill * 10))
 				}
 				if(wd->damage < 1)
 					wd->damage = 1;

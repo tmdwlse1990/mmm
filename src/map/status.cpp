@@ -11040,9 +11040,9 @@ static bool status_change_start_post_delay(block_list* src, block_list* bl, sc_t
 			}
 			break;
 		case SC_POISONREACT:
-			val2 = val1 / 2; // Number of Envenom autocasts
+			val2 = val1; // Number of Envenom autocasts
 			val3 = 50; // Chance to autocast Envenom on hit / Poison chance of attack after block
-			val4 = 0; // 0: Poison Block Mode; 1: Damage Boost Mode
+			val4 = 1; // 0: Poison Block Mode; 1: Damage Boost Mode
 			break;
 		case SC_MAGICROD:
 			val2 = val1*20; // SP gained
