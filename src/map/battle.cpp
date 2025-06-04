@@ -4854,7 +4854,7 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 			break;
 #ifdef RENEWAL
 		case KN_BRANDISHSPEAR:
-			skillratio += -100 + 400 + 100 * skill_lv + sstatus->str * 3;
+			skillratio += -100 + 400 + 100 * skill_lv + sstatus->str * 2;
 			break;
 #else
 		case KN_BRANDISHSPEAR:
@@ -7634,7 +7634,10 @@ static struct Damage initialize_weapon_data(struct block_list *src, struct block
 
 			case KN_PIERCE:
 			case ML_PIERCE:
-				wd.div_= (wd.div_>0?tstatus->size+1:-(tstatus->size+1));
+				if(skill_lv < 15)
+					wd.div_= (wd.div_>0?tstatus->size+1:-(tstatus->size+1));
+				else
+					wd.div_ = 4;
 				break;
 
 			case TF_DOUBLE: //For NPC used skill.
@@ -7662,12 +7665,16 @@ static struct Damage initialize_weapon_data(struct block_list *src, struct block
 				break;
 #ifdef RENEWAL
 			case KN_BOWLINGBASH:
+				/*
 				if (sd && sd->status.weapon == W_2HSWORD) {
 					if (wd.miscflag >= 2 && wd.miscflag <= 3)
 						wd.div_ = 3;
 					else if (wd.miscflag >= 4)
 						wd.div_ = 4;
 				}
+				*/
+				if (sd && sd->status.weapon == W_2HSWORD)
+					wd.div_ = 4;
 				break;
 #endif
 			case KN_AUTOCOUNTER:

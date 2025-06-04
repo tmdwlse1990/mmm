@@ -311,12 +311,12 @@ Body:
       - Name: KN_SPEARMASTERY
         MaxLevel: 10
       - Name: KN_PIERCE
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: KN_SPEARMASTERY
             Level: 1
       - Name: KN_BRANDISHSPEAR
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: KN_RIDING
             Level: 1
@@ -343,7 +343,7 @@ Body:
           - Name: SM_TWOHAND
             Level: 1
       - Name: KN_BOWLINGBASH
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: SM_BASH
             Level: 10
