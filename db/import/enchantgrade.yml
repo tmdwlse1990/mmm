@@ -62,9 +62,9 @@ Body:
           - Grade: None
             Chances:
               - Refine: 10
-                Chance: 5000
+                Chance: 2000
               - Refine: 11
-                Chance: 5500
+                Chance: 2000
               - Refine: 12
                 Chance: 6000
               - Refine: 13
@@ -107,9 +107,9 @@ Body:
           - Grade: D
             Chances:
               - Refine: 10
-                Chance: 5000
+                Chance: 2000
               - Refine: 11
-                Chance: 5500
+                Chance: 2000
               - Refine: 12
                 Chance: 6000
               - Refine: 13
@@ -152,9 +152,9 @@ Body:
           - Grade: C 
             Chances:
               - Refine: 10
-                Chance: 5000
+                Chance: 2000
               - Refine: 11
-                Chance: 5500
+                Chance: 2000
               - Refine: 12
                 Chance: 6000
               - Refine: 13
@@ -197,9 +197,9 @@ Body:
           - Grade: B
             Chances:
               - Refine: 10
-                Chance: 5000
+                Chance: 2000
               - Refine: 11
-                Chance: 5500
+                Chance: 2000
               - Refine: 12
                 Chance: 6000
               - Refine: 13
@@ -242,13 +242,13 @@ Body:
           - Grade: A
             Chances:
               - Refine: 10
-                Chance: 3000
+                Chance: 2000
               - Refine: 11
-                Chance: 3300
+                Chance: 2000
               - Refine: 12
-                Chance: 3600
+                Chance: 4000
               - Refine: 13
-                Chance: 3900
+                Chance: 4000
               - Refine: 14
                 Chance: 4200
               - Refine: 15
@@ -287,9 +287,9 @@ Body:
           - Grade: R
             Chances:
               - Refine: 10
-                Chance: 2000
+                Chance: 1000
               - Refine: 11
-                Chance: 2200
+                Chance: 1000
               - Refine: 12
                 Chance: 2400
               - Refine: 13
@@ -332,9 +332,9 @@ Body:
           - Grade: S
             Chances:
               - Refine: 10
-                Chance: 1000
+                Chance: 500
               - Refine: 11
-                Chance: 1100
+                Chance: 500
               - Refine: 12
                 Chance: 1200
               - Refine: 13
@@ -543,9 +543,9 @@ Body:
           - Grade: None
             Chances:
               - Refine: 10
-                Chance: 7000
+                Chance: 3000
               - Refine: 11
-                Chance: 7000
+                Chance: 3000
               - Refine: 12
                 Chance: 7000
               - Refine: 13
@@ -588,9 +588,9 @@ Body:
           - Grade: D
             Chances:
               - Refine: 10
-                Chance: 7000
+                Chance: 3000
               - Refine: 11
-                Chance: 7000
+                Chance: 3000
               - Refine: 12
                 Chance: 7000
               - Refine: 13
@@ -633,9 +633,9 @@ Body:
           - Grade: C 
             Chances:
               - Refine: 10
-                Chance: 7000
+                Chance: 3000
               - Refine: 11
-                Chance: 7000
+                Chance: 3000
               - Refine: 12
                 Chance: 7000
               - Refine: 13
@@ -678,9 +678,9 @@ Body:
           - Grade: B
             Chances:
               - Refine: 10
-                Chance: 7000
+                Chance: 3000
               - Refine: 11
-                Chance: 7000
+                Chance: 3000
               - Refine: 12
                 Chance: 7000
               - Refine: 13
@@ -723,9 +723,9 @@ Body:
           - Grade: A
             Chances:
               - Refine: 10
-                Chance: 4000
+                Chance: 2000
               - Refine: 11
-                Chance: 4000
+                Chance: 2000
               - Refine: 12
                 Chance: 4000
               - Refine: 13
@@ -768,9 +768,9 @@ Body:
           - Grade: R
             Chances:
               - Refine: 10
-                Chance: 4000
+                Chance: 2000
               - Refine: 11
-                Chance: 4000
+                Chance: 2000
               - Refine: 12
                 Chance: 4000
               - Refine: 13
@@ -813,9 +813,9 @@ Body:
           - Grade: S
             Chances:
               - Refine: 10
-                Chance: 2000
+                Chance: 1000
               - Refine: 11
-                Chance: 2000
+                Chance: 1000
               - Refine: 12
                 Chance: 2000
               - Refine: 13
@@ -860,9 +860,9 @@ Body:
           - Grade: None
             Chances:
               - Refine: 10
-                Chance: 7000
+                Chance: 3000
               - Refine: 11
-                Chance: 7000
+                Chance: 3000
               - Refine: 12
                 Chance: 7000
               - Refine: 13
@@ -905,9 +905,9 @@ Body:
           - Grade: D
             Chances:
               - Refine: 10
-                Chance: 7000
+                Chance: 3000
               - Refine: 11
-                Chance: 7000
+                Chance: 3000
               - Refine: 12
                 Chance: 7000
               - Refine: 13
@@ -950,9 +950,9 @@ Body:
           - Grade: C 
             Chances:
               - Refine: 10
-                Chance: 7000
+                Chance: 3000
               - Refine: 11
-                Chance: 7000
+                Chance: 3000
               - Refine: 12
                 Chance: 7000
               - Refine: 13
@@ -995,9 +995,9 @@ Body:
           - Grade: B
             Chances:
               - Refine: 10
-                Chance: 7000
+                Chance: 3000
               - Refine: 11
-                Chance: 7000
+                Chance: 3000
               - Refine: 12
                 Chance: 7000
               - Refine: 13
@@ -1040,9 +1040,9 @@ Body:
           - Grade: A
             Chances:
               - Refine: 10
-                Chance: 4000
+                Chance: 2000
               - Refine: 11
-                Chance: 4000
+                Chance: 2000
               - Refine: 12
                 Chance: 4000
               - Refine: 13
@@ -1085,9 +1085,9 @@ Body:
           - Grade: R
             Chances:
               - Refine: 10
-                Chance: 4000
+                Chance: 2000
               - Refine: 11
-                Chance: 4000
+                Chance: 2000
               - Refine: 12
                 Chance: 4000
               - Refine: 13
@@ -1130,9 +1130,9 @@ Body:
           - Grade: S
             Chances:
               - Refine: 10
-                Chance: 2000
+                Chance: 1000
               - Refine: 11
-                Chance: 2000
+                Chance: 1000
               - Refine: 12
                 Chance: 2000
               - Refine: 13
@@ -1177,9 +1177,9 @@ Body:
           - Grade: None
             Chances:
               - Refine: 10
-                Chance: 5000
+                Chance: 2000
               - Refine: 11
-                Chance: 5500
+                Chance: 2000
               - Refine: 12
                 Chance: 6000
               - Refine: 13
@@ -1222,9 +1222,9 @@ Body:
           - Grade: D
             Chances:
               - Refine: 10
-                Chance: 5000
+                Chance: 2000
               - Refine: 11
-                Chance: 5500
+                Chance: 2000
               - Refine: 12
                 Chance: 6000
               - Refine: 13
@@ -1267,9 +1267,9 @@ Body:
           - Grade: C 
             Chances:
               - Refine: 10
-                Chance: 5000
+                Chance: 2000
               - Refine: 11
-                Chance: 5500
+                Chance: 2000
               - Refine: 12
                 Chance: 6000
               - Refine: 13
@@ -1312,9 +1312,9 @@ Body:
           - Grade: B
             Chances:
               - Refine: 10
-                Chance: 5000
+                Chance: 2000
               - Refine: 11
-                Chance: 5500
+                Chance: 2000
               - Refine: 12
                 Chance: 6000
               - Refine: 13
@@ -1357,13 +1357,13 @@ Body:
           - Grade: A
             Chances:
               - Refine: 10
-                Chance: 3000
+                Chance: 2000
               - Refine: 11
-                Chance: 3300
+                Chance: 2000
               - Refine: 12
-                Chance: 3600
+                Chance: 4000
               - Refine: 13
-                Chance: 3900
+                Chance: 4000
               - Refine: 14
                 Chance: 4200
               - Refine: 15
@@ -1402,15 +1402,15 @@ Body:
           - Grade: R
             Chances:
               - Refine: 10
-                Chance: 2000
+                Chance: 1000
               - Refine: 11
-                Chance: 2200
+                Chance: 1000
               - Refine: 12
-                Chance: 2400
+                Chance: 3000
               - Refine: 13
-                Chance: 2600
+                Chance: 3000
               - Refine: 14
-                Chance: 2800
+                Chance: 3000
               - Refine: 15
                 Chance: 3000
               - Refine: 16
@@ -1447,27 +1447,27 @@ Body:
           - Grade: S
             Chances:
               - Refine: 10
-                Chance: 1000
+                Chance: 500
               - Refine: 11
-                Chance: 1100
+                Chance: 500
               - Refine: 12
-                Chance: 1200
+                Chance: 1000
               - Refine: 13
-                Chance: 1300
+                Chance: 1000
               - Refine: 14
-                Chance: 1400
+                Chance: 1000
               - Refine: 15
-                Chance: 1500
+                Chance: 1000
               - Refine: 16
-                Chance: 1600
+                Chance: 1000
               - Refine: 17
-                Chance: 1700
+                Chance: 1000
               - Refine: 18
-                Chance: 1800
+                Chance: 1000
               - Refine: 19
-                Chance: 1900
+                Chance: 1000
               - Refine: 20
-                Chance: 2000
+                Chance: 1000
             Bonus: 1000
             Catalyst:
                 Item: Blacksmith_Blessing
@@ -1494,9 +1494,9 @@ Body:
           - Grade: None
             Chances:
               - Refine: 10
-                Chance: 5000
+                Chance: 2000
               - Refine: 11
-                Chance: 5500
+                Chance: 2000
               - Refine: 12
                 Chance: 6000
               - Refine: 13
@@ -1539,9 +1539,9 @@ Body:
           - Grade: D
             Chances:
               - Refine: 10
-                Chance: 5000
+                Chance: 2000
               - Refine: 11
-                Chance: 5500
+                Chance: 2000
               - Refine: 12
                 Chance: 6000
               - Refine: 13
@@ -1584,9 +1584,9 @@ Body:
           - Grade: C 
             Chances:
               - Refine: 10
-                Chance: 5000
+                Chance: 2000
               - Refine: 11
-                Chance: 5500
+                Chance: 2000
               - Refine: 12
                 Chance: 6000
               - Refine: 13
@@ -1629,9 +1629,9 @@ Body:
           - Grade: B
             Chances:
               - Refine: 10
-                Chance: 5000
+                Chance: 2000
               - Refine: 11
-                Chance: 5500
+                Chance: 2000
               - Refine: 12
                 Chance: 6000
               - Refine: 13
@@ -1674,13 +1674,13 @@ Body:
           - Grade: A
             Chances:
               - Refine: 10
-                Chance: 3000
+                Chance: 2000
               - Refine: 11
-                Chance: 3300
+                Chance: 2000
               - Refine: 12
-                Chance: 3600
+                Chance: 4000
               - Refine: 13
-                Chance: 3900
+                Chance: 4000
               - Refine: 14
                 Chance: 4200
               - Refine: 15
@@ -1719,15 +1719,15 @@ Body:
           - Grade: R
             Chances:
               - Refine: 10
-                Chance: 2000
+                Chance: 1000
               - Refine: 11
-                Chance: 2200
+                Chance: 1000
               - Refine: 12
-                Chance: 2400
+                Chance: 3000
               - Refine: 13
-                Chance: 2600
+                Chance: 3000
               - Refine: 14
-                Chance: 2800
+                Chance: 3000
               - Refine: 15
                 Chance: 3000
               - Refine: 16
@@ -1764,9 +1764,9 @@ Body:
           - Grade: S
             Chances:
               - Refine: 10
-                Chance: 1000
+                Chance: 500
               - Refine: 11
-                Chance: 1100
+                Chance: 500
               - Refine: 12
                 Chance: 1200
               - Refine: 13
