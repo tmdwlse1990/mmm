@@ -1174,13 +1174,13 @@ struct s_skill_unit_layout *skill_get_unit_layout(uint16 skill_id, uint16 skill_
 	}
 
 	nullpo_retr(nullptr, src);
-
+	/*
 	//Monsters sometimes deploy more units on level 10
 	if (src->type == BL_MOB && skill_lv >= 10) {
 		if (skill_id == WZ_WATERBALL)
 			pos = 4; //9x9 Area
 	}
-
+	*/
 	if (pos != -1) // simple single-definition layout
 		return &skill_unit_layout[pos];
 
@@ -1463,7 +1463,7 @@ int32 skill_additional_effect( struct block_list* src, struct block_list *bl, ui
 	case WZ_STORMGUST:
 		// Storm Gust counter was dropped in renewal
 #ifdef RENEWAL
-		sc_start(src,bl,SC_FREEZE,65-(5*skill_lv),skill_lv,skill_get_time2(skill_id,skill_lv));
+		sc_start(src,bl,SC_FREEZE,30-(1*skill_lv),skill_lv,skill_get_time2(skill_id,skill_lv));
 #else
 		//On third hit, there is a 150% to freeze the target
 		if(tsc->sg_counter >= 3 &&
@@ -1491,7 +1491,7 @@ int32 skill_additional_effect( struct block_list* src, struct block_list *bl, ui
 
 	case WZ_VERMILION:
 #ifdef RENEWAL
-		sc_start(src,bl,SC_BLIND,10 + 5 * skill_lv,skill_lv,skill_get_time2(skill_id,skill_lv));
+		sc_start(src,bl,SC_BLIND,2 * skill_lv,skill_lv,skill_get_time2(skill_id,skill_lv));
 #else
 		sc_start(src,bl,SC_BLIND,min(4*skill_lv,40),skill_lv,skill_get_time2(skill_id,skill_lv));
 #endif
@@ -2694,6 +2694,7 @@ int32 skill_counter_additional_effect (struct block_list* src, struct block_list
 		if( attack_type&BF_MAGIC ) {
 			sp += sd->bonus.magic_sp_gain_value;
 			hp += sd->bonus.magic_hp_gain_value;
+			/*
 			if( skill_id == WZ_WATERBALL ) {//(bugreport:5303)
 				status_change *sc = nullptr;
 				if( ( sc = status_get_sc(src) ) ) {
@@ -2703,6 +2704,7 @@ int32 skill_counter_additional_effect (struct block_list* src, struct block_list
 								sc->getSCE(SC_SPIRIT)->val3 = 0; //Clear bounced spell check.
 				}
 			}
+			*/
 		}
 		if( hp || sp ) { // updated to force healing to allow healing through berserk
 			status_heal(src, hp, sp, battle_config.show_hp_sp_gain ? 3 : 1);
@@ -3765,8 +3767,10 @@ int64 skill_attack (int32 attack_type, struct block_list* src, struct block_list
 			dmg.damage = dmg.damage2 = 0;
 			dmg.dmg_lv = ATK_MISS; //This will prevent skill additional effect from taking effect. [Skotlex]
 			sp = sp * tsc->getSCE(SC_MAGICROD)->val2 / 100;
+			/*
 			if(skill_id == WZ_WATERBALL && skill_lv > 1)
 				sp = sp/((skill_lv|1)*(skill_lv|1)); //Estimate SP cost of a single water-ball
+			*/
 			status_heal(bl, 0, sp, 2);
 		}
 		if( (dmg.damage || dmg.damage2) && tsc && (tsc->getSCE(SC_HALLUCINATIONWALK) && rnd()%100 < tsc->getSCE(SC_HALLUCINATIONWALK)->val3 || tsc->getSCE(SC_NPC_HALLUCINATIONWALK) && rnd()%100 < tsc->getSCE(SC_NPC_HALLUCINATIONWALK)->val3) ) {
@@ -4608,7 +4612,8 @@ static TIMER_FUNC(skill_timerskill){
 						continue; // Caster is Dead
 				}
 			}
-			if(status_isdead(*target) && skl->skill_id != RG_INTIMIDATE && skl->skill_id != WZ_WATERBALL)
+			//if(status_isdead(*target) && skl->skill_id != RG_INTIMIDATE && skl->skill_id != WZ_WATERBALL)
+			if(status_isdead(*target) && skl->skill_id != RG_INTIMIDATE)
 				break;
 
 			switch(skl->skill_id) {
@@ -4648,6 +4653,7 @@ static TIMER_FUNC(skill_timerskill){
 				case MER_LEXDIVINA:
 					sc_start(src, target, SC_SILENCE, skl->type, skl->skill_lv, skill_get_time2(skl->skill_id, skl->skill_lv));
 					break;
+					/*
 				case WZ_WATERBALL:
 				{
 					//Get the next waterball cell to consume
@@ -4663,6 +4669,8 @@ static TIMER_FUNC(skill_timerskill){
 					}
 				}
 					[[fallthrough]];
+					*/
+				case WZ_WATERBALL:
 				case WZ_JUPITEL:
 					// Official behaviour is to hit as long as there is a line of sight, regardless of distance
 					if (skl->type > 0 && !status_isdead(*target) && path_search_long(nullptr,src->m,src->x,src->y,target->x,target->y,CELL_CHKWALL)) {
@@ -6570,12 +6578,14 @@ int32 skill_castend_damage_id (struct block_list* src, struct block_list *bl, ui
 			skill_attack(skill_get_type(subskill_id), src, src, bl, subskill_id, skill_lv, tick, flag);
 		}
 		break;
-
+	/*
 	case WZ_WATERBALL:
 		//Deploy waterball cells, these are used and turned into waterballs via the timerskill
 		skill_unitsetting(src, skill_id, skill_lv, src->x, src->y, 0);
 		skill_addtimerskill(src, tick, bl->id, src->x, src->y, skill_id, skill_lv, 0, flag);
 		break;
+	*/
+	case WZ_WATERBALL:
 	case WZ_JUPITEL:
 		//Jupitel Thunder is delayed by 150ms, you can cast another spell before the knockback
 		skill_addtimerskill(src, tick+TIMERSKILL_INTERVAL, bl->id, 0, 0, skill_id, skill_lv, 1, flag);
@@ -14326,11 +14336,16 @@ TIMER_FUNC(skill_castend_id){
 		if(sc != nullptr && !sc->empty()) {
 			if (ud->skill_id != RA_CAMOUFLAGE)
 				status_change_end(src, SC_CAMOUFLAGE); // Applies to the first skill if active
-
+				/*
 			if(sc->getSCE(SC_SPIRIT) &&
 				sc->getSCE(SC_SPIRIT)->val2 == SL_WIZARD &&
 				sc->getSCE(SC_SPIRIT)->val3 == ud->skill_id &&
 				ud->skill_id != WZ_WATERBALL)
+				sc->getSCE(SC_SPIRIT)->val3 = 0; //Clear bounced spell check.
+				*/
+				if(sc->getSCE(SC_SPIRIT) &&
+				sc->getSCE(SC_SPIRIT)->val2 == SL_WIZARD &&
+				sc->getSCE(SC_SPIRIT)->val3 == ud->skill_id)
 				sc->getSCE(SC_SPIRIT)->val3 = 0; //Clear bounced spell check.
 #ifndef RENEWAL
 			if( sc->getSCE(SC_DANCING) && sd && skill_get_inf2(ud->skill_id, INF2_ISSONG) )
@@ -16570,12 +16585,14 @@ std::shared_ptr<s_skill_unit_group> skill_unitsetting(struct block_list *src, ui
 				unit_val1 = 200 + 200*skill_lv;
 				unit_val2 = map_getcell(src->m, ux, uy, CELL_GETTYPE);
 				break;
+				/*
 			case WZ_WATERBALL:
 				//Check if there are cells that can be turned into waterball units
 				if (!sd || map_getcell(src->m, ux, uy, CELL_CHKWATER) 
 					|| (map_find_skill_unit_oncell(src, ux, uy, SA_DELUGE, nullptr, 1)) != nullptr || (map_find_skill_unit_oncell(src, ux, uy, NJ_SUITON, nullptr, 1)) != nullptr)
 					break; //Turn water, deluge or suiton into waterball cell
 				continue;
+				*/
 			case GS_DESPERADO:
 				unit_val1 = abs(layout->dx[i]);
 				unit_val2 = abs(layout->dy[i]);
@@ -21581,6 +21598,7 @@ static int32 skill_cell_overlap(struct block_list *bl, va_list ap)
 					break;
 			}
 			break;
+			/*
 		case WZ_WATERBALL:
 			switch (unit->group->skill_id) {
 				case SA_DELUGE:
@@ -21590,6 +21608,7 @@ static int32 skill_cell_overlap(struct block_list *bl, va_list ap)
 					return 1;
 			}
 			break;
+			*/
 		case WZ_ICEWALL:
 #ifndef RENEWAL
 		case HP_BASILICA:

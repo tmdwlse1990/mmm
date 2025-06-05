@@ -501,14 +501,14 @@ Body:
           - Name: MG_LIGHTNINGBOLT
             Level: 1
       - Name: WZ_VERMILION
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: MG_THUNDERSTORM
             Level: 1
           - Name: WZ_JUPITEL
             Level: 5
       - Name: WZ_WATERBALL
-        MaxLevel: 5
+        MaxLevel: 10
         Requires:
           - Name: MG_COLDBOLT
             Level: 1
@@ -527,7 +527,7 @@ Body:
           - Name: WZ_ICEWALL
             Level: 1
       - Name: WZ_STORMGUST
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: MG_FROSTDIVER
             Level: 1
@@ -539,7 +539,7 @@ Body:
           - Name: MG_STONECURSE
             Level: 1
       - Name: WZ_HEAVENDRIVE
-        MaxLevel: 5
+        MaxLevel: 10
         Requires:
           - Name: WZ_EARTHSPIKE
             Level: 3

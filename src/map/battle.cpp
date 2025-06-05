@@ -3183,7 +3183,7 @@ static bool is_attack_critical(struct Damage* wd, struct block_list *src, struct
 			case SN_SHARPSHOOTING:
 			case MA_SHARPSHOOTING:
 #ifdef RENEWAL
-				cri += 300; // !TODO: Confirm new bonus
+				cri += 200; // !TODO: Confirm new bonus
 #else
 				cri += 200;
 #endif
@@ -3194,6 +3194,7 @@ static bool is_attack_critical(struct Damage* wd, struct block_list *src, struct
 #ifdef RENEWAL
 			case ASC_BREAKER:
 #endif
+			case AS_SONICBLOW:
 			case GC_CROSSIMPACT:
 			case SHC_SAVAGE_IMPACT:
 			case SHC_ETERNAL_SLASH:
@@ -8546,9 +8547,12 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 					case WZ_SIGHTRASHER:
 						skillratio += 20 * skill_lv;
 						break;
+						
+					case WZ_JUPITEL:
 					case WZ_WATERBALL:
-						skillratio += 30 * skill_lv;
+						skillratio += 35;
 						break;
+						
 					case WZ_STORMGUST:
 #ifdef RENEWAL
 						skillratio -= 30; // Offset only once
@@ -8636,15 +8640,17 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						break;
 #ifdef RENEWAL
 					case WZ_HEAVENDRIVE:
+						skillratio += -20;
+						break;
 					case NPC_GROUNDDRIVE:
-						skillratio += 25;
+						skillratio += skill_lv * 20;
 						break;
 					case WZ_METEOR:
-						skillratio += 25;
+						skillratio += skill_lv * 20;
 						break;
 					case WZ_VERMILION:
 						if(sd)
-							skillratio += 300 + skill_lv * 100;
+							skillratio += 300 + skill_lv * 30;
 						else
 							skillratio += 20 * skill_lv - 20; //Monsters use old formula
 						break;
