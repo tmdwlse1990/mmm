@@ -2491,7 +2491,6 @@ uint16 status_base_atk(const struct block_list *bl, const struct status_data *st
 				flag = 1;
 				break;
 			case W_BOW:
-			case W_MUSICAL:
 				flag = 2;
 				break;
 		}

@@ -725,19 +725,19 @@ Body:
           - Name: HT_REMOVETRAP
             Level: 1
       - Name: HT_BEASTBANE
-        MaxLevel: 10
+        MaxLevel: 15
       - Name: HT_FALCON
         MaxLevel: 1
         Requires:
           - Name: HT_BEASTBANE
-            Level: 1
+            Level: 15
       - Name: HT_STEELCROW
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: HT_BLITZBEAT
             Level: 5
       - Name: HT_BLITZBEAT
-        MaxLevel: 5
+        MaxLevel: 15
         Requires:
           - Name: HT_FALCON
             Level: 1

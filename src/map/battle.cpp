@@ -9824,7 +9824,8 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 		case MA_LANDMINE:
 		case HT_BLASTMINE:
 		case HT_CLAYMORETRAP:
-			md.damage = (int64)(skill_lv * sstatus->dex * (3.0 + (float)status_get_lv(src) / 100.0) * (1.0 + (float)sstatus->int_ / 35.0));
+			//md.damage = (int64)(skill_lv * sstatus->dex * (3.0 + (float)status_get_lv(src) / 100.0) * (1.0 + (float)sstatus->int_ / 35.0));
+			md.damage = (int64)( (skill_lv  * (3.0 + (float)status_get_lv(src) / 50.0) * (1.0 + (float)sstatus->int_ * 4)) * 4 );
 			md.damage += md.damage * (rnd()%20 - 10) / 100;
 			md.damage += (sd ? pc_checkskill(sd,RA_RESEARCHTRAP) * 40 : 0);
 			break;
@@ -9843,14 +9844,14 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 		case HT_BLITZBEAT:
 		case SN_FALCONASSAULT:
 			{
-				uint16 skill;
+				uint16 skill, skill2;
 
 				//Blitz-beat Damage
-				if(!sd || !(skill = pc_checkskill(sd,HT_STEELCROW)))
-					skill = 0;
+				if(!sd || !(skill = pc_checkskill(sd,HT_STEELCROW)) || !(skill2 = pc_checkskill(sd, HT_BEASTBANE)))
+					skill = 0; skill2 = 0;
 #ifdef RENEWAL
-				md.damage = (sstatus->dex / 10 + sstatus->agi / 2 + skill * 3 + 40) * 2;
-				RE_LVL_MDMOD(100);
+				md.damage = (sstatus->batk * 5) + (sstatus->watk * 3) + skill * 6 + skill2 * 4;
+				RE_LVL_MDMOD(90);
 #else
 				md.damage = (sstatus->dex / 10 + sstatus->int_ / 2 + skill * 3 + 40) * 2;
 				if(mflag > 1) //Autocasted Blitz
