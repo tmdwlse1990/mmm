@@ -744,7 +744,7 @@ Body:
                 Chance: 4000
               - Refine: 20
                 Chance: 4000
-            Bonus: 500
+            Bonus: 300
             Catalyst:
                 Item: Blacksmith_Blessing
                 AmountPerStep: 1
@@ -789,7 +789,7 @@ Body:
                 Chance: 4000
               - Refine: 20
                 Chance: 4000
-            Bonus: 1000
+            Bonus: 500
             Catalyst:
                 Item: Blacksmith_Blessing
                 AmountPerStep: 1
@@ -834,7 +834,7 @@ Body:
                 Chance: 2000
               - Refine: 20
                 Chance: 4000
-            Bonus: 2000
+            Bonus: 1000
             Catalyst:
                 Item: Blacksmith_Blessing
                 AmountPerStep: 1
@@ -881,7 +881,7 @@ Body:
                 Chance: 7000
               - Refine: 20
                 Chance: 7000
-            Bonus: 10
+            Bonus: 30
             Catalyst:
                 Item: Blacksmith_Blessing
                 AmountPerStep: 1
@@ -926,7 +926,7 @@ Body:
                 Chance: 7000
               - Refine: 20
                 Chance: 7000
-            Bonus: 30
+            Bonus: 50
             Catalyst:
                 Item: Blacksmith_Blessing
                 AmountPerStep: 1
@@ -971,7 +971,7 @@ Body:
                 Chance: 7000
               - Refine: 20
                 Chance: 7000
-            Bonus: 50
+            Bonus: 100
             Catalyst:
                 Item: Blacksmith_Blessing
                 AmountPerStep: 1
@@ -1016,7 +1016,7 @@ Body:
                 Chance: 7000
               - Refine: 20
                 Chance: 7000
-            Bonus: 100
+            Bonus: 200
             Catalyst:
                 Item: Blacksmith_Blessing
                 AmountPerStep: 1
@@ -1061,7 +1061,7 @@ Body:
                 Chance: 4000
               - Refine: 20
                 Chance: 4000
-            Bonus: 150
+            Bonus: 300
             Catalyst:
                 Item: Blacksmith_Blessing
                 AmountPerStep: 1
@@ -1106,7 +1106,7 @@ Body:
                 Chance: 4000
               - Refine: 20
                 Chance: 4000
-            Bonus: 250
+            Bonus: 500
             Catalyst:
                 Item: Blacksmith_Blessing
                 AmountPerStep: 1
@@ -1151,7 +1151,7 @@ Body:
                 Chance: 2000
               - Refine: 20
                 Chance: 4000
-            Bonus: 400
+            Bonus: 1000
             Catalyst:
                 Item: Blacksmith_Blessing
                 AmountPerStep: 1
@@ -1198,7 +1198,7 @@ Body:
                 Chance: 9500
               - Refine: 20
                 Chance: 10000
-            Bonus: 10
+            Bonus: 30
             Catalyst:
                 Item: Blacksmith_Blessing
                 AmountPerStep: 1
@@ -1243,7 +1243,7 @@ Body:
                 Chance: 9500
               - Refine: 20
                 Chance: 10000
-            Bonus: 30
+            Bonus: 50
             Catalyst:
                 Item: Blacksmith_Blessing
                 AmountPerStep: 1
@@ -1288,7 +1288,7 @@ Body:
                 Chance: 9500
               - Refine: 20
                 Chance: 10000
-            Bonus: 50
+            Bonus: 100
             Catalyst:
                 Item: Blacksmith_Blessing
                 AmountPerStep: 1
@@ -1333,7 +1333,7 @@ Body:
                 Chance: 9500
               - Refine: 20
                 Chance: 10000
-            Bonus: 100
+            Bonus: 200
             Catalyst:
                 Item: Blacksmith_Blessing
                 AmountPerStep: 1
@@ -1378,7 +1378,7 @@ Body:
                 Chance: 5800
               - Refine: 20
                 Chance: 6100
-            Bonus: 150
+            Bonus: 300
             Catalyst:
                 Item: Blacksmith_Blessing
                 AmountPerStep: 1
@@ -1423,7 +1423,7 @@ Body:
                 Chance: 3800
               - Refine: 20
                 Chance: 4000
-            Bonus: 250
+            Bonus: 500
             Catalyst:
                 Item: Blacksmith_Blessing
                 AmountPerStep: 1
@@ -1468,7 +1468,7 @@ Body:
                 Chance: 1900
               - Refine: 20
                 Chance: 2000
-            Bonus: 400
+            Bonus: 1000
             Catalyst:
                 Item: Blacksmith_Blessing
                 AmountPerStep: 1
@@ -1515,7 +1515,7 @@ Body:
                 Chance: 9500
               - Refine: 20
                 Chance: 10000
-            Bonus: 10
+            Bonus: 30
             Catalyst:
                 Item: Blacksmith_Blessing
                 AmountPerStep: 1
@@ -1560,7 +1560,7 @@ Body:
                 Chance: 9500
               - Refine: 20
                 Chance: 10000
-            Bonus: 30
+            Bonus: 50
             Catalyst:
                 Item: Blacksmith_Blessing
                 AmountPerStep: 1
@@ -1605,7 +1605,7 @@ Body:
                 Chance: 9500
               - Refine: 20
                 Chance: 10000
-            Bonus: 50
+            Bonus: 100
             Catalyst:
                 Item: Blacksmith_Blessing
                 AmountPerStep: 1
@@ -1650,7 +1650,7 @@ Body:
                 Chance: 9500
               - Refine: 20
                 Chance: 10000
-            Bonus: 100
+            Bonus: 200
             Catalyst:
                 Item: Blacksmith_Blessing
                 AmountPerStep: 1
@@ -1695,7 +1695,7 @@ Body:
                 Chance: 5800
               - Refine: 20
                 Chance: 6100
-            Bonus: 150
+            Bonus: 300
             Catalyst:
                 Item: Blacksmith_Blessing
                 AmountPerStep: 1
@@ -1740,7 +1740,7 @@ Body:
                 Chance: 3800
               - Refine: 20
                 Chance: 4000
-            Bonus: 250
+            Bonus: 500
             Catalyst:
                 Item: Blacksmith_Blessing
                 AmountPerStep: 1
@@ -1785,7 +1785,7 @@ Body:
                 Chance: 1900
               - Refine: 20
                 Chance: 2000
-            Bonus: 400
+            Bonus: 1000
             Catalyst:
                 Item: Blacksmith_Blessing
                 AmountPerStep: 1
