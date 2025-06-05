@@ -4371,7 +4371,7 @@ Body:
   - Id: 113
     Name: BS_OVERTHRUST
     Description: Power-Thrust
-    MaxLevel: 5
+    MaxLevel: 15
     Type: Weapon
     TargetType: Self
     DamageFlags:
