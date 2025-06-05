@@ -544,7 +544,8 @@ int32 skill_calc_heal(struct block_list *src, struct block_list *target, uint16 
 			break;
 #endif
 		case PR_SANCTUARY:
-			hp = (skill_lv > 6) ? 777 : skill_lv * 100;
+			//hp = (skill_lv > 6) ? 777 : skill_lv * 100;
+			hp = skill_lv * 100;
 			break;
 		case NPC_EVILLAND:
 			hp = (skill_lv > 6) ? 666 : skill_lv * 100;

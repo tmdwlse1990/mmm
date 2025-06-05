@@ -2481,12 +2481,12 @@ Body:
   - Id: 65
     Name: PR_MACEMASTERY
     Description: Mace Mastery
-    MaxLevel: 10
+    MaxLevel: 15
     Type: Weapon
   - Id: 66
     Name: PR_IMPOSITIO
     Description: Impositio Manus
-    MaxLevel: 5
+    MaxLevel: 15
     Type: Magic
     TargetType: Self
     DamageFlags:
@@ -2511,6 +2511,26 @@ Body:
           Amount: 68
         - Level: 5
           Amount: 71
+        - Level: 6
+          Amount: 74
+        - Level: 7
+          Amount: 77
+        - Level: 8
+          Amount: 80
+        - Level: 9
+          Amount: 83
+        - Level: 10
+          Amount: 86
+        - Level: 11
+          Amount: 89
+        - Level: 12
+          Amount: 92
+        - Level: 13
+          Amount: 95
+        - Level: 14
+          Amount: 98
+        - Level: 15
+          Amount: 101
     Status: Impositio
   - Id: 67
     Name: PR_SUFFRAGIUM
@@ -2615,7 +2635,7 @@ Body:
   - Id: 70
     Name: PR_SANCTUARY
     Description: Sanctuary
-    MaxLevel: 10
+    MaxLevel: 15
     Type: Magic
     TargetType: Ground
     DamageFlags:
@@ -2630,7 +2650,7 @@ Body:
       Skill:
         Plagiarism: true
         Reproduce: true
-    CastTime: 4000
+    CastTime: 5000
     Duration1:
       - Level: 1
         Time: 3900
@@ -2652,6 +2672,16 @@ Body:
         Time: 27900
       - Level: 10
         Time: 30900
+      - Level: 11
+        Time: 33900
+      - Level: 12
+        Time: 36900
+      - Level: 13
+        Time: 39900
+      - Level: 14
+        Time: 42900
+      - Level: 15
+        Time: 45900
     FixedCastTime: 1000
     Requires:
       SpCost:
@@ -2675,6 +2705,16 @@ Body:
           Amount: 39
         - Level: 10
           Amount: 42
+        - Level: 11
+          Amount: 45
+        - Level: 12
+          Amount: 48
+        - Level: 13
+          Amount: 51
+        - Level: 14
+          Amount: 54
+        - Level: 15
+          Amount: 57
       ItemCost:
         - Item: Blue_Gemstone
           Amount: 1
@@ -2803,7 +2843,7 @@ Body:
   - Id: 75
     Name: PR_GLORIA
     Description: Gloria
-    MaxLevel: 5
+    MaxLevel: 15
     Type: Magic
     TargetType: Self
     DamageFlags:
@@ -2817,15 +2857,35 @@ Body:
       - Level: 1
         Time: 10000
       - Level: 2
-        Time: 15000
-      - Level: 3
         Time: 20000
-      - Level: 4
-        Time: 25000
-      - Level: 5
+      - Level: 3
         Time: 30000
+      - Level: 4
+        Time: 40000
+      - Level: 5
+        Time: 50000
+      - Level: 6
+        Time: 60000
+      - Level: 7
+        Time: 70000
+      - Level: 8
+        Time: 80000
+      - Level: 9
+        Time: 90000
+      - Level: 10
+        Time: 100000
+      - Level: 11
+        Time: 110000
+      - Level: 12
+        Time: 120000
+      - Level: 13
+        Time: 130000
+      - Level: 14
+        Time: 140000
+      - Level: 15
+        Time: 180000
     Requires:
-      SpCost: 20
+      SpCost: 300
     Status: Gloria
   - Id: 76
     Name: PR_LEXDIVINA

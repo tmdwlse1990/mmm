@@ -394,9 +394,9 @@ Body:
           - Name: MG_SRECOVERY
             Level: 4
       - Name: PR_MACEMASTERY
-        MaxLevel: 10
+        MaxLevel: 15
       - Name: PR_IMPOSITIO
-        MaxLevel: 5
+        MaxLevel: 15
       - Name: PR_SUFFRAGIUM
         MaxLevel: 3
         Requires:
@@ -417,7 +417,7 @@ Body:
           - Name: PR_ASPERSIO
             Level: 5
       - Name: PR_SANCTUARY
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: AL_HEAL
             Level: 1
@@ -433,7 +433,7 @@ Body:
       - Name: PR_MAGNIFICAT
         MaxLevel: 5
       - Name: PR_GLORIA
-        MaxLevel: 5
+        MaxLevel: 15
         Requires:
           - Name: PR_KYRIE
             Level: 4
