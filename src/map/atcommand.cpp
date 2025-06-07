@@ -11403,6 +11403,80 @@ ACMD_FUNC(hideslave)
 	return 0;
 }
 
+static int buildin_itemmap_sub(block_list *bl, va_list ap) {
+	int nameid, amount, bound;
+
+	nameid = va_arg(ap, int);
+	amount = va_arg(ap, int);
+	bound = va_arg(ap, int);
+
+	struct item item_tmp = {};
+
+	item_tmp.nameid = nameid;
+	item_tmp.identify = 1;
+	item_tmp.bound = bound;
+
+	std::shared_ptr<item_data> item_data = item_db.find(nameid);
+
+	char output[CHAT_SIZE_MAX];
+	sprintf(output, msg_txt(NULL, 1545), item_db.create_item_link(item_data).c_str(), amount);
+	clif_messagecolor(bl, color_table[COLOR_CYAN], output, false, SELF);
+
+	pc_additem((map_session_data *)bl, &item_tmp, amount, LOG_TYPE_COMMAND);
+	return 0;
+}
+
+/*==========================================
+ * @itemmap command (usage: @itemmap <itemid> <quantity>)
+ *------------------------------------------*/
+ACMD_FUNC(itemmap)
+{
+	char item_name[100];
+	int number = 0, bound = BOUND_NONE;
+	char flag = 0;
+
+	nullpo_retr(-1, sd);
+	memset(item_name, '\0', sizeof(item_name));
+
+	parent_cmd = atcommand_alias_db.checkAlias(command+1);
+
+	if (!strcmpi(parent_cmd,"itemmapbound")) {
+		if (!message || !*message || (
+			sscanf(message, "\"%99[^\"]\" %11d %11d", item_name, &number, &bound) < 3 &&
+			sscanf(message, "%99s %11d %11d", item_name, &number, &bound) < 3))
+		{
+			clif_displaymessage(fd, "(usage: @itemmap <itemid> <quantity>)"); // Please enter an item name or ID (usage: @item <item name/ID> <quantity> <bound_type>).
+			clif_displaymessage(fd, msg_txt(sd,298)); // Invalid bound type
+			return -1;
+		}
+		if( bound <= BOUND_NONE || bound >= BOUND_MAX ) {
+			clif_displaymessage(fd, msg_txt(sd,298)); // Invalid bound type
+			return -1;
+		}
+	} else if (!message || !*message || (
+		sscanf(message, "\"%99[^\"]\" %11d", item_name, &number) < 1 &&
+		sscanf(message, "%99s %11d", item_name, &number) < 1
+	)) {
+		clif_displaymessage(fd, msg_txt(sd,983)); // Please enter an item name or ID (usage: @item <item name/ID> <quantity>).
+		return -1;
+	}
+
+	std::shared_ptr<item_data> item_data = item_db.search_aegisname(item_name);
+
+	if( item_data == nullptr )
+		item_data = item_db.find(strtoul(item_name,nullptr,10));
+
+	if (item_data == nullptr)
+		return -1;
+
+	char output[CHAT_SIZE_MAX];
+	sprintf(output, msg_txt(NULL, 1544), item_db.create_item_link(item_data).c_str(),mapindex_id2name(sd->mapindex),number);
+	clif_broadcast(sd, output, strlen(output) + 1, BC_BLUE, SELF);
+
+	map_foreachinmap(buildin_itemmap_sub, sd->m, BL_PC,item_data->nameid, number, bound);
+	return 0;
+}
+
 
 #include <custom/atcommand.inc>
 
@@ -11421,6 +11495,9 @@ void atcommand_basecommands(void) {
 	 **/
 	AtCommandInfo atcommand_base[] = {
 #include <custom/atcommand_def.inc>
+		ACMD_DEF(itemmap),
+		ACMD_DEF2("itemmapbound",itemmap),
+		
 		ACMD_DEF(mapmove),
 		ACMD_DEF(where),
 		ACMD_DEF(jumpto),
