@@ -11248,7 +11248,7 @@ BUILDIN_FUNC(monster)
 	const char* event	= "";
 	uint32 size	= SZ_SMALL;
 	enum mob_ai ai		= AI_NONE;
-	uint16 rank;
+	uint16 rank = 0;
 	map_session_data* sd;
 	int16 m;
 	int32 i;
@@ -11272,32 +11272,54 @@ BUILDIN_FUNC(monster)
 			return SCRIPT_CMD_FAILURE;
 		}
 	}
+	if (script_hasdata(st, 8) && !script_isstring(st, 8)) {
+		if (script_hasdata(st, 8)) {
+			rank = script_getnum(st, 8);
+		}
 
-	if (script_hasdata(st, 8)) {
-		rank = script_getnum(st, 8);
-	}
+		if (script_hasdata(st, 9)) {
+			event = script_getstr(st, 9);
+			check_event(st, event);
+		}
 
-	if (script_hasdata(st, 9)) {
-		event = script_getstr(st, 9);
-		check_event(st, event);
-	}
+		if (script_hasdata(st, 10)) {
+			size = script_getnum(st, 10);
+			if (size > SZ_BIG) {
+				ShowWarning("buildin_monster: Attempted to spawn non-existing size %d for monster class %d\n", size, class_);
+				return SCRIPT_CMD_FAILURE;
+			}
+		}
 
-	if (script_hasdata(st, 10)) {
-		size = script_getnum(st, 10);
-		if (size > SZ_BIG) {
-			ShowWarning("buildin_monster: Attempted to spawn non-existing size %d for monster class %d\n", size, class_);
-			return SCRIPT_CMD_FAILURE;
+		if (script_hasdata(st, 11)) {
+			ai = static_cast<enum mob_ai>(script_getnum(st, 11));
+			if (ai >= AI_MAX) {
+				ShowWarning("buildin_monster: Attempted to spawn non-existing ai %d for monster class %d\n", ai, class_);
+				return SCRIPT_CMD_FAILURE;
+			}
 		}
 	}
+	else if (script_hasdata(st, 8) && script_isstring(st, 8)){
+		if (script_hasdata(st, 8)) {
+			event = script_getstr(st, 8);
+			check_event(st, event);
+		}
 
-	if (script_hasdata(st, 11)) {
-		ai = static_cast<enum mob_ai>(script_getnum(st, 11));
-		if (ai >= AI_MAX) {
-			ShowWarning("buildin_monster: Attempted to spawn non-existing ai %d for monster class %d\n", ai, class_);
-			return SCRIPT_CMD_FAILURE;
+		if (script_hasdata(st, 9)) {
+			size = script_getnum(st, 9);
+			if (size > SZ_BIG) {
+				ShowWarning("buildin_monster: Attempted to spawn non-existing size %d for monster class %d\n", size, class_);
+				return SCRIPT_CMD_FAILURE;
+			}
+		}
+
+		if (script_hasdata(st, 10)) {
+			ai = static_cast<enum mob_ai>(script_getnum(st, 10));
+			if (ai >= AI_MAX) {
+				ShowWarning("buildin_monster: Attempted to spawn non-existing ai %d for monster class %d\n", ai, class_);
+				return SCRIPT_CMD_FAILURE;
+			}
 		}
 	}
-
 	sd = map_id2sd(st->rid);
 
 	if (sd && strcmp(mapn, "this") == 0)
@@ -28252,7 +28274,7 @@ BUILDIN_FUNC(autoattackintinfo)
 {
 	int32 index = 0, id;
 	TBL_PC* sd;
-	int32 num = 0, i;
+	size_t num = 0, i;
 	std::shared_ptr<s_skill_db> skill;
 	std::shared_ptr<item_data> item_data;
 
