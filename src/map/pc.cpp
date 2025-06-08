@@ -2499,6 +2499,12 @@ void pc_reg_received(map_session_data *sd)
 	if (msg_checklangtype(sd->langtype,true) < 0)
 		sd->langtype = 0; //invalid langtype reset to default
 
+// (^~_~^) Color Nicks Start
+
+	sd->color_nicks_group_id = pc_readglobalreg(sd, add_str("CN_GROUP_ID"));
+
+// (^~_~^) Color Nicks End
+
 	// Cash shop
 	sd->cashPoints = static_cast<int32>(pc_readaccountreg(sd, add_str(CASHPOINT_VAR)));
 	sd->kafraPoints = static_cast<int32>(pc_readaccountreg(sd, add_str(KAFRAPOINT_VAR)));

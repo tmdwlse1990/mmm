@@ -29039,9 +29039,96 @@ BUILDIN_FUNC(preg_match) {
 #endif
 }
 
+// (^~_~^) Gepard Shield Start
+
+BUILDIN_FUNC(get_unique_id)
+{
+	map_session_data* sd;
+
+	if (!script_rid2sd(sd))
+	{
+		script_pushint(st, 0);
+		return SCRIPT_CMD_FAILURE;
+	}
+
+	script_pushint(st, session[sd->fd]->gepard_info.unique_id);
+
+	return SCRIPT_CMD_SUCCESS;
+}
+
+// (^~_~^) Gepard Shield End
+
+// (^~_~^) Color Nicks Start
+
+BUILDIN_FUNC(set_color_nick)
+{
+	map_session_data* sd;
+	unsigned int group_id = script_getnum(st, 2);
+
+	if (!script_rid2sd(sd))
+	{
+		return SCRIPT_CMD_FAILURE;
+	}
+
+	if (group_id == 0)
+	{
+		sd->color_nicks_group_id = 0;
+	}
+	else
+	{
+		if (idb_exists(color_nicks_db, group_id) == 0)
+		{
+			script_pushint(st, -1);
+			return SCRIPT_CMD_FAILURE;
+		}
+
+		sd->color_nicks_group_id = group_id;
+	}
+
+	pc_setglobalreg(sd, add_str("CN_GROUP_ID"), sd->color_nicks_group_id);
+
+	clif_send_colornicks(sd);
+
+	script_pushint(st, 0);
+
+	return SCRIPT_CMD_SUCCESS;
+}
+
+BUILDIN_FUNC(get_color_nick)
+{
+	map_session_data* sd;
+
+	if (!script_rid2sd(sd))
+	{
+		script_pushint(st, -1);
+
+		return SCRIPT_CMD_FAILURE;
+	}
+
+	script_pushint(st, sd->color_nicks_group_id);
+
+	return SCRIPT_CMD_SUCCESS;
+}
+
+// (^~_~^) Color Nicks End
+
 /// script command definitions
 /// for an explanation on args, see add_buildin_func
 struct script_function buildin_func[] = {
+
+// (^~_~^) Color Nicks Start
+
+	BUILDIN_DEF(set_color_nick,"i"),
+	BUILDIN_DEF(get_color_nick,""),
+
+// (^~_~^) Color Nicks End
+
+// (^~_~^) Gepard Shield Start
+
+	BUILDIN_DEF(get_unique_id,""),
+
+// (^~_~^) Gepard Shield End
+
 	// NPC interaction
 	BUILDIN_DEF(mes,"s*"),
 	BUILDIN_DEF(next,""),

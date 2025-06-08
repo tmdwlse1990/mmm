@@ -105,6 +105,13 @@ Sql* logmysql_handle;
 struct inter_conf inter_config {};
 
 // DBMap declaration
+
+// (^~_~^) Color Nicks Start
+
+DBMap* color_nicks_db = NULL; // int group_id -> struct color_data*
+
+// (^~_~^) Color Nicks End
+
 static DBMap* id_db=nullptr; /// int32 id -> struct block_list*
 static DBMap* pc_db=nullptr; /// int32 id -> map_session_data*
 static DBMap* mobid_db=nullptr; /// int32 id -> struct mob_data*
@@ -185,6 +192,53 @@ char wisp_server_name[NAME_LENGTH] = "Server"; // can be modified in char-server
 int32 console = 0;
 int32 enable_spy = 0; //To enable/disable @spy commands, which consume too much cpu time when sending packets. [Skotlex]
 int32 enable_grf = 0;	//To enable/disable reading maps from GRF files, bypassing mapcache [blackhole89]
+
+// (^~_~^) Color Nicks Start
+
+static bool map_color_nicks_parse(char* split[], size_t columns, size_t current)
+{
+	struct color_data* cn_data; 
+	int group_id = atoi(split[0]);
+
+	if (group_id == 0)
+	{
+		ShowWarning("Incorrect ID '%d' has been found in 'db/color_nicks.txt'\n", group_id);
+		return false;
+	}
+
+	if (idb_exists(color_nicks_db, group_id))
+	{
+		ShowWarning("Duplicated ID '%d' has been found in 'db/color_nicks.txt'\n", group_id);
+		return false;
+	}
+
+	CREATE(cn_data, struct color_data, 1);
+
+	cn_data->text_color = (unsigned int)strtol(split[1],NULL,0);
+	cn_data->shadow_color = (unsigned int)strtol(split[2],NULL,0);
+
+	idb_put(color_nicks_db, group_id, cn_data);
+
+	return true;
+}
+
+int map_color_nicks_clear(DBKey key, DBData* data, va_list va)
+{
+	struct color_data* cn_data = (struct color_data*)db_data2ptr(data);
+
+	db_remove(color_nicks_db,key);
+	aFree(cn_data);
+
+	return 0;
+}
+
+void map_color_nicks_load()
+{
+	color_nicks_db->foreach(color_nicks_db, map_color_nicks_clear);
+	sv_readdb(db_path, "color_nicks.txt", ',', 3, 3, USHRT_MAX, map_color_nicks_parse, true);
+}
+
+// (^~_~^) Color Nicks End
 
 #ifdef MAP_GENERATOR
 struct s_generator_options {
@@ -5102,6 +5156,13 @@ void MapServer::finalize(){
 	iwall_db->destroy(iwall_db, nullptr);
 	regen_db->destroy(regen_db, nullptr);
 
+// (^~_~^) Color Nicks Start
+
+	color_nicks_db->foreach(color_nicks_db, map_color_nicks_clear);
+	color_nicks_db->destroy(color_nicks_db, NULL);
+
+// (^~_~^) Color Nicks End
+
 	map_sql_close();
 
 	ShowStatus("Finished.\n");
@@ -5399,6 +5460,12 @@ bool MapServer::initialize( int32 argc, char *argv[] ){
 	regen_db = idb_alloc(DB_OPT_BASE); // efficient status_natural_heal processing
 	iwall_db = strdb_alloc(DB_OPT_RELEASE_DATA,2*NAME_LENGTH+2+1); // [Zephyrus] Invisible Walls
 
+// (^~_~^) Color Nicks Start
+
+	color_nicks_db = idb_alloc(DB_OPT_BASE);
+
+// (^~_~^) Color Nicks End
+
 	map_sql_init();
 	if (log_config.sql_logs)
 		log_sql_init();
@@ -5448,6 +5515,12 @@ bool MapServer::initialize( int32 argc, char *argv[] ){
 	do_init_vending();
 	do_init_buyingstore();
 	do_init_emotions();
+
+// (^~_~^) Color Nicks Start
+
+	map_color_nicks_load();
+
+// (^~_~^) Color Nicks End
 
 	npc_event_do_oninit();	// Init npcs (OnInit)
 
