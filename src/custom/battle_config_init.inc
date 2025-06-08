@@ -11,6 +11,9 @@
  *	 { "name", &battle_config.<variable name>, <default value>, <minimum value>, <maximum value> },
  **/
 
+// Refine UI delay time [@krit.k #3614]
+{ "refine_delay_time", &battle_config.refine_delay_time, 1800, 0, 30000 },
+{ "refine_ui_lock_time", &battle_config.refine_ui_lock_time, 3000, 0, 10000 },
 
  { "config_maxlv", &battle_config.config_maxlv, 99, 1, MAX_LEVEL },
  { "config_global_mvp_drop", &battle_config.config_global_mvp_drop, 0, 0, INT_MAX },

@@ -567,6 +567,9 @@ public:
 		// Bitmask of e_pcblock_action_flag values
 		uint16 block_action;
 		bool refineui_open;
+		t_tick last_refine_tick;	// Last refine attempt tick delay time [@krit.k #3614]
+		bool refineui_locked;		// Is the refine UI locked [@krit.k #3614]
+		t_tick refineui_lock_tick;	// Tick when the refine UI was locked [@krit.k #3614]
 		t_itemid inventory_expansion_confirmation;
 		uint16 inventory_expansion_amount;
 		t_itemid laphine_synthesis;

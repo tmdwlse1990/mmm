@@ -22845,6 +22845,10 @@ void clif_parse_refineui_add( int32 fd, map_session_data* sd ){
 	const PACKET_CZ_REFINING_SELECT_ITEM* p = reinterpret_cast<PACKET_CZ_REFINING_SELECT_ITEM*>( RFIFOP( fd, 0 ) );
 
 	uint16 index = server_index( p->index );
+	
+	// Refine UI delay time [@krit.k #3614]
+	static t_tick last_display_tick = 0;
+	static int32 last_display_seconds = 0;
 
 	// Check if the refine UI is open
 	if( !sd->state.refineui_open ){
@@ -22856,6 +22860,26 @@ void clif_parse_refineui_add( int32 fd, map_session_data* sd ){
 		return;
 	}
 
+
+	// Refine UI delay time [@krit.k #3614]
+	if (sd->state.refineui_locked) {
+		t_tick remaining = battle_config.refine_ui_lock_time - DIFF_TICK(gettick(), sd->state.refineui_lock_tick);
+		if (remaining > 0) {
+			int32 current_seconds = (int32)((remaining + 999) / 1000);
+			t_tick current_tick = gettick();
+
+			if (current_seconds != last_display_seconds || DIFF_TICK(current_tick, last_display_tick) > 1000) {
+				char message[128];
+				snprintf(message, sizeof(message), msg_txt(sd, 1901), current_seconds);
+				clif_messagecolor(sd, color_table[COLOR_RED], message, false, SELF);
+
+				last_display_seconds = current_seconds;
+				last_display_tick = current_tick;
+			}
+			return;
+		}
+    }
+ 
 	// Send out the requirements for the refine process
 	clif_refineui_info( sd, index );
 #endif
@@ -22872,6 +22896,17 @@ void clif_parse_refineui_refine( int32 fd, map_session_data* sd ){
 	uint16 index = server_index( p->index );
 	t_itemid material = p->itemId;
 	int16 j;
+	
+	// Refine UI delay time [@krit.k #3614]
+	t_tick current_tick = gettick();
+	if (sd->state.last_refine_tick != 0 && (current_tick - sd->state.last_refine_tick) < battle_config.refine_delay_time) {
+		clif_messagecolor(sd, color_table[COLOR_RED], msg_txt(sd, 1900), false, SELF);
+		return;
+	}
+
+	sd->state.last_refine_tick = current_tick;
+	sd->state.refineui_locked = true;
+	sd->state.refineui_lock_tick = gettick();
 
 	// Check if the refine UI is open
 	if( !sd->state.refineui_open ){
@@ -23022,6 +23057,11 @@ void clif_parse_refineui_refine( int32 fd, map_session_data* sd ){
 		clif_misceffect( *sd, NOTIFYEFFECT_REFINE_FAILURE );
 		achievement_update_objective( sd, AG_ENCHANT_FAIL, 1, 1 );
 	}
+	
+	// Refine UI delay time [@krit.k #3614]
+	sd->state.refineui_locked = true;
+	sd->state.refineui_lock_tick = gettick();
+	
 #endif
 }
 
