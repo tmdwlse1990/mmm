@@ -577,6 +577,7 @@ public:
 		bool roulette_open;
 		t_itemid item_reform;
 		uint64 item_enchant_index;
+		int16 pet_index;
 		unsigned int collection_flag : 5;
 	} state;
 	struct {
@@ -1082,6 +1083,13 @@ public:
 
 	uint16 debuff; // [Start's] Debuff for any purpose
 	uint16 bonusDebuff; // [Start's] A debuff for any bonus (Example: STR +10 -> STR +x)
+	
+	
+	struct {
+		bool is_pet_mode;
+		int refine;
+		int grade;
+	} createpetegg;
 
 };
 

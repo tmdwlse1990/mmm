@@ -205,7 +205,10 @@ struct pet_data : public block_list {
 
 	int32 masterteleport_timer;
 	map_session_data *master;
-
+	
+	int8 refine;
+	int8 enchantgrade;
+	
 	std::shared_ptr<s_pet_db> get_pet_db() {
 		return pet_db.find(this->pet.class_);
 	}

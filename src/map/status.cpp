@@ -491,6 +491,11 @@ bool RefineDatabase::calculate_refine_info( const struct item_data& data, e_refi
 	}else if( data.type == IT_CHARM ){
 		refine_type = REFINE_TYPE_CHARM;
 		level = 1;
+		return true;
+	}else if( data.type == IT_PETEGG){
+		refine_type = REFINE_TYPE_PETEGG;
+		level = 1;
+		return true;
 	}else{
 		return false;
 	}
@@ -621,7 +626,7 @@ uint64 EnchantgradeDatabase::parseBodyNode( const ryml::NodeRef& node ){
 		itemtype_maxlevel = MAX_WEAPON_LEVEL;
 	}else if( itemtype == IT_ARMOR ){
 		itemtype_maxlevel = MAX_ARMOR_LEVEL;
-	}else if( itemtype == IT_SHADOWGEAR || itemtype == IT_CHARM ){
+	}else if( itemtype == IT_SHADOWGEAR || itemtype == IT_CHARM || itemtype == IT_PETEGG ){
 		itemtype_maxlevel = 1;
 	}else{
 		this->invalidWarning( node["Type"], "Item type \"%s\" is not supported.\n", itemtype_constant.c_str() );
@@ -4319,9 +4324,17 @@ int32 status_calc_pc_sub(map_session_data* sd, uint8 opt)
 
 	pc_bonus_script(sd);
 
+	// init
+	sd->state.pet_index = -1;
+
 	if( sd->pd ) { // Pet Bonus
 		struct pet_data *pd = sd->pd;
 		std::shared_ptr<s_pet_db> pet_db_ptr = pd->get_pet_db();
+		
+		sd->state.pet_index = get_pet_egg_index(sd);
+
+		pd->refine = assign_pet_refine(sd,sd->state.pet_index);
+		pd->enchantgrade = assign_pet_grade(sd,sd->state.pet_index);
 
 		if (pet_db_ptr != nullptr && pet_db_ptr->pet_bonus_script)
 			run_script(pet_db_ptr->pet_bonus_script,0,sd->id,0);
@@ -18010,6 +18023,69 @@ void StatusDatabase::loadingFinished(){
 }
 
 StatusDatabase status_db;
+
+int get_pet_egg_index(map_session_data *sd)
+{
+	int index = -1;
+
+	if(!sd)
+		return index;
+
+	if(!sd->pd)
+		return index;
+
+	struct pet_data *pd = sd->pd;
+	int egg_id = pd->pet.egg_id;
+
+	for (int i = 0; i < MAX_INVENTORY; i++){
+
+		if (sd->inventory.u.items_inventory[i].nameid == 0 || sd->inventory_data[i]->type != IT_PETEGG)
+			continue;
+
+		if(sd->inventory.u.items_inventory[i].attribute && sd->inventory.u.items_inventory[i].card[0] == CARD0_PET){
+			index = i;
+			break;
+		}
+	}
+
+	return index;
+}
+
+int8 assign_pet_refine(map_session_data *sd, int index)
+{
+	if(!sd) return 0;
+
+	return sd->inventory.u.items_inventory[sd->state.pet_index].refine;
+}
+
+int8 assign_pet_grade(map_session_data *sd, int index)
+{
+	if(!sd) return 0;
+
+	return sd->inventory.u.items_inventory[sd->state.pet_index].enchantgrade;
+}
+
+std::string pet_grade_text(int grade)
+{
+	switch (grade){
+		case ENCHANTGRADE_D:
+			return "D";
+		case ENCHANTGRADE_C:
+			return "C";
+		case ENCHANTGRADE_B:
+			return "B";
+		case ENCHANTGRADE_A:
+			return "A";
+		case ENCHANTGRADE_R:
+			return "R";
+		case ENCHANTGRADE_S:
+			return "Meow";
+		case ENCHANTGRADE_U:
+			return "SHARK";
+		default:
+			return "";
+	}
+}
 
 const std::string TitleBonusDatabase::getDefaultLocation() {
 	return std::string(db_path) + "/title_bonus.yml";

@@ -2227,7 +2227,10 @@ bool pc_authok(map_session_data *sd, uint32 login_id2, time_t expiration_time, i
 #if PACKETVER_MAIN_NUM >= 20150507 || PACKETVER_RE_NUM >= 20150429 || defined(PACKETVER_ZERO)
 	sd->hatEffects = {};
 #endif
-
+	
+	sd->createpetegg = {};
+	sd->createpetegg.is_pet_mode = false;
+	
 	// Check EXP overflow, since in previous revision EXP on Max Level can be more than 'official' Max EXP
 	if (pc_is_maxbaselv(sd) && sd->status.base_exp > MAX_LEVEL_BASE_EXP) {
 		sd->status.base_exp = MAX_LEVEL_BASE_EXP;
@@ -6131,6 +6134,13 @@ enum e_additem_result pc_additem(map_session_data *sd,struct item *item,int32 am
 
 	nullpo_retr(ADDITEM_INVALID, sd);
 	nullpo_retr(ADDITEM_INVALID, item);
+	
+	if(sd->createpetegg.is_pet_mode){
+		item->refine = sd->createpetegg.refine;
+		item->enchantgrade = sd->createpetegg.grade;
+		sd->createpetegg = {};
+		sd->createpetegg.is_pet_mode = false;
+	}
 
 	if( item->nameid == 0 || amount <= 0 )
 		return ADDITEM_INVALID;

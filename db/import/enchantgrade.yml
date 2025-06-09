@@ -55,6 +55,32 @@ Header:
   Version: 3
 
 Body:
+  - Type: PetEgg
+    Levels:
+      - Level: 1
+        Grades:
+          - Grade: None
+            Chances:
+              - Refine: 0
+                Chance: 1000
+              - Refine: 1
+                Chance: 2000
+            Bonus: 10
+            Catalyst:
+                Item: Blessed_Etel_Dust
+                AmountPerStep: 1
+                MaximumSteps: 10
+                ChanceIncrease: 100
+            Options:
+              - Option: 0
+                Item: Etel_Skyblue_Jewel
+                Amount: 1
+                Zeny: 175000
+                BreakingRate: 10000
+              - Option: 1
+                Item: Etel_Skyblue_Jewel
+                Amount: 5
+                Zeny: 875000
   - Type: Armor
     Levels:
       - Level: 1

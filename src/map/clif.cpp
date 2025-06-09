@@ -10284,9 +10284,57 @@ void clif_name( struct block_list* src, struct block_list *bl, send_target targe
 		}
 			break;
 		//[blackhole89]
+		case BL_PET: {
+
+			PACKET_ZC_ACK_REQNAMEALL_NPC packet = { 0 };
+
+			packet.packet_id = HEADER_ZC_ACK_REQNAMEALL_NPC;
+			packet.gid = bl->id;
+
+			safestrncpy(packet.name, ((TBL_PET *)bl)->pet.name, NAME_LENGTH);
+
+			if(battle_config.enable_custom_pet_name){
+
+				map_session_data *sd = ((TBL_PET *)bl)->master;
+
+				std::string new_name = {};
+
+				if(battle_config.pet_name_mode == 1){
+
+					bool is_new_name = false;
+					if(assign_pet_refine(sd,sd->state.pet_index) || assign_pet_grade(sd,sd->state.pet_index))
+						is_new_name = true;
+
+					if(is_new_name){
+						new_name += "[+";
+						new_name += std::to_string(assign_pet_refine(sd,sd->state.pet_index));
+						new_name += pet_grade_text(assign_pet_grade(sd,sd->state.pet_index));
+						new_name += "]";
+					}
+				}else{
+					if(assign_pet_refine(sd,sd->state.pet_index)){
+						new_name += "[+";
+						new_name += std::to_string(assign_pet_refine(sd,sd->state.pet_index));
+						new_name += "]";
+					}
+					if(assign_pet_grade(sd,sd->state.pet_index)){
+						new_name += "[";
+						new_name += pet_grade_text(assign_pet_grade(sd,sd->state.pet_index));
+						new_name += "]";
+					}
+				}
+				memcpy(packet.title, new_name.c_str(), NAME_LENGTH);
+
+			}else{
+				unit_data *ud = unit_bl2ud(bl);
+				memcpy(packet.title, ud->title, NAME_LENGTH);
+			}
+
+			clif_send(&packet, sizeof(packet), src, target);
+		}
+			break;
 		case BL_HOM:
 		case BL_MER:
-		case BL_PET:
 		case BL_NPC:
 		case BL_ELEM: {
 			PACKET_ZC_ACK_REQNAMEALL_NPC packet = { 0 };
@@ -10301,9 +10349,11 @@ void clif_name( struct block_list* src, struct block_list *bl, send_target targe
 				case BL_MER:
 					memcpy(packet.name, ((TBL_MER *)bl)->db->name.c_str(), NAME_LENGTH);
 					break;
+					/*
 				case BL_PET:
 					safestrncpy(packet.name, ((TBL_PET *)bl)->pet.name, NAME_LENGTH);
 					break;
+					*/
 				case BL_NPC:
 					safestrncpy(packet.name, ((TBL_NPC *)bl)->name, NAME_LENGTH);
 					break;
@@ -24485,6 +24535,9 @@ void clif_parse_enchantgrade_add( int32 fd, map_session_data* sd ){
 	else if (sd->inventory_data[index]->type == IT_SHADOWGEAR || sd->inventory_data[index]->type == IT_CHARM) {
 		level = 1; // กำหนด level เป็น 1 เมื่อเป็นชนิด IT_SHADOWGEAR หรือ IT_CHARM
 	}
+	else if( sd->inventory_data[index]->type == IT_PETEGG ){
+		level = 1;
+ 	}
 	const auto& enchantgradelevels = enchantgrade->levels.find( level );
 
 	// Cannot upgrade this weapon or armor level

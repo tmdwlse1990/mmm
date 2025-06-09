@@ -16,6 +16,8 @@
 int32 refine_delay_time; // Delay in milliseconds between refine attempts (default: 1800ms)
 int32 refine_ui_lock_time; // Lock time in milliseconds for refine UI after each refine attempt (default: 3000ms)
 
+int enable_custom_pet_name;
+int pet_name_mode;
 
  int32 config_maxlv;
  int32 config_global_mvp_drop;

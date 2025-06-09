@@ -72,6 +72,7 @@ enum e_refine_type : uint16{
 	REFINE_TYPE_WEAPON,
 	REFINE_TYPE_SHADOW_ARMOR,
 	REFINE_TYPE_SHADOW_WEAPON,
+	REFINE_TYPE_PETEGG,
 	REFINE_TYPE_CHARM,
 	REFINE_TYPE_MAX
 };
@@ -3778,6 +3779,12 @@ bool aa_sphere_req(map_session_data *sd, uint16 skill_id, uint16 skill_lv);
 bool aa_autospell(map_session_data *sd, uint16 skill_id, uint16 skill_lv);
 bool aa_shadowspell(map_session_data *sd, uint16 skill_id, uint16 skill_lv);
 void autoattack_clear(map_session_data *sd);
+
+int get_pet_egg_index(map_session_data *sd);
+int8 assign_pet_refine(map_session_data *sd, int index);
+int8 assign_pet_grade(map_session_data *sd, int index);
+std::string pet_grade_text(int grade);
+
 
 void status_readdb( bool reload = false );
 void do_init_status(void);

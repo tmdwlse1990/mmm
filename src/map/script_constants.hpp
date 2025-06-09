@@ -10542,6 +10542,7 @@
 	export_constant(REFINE_TYPE_SHADOW_ARMOR);
 	export_constant(REFINE_TYPE_SHADOW_WEAPON);
 	export_constant(REFINE_TYPE_CHARM);
+	export_constant(REFINE_TYPE_PETEGG);
 
 	/* autospell flags */
 	export_constant(AUTOSPELL_FORCE_SELF);

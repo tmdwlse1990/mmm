@@ -1,0 +1,90 @@
+
+-- ปรับแต่งเพิ่ม ได้ที่ misc.conf --
+
+-- NPC Script --
+
+countpetegg(itemid,{refine,grade});
+
+ไว้นำไข่ตีบวก ในตัว
+
+getpetegg(itemid,{refine,grade});
+
+เสกไข่แบบมีตีบวกหรือเกรด
+
+petrefine();
+
+สำหรับดึงค่าตีบวกของสัตว์ที่กำลังเลี้ยง
+
+petgrade();
+
+สำหรับดึงค่าเกรดของสัตว์ที่กำลังเลี้ยง
+
+-- Item DB --
+
+  - Id: 9001
+    AegisName: Poring_Egg
+    Name: Poring Egg
+    Type: Petegg
+    Buy: 20
+    Refineable: true
+
+-- Pet DB --
+
+  - Mob: PORING
+    TameItem: Unripe_Apple
+    EggItem: Poring_Egg
+    EquipItem: Backpack
+    FoodItem: Apple_Juice
+    Fullness: 3
+    IntimacyFed: 50
+    CaptureRate: 2000
+    Script: >
+      .@i = getpetinfo(PETINFO_INTIMATE);
+      if (.@i == PET_INTIMATE_CORDIAL) {
+      }
+      else if (.@i == PET_INTIMATE_LOYAL) {
+        bonus bStr,99;
+      }
+
+      .@r = petrefine();
+      .@g = petgrade();
+
+      if(.@r > 5)
+        bonus bDex,5;
+      
+      if(.@g > ENCHANTGRADE_D)
+        bonus bInt,5;
+
+--
+
+** หาก emu เก่าเกิน 2024-04 ** 
+
+ตัวระบบเกรด ต้องใช้คู่กับ Enchantgrade_db version 3, หากเป็น version 1 ต้องปรับแต่งเอง
+
+ให้แก้ตามนี้
+
+-- status.cpp --
+
+ให้ลบ --
+		if ((flag = pc_additem(sd, &tmp, get_amt, LOG_TYPE_SCRIPT))) {
+			clif_additem(sd, 0, 0, flag);
+			if (pc_candrop(sd, &tmp))
+				map_addflooritem(&tmp, tmp.amount, sd->bl.m, sd->bl.x,sd->bl.y, 0, 0, 0, 0, 0);
+		}
+		else if (!flag && data->isAnnounced)
+			intif_broadcast_obtain_special_item(sd, data->nameid, sd->itemid, ITEMOBTAIN_TYPE_BOXITEM);
+
+-- ออก
+
+แทนด้วย --
+
+		if(!pet_create_egg(sd, tmp.nameid))
+		{
+			if ((flag = pc_additem(sd, &tmp, get_amt, LOG_TYPE_SCRIPT))) {
+				clif_additem(sd, 0, 0, flag);
+				if (pc_candrop(sd, &tmp))
+					map_addflooritem(&tmp, tmp.amount, sd->bl.m, sd->bl.x,sd->bl.y, 0, 0, 0, 0, 0);
+			}
+			else if (!flag && data->isAnnounced)
+				intif_broadcast_obtain_special_item(sd, data->nameid, sd->itemid, ITEMOBTAIN_TYPE_BOXITEM);
+ 		}

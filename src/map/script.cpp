@@ -28990,6 +28990,145 @@ BUILDIN_FUNC(skillinfocheck)
 	return SCRIPT_CMD_SUCCESS;
 }
 
+BUILDIN_FUNC(petrefine)
+{
+	TBL_PC *sd;
+	if (!script_rid2sd(sd)){
+		script_pushint(st, 0);
+		return SCRIPT_CMD_FAILURE;
+	}
+
+	if(sd->state.pet_index == -1){
+		script_pushint(st, 0);
+		return SCRIPT_CMD_SUCCESS;
+	}
+
+	script_pushint(st,sd->inventory.u.items_inventory[sd->state.pet_index].refine);
+	return SCRIPT_CMD_SUCCESS;
+}
+
+BUILDIN_FUNC(petgrade)
+{
+	TBL_PC *sd;
+	if (!script_rid2sd(sd)){
+		script_pushint(st, 0);
+		return SCRIPT_CMD_FAILURE;
+	}
+
+	if(sd->state.pet_index == -1){
+		script_pushint(st, 0);
+		return SCRIPT_CMD_SUCCESS;
+	}
+
+	script_pushint(st,sd->inventory.u.items_inventory[sd->state.pet_index].enchantgrade);
+	return SCRIPT_CMD_SUCCESS;
+}
+
+static int script_countpetegg_sub(map_session_data *sd, t_itemid nameid, uint16 refine, uint16 grade)
+{
+	nullpo_retr(-1, sd);
+
+	int count = 0;
+
+	for (int i = 0; i < MAX_INVENTORY; i++) {
+
+		if(sd->inventory.u.items_inventory[i].nameid == 0 || sd->inventory_data[i]->type != IT_PETEGG)
+			continue;
+
+		if(sd->inventory.u.items_inventory[i].nameid != nameid)
+			continue;
+
+		if (sd->inventory.u.items_inventory[i].refine == refine && sd->inventory.u.items_inventory[i].enchantgrade == grade)
+			count += sd->inventory.u.items_inventory[i].amount;
+	}
+
+	return count;
+}
+
+BUILDIN_FUNC(countpetegg)
+{
+	map_session_data *sd;
+
+	if ( !script_rid2sd(sd) ) {
+		script_pushint(st, 0);
+		return SCRIPT_CMD_FAILURE;
+	}
+
+	t_itemid nameid = script_getnum(st, 2);
+	uint16 refine = 0;
+	uint16 grade = 0;
+
+	std::shared_ptr<item_data> id = item_db.find(nameid);
+
+	if (!id) {
+		ShowError("buildin_countpetegg: Invalid item id '%d'.\n", nameid); // returns string, regardless of what it was
+		script_pushint(st, 0);
+		return SCRIPT_CMD_FAILURE;
+	}
+
+	if(script_hasdata(st,3))
+		refine = script_getnum(st, 3);
+	
+	if(script_hasdata(st,4))
+		grade = script_getnum(st, 4);
+
+	int count = script_countpetegg_sub(sd, nameid, refine, grade);
+	script_pushint(st, count);
+	return SCRIPT_CMD_SUCCESS;
+}
+
+BUILDIN_FUNC(getpetegg)
+{
+	map_session_data *sd;
+
+	if ( !script_rid2sd(sd) ) {
+		script_pushint(st, 0);
+		return SCRIPT_CMD_FAILURE;
+	}
+
+	t_itemid nameid = script_getnum(st, 2);
+	int refine = 0;
+	int grade = 0;
+
+	if(script_hasdata(st,3))
+		refine = script_getnum(st, 3);
+	
+	if(script_hasdata(st,4))
+		grade = script_getnum(st, 4);
+
+	std::shared_ptr<item_data> id = item_db.find(nameid);
+
+	if (!id) {
+		ShowError("buildin_getpetegg: Invalid item id '%d'.\n", nameid); // returns string, regardless of what it was
+		return SCRIPT_CMD_FAILURE;
+	}
+
+	item it = {};
+	it.nameid = nameid;
+	it.identify = 1;
+	it.bound = BOUND_NONE;
+	it.attribute = 0;
+
+	sd->createpetegg = {};
+	sd->createpetegg.is_pet_mode = true;
+	sd->createpetegg.refine = refine;
+	sd->createpetegg.grade = grade;
+
+	// if not pet egg
+	if (!pet_create_egg(sd, nameid))
+	{
+		e_additem_result flag = pc_additem( sd, &it, 1, LOG_TYPE_SCRIPT );
+
+		if( flag != ADDITEM_SUCCESS ){
+			clif_additem(sd, 0, 0, flag);
+			ShowError( "buildin_getpetegg: Failed to add the item to player.\n" );
+			return SCRIPT_CMD_FAILURE;
+		}
+	}
+
+	return SCRIPT_CMD_SUCCESS;
+}
+
 
 #include <custom/script.inc>
 
@@ -29128,6 +29267,12 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(get_unique_id,""),
 
 // (^~_~^) Gepard Shield End
+
+
+	BUILDIN_DEF(petrefine, ""),
+	BUILDIN_DEF(petgrade, ""),	
+	BUILDIN_DEF(countpetegg, "i??"),
+	BUILDIN_DEF(getpetegg, "i??"),
 
 	// NPC interaction
 	BUILDIN_DEF(mes,"s*"),

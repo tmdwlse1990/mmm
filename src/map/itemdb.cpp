@@ -25,6 +25,7 @@
 #include "log.hpp"
 #include "mob.hpp"
 #include "pc.hpp"
+#include "pet.hpp"
 #include "status.hpp"
 
 using namespace rathena;
@@ -3243,7 +3244,12 @@ void ItemGroupDatabase::pc_get_itemgroup_sub( map_session_data& sd, bool identif
 			}
 		}
 
-		e_additem_result flag = pc_additem( &sd, &tmp, get_amt, LOG_TYPE_SCRIPT );
+		e_additem_result flag = ADDITEM_SUCCESS;
+
+		if(!pet_create_egg(&sd, tmp.nameid)){
+			flag = pc_additem( &sd, &tmp, get_amt, LOG_TYPE_SCRIPT );
+		}
+		else
 
 		if( flag == ADDITEM_SUCCESS ){
 			if( data->isAnnounced ){

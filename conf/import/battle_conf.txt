@@ -165,3 +165,11 @@ autoattack_gunslinger_conflip_fix: yes
 
 // ปรับให้ coinflip ใช้ Zeny มากกว่าขึ้น เนื่องจาก fix 100%
 autoattack_coinflip_coin: 5
+
+
+// เปิดใช้ ชื่อแบบใหม่
+enable_custom_pet_name: yes
+
+// 1 [+7A]
+// 2 [+7][A]
+pet_name_mode: 2

@@ -15,6 +15,9 @@
 { "refine_delay_time", &battle_config.refine_delay_time, 1800, 0, 30000 },
 { "refine_ui_lock_time", &battle_config.refine_ui_lock_time, 3000, 0, 10000 },
 
+{ "enable_custom_pet_name",				&battle_config.enable_custom_pet_name,			1,      0,      1,              },
+{ "pet_name_mode",                    	&battle_config.pet_name_mode,                 	1,      1,      2,              },
+
  { "config_maxlv", &battle_config.config_maxlv, 99, 1, MAX_LEVEL },
  { "config_global_mvp_drop", &battle_config.config_global_mvp_drop, 0, 0, INT_MAX },
  { "config_global_mvp_drop_rate", &battle_config.config_global_mvp_drop_rate, 1, 0, INT_MAX },
