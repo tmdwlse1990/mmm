@@ -3784,4 +3784,33 @@ void do_init_status(void);
 void do_final_status(void);
 #endif /* ONLY_CONSTANTS */
 
+/// Title Bonus System
+struct s_title_bonus_db {
+	uint16 id;
+	uint16 icon;
+	struct script_code *script;
+
+	~s_title_bonus_db() {
+		if (this->script){
+			script_free_code(this->script);
+			this->script = nullptr;
+		}
+	}
+};
+
+class TitleBonusDatabase : public TypesafeYamlDatabase<int32, s_title_bonus_db> {
+public:
+	TitleBonusDatabase() : TypesafeYamlDatabase("TITLE_BONUS_DB", 1) {
+
+	}
+
+	const std::string getDefaultLocation() override;
+	uint64 parseBodyNode(const ryml::NodeRef& node) override;
+};
+
+extern TitleBonusDatabase title_bonus_db;
+
+void status_load_title_icon(map_session_data* sd, int32 title_id);
+int32 set_status_title_id(map_session_data* sd, int32 title_id);
+
 #endif /* STATUS_HPP */

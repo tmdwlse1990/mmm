@@ -11236,6 +11236,8 @@ void clif_parse_LoadEndAck(int32 fd,map_session_data *sd)
 			clif_status_load(sd, EFST_WUGRIDER, 1);
 		else if (sd->sc.getSCE(SC_ALL_RIDING))
 			clif_status_load(sd, EFST_ALL_RIDING, 1);
+		if (sd->status.title_id)
+			status_load_title_icon(sd, sd->status.title_id);
 
 		if(sd->status.manner < 0)
 			sc_start(sd,sd,SC_NOCHAT,100,0,0);
@@ -21075,14 +21077,14 @@ void clif_parse_change_title(int32 fd, map_session_data *sd)
 		// It is exactly the same as the old one
 		return;
 	}else if( title_id <= 0 ){
-		sd->status.title_id = 0;
+		set_status_title_id(sd, 0);
 	}else{
 		if (std::find(sd->titles.begin(), sd->titles.end(), title_id) == sd->titles.end()) {
 			clif_change_title_ack(sd, 1, title_id);
 			return;
 		}
 
-		sd->status.title_id = title_id;
+		set_status_title_id(sd, title_id);
 	}
 	
 	clif_name_area(sd);

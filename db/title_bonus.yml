@@ -1,0 +1,135 @@
+# This file is a part of rAthena.
+#   Copyright(C) 2021 rAthena Development Team
+#   https://rathena.org - https://github.com/rathena
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+###########################################################################
+# Title Bonus Database
+###########################################################################
+#
+# Title Bonus Settings
+#
+###########################################################################
+# - Id      Title Id.
+#   Icon    Icon id to display.
+#   Script  Script to execute when the title is used/equipped. (Default: null)
+###########################################################################
+
+Header:
+  Type: TITLE_BONUS_DB
+  Version: 1
+
+Body:
+  - Id: 1000 # Junction of life
+    Script: |
+      bonus bLuk,1;
+      bonus bMaxHP,50;
+  - Id: 1001 # Specialist
+    Script: |
+      bonus bAspd,2;
+  - Id: 1002 # Expert
+    Script: |
+      bonus bCritical,10;
+  - Id: 1003 # Master
+    Script: |
+      bonus bAllStats,1;
+  - Id: 1004 # Grand Master
+    Script: |
+      bonus bAllStats,1;
+  - Id: 1005 # Novice Adventurer
+    Icon: 1705
+    Script: |
+      bonus bAllStats,1;
+  - Id: 1006 # Veteran Adventurer
+    Script: |
+      bonus bAllStats,1;
+  - Id: 1007 # Master Adventurer
+    Script: |
+      bonus bAllStats,1;
+  - Id: 1008 # of Dragon
+    Script: |
+      bonus bAllStats,1;
+  - Id: 1009 # of Madness
+    Script: |
+      bonus bAllStats,1;
+  - Id: 1010 # Steel Body
+    Script: |
+      bonus bAllStats,1;
+  - Id: 1011 # The Yellow Flash
+    Script: |
+      bonus bAllStats,1;
+  - Id: 1012 # Keen
+    Script: |
+      bonus bAllStats,1;
+  - Id: 1013 # Lucky
+    Script: |
+      bonus bAllStats,1;
+  - Id: 1014 # Incarnation of Love and Hatred
+    Script: |
+      bonus bAllStats,1;
+  - Id: 1015 # Maniac
+    Script: |
+      bonus bAllStats,1;
+  - Id: 1016 # Reborn
+    Script: |
+      bonus bAllStats,1;
+  - Id: 1017 # Bloody Red
+    Script: |
+      bonus bAllStats,1;
+  - Id: 1018 # Novice Teleporter
+    Script: |
+      bonus bAllStats,1;
+  - Id: 1019 # Mock me yoyo
+    Script: |
+      bonus bAllStats,1;
+  - Id: 1020 # Gambler
+    Script: |
+      bonus bAllStats,1;
+  - Id: 1021 # Battle Manual Master
+    Script: |
+      bonus bAllStats,1;
+  - Id: 1022 # Married Person
+    Script: |
+      bonus bAllStats,1;
+  - Id: 1023 # Persistent
+    Script: |
+      bonus bAllStats,1;
+  - Id: 1024 # Hard Worker
+    Script: |
+      bonus bAllStats,1;
+  - Id: 1025 # Poring Mania
+    Script: |
+      bonus bAllStats,1;
+  - Id: 1026 # Back Opener
+    Script: |
+      bonus bAllStats,1;
+  - Id: 1027 # Animal Lover
+    Script: |
+      bonus bAllStats,1;
+  - Id: 1028 # Devil Contractor
+    Script: |
+      bonus bAllStats,1;
+  - Id: 1029 # Monster Girls
+    Script: |
+      bonus bAllStats,1;
+  - Id: 1030 # Monster Boys
+    Script: |
+      bonus bAllStats,1;
+  - Id: 1031 # Visionary
+    Script: |
+      bonus bAllStats,1;
+  - Id: 1032 # Growing Bud
+    Script: |
+      bonus bAllStats,1;

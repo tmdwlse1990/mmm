@@ -949,7 +949,8 @@ public:
 
 	// Title system
 	std::vector<int32> titles;
-
+	uint16 title_icon;
+	
 	std::vector<int32> cloaked_npc;
 
 	/* ShowEvent Data Cache flags from map */
