@@ -7219,6 +7219,84 @@ static int32 script_countitem_sub(struct item *items, std::shared_ptr<item_data>
 	}
 
 	return count;
+	
+}static int32 script_counttimeitem_sub(struct item *items, std::shared_ptr<item_data> id, int32 size, int32 expanded, struct script_state *st, map_session_data *sd = nullptr, bool rental = false) {
+
+	nullpo_retr(-1, items);
+	nullpo_retr(-1, st);
+
+	int32 val,count,time = 0;
+
+	if (!expanded) { // For non-expanded functions
+		t_itemid nameid = id->nameid;
+
+		for (int32 i = 0; i < size; i++) {
+			item *itm = &items[i];
+
+			if (itm == nullptr || itm->nameid == 0 || itm->amount < 1)
+				continue;
+			if (itm->nameid == nameid && ((rental && itm->expire_time > 0) || (!rental && itm->expire_time == 0))) {
+				count += itm->amount;
+				time = itm->expire_time;
+			}
+		}
+	} else { // For expanded functions
+		item it = {};
+		int32 offset = 10;
+
+		it.nameid = id->nameid;
+		it.identify = script_getnum(st,3);
+		it.refine  = script_getnum(st,4);
+		it.attribute = script_getnum(st,5);
+		it.card[0] = script_getnum(st,6);
+		it.card[1] = script_getnum(st,7);
+		it.card[2] = script_getnum(st,8);
+		it.card[3] = script_getnum(st,9);
+
+		if (expanded&4) {
+			it.enchantgrade = script_getnum(st,10);
+
+			offset = 11;
+		}
+
+		if (expanded&2) {
+			if (!sd) {
+				ShowError("buildin_countitem3: Player not attached.\n");
+				return -1;
+			}
+
+			bool res = script_getitem_randomoption(st, sd, &it, "countitem3", offset);
+
+			if (!res)
+				return -1;
+		}
+
+		for (int32 i = 0; i < size; i++) {
+			item *itm = &items[i];
+
+			if (itm == nullptr || itm->nameid == 0 || itm->amount < 1)
+				continue;
+			if (itm->nameid != it.nameid || itm->identify != it.identify || itm->refine != it.refine || itm->attribute != it.attribute || itm->enchantgrade != it.enchantgrade)
+				continue;
+			if ((!rental && itm->expire_time > 0) || (rental && itm->expire_time == 0))
+				continue;
+			if (memcmp(it.card, itm->card, sizeof(it.card)))
+				continue;
+			if (expanded&2) {
+				uint8 j;
+
+				for (j = 0; j < MAX_ITEM_RDM_OPT; j++) {
+					if (itm->option[j].id != it.option[j].id || itm->option[j].value != it.option[j].value || itm->option[j].param != it.option[j].param)
+						break;
+				}
+				if (j != MAX_ITEM_RDM_OPT)
+					continue;
+			}
+			count += items[i].amount;
+		}
+	}
+	
+	return time;
 }
 
 /**
@@ -7476,6 +7554,57 @@ BUILDIN_FUNC(rentalcountitem)
 		return SCRIPT_CMD_FAILURE;
 	}
 	script_pushint(st, count);
+	return SCRIPT_CMD_SUCCESS;
+}
+
+/**
+ * Returns time of rental items in inventory
+ * rentalcountitemtime(<nameID>{,<accountID>})
+ */
+BUILDIN_FUNC(rentalcountitemtime)
+{
+	char *command = (char *)script_getfuncname(st);
+	int32 aid = 3;
+	int32 expanded = 0;
+
+	if (command[strlen(command) - 1] == '2') {
+		expanded = 1;
+		aid = 10;
+	}
+	else if (command[strlen(command) - 1] == '3') {
+		expanded = 3;
+		aid = 13;
+	}
+	else if (command[strlen(command) - 1] == '4') {
+		expanded = 7;
+		aid = 14;
+	}
+
+	map_session_data *sd;
+
+	if (!script_accid2sd(aid, sd))
+		return SCRIPT_CMD_FAILURE;
+
+	std::shared_ptr<item_data> id;
+
+	if (script_isstring(st, 2)) // item name
+		id = item_db.searchname( script_getstr( st, 2 ) );
+	else // item id
+		id = item_db.find( script_getnum( st, 2 ) );
+
+	if (!id) {
+		ShowError("buildin_%s: Invalid item '%s'.\n", command, script_getstr(st, 2)); // returns string, regardless of what it was
+		script_pushint(st, 0);
+		return SCRIPT_CMD_FAILURE;
+	}
+	//int32 count = script_countitem_sub(sd->inventory.u.items_inventory, id, MAX_INVENTORY, expanded, st, sd, true);
+	
+	int32 time = script_counttimeitem_sub(sd->inventory.u.items_inventory, id, MAX_INVENTORY, 0, st, sd, true);
+	if (time <= 0) {
+		st->state = END;
+		return SCRIPT_CMD_FAILURE;
+	}
+	script_pushint(st, time);
 	return SCRIPT_CMD_SUCCESS;
 }
 
@@ -29946,6 +30075,7 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(convertpcinfo,"vi"),
 	BUILDIN_DEF(isnpccloaked, "??"),
 
+	BUILDIN_DEF(rentalcountitemtime, "v?"),
 	BUILDIN_DEF(rentalcountitem, "v?"),
 	BUILDIN_DEF2(rentalcountitem, "rentalcountitem2", "viiiiiii?"),
 	BUILDIN_DEF2(rentalcountitem, "rentalcountitem3", "viiiiiiirrr?"),
