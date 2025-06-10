@@ -78,6 +78,25 @@
 27004,Beelzebub@NPC_WIDESILENCE,attack,663,5,2000,5000,30000,yes,self,always,0,,,,,,9,
 27004,Beelzebub@NPC_WIDESILENCE,chase,663,5,2000,5000,30000,yes,self,always,0,,,,,,9,
 
+22381,Valkyrie Randgris@AL_TELEPORT,idle,26,1,10000,0,0,yes,self,rudeattacked,,,,,,,,
+22381,Valkyrie Randgris@NPC_POWERUP,attack,349,5,10000,0,30000,yes,self,myhpltmaxrate,30,,,,,,,
+22381,Valkyrie Randgris@NPC_POWERUP,chase,349,5,10000,0,30000,yes,self,myhpltmaxrate,30,,,,,,,
+22381,Valkyrie Randgris@NPC_AGIUP,attack,350,5,10000,0,30000,yes,self,myhpltmaxrate,30,,,,,,,
+22381,Valkyrie Randgris@NPC_AGIUP,chase,350,5,10000,0,30000,yes,self,myhpltmaxrate,30,,,,,,,
+22381,Valkyrie Randgris@NPC_PULSESTRIKE,attack,661,5,2000,0,30000,yes,self,always,0,,,,,,32,
+22381,Valkyrie Randgris@SA_DISPELL,attack,289,5,10000,0,30000,yes,target,always,0,,,,,,,
+22381,Valkyrie Randgris@SA_DISPELL,chase,289,5,10000,0,30000,yes,target,always,0,,,,,,,
+22381,Valkyrie Randgris@NPC_HOLYATTACK,attack,189,10,2000,500,5000,no,target,always,0,,,,,,,
+22381,Valkyrie Randgris@CR_HOLYCROSS,attack,253,10,2000,0,5000,yes,target,always,0,,,,,,,
+22381,Valkyrie Randgris@NPC_EARTHQUAKE,chase,653,5,10000,1000,25000,no,self,myhpltmaxrate,30,,,,,,,
+22381,Valkyrie Randgris@NPC_EARTHQUAKE,attack,653,5,10000,1000,25000,no,self,myhpltmaxrate,30,,,,,,,
+22381,Valkyrie Randgris@WZ_VERMILION,attack,85,21,1000,1000,5000,no,target,always,0,,,,,,,
+22381,Valkyrie Randgris@WZ_VERMILION,chase,85,21,2000,1000,5000,no,target,always,0,,,,,,,
+22381,Valkyrie Randgris@WZ_METEOR,attack,85,21,1000,1000,5000,no,target,always,0,,,,,,,
+22381,Valkyrie Randgris@WZ_METEOR,chase,85,21,2000,1000,5000,no,target,always,0,,,,,,,
+22381,Valkyrie Randgris@WZ_STORMGUST,attack,85,21,1000,1000,5000,no,target,always,0,,,,,,,
+22381,Valkyrie Randgris@WZ_STORMGUST,chase,85,21,2000,1000,5000,no,target,always,0,,,,,,,
+
 // Dev Team
 // Rigiel
 20582,MD_MANHOLE4@AS_CLOAKING,idle,135,3,10000,0,5000,no,self,onspawn,0,,,,,,,

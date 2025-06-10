@@ -147,7 +147,8 @@ menu	"^FF0000Main Town^000000",TM1,
 		"Nameless Island (Day)",T31, "Nameless Island (Night)",T32, "Niflheim",T33, "Payon",T34, "Rachel",T35,
 		"Rockridge",T36, "Special Security Area, Cor",T37, "Splendide",T38, "Thor Camp",T39, "Umbala",T40,
 		"Varmundt's Mansion",T41, "Veins",T42, "Verus Findspot",T43, "Wolf Village",T44;
-TM1: Go("thinkter"133,134);
+		
+TM1: Go("thinkter",133,134);
 T1: Go("prontera",155,183);
 T2: Go("alberta",28,234);
 T3: Go("aldebaran",140,131);
