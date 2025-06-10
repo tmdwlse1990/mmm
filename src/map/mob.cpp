@@ -1298,18 +1298,23 @@ static int32 mob_can_changetarget(struct mob_data* md, struct block_list* target
  * Randomizes the target ID of a monster if it has the given mode
  * @param bl Unit that is going to attack
  * @param target_id Target ID to modify
+ * @return Whether a target was found (true) or not (false)
  */
-void mob_randomtarget(mob_data& md, int32& target_id) {
+bool mob_randomtarget(mob_data& md, int32& target_id) {
 	if (!status_has_mode(&md.status, MD_RANDOMTARGET))
-		return;
+		return true; // Keep current target
 
-	int32 search_size = md.status.rhw.range;
-	if (md.sc.hasSCE(SC_BLIND))
-		search_size = 1;
+	// Pick a random visible target
+	block_list* target = battle_getenemy(&md, DEFAULT_ENEMY_TYPE((&md)), md.status.rhw.range);
+	if (target == nullptr)
+		return false;
 
-	block_list* target = battle_getenemy(&md, DEFAULT_ENEMY_TYPE((&md)), search_size);
-	if (target != nullptr)
-		target_id = target->id;
+	// Check if target is in shoot range
+	if (!battle_check_range(&md, target, md.status.rhw.range))
+		return false;
+
+	target_id = target->id;
+	return true;
 }
 
 /*==========================================
@@ -2151,7 +2156,7 @@ static bool mob_ai_sub_hard(struct mob_data *md, t_tick tick)
 			md->lootitems[LOOTITEM_SIZE-1].mob_id = fitem->mob_id;
 		}
 
-		if (pcdb_checkid(md->vd->class_))
+		if (pcdb_checkid(md->vd->look[LOOK_BASE]))
 		{	//Give them walk act/delay to properly mimic players. [Skotlex]
 			clif_takeitem(*md,*tbl);
 			md->ud.canact_tick = tick + md->status.amotion;
@@ -2168,8 +2173,7 @@ static bool mob_ai_sub_hard(struct mob_data *md, t_tick tick)
 	// Normal attack / berserk skill is only used when target is in range
 	if (battle_check_range(md, tbl, md->status.rhw.range))
 	{
-		// Stop and make sure there is no chase target when already in attack range
-		unit_stop_walking(md, USW_FIXPOS|USW_RELEASE_TARGET);
+		int32 stop_flag = USW_FIXPOS|USW_RELEASE_TARGET;
 
 		// Hiding is a special case because it prevents normal attacks but allows skill usage
 		// TODO: Some other states also have this behavior and should be investigated
@@ -2178,7 +2182,7 @@ static bool mob_ai_sub_hard(struct mob_data *md, t_tick tick)
 			// Target within range and potentially able to use normal attack, engage
 			if (md->ud.target != tbl->id || md->ud.attacktimer == INVALID_TIMER)
 			{ //Only attack if no more attack delay left
-				unit_attack(md, tbl->id, 1);
+				stop_flag = unit_attack(md, tbl->id, 1);
 			}
 		}
 		else {
@@ -2186,6 +2190,11 @@ static bool mob_ai_sub_hard(struct mob_data *md, t_tick tick)
 			// This results in the monster going into an attack state despite not attacking
 			mob_setstate(*md, MSS_BERSERK);
 		}
+
+		// Stop and make sure there is no chase target when attack was not skipped
+		if (stop_flag != USW_NONE)
+			unit_stop_walking(md, stop_flag);
+
 		//Target still in attack range, no need to chase the target
 		return true;
 	}
@@ -3691,7 +3700,7 @@ int32 mob_dead(struct mob_data *md, struct block_list *src, int32 type)
 
 	if( !rebirth ) {
 
-		if( pcdb_checkid(md->vd->class_) ) {//Player mobs are not removed automatically by the client.
+		if( pcdb_checkid(md->vd->look[LOOK_BASE])) {//Player mobs are not removed automatically by the client.
 			/* first we set them dead, then we delay the outsight effect */
 			clif_clearunit_area( *md, CLR_DEAD );
 			clif_clearunit_delayed(md, CLR_OUTSIGHT,tick+3000);
@@ -3936,7 +3945,7 @@ int32 mob_class_change (struct mob_data *md, int32 mob_id)
 	unit_stop_walking( md, USW_NONE );
 	unit_skillcastcancel(md, 0);
 	status_set_viewdata(md, mob_id);
-	clif_class_change( *md, md->vd->class_ );
+	clif_class_change( *md, md->vd->look[LOOK_BASE] );
 	status_calc_mob(md,SCO_FIRST);
 
 	if (battle_config.monster_class_change_recover) {
@@ -5073,6 +5082,8 @@ s_mob_db::s_mob_db()
 	this->option = {};
 	this->skill = {};
 	this->damagetaken = 100;
+	this->group_id = {};
+	this->title = {};
 }
 
 /**
@@ -5100,7 +5111,7 @@ uint64 MobDatabase::parseBodyNode(const ryml::NodeRef& node) {
 
 		mob = std::make_shared<s_mob_db>();
 		mob->id = mob_id;
-		mob->vd.class_ = static_cast<uint16>(mob->id);
+		mob->vd.look[LOOK_BASE] = mob->id;
 	}
 
 	if (this->nodeExists(node, "AegisName")) {
@@ -5935,7 +5946,10 @@ static int32 mob_read_sqldb(void)
 	for( uint8 fi = 0; fi < ARRAYLENGTH(mob_db_name); ++fi ) {
 		// retrieve all rows from the mob database
 		if( SQL_ERROR == Sql_Query(mmysql_handle, "SELECT `id`,`name_aegis`,`name_english`,`name_japanese`,`level`,`hp`,`sp`,`base_exp`,`job_exp`,`mvp_exp`,`attack`,`attack2`,`defense`,`magic_defense`,`str`,`agi`,`vit`,`int`,`dex`,`luk`,`attack_range`,`skill_range`,`chase_range`,`size`,`race`,"
-			"`racegroup_goblin`,`racegroup_kobold`,`racegroup_orc`,`racegroup_golem`,`racegroup_guardian`,`racegroup_ninja`,`racegroup_gvg`,`racegroup_battlefield`,`racegroup_treasure`,`racegroup_biolab`,`racegroup_manuk`,`racegroup_splendide`,`racegroup_scaraba`,`racegroup_ogh_atk_def`,`racegroup_ogh_hidden`,`racegroup_bio5_swordman_thief`,`racegroup_bio5_acolyte_merchant`,`racegroup_bio5_mage_archer`,`racegroup_bio5_mvp`,`racegroup_clocktower`,`racegroup_thanatos`,`racegroup_faceworm`,`racegroup_hearthunter`,`racegroup_rockridge`,`racegroup_werner_lab`,`racegroup_temple_demon`,`racegroup_illusion_vampire`,`racegroup_malangdo`,`racegroup_ep172alpha`,`racegroup_ep172beta`,`racegroup_ep172bath`,`racegroup_illusion_turtle`,`racegroup_rachel_sanctuary`,`racegroup_illusion_luanda`,`racegroup_illusion_frozen`,`racegroup_illusion_moonlight`,`racegroup_ep16_def`,`racegroup_edda_arunafeltz`,`racegroup_lasagna`,`racegroup_glast_heim_abyss`,"
+			"`racegroup_goblin`,`racegroup_kobold`,`racegroup_orc`,`racegroup_golem`,`racegroup_guardian`,`racegroup_ninja`,`racegroup_gvg`,`racegroup_battlefield`,`racegroup_treasure`,`racegroup_biolab`,`racegroup_manuk`,`racegroup_splendide`,`racegroup_scaraba`,`racegroup_ogh_atk_def`,`racegroup_ogh_hidden`,"
+			"`racegroup_bio5_swordman_thief`,`racegroup_bio5_acolyte_merchant`,`racegroup_bio5_mage_archer`,`racegroup_bio5_mvp`,`racegroup_clocktower`,`racegroup_thanatos`,`racegroup_faceworm`,`racegroup_hearthunter`,`racegroup_rockridge`,`racegroup_werner_lab`,`racegroup_temple_demon`,`racegroup_illusion_vampire`,"
+			"`racegroup_malangdo`,`racegroup_ep172alpha`,`racegroup_ep172beta`,`racegroup_ep172bath`,`racegroup_illusion_turtle`,`racegroup_rachel_sanctuary`,`racegroup_illusion_luanda`,`racegroup_illusion_frozen`,`racegroup_illusion_moonlight`,`racegroup_ep16_def`,`racegroup_edda_arunafeltz`,`racegroup_lasagna`,`racegroup_glast_heim_abyss`,"
+			"`racegroup_destroyed_valkyrie_realm`,`racegroup_encroached_gephenia`,"
 			"`element`,`element_level`,`walk_speed`,`attack_delay`,`attack_motion`,`damage_motion`,`damage_taken`,`groupid`,`title`,`ai`,`class`,"
 			"`mode_canmove`,`mode_looter`,`mode_aggressive`,`mode_assist`,`mode_castsensoridle`,`mode_norandomwalk`,`mode_nocast`,`mode_canattack`,`mode_castsensorchase`,`mode_changechase`,`mode_angry`,`mode_changetargetmelee`,`mode_changetargetchase`,`mode_targetweak`,`mode_randomtarget`,`mode_ignoremelee`,`mode_ignoremagic`,`mode_ignoreranged`,`mode_mvp`,`mode_ignoremisc`,`mode_knockbackimmune`,`mode_teleportblock`,`mode_fixeditemdrop`,`mode_detector`,`mode_statusimmune`,`mode_skillimmune`,"
 			"`mvpdrop1_item`,`mvpdrop1_rate`,`mvpdrop1_option`,`mvpdrop1_index`,`mvpdrop2_item`,`mvpdrop2_rate`,`mvpdrop2_option`,`mvpdrop2_index`,`mvpdrop3_item`,`mvpdrop3_rate`,`mvpdrop3_option`,`mvpdrop3_index`,"
@@ -6033,14 +6047,14 @@ uint64 MobAvailDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			constant = sprite_mob->id;
 		}
 
-		mob->vd.class_ = (uint16)constant;
+		mob->vd.look[LOOK_BASE] = static_cast<int32>( constant );
 	} else {
 		this->invalidWarning(node["Sprite"], "Sprite is missing.\n");
 		return 0;
 	}
 
 	if (this->nodeExists(node, "Sex")) {
-		if (pcdb_checkid(mob->vd.class_) == 0) {
+		if (pcdb_checkid(mob->vd.look[LOOK_BASE]) == 0) {
 			this->invalidWarning(node["Sex"], "Sex is only applicable to Job sprites.\n");
 			return 0;
 		}
@@ -6068,7 +6082,7 @@ uint64 MobAvailDatabase::parseBodyNode(const ryml::NodeRef& node) {
 	}
 
 	if (this->nodeExists(node, "HairStyle")) {
-		if (pcdb_checkid(mob->vd.class_) == 0) {
+		if (pcdb_checkid(mob->vd.look[LOOK_BASE]) == 0) {
 			this->invalidWarning(node["HairStyle"], "HairStyle is only applicable to Job sprites.\n");
 			return 0;
 		}
@@ -6083,11 +6097,11 @@ uint64 MobAvailDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			hair_style = MIN_HAIR_STYLE;
 		}
 
-		mob->vd.hair_style = hair_style;
+		mob->vd.look[LOOK_HAIR] = hair_style;
 	}
 
 	if (this->nodeExists(node, "HairColor")) {
-		if (pcdb_checkid(mob->vd.class_) == 0) {
+		if (pcdb_checkid(mob->vd.look[LOOK_BASE]) == 0) {
 			this->invalidWarning(node["HairColor"], "HairColor is only applicable to Job sprites.\n");
 			return 0;
 		}
@@ -6102,11 +6116,11 @@ uint64 MobAvailDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			hair_color = MIN_HAIR_COLOR;
 		}
 
-		mob->vd.hair_color = hair_color;
+		mob->vd.look[LOOK_HAIR_COLOR] = hair_color;
 	}
 
 	if (this->nodeExists(node, "ClothColor")) {
-		if (pcdb_checkid(mob->vd.class_) == 0) {
+		if (pcdb_checkid(mob->vd.look[LOOK_BASE]) == 0) {
 			this->invalidWarning(node["ClothColor"], "ClothColor is only applicable to Job sprites.\n");
 			return 0;
 		}
@@ -6121,11 +6135,11 @@ uint64 MobAvailDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			cloth_color = MIN_CLOTH_COLOR;
 		}
 
-		mob->vd.cloth_color = cloth_color;
+		mob->vd.look[LOOK_CLOTHES_COLOR] = cloth_color;
 	}
 
 	if (this->nodeExists(node, "Weapon")) {
-		if (pcdb_checkid(mob->vd.class_) == 0) {
+		if (pcdb_checkid(mob->vd.look[LOOK_BASE]) == 0) {
 			this->invalidWarning(node["Weapon"], "Weapon is only applicable to Job sprites.\n");
 			return 0;
 		}
@@ -6142,11 +6156,11 @@ uint64 MobAvailDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			return 0;
 		}
 
-		mob->vd.weapon = item->nameid;
+		mob->vd.look[LOOK_WEAPON] = item->nameid;
 	}
 
 	if (this->nodeExists(node, "Shield")) {
-		if (pcdb_checkid(mob->vd.class_) == 0) {
+		if (pcdb_checkid(mob->vd.look[LOOK_BASE]) == 0) {
 			this->invalidWarning(node["Shield"], "Shield is only applicable to Job sprites.\n");
 			return 0;
 		}
@@ -6163,11 +6177,11 @@ uint64 MobAvailDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			return 0;
 		}
 
-		mob->vd.shield = item->nameid;
+		mob->vd.look[LOOK_SHIELD] = item->nameid;
 	}
 
 	if (this->nodeExists(node, "HeadTop")) {
-		if (pcdb_checkid(mob->vd.class_) == 0) {
+		if (pcdb_checkid(mob->vd.look[LOOK_BASE]) == 0) {
 			this->invalidWarning(node["HeadTop"], "HeadTop is only applicable to Job sprites.\n");
 			return 0;
 		}
@@ -6184,11 +6198,11 @@ uint64 MobAvailDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			return 0;
 		}
 
-		mob->vd.head_top = item->look;
+		mob->vd.look[LOOK_HEAD_TOP] = item->look;
 	}
 
 	if (this->nodeExists(node, "HeadMid")) {
-		if (pcdb_checkid(mob->vd.class_) == 0) {
+		if (pcdb_checkid(mob->vd.look[LOOK_BASE]) == 0) {
 			this->invalidWarning(node["HeadMid"], "HeadMid is only applicable to Job sprites.\n");
 			return 0;
 		}
@@ -6205,11 +6219,11 @@ uint64 MobAvailDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			return 0;
 		}
 
-		mob->vd.head_mid = item->look;
+		mob->vd.look[LOOK_HEAD_MID] = item->look;
 	}
 
 	if (this->nodeExists(node, "HeadLow")) {
-		if (pcdb_checkid(mob->vd.class_) == 0) {
+		if (pcdb_checkid(mob->vd.look[LOOK_BASE]) == 0) {
 			this->invalidWarning(node["HeadLow"], "HeadLow is only applicable to Job sprites.\n");
 			return 0;
 		}
@@ -6226,11 +6240,11 @@ uint64 MobAvailDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			return 0;
 		}
 
-		mob->vd.head_bottom = item->look;
+		mob->vd.look[LOOK_HEAD_BOTTOM] = item->look;
 	}
 
 	if (this->nodeExists(node, "Robe")) {
-		if (pcdb_checkid(mob->vd.class_) == 0) {
+		if (pcdb_checkid(mob->vd.look[LOOK_BASE]) == 0) {
 			this->invalidWarning(node["Robe"], "Robe is only applicable to Job sprites.\n");
 			return 0;
 		}
@@ -6247,7 +6261,7 @@ uint64 MobAvailDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			return 0;
 		}
 
-		mob->vd.robe = item->look;
+		mob->vd.look[LOOK_ROBE] = item->look;
 	}
 
 	if (this->nodeExists(node, "PetEquip")) {
@@ -6270,7 +6284,7 @@ uint64 MobAvailDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			return 0;
 		}
 
-		mob->vd.head_bottom = item->nameid;
+		mob->vd.look[LOOK_HEAD_BOTTOM] = item->nameid;
 	}
 
 	if (this->nodeExists(node, "Options")) {

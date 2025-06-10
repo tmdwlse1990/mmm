@@ -458,12 +458,12 @@ uint16 clif_getport(void)
 #if PACKETVER >= 20071106
 static inline unsigned char clif_bl_type(struct block_list *bl, bool walking) {
 	switch (bl->type) {
-	case BL_PC:    return (disguised(bl) && !pcdb_checkid(status_get_viewdata(bl)->class_))? 0x1:0x0; //PC_TYPE
+	case BL_PC:    return (disguised(bl) && !pcdb_checkid(status_get_viewdata(bl)->look[LOOK_BASE]))? 0x1:0x0; //PC_TYPE
 	case BL_ITEM:  return 0x2; //ITEM_TYPE
 	case BL_SKILL: return 0x3; //SKILL_TYPE
 	case BL_CHAT:  return 0x4; //UNKNOWN_TYPE
 	case BL_MOB:
-		if( pcdb_checkid( status_get_viewdata( bl )->class_ ) ){
+		if( pcdb_checkid( status_get_viewdata( bl )->look[LOOK_BASE] ) ){
 			return 0x0; //PC_TYPE
 		}else{
 			switch( ( (mob_data*)bl )->special_state.ai ){
@@ -480,16 +480,16 @@ static inline unsigned char clif_bl_type(struct block_list *bl, bool walking) {
 // There is one exception and this is if they are walking.
 // Since walking NPCs are not supported on official servers, the client does not know how to handle it.
 #if PACKETVER >= 20170726
-		if (pcdb_checkid( status_get_viewdata( bl )->class_ ) && walking)
+		if (pcdb_checkid( status_get_viewdata( bl )->look[LOOK_BASE] ) && walking)
 			return 0x0;
-		else if (mobdb_checkid( status_get_viewdata( bl )->class_ ))	// FIXME: categorize NPCs able to walk
+		else if (mobdb_checkid( status_get_viewdata( bl )->look[LOOK_BASE] ))	// FIXME: categorize NPCs able to walk
 			return 0xC;
 		else
 			return 0x6;
 #else
-		return pcdb_checkid(status_get_viewdata(bl)->class_) ? 0x0 : 0x6; //NPC_EVT_TYPE
+		return pcdb_checkid(status_get_viewdata(bl)->look[LOOK_BASE]) ? 0x0 : 0x6; //NPC_EVT_TYPE
 #endif
-	case BL_PET:   return pcdb_checkid(status_get_viewdata(bl)->class_)?0x0:0x7; //NPC_PET_TYPE
+	case BL_PET:   return pcdb_checkid(status_get_viewdata(bl)->look[LOOK_BASE])?0x0:0x7; //NPC_PET_TYPE
 	case BL_HOM:   return 0x8; //NPC_HOM_TYPE
 	case BL_MER:   return 0x9; //NPC_MERSOL_TYPE
 	case BL_ELEM:  return 0xa; //NPC_ELEMENTAL_TYPE
@@ -1280,43 +1280,6 @@ void clif_clearunit_delayed(struct block_list* bl, clr_type type, t_tick tick)
 	add_timer(tick, clif_clearunit_delayed_sub, (int32)type, (intptr_t)tbl);
 }
 
-void clif_get_weapon_view(map_session_data* sd, t_itemid *rhand, t_itemid *lhand)
-{
-	if(sd->sc.option&OPTION_COSTUME)
-	{
-		*rhand = *lhand = 0;
-		return;
-	}
-
-#if PACKETVER < 4
-	*rhand = sd->status.weapon;
-	*lhand = sd->status.shield;
-#else
-	if (sd->equip_index[EQI_HAND_R] >= 0 &&
-		sd->inventory_data[sd->equip_index[EQI_HAND_R]])
-	{
-		struct item_data* id = sd->inventory_data[sd->equip_index[EQI_HAND_R]];
-		if (id->view_id > 0)
-			*rhand = id->view_id;
-		else
-			*rhand = id->nameid;
-	} else
-		*rhand = 0;
-
-	if (sd->equip_index[EQI_HAND_L] >= 0 &&
-		sd->equip_index[EQI_HAND_L] != sd->equip_index[EQI_HAND_R] &&
-		sd->inventory_data[sd->equip_index[EQI_HAND_L]])
-	{
-		struct item_data* id = sd->inventory_data[sd->equip_index[EQI_HAND_L]];
-		if (id->view_id > 0)
-			*lhand = id->view_id;
-		else
-			*lhand = id->nameid;
-	} else
-		*lhand = 0;
-#endif
-}
-
 //To make the assignation of the level based on limits clearer/easier. [Skotlex]
 static int32 clif_setlevel_sub(int32 lv) {
 	if( lv < battle_config.max_lv ) {
@@ -1434,27 +1397,27 @@ static void clif_set_unit_idle( struct block_list* bl, bool walking, send_target
 	}else{
 		p.effectState = (sc) ? sc->option : 0;
 	}
-	p.job = vd->class_;
-	p.head = vd->hair_style;
-	p.weapon = vd->weapon;
+	p.job = vd->look[LOOK_BASE];
+	p.head = vd->look[LOOK_HAIR];
+	p.weapon = vd->look[LOOK_WEAPON];
 #if PACKETVER < 7 || PACKETVER_MAIN_NUM >= 20181121 || PACKETVER_RE_NUM >= 20180704 || PACKETVER_ZERO_NUM >= 20181114
-	p.shield = vd->shield;
+	p.shield = vd->look[LOOK_SHIELD];
 #endif
-	if( bl->type == BL_NPC && vd->class_ == JT_GUILD_FLAG ){
+	if( bl->type == BL_NPC && vd->look[LOOK_BASE] == JT_GUILD_FLAG ){
 		// The hell, why flags work like this?
 		p.accessory = status_get_emblem_id( bl );
 		p.accessory2 = GetWord( g_id, 1 );
 		p.accessory3 = GetWord( g_id, 0 );
 	}else{
-		p.accessory = vd->head_bottom;
-		p.accessory2 = vd->head_top;
-		p.accessory3 = vd->head_mid;
+		p.accessory = vd->look[LOOK_HEAD_BOTTOM];
+		p.accessory2 = vd->look[LOOK_HEAD_TOP];
+		p.accessory3 = vd->look[LOOK_HEAD_MID];
 	}
-	p.headpalette = vd->hair_color;
-	p.bodypalette = vd->cloth_color;
+	p.headpalette = vd->look[LOOK_HAIR_COLOR];
+	p.bodypalette = vd->look[LOOK_CLOTHES_COLOR];
 	p.headDir = (sd)? sd->head_dir : 0;
 #if PACKETVER >= 20101124
-	p.robe = vd->robe;
+	p.robe = vd->look[LOOK_ROBE];
 #endif
 	p.GUID = g_id;
 	p.GEmblemVer = status_get_emblem_id( bl );
@@ -1487,7 +1450,7 @@ static void clif_set_unit_idle( struct block_list* bl, bool walking, send_target
 	}
 #endif
 #if PACKETVER >= 20150513
-	p.body = vd->body_style;
+	p.body = vd->look[LOOK_BODY2];
 #endif
 /* Might be earlier, this is when the named item bug began */
 #if PACKETVER >= 20131223
@@ -1498,7 +1461,7 @@ static void clif_set_unit_idle( struct block_list* bl, bool walking, send_target
 	// if disguised, send to self
 	if( disguised( bl ) ){
 #if PACKETVER >= 20091103
-		p.objecttype = pcdb_checkid( status_get_viewdata( bl )->class_ ) ? 0x0 : 0x5; //PC_TYPE : NPC_MOB_TYPE
+		p.objecttype = pcdb_checkid( status_get_viewdata( bl )->look[LOOK_BASE] ) ? 0x0 : 0x5; //PC_TYPE : NPC_MOB_TYPE
 #if PACKETVER >= 20131223
 		p.AID = disguised_bl_id( bl->id );
 #else
@@ -1576,27 +1539,27 @@ static void clif_spawn_unit( struct block_list *bl, enum send_target target ){
 	p.bodyState = (sc) ? sc->opt1 : 0;
 	p.healthState = (sc) ? sc->opt2 : 0;
 	p.effectState = (sc) ? sc->option : 0;
-	p.job = vd->class_;
-	p.head = vd->hair_style;
-	p.weapon = vd->weapon;
+	p.job = vd->look[LOOK_BASE];
+	p.head = vd->look[LOOK_HAIR];
+	p.weapon = vd->look[LOOK_WEAPON];
 #if PACKETVER < 7 || PACKETVER_MAIN_NUM >= 20181121 || PACKETVER_RE_NUM >= 20180704 || PACKETVER_ZERO_NUM >= 20181114
-	p.shield = vd->shield;
+	p.shield = vd->look[LOOK_SHIELD];
 #endif
-	if( bl->type == BL_NPC && vd->class_ == JT_GUILD_FLAG ){
+	if( bl->type == BL_NPC && vd->look[LOOK_BASE] == JT_GUILD_FLAG ){
 		// The hell, why flags work like this?
 		p.accessory = status_get_emblem_id( bl );
 		p.accessory2 = GetWord( g_id, 1 );
 		p.accessory3 = GetWord( g_id, 0 );
 	}else{
-		p.accessory = vd->head_bottom;
-		p.accessory2 = vd->head_top;
-		p.accessory3 = vd->head_mid;
+		p.accessory = vd->look[LOOK_HEAD_BOTTOM];
+		p.accessory2 = vd->look[LOOK_HEAD_TOP];
+		p.accessory3 = vd->look[LOOK_HEAD_MID];
 	}
-	p.headpalette = vd->hair_color;
-	p.bodypalette = vd->cloth_color;
+	p.headpalette = vd->look[LOOK_HAIR_COLOR];
+	p.bodypalette = vd->look[LOOK_CLOTHES_COLOR];
 	p.headDir = (sd)? sd->head_dir : 0;
 #if PACKETVER >= 20101124
-	p.robe = vd->robe;
+	p.robe = vd->look[LOOK_ROBE];
 #endif
 	p.GUID = g_id;
 	p.GEmblemVer = status_get_emblem_id( bl );
@@ -1628,7 +1591,7 @@ static void clif_spawn_unit( struct block_list *bl, enum send_target target ){
 	}
 #endif
 #if PACKETVER >= 20150513
-	p.body = vd->body_style;
+	p.body = vd->look[LOOK_BODY2];
 #endif
 /* Might be earlier, this is when the named item bug began */
 #if PACKETVER >= 20131223
@@ -1643,7 +1606,7 @@ static void clif_spawn_unit( struct block_list *bl, enum send_target target ){
 		}
 
 #if PACKETVER >= 20091103
-		p.objecttype = pcdb_checkid( status_get_viewdata(bl)->class_ ) ? 0x0 : 0x5; //PC_TYPE : NPC_MOB_TYPE
+		p.objecttype = pcdb_checkid( status_get_viewdata(bl)->look[LOOK_BASE] ) ? 0x0 : 0x5; //PC_TYPE : NPC_MOB_TYPE
 #if PACKETVER >= 20131223
 		p.AID = disguised_bl_id( bl->id );
 #else
@@ -1684,21 +1647,21 @@ static void clif_set_unit_walking( struct block_list& bl, map_session_data* tsd,
 	p.healthState = (sc) ? sc->opt2 : 0;
 	p.effectState = (sc) ? sc->option : 0;
 	struct view_data* vd = status_get_viewdata( &bl );
-	p.job = vd->class_;
-	p.head = vd->hair_style;
-	p.weapon = vd->weapon;
-	p.accessory = vd->head_bottom;
+	p.job = vd->look[LOOK_BASE];
+	p.head = vd->look[LOOK_HAIR];
+	p.weapon = vd->look[LOOK_WEAPON];
+	p.accessory = vd->look[LOOK_HEAD_BOTTOM];
 	p.moveStartTime = client_tick(gettick());
 #if PACKETVER < 7 || PACKETVER_MAIN_NUM >= 20181121 || PACKETVER_RE_NUM >= 20180704 || PACKETVER_ZERO_NUM >= 20181114
-	p.shield = vd->shield;
+	p.shield = vd->look[LOOK_SHIELD];
 #endif
-	p.accessory2 = vd->head_top;
-	p.accessory3 = vd->head_mid;
-	p.headpalette = vd->hair_color;
-	p.bodypalette = vd->cloth_color;
+	p.accessory2 = vd->look[LOOK_HEAD_TOP];
+	p.accessory3 = vd->look[LOOK_HEAD_MID];
+	p.headpalette = vd->look[LOOK_HAIR_COLOR];
+	p.bodypalette = vd->look[LOOK_CLOTHES_COLOR];
 	p.headDir = (sd) ? sd->head_dir : 0;
 #if PACKETVER >= 20101124
-	p.robe = vd->robe;
+	p.robe = vd->look[LOOK_ROBE];
 #endif
 	p.GUID = status_get_guild_id( &bl );
 	p.GEmblemVer = status_get_emblem_id( &bl );
@@ -1730,7 +1693,7 @@ static void clif_set_unit_walking( struct block_list& bl, map_session_data* tsd,
 	}
 #endif
 #if PACKETVER >= 20150513
-	p.body = vd->body_style;
+	p.body = vd->look[LOOK_BODY2];
 #endif
 /* Might be earlier, this is when the named item bug began */
 #if PACKETVER >= 20131223
@@ -1742,7 +1705,7 @@ static void clif_set_unit_walking( struct block_list& bl, map_session_data* tsd,
 	// if disguised, send the info to self
 	if( disguised( &bl ) ){
 #if PACKETVER >= 20091103
-		p.objecttype = pcdb_checkid( status_get_viewdata( &bl )->class_ ) ? 0x0 : 0x5; //PC_TYPE : NPC_MOB_TYPE
+		p.objecttype = pcdb_checkid( status_get_viewdata( &bl )->look[LOOK_BASE] ) ? 0x0 : 0x5; //PC_TYPE : NPC_MOB_TYPE
 #if PACKETVER >= 20131223
 		p.AID = disguised_bl_id( bl.id );
 #else
@@ -1974,7 +1937,7 @@ int32 clif_spawn( struct block_list *bl, bool walking ){
 	struct view_data *vd;
 	struct unit_data* ud = unit_bl2ud(bl);
 	vd = status_get_viewdata(bl);
-	if( !vd || vd->class_ == JT_INVISIBLE )
+	if( !vd || vd->look[LOOK_BASE] == JT_INVISIBLE)
 		return 0;
 
 	// Hide NPC from Maya Purple card
@@ -2053,7 +2016,7 @@ int32 clif_spawn( struct block_list *bl, bool walking ){
 		break;
 	case BL_PET:
 		// If the pet wears equip
-		if( vd->head_bottom != 0 ){
+		if( vd->look[LOOK_HEAD_BOTTOM] != 0 ){
 			pet_data& pd = *reinterpret_cast<pet_data*>( bl );
 			clif_send_petdata( nullptr, pd, CHANGESTATEPET_ACCESSORY );
 		}
@@ -2369,7 +2332,7 @@ void clif_move( struct unit_data& ud )
 		return;
 
 	// This performance check is needed to keep GM-hidden objects from being notified to bots.
-	if (vd->class_ == JT_INVISIBLE)
+	if (vd->look[LOOK_BASE] == JT_INVISIBLE)
 		return;
 
 	// Hide NPC from Maya Purple card
@@ -2410,7 +2373,7 @@ void clif_move( struct unit_data& ud )
 	break;
 	case BL_PET:
 		// If the pet wears equip
-		if( vd->head_bottom != 0 ){
+		if( vd->look[LOOK_HEAD_BOTTOM] != 0 ){
 			pet_data& pd = *reinterpret_cast<pet_data*>( bl );
 			clif_send_petdata( nullptr, pd, CHANGESTATEPET_ACCESSORY );
 		}
@@ -4264,77 +4227,71 @@ void clif_changelook(struct block_list *bl, int32 type, int32 val) {
 		switch(type) {
 			case LOOK_WEAPON:
 				if (sd) {
-					clif_get_weapon_view(sd, &vd->weapon, &vd->shield);
-					val = vd->weapon;
+					sd->update_look( LOOK_WEAPON );
+					sd->update_look( LOOK_SHIELD );
+					val = vd->look[LOOK_WEAPON];
 				}
 				else 
-					vd->weapon = val;
+					vd->look[LOOK_WEAPON] = val;
 				break;
 			case LOOK_SHIELD:
 				if (sd) {
-					clif_get_weapon_view(sd, &vd->weapon, &vd->shield);
-					val = vd->shield;
+					sd->update_look( LOOK_WEAPON );
+					sd->update_look( LOOK_SHIELD );
+					val = vd->look[LOOK_SHIELD];
 				}
 				else 
-					vd->shield = val;
+					vd->look[LOOK_SHIELD] = val;
 				break;
 			case LOOK_BASE:
-				if (!sd) 
-					break;
-
 				if ( val == JT_INVISIBLE )
 					return;
 
-				if (sd->sc.option&OPTION_COSTUME)
-					vd->weapon = vd->shield = 0;
+				if( sd != nullptr ){
+					sd->update_look( LOOK_WEAPON );
+					sd->update_look( LOOK_SHIELD );
+				}
 
-				if (!vd->cloth_color)
-					break;
+				if( sc != nullptr ){
+					if( vd->look[LOOK_CLOTHES_COLOR] != 0 ){
+						if (sc->option&OPTION_WEDDING && battle_config.wedding_ignorepalette)
+							vd->look[LOOK_CLOTHES_COLOR] = 0;
+						if (sc->option&OPTION_XMAS && battle_config.xmas_ignorepalette)
+							vd->look[LOOK_CLOTHES_COLOR] = 0;
+						if (sc->option&(OPTION_SUMMER|OPTION_SUMMER2) && battle_config.summer_ignorepalette)
+							vd->look[LOOK_CLOTHES_COLOR] = 0;
+						if (sc->option&OPTION_HANBOK && battle_config.hanbok_ignorepalette)
+							vd->look[LOOK_CLOTHES_COLOR] = 0;
+						if (sc->option&OPTION_OKTOBERFEST && battle_config.oktoberfest_ignorepalette)
+							vd->look[LOOK_CLOTHES_COLOR] = 0;
+					}
 
-				if (sd) {
-					if (sd->sc.option&OPTION_WEDDING && battle_config.wedding_ignorepalette)
-						vd->cloth_color = 0;
-					if (sd->sc.option&OPTION_XMAS && battle_config.xmas_ignorepalette)
-						vd->cloth_color = 0;
-					if (sd->sc.option&(OPTION_SUMMER|OPTION_SUMMER2) && battle_config.summer_ignorepalette)
-						vd->cloth_color = 0;
-					if (sd->sc.option&OPTION_HANBOK && battle_config.hanbok_ignorepalette)
-						vd->cloth_color = 0;
-					if (sd->sc.option&OPTION_OKTOBERFEST && battle_config.oktoberfest_ignorepalette)
-						vd->cloth_color = 0;
-					if (vd->body_style && sd->sc.option&OPTION_COSTUME)
- 						vd->body_style = 0;
+					if( vd->look[LOOK_BODY2] != 0 && sc->option&OPTION_COSTUME ){
+						vd->look[LOOK_BODY2] = 0;
+					}
 				}
 				break;
 			case LOOK_HAIR:
-				vd->hair_style = val;
-				break;
 			case LOOK_HEAD_BOTTOM:
-				vd->head_bottom = val;
-				break;
 			case LOOK_HEAD_TOP:
-				vd->head_top = val;
-				break;
 			case LOOK_HEAD_MID:
-				vd->head_mid = val;
-				break;
 			case LOOK_HAIR_COLOR:
-				vd->hair_color = val;
+				vd->look[type] = val;
 				break;
 			case LOOK_CLOTHES_COLOR:
-				if (val && sd) {
-					if (sd->sc.option&OPTION_WEDDING && battle_config.wedding_ignorepalette)
+				if( val != 0 && sc != nullptr ){
+					if (sc->option&OPTION_WEDDING && battle_config.wedding_ignorepalette)
 						val = 0;
-					if (sd->sc.option&OPTION_XMAS && battle_config.xmas_ignorepalette)
+					if (sc->option&OPTION_XMAS && battle_config.xmas_ignorepalette)
 						val = 0;
-					if (sd->sc.option&(OPTION_SUMMER|OPTION_SUMMER2) && battle_config.summer_ignorepalette)
+					if (sc->option&(OPTION_SUMMER|OPTION_SUMMER2) && battle_config.summer_ignorepalette)
 						val = 0;
-					if (sd->sc.option&OPTION_HANBOK && battle_config.hanbok_ignorepalette)
+					if (sc->option&OPTION_HANBOK && battle_config.hanbok_ignorepalette)
 						val = 0;
-					if (sd->sc.option&OPTION_OKTOBERFEST && battle_config.oktoberfest_ignorepalette)
+					if (sc->option&OPTION_OKTOBERFEST && battle_config.oktoberfest_ignorepalette)
 						val = 0;
 				}
-				vd->cloth_color = val;
+				vd->look[LOOK_CLOTHES_COLOR] = val;
 				break;
 			case LOOK_SHOES:
 #if PACKETVER > 3
@@ -4352,13 +4309,13 @@ void clif_changelook(struct block_list *bl, int32 type, int32 val) {
 				//Shoes? No packet uses this....
 				break;
 			case LOOK_BODY:
-				// unknown purpose
-				break;
+				// unknown purpose, dont send something
+				return;
 			case LOOK_ROBE:
 #if PACKETVER < 20110111
 				return;
 #else
-				vd->robe = val;
+				vd->look[LOOK_ROBE] = val;
 #endif
 				break;
 			case LOOK_BODY2:
@@ -4366,8 +4323,12 @@ void clif_changelook(struct block_list *bl, int32 type, int32 val) {
 				return;
 #elif (PACKETVER_MAIN_NUM < 20231220) 
 				if (val && sd && sd->sc.option&OPTION_COSTUME)
+#else
+				if( val != 0 && sc != nullptr && sc->option&OPTION_COSTUME ){
  					val = 0;
- 				vd->body_style = val;
+				}
+
+ 				vd->look[LOOK_BODY2] = val;
 #endif
 				break;
 	}
@@ -4386,8 +4347,8 @@ void clif_changelook(struct block_list *bl, int32 type, int32 val) {
 	if (bl->type != BL_NPC) {
 		if (type == LOOK_WEAPON || type == LOOK_SHIELD) {
 			type = LOOK_WEAPON;
-			val = (vd ? vd->weapon : 0);
-			val2 = (vd ? vd->shield : 0);
+			val = (vd ? vd->look[LOOK_WEAPON] : 0);
+			val2 = (vd ? vd->look[LOOK_SHIELD] : 0);
 		}
 		if (disguised(bl)) {
 			clif_sprite_change(bl, bl->id, type, val, val2, AREA_WOS);
@@ -5327,7 +5288,7 @@ void clif_getareachar_unit( map_session_data* sd,struct block_list *bl ){
 	uint32 option_val = 0;
 
 	vd = status_get_viewdata(bl);
-	if (!vd || vd->class_ == JT_INVISIBLE)
+	if (!vd || vd->look[LOOK_BASE] == JT_INVISIBLE)
 		return;
 
 	// Hide NPC from Maya Purple card
@@ -5417,7 +5378,7 @@ void clif_getareachar_unit( map_session_data* sd,struct block_list *bl ){
 		break;
 	case BL_PET:
 		// If the pet wears equip
-		if( vd->head_bottom != 0 ){
+		if( vd->look[LOOK_HEAD_BOTTOM] != 0 ){
 			pet_data& pd = *reinterpret_cast<pet_data*>( bl );
 			clif_send_petdata( sd, pd, CHANGESTATEPET_ACCESSORY );
 		}
@@ -5901,7 +5862,7 @@ int32 clif_outsight(struct block_list *bl,va_list ap)
 		nullpo_ret(bl);
 		switch(bl->type){
 		case BL_PC:
-			if(sd->vd.class_ != JT_INVISIBLE)
+			if(sd->vd.look[LOOK_BASE] != JT_INVISIBLE)
 				clif_clearunit_single( bl->id, CLR_OUTSIGHT, *tsd );
 			if(sd->chatID){
 				struct chat_data *cd;
@@ -5926,7 +5887,7 @@ int32 clif_outsight(struct block_list *bl,va_list ap)
 			}
 			break;
 		default:
-			if((vd=status_get_viewdata(bl)) && vd->class_ != JT_INVISIBLE)
+			if((vd=status_get_viewdata(bl)) && vd->look[LOOK_BASE] != JT_INVISIBLE)
 				clif_clearunit_single( bl->id, CLR_OUTSIGHT, *tsd );
 			break;
 		}
@@ -5935,7 +5896,7 @@ int32 clif_outsight(struct block_list *bl,va_list ap)
 		nullpo_ret(tbl);
 		if(tbl->type == BL_SKILL) //Trap knocked out of sight
 			clif_clearchar_skillunit( *((skill_unit *)tbl), *sd );
-		else if(((vd=status_get_viewdata(tbl)) && vd->class_ != JT_INVISIBLE) &&
+		else if(((vd=status_get_viewdata(tbl)) && vd->look[LOOK_BASE] != JT_INVISIBLE) &&
 			!clif_npc_mayapurple( *tbl ) )
 			clif_clearunit_single( tbl->id, CLR_OUTSIGHT, *sd );
 	}
@@ -6597,7 +6558,7 @@ void clif_skill_estimation( map_session_data& sd, mob_data& md ){
 	PACKET_ZC_MONSTER_INFO packet{};
 
 	packet.packetType = HEADER_ZC_MONSTER_INFO;
-	packet.class_ = md.vd->class_;
+	packet.class_ = md.vd->look[LOOK_BASE];
 	packet.level = static_cast<decltype(packet.level)>( md.level );
 	packet.size = md.status.size;
 	packet.hp = md.status.hp;
@@ -8603,7 +8564,7 @@ void clif_send_petdata( map_session_data* sd, pet_data& pd, e_changestate_pet da
 			value = pd.pet.hungry;
 			break;
 		case CHANGESTATEPET_ACCESSORY:
-			value = pd.vd.head_bottom;
+			value = pd.vd.look[LOOK_HEAD_BOTTOM];
 			break;
 		case CHANGESTATEPET_PERFORMANCE: {
 			int32 num;
@@ -10681,18 +10642,18 @@ void clif_viewequip_ack( map_session_data& sd, map_session_data& tsd ){
 
 	safestrncpy( p->characterName, tsd.status.name, NAME_LENGTH );
 
-	p->job = tsd.status.class_;
-	p->head = tsd.vd.hair_style;
-	p->accessory = tsd.vd.head_bottom;
-	p->accessory2 = tsd.vd.head_mid;
-	p->accessory3 = tsd.vd.head_top;
+	p->job = tsd.vd.look[LOOK_BASE];
+	p->head = tsd.vd.look[LOOK_HAIR];
+	p->accessory = tsd.vd.look[LOOK_HEAD_BOTTOM];
+	p->accessory2 = tsd.vd.look[LOOK_HEAD_MID];
+	p->accessory3 = tsd.vd.look[LOOK_HEAD_TOP];
 #if PACKETVER >= 20110111
-	p->robe = tsd.vd.robe;
+	p->robe = tsd.vd.look[LOOK_ROBE];
 #endif
-	p->headpalette = tsd.vd.hair_color;
-	p->bodypalette = tsd.vd.cloth_color;
+	p->headpalette = tsd.vd.look[LOOK_HAIR_COLOR];
+	p->bodypalette = tsd.vd.look[LOOK_CLOTHES_COLOR];
 #if PACKETVER_MAIN_NUM >= 20180801 || PACKETVER_RE_NUM >= 20180801 || PACKETVER_ZERO_NUM >= 20180808
-	p->body2 = tsd.vd.body_style;
+	p->body2 = tsd.vd.look[LOOK_BODY2];
 #endif
 	p->sex = tsd.vd.sex;
 
@@ -23931,6 +23892,10 @@ void clif_barter_extended_open( map_session_data& sd, struct npc_data& nd ){
 #if PACKETVER_MAIN_NUM >= 20210203 || PACKETVER_RE_NUM >= 20211103
 		item->viewSprite = id->look;
 		item->location = pc_equippoint_sub( &sd, id.get() );
+
+#if PACKETVER_MAIN_NUM >= 20250402
+		item->refine_level = itemPair.second->refine;
+#endif
 #endif
 
 		// Because of a MSVS bug, the currencies have been defined with a fixed array entry, which has to be substracted
@@ -26589,6 +26554,27 @@ void clif_parse_quest_status(const int32 fd, map_session_data* const sd)
     clif_quest_status_ack(sd, QuestList, QuestCount);
 }
 
+/// In clients 2025-01-22 and newer if you hold shift and right-click an item in the storage,
+/// the item will be moved to the favorite tab of the inventory.
+/// However if it is a stackable item and that item already exists in your inventory, it will
+/// be added to the respective tab, where the item is currently.
+/// 0c22 <unknown>.L <index>.W <amount>.L (CZ_MOVE_ITEM_TO_PERSONAL)
+void clif_parse_MoveFromKafraFav( int32 fd, map_session_data* sd ){
+#if PACKETVER_MAIN_NUM >= 20250122
+	const PACKET_CZ_MOVE_ITEM_TO_PERSONAL* p = reinterpret_cast<PACKET_CZ_MOVE_ITEM_TO_PERSONAL*>( RFIFOP( fd, 0 ) );
+
+	uint16 item_index = server_storage_index( p->index );
+	uint32 item_amount = p->amount;
+
+	if( sd->state.storage_flag == 1 ){
+		storage_storageget( sd, &sd->storage, item_index, item_amount, true );
+	}else if( sd->state.storage_flag == 2 ){
+		storage_guild_storageget( sd, item_index, item_amount, true );
+	}else if( sd->state.storage_flag == 3 ){
+		storage_storageget( sd, &sd->premiumStorage, item_index, item_amount, true );
+	}
+#endif
+}
 
 /*==========================================
  * Main client packet processing function
