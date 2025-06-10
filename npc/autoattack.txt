@@ -11,7 +11,7 @@ function	script	F_AutoAT	{
 	*/
 
 	// กำหนดเวลา AI
-	//ai_timer = 3600000; 1 hour;
+	//@ai_timer = 3600000; 1 hour;
 	doevent "AutoAI_Main::OnMainMenu";
 	end;
 }
@@ -35,9 +35,18 @@ OnMainAI:
 OnMainMenu:
 main_menu:
 	clear2();
+	
+	set .@all_time,rentalcountitemtime(2002000); // Ai time left
+	set .@cur_time,gettimetick(2);
+	set .@dun_ent_t,(.@all_time - .@cur_time);
+	set .@dun_h,(.@dun_ent_t / 3600);
+	set .@dun_m,(.@dun_ent_t - (.@dun_h * 3600)) / 60;
+	set .@dun_s,.@dun_ent_t - ((.@dun_h * 3600) + (.@dun_m * 60));
+	
+	@ai_timer = .@dun_ent_t * 1000;
 	.@menu$ = "[^FF0000•^000000 ^2f00ffAuto Attack^000000 ^FF0000•^000000]";
 	mes .@menu$;
-
+	mes "เวลาบอทที่เหลืออยู่ : " + .@dun_h + " ชั่วโมง " + .@dun_m + " นาที " + .@dun_s + " วินาที.";
 	if(sc_check(SC_AUTOATTACK))
 		.@main_menu = select(" ^ff0000~^000000 ปิดระบบ Auto Attack"," ^ff0000~^000000 ตั้งค่า"," ^ff0000~^000000 ยกเลิก");
 	else
@@ -46,8 +55,11 @@ main_menu:
 	if( .@main_menu == 1 )
 		callsub OnMainAI;
 
-	if( .@main_menu == 2 )
+	if( .@main_menu == 2 ) {
+		showscript "ปิดระบบ Auto Attack";
+		autostart(false);
 		goto(config_menu);
+	}
 
 	end;
 

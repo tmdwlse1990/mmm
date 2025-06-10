@@ -1,5 +1,5 @@
 icecastle,189,206,5	script	chicken test	800,{
-	sc_start SC_MEMBER10,30000,50;
+	rentitem 2002000,120;
 end;
 }
 
