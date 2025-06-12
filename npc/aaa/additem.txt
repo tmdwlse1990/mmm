@@ -1,0 +1,29 @@
+-	script	atcommand#eazyuse	-1,{
+Oninit:
+		// @additem name zeny id1 amt1 id2 amt2 id3 amt3 id4 amt4 id5 amt5
+		bindatcmd "additem",strnpcinfo(3) + "::OnAtcommand",99,99;
+		end;
+		/*
+		The following variables are set upon execution:
+		.@atcmd_command$       =  The name of the @command used.
+		.@atcmd_parameters$[]  =  Array containing the given parameters, starting from an index of 0.
+		.@atcmd_numparameters  =  The number of parameters defined.
+		*/
+OnAtcommand:
+		if(.@atcmd_numparameters < 4 || .@atcmd_numparameters > 12) {
+			dispbottom "กรุณากรอกข้อมูลให้ครบ";
+			dispbottom "@additem <name> <zeny> {<id1> <amt1> ...max 5}";
+			end;
+		}
+		// *getcharid(0,.@atcmd_parameters$[1])
+		
+		.@charid = getcharid(0,.@atcmd_parameters$[0]);
+		.@sender$ = "GM Meow";
+		.@title$ = "Exclusive for you";
+		.@body$ = "เหมียวๆให้ item งับๆ";
+		.@zeny = atoi(.@atcmd_parameters$[1]);
+		setarray .@mailitem[0],atoi(.@atcmd_parameters$[2]),atoi(.@atcmd_parameters$[4]),atoi(.@atcmd_parameters$[6]),atoi(.@atcmd_parameters$[8]),atoi(.@atcmd_parameters$[10]);
+		setarray .@mailamount[0],atoi(.@atcmd_parameters$[3]),atoi(.@atcmd_parameters$[5]),atoi(.@atcmd_parameters$[7]),atoi(.@atcmd_parameters$[9]),atoi(.@atcmd_parameters$[11]);
+		mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+		end;
+}
