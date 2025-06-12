@@ -81,7 +81,8 @@ Header:
   Version: 5
 
 Body:
-
+# [Boss Add Drop from Main]
+# [Boss Add Drop from Main]
   - Id: 30001
     AegisName: MD_Error
     Name: Dummy
@@ -823,6 +824,13 @@ Body:
     DamageTaken: 1
     Ai: 21
     Class: Boss
+    Drops:
+      - Item: 3stats_select_box
+        Rate: 100
+        StealProtected: true
+      - Item: CLB_SS_EA_Card
+        Rate: 1
+        StealProtected: true
   - Id: 22382
     AegisName: CLB_SS_TZ
     Name: Tai-Zi

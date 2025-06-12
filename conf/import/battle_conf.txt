@@ -1,6 +1,9 @@
 // Max Cap Level
 config_maxlv: 60
 
+//Max Cap Aspd
+aspd_unlock_cap: 197
+
 // Refine UI delay time in milliseconds between refine attempts [@krit.k #3614]
 // This prevents players from attempting to refine too quickly
 // Default: 1800 (1.8 seconds)
@@ -12,7 +15,7 @@ refine_delay_time: 1500
 refine_ui_lock_time: 5000
 
 // Boss ทุกตัว Drop Item Id (ใส่ 0 เพื่อปิดการใช้งาน)
-config_global_mvp_drop: 2002001
+config_global_mvp_drop: 0
 // %
 config_global_mvp_drop_rate: 10000
 

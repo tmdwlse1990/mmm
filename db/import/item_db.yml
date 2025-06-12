@@ -295,6 +295,21 @@ Body:
     AegisName: Gacha_Ticket_Pass
     Name: Gacha Ticket
     Type: Etc
+  - Id: 2000010
+    AegisName: Beta_Test_Reward
+    Name: Beta Test Collection Reward
+    Type: Etc
+    Trade:
+      NoSell: true
+      NoDrop: true
+      NoTrade: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    CollectionScript: |
+      bonus2 bDropAddClass,Class_All,5;
 #   [Side Quest Item]
   - Id: 2005001
     AegisName: Golden_Egg

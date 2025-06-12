@@ -3139,9 +3139,9 @@ enum e_itemshop_restrictions {
 /// Enum for item drop effects
 enum e_item_drop_effect : uint16 {
 	DROPEFFECT_NONE = 0,
-	DROPEFFECT_CLIENT,
+	DROPEFFECT_CLIENT = 6,
 #if PACKETVER < 20200304
-	DROPEFFECT_WHITE_PILLAR,
+	DROPEFFECT_WHITE_PILLAR = 2,
 #endif
 	DROPEFFECT_BLUE_PILLAR,
 	DROPEFFECT_YELLOW_PILLAR,

@@ -2914,7 +2914,10 @@ int32 mob_getdroprate(struct block_list *src, std::shared_ptr<s_mob_db> mob, int
 				cap = battle_config.drop_rate_cap;
 
 			drop_rate = (int32)( 0.5 + drop_rate * drop_rate_bonus / 100. );
-
+			
+			if (sd) {
+				drop_rate += sd->bonus.drop_up;
+			}
 			// Now limit the drop rate to never be exceed the cap (default: 90%), unless it is originally above it already.
 			if( drop_rate > cap && base_rate < cap ){
 				drop_rate = cap;
@@ -3415,7 +3418,7 @@ int32 mob_dead(struct mob_data *md, struct block_list *src, int32 type)
 				if(it->type==IT_CARD && battle_config.autoattack_reduce_mode&AA_CARD)
 					drop_rate = drop_rate * (100-battle_config.autoattack_reduce_droprate) / 100;
 			}
-
+			
 			// attempt to drop the item
 			if (rnd() % 10000 >= drop_rate)
 				continue;
