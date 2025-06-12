@@ -1841,7 +1841,7 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-      - Item: Bs_Making_S
+      - Item: MVP_Option_Box_T1
         Rate: 5000
       - Item: Seed_Of_Yggdrasil
         Rate: 3000
@@ -1901,7 +1901,7 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-      - Item: Bs_Making_S
+      - Item: MVP_Option_Box_T1
         Rate: 5000
       - Item: Baphomet_Doll
         Rate: 2500
@@ -2232,7 +2232,7 @@ Body:
         Rate: 1500
       - Item: Blue_Potion
         Rate: 6000
-      - Item: Bs_Making_S
+      - Item: MVP_Option_Box_T1
         Rate: 5000
     Drops:
       - Item: Plate_Armor_
@@ -2883,7 +2883,7 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-      - Item: Bs_Making_S
+      - Item: MVP_Option_Box_T1
         Rate: 5000
       - Item: Royal_Jelly
         Rate: 4000
@@ -4224,7 +4224,7 @@ Body:
         Rate: 2000
       - Item: Ora_Ora
         Rate: 1000
-      - Item: Bs_Making_S
+      - Item: MVP_Option_Box_T1
         Rate: 5000
     Drops:
       - Item: Gold
@@ -4284,7 +4284,7 @@ Body:
     MvpDrops:
       - Item: Red_Jewel
         Rate: 2000
-      - Item: Bs_Making_S
+      - Item: MVP_Option_Box_T1
         Rate: 5000
       - Item: Steel
         Rate: 5000
@@ -5525,7 +5525,7 @@ Body:
         Rate: 5000
       - Item: Violet_Jewel
         Rate: 500
-      - Item: Bs_Making_S
+      - Item: MVP_Option_Box_T1
         Rate: 5000
     Drops:
       - Item: Saber_
@@ -5687,7 +5687,7 @@ Body:
         Rate: 5000
       - Item: Tiger_Footskin
         Rate: 1000
-      - Item: Bs_Making_S
+      - Item: MVP_Option_Box_T1
         Rate: 5000
     Drops:
       - Item: Fire_Brand
@@ -7248,7 +7248,7 @@ Body:
     MvpDrops:
       - Item: Crystal_Jewel
         Rate: 2000
-      - Item: Bs_Making_S
+      - Item: MVP_Option_Box_T1
         Rate: 5000
       - Item: Old_Violet_Box
         Rate: 2000
@@ -7406,7 +7406,7 @@ Body:
     MvpDrops:
       - Item: Fox_Tail
         Rate: 5000
-      - Item: Bs_Making_S
+      - Item: MVP_Option_Box_T1
         Rate: 5000
       - Item: Golden_Jewel
         Rate: 500
@@ -7747,7 +7747,7 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-      - Item: Bs_Making_S
+      - Item: MVP_Option_Box_T1
         Rate: 5000
       - Item: Royal_Jelly
         Rate: 5000
@@ -7857,7 +7857,7 @@ Body:
     MvpDrops:
       - Item: Frozen_Heart
         Rate: 500
-      - Item: Bs_Making_S
+      - Item: MVP_Option_Box_T1
         Rate: 5000
       - Item: Star_Crumb
         Rate: 4000
@@ -9261,7 +9261,7 @@ Body:
         Rate: 5500
       - Item: Old_Violet_Box
         Rate: 2000
-      - Item: Bs_Making_S
+      - Item: MVP_Option_Box_T1
         Rate: 5000
     Drops:
       - Item: Brood_Axe
@@ -12119,7 +12119,7 @@ Body:
     MvpDrops:
       - Item: Skyblue_Jewel
         Rate: 4500
-      - Item: Bs_Making_S
+      - Item: MVP_Option_Box_T1
         Rate: 5000
       - Item: Mistic_Frozen
         Rate: 3000
@@ -12182,7 +12182,7 @@ Body:
         Rate: 1000
       - Item: Old_Blue_Box
         Rate: 3000
-      - Item: Bs_Making_S
+      - Item: MVP_Option_Box_T1
         Rate: 5000
     Drops:
       - Item: Fang_Of_Garm
@@ -13164,7 +13164,7 @@ Body:
         Rate: 6000
       - Item: Blue_Coif_
         Rate: 500
-      - Item: Bs_Making_S
+      - Item: MVP_Option_Box_T1
         Rate: 5000
     Drops:
       - Item: Bone_Wand
@@ -15073,7 +15073,7 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-      - Item: Bs_Making_S
+      - Item: MVP_Option_Box_T1
         Rate: 5000
       - Item: Yggdrasilberry
         Rate: 1500
@@ -17641,7 +17641,7 @@ Body:
         Rate: 5000
       - Item: Old_Violet_Box
         Rate: 5000
-      - Item: Bs_Making_S
+      - Item: MVP_Option_Box_T1
         Rate: 5000
     Drops:
       - Item: Boroken_Shiled_Piece
@@ -18401,7 +18401,7 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-      - Item: Bs_Making_S
+      - Item: MVP_Option_Box_T1
         Rate: 5000
       - Item: Crystal_Jewel__
         Rate: 5000
@@ -19667,7 +19667,7 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-      - Item: Bs_Making_S
+      - Item: MVP_Option_Box_T1
         Rate: 5000
       - Item: Old_Violet_Box
         Rate: 5000
@@ -21949,7 +21949,7 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-      - Item: Bs_Making_S
+      - Item: MVP_Option_Box_T1
         Rate: 5000
       - Item: Seed_Of_Yggdrasil
         Rate: 3500
@@ -22804,7 +22804,7 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-      - Item: Bs_Making_S
+      - Item: MVP_Option_Box_T1
         Rate: 1000
       - Item: Seed_Of_Yggdrasil
         Rate: 3500
@@ -23141,7 +23141,7 @@ Body:
         Rate: 5500
       - Item: Celestial_Robe
         Rate: 2000
-      - Item: Old_Violet_Box
+      - Item: MVP_Option_Box_T1
         Rate: 5000
     Drops:
       - Item: Long_Hair
@@ -25187,7 +25187,7 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-      - Item: Bs_Making_S
+      - Item: MVP_Option_Box_T1
         Rate: 5000
       - Item: Old_Violet_Box
         Rate: 3000
@@ -26731,7 +26731,7 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-      - Item: Bs_Making_S
+      - Item: MVP_Option_Box_T1
         Rate: 5000
       - Item: Dark_Blindfold
         Rate: 3500
@@ -27028,7 +27028,7 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-      - Item: Bs_Making_S
+      - Item: MVP_Option_Box_T1
         Rate: 5000
       - Item: Celestial_Robe
         Rate: 2000
@@ -27751,6 +27751,7 @@ Body:
       - Item: Old_Violet_Box
         Rate: 5
         StealProtected: true
+# [Wait Tier2 Boss]
   - Id: 1646
     AegisName: B_SEYREN
     Name: Lord Knight Seyren
@@ -29753,7 +29754,7 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-      - Item: Bs_Making_S
+      - Item: MVP_Option_Box_T1
         Rate: 5000
       - Item: Dex_Dish10
         Rate: 5000

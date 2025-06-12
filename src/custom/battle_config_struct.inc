@@ -19,6 +19,8 @@ int32 refine_ui_lock_time; // Lock time in milliseconds for refine UI after each
 int enable_custom_pet_name;
 int pet_name_mode;
 
+int aspd_unlock_cap;
+
  int32 config_maxlv;
  int32 config_global_mvp_drop;
  int32 config_global_mvp_drop_rate;

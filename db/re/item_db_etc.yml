@@ -54512,8 +54512,9 @@ Body:
     Trade:
       NoSell: true
     Script: |
-      .@max_lvl = min(200,BaseLevel);
-      bonus bBaseAtk,35+5*(.@max_lvl/10);
+      .@max_lvl = min(90,BaseLevel);
+      bonus2 bAddClass,Class_All,5 + (.@max_lvl/9);
+      bonus2 bMagicAddClass,Class_All,5 + (.@max_lvl/9);
   - Id: 300551
     AegisName: CLB_SS_LL_Card
     Name: A-Ji and Geffen Card

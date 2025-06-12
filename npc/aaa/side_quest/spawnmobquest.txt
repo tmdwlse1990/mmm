@@ -1,0 +1,9 @@
+//<map name>{,<x>{,<y>{,<xs>{,<ys>}}}}%TAB%monster%TAB%<monster name>{,<monster level>}%TAB%<mob id>,<amount>{,<delay1>{,<delay2>{,<event>{,<mob size>{,<mob ai>}}}}}
+
+prt_fild10,0,0	monster	Golden Savage	1840,1,300000	//หมูทอง
+
+moc_fild01,0,0	monster	Maybe Pecopeco	27002,1,300000	//เป็ดเวร
+
+pay_fild02,0,0	monster	--ja--	27003,1,300000	//ราคาหมาป่าน้อย
+
+prontera,0,0	monster	--ja--	27004,1,300000	//	โปริ่งคิงส์

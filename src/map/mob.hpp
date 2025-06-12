@@ -28,7 +28,7 @@ struct guardian_data;
 #endif
 // The number of MVP drops all mobs can have
 #ifndef MAX_MVP_DROP
-	#define MAX_MVP_DROP 3
+	#define MAX_MVP_DROP 5
 #endif
 
 //Min time between AI executions

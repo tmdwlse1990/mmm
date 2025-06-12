@@ -4684,6 +4684,14 @@ void pc_bonus(map_session_data *sd,int32 type,int32 val)
 			if (sd->state.lr_flag != LR_FLAG_ARROW)
 				sd->special_state.no_fatal_dmg = 1;
 			break;
+		case SP_ASPD_CAP:	//Raw increase
+			if (sd->state.lr_flag != LR_FLAG_ARROW)
+				sd->bonus.aspd_cap += val;
+			break;
+		case SP_DROP_UP:	//Raw increase
+			if (sd->state.lr_flag != LR_FLAG_ARROW)
+				sd->bonus.drop_up += val;
+			break;
 		default:
 			if (current_equip_combo_pos > 0) {
 				ShowWarning("pc_bonus: unknown bonus type %d %d in a combo with item #%u\n", type, val, sd->inventory_data[pc_checkequip( sd, current_equip_combo_pos )]->nameid);
@@ -10481,8 +10489,10 @@ int64 pc_readparam(map_session_data* sd,int64 type)
 	nullpo_ret(sd);
 
 	switch(type) {
-		case SP_IGNORE_DEF_POINTS:	val = val = sd->bonus.ignoredef_point; break;
-		case SP_IGNORE_MDEF_POINTS:	val = val = sd->bonus.ignoremdef_point; break;
+		case SP_IGNORE_DEF_POINTS:	val = sd->bonus.ignoredef_point; break;
+		case SP_IGNORE_MDEF_POINTS:	val = sd->bonus.ignoremdef_point; break;
+		case SP_ASPD_CAP:	val = sd->bonus.aspd_cap; break;
+		case SP_DROP_UP:	val = sd->bonus.drop_up; break;
 		// [Custom Bonus]
 		case SP_SKILLPOINT:      val = sd->status.skill_point; break;
 		case SP_STATUSPOINT:     val = sd->status.status_point; break;
@@ -15922,11 +15932,19 @@ uint16 pc_maxparameter(map_session_data *sd, e_params param) {
 */
 int16 pc_maxaspd(map_session_data *sd) {
 	nullpo_ret(sd);
-
-	return (( sd->class_&JOBL_THIRD) ? battle_config.max_third_aspd : (
+	int16 aspd,inc = 0;
+			aspd = 
+			(( sd->class_&JOBL_THIRD) ? battle_config.max_third_aspd : (
 			((sd->class_&MAPID_UPPERMASK) == MAPID_KAGEROUOBORO || (sd->class_&MAPID_UPPERMASK) == MAPID_REBELLION) ? battle_config.max_extended_aspd : (
 			(sd->class_&MAPID_BASEMASK) == MAPID_SUMMONER) ? battle_config.max_summoner_aspd : 
 			battle_config.max_aspd ));
+		
+	if(sd) {
+		inc = sd->bonus.aspd_cap * 20;
+		aspd -= inc;
+		aspd = cap_value(aspd,(aspd + inc > battle_config.aspd_unlock_cap ? battle_config.aspd_unlock_cap : aspd + inc),MIN_ASPD);
+	}
+	return aspd;
 }
 
 /**
