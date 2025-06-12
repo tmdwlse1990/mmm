@@ -1,0 +1,130 @@
+prt_fild08,51,61,4	script	Spirit Stone	406,{
+
+	// ต้องเคยคุยกับแท่นหินก่อน
+	if (#summon_hint != 1) {
+		mes "[Summon Boss]";
+		mes "คุณไม่รู้ว่าจะใช้แท่นหินนี้อย่างไร...";
+		mes "บางอย่างขาดหายไป... ลองหาคำใบ้จากที่ไหนสักแห่ง...";
+		close;
+	}
+
+	// ป้องกันการเรียกซ้ำ
+	if ($@boss_active) {
+		mes "[Summon Boss]";
+		mes "มีบางอย่างอันตรายยังหลงเหลืออยู่ในพื้นที่...";
+		mes "โปรดจัดการก่อนทำพิธีใหม่อีกครั้ง";
+		close;
+	}
+
+	.@item1 = 502;
+	.@item2 = 503;
+	.@item3 = 504;
+
+	// ตรวจสอบ cooldown
+	if (gettimetick(2) < $@last_boss_summon + $@boss_cooldown) {
+		mes "[Summon Boss]";
+		mes "แท่นหินยังไม่พร้อมใช้งานในขณะนี้...";
+		close;
+	}
+
+	if (countitem(.@item1) >= 1 && countitem(.@item2) >= 1 && countitem(.@item3) >= 1) {
+		mes "[Summon Boss]";
+		mes "แท่นหินมีปฏิกิริยากับของในกระเป๋าคุณ...";
+		next;
+		mes "ไอเทมทั้ง 3 ชิ้นเกิดการสั่นพ้องกัน...";
+		mes "จะวางไอเทมทั้ง 3 ชิ้นลงบนแท่นหินหรือไม่?";
+		if (select("ใช่:ไม่") == 1) {
+			delitem .@item1, 1;
+			delitem .@item2, 1;
+			delitem .@item3, 1;
+
+			mes "แผ่นหินเกิดการสั่นไหวรุนแรง!!!";
+
+			.@min_x = 80;
+			.@max_x = 280;
+			.@min_y = 145;
+			.@max_y = 345;
+
+			.@x = rand(.@min_x, .@max_x);
+			.@y = rand(.@min_y, .@max_y);
+			.@map$ = strnpcinfo(4);
+
+			specialeffect EF_BOSSTELEPORT;
+			specialeffect EF_SUMMONMONSTER;
+
+			monster .@map$, .@x, .@y, "Boss Summon", 2109, 1, 0, "boss_controller::OnBossDead";
+
+			donpcevent "boss_controller::OnAutoRemove";
+			set $@boss_active, 1;
+			set $@last_boss_summon, gettimetick(2);
+			set $@boss_cooldown, rand(240, 360); // 4–6 ชั่วโมง
+
+			
+
+			announce "ผู้เล่น " + strcharinfo(0) + " ได้ทำการปลุกเสกบอสออกมาแล้ว!!!", bc_all;
+		} else {
+			mes "ยกเลิกการเรียกบอส";
+		}
+	} else {
+		mes "แท่นหินไม่เกิดปฏิกิริยาอะไร...";
+	}
+	close;
+}
+
+prt_fild08,57,61,4	script	M.Seer	471,{
+
+	if (#summon_hint == 1) {
+		mes "[Stone of Hint]";
+		mes "เสียงกระซิบจากหินแผ่วเบา...";
+		mes "'เจ้ารู้หนทางแล้ว... ขาดเพียงการลงมือ'";
+		close;
+	}
+
+	mes "[Stone of Hint]";
+	mes "เสียงกระซิบเบาๆ แว่วมา...";
+	mes "'รวมของจากธรรมชาติทั้งสาม วางบนแท่น จะปรากฏสิ่งที่ซ่อนอยู่...'";
+	next;
+
+	mes "[Stone of Hint]";
+	mes "เสียงยังไม่จางหาย... และเริ่มกระซิบถึง 'ของทั้งสาม'...";
+	next;
+
+	mes "^9999FF? ชิ้นที่หนึ่ง^000000";
+	mes "'เจ้าหมูป่าสีทอง ซ่อนตัวอยู่ในป่าลึก'";
+	mes "'มีพละกำลัง และความอึดเกินกว่าจะมองข้าม...'";
+	next;
+
+	mes "^9999FF? ชิ้นที่สอง^000000";
+	mes "'นกโบราณ ผู้มีอายุยืนยาว... เคลื่อนไหวว่องไวเกินสายตา'";
+	mes "'เงาสะท้อนในอากาศคือคำเตือนของมัน'";
+	next;
+
+	mes "^9999FF? ชิ้นที่สาม^000000";
+	mes "'จ่าฝูงหมาป่า คำรามก้องในลมหนาว'";
+	mes "'เหล่าลูกน้องไม่เคยห่างกาย ไม่เคยโดดเดี่ยว'";
+	next;
+
+	mes "[Stone of Hint]";
+	mes "'เมื่อครบทั้งสาม จงกลับมา...'";
+	specialeffect EF_BEGINSPELL;
+	set #summon_hint, 1;
+	close;
+}
+
+-	script	boss_controller	-1,{
+
+OnBossDead:
+	announce "บอสถูกกำจัดโดย " + rid2name(killerrid) + "!", bc_all;
+	set $@boss_active, 0;
+	end;
+
+OnAutoRemove:
+	
+	sleep 3600000; // 1 ชั่วโมง (60*60*1000 ms)
+	if ($@boss_active) {
+		killmonster "prt_file08","boss_controller::OnBossDead";
+		announce "บอสถูกกำจัดแล้ว!!!", bc_all;
+		set $@boss_active, 0;
+	}
+	end;
+}

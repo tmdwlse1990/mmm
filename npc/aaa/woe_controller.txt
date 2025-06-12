@@ -38,7 +38,7 @@ OnAgitStart:
 	}
 	end;
 }
-
+icecastle,198,201,4	duplicate(ข้อมูล WoE)	War Here#ice1	835
 // Script Core
 //============================================================
 -	script	WOE_CONTROL	-1,{
@@ -118,6 +118,8 @@ OnInit:
 	setarray .ShuffledCastles[0], 0; // อาร์เรย์เก็บลำดับ Castle ที่สุ่มแล้ว
 	
 
+	
+
 // -----------------------------------------------------------
 //  Reward options.
 // -----------------------------------------------------------
@@ -138,12 +140,12 @@ OnInit:
 // -----------------------------------------------------------
 
 	// Combine values as needed (e.g. 1|8 = 1+8 = 9).
-	set .Options, 1|8;
+	set .Options, 1|2|4;
 
 	// Rewards per castle.
 	//   setarray .reward_id[0],     <itemID>{,<itemID>,...}
 	//   setarray .reward_amount[0], <amount>{,<amount>,...}
-	setarray .reward_id[0],501;
+	setarray .reward_id[0],7227;
 	setarray .reward_amount[0],1000;
 
 	// Zeny reward:
@@ -700,4 +702,12 @@ while(1) {
 	case 5:
 		close;
 	} }
+
+}
+
+
+icecastle,198,201,4	script	 #war	111,{
+	Oninit:
+	waitingroom "Guild War",0;
+	end;
 }

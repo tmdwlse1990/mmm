@@ -49,6 +49,20 @@ Body:
       changedress: true
       resurrect: true
       load: true
+#      autoloot: true
+#      alootid: true
+#      autoloottype: true
+      whodrops: true
+      showdelay: true
+      exp: true
+      rates: true
+      autotrade: true
+      showexp: true
+      showzeny: true
+      whereis: true
+      # Feature commands
+      refresh: true
+      hideslave: true
     Permissions:
       # without this basic permissions regular players could not trade or party
       can_trade: true
@@ -180,8 +194,6 @@ Body:
     Inherit:
       Player: true
     Level: 0
-    Permissions:
-      all_commands: true
   - Id: 10
     Name: Law Enforcement 
     Inherit:

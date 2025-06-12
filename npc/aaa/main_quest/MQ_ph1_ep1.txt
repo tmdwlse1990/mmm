@@ -1,6 +1,11 @@
 icecastle,188,221,4	script	Chief Baron	EP18_NPC_SUAD,{
 
-	if (MQ == 1) {
+  set .@old_sprite, 21322;
+	if (Chief_AFK == 1) {
+		mes "รอบๆพื้นที่มีแต่กองเอกสารเต็มไปหมด.....";
+		close;
+	}
+	else if (MQ == 1) {
 		mes "[ผู้ใหญ่บ้าน]";
 		mes "อ้าว... มาหาผมเหรอ?";
 		emotion e_ho; // ยิ้มต้อนรับ
@@ -141,7 +146,7 @@ icecastle,188,221,4	script	Chief Baron	EP18_NPC_SUAD,{
 		}
 	}
 
-	else if (MQ == 6) {
+	else if (MQ >= 6) {
 		mes "[ผู้ใหญ่บ้าน]";
 		mes "ขอบใจเจ้ามากๆเลยนะ!!";
 		emotion e_kis;
@@ -153,8 +158,14 @@ icecastle,188,221,4	script	Chief Baron	EP18_NPC_SUAD,{
 		mes "[ผู้ใหญ่บ้าน]";
 		mes "เหมือนข้าจะมีงานด่วนเข้าพอดีเลย!! ไว้คุยกับข้าทีหลังนะ!!";
 		emotion e_sry;
-		close;
+		close2;
+		specialeffect EF_TELEPORTATION2,AREA,"Chief Baron";
+		setnpcdisplay("Chief Baron", 10391); 
+		set Chief_AFK,1;
+		sleep 300000;
+		setnpcdisplay("Chief Baron", .@old_sprite); 
 	}
+	
 
 	else {
 		mes "[ผู้ใหญ่บ้าน]";
@@ -170,4 +181,4 @@ icecastle,188,221,4	script	Chief Baron	EP18_NPC_SUAD,{
 }
 
 
-mjolnir_09,0,0	monster	GOLDEN SAVAGE(BABY)	1840,1,3600000
+mjolnir_09,0,0	monster	GOLDEN SAVAGE(BABY)	1840,1

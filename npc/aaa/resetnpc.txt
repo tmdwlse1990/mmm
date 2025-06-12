@@ -11,7 +11,7 @@
 //=	Changed set -> setarray, Improved text with F_InsertPlural
 //= 1.5 Added sc_end_class to reset related status changes [sader1992]
 //============================================================
-icecastle,185,193,4	script	Reset Girl	124,{
+icecastle,197,155,4	script	Reset Girl	124,{
 	//	 		Skills,	Stats,	Both,	Limit
 	setarray .@Reset,	700000,	700000,	1000000,	0;
 	mes "[Reset Girl]";
@@ -52,5 +52,6 @@ icecastle,185,193,4	script	Reset Girl	124,{
 	close;
 Oninit:
 	setunittitle(getnpcid(0), "<Reset Your ways>");
+	waitingroom "Reset Status/Skill",0;
 	end;
 }

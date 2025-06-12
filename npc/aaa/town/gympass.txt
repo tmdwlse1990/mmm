@@ -108,4 +108,7 @@ icecastle,204,155,4	script	Ripped Cabus#GymPass_icecas	899,{
 			close;
 		}
 	}
+	OnInit:
+	waitingroom "Gym Guys",0;
+	end;
 }

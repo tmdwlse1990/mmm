@@ -1,5 +1,4 @@
 icecastle,183,221,5	script	This Is A Cat	10537,{
-
 	// ===============================
 	// GM เริ่ม / หยุด กิจกรรม
 	// ===============================
@@ -10,29 +9,34 @@ icecastle,183,221,5	script	This Is A Cat	10537,{
 			mes "คุณต้องการหยุดกิจกรรมหรือไม่?";
 			if (select("หยุดกิจกรรม:ยกเลิก") == 1) {
 				$@status_event_active = 0;
+				$@event_started = 0;
 				stopnpctimer;
 				deltimer "This Is A Cat::OnTimer1000";
 				announce "[กิจกรรมสุ่มสถานะ] กิจกรรมถูกหยุดโดย GM.", bc_all;
-				close;
+				end;
 			}
-			close;
+			end;
 		}
 
 		mes "[Event Staff]";
 		mes "คุณต้องการเริ่มกิจกรรมหรือไม่?";
-		if (select("เริ่มกิจกรรม:ยกเลิก") == 2) close;
+		if (select("เริ่มกิจกรรม:ยกเลิก") == 2) {
+			end;
+		}
 
 		$@status_event_active = 1;
 		$@status_event_winner$ = "";
-		$@event_countdown = 60; // เริ่มถอยหลัง 60 วินาที
+		$@event_countdown = 60;
+		$@event_started = 0; // กิจกรรมยังไม่เริ่มอย่างเป็นทางการ
 
 		announce "[กิจกรรมสุ่มสถานะ] เร่เข้ามา!! ทุกคนมาที่ icecastle 184,221 ข้างผู้ใหญ่บ้าน!!!", bc_all;
 		announce "[กิจกรรมสุ่มสถานะ] รางวัลใหญ่คือ หญ้ายีในตำนาน ที่ใครๆ ก็อยากได้! มาเลย!", bc_all;
 		announce "[กิจกรรมสุ่มสถานะ] กิจกรรมจะเริ่มใน 1 นาที!", bc_all;
 
 		addtimer 1000, "This Is A Cat::OnTimer1000";
+		addtimer 360000, "This Is A Cat::OnTimer300000";
 		initnpctimer; // เริ่มนับเวลา 5 นาทีหลัก
-		close;
+		end;
 	}
 
 	// ===============================
@@ -41,13 +45,19 @@ icecastle,183,221,5	script	This Is A Cat	10537,{
 	if (!$@status_event_active) {
 		mes "[กิจกรรม]";
 		mes "กิจกรรมยังไม่เริ่ม หรือได้สิ้นสุดไปแล้ว.";
-		close;
+		end;
+	}
+
+	if (!$@event_started) {
+		mes "[กิจกรรม]";
+		mes "กิจกรรมยังไม่เริ่ม รออีกสักครู่...";
+		end;
 	}
 
 	if ($@status_event_winner$ != "") {
 		mes "[กิจกรรม]";
 		mes "ผู้ชนะคือ " + $@status_event_winner$ + ".";
-		close;
+		end;
 	}
 
 	// โอกาสชนะ 3%
@@ -58,8 +68,10 @@ icecastle,183,221,5	script	This Is A Cat	10537,{
 		announce "[กิจกรรมสุ่มสถานะ] ผู้ชนะคือ " + strcharinfo(0) + "!", bc_all;
 		getitem 2001101, 1; // หญ้ายีในตำนาน
 		$@status_event_active = 0;
+		$@event_started = 0;
 		stopnpctimer;
 		deltimer "This Is A Cat::OnTimer1000";
+		deltimer "This Is A Cat::OnTimer300000";
 		end;
 	}
 
@@ -79,7 +91,7 @@ icecastle,183,221,5	script	This Is A Cat	10537,{
 		case 11: sc_start SC_STUN, 5000, 0; break;
 		case 12: sc_start SC_SLEEP, 5000, 0; break;
 	}
-	close;
+	end;
 
 	// ===============================
 	// OnTimer - 5 นาทีหมดเวลา
@@ -92,6 +104,7 @@ OnTimer300000:
 	}
 	$@status_event_active = 0;
 	$@status_event_winner$ = "";
+	$@event_started = 0;
 	end;
 
 	// ===============================
@@ -107,14 +120,18 @@ OnTimer1000:
 		announce "[กิจกรรมสุ่มสถานะ] กิจกรรมจะเริ่มใน " + $@event_countdown + " วินาที!", bc_all;
 	} else if ($@event_countdown == 0) {
 		announce "[กิจกรรมสุ่มสถานะ] กิจกรรมเริ่มแล้ว! กด NPC เพื่อเข้าร่วมและลุ้นรางวัล!", bc_all;
+		$@event_started = 1;
 		deltimer "This Is A Cat::OnTimer1000";
 		end;
 	}
 
 	addtimer 1000, "This Is A Cat::OnTimer1000";
 	end;
-	
-	Oninit:
+
+	// ===============================
+	// เริ่มสร้างห้องรอ
+	// ===============================
+OnInit:
 	waitingroom "Event : That Cat",0;
 	end;
 }

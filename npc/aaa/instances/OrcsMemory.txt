@@ -204,7 +204,15 @@ gef_fild10,242,202,0	script	Dimensional Gorge Piece	406,{
 					close;
 			}
 		}
+		else {
+			if(select("เข้าดันเลย:ยังก่อน") == 2 ) end;
+			callsub L_Enter,0;
+		}
 	} else if (.@orctime == 0 || .@orctime == 1) {
+		mes "คุณออกมาแล้ว ไม่สามารถกลับเข้าไปได้";
+		mes "กรุณารอรอบถัดไป";
+		close;
+		/*
 		mes "คุณสามารถเข้าสู่ดันเจี้ยนได้หากมันถูกสร้างขึ้นแล้ว.";
 		next;
 		switch(select("เข้าสู่ "+.@md_name$+":ยกเลิก")) {
@@ -214,12 +222,13 @@ gef_fild10,242,202,0	script	Dimensional Gorge Piece	406,{
 				close;
 		}
 		callsub L_Enter,0;
+		*/
 	} else if (.@orctime == 2) {
 		mes "^0000ffบันทึกทั้งหมดและผลกระทบที่เกี่ยวข้องกับดันเจี้ยน Orc's Memory ถูกลบออกแล้ว คุณสามารถสร้างใหม่หรือเข้าสู่ดันเจี้ยนได้อีกครั้ง.^000000";
 		erasequest 12059;
 		close;
 	}
-	mes "In order to generate a dungeon you must be the Party Leader and have at least 2 members in the party.";
+	mes "ถ้าเห็นข้อความนี้แจ้ง GM ด้วยนะ";
 	close;
 L_Enter:
 	switch(instance_enter("Orc's Memory")) {
@@ -229,6 +238,8 @@ L_Enter:
 	case IE_NOINSTANCE:
 		mes "Memorial Dungeon Orc's Memory does not exist.";
 		mes "Memorial Dungeon has been destroyed by the Party Leader, or because of the time limit. Please try again after 2 hours.";
+		mes "แปลไทยว่า ดันยังไม่เปิด";
+		mes "อีก 2 ชั่วโมงมาลองใหม่เน้อ";
 		close;
 	case IE_NOMEMBER:
 		mes "Only a member of the party can enter the Memorial Dungeon.";
@@ -1134,12 +1145,13 @@ OnMyMobDead:
 	end;
 }
 
-2@orcs,182,8,0	script	#Warp Outside Orc Dun	45,3,3,{
+2@orcs,182,8,0	script(CLOAKED)	#Warp Outside Orc Dun	45,3,3,{
 OnInstanceInit:
 	disablenpc instance_npcname("#Warp Outside Orc Dun");
 	end;
 
 OnEnable:
+	cloakoffnpc instance_npcname("#Warp Outside Orc Dun");
 	enablenpc instance_npcname("#Warp Outside Orc Dun");
 	end;
 
@@ -1582,24 +1594,25 @@ mes (gettime(3)>= 6&&gettime(3)<= 12?"Good Morning":(gettime(3)>=13&&gettime(3)<
 mes "Each Shop from the menu may purchase using different ^FF0000Orcs Memory Points^000000.";
 next;
 // Menu Selection
-select("[ Easy Points ] Consumable"
-		,"[ Easy Points ] Equips"
-		,"[ Easy Points ] Etc"
-		);
+select(
+		"[ Easy Points ] Consumable",
+		"[ Easy Points ] Equips",
+		"[ Easy Points ] Etc";
 		/*
-		,"[ Veteran Points ] Consumable"
-		,"[ Veteran Points ] Equips"
-		,"[ Veteran Points ] Etc"
-		,"[ Nightmare Points ] Consumable"
-		,"[ Nightmare Points ] Equips"
-		,"[ Nightmare Points ] Etc"
-		,"[ Hell Points ] Consumable"
-		,"[ Hell Points ] Equips"
-		,"[ Hell Points ] Etc"
-		,"[ Torment Points ] Consumable"
-		,"[ Torment Points ] Equips"
-		,"[ Torment Points ] Etc");		
+		"[ Veteran Points ] Consumable",
+		"[ Veteran Points ] Equips",
+		"[ Veteran Points ] Etc",
+		"[ Nightmare Points ] Consumable",
+		"[ Nightmare Points ] Equips",
+		"[ Nightmare Points ] Etc",
+		"[ Hell Points ] Consumable",
+		"[ Hell Points ] Equips",
+		"[ Hell Points ] Etc",
+		"[ Torment Points ] Consumable",
+		"[ Torment Points ] Equips",
+		"[ Torment Points ] Etc"),
 		*/
+		);
 ClearData();
 ShopSettings( @menu );
 npcshopitem "Orcs_Shop",512,100;
@@ -2099,10 +2112,10 @@ function	ErrorNotice	{
 function	CurrencyInfo	{
 	if( getitemname( atoi( getarg(0) ) ) != "null" ){
 		mes "Currency : [ ^FF0000"+getitemname( atoi( getarg(0) ) )+"^000000 ]";
-		mes "Available Amount : [ ^0000FF"+ValueConvert( countitem( atoi( getarg(0) ) ) )+"^000000 ]";
+		mes "Available Amount ("+getarg(0)+") : [ ^0000FF"+ValueConvert( countitem( atoi( getarg(0) ) ) )+"^000000 ]";
 	}else if( getitemname( atoi( getarg(0) ) ) == "null" ){
 		mes "Currency : [ ^FF0000"+getarg(0)+"^000000 ]";
-		mes "Available Amount : [ ^0000FF"+ValueConvert( getd( getarg(0) ) )+"^000000 ]";
+		mes "Available Amount ("+getarg(0)+"): [ ^0000FF"+ValueConvert( getd( getarg(0) ) )+"^000000 ]";
 	}
 return;
 }

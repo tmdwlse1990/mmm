@@ -1,0 +1,81 @@
+icecastle,184,212,5	script	ผู้ช่วยเล่น	800,{
+
+	mes "[ผู้ช่วยเล่น]";
+	mes "ฉันมีบริการช่วยเล่นให้กับผู้กล้าทุกคน!";
+	next;
+
+	switch(select("1. รับฟรี 2 ชั่วโมง (วันละครั้ง):2. ซื้อบริการเช่า AI:3. ไม่มีอะไร")) {
+		
+		// 1. รับฟรี 2 ชั่วโมง
+		case 1:
+			// เช็คว่ามีของเช่าอยู่หรือไม่
+			if (#rental_ai_expire > gettimetick(2)) {
+				mes "[ผู้ช่วยเล่น]";
+				mes "คุณยังมีไอเทมเช่าอยู่! โปรดใช้ให้หมดก่อน.";
+				close;
+			}
+
+			// ตรวจสอบ cooldown 24 ชั่วโมง (86400 วินาที)
+			if (#rental_ai_free_cooldown > gettimetick(2)) {
+				set .@remain, #rental_ai_free_cooldown - gettimetick(2);
+				set .@hour, .@remain / 3600;
+				set .@min, (.@remain % 3600) / 60;
+				mes "[ผู้ช่วยเล่น]";
+				mes "คุณได้รับของฟรีไปแล้ววันนี้!";
+				mes "กลับมาอีกครั้งในอีก " + .@hour + " ชม. " + .@min + " นาที.";
+				close;
+			}
+
+			// แจกของฟรี 2 ชั่วโมง
+			set .@duration, 2 * 3600;
+			rentitem 1201, .@duration;
+			set #rental_ai_expire, gettimetick(2) + .@duration;
+			set #rental_ai_free_cooldown, gettimetick(2) + 86400;
+
+			mes "[ผู้ช่วยเล่น]";
+			mes "รับ Knife สำหรับเช่า 2 ชั่วโมงเรียบร้อย!";
+			close;
+
+		// 2. ซื้อบริการเช่า AI
+		case 2:
+			if (#rental_ai_expire > gettimetick(2)) {
+				mes "[ผู้ช่วยเล่น]";
+				mes "คุณยังมีไอเทมเช่าอยู่! โปรดใช้ให้หมดก่อน.";
+				close;
+			}
+
+			mes "[ผู้ช่วยเล่น]";
+			mes "ค่าบริการอยู่ที่ 100,000 Zeny ต่อชั่วโมง";
+			mes "คุณต้องการใช้บริการกี่ชั่วโมง? (1-24)";
+			input .@hour;
+
+			if (.@hour < 1 || .@hour > 24) {
+				mes "กรุณาใส่จำนวนชั่วโมงระหว่าง 1 ถึง 24 เท่านั้น!";
+				close;
+			}
+
+			set .@cost, .@hour * 100000;
+
+			if (Zeny < .@cost) {
+				mes "คุณมี Zeny ไม่เพียงพอ ต้องใช้ทั้งหมด " + .@cost + " Zeny.";
+				close;
+			}
+
+			// หักเงิน
+			set Zeny, Zeny - .@cost;
+
+			// ให้ไอเทม
+			set .@duration, .@hour * 3600;
+			rentitem 1201, .@duration;
+			set #rental_ai_expire, gettimetick(2) + .@duration;
+
+			mes "เรียบร้อย! คุณเช่า Knife สำหรับ " + .@hour + " ชั่วโมง.";
+			close;
+
+		// 3. ไม่มีอะไร
+		case 3:
+			mes "[ผู้ช่วยเล่น]";
+			mes "ไว้เจอกันใหม่!";
+			close;
+	}
+}

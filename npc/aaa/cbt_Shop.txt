@@ -1,4 +1,4 @@
--	shop	beta_shop	-1,6635:100
+-	shop	beta_shop	-1,6635:100,714:100
 icecastle,196,211,4	script	Beta-Shopper	4_F_BIJOU,{
 	
 	zeny = INT_MAX;

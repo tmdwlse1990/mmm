@@ -1,0 +1,130 @@
+//-------------- NPC คราฟของ more item ------------------
+icecastle,185,212,5	script	Craft Event	63,{
+
+	if (#CRAFT_DONE) {
+		mes "[Henry]";
+		mes "เธอเคยคราฟสำเร็จไปแล้วนะ!";
+		mes "ฉันทำให้แค่ครั้งเดียวเท่านั้น!";
+		close;
+	}
+// แสดงเมนูพร้อมโชว์โอกาสสำเร็จของแต่ละสูตร
+	.@m1 = getd("#CRAFT_SLOT_1_CHANCE"); if (.@m1 == 0) .@m1 = 5;
+	.@m2 = getd("#CRAFT_SLOT_2_CHANCE"); if (.@m2 == 0) .@m2 = 10;
+	.@m3 = getd("#CRAFT_SLOT_3_CHANCE"); if (.@m3 == 0) .@m3 = 20;
+	.@m4 = getd("#CRAFT_SLOT_4_CHANCE"); if (.@m4 == 0) .@m4 = 40;
+	mes "[Henry]";
+	mes "เฮ้ พี่! อยากให้ฉันช่วยคราฟอะไรให้ไหม?";
+	mes "สูตรคราฟ 1 ^i[644] [โอกาสสำเร็จ: " + .@m1 + "%]";
+	mes "สูตรคราฟ 2 ^i[603] [โอกาสสำเร็จ: " + .@m2 + "%]";
+	mes "สูตรคราฟ 3 ^i[617] [โอกาสสำเร็จ: " + .@m3 + "%]";
+	mes "สูตรคราฟ 4 ^i[7951] [โอกาสสำเร็จ: " + .@m4 + "%]";
+	next;
+
+	
+
+	switch(select(
+    "สูตรคราฟ 1",
+    "สูตรคราฟ 2",
+    "สูตรคราฟ 3",
+    "สูตรคราฟ 4",
+    "รีเซ็ตโอกาส",
+    "ไม่เป็นไร")) {
+
+case 1:
+    callsub S_CRAFT, 1, 1, 644,1, 7647, 1; end;
+case 2:
+    callsub S_CRAFT, 2, 1, 603,1, 7647, 10; end;
+case 3:
+    callsub S_CRAFT, 3, 1, 617,1, 7647, 20; end;
+case 4:
+    callsub S_CRAFT, 4, 1, 7951,1, 7647, 30; end;
+case 5:
+    // รีเซ็ตค่าโอกาสคราฟกลับเป็นค่าเริ่มต้น
+    setd("#CRAFT_SLOT_1_CHANCE", 5);
+    setd("#CRAFT_SLOT_2_CHANCE", 10);
+    setd("#CRAFT_SLOT_3_CHANCE", 20);
+    setd("#CRAFT_SLOT_4_CHANCE", 40);
+    mes "[Henry]";
+    mes "รีเซ็ตโอกาสสำเร็จของทุกสูตรเรียบร้อยแล้ว!";
+    close;
+case 6:
+    mes "[Henry]";
+    mes "ไว้คราวหน้า!";
+    close;
+}
+
+end;
+
+
+//------ ฟังก์ชันคราฟหลายวัตถุดิบ ------
+S_CRAFT:
+	.@slot = getarg(0);
+	.@req_count = getarg(1);
+	.@arg_offset = 2;
+	.@output_item = getarg(.@arg_offset + .@req_count * 2);
+	.@fail_bonus = getarg(.@arg_offset + .@req_count * 2 + 1);
+
+	.@chance_var$ = "#CRAFT_SLOT_" + .@slot + "_CHANCE";
+	.@success_rate = getd(.@chance_var$);
+		if (.@success_rate == 0) {
+			switch(.@slot) {
+				case 1: setd(.@chance_var$, 5);
+				case 2: setd(.@chance_var$, 10);
+				case 3: setd(.@chance_var$, 20);
+				case 4: setd(.@chance_var$, 40);
+			}
+		}
+	.@success_rate = getd(.@chance_var$);
+
+	mes "[Henry]";
+	mes "การคราฟชิ้นนี้ต้องใช้:";
+
+	for (.@i = 0; .@i < .@req_count; .@i++) {
+		.@id = getarg(.@arg_offset + .@i * 2);
+		.@cnt = getarg(.@arg_offset + .@i * 2 + 1);
+		.@name$ = getitemname(.@id);
+		mes "• ^0000FF" + .@name$ + "^000000 จำนวน " + .@cnt + " ชิ้น";
+
+		if (countitem(.@id) < .@cnt) {
+			mes "^FF0000คุณมีวัตถุดิบไม่พอ!^000000";
+			close;
+		}
+	}
+
+	.@output_name$ = getitemname(.@output_item);
+
+	mes "โอกาสสำเร็จ: ^00FF00" + .@success_rate + "%^000000";
+	next;
+	mes "จะเริ่มคราฟเลยไหม?";
+	if(select("คราฟเลย!:ยังก่อน") == 2) close;
+
+	// ลบวัตถุดิบ
+	for (.@i = 0; .@i < .@req_count; .@i++) {
+		.@id = getarg(.@arg_offset + .@i * 2);
+		.@cnt = getarg(.@arg_offset + .@i * 2 + 1);
+		delitem .@id, .@cnt;
+	}
+
+	specialeffect EF_MAGICROD;
+	progressbar_NPC "00CCFF", 3;
+
+	if (rand(100) < .@success_rate) {
+		specialeffect EF_REFINEOK;
+		mes "[Henry]";
+		mes "เยี่ยม! คราฟสำเร็จ!";
+		mes "คุณได้รับ ^00FF00" + .@output_name$ + "^000000";
+		getitem .@output_item, 1;
+		set #CRAFT_DONE, 1; // ? ตั้งค่าครั้งแรกที่สำเร็จ
+	} else {
+		specialeffect EF_CLAYMORE;
+		mes "[Henry]";
+		mes "แย่จัง... ไม่สำเร็จแฮะ";
+		mes "คราวหน้าโอกาสจะเพิ่มขึ้นอีก ^FF0000+" + .@fail_bonus + "%^000000";
+		setd(.@chance_var$, .@success_rate + .@fail_bonus);
+	}
+	end;
+	
+	Oninit:
+	waitingroom "Crafting Event",0;
+	end;
+}

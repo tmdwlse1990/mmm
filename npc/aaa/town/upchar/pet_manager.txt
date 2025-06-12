@@ -62,4 +62,4 @@ Oninit:
 
 //icecastle,208,158,0	script	Pet Manager#icecastle	802
 icecastle,208,158,0	duplicate(#pet_manager)	Pet Manager#ice1	802
-icecastle,214,158,0	duplicate(#pet_showcase)	Pet Show#ice1	802
+icecastle,214,158,4	duplicate(#pet_showcase)	Pet Show#ice1	564

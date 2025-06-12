@@ -112,7 +112,7 @@ icecastle,147,85,5	script	Henry ผู้หิวโซ	870,{
 icecastle,157,206,4	script	Karen	918,{
 
 	// ? เคยคุยกับ Kaya แล้ว เข้าใจภาษาแมว
-	if (@cat_lang == 1 && SQhidden == 2) {
+	if (#cat_lang == 1 && SQhidden == 2) {
 		mes "[Karen]";
 		mes "อืม... ดูเหมือนว่าเธอไปเจอเด็กหูแมวคนนั้นมาแล้วสินะ...";
 		emotion ET_THINK;
