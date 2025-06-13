@@ -1597,7 +1597,7 @@ next;
 select(
 		"[ Easy Points ] Consumable",
 		"[ Easy Points ] Equips",
-		"[ Easy Points ] Etc";
+		"[ Easy Points ] Etc"
 		/*
 		"[ Veteran Points ] Consumable",
 		"[ Veteran Points ] Equips",

@@ -45,9 +45,67 @@ Header:
   Type: BARTER_DB
   Version: 2
 
-Footer:
-  Imports:
-  - Path: npc/aaa/barter/powerupitem.yml
-  - Path: npc/aaa/barter/hat_quest.yml
-  - Path: npc/aaa/barter/ticket_seller.yml
-  - Path: npc/aaa/barter/event_pet.yml
+Body:
+  - Name: Event Pet Epic
+    Map: icecastle
+    X: 186
+    Y: 217
+    Direction: South
+    Sprite: 4_EP18_PAPERS
+    Items:
+      - Index: 0
+        Item: Angeling_Egg
+        Stock: 2
+        RequiredItems:
+          - Index: 0
+            Item: Savage_Bebe_Egg
+            Amount: 20
+      - Index: 1
+        Item: Cat_O_Nine_Tail_Egg
+        Stock: 2
+        RequiredItems:
+          - Index: 0
+            Item: Savage_Bebe_Egg
+            Amount: 20
+      - Index: 2
+        Item: Dark_Illusion_Egg
+        Stock: 2
+        RequiredItems:
+          - Index: 0
+            Item: Savage_Bebe_Egg
+            Amount: 20
+      - Index: 3
+        Item: Ghostring_Egg
+        Stock: 2
+        RequiredItems:
+          - Index: 0
+            Item: Savage_Bebe_Egg
+            Amount: 20
+      - Index: 4
+        Item: Gryphon_Egg
+        Stock: 2
+        RequiredItems:
+          - Index: 0
+            Item: Savage_Bebe_Egg
+            Amount: 20
+      - Index: 5
+        Item: Hydro_Egg
+        Stock: 2
+        RequiredItems:
+          - Index: 0
+            Item: Savage_Bebe_Egg
+            Amount: 20
+      - Index: 6
+        Item: Mutant_Dragon_Egg
+        Stock: 2
+        RequiredItems:
+          - Index: 0
+            Item: Savage_Bebe_Egg
+            Amount: 20
+      - Index: 7
+        Item: Owl_Baron_Egg
+        Stock: 2
+        RequiredItems:
+          - Index: 0
+            Item: Savage_Bebe_Egg
+            Amount: 20

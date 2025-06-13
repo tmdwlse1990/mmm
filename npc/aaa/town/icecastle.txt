@@ -1,0 +1,7 @@
+icecastle	mapflag	town
+icecastle	mapflag	nodrop
+icecastle	mapflag	novending
+icecastle	mapflag	nobuyingstore
+icecastle	mapflag	nopenalty
+icecastle	mapflag	nobranch
+icecastle	mapflag	noicewall
