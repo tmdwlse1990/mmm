@@ -51490,7 +51490,6 @@ Body:
       Container: true
     Trade:
       NoDrop: true
-      NoTrade: true
       NoSell: true
       NoCart: true
       NoGuildStorage: true
@@ -51719,7 +51718,6 @@ Body:
       Container: true
     Trade:
       NoDrop: true
-      NoTrade: true
       NoSell: true
       NoCart: true
       NoGuildStorage: true
@@ -53351,7 +53349,6 @@ Body:
       Container: true
     Trade:
       NoDrop: true
-      NoTrade: true
       NoSell: true
       NoCart: true
       NoGuildStorage: true

@@ -1,5 +1,10 @@
 icecastle,188,199,1	script	ออเดิร์ฟ#new_commer	4_M_NOV_RUMIN,{
 	.@npcname$ = "[ Old Minister ]";
+	if(#Quest_Shark_S) {
+			mes .@npcname$;
+			mes "ขอบคุณมากๆนะ";
+			close;
+	}
 	switch( checkquest(1) ) {
 		case -1:
 			mes .@npcname$;
@@ -23,6 +28,7 @@ icecastle,188,199,1	script	ออเดิร์ฟ#new_commer	4_M_NOV_RUMIN,{
 				mes "ไหนๆก็ไหนๆแล้ว ไปดูแมวแถวๆท่าเรือหน่อยนะ ดูจะหิวมากๆเลย";
 				completequest 1;
 				getitem 2000002,1;
+				#Quest_Shark_S = 1;
 				next;
 				break;
 			default:

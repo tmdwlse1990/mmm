@@ -1,6 +1,13 @@
 alberta,211,129,5	script	แมวที่หิวโหย	4_EP20_NYAR,{
 	.@npcname$ = "[ แมวของโลก ]";
 	.@itemquest = 579;
+	if(#Quest_Shark_H) {
+			mes .@npcname$;
+			mes "ว่างายยย";
+			mes "มาเยี่ยมข้ากับหวานใจหรออ";
+			mes "นี่ไง หวานใจของข้า [มี่จัง]!!!";
+			close;
+	}
 		if(!isbegin_quest(5) ) {
 			if(!isbegin_quest(4) ) {
 				if(!isbegin_quest(3) ) {
@@ -116,6 +123,7 @@ alberta,211,129,5	script	แมวที่หิวโหย	4_EP20_NYAR,{
 				specialeffect2 800;
 				specialeffect2 804;
 				getitem 2000003,1;
+				#Quest_Shark_H = 1;
 				next;
 				mes .@npcname$;
 				mes "จริงๆเทพหมาที่ข้ารู้จักเหมือนจะมีปัญหานะ";

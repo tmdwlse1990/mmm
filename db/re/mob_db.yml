@@ -183,7 +183,7 @@ Body:
         Rate: 150
       - Item: Unripe_Apple
         Index: 6
-        Rate: 20
+        Rate: 500
       - Item: Poring_Card
         Index: 7
         Rate: 20
@@ -3094,7 +3094,7 @@ Body:
       - Item: Carrot
         Rate: 3000
       - Item: Rainbow_Carrot
-        Rate: 20
+        Rate: 500
       - Item: Lunatic_Card
         Rate: 20
         StealProtected: true
@@ -3142,7 +3142,7 @@ Body:
       - Item: Old_Blue_Box
         Rate: 1
       - Item: Rotten_Fish
-        Rate: 10
+        Rate: 500
       - Item: Megalodon_Card
         Rate: 1
         StealProtected: true
@@ -3432,7 +3432,7 @@ Body:
       - Item: Insect_Feeler
         Rate: 225
       - Item: Earthworm_The_Dude
-        Rate: 10
+        Rate: 500
       - Item: Kukre_Card
         Rate: 1
         StealProtected: true
@@ -3480,7 +3480,7 @@ Body:
       - Item: Oridecon_Stone
         Rate: 22
       - Item: Well_Dried_Bone
-        Rate: 10
+        Rate: 500
       - Item: Pirate_Skel_Card
         Rate: 1
         StealProtected: true
@@ -3891,7 +3891,7 @@ Body:
       - Item: Poison_Herb_Makulata
         Rate: 150
       - Item: Bitter_Herb
-        Rate: 10
+        Rate: 500
       - Item: Stem
         Rate: 1500
       - Item: Pointed_Scale
@@ -4106,7 +4106,7 @@ Body:
         Rate: 50
       - Item: Dew_Laden_Moss
         Index: 2
-        Rate: 20
+        Rate: 500
       - Item: Feather
         Index: 3
         Rate: 2000
@@ -4167,7 +4167,7 @@ Body:
         Rate: 50
       - Item: Dew_Laden_Moss
         Index: 2
-        Rate: 20
+        Rate: 500
       - Item: Feather
         Index: 3
         Rate: 1000
@@ -4441,7 +4441,7 @@ Body:
       - Item: Snowy_Horn
         Rate: 100
       - Item: Unripe_Apple
-        Rate: 25
+        Rate: 500
       - Item: Scarlet_Jewel
         Rate: 500
       - Item: Angel's_Safeguard
@@ -4596,7 +4596,7 @@ Body:
       - Item: Four_Leaf_Clover
         Rate: 1
       - Item: Rainbow_Carrot
-        Rate: 25
+        Rate: 500
       - Item: Angel's_Protection
         Rate: 500
       - Item: Eclipse_Card
@@ -5594,7 +5594,7 @@ Body:
         Rate: 400
       - Item: Orange_Juice
         Index: 6
-        Rate: 20
+        Rate: 500
       - Item: Drops_Card
         Index: 7
         Rate: 20
@@ -5844,7 +5844,7 @@ Body:
       - Item: Leaflet_Of_Aloe
         Rate: 25
       - Item: Singing_Flower
-        Rate: 10
+        Rate: 500
       - Item: Stem
         Rate: 1000
       - Item: Witherless_Rose
@@ -6293,7 +6293,7 @@ Body:
       - Item: Foolishness_Of_Blind
         Rate: 1
       - Item: Fatty_Chubby_Earthworm
-        Rate: 10
+        Rate: 500
       - Item: Hode_Card
         Rate: 1
         StealProtected: true
@@ -7971,7 +7971,7 @@ Body:
       - Item: Wing_Of_Fly
         Rate: 500
       - Item: Dew_Laden_Moss
-        Rate: 10
+        Rate: 500
       - Item: Center_Potion
         Rate: 25
       - Item: Plankton_Card
@@ -12070,7 +12070,7 @@ Body:
       - Item: Apple
         Rate: 2750
       - Item: Unripe_Apple
-        Rate: 20
+        Rate: 500
       - Item: Red_Muffler
         Rate: 3
       - Item: Wing_Of_Fly
@@ -12629,7 +12629,7 @@ Body:
       - Item: Thief_Clothes_
         Rate: 1
       - Item: Rotten_Fish
-        Rate: 18
+        Rate: 500
       - Item: Monster's_Feed
         Rate: 300
       - Item: Big_Sis'_Ribbon
@@ -26542,7 +26542,7 @@ Body:
       - Item: Single_Cell
         Rate: 1500
       - Item: Dew_Laden_Moss
-        Rate: 1
+        Rate: 500
       - Item: Fluorescent_Liquid
         Rate: 15
       - Item: Porcellio_Card
@@ -33698,7 +33698,7 @@ Body:
       - Item: Blossom_Of_Maneater
         Rate: 1500
       - Item: Singing_Flower
-        Rate: 1
+        Rate: 500
       - Item: Root_Of_Maneater
         Rate: 1000
       - Item: Stem
@@ -33750,7 +33750,7 @@ Body:
       - Item: Root_Of_Maneater
         Rate: 1000
       - Item: Bitter_Herb
-        Rate: 2
+        Rate: 500
       - Item: Stem
         Rate: 500
       - Item: Mandragora_Flowerpot
@@ -36747,7 +36747,7 @@ Body:
       - Item: Alchol
         Rate: 2
       - Item: Dew_Laden_Moss
-        Rate: 10
+        Rate: 500
       - Item: Center_Potion
         Rate: 25
       - Item: Plankton_Card
@@ -37122,7 +37122,7 @@ Body:
       - Item: Skel_Bone
         Rate: 2250
       - Item: Well_Dried_Bone
-        Rate: 10
+        Rate: 500
       - Item: Animal's_Skin
         Rate: 2750
       - Item: Hell_Poodle_Card
@@ -37840,7 +37840,7 @@ Body:
       - Item: Ancient_Magic
         Rate: 3
       - Item: Bitter_Herb
-        Rate: 50
+        Rate: 500
       - Item: Fruit_Of_Mastela
         Rate: 50
       - Item: Sticky_Webfoot
@@ -37886,7 +37886,7 @@ Body:
       - Item: Principles_Of_Magic
         Rate: 3
       - Item: Singing_Flower
-        Rate: 150
+        Rate: 500
       - Item: Singing_Plant
         Rate: 150
       - Item: Illusion_Flower
@@ -49331,7 +49331,7 @@ Body:
       - Item: Insect_Feeler
         Rate: 225
       - Item: Earthworm_The_Dude
-        Rate: 10
+        Rate: 500
       - Item: Low_Coin_Pocket
         Rate: 2
         StealProtected: true
@@ -57535,7 +57535,7 @@ Body:
       - Item: Alchol
         Rate: 1
       - Item: Dew_Laden_Moss
-        Rate: 5
+        Rate: 500
       - Item: Center_Potion
         Rate: 10
   - Id: 2405
@@ -57678,7 +57678,7 @@ Body:
       - Item: Oridecon_Stone
         Rate: 10
       - Item: Well_Dried_Bone
-        Rate: 5
+        Rate: 500
   - Id: 2408
     AegisName: DUMMY_10
     Name: Dummy 10
@@ -64241,7 +64241,7 @@ Body:
       - Item: Thief_Clothes_
         Rate: 5
       - Item: Rotten_Fish
-        Rate: 90
+        Rate: 500
       - Item: Monster's_Feed
         Rate: 1500
       - Item: Big_Sis'_Ribbon
@@ -67217,7 +67217,7 @@ Body:
       - Item: Oridecon_Stone
         Rate: 50
       - Item: Well_Dried_Bone
-        Rate: 25
+        Rate: 500
   - Id: 2677
     AegisName: C2_ROWEEN
     Name: Solid Roween
@@ -68196,7 +68196,7 @@ Body:
         Rate: 750
       - Item: Unripe_Apple
         Index: 6
-        Rate: 100
+        Rate: 500
       - Item: Poring_Card
         Index: 7
         Rate: 100
@@ -68252,7 +68252,7 @@ Body:
         Rate: 750
       - Item: Unripe_Apple
         Index: 6
-        Rate: 100
+        Rate: 500
       - Item: Poring_Card
         Index: 7
         Rate: 100
@@ -68308,7 +68308,7 @@ Body:
         Rate: 750
       - Item: Unripe_Apple
         Index: 6
-        Rate: 100
+        Rate: 500
       - Item: Poring_Card
         Index: 7
         Rate: 100
@@ -68364,7 +68364,7 @@ Body:
         Rate: 750
       - Item: Unripe_Apple
         Index: 6
-        Rate: 100
+        Rate: 500
       - Item: Poring_Card
         Index: 7
         Rate: 100
@@ -68413,7 +68413,7 @@ Body:
       - Item: Single_Cell
         Rate: 7500
       - Item: Dew_Laden_Moss
-        Rate: 5
+        Rate: 500
       - Item: Fluorescent_Liquid
         Rate: 75
       - Item: Porcellio_Card
@@ -68757,7 +68757,7 @@ Body:
       - Item: Wing_Of_Fly
         Rate: 2500
       - Item: Dew_Laden_Moss
-        Rate: 50
+        Rate: 500
       - Item: Center_Potion
         Rate: 125
       - Item: Plankton_Card
@@ -70223,7 +70223,7 @@ Body:
       - Item: Blossom_Of_Maneater
         Rate: 7500
       - Item: Singing_Flower
-        Rate: 5
+        Rate: 500
       - Item: Root_Of_Maneater
         Rate: 5000
       - Item: Stem
@@ -71770,7 +71770,7 @@ Body:
       - Item: Carrot
         Rate: 10000
       - Item: Rainbow_Carrot
-        Rate: 100
+        Rate: 500
       - Item: Lunatic_Card
         Rate: 100
         StealProtected: true
@@ -71819,7 +71819,7 @@ Body:
       - Item: Carrot
         Rate: 10000
       - Item: Rainbow_Carrot
-        Rate: 100
+        Rate: 500
       - Item: Lunatic_Card
         Rate: 100
         StealProtected: true
@@ -73348,7 +73348,7 @@ Body:
       - Item: Foolishness_Of_Blind
         Rate: 5
       - Item: Fatty_Chubby_Earthworm
-        Rate: 50
+        Rate: 500
       - Item: Hode_Card
         Rate: 5
         StealProtected: true
@@ -75386,7 +75386,7 @@ Body:
       - Item: Root_Of_Maneater
         Rate: 5000
       - Item: Bitter_Herb
-        Rate: 10
+        Rate: 500
       - Item: Stem
         Rate: 2500
       - Item: Mandragora_Flowerpot
@@ -75444,7 +75444,7 @@ Body:
         Rate: 2000
       - Item: Orange_Juice
         Index: 6
-        Rate: 100
+        Rate: 500
       - Item: Drops_Card
         Index: 7
         Rate: 100
@@ -88703,7 +88703,7 @@ Body:
         Rate: 150
       - Item: Unripe_Apple
         Index: 6
-        Rate: 20
+        Rate: 500
       - Item: Poring_Card
         Index: 7
         Rate: 20
@@ -88751,7 +88751,7 @@ Body:
       - Item: Carrot
         Rate: 3000
       - Item: Rainbow_Carrot
-        Rate: 20
+        Rate: 500
       - Item: Lunatic_Card
         Rate: 20
         StealProtected: true
@@ -90292,7 +90292,7 @@ Body:
       - Item: Old_Blue_Box
         Rate: 1
       - Item: Rotten_Fish
-        Rate: 10
+        Rate: 500
       - Item: Megalodon_Card
         Rate: 1
         StealProtected: true
@@ -90630,7 +90630,7 @@ Body:
       - Item: Four_Leaf_Clover
         Rate: 1
       - Item: Rainbow_Carrot
-        Rate: 25
+        Rate: 500
       - Item: Angel's_Protection
         Rate: 500
       - Item: IFN_Eclipse_Card
@@ -97481,7 +97481,7 @@ Body:
       - Item: Detrimindexta
         Rate: 50
       - Item: Dew_Laden_Moss
-        Rate: 20
+        Rate: 500
       - Item: Mushroom_Spore
         Rate: 5000
       - Item: Shining_Spore
@@ -99050,7 +99050,7 @@ Body:
         Rate: 400
       - Item: Orange_Juice
         Index: 6
-        Rate: 20
+        Rate: 500
       - Item: Drops_Card
         Index: 7
         Rate: 25
@@ -99156,7 +99156,7 @@ Body:
         Rate: 150
       - Item: Unripe_Apple
         Index: 6
-        Rate: 40
+        Rate: 500
       - Item: Poring_Card
         Index: 7
         Rate: 20

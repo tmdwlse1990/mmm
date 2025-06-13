@@ -32,7 +32,7 @@
 #   HungerIncrease           The amount of hunger that is increased every time the pet is fed (Default: 20)
 #   IntimacyStart            Amount of Intimacy the pet starts with. (Default: 250)
 #   IntimacyOwnerDie: 0
-    IntimacyFed              Amount of Intimacy that is increased when fed. (Default: 50)
+#   IntimacyFed              Amount of Intimacy that is increased when fed. (Default: 50)
 #   IntimacyOverfed          Amount of Intimacy that is increased when over-fed. (Default: -100)
 #   IntimacyHungry           Amount of Intimacy that is increased when the pet is hungry. (Default: -5)
 #   IntimacyOwnerDie         Amount of Intimacy that is increased when the pet owner dies. (Default: -20)
@@ -82,7 +82,7 @@ Body:
     Fullness: 3
     IntimacyOwnerDie: 0
     IntimacyFed: 50
-    CaptureRate: 2000
+    CaptureRate: 5000
     SpecialPerformance: true
     AllowAutoFeed: true
     Script: >
@@ -102,7 +102,7 @@ Body:
     Fullness: 4
     IntimacyOwnerDie: 0
     IntimacyFed: 40
-    CaptureRate: 1500
+    CaptureRate: 5000
     SpecialPerformance: true
     AllowAutoFeed: true
     Script: >
@@ -123,7 +123,7 @@ Body:
     Fullness: 5
     IntimacyOwnerDie: 0
     IntimacyFed: 30
-    CaptureRate: 1000
+    CaptureRate: 5000
     SpecialPerformance: true
     AllowAutoFeed: true
     Script: >
@@ -145,7 +145,7 @@ Body:
     Fullness: 4
     IntimacyOwnerDie: 0
     IntimacyFed: 40
-    CaptureRate: 1500
+    CaptureRate: 5000
     SpecialPerformance: true
     AllowAutoFeed: true
     Script: >
@@ -166,7 +166,7 @@ Body:
     Fullness: 4
     IntimacyOwnerDie: 0
     IntimacyFed: 40
-    CaptureRate: 2000
+    CaptureRate: 5000
     SpecialPerformance: true
     AllowAutoFeed: true
     Script: >
@@ -187,7 +187,7 @@ Body:
     Fullness: 6
     IntimacyOwnerDie: 0
     IntimacyFed: 30
-    CaptureRate: 1500
+    CaptureRate: 5000
     SpecialPerformance: true
     AllowAutoFeed: true
     Script: >
@@ -208,7 +208,7 @@ Body:
     Fullness: 6
     IntimacyOwnerDie: 0
     IntimacyFed: 40
-    CaptureRate: 1000
+    CaptureRate: 5000
     SpecialPerformance: true
     AllowAutoFeed: true
     Script: >
@@ -229,7 +229,7 @@ Body:
     Fullness: 1
     IntimacyOwnerDie: 0
     IntimacyFed: 30
-    CaptureRate: 1500
+    CaptureRate: 5000
     SpecialPerformance: true
     AllowAutoFeed: true
     Script: >
@@ -250,7 +250,7 @@ Body:
     Fullness: 3
     IntimacyOwnerDie: 0
     IntimacyFed: 30
-    CaptureRate: 1500
+    CaptureRate: 5000
     SpecialPerformance: true
     AllowAutoFeed: true
     Script: >
@@ -271,7 +271,7 @@ Body:
     Fullness: 4
     IntimacyOwnerDie: 0
     IntimacyFed: 30
-    CaptureRate: 1000
+    CaptureRate: 5000
     SpecialPerformance: true
     AllowAutoFeed: true
     Script: >
@@ -292,7 +292,7 @@ Body:
     Fullness: 7
     IntimacyOwnerDie: 0
     IntimacyFed: 40
-    CaptureRate: 1500
+    CaptureRate: 5000
     SpecialPerformance: true
     AllowAutoFeed: true
     Script: >

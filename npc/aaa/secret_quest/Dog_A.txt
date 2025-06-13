@@ -1,5 +1,10 @@
 gonryun,123,161,5	script	หมามหากาฬ	4_SNOWDOG,{
 	.@npcname$ = "[ เทพเจ้าหมา ]";
+	if(#Quest_Shark_A) {
+		mes .@npcname$;
+		mes "ค่าสักการะบูชา 100 zeny ต่อท่าน";
+		close;
+	}
 	if(!isbegin_quest(6) ) {
 		switch(rand(4)) {
 			case 0:
@@ -41,6 +46,7 @@ gonryun,123,161,5	script	หมามหากาฬ	4_SNOWDOG,{
 		getitem 2000004,1;
 		getitem 5220,1;
 		completequest 6;
+		#Quest_Shark_A = 1;
 		next;
 		mes .@npcname$;
 		mes "จะว่าไป พิธีกรรมหนังสือศักดิ์สิทธิ์มันติดปัญหาอยู่ ไปช่วยแก้ไขให้ด้วยนะ";
