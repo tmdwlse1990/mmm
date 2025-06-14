@@ -93243,7 +93243,7 @@ Body:
         Rate: 5000
       - Item: Old_Blue_Box
         Rate: 5000
-      - Item: Royal_Jelly
+      - Item: MVP_Option_Box_T1 
         Rate: 5000
     Drops:
       - Item: White_Potion
@@ -98895,8 +98895,8 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-      - Item: Seed_Of_Yggdrasil
-        Rate: 3000
+      - Item: MVP_Option_Box_T1
+        Rate: 5000
       - Item: PoringTownOnion
         Rate: 1000
       - Item: PoringTownCarrot
