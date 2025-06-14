@@ -171,6 +171,42 @@ Body:
     Script: |
       sc_start SC_WARM_SHIELD,60000,0;
 #   [Core Item Main]
+  - Id: 60001
+    AegisName: CASH_COIN_1
+    Name: Cash Coin 1 Points
+    Type: Usable
+    Script: |
+      .@i = 60001; dispbottom "[System] : You got "+ callfunc("F_InsertComma",(countitem(.@i)+1)) +" Cash Points";
+      #CASHPOINTS += (countitem(.@i) + 1);
+      delitem .@i,countitem(.@i);
+      dispbottom  "[System] : You have "+ callfunc("F_InsertComma",#CASHPOINTS) +" Cash Points";
+  - Id: 60002
+    AegisName: CASH_COIN_10
+    Name: Cash Coin 10 Points
+    Type: Usable
+    Script: |
+      .@i = 60002; dispbottom "[System] : You got "+ callfunc("F_InsertComma",(countitem(.@i)+1)*10) +" Cash Points";
+      #CASHPOINTS += (countitem(.@i) + 1)*10;
+      delitem .@i,countitem(.@i);
+      dispbottom  "[System] : You have "+ callfunc("F_InsertComma",#CASHPOINTS) +" Cash Points";
+  - Id: 60003
+    AegisName: CASH_COIN_100
+    Name: Cash Coin 100 Points
+    Type: Usable
+    Script: |
+      .@i = 60003; dispbottom "[System] : You got "+ callfunc("F_InsertComma",(countitem(.@i)+1)*100) +" Cash Points";
+      #CASHPOINTS += (countitem(.@i) + 1)*100;
+      delitem .@i,countitem(.@i);
+      dispbottom  "[System] : You have "+ callfunc("F_InsertComma",#CASHPOINTS) +" Cash Points";
+  - Id: 60004
+    AegisName: CASH_COIN_1000
+    Name: Cash Coin 1000 Points
+    Type: Usable
+    Script: |
+      .@i = 60004; dispbottom "[System] : You got "+ callfunc("F_InsertComma",(countitem(.@i)+1)*1000) +" Cash Points";
+      #CASHPOINTS += (countitem(.@i) + 1)*1000;
+      delitem .@i,countitem(.@i);
+      dispbottom  "[System] : You have "+ callfunc("F_InsertComma",#CASHPOINTS) +" Cash Points";
   - Id: 2000001
     AegisName: Adventure_Card
     Name: Adventure Card

@@ -35,6 +35,14 @@ Header:
 Body:
   - Tab: New
     Items:
+      - Item: CASH_COIN_1
+        Price: 1
+      - Item: CASH_COIN_10
+        Price: 10
+      - Item: CASH_COIN_100
+        Price: 100
+      - Item: CASH_COIN_1000
+        Price: 1000
       - Item: Costume_Ticket_Pass
         Price: 100
       - Item: Gacha_Ticket_Pass
