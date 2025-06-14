@@ -50,4 +50,4 @@ Footer:
   - Path: npc/aaa/barter/powerupitem.yml
   - Path: npc/aaa/barter/hat_quest.yml
   - Path: npc/aaa/barter/ticket_seller.yml
-  - Path: npc/aaa/barter/event_pet.yml
+#  - Path: npc/aaa/barter/event_pet.yml
