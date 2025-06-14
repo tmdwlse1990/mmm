@@ -1,0 +1,178 @@
+icecastle,189,158,4	script	Designer Heidam#cos_ect	4_WHITETIGER,{
+	if (checkweight(1119,5) == 0) {
+		mes "- แบกของเยอะเกินไปนะเจ้าหนู -";
+		mes "- เคลียของในตัวก่อนแล้วค่อยมาใหม่นะ -";
+		close;
+	}
+	disable_items;
+THREETOP:
+	mes "[ดีไซน์เนอร์ ไร้นาม]";
+	mes "นายอยากจะออฟส่วนไหน ?";
+	/*
+	.@eq_top = getequipid(EQI_COSTUME_HEAD_TOP);
+	.@eq_mid = getequipid(EQI_COSTUME_HEAD_MID);
+	.@eq_low = getequipid(EQI_COSTUME_HEAD_LOW);
+	
+	/*
+	if (.@eq_top == -1 && .@eq_mid == -1 && .@eq_low == -1) {
+		mes "[ดีไซน์เนอร์ ไร้นาม]";
+		mes "อย่างน้อยๆ ก็ใส่คอสก่อนเถอะน่า";
+		close;
+	}
+	if (.@eq_top > -1) {
+		.@part = EQI_COSTUME_HEAD_TOP;
+		.@equip_id = .@eq_top;
+	}
+	else if (.@eq_mid > -1) {
+		.@part = EQI_COSTUME_HEAD_MID;
+		.@equip_id = .@eq_mid;
+	}
+	else if (.@eq_low > -1) {
+		.@part = EQI_COSTUME_HEAD_LOW;
+		.@equip_id = .@eq_low;
+	}
+	*/
+	
+	.@eq_top = getequipid(EQI_COSTUME_HEAD_TOP);
+	.@eq_mid = getequipid(EQI_COSTUME_HEAD_MID);
+	.@eq_low = getequipid(EQI_COSTUME_HEAD_LOW);
+	mes "Top : ^i["+.@eq_top+"]";
+	mes "Mid : ^i["+.@eq_mid+"]";
+	mes "Low : ^i["+.@eq_low+"]";
+	next;
+	setarray .@equipid[1],EQI_COSTUME_HEAD_TOP,EQI_COSTUME_HEAD_MID,EQI_COSTUME_HEAD_LOW;
+	setarray .@fakemenu$[1],"Top","Mid","Low";
+	.@menu$ = "";
+	for(.@i=1; .@i < getarraysize(.@fakemenu$); .@i++)
+		.@menu$ = .@menu$ +":" + .@fakemenu$[.@i]; 
+	
+	.@part = .@equipid[select(.@menu$) - 1];
+	.@equip_id = getequipid(.@part);
+	
+	.@location = getiteminfo(.@equip_id, ITEMINFO_LOCATIONS);
+	.@equip_refine = getequiprefinerycnt(.@part);
+	setarray .@card[0], getequipcardid(.@part, 0), getequipcardid(.@part, 1), getequipcardid(.@part, 2), getequipcardid(.@part, 3);
+	
+	mes "[ดีไซน์เนอร์ ไร้นาม]";
+	mes "จะออฟเจ้านี่หรอ ^i["+.@equip_id+"](^0000FF" + getitemname(.@equip_id) + "^000000)";
+	mes "อยากจะออฟช่องไหน ?";
+	if (.@part == EQI_COSTUME_HEAD_TOP)
+		.@slot = select( "Upper", "Middle", "Lower", "Cancel" ) - 1;	// the slot enchanted changes according to the location
+	else if (.@part == EQI_COSTUME_HEAD_MID)
+		.@slot = select( "", "Middle", "Lower", "Cancel" ) - 1;
+	else if (.@part == EQI_COSTUME_HEAD_LOW)
+		.@slot = select( "", "", "Lower", "Cancel" ) - 1;
+
+	next;
+	
+	switch(.@slot) {
+	case 0:
+		if (!(.@location & EQP_COSTUME_HEAD_TOP)) {
+			mes "[ดีไซน์เนอร์ ไร้นาม]";
+			mes "คอสนี้ ออฟส่วนนี้ไม่ได้นะ";	// custom
+			close;
+		}
+		break;
+	case 1:
+		if (!(.@location & EQP_COSTUME_HEAD_MID)) {
+			mes "[ดีไซน์เนอร์ ไร้นาม]";
+			mes "คอสนี้ ออฟส่วนนี้ไม่ได้นะ";	// custom
+			close;
+		}
+		break;
+	case 2:
+		if (!(.@location & EQP_COSTUME_HEAD_LOW)) {
+			mes "[ดีไซน์เนอร์ ไร้นาม]";
+			mes "คอสนี้ ออฟส่วนนี้ไม่ได้นะ";	// custom
+			close;
+		}
+		break;
+	default:
+		mes "[ดีไซน์เนอร์ ไร้นาม]";
+		mes "เหมือนจะมีบางอย่างผิดพลาด ติดต่อ แอดมินฉลามทันที~";
+		close;
+	}
+	mes "[ดีไซน์เนอร์ ไร้นาม]";
+	mes "จะออฟเจ้านี่จริงนะ ^i["+.@equip_id+"](^0000FF" + getitemname(.@equip_id) + "^000000)";
+	mes "อยากจะออฟอะไร ?";
+		// All Part Allow
+		setarray .@stone_id[getarraysize(.@stone_id)],
+			4700, 4700,	// Str +1
+			4701, 4701,	// Str +2
+			4702, 4702,	// Str +3
+			4703, 4703,	// Str +4
+			4710, 4710, // Int +1
+			4711, 4711, // Int +2
+			4712, 4712, // Int +3
+			4713, 4713, // Int +4
+			4720, 4720, // Dex +1
+			4721, 4721, // Dex +2
+			4722, 4722, // Dex +3
+			4723, 4723, // Dex +4
+			4730, 4730, // Agi +1
+			4731, 4731, // Agi +2
+			4732, 4732, // Agi +3
+			4733, 4733, // Agi +4
+			4740, 4740, // Vit +1
+			4741, 4741, // Vit +2
+			4742, 4742, // Vit +3
+			4743, 4743, // Vit +4
+			4750, 4750, // Luk +1
+			4751, 4751, // Luk +2
+			4752, 4752, // Luk +3
+			4753, 4753, // Luk +4
+			2099001, 2099001;	// All Stat +1
+
+	.@size = getarraysize(.@stone_id);
+	.@max_menu_size = 2047;	// temporary fix the menu length until new data
+	.@i = 0;
+
+	set .@menu$, "";
+    set .@a, 0;
+    while( .@a<=.@size) {
+        if(getiteminfo(.@stone_id[.@a],2)>-1) {
+            if(set(.@c,countitem(.@stone_id[.@a]))) {
+                set .@menu$, .@menu$+"มี  ^FF0000"+getitemname(.@stone_id[.@a])+"^000000 จำนวน ^FF0000"+.@c+"^000000 อัน"+":";
+                set .@b,.@b+1;
+                set .@item[.@b], .@stone_id[.@a];
+            }
+		}
+		.@a += 2;
+	}
+	select(.@menu$);
+	set .@itm, .@item[@menu];
+	
+	.@stone = .@itm;
+	.@enchant = .@stone_id[inarray(.@stone_id,.@stone) + 1];
+
+	if (getequipid(.@part) < 0 || countitem(.@stone) < 1) {
+		mes "[ดีไซน์เนอร์ ไร้นาม]";
+		mes "นี่นายถอดของ ไม่ก็แอบเก็บหินไปสินะ นิสียแย่จริงๆ";
+		close;
+	}
+	next;
+	setdialogsize(400,200);
+	mes "^FF0000   !!! โปรดอ่าน !!!^000000";
+	mes "^ff0000ออฟอันนี้ ^i["+.@equip_id+"](^0000FF" + getitemname(.@equip_id) + ")^000000";
+	mes "^ff0000ด้วยอันนี้ ^i["+.@stone+"](^0000FF" + getitemname(.@stone) + ")^000000";
+	mes "^FF0000แน่ใจนะ?^000000";
+	next;
+	if (select( "Yes.", "No." ) == 2) {
+		mes "[ดีไซน์เนอร์ ไร้นาม]";
+		mes "โอกาสหน้ามาใหม่~";
+		close;
+	}
+	delitem .@stone, 1;
+
+	// anti-hack
+	if (callfunc("F_IsEquipIDHack", .@part, .@equip_id) || callfunc("F_IsEquipCardHack", .@part, .@card[0], .@card[1], .@card[2], .@card[3]) || callfunc("F_IsEquipRefineHack", .@part, .@equip_refine))
+		close;
+
+	delequip .@part;
+	.@card[.@slot] = .@enchant;
+	getitem2 .@equip_id,1,1,.@equip_refine,0,.@card[0],.@card[1],.@card[2],.@card[3];
+	close;
+Oninit:
+	waitingroom "ออฟชั่นคอสตูม",0;
+	end;
+}

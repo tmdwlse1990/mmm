@@ -839,24 +839,64 @@ Body:
     AegisName: DARK_ILLUSION2
     Name: Dark Illusion
     JapaneseName: Dark Illusion
+    AttackRange: 3
+    SkillRange: 10
+    ChaseRange: 12
+    WalkSpeed: 80
+    Ai: 04
   - Id: 20571
     AegisName: ORK_HERO2
     Name: Orc Hero
+    AttackRange: 3
+    SkillRange: 10
+    ChaseRange: 12
+    WalkSpeed: 80
+    Ai: 04
   - Id: 20423
     AegisName: BACSOJIN2
     Name: Bascojin
+    AttackRange: 3
+    SkillRange: 10
+    ChaseRange: 12
+    WalkSpeed: 80
+    Ai: 04
   - Id: 20424
     AegisName: MOONLIGHT2
     Name: Moonlight
+    AttackRange: 3
+    SkillRange: 10
+    ChaseRange: 12
+    WalkSpeed: 80
+    Ai: 04
   - Id: 20425
     AegisName: PHREEONI2
     Name: Pheeoni
+    AttackRange: 3
+    SkillRange: 10
+    ChaseRange: 12
+    WalkSpeed: 80
+    Ai: 04
   - Id: 21290
     AegisName: KIEL_D_01_2
     Name: Kiel D 01
+    AttackRange: 3
+    SkillRange: 10
+    ChaseRange: 12
+    WalkSpeed: 80
+    Ai: 04
   - Id: 20619
     AegisName: GLOOMUNDERNIGHT2
     Name: Gloom Under Night
+    AttackRange: 3
+    SkillRange: 10
+    ChaseRange: 12
+    WalkSpeed: 80
+    Ai: 04
   - Id: 22185
     AegisName: DARK_LORD2
     Name: Dark Lord
+    AttackRange: 3
+    SkillRange: 10
+    ChaseRange: 12
+    WalkSpeed: 80
+    Ai: 04
