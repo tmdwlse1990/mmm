@@ -39,297 +39,1097 @@ Body:
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 2
   Filename: outputww/wjfjzgu.bmp
   Answer: wjfjzgu
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 3
   Filename: outputww/blsboed.bmp
   Answer: blsboed
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 4
   Filename: outputww/bbgcauz.bmp
   Answer: bbgcauz
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 5
   Filename: outputww/gcrpmin.bmp
   Answer: gcrpmin
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 6
   Filename: outputww/offtnbr.bmp
   Answer: offtnbr
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 7
   Filename: outputww/ixibgtn.bmp
   Answer: ixibgtn
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 8
   Filename: outputww/ngyevno.bmp
   Answer: ngyevno
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 9
   Filename: outputww/qonlaue.bmp
   Answer: qonlaue
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 10
   Filename: outputww/ktavlbf.bmp
   Answer: ktavlbf
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 11
   Filename: outputww/hsnjoll.bmp
   Answer: hsnjoll
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 12
   Filename: outputww/jomajew.bmp
   Answer: jomajew
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 13
   Filename: outputww/twlzrnc.bmp
   Answer: twlzrnc
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 14
   Filename: outputww/hzdkfdz.bmp
   Answer: hzdkfdz
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 15
   Filename: outputww/duasuvt.bmp
   Answer: duasuvt
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 16
   Filename: outputww/lvhsrsu.bmp
   Answer: lvhsrsu
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 17
   Filename: outputww/onwklmm.bmp
   Answer: onwklmm
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 18
   Filename: outputww/tcuijgo.bmp
   Answer: tcuijgo
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 19
   Filename: outputww/mvdnogm.bmp
   Answer: mvdnogm
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 20
   Filename: outputww/kohdlnd.bmp
   Answer: kohdlnd
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 21
   Filename: outputww/fjnywgj.bmp
   Answer: fjnywgj
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 22
   Filename: outputww/xbitdqx.bmp
   Answer: xbitdqx
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 23
   Filename: outputww/gefyzhf.bmp
   Answer: gefyzhf
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 24
   Filename: outputww/qmnvaiy.bmp
   Answer: qmnvaiy
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 25
   Filename: outputww/igkremr.bmp
   Answer: igkremr
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 26
   Filename: outputww/hjssfjo.bmp
   Answer: hjssfjo
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 27
   Filename: outputww/ntxxzwb.bmp
   Answer: ntxxzwb
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 28
   Filename: outputww/kwsjiat.bmp
   Answer: kwsjiat
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 29
   Filename: outputww/grfpsjf.bmp
   Answer: grfpsjf
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 30
   Filename: outputww/umfrvbz.bmp
   Answer: umfrvbz
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 31
   Filename: outputww/dfpjtds.bmp
   Answer: dfpjtds
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 32
   Filename: outputww/tfsjvna.bmp
   Answer: tfsjvna
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 33
   Filename: outputww/ljuthgz.bmp
   Answer: ljuthgz
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 34
   Filename: outputww/oeusqjn.bmp
   Answer: oeusqjn
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 35
   Filename: outputww/odygfym.bmp
   Answer: odygfym
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 36
   Filename: outputww/zdsavwj.bmp
   Answer: zdsavwj
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 37
   Filename: outputww/qqlvwas.bmp
   Answer: qqlvwas
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 38
   Filename: outputww/tbzyjdk.bmp
   Answer: tbzyjdk
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 39
   Filename: outputww/qjinptc.bmp
   Answer: qjinptc
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 40
   Filename: outputww/uwfhotp.bmp
   Answer: uwfhotp
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 41
   Filename: outputww/skznile.bmp
   Answer: skznile
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 42
   Filename: outputww/vszfvoe.bmp
   Answer: vszfvoe
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 43
   Filename: outputww/ahofuqw.bmp
   Answer: ahofuqw
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 44
   Filename: outputww/uochddi.bmp
   Answer: uochddi
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 45
   Filename: outputww/llvgznf.bmp
   Answer: llvgznf
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 46
   Filename: outputww/orgzisq.bmp
   Answer: orgzisq
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 47
   Filename: outputww/ixsrjud.bmp
   Answer: ixsrjud
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 48
   Filename: outputww/xnnufkl.bmp
   Answer: xnnufkl
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 49
   Filename: outputww/fkeikvu.bmp
   Answer: fkeikvu
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;
 - Id: 50
   Filename: outputww/tkbpqon.bmp
   Answer: tkbpqon
   Bonus: >
     specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI, 1200000, 10;
     specialeffect2 EF_BLESSING; sc_start SC_BLESSING, 1200000, 10;
+    specialeffect2 EF_POTION_BERSERK;
+    specialeffect2 EF_SANCTUARY;
+    sc_start SC_ALMIGHTY,600000,10;
+    sc_start SC_FOOD_STR_CASH,600000,10;
+    sc_start SC_FOOD_AGI_CASH,600000,10;
+    sc_start SC_FOOD_INT_CASH,600000,10;
+    sc_start SC_FOOD_DEX_CASH,600000,10;
+    sc_start SC_FOOD_LUK_CASH,600000,10;
+    sc_start SC_FOOD_VIT_CASH,600000,10;
+    sc_start SC_EXPBOOST,600000,200;
+    sc_start SC_LIMIT_POWER_BOOSTER,600000,30;
+    sc_start2 SC_M_LIFEPOTION,600000,-4,3;
+    sc_start2 SC_S_LIFEPOTION,600000,-5,5;
+    sc_start2 SC_L_LIFEPOTION,600000,-7,4;
+    sc_start2 SC_S_MANAPOTION,600000,-5,5;
+    sc_start2 SC_M_DEFSCROLL,600000,500,200;

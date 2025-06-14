@@ -10,10 +10,10 @@ OnInit:
 //OnTimer1800000:
 OnNPCKillEvent:
 	//เพิ่มแมพที่ยกเว้นการตรวจ
-	if(rand(100000) < 3) 
+	if(rand(10000) < 1)
 		if((strcharinfo(3) != "prontera") && (strcharinfo(3) != "icecastle")&& (strcharinfo(3) != "ptr_in") && (strcharinfo(3) != "grademk")
-				&& (strcharinfo(3) != "sec_pri"))
-			if(!instance_id() || !sc_check(SC_AUTOATTACK))
+				&& (strcharinfo(3) != "sec_pri") && (!instance_id()))
+			if(!getstatus(SC_AUTOATTACK))
 				macro_detector();
 	end;
 }
