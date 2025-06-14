@@ -79,9 +79,9 @@ Body:
     TameItem: Unripe_Apple
     EggItem: Poring_Egg
     FoodItem: Apple_Juice
-    Fullness: 3
+    Fullness: 2
     IntimacyOwnerDie: 0
-    IntimacyFed: 50
+    IntimacyFed: 60
     CaptureRate: 5000
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -99,9 +99,9 @@ Body:
     TameItem: Orange_Juice
     EggItem: Drops_Egg
     FoodItem: Pet_Food
-    Fullness: 4
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 40
+    IntimacyFed: 100
     CaptureRate: 5000
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -120,9 +120,9 @@ Body:
     EggItem: Poporing_Egg
     EquipItem: Backpack
     FoodItem: Pet_Food
-    Fullness: 5
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 30
+    IntimacyFed: 100
     CaptureRate: 5000
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -142,9 +142,9 @@ Body:
     EggItem: Lunatic_Egg
     EquipItem: Silk_Ribbon
     FoodItem: Pet_Food
-    Fullness: 4
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 40
+    IntimacyFed: 100
     CaptureRate: 5000
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -163,9 +163,9 @@ Body:
     EggItem: Picky_Egg
     EquipItem: Tiny_Egg_Shell
     FoodItem: Pet_Food
-    Fullness: 4
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 40
+    IntimacyFed: 100
     CaptureRate: 5000
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -184,9 +184,9 @@ Body:
     EggItem: Chonchon_Egg
     EquipItem: Monster_Oxygen_Mask
     FoodItem: Pet_Food
-    Fullness: 6
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 30
+    IntimacyFed: 100
     CaptureRate: 5000
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -205,9 +205,9 @@ Body:
     EggItem: Baby_Desert_Wolf_Egg
     EquipItem: Transparent_Headgear
     FoodItem: Pet_Food
-    Fullness: 6
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 40
+    IntimacyFed: 100
     CaptureRate: 5000
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -228,7 +228,7 @@ Body:
     FoodItem: Pet_Food
     Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 30
+    IntimacyFed: 100
     CaptureRate: 5000
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -247,9 +247,9 @@ Body:
     EggItem: Spore_Egg
     EquipItem: Bark_Shorts
     FoodItem: Pet_Food
-    Fullness: 3
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 30
+    IntimacyFed: 100
     CaptureRate: 5000
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -268,9 +268,9 @@ Body:
     EggItem: PecoPeco_Egg
     EquipItem: Battered_Pot
     FoodItem: Pet_Food
-    Fullness: 4
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 30
+    IntimacyFed: 100
     CaptureRate: 5000
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -289,9 +289,9 @@ Body:
     EggItem: Savage_Bebe_Egg
     EquipItem: Green_Lace
     FoodItem: Pet_Food
-    Fullness: 7
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 40
+    IntimacyFed: 100
     CaptureRate: 5000
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -311,9 +311,9 @@ Body:
     EggItem: Orc_Warrior_Egg
     EquipItem: Wild_Flower
     FoodItem: Pet_Food
-    Fullness: 5
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 20
+    IntimacyFed: 100
     CaptureRate: 500
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -332,9 +332,9 @@ Body:
     EggItem: Sohee_Egg
     EquipItem: Golden_Bell
     FoodItem: Pet_Food
-    Fullness: 3
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 10
+    IntimacyFed: 100
     CaptureRate: 500
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -353,9 +353,9 @@ Body:
     EggItem: Isis_Egg
     EquipItem: Queen's_Hair_Ornament
     FoodItem: Pet_Food
-    Fullness: 3
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 10
+    IntimacyFed: 100
     CaptureRate: 500
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -374,9 +374,9 @@ Body:
     EggItem: Green_Petite_Egg
     EquipItem: Stellar_Hairpin
     FoodItem: Pet_Food
-    Fullness: 4
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 20
+    IntimacyFed: 100
     CaptureRate: 500
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -395,9 +395,9 @@ Body:
     EggItem: Deviruchi_Egg
     EquipItem: Pacifier
     FoodItem: Pet_Food
-    Fullness: 2
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 10
+    IntimacyFed: 100
     CaptureRate: 500
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -416,9 +416,9 @@ Body:
     EggItem: Bapho_Jr._Egg
     EquipItem: Skull_Helm
     FoodItem: Pet_Food
-    Fullness: 2
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 10
+    IntimacyFed: 100
     CaptureRate: 200
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -437,9 +437,9 @@ Body:
     EggItem: Bongun_Egg
     EquipItem: Sword_Of_Grave_Keeper
     FoodItem: Pet_Food
-    Fullness: 4
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 30
+    IntimacyFed: 100
     CaptureRate: 800
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -459,9 +459,9 @@ Body:
   - Mob: ALICE
     EggItem: Alice_Egg
     FoodItem: Pet_Food
-    Fullness: 2
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 20
+    IntimacyFed: 100
     CaptureRate: 800
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -480,9 +480,9 @@ Body:
     EggItem: Incubus_Egg
     EquipItem: Ball_Mask
     FoodItem: Pet_Food
-    Fullness: 3
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 10
+    IntimacyFed: 100
     CaptureRate: 50
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -501,9 +501,9 @@ Body:
     EggItem: Succubus_Egg
     EquipItem: Black_Butterfly_Mask
     FoodItem: Pet_Food
-    Fullness: 3
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 10
+    IntimacyFed: 100
     CaptureRate: 200
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -522,9 +522,9 @@ Body:
     EggItem: Smokie_Egg
     EquipItem: Red_Muffler
     FoodItem: Pet_Food
-    Fullness: 4
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 30
+    IntimacyFed: 100
     CaptureRate: 1000
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -546,7 +546,7 @@ Body:
     Fullness: 1
     HungryDelay: 120
     IntimacyOwnerDie: 0
-    IntimacyFed: 15
+    IntimacyFed: 100
     CaptureRate: 0
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -565,10 +565,10 @@ Body:
   - Mob: CAT_O_NINE_TAIL
     EggItem: Cat_O_Nine_Tail_Egg
     FoodItem: Pet_Food
-    Fullness: 2
+    Fullness: 1
     HungryDelay: 120
     IntimacyOwnerDie: 0
-    IntimacyFed: 15
+    IntimacyFed: 100
     CaptureRate: 0
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -587,10 +587,10 @@ Body:
   - Mob: DARK_ILLUSION2
     EggItem: Dark_Illusion_Egg
     FoodItem: Pet_Food
-    Fullness: 2   # unknown
+    Fullness: 1   # unknown
     HungryDelay: 120   # unknown
     IntimacyOwnerDie: 0
-    IntimacyFed: 15   # unknown
+    IntimacyFed: 100   # unknown
     CaptureRate: 0   # unknown
     SpecialPerformance: true   # unknown
     AllowAutoFeed: true
@@ -609,9 +609,9 @@ Body:
   - Mob: Ghostring
     EggItem: Ghostring_Egg
     FoodItem: Pet_Food
-    Fullness: 2
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 15
+    IntimacyFed: 100
     HungryDelay: 120   # unknown
     CaptureRate: 0
     SpecialPerformance: true
@@ -631,9 +631,9 @@ Body:
   - Mob: GRYPHON
     EggItem: Gryphon_Egg
     FoodItem: Pet_Food
-    Fullness: 2
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 15
+    IntimacyFed: 100
     HungryDelay: 120   # unknown
     CaptureRate: 0
     SpecialPerformance: true
@@ -653,9 +653,9 @@ Body:
   - Mob: HYDRO
     EggItem: Hydro_Egg
     FoodItem: Pet_Food
-    Fullness: 2
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 15
+    IntimacyFed: 100
     HungryDelay: 120   # unknown
     CaptureRate: 0
     SpecialPerformance: true
@@ -675,9 +675,9 @@ Body:
   - Mob: MUTANT_DRAGON
     EggItem: Mutant_Dragon_Egg
     FoodItem: Pet_Food
-    Fullness: 2
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 15
+    IntimacyFed: 100
     HungryDelay: 120   # unknown
     CaptureRate: 0
     SpecialPerformance: true
@@ -697,9 +697,9 @@ Body:
   - Mob: OWL_BARON
     EggItem: Owl_Baron_Egg
     FoodItem: Pet_Food
-    Fullness: 2
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 15
+    IntimacyFed: 100
     HungryDelay: 120   # unknown
     CaptureRate: 0
     SpecialPerformance: true
@@ -720,9 +720,10 @@ Body:
     EggItem: Ep17_2_C_Admin1_Egg
     EquipItem: Ep_17_2_C_Admin1_Acc
     FoodItem: Pet_Food
-    Fullness: 2
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 20
+    HungryDelay: 120   # unknown
+    IntimacyFed: 150
     CaptureRate: 1000
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -741,9 +742,10 @@ Body:
     EggItem: Ep17_2_C_Admin2_Egg
     EquipItem: Ep_17_2_C_Admin2_Acc
     FoodItem: Pet_Food
-    Fullness: 2
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 20
+    HungryDelay: 120   # unknown
+    IntimacyFed: 150
     CaptureRate: 1000
     AllowAutoFeed: true
     Script: >
@@ -761,9 +763,10 @@ Body:
   - Mob: DOPPELGANGER
     EggItem: Doppelganger_Egg
     FoodItem: High_Class_Pet_Food
-    Fullness: 2
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 20
+    HungryDelay: 200   # unknown
+    IntimacyFed: 200
     CaptureRate: 1000
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -783,9 +786,10 @@ Body:
   - Mob: ORC_LORD
     EggItem: Orc_Lord_Egg_
     FoodItem: High_Class_Pet_food
-    Fullness: 2
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 20
+    HungryDelay: 200   # unknown
+    IntimacyFed: 200
     CaptureRate: 1000
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -805,9 +809,10 @@ Body:
   - Mob: MAYA
     EggItem: Maya_Egg
     FoodItem: High_Class_Pet_food
-    Fullness: 2
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 20
+    HungryDelay: 200   # unknown
+    IntimacyFed: 200
     CaptureRate: 1000
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -827,9 +832,10 @@ Body:
   - Mob: MOONLIGHT
     EggItem: Moonlight_Egg
     FoodItem: High_Class_Pet_food
-    Fullness: 2
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 20
+    HungryDelay: 200   # unknown
+    IntimacyFed: 200
     CaptureRate: 1000
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -849,9 +855,10 @@ Body:
   - Mob: BAPHOMET
     EggItem: Baphomet_Egg
     FoodItem: High_Class_Pet_food
-    Fullness: 2
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 20
+    HungryDelay: 200   # unknown
+    IntimacyFed: 200
     CaptureRate: 1000
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -871,9 +878,10 @@ Body:
   - Mob: MISTRESS
     EggItem: Mistress_Egg
     FoodItem: High_Class_Pet_food
-    Fullness: 2
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 20
+    HungryDelay: 200   # unknown
+    IntimacyFed: 200
     CaptureRate: 1000
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -893,9 +901,10 @@ Body:
   - Mob: EDDGA
     EggItem: Eddga_Egg2
     FoodItem: High_Class_Pet_food
-    Fullness: 2
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 20
+    HungryDelay: 200   # unknown
+    IntimacyFed: 200
     CaptureRate: 1000
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -915,9 +924,10 @@ Body:
   - Mob: OSIRIS
     EggItem: Osiris_Egg
     FoodItem: High_Class_Pet_food
-    Fullness: 2
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 20
+    HungryDelay: 200   # unknown
+    IntimacyFed: 200
     CaptureRate: 1000
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -939,9 +949,10 @@ Body:
   - Mob: DRACULA
     EggItem: Dracula_Egg
     FoodItem: High_Class_Pet_food
-    Fullness: 2
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 20
+    HungryDelay: 200   # unknown
+    IntimacyFed: 200
     CaptureRate: 1000
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -961,9 +972,10 @@ Body:
   - Mob: DARK_SNAKE_LORD
     EggItem: Dark_Snake_Lord_Egg
     FoodItem: High_Class_Pet_food
-    Fullness: 2
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 20
+    HungryDelay: 200   # unknown
+    IntimacyFed: 200
     CaptureRate: 1000
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -987,9 +999,10 @@ Body:
   - Mob: TURTLE_GENERAL
     EggItem: Turtle_General_Egg
     FoodItem: High_Class_Pet_food
-    Fullness: 2
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 20
+    HungryDelay: 200   # unknown
+    IntimacyFed: 200
     CaptureRate: 1000
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -1012,9 +1025,10 @@ Body:
   - Mob: RANDGRIS
     EggItem: Randgris_Egg
     FoodItem: High_Class_Pet_food
-    Fullness: 2
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 20
+    HungryDelay: 200   # unknown
+    IntimacyFed: 200
     CaptureRate: 1000
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -1035,9 +1049,10 @@ Body:
   - Mob: PHREEONI2
     EggItem: Phreeoni_Egg
     FoodItem: High_Class_Pet_food
-    Fullness: 2
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 20
+    HungryDelay: 200   # unknown
+    IntimacyFed: 200
     CaptureRate: 1000
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -1055,9 +1070,10 @@ Body:
   - Mob: KIEL_D_01_2
     EggItem: Kiel_Egg
     FoodItem: High_Class_Pet_food
-    Fullness: 2
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 20
+    HungryDelay: 200   # unknown
+    IntimacyFed: 200
     CaptureRate: 1000
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -1075,9 +1091,10 @@ Body:
   - Mob: GLOOMUNDERNIGHT2
     EggItem: Gloom_Under_Egg
     FoodItem: High_Class_Pet_food
-    Fullness: 2
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 20
+    HungryDelay: 200   # unknown
+    IntimacyFed: 200
     CaptureRate: 1000
     SpecialPerformance: true
     AllowAutoFeed: true
@@ -1096,9 +1113,10 @@ Body:
   - Mob: ORK_HERO2
     EggItem: Ork_Hero_EGG
     FoodItem: High_Class_Pet_food
-    Fullness: 2
+    Fullness: 1
     IntimacyOwnerDie: 0
-    IntimacyFed: 20
+    HungryDelay: 200   # unknown
+    IntimacyFed: 200
     CaptureRate: 1000
     SpecialPerformance: true
     AllowAutoFeed: true

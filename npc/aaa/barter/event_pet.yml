@@ -53,16 +53,9 @@ Body:
     Direction: South
     Sprite: 4_EP18_PAPERS
     Items:
-      - Index: 0
-        Item: Angeling_Egg
-        Stock: 2
-        RequiredItems:
-          - Index: 0
-            Item: Savage_Bebe_Egg
-            Amount: 20
       - Index: 1
         Item: Cat_O_Nine_Tail_Egg
-        Stock: 2
+        Stock: 1
         RequiredItems:
           - Index: 0
             Item: Savage_Bebe_Egg
@@ -90,20 +83,6 @@ Body:
             Amount: 20
       - Index: 5
         Item: Hydro_Egg
-        Stock: 2
-        RequiredItems:
-          - Index: 0
-            Item: Savage_Bebe_Egg
-            Amount: 20
-      - Index: 6
-        Item: Mutant_Dragon_Egg
-        Stock: 2
-        RequiredItems:
-          - Index: 0
-            Item: Savage_Bebe_Egg
-            Amount: 20
-      - Index: 7
-        Item: Owl_Baron_Egg
         Stock: 2
         RequiredItems:
           - Index: 0

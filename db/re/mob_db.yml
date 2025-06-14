@@ -8261,7 +8261,7 @@ Body:
       - Item: Phracon
         Rate: 40
       - Item: Sweet_Milk
-        Rate: 20
+        Rate: 500
       - Item: Savage_Babe_Card
         Rate: 1
         StealProtected: true
@@ -66972,7 +66972,7 @@ Body:
       - Item: Phracon
         Rate: 200
       - Item: Sweet_Milk
-        Rate: 100
+        Rate: 500
       - Item: Savage_Babe_Card
         Rate: 5
         StealProtected: true
