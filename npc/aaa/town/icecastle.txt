@@ -1,7 +1,12 @@
 icecastle	mapflag	town
 icecastle	mapflag	nodrop
-icecastle	mapflag	novending
-icecastle	mapflag	nobuyingstore
 icecastle	mapflag	nopenalty
 icecastle	mapflag	nobranch
 icecastle	mapflag	noicewall
+
+-	script	cell#icecastle	-1,{
+Oninit:
+	setcell "icecastle",176,219,197,180,CELL_NOVENDING,1;
+	setcell "icecastle",176,219,197,180,CELL_NOBUYINGSTORE,1;
+	end;
+}
