@@ -1970,6 +1970,8 @@ Body:
     TargetType: Attack
     Flags:
       AlterRangeVulture: true
+    DamageFlags:
+      Critical: true
     Range: -9
     Hit: Multi_Hit
     HitCount: 2

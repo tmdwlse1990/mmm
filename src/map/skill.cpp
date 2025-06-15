@@ -1436,6 +1436,8 @@ int32 skill_additional_effect( struct block_list* src, struct block_list *bl, ui
 	case TF_POISON:
 		if (!sc_start2(src, bl, SC_POISON, (4 * skill_lv + 10), skill_lv, src->id, skill_get_time2(skill_id, skill_lv)) && sd)
 			clif_skill_fail( *sd, skill_id );
+		if(sd->special_state.skillup1 && skill_lv >= 15)
+			sc_start(src, bl, SC_DARKCROW, 100, 2, 3000); // Should be applied even on miss
 		break;
 
 	case AS_SONICBLOW:
@@ -4182,8 +4184,15 @@ int64 skill_attack (int32 attack_type, struct block_list* src, struct block_list
 			case MG_COLDBOLT:
 			case MG_FIREBOLT:
 			case MG_LIGHTNINGBOLT:
+				if (sd->special_state.skillup1 && rnd() % 100 < 15)
+					skill_addtimerskill(src, tick + dmg.amotion, bl->id, 0, 0, skill_id, skill_lv, BF_MAGIC, flag|2);
 				if (sc && sc->getSCE(SC_DOUBLECAST) && rnd() % 100 < sc->getSCE(SC_DOUBLECAST)->val2)
 					//skill_addtimerskill(src, tick + dmg.div_*dmg.amotion, bl->id, 0, 0, skill_id, skill_lv, BF_MAGIC, flag|2);
+					skill_addtimerskill(src, tick + dmg.amotion, bl->id, 0, 0, skill_id, skill_lv, BF_MAGIC, flag|2);
+				break;
+			case MG_FIREBALL:
+			case MG_THUNDERSTORM:
+				if (sd->special_state.skillup2 && rnd() % 100 < 15)
 					skill_addtimerskill(src, tick + dmg.amotion, bl->id, 0, 0, skill_id, skill_lv, BF_MAGIC, flag|2);
 				break;
 			case SU_BITE:
@@ -4192,6 +4201,14 @@ int64 skill_attack (int32 attack_type, struct block_list* src, struct block_list
 			case SU_SCAROFTAROU:
 			case SU_PICKYPECK:
 				if (status_get_lv(src) > 29 && rnd() % 100 < 10 * status_get_lv(src) / 30)
+					skill_addtimerskill(src, tick + dmg.amotion + skill_get_delay(skill_id, skill_lv), bl->id, 0, 0, skill_id, skill_lv, attack_type, flag|2);
+				break;
+			case AC_DOUBLE:
+				if(
+					sd->special_state.skillup2 &&
+					(skill_id == AC_DOUBLE) &&
+					rnd() % 10000 < 3333
+				)
 					skill_addtimerskill(src, tick + dmg.amotion + skill_get_delay(skill_id, skill_lv), bl->id, 0, 0, skill_id, skill_lv, attack_type, flag|2);
 				break;
 		}
@@ -8234,8 +8251,16 @@ int32 skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, 
 	//Passive Magnum, should had been casted on yourself.
 	case SM_MAGNUM:
 	case MS_MAGNUM:
+		if (flag&1) {
 		skill_area_temp[1] = 0;
-		map_foreachinshootrange(skill_area_sub, src, skill_get_splash(skill_id, skill_lv), BL_SKILL|BL_CHAR,
+		}
+		else {
+			int a;
+			uint16 splash_size = skill_get_splash(skill_id, skill_lv);
+			if( sd && skill_id && (a = pc_skillaoe_bonus(sd, skill_id)))
+				splash_size += a;
+		skill_area_temp[1] = 0;
+		map_foreachinshootrange(skill_area_sub, src, splash_size, BL_SKILL|BL_CHAR,
 			src,skill_id,skill_lv,tick, flag|BCT_ENEMY|1, skill_castend_damage_id);
 		clif_skill_nodamage(src, *src,skill_id,skill_lv);
 		// Initiate 20% of your damage becomes fire element.
@@ -8244,6 +8269,7 @@ int32 skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, 
 #else
 		sc_start4(src,src,SC_WATK_ELEMENT,100,ELE_FIRE,20,0,0,skill_get_time2(skill_id, skill_lv));
 #endif
+		}
 		break;
 
 	case MH_BLAZING_AND_FURIOUS:
@@ -20260,6 +20286,8 @@ struct s_skill_condition skill_get_requirement(map_session_data* sd, uint16 skil
 	// Check for cost reductions due to skills & SCs
 	switch(skill_id) {
 		case MC_MAMMONITE:
+			if(sd->special_state.skillup1)
+				req.zeny -= 500;
 #ifdef RENEWAL
 		case WS_CARTTERMINATION:
 #endif

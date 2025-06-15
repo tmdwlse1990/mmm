@@ -594,6 +594,8 @@ public:
 		uint32 no_mado_fuel : 1; // Disable Magic_Gear_Fuel consumption [Secret]
 		uint32 no_walk_delay : 1;
 		uint32 no_fatal_dmg : 1;
+		uint32 skillup1 : 1;
+		uint32 skillup2 : 1;
 	} special_state;
 	uint32 login_id1, login_id2;
 	uint64 class_;	//This is the internal job ID used by the map server to simplify comparisons/queries/etc. [Skotlex]
@@ -729,7 +731,7 @@ public:
 	std::vector<s_autospell> autospell, autospell2, autospell3;
 	std::vector<s_addeffect> addeff, addeff_atked;
 	std::vector<s_addeffectonskill> addeff_onskill;
-	std::vector<s_item_bonus> skillatk, skillusesprate, skillusesp, skillheal, skillheal2, skillblown, skillcastrate, skillfixcastrate, subskill, skillcooldown, skillfixcast,
+	std::vector<s_item_bonus> skillaoe, skillatk, skillusesprate, skillusesp, skillheal, skillheal2, skillblown, skillcastrate, skillfixcastrate, subskill, skillcooldown, skillfixcast,
 		skillvarcast, skilldelay, itemhealrate, add_def, add_mdef, add_mdmg, reseff, itemgrouphealrate, itemsphealrate, itemgroupsphealrate;
 	std::vector<s_add_drop> add_drop;
 	std::vector<s_addele2> subele2;
@@ -1739,6 +1741,7 @@ void pc_check_available_item(map_session_data *sd, uint8 type);
 int32 pc_useitem(map_session_data*,int32);
 
 int32 pc_skillatk_bonus(map_session_data *sd, uint16 skill_id);
+int32 pc_skillaoe_bonus(map_session_data *sd, uint16 skill_id);
 int32 pc_sub_skillatk_bonus(map_session_data *sd, uint16 skill_id);
 int32 pc_skillheal_bonus(map_session_data *sd, uint16 skill_id);
 int32 pc_skillheal2_bonus(map_session_data *sd, uint16 skill_id);

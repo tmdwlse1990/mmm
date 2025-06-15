@@ -569,6 +569,216 @@ Body:
       NoAuction: true
     Script: |
       bonus bAllStats,1;
+#   [Enchant Stone]
+  - Id: 2235001
+    AegisName: SM_UP_Skill_1
+    Name: Swordman Upgrade Skill 1
+    Type: etc
+    Weight: 100
+  - Id: 2235002
+    AegisName: SM_UP_Skill_2
+    Name: Swordman Upgrade Skill 2
+    Type: etc
+    Weight: 100
+  - Id: 2235003
+    AegisName: AC_UP_Skill_1
+    Name: Archer Upgrade Skill 1
+    Type: etc
+    Weight: 100
+  - Id: 2235004
+    AegisName: AC_UP_Skill_2
+    Name: Archer Upgrade Skill 2
+    Type: etc
+    Weight: 100
+  - Id: 2235005
+    AegisName: AL_UP_Skill_1
+    Name: Acolyte Upgrade Skill 1
+    Type: etc
+    Weight: 100
+  - Id: 2235006
+    AegisName: AL_UP_Skill_2
+    Name: Acolyte Upgrade Skill 2
+    Type: etc
+    Weight: 100
+  - Id: 2235007
+    AegisName: TF_UP_Skill_1
+    Name: Thief Upgrade Skill 1
+    Type: etc
+    Weight: 100
+  - Id: 2235008
+    AegisName: TF_UP_Skill_2
+    Name: Thief Upgrade Skill 2
+    Type: etc
+    Weight: 100
+  - Id: 2235009
+    AegisName: MC_UP_Skill_1
+    Name: Merchant Upgrade Skill 1
+    Type: etc
+    Weight: 100
+  - Id: 2235010
+    AegisName: MC_UP_Skill_2
+    Name: Merchant Upgrade Skill 2
+    Type: etc
+    Weight: 100
+  - Id: 2235011
+    AegisName: MG_UP_Skill_1
+    Name: Mage Upgrade Skill 1
+    Type: etc
+    Weight: 100
+  - Id: 2235012
+    AegisName: MG_UP_Skill_2
+    Name: Mage Upgrade Skill 2
+    Type: etc
+    Weight: 100
+  - Id: 2235013
+    AegisName: NV_UP_Skill_1
+    Name: Novice Upgrade Skill 1
+    Type: etc
+    Weight: 100
+  - Id: 2235014
+    AegisName: NV_UP_Skill_2
+    Name: Novice Upgrade Skill 2
+    Type: etc
+    Weight: 100
+#   [Enchant Result]
+  - Id: 2236001
+    AegisName: SM_Up_Skill_Ston_1
+    Name: Swordman Upgrade Skill 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      .@i = getiteminfo(getequipid(EQI_HAND_R), ITEMINFO_VIEW);
+      if( BaseClass == Job_Swordman && getskilllv("SM_TWOHAND") >= 15 && .@i == W_2HSWORD) {
+        bonus bPerfectHitRate,100;
+      }
+  - Id: 2236002
+    AegisName: SM_Up_Skill_Ston_2
+    Name: Swordman Upgrade Skill 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == Job_Swordman && getskilllv("SM_MAGNUM") >= 15 ) {
+        bonus2 bSkillAoe,"SM_MAGNUM",2;
+      }
+  - Id: 2236003
+    AegisName: AC_Up_Skill_Ston_1
+    Name: Archer Upgrade Skill 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == Job_Archer && getskilllv("AC_CONCENTRATION") >= 10 ) {
+        bonus bSkillUpgrade1;
+      }
+  - Id: 2236004
+    AegisName: AC_Up_Skill_Ston_2
+    Name: Archer Upgrade Skill 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == Job_Archer && getskilllv("AC_CONCENTRATION") >= 10 ) {
+        bonus bSkillUpgrade2;
+      }
+  - Id: 2236005
+    AegisName: AL_Up_Skill_Ston_1
+    Name: Acolyte Upgrade Skill 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == Job_Acolyte && getskilllv("AL_DP") >= 15) {
+        bonus2 bSubRace,RC_All,20;
+      }
+  - Id: 2236006
+    AegisName: AL_Up_Skill_Ston_2
+    Name: Acolyte Upgrade Skill 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == Job_Acolyte && getskilllv("AL_DEMONBANE") >= 15) {
+        bonus2 bAddRace,RC_All,20;
+        bonus2 bMagicAddRace,RC_All,20;
+      }
+  - Id: 2236007
+    AegisName: TF_Up_Skill_Ston_1
+    Name: Thief Upgrade Skill 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == Job_Thief && getskilllv("TF_MISS") >= 15) {
+        bonus bFlee2,25;
+      }
+  - Id: 2236008
+    AegisName: TF_Up_Skill_Ston_2
+    Name: Thief Upgrade Skill 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == Job_Thief && getskilllv("TF_POISON") >= 15) {
+        bonus bSkillUpgrade1;
+      }
+  - Id: 2236009
+    AegisName: MC_Up_Skill_Ston_1
+    Name: Merchant Upgrade Skill 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == Job_Merchant && getskilllv("MC_IDENTIFY") >= 5) {
+        bonus bPerfectHitRate,100;
+      }
+  - Id: 2236010
+    AegisName: MC_Up_Skill_Ston_2
+    Name: Merchant Upgrade Skill 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == Job_Merchant && getskilllv("MC_MAMMONITE") >= 15) {
+        bonus bSkillUpgrade1;
+      }
+  - Id: 2236011
+    AegisName: MG_Up_Skill_Ston_1
+    Name: Mage Upgrade Skill 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == Job_Mage && 
+      getskilllv("MG_FIREBOLT") >= 10 &&
+      getskilllv("MG_COLDBOLT") >= 10 &&
+      getskilllv("MG_LIGHTNINGBOLT") >= 10) {
+        bonus bSkillUpgrade1;
+      }
+  - Id: 2236012
+    AegisName: MG_Up_Skill_Ston_2
+    Name: Mage Upgrade Skill 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == Job_Mage && 
+      getskilllv("MG_FIREBALL") >= 15 &&
+      getskilllv("MG_THUNDERSTORM") >= 15) {
+        bonus bSkillUpgrade2;
+      }
+  - Id: 2236013
+    AegisName: NV_Up_Skill_Ston_1
+    Name: Novice Upgrade Skill 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == Job_Novice) {
+        bonus bStr,readparam(bStr);
+        bonus bAgi,readparam(bAgi);
+        bonus bInt,readparam(bInt);
+        bonus bVit,readparam(bVit);
+        bonus bDex,readparam(bDex);
+        bonus bLuk,readparam(bLuk);
+      }
+  - Id: 2236014
+    AegisName: NV_Up_Skill_Ston_2
+    Name: Novice Upgrade Skill 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == Job_Novice) {
+         autobonus3 "{ sc_start SC_ASSUMPTIO,600000,3;sc_start SC_Impositio,600000,10;sc_start SC_Slowpoison,600000,1;sc_start SC_Suffragium,600000,3;sc_start SC_Kyrie,600000,7;sc_start SC_Gloria,600000,1;sc_start SC_Weaponperfection,600000,3;sc_start SC_Overthrust,600000,3;sc_start SC_Loud,600000,1;sc_start SC_Explosionspirits,600000,3;sc_start SC_Magnificat,600000,3; }",1000,600000,"NV_FIRSTAID","{ specialeffect2 EF_ASSUMPTIO; specialeffect2 EF_Weaponperfection; specialeffect2 EF_Overthrust; specialeffect2 EF_Loud;specialeffect2 EF_Impositio;specialeffect2 EF_Gloria;specialeffect2 EF_Slowpoison; }";
+      }
 #   [Card Item]
   - Id: 2230001
     AegisName: GOLDEN_SAVAGE_Card

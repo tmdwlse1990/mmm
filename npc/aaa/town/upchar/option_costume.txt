@@ -5,6 +5,10 @@ icecastle,189,158,4	script	Designer Heidam#cos_ect	4_WHITETIGER,{
 		close;
 	}
 	disable_items;
+	mes "[ดีไซน์เนอร์ ไร้นาม]";
+	mes "เลือกสิ จะออฟส่วนหัว หรือส่วนมัพ";
+	next;
+	if(select("- ส่วนหมวก:- ส่วนผ้าคลุม") == 2 ) goto GarmentOP;
 THREETOP:
 	mes "[ดีไซน์เนอร์ ไร้นาม]";
 	mes "นายอยากจะออฟส่วนไหน ?";
@@ -122,6 +126,113 @@ THREETOP:
 			4752, 4752, // Luk +3
 			4753, 4753, // Luk +4
 			2099001, 2099001;	// All Stat +1
+
+	.@size = getarraysize(.@stone_id);
+	.@max_menu_size = 2047;	// temporary fix the menu length until new data
+	.@i = 0;
+
+	set .@menu$, "";
+    set .@a, 0;
+    while( .@a<=.@size) {
+        if(getiteminfo(.@stone_id[.@a],2)>-1) {
+            if(set(.@c,countitem(.@stone_id[.@a]))) {
+                set .@menu$, .@menu$+"มี  ^FF0000"+getitemname(.@stone_id[.@a])+"^000000 จำนวน ^FF0000"+.@c+"^000000 อัน"+":";
+                set .@b,.@b+1;
+                set .@item[.@b], .@stone_id[.@a];
+            }
+		}
+		.@a += 2;
+	}
+	select(.@menu$);
+	set .@itm, .@item[@menu];
+	
+	.@stone = .@itm;
+	.@enchant = .@stone_id[inarray(.@stone_id,.@stone) + 1];
+
+	if (getequipid(.@part) < 0 || countitem(.@stone) < 1) {
+		mes "[ดีไซน์เนอร์ ไร้นาม]";
+		mes "นี่นายถอดของ ไม่ก็แอบเก็บหินไปสินะ นิสียแย่จริงๆ";
+		close;
+	}
+	next;
+	setdialogsize(400,200);
+	mes "^FF0000   !!! โปรดอ่าน !!!^000000";
+	mes "^ff0000ออฟอันนี้ ^i["+.@equip_id+"](^0000FF" + getitemname(.@equip_id) + ")^000000";
+	mes "^ff0000ด้วยอันนี้ ^i["+.@stone+"](^0000FF" + getitemname(.@stone) + ")^000000";
+	mes "^FF0000แน่ใจนะ?^000000";
+	next;
+	if (select( "Yes.", "No." ) == 2) {
+		mes "[ดีไซน์เนอร์ ไร้นาม]";
+		mes "โอกาสหน้ามาใหม่~";
+		close;
+	}
+	delitem .@stone, 1;
+
+	// anti-hack
+	if (callfunc("F_IsEquipIDHack", .@part, .@equip_id) || callfunc("F_IsEquipCardHack", .@part, .@card[0], .@card[1], .@card[2], .@card[3]) || callfunc("F_IsEquipRefineHack", .@part, .@equip_refine))
+		close;
+
+	delequip .@part;
+	.@card[.@slot] = .@enchant;
+	getitem2 .@equip_id,1,1,.@equip_refine,0,.@card[0],.@card[1],.@card[2],.@card[3];
+	close;
+	
+GarmentOP:
+
+	.@part = EQI_COSTUME_GARMENT;
+	.@equip_id = getequipid(.@part);
+	.@equip_refine = getequiprefinerycnt(.@part);
+	setarray .@card[0], getequipcardid(.@part, 0), getequipcardid(.@part, 1), getequipcardid(.@part, 2), getequipcardid(.@part, 3);
+	.@slot = 0;
+	if (.@equip_id < 0) {
+		mes "[ดีไซน์เนอร์ ไร้นาม]";
+		mes "ใส่คอสก่อนนะ";	// custom
+		close;
+	}
+	mes "[ดีไซน์เนอร์ ไร้นาม]";
+	mes "จะออฟเจ้านี่จริงนะ ^i["+.@equip_id+"](^0000FF" + getitemname(.@equip_id) + "^000000)";
+	mes "อยากจะออฟอะไร ?";
+		// All Part Allow
+		setarray .@stone_id[getarraysize(.@stone_id)],
+			4700, 4700,	// Str +1
+			4701, 4701,	// Str +2
+			4702, 4702,	// Str +3
+			4703, 4703,	// Str +4
+			4710, 4710, // Int +1
+			4711, 4711, // Int +2
+			4712, 4712, // Int +3
+			4713, 4713, // Int +4
+			4720, 4720, // Dex +1
+			4721, 4721, // Dex +2
+			4722, 4722, // Dex +3
+			4723, 4723, // Dex +4
+			4730, 4730, // Agi +1
+			4731, 4731, // Agi +2
+			4732, 4732, // Agi +3
+			4733, 4733, // Agi +4
+			4740, 4740, // Vit +1
+			4741, 4741, // Vit +2
+			4742, 4742, // Vit +3
+			4743, 4743, // Vit +4
+			4750, 4750, // Luk +1
+			4751, 4751, // Luk +2
+			4752, 4752, // Luk +3
+			4753, 4753, // Luk +4
+			2099001, 2099001,	// All Stat +1
+			2235001, 2236001,	//	Swordman skill 1
+			2235002, 2236002,	//	Swordman skill 2
+			2235003, 2236003,	//	Archer skill 1
+			2235004, 2236004,	//	Archer skill 2
+			2235005, 2236005,	//	Acolyte skill 1
+			2235006, 2236006,	//	Acolyte skill 2
+			2235007, 2236007,	//	Thief skill 1
+			2235008, 2236008,	//	Thief skill 2
+			2235009, 2236009,	//	Merchant skill 1
+			2235010, 2236010,	//	Merchant skill 2
+			2235011, 2236011,	//	Mage skill 1
+			2235012, 2236012,	//	Mage skill 2
+			2235013, 2236013,	//	Novice skill 1
+			2235014, 2236014;	//	Novice skill 2
 
 	.@size = getarraysize(.@stone_id);
 	.@max_menu_size = 2047;	// temporary fix the menu length until new data

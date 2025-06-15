@@ -3923,6 +3923,7 @@ int32 status_calc_pc_sub(map_session_data* sd, uint8 opt)
 	sd->addeff_atked.clear();
 	sd->addeff_onskill.clear();
 	sd->skillatk.clear();
+	sd->skillaoe.clear();
 	sd->skillusesprate.clear();
 	sd->skillusesp.clear();
 	sd->skillheal.clear();
@@ -11739,7 +11740,7 @@ static bool status_change_start_post_delay(block_list* src, block_list* bl, sc_t
 			tick = INFINITE_TICK;
 			break;
 		case SC_CONCENTRATE:
-			val2 = 2 + val1;
+			val2 = 2 + val1 + ( sd->special_state.skillup1 && (val1 >= 10) ? 38 : 0);
 			if (sd) { // Store the card-bonus data that should not count in the %
 				val3 = sd->indexed_bonus.param_bonus[1]; // Agi
 				val4 = sd->indexed_bonus.param_bonus[4]; // Dex

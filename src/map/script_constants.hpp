@@ -761,6 +761,7 @@
 	export_constant2("bAddEffWhenHit",SP_ADDEFF_WHENHIT);
 	export_constant2("bAutoSpellWhenHit",SP_AUTOSPELL_WHENHIT);
 	export_constant2("bSkillAtk",SP_SKILL_ATK);
+	export_constant2("bSkillAoe",SP_SKILL_AOE);
 	export_constant2("bUnstripable",SP_UNSTRIPABLE);
 	export_constant2("bAutoSpellOnSkill",SP_AUTOSPELL_ONSKILL);
 	export_constant2("bSPGainValue",SP_SP_GAIN_VALUE);
@@ -845,6 +846,8 @@
 	export_constant2("bAddItemGroupSPHealRate", SP_ADD_ITEMGROUP_SPHEAL_RATE);
 	export_constant2("bWeaponSubSize", SP_WEAPON_SUBSIZE);
 	export_constant2("bNoFatalDamage", SP_NO_FATAL);
+	export_constant2("bSkillUpgrade1", SP_UPSKILL1);
+	export_constant2("bSkillUpgrade2", SP_UPSKILL2);
 	
 	// [Custom Bonus]
 	
