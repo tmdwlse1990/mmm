@@ -77,8 +77,12 @@ Body:
         Price: 200
       - Item: HD_Elunium
         Price: 50
+      - Item: HD_Elu_Box10
+        Price: 400
       - Item: HD_Oridecon
         Price: 50
+      - Item: HD_Ori_Box10
+        Price: 400
       - Item: Convex_Mirror_Box5
         Price: 250
       - Item: F_Max_Weight_Up_Box
