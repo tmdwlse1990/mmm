@@ -90,7 +90,7 @@ Body:
             Amount: 5
       - Index: 6
         Item: HD_Elunium
-        Zeny: 500000
+        Zeny: 250000
         RequiredItems:
           - Index: 0
             Item: Elunium
@@ -104,14 +104,14 @@ Body:
             Amount: 5
       - Index: 8
         Item: HD_Oridecon
-        Zeny: 500000
+        Zeny: 250000
         RequiredItems:
           - Index: 0
             Item: Oridecon
             Amount: 5
       - Index: 9
         Item: Blacksmith_Blessing
-        Zeny: 1000000
+        Zeny: 500000
         RequiredItems:
           - Index: 0
             Item: HD_Oridecon

@@ -844,17 +844,17 @@ Body:
                 Rate: 6000
                 Price: 50
                 Material: Phracon
-                DowngradeAmount: 2
+                DowngradeAmount: 1
               - Type: HD
                 Rate: 6000
                 Price: 20000
                 Material: HD_Oridecon
-                DowngradeAmount: 1
+                DowngradeAmount: 0
               - Type: Enriched
                 Rate: 9000
                 Price: 2000
                 Material: Enriched_Oridecon
-                DowngradeAmount: 2
+                DowngradeAmount: 1
           - Level: 9
             Bonus: 4500
             RandomBonus: 600
@@ -864,17 +864,17 @@ Body:
                 Rate: 4000
                 Price: 50
                 Material: Phracon
-                DowngradeAmount: 3
+                DowngradeAmount: 1
               - Type: HD
                 Rate: 4000
                 Price: 20000
                 Material: HD_Oridecon
-                DowngradeAmount: 1
+                DowngradeAmount: 0
               - Type: Enriched
                 Rate: 7000
                 Price: 2000
                 Material: Enriched_Oridecon
-                DowngradeAmount: 3
+                DowngradeAmount: 1
           - Level: 10
             Bonus: 5000
             RandomBonus: 900
@@ -884,7 +884,7 @@ Body:
                 Rate: 1900
                 Price: 50
                 Material: Phracon
-                DowngradeAmount: 3
+                DowngradeAmount: 2
               - Type: HD
                 Rate: 1900
                 Price: 20000
@@ -894,7 +894,7 @@ Body:
                 Rate: 3000
                 Price: 2000
                 Material: Enriched_Oridecon
-                DowngradeAmount: 3
+                DowngradeAmount: 2
           - Level: 11
             Bonus: 5500
             RandomBonus: 1200
