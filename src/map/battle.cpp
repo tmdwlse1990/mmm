@@ -3232,7 +3232,7 @@ static bool is_attack_critical(struct Damage* wd, struct block_list *src, struct
 
 				break;
 			case AC_DOUBLE:
-				if( !sd->special_state.skillup2)
+				if(sd == nullptr || !sd->special_state.skillup2)
 					return false;
 				cri += 333;
 				break;

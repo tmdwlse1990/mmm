@@ -1108,7 +1108,8 @@ OnEnable:
 	end;
 
 OnMyMobDead:
-	callfunc "F_Orcs_Reward";
+	'party_id = instance_live_info(ILI_OWNER);
+	announce "ปาตี้ [ " + getpartyname('party_id) + " ] ได้ผ่าน Orc's Memory ระดับ " + 'difficulty_mode$ + " เรียบร้อยแล้ว.", bc_all;
 	donpcevent instance_npcname("Kruger#")+"::OnEnable";
 	set .@map$, instance_mapname("2@orcs");
 	set .@mob_ran,rand(1,5);
@@ -1143,6 +1144,7 @@ OnEnable:
 	end;
 
 OnTouch_:
+	callfunc "F_Orcs_Reward";
 	warp "gef_fild10",240,197;
 	end;
 }
@@ -1322,7 +1324,7 @@ return;
 //============================================================
 function	script	F_Orcs_Exp	{
 	'bonus_exp = $@bonus_exp['level_mode];
-	getexp2 (getmonsterinfo(killedrid,MOB_BASEEXP) * 'bonus_exp),(getmonsterinfo(killedrid,MOB_JOBEXP) * 'bonus_exp);	
+	getexp2 (getmonsterinfo(killedrid,MOB_BASEEXP) * 'bonus_exp)+1,(getmonsterinfo(killedrid,MOB_JOBEXP) * 'bonus_exp)+1;	
 return;
 }
 // Reward Function
@@ -1333,23 +1335,27 @@ function	script	F_Orcs_Reward	{
 	'difficulty_mode$ = $@difficulty_mode$['level_mode];
 	'var_name$ = $@var_names$['level_mode];
 	'party_id = instance_live_info(ILI_OWNER);
+	setd("#" + 'var_name$, getd("#" + 'var_name$) + 'instance_points);
+	if (achievementinfo(100101, ACHIEVEINFO_COUNT5) == 0)
+		achievementupdate(100101, ACHIEVEINFO_COUNT5, 1);
+	message strcharinfo(0), "คุณได้รับแต้ม " + 'instance_points + " แต้ม " + 'var_name$ + ".";
+	message strcharinfo(0), "คุณมีแต้มปัจจุบันทั้งหมด : " + getd("#" + 'var_name$) + " " + 'var_name$ + ".";		
 	
-	getpartymember 'party_id, 1;
-	getpartymember 'party_id, 2;
-	'map$ = instance_mapname("2@orcs");
-	
+	/*
 	copyarray .@CID, $@partymembercid, $@partymembercount;
 	copyarray .@AID, $@partymemberaid, $@partymembercount;
+	
+	addrid(1);
 	for (.@i = 0; .@i < getarraysize(.@CID); .@i++) {
 		if (isloggedin(.@AID[.@i], .@CID[.@i])) {
 			if (strcharinfo(3, .@CID[.@i]) == 'map$) {
 				setd("#" + 'var_name$, getd("#" + 'var_name$) + 'instance_points);
-				announce "The party [ " + getpartyname('party_id) + " ] has defeated Orc's Memory on " + 'difficulty_mode$ + ".", bc_all;
 				message strcharinfo(0, .@CID[.@i]), "You've been granted " + 'instance_points + " " + 'var_name$ + ".";
 				message strcharinfo(0, .@CID[.@i]), "You now have " + getd("#" + 'var_name$) + " " + 'var_name$ + ".";
 			}
 		}
 	}
+	*/
 	return;
 }
 //== Core Functions ========================================
@@ -1490,42 +1496,42 @@ function	script	F_Orcs_Settings	{
 									
 	setarray $@veteran_mode_variables, 100		//bonus_hp_rate
 									, 100		//bonus_dmg_rate
-									, -20		//bonus_damagetaken
-									, 100		//bonus_def
-									, 100		//bonus_mdef
-									, 100		//bonus_hit
-									, 100		//bonus_flee
+									, -10		//bonus_damagetaken
+									, 20		//bonus_def
+									, 20		//bonus_mdef
+									, 20		//bonus_hit
+									, 20		//bonus_flee
 									, 2			//Rank
 									;
 									
 	setarray $@nightmare_mode_variables, 200		//bonus_hp_rate
 									, 200		//bonus_dmg_rate
-									, -40		//bonus_damagetaken
-									, 200		//bonus_def
-									, 200		//bonus_mdef
-									, 200		//bonus_hit
-									, 200		//bonus_flee
-									, 5			//Rank
+									, -20		//bonus_damagetaken
+									, 50		//bonus_def
+									, 50		//bonus_mdef
+									, 50		//bonus_hit
+									, 50		//bonus_flee
+									, 3			//Rank
 									;
 									
-	setarray $@hell_mode_variables, 400			//bonus_hp_rate
-									, 400		//bonus_dmg_rate
-									, -60		//bonus_damagetaken
-									, 400		//bonus_def
-									, 400		//bonus_mdef
-									, 400		//bonus_hit
-									, 400		//bonus_flee
-									, 10			//Rank
+	setarray $@hell_mode_variables, 500			//bonus_hp_rate
+									, 500		//bonus_dmg_rate
+									, -40		//bonus_damagetaken
+									, 100		//bonus_def
+									, 100		//bonus_mdef
+									, 100		//bonus_hit
+									, 100		//bonus_flee
+									, 5			//Rank
 									;
 									
 	setarray $@torment_mode_variables, 1000		//bonus_hp_rate
 									, 1000		//bonus_dmg_rate
-									, -90		//bonus_damagetaken
-									, 1000		//bonus_def
-									, 1000		//bonus_mdef
-									, 1000		//bonus_hit
-									, 1000		//bonus_flee
-									, 20		//Rank
+									, -50		//bonus_damagetaken
+									, 200		//bonus_def
+									, 200		//bonus_mdef
+									, 200		//bonus_hit
+									, 200		//bonus_flee
+									, 10		//Rank
 									;
 									
 	setarray $@bonus_exp[1], 1					//easy_bonus_exp
@@ -1674,7 +1680,9 @@ function	ShopSettings	{
 			set @Currency$,"#ORCS_VETERAN";
 			// Item ID Lists
 			// Option Class 1
-			setarray @ItemLists[0],2235001	
+			setarray @ItemLists[0]	,28522		// Ring Of Fallen
+									,28523  	// Ring Of Calamity
+									,2235001	
 									,2235002
 									,2235003
 									,2235004
@@ -1691,7 +1699,9 @@ function	ShopSettings	{
 									;
 
 			// Item Price
-			setarray @ItemCost[0],50	
+			setarray @ItemCost[0]	,50			// Ring Of Fallen
+									,50		// Ring Of Calamity
+									,50	
 									,50	
 									,50	
 									,50	

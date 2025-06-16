@@ -1436,7 +1436,7 @@ int32 skill_additional_effect( struct block_list* src, struct block_list *bl, ui
 	case TF_POISON:
 		if (!sc_start2(src, bl, SC_POISON, (4 * skill_lv + 10), skill_lv, src->id, skill_get_time2(skill_id, skill_lv)) && sd)
 			clif_skill_fail( *sd, skill_id );
-		if(sd->special_state.skillup1 && skill_lv >= 15)
+		if(sd && sd->special_state.skillup1 && skill_lv >= 15)
 			sc_start(src, bl, SC_DARKCROW, 100, 2, 3000); // Should be applied even on miss
 		break;
 
@@ -4184,7 +4184,7 @@ int64 skill_attack (int32 attack_type, struct block_list* src, struct block_list
 			case MG_COLDBOLT:
 			case MG_FIREBOLT:
 			case MG_LIGHTNINGBOLT:
-				if (sd->special_state.skillup1 && rnd() % 100 < 15)
+				if (sd && sd->special_state.skillup1 && rnd() % 100 < 15)
 					skill_addtimerskill(src, tick + dmg.amotion, bl->id, 0, 0, skill_id, skill_lv, BF_MAGIC, flag|2);
 				if (sc && sc->getSCE(SC_DOUBLECAST) && rnd() % 100 < sc->getSCE(SC_DOUBLECAST)->val2)
 					//skill_addtimerskill(src, tick + dmg.div_*dmg.amotion, bl->id, 0, 0, skill_id, skill_lv, BF_MAGIC, flag|2);
@@ -4192,7 +4192,7 @@ int64 skill_attack (int32 attack_type, struct block_list* src, struct block_list
 				break;
 			case MG_FIREBALL:
 			case MG_THUNDERSTORM:
-				if (sd->special_state.skillup2 && rnd() % 100 < 15)
+				if (sd && sd->special_state.skillup2 && rnd() % 100 < 15)
 					skill_addtimerskill(src, tick + dmg.amotion, bl->id, 0, 0, skill_id, skill_lv, BF_MAGIC, flag|2);
 				break;
 			case SU_BITE:
@@ -4204,7 +4204,7 @@ int64 skill_attack (int32 attack_type, struct block_list* src, struct block_list
 					skill_addtimerskill(src, tick + dmg.amotion + skill_get_delay(skill_id, skill_lv), bl->id, 0, 0, skill_id, skill_lv, attack_type, flag|2);
 				break;
 			case AC_DOUBLE:
-				if(
+				if( sd &&
 					sd->special_state.skillup2 &&
 					(skill_id == AC_DOUBLE) &&
 					rnd() % 10000 < 3333

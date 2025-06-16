@@ -340,6 +340,51 @@ Body:
       NoAuction: true
     CollectionScript: |
       bonus2 bDropAddClass,Class_All,5;
+  - Id: 2000011
+    AegisName: Mokonar_Lover
+    Name: Mokonar Lover
+    Type: Usable
+    Trade:
+      NoSell: true
+      NoDrop: true
+      NoTrade: true
+      NoCart: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Script: |
+      if (!achievementexists(100001))
+        achievementcomplete(100001);
+  - Id: 2000012
+    AegisName: Shalarm_Lover
+    Name: Shalarm Lover
+    Type: Usable
+    Trade:
+      NoSell: true
+      NoDrop: true
+      NoTrade: true
+      NoCart: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Script: |
+      if (!achievementexists(100002))
+        achievementcomplete(100002);
+  - Id: 2000013
+    AegisName: Cat_Lover
+    Name: Cat Lover
+    Type: Usable
+    Trade:
+      NoSell: true
+      NoDrop: true
+      NoTrade: true
+      NoCart: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Script: |
+      if (!achievementexists(100003))
+        achievementcomplete(100003);
 #   [Side Quest Item]
   - Id: 2005001
     AegisName: Golden_Egg

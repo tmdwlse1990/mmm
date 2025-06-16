@@ -44,3 +44,53 @@
 Header:
   Type: ACHIEVEMENT_DB
   Version: 2
+
+Body:
+#  - Id: 100100
+#    Group: Battle
+#    Name: Test Poring # Complete vet mode
+#    Targets:
+#      - Id: 0
+#        Mob: Poring
+#        Count: 5
+#    Rewards:
+#      Item: Crystal_Jewel__
+#      Amount: 10
+  - Id: 100001
+    Group: Adventure
+    Name: Mokonar Lover
+    Rewards:
+      TitleId: 1000
+    Score: 10
+  - Id: 100002
+    Group: Adventure
+    Name: Shalarm Lover
+    Rewards:
+      TitleId: 1001
+    Score: 10
+  - Id: 100003
+    Group: Adventure
+    Name: Shalarm Lover
+    Rewards:
+      TitleId: 1002
+  - Id: 100101
+    Group: Battle
+    Name: Orcs Memorie Clear # Complete Orcs Memorie
+    Rewards:
+      Item: Costume_Ticket_Pass
+      Amount: 1
+    Score: 10
+  - Id: 220001
+    Group: Get_Zeny
+    Name: Rich King (1) # 10,000,000 zeny
+    Condition: " ARG0 >= 10000000 "
+    Rewards:
+      TitleId: 1009
+    Score: 10
+  - Id: 220002
+    Group: Get_Zeny
+    Name: Rich King (2)  #100,000,000 zeny
+    Condition: " ARG0 >= 100000000 "
+    Rewards:
+      TitleId: 1010
+    Score: 10
