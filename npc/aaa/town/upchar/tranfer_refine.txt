@@ -1,0 +1,141 @@
+icecastle,189,206,5	script	chicken test	800,{
+	disable_items;
+	.@downgrade = 1;		// ระดับเกรดที่ลด
+	.@downrefine = 3;		// ระดับตีบวกที่ลด
+	if(getgmlevel() < 99) end;
+	mes "[เจ้าขุนทอง]";
+	mes "อยากจะกระทำชำรวย อาวุธ หรือชุดเกราะ";
+	next;
+	if(select("อาวุธ:ชุดเกราะ") == 1 ) {
+	.@part = EQI_HAND_R;
+	.@type = IT_WEAPON;
+	.@lvtype = ITEMINFO_WEAPONLEVEL;
+	}
+	else {
+		setarray .@incides[1],EQI_SHOES,EQI_GARMENT,EQI_ARMOR,EQI_HEAD_TOP;
+		setarray .@incides$[1],"รองเท้า","ผ้าคลุม","ชุดเกราะ","หมวก";
+		.@where$ = "";
+		for(.@q = 1; .@q <= getarraysize(.@incides$); .@q++) {
+			.@where$ = .@where$ + .@incides$[.@q] + ":";
+		}
+	.@part = .@incides[select(.@where$)];
+	.@type = IT_ARMOR;
+	.@lvtype = ITEMINFO_ARMORLEVEL;
+	}
+	.@equip_id = getequipid(.@part);
+	.@equip_refine = getequiprefinerycnt(.@part);
+	setarray .@gradename$[0],"None","C","D","B","A","R","Meow","Shark";
+	if(!.@equip_id) {
+		mes "[เจ้าขุนทอง]";
+		mes "กรุณาใส่ของช่องที่จะดำเนินการ";
+		close;
+	}
+	mes "[เจ้าขุนทอง]";
+	mes "ให้สวมใส่ของที่จะบวก แล้วเลือก อาวุธที่จะย้ายเข้าไป";
+	mes "ของเก่าจะหายไป และตีบวกจะลดลง "+.@downrefine+" ระดับ.";
+	mes "หากมีเกรด เกรดจะลดลง "+.@downgrade+" ระดับแทน.";
+	mes "";
+	next;
+	.@menu$ = "";
+	getinventorylist();
+	for (.@i = 0; .@i < @inventorylist_count; ++.@i)
+		if (getiteminfo(@inventorylist_id[.@i],ITEMINFO_TYPE) == .@type)
+			if (getiteminfo(@inventorylist_id[.@i],.@lvtype) == getiteminfo(.@equip_id,.@lvtype) && getiteminfo(@inventorylist_id[.@i],ITEMINFO_LOCATIONS) == getiteminfo(.@equip_id,ITEMINFO_LOCATIONS) &&  @inventorylist_id[.@i] != .@equip_id) {
+				set .@existid[.@a],@inventorylist_id[.@i];
+				set .@existrefine[.@a],@inventorylist_refine[.@i];
+				set .@existgrade[.@a],@inventorylist_enchantgrade[.@i];
+				set .@existiden[.@a],@inventorylist_identify[.@i];
+				set .@existattri[.@a],@inventorylist_attribute[.@i];
+				set .@existcard1[.@a],@inventorylist_card1[.@i];
+				set .@existcard2[.@a],@inventorylist_card2[.@i];
+				set .@existcard3[.@a],@inventorylist_card3[.@i];
+				set .@existcard4[.@a],@inventorylist_card4[.@i];
+				set .@existopid1[.@a],@inventorylist_option_id1[.@i];
+				set .@existopval1[.@a],@inventorylist_option_value1[.@i];
+				set .@existoppara1[.@a],@inventorylist_option_parameter1[.@i];
+				set .@existopid2[.@a],@inventorylist_option_id2[.@i];
+				set .@existopval2[.@a],@inventorylist_option_value2[.@i];
+				set .@existoppara2[.@a],@inventorylist_option_parameter2[.@i];
+				set .@existopid3[.@a],@inventorylist_option_id3[.@i];
+				set .@existopval3[.@a],@inventorylist_option_value3[.@i];
+				set .@existoppara3[.@a],@inventorylist_option_parameter3[.@i];
+				set .@existopid4[.@a],@inventorylist_option_id4[.@i];
+				set .@existopval4[.@a],@inventorylist_option_value4[.@i];
+				set .@existoppara4[.@a],@inventorylist_option_parameter4[.@i];
+				set .@existopid5[.@a],@inventorylist_option_id5[.@i];
+				set .@existopval5[.@a],@inventorylist_option_value5[.@i];
+				set .@existoppara5[.@a],@inventorylist_option_parameter5[.@i];
+				.@menu$ = .@menu$ +"+"+ @inventorylist_refine[.@i] +""+(@inventorylist_enchantgrade[.@i] ? "["+.@gradename$[@inventorylist_enchantgrade[.@i]]+"]" : "")+" "+ getitemname(@inventorylist_id[.@i])+ ":";
+				.@a++;
+			}
+	.@choose = select(.@menu$)- 1;
+	.@itemid = .@existid[.@choose];
+	.@itemrefine = .@existrefine[.@choose];
+	.@itemgrade = .@existgrade[.@choose];
+	.@itemiden = .@existiden[.@choose];
+	.@itemattri = .@existattri[.@choose];
+	setarray .@itemcard[0],.@existcard1[.@choose],.@existcard2[.@choose],.@existcard3[.@choose],.@existcard4[.@choose];
+	setarray .@itemopid,.@existopid1[.@choose],.@existopid2[.@choose],.@existopid3[.@choose],.@existopid4[.@choose],.@existopid5[.@choose];
+	setarray .@itemopval,.@existopval1[.@choose],.@existopval2[.@choose],.@existopval3[.@choose],.@existopval4[.@choose],.@existopval5[.@choose];
+	setarray .@itemoppara,.@existoppara1[.@choose],.@existoppara2[.@choose],.@existoppara3[.@choose],.@existoppara4[.@choose],.@existoppara5[.@choose];
+
+	if(!getequipisenableref(.@part) ) {
+		mes "[เจ้าขุนทอง]";
+		mes "ไอเท็มที่เลือก ตีบวกไม่ได้.";
+		end;
+	}
+	
+	// anti-hack
+	if (callfunc("F_IsEquipIDHack", .@part, .@equip_id) || callfunc("F_IsEquipCardHack", .@part, .@card[0], .@card[1], .@card[2], .@card[3]) || callfunc("F_IsEquipRefineHack", .@part, .@equip_refine))
+		close;
+	
+	if(countitem(.@itemid) > 1 || !countitem(.@itemid) || countitem(.@equip_id) > 1 || !countitem(.@equip_id) ) {
+		mes "[เจ้าขุนทอง]";
+		mes "พกของแค่ชิ้นเดียว ทั้งที่จะย้าย และที่ใส่";
+		close;
+	}
+//countitem4(<item id>,<identify>,<refine>,<attribute>,<card1>,<card2>,<card3>,<card4>,<grade>,<RandomIDArray>,<RandomValueArray>,<RandomParamArray>{,<accountID>})
+
+	if (!.@itemrefine && !.@itemgrade) {
+		mes "[เจ้าขุนทอง]";
+		mes "ไอเท็มนี้ยังไม่ได้ตีบวก หรืออัพเกรดเลยนะ";
+		end;
+	}
+	// เช็คค่าย้าย บลาๆๆ
+	
+	mes "[เจ้าขุนทอง]";
+	mes "^ff0000---นี่คือข้อความสรุป โปรดอ่าน---^000000";
+	mes "^0000ffไอเท็มที่จะโอนบวก^000000 :+"+.@itemrefine+""+(.@itemgrade ? "["+.@gradename$[.@itemgrade]+"]":"")+" ^i["+.@itemid+"]";
+	mes "^00ff00ไอเท็มที่จะได้รับบวกก^000000 :^i["+.@equip_id+"]";
+	if(!.@itemgrade)
+		mes "^ff0000ผลลัพธ์:+"+(.@itemgrade ? .@itemrefine : Max(0,.@itemrefine - .@downrefine)) +""+(.@itemgrade ? "["+.@gradename$[.@itemgrade]+"]":"")+" ^i["+.@equip_id+"]";
+	else
+	mes "^ff0000ผลลัพธ์:+"+(.@itemgrade ? .@itemrefine : Max(0,.@itemrefine - .@downrefine)) +""+(.@itemgrade ? "["+.@gradename$[.@itemgrade - 1]+"]":"")+" ^i["+.@equip_id+"]";
+
+	// จ่ายค่าย้าย
+	next;
+	if(!countitem4(.@itemid,.@itemiden,.@itemrefine,.@itemattri,.@itemcard[0],.@itemcard[1],.@itemcard[2],.@itemcard[3],.@itemgrade,.@itemopid,.@itemopval,.@itemoppara)) {
+		mes "[เจ้าขุนทอง]";
+		mes "อย่าแอบเปลี่ยนของสิ";
+		mes "ค่าใช้จ่าย ก็ถืิอเป็นค่าเหลี่ยมนะ หุหุ";
+		errormes "Char ID:"+getcharid(0) + " I saw it";
+		close;
+	}
+	if(.@itemgrade) {
+		.@outputref = .@itemrefine;
+		.@outputgrade = max(0,.@itemgrade - .@downgrade);
+	}
+	else {
+		.@outputref = max(0,.@itemrefine - .@downrefine);
+		.@outputgrade = 0;
+	}
+	
+	delequip .@part;
+	delitem .@itemid,1;
+	//getitem4 .@equip_id,1,1,.@outputref,0,0,0,0,0,.@outputgrade,.@OptID,.@OptVal,.@OptParam;
+	getitem4 .@equip_id,.@itemiden,.@outputref,.@itemattri,.@itemcard[0],.@itemcard[1],.@itemcard[2],.@itemcard[3],.@outputgrade,.@itemopid,.@itemopval,.@itemoppara;
+	
+end;
+}
+
+//icecastle,180,206,0	monster	Dummy	2410,1,5000
