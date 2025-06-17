@@ -2217,8 +2217,7 @@ gef_fild10,235,202,3	script	Crazy Scientist	865,{
 	mes "โปรดเลือกระดับความยากของ Orc's Memorial Dungeon ที่คุณต้องการ";
 
 // Menu Selection
-select("[ Easy ]"
-		,"[ Veteran ] "
+select("[ Ring Of Fallen & Calamity ]"
 		/*
 		,"[ Nightmare ] "
 		,"[ Hell ] "
