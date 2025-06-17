@@ -140,6 +140,7 @@ gef_fild10,242,202,0	script	Dimensional Gorge Piece	406,{
 					mes "Monster bonus exp reward: x ^ff0000[ " + $@bonus_exp[1] + " ]^000000";
 					mes ""+.@md_name$ +" Easy Points: + ^ff0000[ " + $@instance_points[1] + " ]^000000";
 					mes "^ff0000-----------------------------------------------------^000000";
+					setdialogsize(300,500);
 					next;
 					mes "[ Difficulty Information ]";
 					mes "^ff0000-----------------------------------------------------^000000";
@@ -199,6 +200,8 @@ gef_fild10,242,202,0	script	Dimensional Gorge Piece	406,{
 					mes "Monster Rank: ^ff0000[ " + $@torment_mode_variables[7] + " ]^000000";
 					mes "Monster bonus exp reward: x ^ff0000[ " + $@bonus_exp[5] + " ]^000000";
 					mes ""+.@md_name$ +" Torment Points: + ^ff0000[ " + $@instance_points[5] + " ]^000000";
+					mes "^ff0000-----------------------------------------------------^000000";
+					mes "ระดับความเก่งของ Monster อาจเปลี่ยนไปตาม Server Update";
 					mes "^ff0000-----------------------------------------------------^000000";
 					close;				
 				case 4:
@@ -747,7 +750,7 @@ OnInstanceInit:
 OnEnable:
 	enablenpc instance_npcname("#2Resurrect Monsters1");
 	freeloop(1);
-	for(set .@i, 0; .@i < 30; .@i++){
+	for(set .@i, 0; .@i < 7; .@i++){
 		callfunc "F_Orcs_Monster",18,instance_mapname("2@orcs"),instance_npcname("#2Resurrect Monsters1")+"::OnMyMobDead";	
 	}
 	freeloop(0);	
@@ -761,7 +764,7 @@ OnDisable:
 OnMyMobDead:
 	callfunc "F_Orcs_Exp";
 	set .@map$, instance_mapname("2@orcs");
-	set .@mob_dead_num, 30 - mobcount(.@map$,instance_npcname("#2Resurrect Monsters1")+"::OnMyMobDead");
+	set .@mob_dead_num, 10 - mobcount(.@map$,instance_npcname("#2Resurrect Monsters1")+"::OnMyMobDead");
 	if (.@mob_dead_num > 0) {
 		set .@mob_ran,rand(1,30);
 		if (.@mob_ran > 29) {
@@ -812,7 +815,7 @@ OnTimer4010:
 	set .@map$, instance_mapname("2@orcs");
 	mapannounce .@map$, "[ Wraiths ถูกเรียกโดยพลังที่ไม่รู้จัก ]",bc_map,"0x77ff77";
 	freeloop(1);
-	for(set .@i, 0; .@i < 30; .@i++){
+	for(set .@i, 0; .@i < 5; .@i++){
 		callfunc "F_Orcs_Monster",21,instance_mapname("2@orcs"),instance_npcname("#2Resurrect Monsters1")+"::OnMyMobDead";	
 	}
 	freeloop(0);	
@@ -1109,6 +1112,7 @@ OnEnable:
 
 OnMyMobDead:
 	'party_id = instance_live_info(ILI_OWNER);
+	'difficulty_mode$ = $@difficulty_mode$['level_mode];
 	announce "ปาตี้ [ " + getpartyname('party_id) + " ] ได้ผ่าน Orc's Memory ระดับ " + 'difficulty_mode$ + " เรียบร้อยแล้ว.", bc_all;
 	donpcevent instance_npcname("Kruger#")+"::OnEnable";
 	set .@map$, instance_mapname("2@orcs");

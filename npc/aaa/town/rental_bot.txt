@@ -41,6 +41,8 @@ icecastle,196,211,4	script	AutoBot	3155,{
 			if (#rental_ai_expire > gettimetick(2)) {
 				mes "[หุ่นยนต์ AutoBots]";
 				mes "ปี๊บ.....ไอเทมเช่ายังอยู่! โปรดใช้ให้หมดก่อน.";
+				mes "หรืออยากต่ออายุ AI แต่รวมกันแล้วเวลาไม่ถึง 24 ชั่วโมงเหมือนเดิมนะ";
+				if(select("ไม่เป็นไร:ต่ออายุ AI") == 2 ) goto ExtendAITime;
 				close;
 			}
 
@@ -69,7 +71,7 @@ icecastle,196,211,4	script	AutoBot	3155,{
 			rentitem 2002000, .@duration;
 			set #rental_ai_expire, gettimetick(2) + .@duration;
 
-			mes "เรียบร้อย! คุณเช่า Knife สำหรับ " + .@hour + " ชั่วโมง.";
+			mes "เรียบร้อย! คุณเช่า บอทแมว สำหรับ " + .@hour + " ชั่วโมง.";
 			close;
 
 		// 3. ไม่มีอะไร
@@ -78,6 +80,62 @@ icecastle,196,211,4	script	AutoBot	3155,{
 			mes "ไว้เจอกันใหม่!.... ปี๊บบบ...";
 			close;
 	}
+
+ExtendAITime:
+	clear;
+	mes "[หุ่นยนต์ AutoBots]";
+	mes "ค่าบริการอยู่ที่ 100,000 Zeny ต่อชั่วโมง";
+	set .@all_time,rentalcountitemtime(2002000); // Ai time left
+	set .@cur_time,gettimetick(2);
+	set .@dun_ent_t,(.@all_time - .@cur_time);
+	set .@dun_h,(.@dun_ent_t / 3600);
+	set .@dun_m,(.@dun_ent_t - (.@dun_h * 3600)) / 60;
+	set .@dun_s,.@dun_ent_t - ((.@dun_h * 3600) + (.@dun_m * 60));
+	set .@extentlimit, Max(0,23 - .@dun_h);
+	mes "เวลาบอทที่เหลืออยู่ : " + .@dun_h + " ชั่วโมง " + .@dun_m + " นาที " + .@dun_s + " วินาที.";
+	mes "สามารถต่อเวลาได้ทั้งหมด ^ff0000"+.@extentlimit+"^000000 ชั่วโมง";
+	mes "อยากต่อเวลากี่ชั่วโมง ?";
+	next;
+	if(.@dun_h >= 23 ) {
+		mes "[หุ่นยนต์ AutoBots]";
+		mes "เวลายังเยอะอยู่ ต่อเวลาไม่ได้เน้อ";
+		close;
+	}
+	setdialogsize(350,200);
+	input .@hours;
+	if(!.@hours) {
+		mes "[หุ่นยนต์ AutoBots]";
+		mes "โอกาสหน้าใช้บริการใหม่..... ปี๊บบบ";
+		close;
+	}
+	if(.@hours > .@extentlimit) {
+		mes "[หุ่นยนต์ AutoBots]";
+		mes "เกินเวลาที่กำหนด..... ปี๊บบบ";
+		close;
+	}
+	set .@cost, .@hours * 100000;
+	 if (Zeny < .@cost) {
+		mes "คุณมี Zeny ไม่เพียงพอ ต้องใช้ทั้งหมด " + .@cost + " Zeny.";
+		close;
+	}
+	mes "[หุ่นยนต์ AutoBots]";
+	mes "จะต่ออายุ AI เป็น " + (.@dun_h + .@hours) + " ชั่วโมง.";
+	mes "ยืนยันหรือไม่ ?";
+	next;
+	if(select(" • ยืนยัน: • ยังก่อน") == 2 ) end;
+	 	// หักเงิน
+	set Zeny, Zeny - .@cost;
+
+	// ให้ไอเทม
+	delitem 2002000,1;
+	set .@duration, .@hours * 3600 + .@dun_ent_t;
+	set #rental_ai_expire, gettimetick(2) + .@duration;
+	rentitem 2002000, .@duration;
+	mes "[หุ่นยนต์ AutoBots]";
+	mes "เรียบร้อย! คุณเช่า บอทแมว เพิ่ม " + .@hours + " ชั่วโมง.";
+	mes "เวลาบอทที่เหลืออยู่ : " + (.@dun_h + .@hours) + " ชั่วโมง " + .@dun_m + " นาที " + .@dun_s + " วินาที.";
+	end;
+	
 	Oninit:
 	waitingroom "Auto AI",0;
 	end;

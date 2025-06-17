@@ -11,7 +11,7 @@ function	script	F_PetRandom	{
 			; // ใส่ item ID RARE
 			set .@raresize,getarraysize(.@item_ids);
 			setarray .@item_ids[getarraysize(.@item_ids)], 
-			9001,9002,9003,9004,9005,9006,9009,9010,9011,9012,9014,
+			9002,9003,9004,9005,9006,9009,9010,9011,9012,9014,
 			9017,9020,9021,9022,9023,9024,9025,9027,9055,9052,9015
 			;
 			setarray .@item_weights, 
@@ -27,7 +27,7 @@ function	script	F_PetRandom	{
 			; // ใส่ item ID RARE
 			set .@raresize,getarraysize(.@item_ids);
 			setarray .@item_ids[getarraysize(.@item_ids)], 
-			9001,9002,9003,9004,9005,9006,9009,9010,9011,9012,9014
+			9002,9003,9004,9005,9006,9009,9010,9011,9012,9014
 			; // ใส่ item ID Common
 			
 			setarray .@item_weights, 
