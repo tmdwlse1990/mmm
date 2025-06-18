@@ -4173,7 +4173,7 @@ Body:
     Range: 1
     Hit: Single
     HitCount: 1
-    SplashArea: 2
+    SplashArea: 3
     Duration1: 4500
     Duration2: 4500
     AfterCastActDelay: 500
@@ -4900,7 +4900,6 @@ Body:
     Description: Blitz Beat
     MaxLevel: 15
     Type: Misc
-    TargetType: Attack
     DamageFlags:
       Splash: true
       IgnoreFlee: true

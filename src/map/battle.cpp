@@ -4817,7 +4817,7 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 
 	switch(skill_id) {
 		case BS_HAMMERFALL:
-			skillratio += -100 + 50 * skill_lv;
+			skillratio += 450 + 50 * skill_lv;
 			break;
 		case SM_BASH:
 		case MS_BASH:
@@ -4901,6 +4901,8 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 			break;
 		case AS_GRIMTOOTH:
 			skillratio += 20 * skill_lv;
+			if (sd && sc->getSCE(SC_HIDING))
+				skillratio = skillratio / 2;
 			break;
 		case AS_SONICBLOW:
 #ifdef RENEWAL
