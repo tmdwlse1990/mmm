@@ -1,0 +1,244 @@
+cmd_in02,101,59,5	script	Blackjack Dealer	800,{
+
+	disable_items;
+	mes "^0000FF[Blackjack Dealer]^000000";
+	mes "ยินดีต้อนรับสู่ Blackjack!";
+	next;
+
+	switch(select("เดิมพันด้วย Zeny:เดิมพันด้วย Elunium:เดิมพันด้วย Oridecon:ยกเลิก")) {
+		case 1:
+			set .@useItem, 0;
+			set .@minBet, 100000;
+			set .@itemID, 0;
+			mes "คุณมี "+F_InsertComma(Zeny)+" Zeny";
+			mes "เดิมพันขั้นต่ำ: "+F_InsertComma(.@minBet)+" Zeny";
+			mes "เดิมพันสูงสุด: 10,000,000 Zeny";
+			next;
+			mes "กรอกจำนวนที่คุณต้องการเดิมพัน:";
+			input .@bet;
+			if (.@bet < .@minBet) {
+				mes "^FF0000ต้องเดิมพันอย่างน้อย "+F_InsertComma(.@minBet)+"!^000000";
+				close;
+			}
+			if (Zeny < .@bet) {
+				mes "^FF0000คุณไม่มี Zeny เพียงพอ!^000000";
+				close;
+			}
+			Zeny -= .@bet;
+			$zenybet += .@bet/100000;
+			break;
+		case 2:
+			set .@useItem, 1;
+			set .@itemID, 985; // Elunium
+			set .@minBet, 1;
+			mes "คุณมี "+F_InsertComma(countitem(.@itemID))+" Elunium.";
+			mes "เดิมพันขั้นต่ำ: "+F_InsertComma(.@minBet)+" ชิ้น";
+			next;
+			mes "กรอกจำนวนที่คุณต้องการเดิมพัน:";
+			input .@bet;
+			if (.@bet < .@minBet || countitem(.@itemID) < .@bet) {
+				mes "^FF0000คุณไม่มี Elunium เพียงพอ!^000000";
+				close;
+			}
+			.@weight = getiteminfo(.@itemID, ITEMINFO_WEIGHT) * (.@bet * 3);
+			if (Weight + .@weight > MaxWeight) {
+				mes "^FF0000น้ำหนักเกิน! โปรดเคลียร์กระเป๋าก่อนเล่น^000000";
+				close;
+			}
+			delitem .@itemID, .@bet;
+			setd("$"+.@itemid+"bet"),getd("$"+.@itemid+"bet") + .@bet;
+			break;
+		case 3:
+			set .@useItem, 1;
+			set .@itemID, 984; // Oridecon
+			set .@minBet, 1;
+			mes "คุณมี "+F_InsertComma(countitem(.@itemID))+" Oridecon.";
+			mes "เดิมพันขั้นต่ำ: "+F_InsertComma(.@minBet)+" ชิ้น";
+			next;
+			mes "กรอกจำนวนที่คุณต้องการเดิมพัน:";
+			input .@bet;
+			if (.@bet < .@minBet || countitem(.@itemID) < .@bet) {
+				mes "^FF0000คุณไม่มี Oridecon เพียงพอ!^000000";
+				close;
+			}
+			.@weight = getiteminfo(.@itemID, ITEMINFO_WEIGHT) * (.@bet * 3); // คูณ 3 เพราะรางวัลเป็น 3 เท่า
+			if (Weight + .@weight > MaxWeight) {
+				mes "^FF0000น้ำหนักเกิน! โปรดเคลียร์กระเป๋าก่อนเล่น^000000";
+				close;
+			}
+			delitem .@itemID, .@bet;
+			setd("$"+.@itemid+"bet"),getd("$"+.@itemid+"bet") + .@bet;
+			break;
+		default:
+			mes "ไว้เจอกันใหม่นะ!";
+			close;
+	}
+
+	function cardValue {
+		if (getarg(0) > 10) return 10;
+		else return getarg(0);
+	}
+	function cardName$ {
+		switch (getarg(0)) {
+			case 1: return "A";
+			case 11: return "J";
+			case 12: return "Q";
+			case 13: return "K";
+			default: return ""+getarg(0);
+		}
+	}
+	function drawCard {
+		return rand(1,13);
+	}
+	function dealerCard {
+	.@r = rand(100);
+	if (.@r < 55) return rand(10,13);    // 55% ได้ 10–K
+	else if (.@r < 75) return rand(8,9); // 20% ได้ 8–9
+	else return rand(1,13);              // 25% ที่เหลือสุ่มปกติ
+	}
+
+	set .@p1, drawCard();
+	set .@p2, drawCard();
+	set .@playerTotal, cardValue(.@p1) + cardValue(.@p2);
+	set .@isBlackjack, ((.@playerTotal == 11 + 10) && ((.@p1 == 1 && cardValue(.@p2) == 10) || (.@p2 == 1 && cardValue(.@p1) == 10)));
+
+	mes "^0000FF[Blackjack Dealer]^000000";
+	mes "คุณได้: "+cardName$(.@p1)+" และ "+cardName$(.@p2);
+	mes "รวม: "+.@playerTotal;
+	if (.@isBlackjack) mes "Blackjack!!";
+	next;
+
+	if (.@isBlackjack) goto L_BlackjackWin;
+
+	while (.@playerTotal < 21) {
+		mes "^0000FF[Blackjack Dealer]^000000";
+		mes "ปัจจุบัน: "+.@playerTotal;
+		mes "คุณต้องการจะ:";
+		next;
+		switch(select("ขอไพ่ (Hit):พอแล้ว (Stay)")) {
+			case 1:
+				set .@newCard, drawCard();
+				set .@playerTotal, .@playerTotal + cardValue(.@newCard);
+				mes "คุณได้: "+cardName$(.@newCard);
+				mes "รวม: "+.@playerTotal;
+				if (.@playerTotal > 21) {
+					mes "^FF0000แต้มเกิน 21! คุณแพ้!^000000";
+					specialeffect EF_REFINEFAIL,AREA,"Blackjack Dealer";
+					close;
+				}
+				next;
+				break;
+			case 2:
+				goto L_DealerTurn;
+		}
+	}
+
+L_DealerTurn:
+	set .@d1, dealerCard();
+	set .@d2, dealerCard();
+	set .@dealerTotal, cardValue(.@d1) + cardValue(.@d2);
+	mes "^0000FF[Blackjack Dealer]^000000";
+	mes "ดีลเลอร์ได้: "+cardName$(.@d1)+" และ "+cardName$(.@d2);
+	while (.@dealerTotal < 19) {
+		set .@dNew, dealerCard();
+		set .@dealerTotal, .@dealerTotal + cardValue(.@dNew);
+		mes "ดีลเลอร์จั่ว: "+cardName$(.@dNew)+" รวม: "+.@dealerTotal;
+	}
+	next;
+
+	mes "^0000FF[ผลลัพธ์]^000000";
+	mes "คุณ: "+.@playerTotal+" แต้ม";
+	mes "ดีลเลอร์: "+.@dealerTotal+" แต้ม";
+
+	if (.@dealerTotal > 21 || .@playerTotal > .@dealerTotal) {
+		mes "^0000FFคุณชนะ!^000000";
+		specialeffect EF_REFINEOK,AREA,"Blackjack Dealer";
+		if (.@useItem) {
+			getitem .@itemID, .@bet * 2;
+			setd("$"+.@itemid+"lost"),getd("$"+.@itemid+"lost") + (.@bet * 2);
+		}
+		else {
+			Zeny += .@bet * 2;
+			$zenylost += .@bet*2/100000;
+		}
+		mes "คุณได้รับรางวัล!";
+	} else if (.@playerTotal == .@dealerTotal) {
+		mes "ผลเสมอ แต่ระบบให้คุณชนะ!";
+		specialeffect EF_GUARD,AREA,"Blackjack Dealer";
+		if (.@useItem) {
+			getitem .@itemID, (.@bet * 3) / 2;
+			setd("$"+.@itemid+"lost"),getd("$"+.@itemid+"lost") + ((.@bet * 3) / 2);
+		}
+		else {
+			Zeny += .@bet;
+			$zenylost += .@bet / 100000;
+		}
+		mes "คุณได้รับรางวัลเล็กน้อย!";
+	} else {
+		mes "^FF0000คุณแพ้! เสียการเดิมพัน^000000";
+		specialeffect EF_REFINEFAIL,AREA,"Blackjack Dealer";
+	}
+	close;
+
+L_BlackjackWin:
+	mes "^0000FFBlackjack!! คุณชนะโดยตรง!^000000";
+	if (.@useItem) {
+		getitem .@itemID, .@bet * 3;
+		setd("$"+.@itemid+"lost"),getd("$"+.@itemid+"lost") + (.@bet * 3);
+	}
+	else {
+		Zeny += .@bet * 3;
+		$zenylost += (.@bet * 3)/100000;
+	}
+	specialeffect EF_MVP,AREA,"Blackjack Dealer";
+	close;
+
+OnInit:
+	waitingroom "=||= Blackjack =||=",0;
+	end;
+}
+
+// ========================
+// Bodyguard NPC
+// ========================
+
+icecastle,64,137,4	script	Bodyguard	899,{
+	if(getgmlevel() < 99 ) {
+		mes "^0000FF[Casino Bodyguard]^000000";
+		mes "เฉพาะเจ้าหน้าที่เท่านั้น";
+		close;
+	}
+	else {
+		mes "^0000FF[Casino Bodyguard]^000000";
+		mes "--- ผลประกอบการ ---";
+		mes "Zeny ที่ได้รับ :^00dd00"+F_InsertComma($zenybet)+"^000000 x 100k zeny";
+		mes "Zeny จ่าย :^ff0000"+F_InsertComma($zenylost)+"^000000 x 100k zeny";
+		mes "Oridecon ที่ได้รับ :^00dd00"+F_InsertComma($984bet)+"^000000 ea";
+		mes "Oridecon จ่าย :^ff0000"+F_InsertComma($984lost)+"^000000 ea";
+		mes "Elunium ที่ได้รับ :^00dd00"+F_InsertComma($985bet)+"^000000 ea";
+		mes "Elunium จ่าย :^ff0000"+F_InsertComma($985lost)+"^000000 ea";
+		mes "--- สรุปผล ---";
+		mes "Zeny :"+($zenybet - $zenylost > 0 ? "^00dd00":"^ff0000")+" "+F_InsertComma($zenybet - $zenylost)+"^000000 x100k zeny";
+		mes "Oridecon :"+($984bet - $984lost > 0 ? "^00dd00":"^ff0000")+" "+F_InsertComma($984bet - $984lost)+"^000000 ea";
+		mes "Elunium :"+($985bet - $985lost > 0 ? "^00dd00":"^ff0000")+" "+F_InsertComma($985bet - $985lost)+"^000000 ea";
+		setdialogsize(300,400);
+		close;
+	}
+	OnInit:
+	waitingroom "Casino Room",0;
+	end;
+}
+
+
+/*
+
+
+	function drawCard {
+		return rand(1,13);
+	}
+	function dealerCard {
+		return rand(1,13);
+	}
+	
+	
+*/
