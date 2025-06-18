@@ -1,15 +1,15 @@
 icecastle,196,211,4	script	AutoBot	3155,{
-
+	disable_items;
 	mes "[หุ่นยนต์ AutoBots]";
 	mes "บี๊บบ...ข้ามีบริการช่วยเล่นให้กับเจ้าทุกคน!";
 	next;
-
+	
 	switch(select("1. รับฟรี 2 ชั่วโมง (วันละครั้ง):2. ซื้อบริการเช่า AI:3. ไม่มีอะไร")) {
 		
 		// 1. รับฟรี 2 ชั่วโมง
 		case 1:
 			// เช็คว่ามีของเช่าอยู่หรือไม่
-			if (#rental_ai_expire > gettimetick(2)) {
+			if (rentalcountitem(2002000)) {
 				mes "[หุ่นยนต์ AutoBots]";
 				mes "ปี๊บ.....ไอเทมเช่ายังอยู่! โปรดใช้ให้หมดก่อน.";
 				close;
@@ -30,7 +30,7 @@ icecastle,196,211,4	script	AutoBot	3155,{
 			// แจกของฟรี 2 ชั่วโมง
 			set .@duration, 2 * 3600 + 120;
 			rentitem 2002000, .@duration;
-			set #rental_ai_expire, gettimetick(2) + .@duration;
+			//set #rental_ai_expire, gettimetick(2) + .@duration;
 			//set #rental_ai_free_cooldown, gettimetick(2) + 86400;
 			set #rental_ai_free_cooldown, gettime(DT_YYYYMMDD);
 
@@ -40,7 +40,7 @@ icecastle,196,211,4	script	AutoBot	3155,{
 
 		// 2. ซื้อบริการเช่า AI
 		case 2:
-			if (#rental_ai_expire > gettimetick(2) ) {
+			if (rentalcountitem(2002000) ) {
 				mes "[หุ่นยนต์ AutoBots]";
 				mes "ปี๊บ.....ไอเทมเช่ายังอยู่! โปรดใช้ให้หมดก่อน.";
 				mes "หรืออยากต่ออายุ AI แต่รวมกันแล้วเวลาไม่ถึง 24 ชั่วโมงเหมือนเดิมนะ";
@@ -71,7 +71,7 @@ icecastle,196,211,4	script	AutoBot	3155,{
 			// ให้ไอเทม
 			set .@duration, .@hour * 3600 + 120;
 			rentitem 2002000, .@duration;
-			set #rental_ai_expire, gettimetick(2) + .@duration;
+			//set #rental_ai_expire, gettimetick(2) + .@duration;
 
 			mes "เรียบร้อย! คุณเช่า บอทแมว สำหรับ " + .@hour + " ชั่วโมง.";
 			close;
@@ -137,7 +137,7 @@ ExtendAITime:
 	// ให้ไอเทม
 	delitem 2002000,1;
 	set .@duration, .@hours * 3600 + .@dun_ent_t;
-	set #rental_ai_expire, gettimetick(2) + .@duration;
+	//set #rental_ai_expire, gettimetick(2) + .@duration;
 	rentitem 2002000, .@duration;
 	mes "[หุ่นยนต์ AutoBots]";
 	mes "เรียบร้อย! คุณเช่า บอทแมว เพิ่ม " + .@hours + " ชั่วโมง.";
