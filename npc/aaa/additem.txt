@@ -16,16 +16,18 @@ OnAtcommand:
 			end;
 		}
 		// *getcharid(0,.@atcmd_parameters$[1])
-		mes "-- จะส่งจดหมายดังนี้ --"
-		mes "ผู้รับ :"+.@atcmd_parameters$[0];
-		if(strcharinfo(getcharid(0,.@atcmd_parameters$[0])) == "") {
-			mes "ชื่อผู้รับผิดพลาด"
+		mes "-- จะส่งจดหมายดังนี้ --";
+		mes "ผู้รับ :^0000ff"+.@atcmd_parameters$[0]+"^000000";
+		if(!getcharid(0,.@atcmd_parameters$[0])) {
+			mes "ชื่อผู้รับผิดพลาด";
 			end;
 		}
-		mes "Zeny :"+callfunc("F_InsertComma",.@atcmd_parameters$[0]);
+		mes "Zeny :^0000ff"+callfunc("F_InsertComma",.@atcmd_parameters$[1])+"^000000";
 		for(.@i=2;.@i < .@atcmd_numparameters; .@i+=2)
 			if(atoi(.@atcmd_parameters$[.@i]))
 				mes "Item : ^i["+atoi(.@atcmd_parameters$[.@i])+"] x "+atoi(.@atcmd_parameters$[.@i+1])+" ea";
+		mes "^ff0000---ส่งเลยไหม---^000000";
+		if(select("ไม่ส่ง:ส่ง") == 1 ) end;
 		.@charid = getcharid(0,.@atcmd_parameters$[0]);
 		.@sender$ = "GM Meow";
 		.@title$ = "Exclusive for you";

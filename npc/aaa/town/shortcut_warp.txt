@@ -1,5 +1,5 @@
 icecastle,174,206,6	script	Fast Travel#icecastle	4_LARVA_VIOLET,{
-	select("โซนพัฒนาตัวละคร:โซนขายของ:โซนดันเจี้ยน:โซนทดสอบดาเมจ");
+	select("โซนพัฒนาตัวละคร:โซนขายของ:โซนดันเจี้ยน:โซนทดสอบดาเมจ:Casino Room");
 	.@menu = @menu;
 	switch(.@menu) {
 	case 1:
@@ -19,6 +19,12 @@ icecastle,174,206,6	script	Fast Travel#icecastle	4_LARVA_VIOLET,{
 		.@map$ = "tra_fild";
 		.@x = 103;
 		.@y = 76;
+		break;
+	case 5:
+		.@map = 1;
+		.@map$ = "cmd_in02";
+		.@x = 104;
+		.@y = 57;
 		break;
 	}
 	warp (.@map ? .@map$ :"icecastle"),.@x,.@y;

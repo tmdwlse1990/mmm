@@ -7197,7 +7197,7 @@ Body:
       BuyingStore: true
       DropEffect: CLIENT
     Script: |
-      bonus bClassChange,100;
+      bonus bStr,1;
   - Id: 4322
     AegisName: High_Orc_Card
     Name: High Orc Card

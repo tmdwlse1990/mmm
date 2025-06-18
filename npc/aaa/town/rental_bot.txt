@@ -121,16 +121,17 @@ ExtendAITime:
 		close;
 	}
 	set .@cost, .@hours * 100000;
-	 if (Zeny < .@cost) {
-		mes "คุณมี Zeny ไม่เพียงพอ ต้องใช้ทั้งหมด " + .@cost + " Zeny.";
-		close;
-	}
 	mes "[หุ่นยนต์ AutoBots]";
 	mes "จะต่ออายุ AI เป็น " + (.@dun_h + .@hours) + " ชั่วโมง.";
+	mes "ค่าบริการเพิ่มเติมคือ :"+callfunc("F_InsertComma",.@cost)+" Zeny.";
 	mes "ยืนยันหรือไม่ ?";
 	next;
 	if(select(" • ยืนยัน: • ยังก่อน") == 2 ) end;
 	 	// หักเงิน
+	 if (Zeny < .@cost) {
+		mes "คุณมี Zeny ไม่เพียงพอ ต้องใช้ทั้งหมด " + .@cost + " Zeny.";
+		close;
+	}
 	set Zeny, Zeny - .@cost;
 
 	// ให้ไอเทม
