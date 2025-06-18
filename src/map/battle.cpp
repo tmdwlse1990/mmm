@@ -4817,7 +4817,7 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 
 	switch(skill_id) {
 		case BS_HAMMERFALL:
-			skillratio += -20 + 20 * skill_lv;
+			skillratio += -100 + 50 * skill_lv;
 			break;
 		case SM_BASH:
 		case MS_BASH:

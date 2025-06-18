@@ -4183,6 +4183,7 @@ Body:
         1hAxe: true
         2hAxe: true
         Mace: true
+    Status: Stun
   - Id: 111
     Name: BS_ADRENALINE
     Description: Adrenaline Rush

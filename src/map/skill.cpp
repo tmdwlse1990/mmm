@@ -4645,11 +4645,9 @@ static TIMER_FUNC(skill_timerskill){
 				case PR_STRECOVERY:
 					sc_start(src, target, SC_BLIND, skl->type, skl->skill_lv, skill_get_time2(skl->skill_id, skl->skill_lv));
 					break;
-					/*
 				case BS_HAMMERFALL:
 					sc_start(src, target, SC_STUN, skl->type, skl->skill_lv, skill_get_time2(skl->skill_id, skl->skill_lv));
 					break;
-					*/
 				case MER_LEXDIVINA:
 					sc_start(src, target, SC_SILENCE, skl->type, skl->skill_lv, skill_get_time2(skl->skill_id, skl->skill_lv));
 					break;
