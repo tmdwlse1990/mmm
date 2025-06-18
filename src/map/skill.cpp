@@ -2255,6 +2255,9 @@ int32 skill_additional_effect( struct block_list* src, struct block_list *bl, ui
 	case SS_ANKOKURYUUAKUMU:
 		status_change_end(bl, SC_NIGHTMARE);
 		break;
+	case BS_HAMMERFALL:
+		sc_start(src, bl, SC_STUN, skill_lv, 5, skill_get_time2(skill_id, skill_lv)); 
+		break;
 	} //end switch skill_id
 
 	if (md && battle_config.summons_trigger_autospells && md->master_id && md->special_state.ai && md->special_state.ai != AI_ABR && md->special_state.ai != AI_BIONIC)
@@ -4644,9 +4647,6 @@ static TIMER_FUNC(skill_timerskill){
 					break;
 				case PR_STRECOVERY:
 					sc_start(src, target, SC_BLIND, skl->type, skl->skill_lv, skill_get_time2(skl->skill_id, skl->skill_lv));
-					break;
-				case BS_HAMMERFALL:
-					sc_start(src, target, SC_STUN, skl->type, skl->skill_lv, skill_get_time2(skl->skill_id, skl->skill_lv));
 					break;
 				case MER_LEXDIVINA:
 					sc_start(src, target, SC_SILENCE, skl->type, skl->skill_lv, skill_get_time2(skl->skill_id, skl->skill_lv));
@@ -14631,21 +14631,6 @@ int32 skill_castend_pos2(struct block_list* src, int32 x, int32 y, uint16 skill_
 			src, skill_id, skill_lv, tick, flag|BCT_ENEMY|1,
 			skill_castend_damage_id);
 		break;
-
-	case BS_HAMMERFALL:
-		i = skill_get_splash(skill_id, skill_lv);
-		/*
-		map_foreachinallarea(skill_area_sub,
-			src->m, x-i, y-i, x+i, y+i, BL_CHAR,
-			src, skill_id, skill_lv, tick, flag|BCT_ENEMY|2,
-			skill_castend_damage_id);
-		*/
-		map_foreachinarea(skill_area_sub
-			,src->m,x-i,y-i,x+i,y+i,BL_CHAR|BL_SKILL
-			,src,skill_id,skill_lv,tick,flag|BCT_ENEMY|1
-			,skill_castend_damage_id);
-		break;
-
 	case HT_DETECTING:
 		i = skill_get_splash(skill_id, skill_lv);
 		map_foreachinallarea( status_change_timer_sub,
@@ -15176,6 +15161,10 @@ int32 skill_castend_pos2(struct block_list* src, int32 x, int32 y, uint16 skill_
 		skill_area_temp[4] = x;
 		skill_area_temp[5] = y;
 		i = skill_get_splash(skill_id,skill_lv);
+		map_foreachinarea(skill_area_sub,src->m,x-i,y-i,x+i,y+i,BL_CHAR|BL_SKILL,src,skill_id,skill_lv,tick,flag|BCT_ENEMY|1,skill_castend_damage_id);
+		break;
+	case BS_HAMMERFALL:
+		i = skill_get_splash(skill_id, skill_lv);
 		map_foreachinarea(skill_area_sub,src->m,x-i,y-i,x+i,y+i,BL_CHAR|BL_SKILL,src,skill_id,skill_lv,tick,flag|BCT_ENEMY|1,skill_castend_damage_id);
 		break;
 
