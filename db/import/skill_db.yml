@@ -3407,7 +3407,7 @@ Body:
     Unit:
       Id: Dummyskill
       Range: 3
-      Interval: 750
+      Interval: 1000
       Target: Enemy
       Flag:
         PathCheck: true
