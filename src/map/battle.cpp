@@ -4901,7 +4901,7 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 			break;
 		case AS_GRIMTOOTH:
 			skillratio += 20 * skill_lv;
-			if (sd && sc->getSCE(SC_HIDING))
+			if (sd && !sc->getSCE(SC_HIDING))
 				skillratio = skillratio / 2;
 			break;
 		case AS_SONICBLOW:
