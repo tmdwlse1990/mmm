@@ -4370,10 +4370,10 @@ static void battle_calc_skill_base_damage(struct Damage* wd, struct block_list *
 
 				//Base damage of shield skills is [batk + 4*refine + weight]
 				if (index >= 0 && sd->inventory_data[index] && sd->inventory_data[index]->type == IT_ARMOR) {
-					ATK_ADD(wd->damage, wd->damage2, 4 * sd->inventory.u.items_inventory[index].refine);
+					ATK_ADD(wd->damage, wd->damage2, 13 * sd->inventory.u.items_inventory[index].refine * (sd->inventory.u.items_inventory[index].enchantgrade + 1));
 					ATK_ADD(wd->damage, wd->damage2, sd->inventory_data[index]->weight / 10);
 #ifdef RENEWAL
-					ATK_ADD(wd->weaponAtk, wd->weaponAtk2, 4 * sd->inventory.u.items_inventory[index].refine);
+					ATK_ADD(wd->weaponAtk, wd->weaponAtk2, 13 * sd->inventory.u.items_inventory[index].refine * (sd->inventory.u.items_inventory[index].enchantgrade+1));
 					ATK_ADD(wd->weaponAtk, wd->weaponAtk2, sd->inventory_data[index]->weight / 10);
 #endif
 				}
@@ -4986,10 +4986,10 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 		case CR_HOLYCROSS:
 #ifdef RENEWAL
 			if(sd && sd->status.weapon == W_2HSPEAR)
-				skillratio += 70 * skill_lv;
+				skillratio += 100 * skill_lv;
 			else
 #endif
-				skillratio += 35 * skill_lv;
+				skillratio += 70 * skill_lv;
 			break;
 		case AM_DEMONSTRATION:
 			skillratio += 20 * skill_lv;
@@ -9651,7 +9651,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 
 		//Apply the physical part of the skill's damage. [Skotlex]
 		switch (skill_id) {
-			case CR_GRANDCROSS:
+			//case CR_GRANDCROSS:
 			case NPC_GRANDDARKNESS: {
 				// Pre-re ATK = Take atk, apply def reduction and add refine bonus
 				// Final Damage = (ATK+MATK)*RATIO
@@ -9724,7 +9724,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 #endif
 
 		switch (skill_id) {
-			case CR_GRANDCROSS:
+			//case CR_GRANDCROSS:
 			case NPC_GRANDDARKNESS:
 				if (src == target) {
 					// Grand Cross on self first applies attr_fix, then cardfix and finally halves the damage

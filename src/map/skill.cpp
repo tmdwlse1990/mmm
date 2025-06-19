@@ -3821,7 +3821,7 @@ int64 skill_attack (int32 attack_type, struct block_list* src, struct block_list
 	}
 
 	switch( skill_id ) {
-		case CR_GRANDCROSS:
+		//case CR_GRANDCROSS:
 		case NPC_GRANDDARKNESS:
 			if( battle_config.gx_disptype)
 				dsrc = src;
@@ -17206,7 +17206,7 @@ int32 skill_unit_onplace_timer(struct skill_unit *unit, struct block_list *bl, t
 						}
 					}
 					break;
-				case CR_GRANDCROSS:
+				//case CR_GRANDCROSS:
 				case NPC_GRANDDARKNESS:
 					if(!battle_config.gx_allhit)
 						unit->val1--;

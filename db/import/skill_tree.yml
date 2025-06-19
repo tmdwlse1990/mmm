@@ -847,17 +847,17 @@ Body:
           - Name: CR_TRUST
             Level: 5
       - Name: AL_DP
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: AL_CURE
             Level: 1
       - Name: AL_DEMONBANE
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: AL_DP
             Level: 3
       - Name: AL_HEAL
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: AL_DEMONBANE
             Level: 5
@@ -873,7 +873,7 @@ Body:
           - Name: CR_AUTOGUARD
             Level: 5
       - Name: CR_SHIELDBOOMERANG
-        MaxLevel: 5
+        MaxLevel: 10
         Requires:
           - Name: CR_SHIELDCHARGE
             Level: 3
@@ -890,8 +890,6 @@ Body:
       - Name: CR_GRANDCROSS
         MaxLevel: 10
         Requires:
-          - Name: CR_HOLYCROSS
-            Level: 6
           - Name: CR_TRUST
             Level: 10
       - Name: CR_DEVOTION

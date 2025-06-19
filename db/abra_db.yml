@@ -122,7 +122,7 @@ Body:
   - Skill: HT_CLAYMORETRAP
   - Skill: HT_REMOVETRAP
   - Skill: HT_TALKIEBOX
-  - Skill: HT_BLITZBEAT
+#  - Skill: HT_BLITZBEAT
   - Skill: HT_DETECTING
   - Skill: HT_SPRINGTRAP
   - Skill: AS_CLOAKING

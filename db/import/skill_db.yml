@@ -7138,20 +7138,10 @@ Body:
   - Id: 251
     Name: CR_SHIELDBOOMERANG
     Description: Shield Boomerang
-    MaxLevel: 5
+    MaxLevel: 10
     Type: Weapon
     TargetType: Attack
-    Range:
-      - Level: 1
-        Size: 3
-      - Level: 2
-        Size: 5
-      - Level: 3
-        Size: 7
-      - Level: 4
-        Size: 9
-      - Level: 5
-        Size: 11
+    Range: 8
     Hit: Single
     HitCount: 1
     CopyFlags:
@@ -7242,11 +7232,11 @@ Body:
     Description: Grand Cross
     MaxLevel: 10
     Type: Magic
-    TargetType: Self
+    TargetType: Ground
     DamageFlags:
       IgnoreDefense: true
       SimpleDefense: true
-    Range: 9
+    Range: 7
     Hit: Single
     HitCount: 1
     Element: Holy
@@ -7284,7 +7274,6 @@ Body:
           Amount: 93
         - Level: 10
           Amount: 100
-      HpRateCost: 20
     Unit:
       Id: Dummyskill
       Layout: -1
