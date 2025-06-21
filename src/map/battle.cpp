@@ -4995,13 +4995,13 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 				skillratio += 70 * skill_lv;
 			break;
 		case AM_DEMONSTRATION:
-			skillratio += 20 * skill_lv;
+			skillratio += 40 * skill_lv;
 			break;
 		case AM_ACIDTERROR:
 #ifdef RENEWAL
 			skillratio += -100 + 200 * skill_lv;
 			if (sd && pc_checkskill(sd, AM_LEARNINGPOTION))
-				skillratio += 100; // !TODO: What's this bonus increase?
+				skillratio += 20 * pc_checkskill(sd, AM_LEARNINGPOTION); // !TODO: What's this bonus increase?
 #else
 			skillratio += -50 + 50 * skill_lv;
 #endif

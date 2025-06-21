@@ -10019,7 +10019,7 @@ int32 skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, 
 					sp = 0;
 				}
 			}
-			status_heal(bl,hp,sp,0);
+			status_heal(bl,hp * 2,sp * 2,0);
 		}
 		break;
 	case AM_CP_WEAPON:

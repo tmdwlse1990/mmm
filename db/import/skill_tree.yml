@@ -1245,19 +1245,19 @@ Body:
       - Name: AM_AXEMASTERY
         MaxLevel: 10
       - Name: AM_LEARNINGPOTION
-        MaxLevel: 10
+        MaxLevel: 15
       - Name: AM_PHARMACY
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: AM_LEARNINGPOTION
             Level: 5
       - Name: AM_DEMONSTRATION
-        MaxLevel: 5
+        MaxLevel: 10
         Requires:
           - Name: AM_PHARMACY
             Level: 4
       - Name: AM_ACIDTERROR
-        MaxLevel: 5
+        MaxLevel: 10
         Requires:
           - Name: AM_PHARMACY
             Level: 5
