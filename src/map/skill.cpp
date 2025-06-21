@@ -21002,7 +21002,7 @@ int32 skill_autospell(map_session_data *sd, uint16 skill_id)
 	else
 		maxlv = skill_lv / 2; // Half of Autospell's level unless player learned a lower level (capped below)
 #else
-	if(skill_id==MG_NAPALMBEAT)	maxlv=3;
+	if(skill_id==MG_NAPALMBEAT)	maxlv = 3;
 	else if(skill_id==MG_COLDBOLT || skill_id==MG_FIREBOLT || skill_id==MG_LIGHTNINGBOLT){
 		if (sd->sc.getSCE(SC_SPIRIT) && sd->sc.getSCE(SC_SPIRIT)->val2 == SL_SAGE)
 			maxlv = 10; //Soul Linker bonus. [Skotlex]

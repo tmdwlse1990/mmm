@@ -3245,6 +3245,9 @@ static bool is_attack_critical(struct Damage* wd, struct block_list *src, struct
 				}
 
 				break;
+			case MO_EXTREMITYFIST:
+				cri += 1000;
+				break;
 		}
 		if(tsd && tsd->bonus.critical_def)
 			cri = cri * ( 100 - tsd->bonus.critical_def ) / 100;
@@ -3922,7 +3925,7 @@ static int32 battle_get_spiritball_damage(struct Damage& wd, struct block_list& 
 		case MO_FINGEROFFENSIVE:
 #endif
 			// These skills used as many spheres as they do hits
-			damage = (wd.div_ + sd->spiritball) * 3;
+			damage = (wd.div_ + sd->spiritball) * 15;
 			break;
 #ifdef RENEWAL
 		case MO_FINGEROFFENSIVE:
@@ -3932,7 +3935,7 @@ static int32 battle_get_spiritball_damage(struct Damage& wd, struct block_list& 
 #endif
 		case MO_EXTREMITYFIST:
 			// These skills store the number of spheres the player had before cast
-			damage = sd->spiritball_old * 3;
+			damage = sd->spiritball_old * 30;
 			break;
 		default:
 			// Any skills that do not consume spheres or do not care
@@ -5014,7 +5017,7 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 			break;
 		case MO_INVESTIGATE:
 #ifdef RENEWAL
-			skillratio += -100 + 100 * skill_lv;
+			skillratio += -100 + 200 * skill_lv;
 			if (tsc && tsc->getSCE(SC_BLADESTOP))
 				skillratio += skillratio / 2;
 #else
@@ -5022,7 +5025,7 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 #endif
 			break;
 		case MO_EXTREMITYFIST:
-			skillratio += 700 + sstatus->sp * 10;
+			skillratio += 700 + sstatus->sp * 35;
 #ifdef RENEWAL
 			if (wd->miscflag&1)
 				skillratio *= 2; // More than 5 spirit balls active
@@ -5034,16 +5037,14 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 			break;
 		case MO_CHAINCOMBO:
 #ifdef RENEWAL
-			skillratio += 150 + 50 * skill_lv;
-			if (sd && sd->status.weapon == W_KNUCKLE)
-				skillratio *= 2;
+			skillratio += 150 + 20 * skill_lv;
 #else
 			skillratio += 50 + 50 * skill_lv;
 #endif
 			break;
 		case MO_COMBOFINISH:
 #ifdef RENEWAL
-			skillratio += 450 + 50 * skill_lv + sstatus->str; // !TODO: How does STR play a role?
+			skillratio += 300 * skill_lv; // !TODO: How does STR play a role?
 #else
 			skillratio += 140 + 60 * skill_lv;
 #endif
@@ -7632,7 +7633,7 @@ static struct Damage initialize_weapon_data(struct block_list *src, struct block
 				break;
 			case MO_CHAINCOMBO:
 				if (sd && sd->status.weapon == W_KNUCKLE)
-					wd.div_ = -6;
+					wd.div_ = 6;
 				break;
 #endif
 			case MH_SONIC_CRAW:{
@@ -8336,6 +8337,21 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 					ad.div_ = 5;
 				else if (sc->getSCE(SC_T_FIFTH_GOD) != nullptr)
 					ad.div_ = 7;
+			}
+			break;
+		case MG_FIREBOLT:
+		case MG_COLDBOLT:
+		case MG_LIGHTNINGBOLT:
+		case WZ_EARTHSPIKE:
+			if(sc != nullptr) {
+				if(skill_id == MG_FIREBOLT && sc->getSCE(SC_FIREWEAPON) != nullptr)
+					ad.div_ += 2;
+				if(skill_id == MG_LIGHTNINGBOLT && sc->getSCE(SC_WINDWEAPON) != nullptr)
+					ad.div_ += 2;
+				if(skill_id == MG_COLDBOLT && sc->getSCE(SC_WATERWEAPON) != nullptr)
+					ad.div_ += 2;
+				if(skill_id == WZ_EARTHSPIKE && sc->getSCE(SC_EARTHWEAPON) != nullptr)
+					ad.div_ += 3;
 			}
 			break;
 	}

@@ -3951,7 +3951,7 @@ Body:
       Skill:
         Plagiarism: true
         Reproduce: true
-    CastTime: 3500
+    CastTime: 4500  
     AfterCastActDelay: 1000
     Cooldown: 1500
     Duration1: 100
@@ -7463,7 +7463,7 @@ Body:
       TargetTrap: true
     Range: -1
     Hit: Multi_Hit
-    HitCount: -3
+    HitCount: 3
     Element: Weapon
     CopyFlags:
       Skill:
@@ -7667,6 +7667,7 @@ Body:
     DamageFlags:
       IgnoreFlee: true
       SimpleDefense: true
+      Critical: true
     Flags:
       TargetTrap: true
     Range: -2
@@ -7676,17 +7677,7 @@ Body:
       Skill:
         Plagiarism: true
         Reproduce: true
-    CastTime:
-      - Level: 1
-        Time: 2000
-      - Level: 2
-        Time: 1750
-      - Level: 3
-        Time: 1500
-      - Level: 4
-        Time: 1250
-      - Level: 5
-        Time: 1000
+    CastTime: 3000
     AfterCastActDelay:
       - Level: 1
         Time: 3000
@@ -7698,7 +7689,7 @@ Body:
         Time: 1500
       - Level: 5
         Time: 1000
-    Duration1: 3000
+    Duration1: 10000
     FixedCastTime:
       - Level: 1
         Time: 2000
@@ -7742,14 +7733,14 @@ Body:
   - Id: 272
     Name: MO_CHAINCOMBO
     Description: Raging Quadruple Blow
-    MaxLevel: 5
+    MaxLevel: 10
     Type: Weapon
     TargetType: Self
     Flags:
       NoTargetSelf: true
     Range: -2
     Hit: Multi_Hit
-    HitCount: -4
+    HitCount: 4
     Element: Weapon
     CopyFlags:
       Skill:
@@ -7769,6 +7760,16 @@ Body:
           Amount: 8
         - Level: 5
           Amount: 9
+        - Level: 6
+          Amount: 10
+        - Level: 7
+          Amount: 11
+        - Level: 8
+          Amount: 12
+        - Level: 9
+          Amount: 13
+        - Level: 10
+          Amount: 14
       Weapon:
         Fist: true
         Dagger: true
@@ -7795,7 +7796,7 @@ Body:
   - Id: 273
     Name: MO_COMBOFINISH
     Description: Raging Thrust
-    MaxLevel: 5
+    MaxLevel: 10
     Type: Weapon
     TargetType: Self
     DamageFlags:
@@ -7822,6 +7823,16 @@ Body:
           Amount: 6
         - Level: 5
           Amount: 7
+        - Level: 6
+          Amount: 8
+        - Level: 7
+          Amount: 9
+        - Level: 8
+          Amount: 10
+        - Level: 9
+          Amount: 11
+        - Level: 10
+          Amount: 12
       Weapon:
         Fist: true
         Dagger: true
@@ -7899,7 +7910,7 @@ Body:
     Range: 9
     Hit: Single
     HitCount: 1
-    CastTime: 560
+    CastTime: 1000
     FixedCastTime: 140
     Requires:
       SpCost: 10
@@ -7911,35 +7922,15 @@ Body:
   - Id: 279
     Name: SA_AUTOSPELL
     Description: Hindsight
-    MaxLevel: 10
+    MaxLevel: 15
     Type: Magic
     TargetType: Self
     DamageFlags:
       NoDamage: true
     Hit: Single
     HitCount: 1
-    Duration1:
-      - Level: 1
-        Time: 120000
-      - Level: 2
-        Time: 150000
-      - Level: 3
-        Time: 180000
-      - Level: 4
-        Time: 210000
-      - Level: 5
-        Time: 240000
-      - Level: 6
-        Time: 270000
-      - Level: 7
-        Time: 300000
-      - Level: 8
-        Time: 330000
-      - Level: 9
-        Time: 360000
-      - Level: 10
-        Time: 390000
-    FixedCastTime: 3000
+    Duration1: 550000
+    CastTime: 3500
     Requires:
       SpCost: 35
     Status: AutoSpell

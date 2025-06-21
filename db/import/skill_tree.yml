@@ -999,12 +999,12 @@ Body:
           - Name: MO_FINGEROFFENSIVE
             Level: 3
       - Name: MO_CHAINCOMBO
-        MaxLevel: 5
+        MaxLevel: 10
         Requires:
           - Name: MO_TRIPLEATTACK
             Level: 5
       - Name: MO_COMBOFINISH
-        MaxLevel: 5
+        MaxLevel: 10
         Requires:
           - Name: MO_CHAINCOMBO
             Level: 3
@@ -1025,10 +1025,10 @@ Body:
           - Name: SA_SEISMICWEAPON
             Level: 1
       - Name: WZ_HEAVENDRIVE
-        MaxLevel: 5
+        MaxLevel: 10
         Requires:
           - Name: WZ_EARTHSPIKE
-            Level: 1
+            Level: 5
       - Name: SA_ADVANCEDBOOK
         MaxLevel: 10
       - Name: SA_CASTCANCEL
@@ -1052,7 +1052,7 @@ Body:
           - Name: SA_CASTCANCEL
             Level: 1
       - Name: SA_AUTOSPELL
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: SA_FREECAST
             Level: 4
