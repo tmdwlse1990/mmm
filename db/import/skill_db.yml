@@ -6366,13 +6366,12 @@ Body:
     Hit: Single
     HitCount: 1
     Element: Weapon
-    SplashArea: 2
-    Duration1: 5000
+    SplashArea: 3
+    Duration1: 10000
     Duration2: 20000
+    Cooldown: 30000
     Requires:
       SpCost: 15
-      Status:
-        Hiding: true
     Status: Raid
   - Id: 215
     Name: RG_STRIPWEAPON
@@ -6691,7 +6690,7 @@ Body:
   - Id: 225
     Name: RG_PLAGIARISM
     Description: Intimidate
-    MaxLevel: 10
+    MaxLevel: 15
   - Id: 226
     Name: AM_AXEMASTERY
     Description: Axe Mastery

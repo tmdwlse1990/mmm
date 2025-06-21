@@ -1147,7 +1147,7 @@ Body:
       - Name: AC_VULTURE
         MaxLevel: 10
       - Name: AC_DOUBLE
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: AC_VULTURE
             Level: 10
@@ -1230,13 +1230,8 @@ Body:
         Requires:
           - Name: RG_STRIPSHIELD
             Level: 3
-      - Name: RG_COMPULSION
-        MaxLevel: 5
-        Requires:
-          - Name: RG_GANGSTER
-            Level: 1
       - Name: RG_PLAGIARISM
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: RG_INTIMIDATE
             Level: 5

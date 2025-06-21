@@ -7055,7 +7055,7 @@ int32 pc_steal_coin(map_session_data *sd,struct block_list *target)
 	if(rnd()%1000 < rate)
 	{
 		// Zeny Steal Amount: (rnd() % (10 * target_lv + 1 - 8 * target_lv)) + 8 * target_lv
-		int32 amount = (rnd() % (2 * target_lv + 1)) + 8 * target_lv; // Reduced formula
+		int32 amount = (rnd() % (2 * target_lv + 1)) + target_lv; // Reduced formula
 
 		pc_getzeny(sd, amount, LOG_TYPE_STEAL);
 		md->state.steal_coin_flag = 1;
