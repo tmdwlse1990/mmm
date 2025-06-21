@@ -8790,21 +8790,51 @@ Body:
   - Id: 315
     Name: BA_MUSICALLESSON
     Description: Music Lessons
-    MaxLevel: 10
+    MaxLevel: 15
     Type: Weapon
   - Id: 316
     Name: BA_MUSICALSTRIKE
     Description: Melody Strike
-    MaxLevel: 5
+    MaxLevel: 15
     Type: Weapon
     TargetType: Attack
     Flags:
       AllowWhenPerforming: true
     Range: 9
     Hit: Single
-    HitCount: 2
+    HitCount: 
+      - Level: 1
+        Count: 1
+      - Level: 2
+        Count: 1
+      - Level: 3
+        Count: 1
+      - Level: 4
+        Count: 1
+      - Level: 5
+        Count: 2
+      - Level: 6
+        Count: 2
+      - Level: 7
+        Count: 2
+      - Level: 8
+        Count: 2
+      - Level: 9
+        Count: 2
+      - Level: 10
+        Count: 3
+      - Level: 11
+        Count: 3
+      - Level: 12
+        Count: 3
+      - Level: 13
+        Count: 3
+      - Level: 14
+        Count: 3
+      - Level: 15
+        Count: 4
     Element: Weapon
-    CastTime: 500
+    CastTime: 1000
     AfterCastActDelay: 300
     FixedCastTime: 300
     Requires:
@@ -8891,7 +8921,7 @@ Body:
     HitCount: 1
     SplashArea: 15
     CastTime: 1000
-    Duration1: 180000
+    Duration1: 300000
     Duration2: 20000
     Cooldown: 20000
     Requires:
@@ -8935,7 +8965,7 @@ Body:
     HitCount: 1
     SplashArea: 15
     CastTime: 1000
-    Duration1: 180000
+    Duration1: 300000
     Duration2: 20000
     Cooldown: 20000
     Requires:
@@ -8979,7 +9009,7 @@ Body:
     HitCount: 1
     SplashArea: 15
     CastTime: 1000
-    Duration1: 180000
+    Duration1: 300000
     Duration2: 20000
     Cooldown: 20000
     Requires:
@@ -9023,7 +9053,7 @@ Body:
     HitCount: 1
     SplashArea: 15
     CastTime: 1000
-    Duration1: 180000
+    Duration1: 300000
     Duration2: 20000
     Cooldown: 20000
     Requires:
@@ -9056,14 +9086,16 @@ Body:
   - Id: 323
     Name: DC_DANCINGLESSON
     Description: Dance Lessons
-    MaxLevel: 10
+    MaxLevel: 15
     Type: Weapon
   - Id: 324
     Name: DC_THROWARROW
     Description: Slinging Arrow
-    MaxLevel: 5
+    MaxLevel: 15
     Type: Weapon
     TargetType: Attack
+    DamageFlags:
+      Critical: true
     Flags:
       AllowWhenPerforming: true
     Range: 9
@@ -9155,7 +9187,7 @@ Body:
     HitCount: 1
     SplashArea: 15
     CastTime: 1000
-    Duration1: 180000
+    Duration1: 300000
     Duration2: 20000
     Cooldown: 20000
     Requires:
@@ -9243,7 +9275,7 @@ Body:
     HitCount: 1
     SplashArea: 15
     CastTime: 1000
-    Duration1: 180000
+    Duration1: 300000
     Duration2: 20000
     Cooldown: 20000
     Requires:
@@ -9287,7 +9319,7 @@ Body:
     HitCount: 1
     SplashArea: 15
     CastTime: 1000
-    Duration1: 180000
+    Duration1: 300000
     Duration2: 20000
     Cooldown: 20000
     Requires:

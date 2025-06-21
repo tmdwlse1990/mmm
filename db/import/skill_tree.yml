@@ -1341,9 +1341,9 @@ Body:
       Archer: true
     Tree:
       - Name: BA_MUSICALLESSON
-        MaxLevel: 10
+        MaxLevel: 15
       - Name: BA_MUSICALSTRIKE
-        MaxLevel: 5
+        MaxLevel: 15
         Requires:
           - Name: BA_MUSICALLESSON
             Level: 3
@@ -1434,9 +1434,9 @@ Body:
       Archer: true
     Tree:
       - Name: DC_DANCINGLESSON
-        MaxLevel: 10
+        MaxLevel: 15
       - Name: DC_THROWARROW
-        MaxLevel: 5
+        MaxLevel: 15
         Requires:
           - Name: DC_DANCINGLESSON
             Level: 3
