@@ -3248,6 +3248,8 @@ static bool is_attack_critical(struct Damage* wd, struct block_list *src, struct
 			case MO_EXTREMITYFIST:
 				cri += 1000;
 				break;
+			case NJ_ISSEN:
+				return true;
 		}
 		if(tsd && tsd->bonus.critical_def)
 			cri = cri * ( 100 - tsd->bonus.critical_def ) / 100;
@@ -4333,7 +4335,7 @@ static void battle_calc_skill_base_damage(struct Damage* wd, struct block_list *
 			}
 #else
 		case NJ_ISSEN:
-			wd->damage = 40 * sstatus->str + sstatus->hp * 8 * skill_lv / 100;
+			wd->damage = 40 * sstatus->str + sstatus->hp * 8 * skill_lv / 10;
 			wd->damage2 = 0;
 			break;
 		case LK_SPIRALPIERCE:
@@ -5270,7 +5272,7 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 #endif
 		case NJ_HUUMA:
 #ifdef RENEWAL
-			skillratio += -150 + 250 * skill_lv;
+			skillratio += -150 + 250 * skill_lv + 5 * pc_checkskill(sd,NJ_SYURIKEN);
 #else
 			skillratio += 50 + 150 * skill_lv;
 #endif
@@ -5297,10 +5299,10 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 			break;
 #ifdef RENEWAL
 		case NJ_SYURIKEN:
-			skillratio += 5 * skill_lv;
+			skillratio += 5 * skill_lv + 5 * pc_checkskill(sd,NJ_SYURIKEN);
 			break;
 		case NJ_KUNAI:
-			skillratio += -100 + 100 * skill_lv;
+			skillratio += -100 + 100 * skill_lv + 20 * pc_checkskill(sd,NJ_SYURIKEN);
 			break;
 		case KN_CHARGEATK:
 			skillratio += 600;
@@ -8216,7 +8218,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src, struct bl
 #ifdef RENEWAL
 	switch (skill_id) {
 		case NJ_ISSEN:
-			case GN_FIRE_EXPANSION_ACID:
+		case GN_FIRE_EXPANSION_ACID:
 			return wd; //These skills will do a GVG fix later
 		default:
 #endif
@@ -8602,23 +8604,22 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						skillratio += -60 + status_get_lv(src);
 						break;
 					case NJ_KOUENKA:
-						skillratio -= 10;
+						skillratio += 5 * skill_lv;
 						if(sd && sd->spiritcharm_type == CHARM_TYPE_FIRE && sd->spiritcharm > 0)
 							skillratio += 10 * sd->spiritcharm;
 						break;
 					case NJ_KAENSIN:
-						skillratio -= 50;
 						if(sd && sd->spiritcharm_type == CHARM_TYPE_FIRE && sd->spiritcharm > 0)
 							skillratio += 20 * sd->spiritcharm;
 						break;
 					case NJ_BAKUENRYU:
-						skillratio += 50 + 150 * skill_lv;
+						skillratio += 50 + 300 * skill_lv;
 						if(sd && sd->spiritcharm_type == CHARM_TYPE_FIRE && sd->spiritcharm > 0)
 							skillratio += 100 * sd->spiritcharm;
 						break;
 					case NJ_HYOUSENSOU:
 #ifdef RENEWAL
-						skillratio -= 30;
+						skillratio += 2 * skill_lv;
 						if (sc && sc->getSCE(SC_SUITON))
 							skillratio += 2 * skill_lv;
 #endif
@@ -8626,13 +8627,13 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 							skillratio += 20 * sd->spiritcharm;
 						break;
 					case NJ_HYOUSYOURAKU:
-						skillratio += 50 * skill_lv;
+						skillratio += 150 * skill_lv;
 						if(sd && sd->spiritcharm_type == CHARM_TYPE_WATER && sd->spiritcharm > 0)
 							skillratio += 100 * sd->spiritcharm;
 						break;
 					case NJ_RAIGEKISAI:
 #ifdef RENEWAL
-						skillratio += 100 * skill_lv;
+						skillratio += 200 * skill_lv;
 #else
 						skillratio += 60 + 40 * skill_lv;
 #endif
@@ -8640,7 +8641,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 							skillratio += 20 * sd->spiritcharm;
 						break;
 					case NJ_KAMAITACHI:
-						skillratio += 100 * skill_lv;
+						skillratio += 250 * skill_lv;
 						if(sd && sd->spiritcharm_type == CHARM_TYPE_WIND && sd->spiritcharm > 0)
 							skillratio += 100 * sd->spiritcharm;
 						break;
@@ -10009,7 +10010,7 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 				struct Damage atk = battle_calc_weapon_attack(src, target, skill_id, skill_lv, 0);
 				status_change *sc = status_get_sc(src);
 
-				md.damage = (int64)sstatus->hp + (atk.damage * (int64)sstatus->hp * skill_lv) / (int64)sstatus->max_hp;
+				md.damage = (int64)sstatus->hp + (atk.damage * (int64)sstatus->hp * skill_lv * 2) / (int64)sstatus->max_hp;
 
 				if (sc && sc->getSCE(SC_BUNSINJYUTSU) && (i = sc->getSCE(SC_BUNSINJYUTSU)->val2) > 0) { // mirror image bonus only occurs if active
 					md.div_ = -(i + 2); // mirror image count + 2

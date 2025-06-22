@@ -1531,15 +1531,15 @@ Body:
       Novice: true
     Tree:
       - Name: SM_SWORD
-        MaxLevel: 10
+        MaxLevel: 15
       - Name: SM_RECOVERY
         MaxLevel: 10
       - Name: SM_BASH
-        MaxLevel: 10
+        MaxLevel: 15
       - Name: SM_PROVOKE
         MaxLevel: 10
       - Name: SM_MAGNUM
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: SM_BASH
             Level: 5
@@ -1553,7 +1553,7 @@ Body:
       - Name: MG_SIGHT
         MaxLevel: 1
       - Name: MG_NAPALMBEAT
-        MaxLevel: 10
+        MaxLevel: 15
       - Name: MG_SAFETYWALL
         MaxLevel: 10
         Requires:
@@ -1569,14 +1569,14 @@ Body:
       - Name: MG_COLDBOLT
         MaxLevel: 10
       - Name: MG_FROSTDIVER
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: MG_COLDBOLT
             Level: 5
       - Name: MG_STONECURSE
         MaxLevel: 10
       - Name: MG_FIREBALL
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: MG_FIREBOLT
             Level: 4
@@ -1592,14 +1592,14 @@ Body:
       - Name: MG_LIGHTNINGBOLT
         MaxLevel: 10
       - Name: MG_THUNDERSTORM
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: MG_LIGHTNINGBOLT
             Level: 4
       - Name: AL_DP
-        MaxLevel: 10
+        MaxLevel: 15
       - Name: AL_DEMONBANE
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: AL_DP
             Level: 3
@@ -1621,7 +1621,7 @@ Body:
           - Name: AL_TELEPORT
             Level: 2
       - Name: AL_HEAL
-        MaxLevel: 10
+        MaxLevel: 15
       - Name: AL_INCAGI
         MaxLevel: 10
         Requires:
@@ -1657,29 +1657,29 @@ Body:
       - Name: MC_INCCARRY
         MaxLevel: 10
       - Name: MC_DISCOUNT
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: MC_INCCARRY
             Level: 3
       - Name: MC_OVERCHARGE
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: MC_DISCOUNT
             Level: 3
       - Name: MC_PUSHCART
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: MC_INCCARRY
             Level: 5
       - Name: MC_IDENTIFY
-        MaxLevel: 1
+        MaxLevel: 5
       - Name: MC_VENDING
         MaxLevel: 10
         Requires:
           - Name: MC_PUSHCART
             Level: 3
       - Name: MC_MAMMONITE
-        MaxLevel: 10
+        MaxLevel: 15
       - Name: AC_OWL
         MaxLevel: 10
       - Name: AC_VULTURE
@@ -1693,9 +1693,9 @@ Body:
           - Name: AC_VULTURE
             Level: 1
       - Name: TF_DOUBLE
-        MaxLevel: 10
+        MaxLevel: 15
       - Name: TF_MISS
-        MaxLevel: 10
+        MaxLevel: 15
       - Name: TF_STEAL
         MaxLevel: 10
       - Name: TF_HIDING
@@ -1704,7 +1704,7 @@ Body:
           - Name: TF_STEAL
             Level: 5
       - Name: TF_POISON
-        MaxLevel: 10
+        MaxLevel: 15
       - Name: TF_DETOXIFY
         MaxLevel: 1
         Requires:
@@ -1829,7 +1829,7 @@ Body:
       Novice: true
     Tree:
       - Name: NJ_TOBIDOUGU
-        MaxLevel: 10
+        MaxLevel: 15
       - Name: NJ_SYURIKEN
         MaxLevel: 10
         Requires:
@@ -1939,7 +1939,7 @@ Body:
           - Name: NJ_RAIGEKISAI
             Level: 5
       - Name: NJ_NEN
-        MaxLevel: 5
+        MaxLevel: 10
         Requires:
           - Name: NJ_NINPOU
             Level: 5

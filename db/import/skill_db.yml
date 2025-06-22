@@ -14610,7 +14610,7 @@ Body:
   - Id: 522
     Name: NJ_TOBIDOUGU
     Description: Shuriken Training
-    MaxLevel: 10
+    MaxLevel: 15
     Type: Weapon
     HitCount: 1
   - Id: 523
@@ -14710,6 +14710,7 @@ Body:
     DamageFlags:
       IgnoreElement: true
       IgnoreFlee: true
+      IgnoreDefense: true
     Flags:
       IgnoreBgReduction: true
       IgnoreGvgReduction: true
@@ -14899,6 +14900,7 @@ Body:
         Plagiarism: true
         Reproduce: true
     AfterCastActDelay: 1000
+    Cooldown: 60000
     Duration1:
       - Level: 1
         Time: 20000
@@ -15713,7 +15715,7 @@ Body:
   - Id: 543
     Name: NJ_NEN
     Description: Soul
-    MaxLevel: 5
+    MaxLevel: 10
     TargetType: Self
     DamageFlags:
       NoDamage: true
@@ -15741,6 +15743,16 @@ Body:
         Time: 75000
       - Level: 5
         Time: 90000
+      - Level: 6
+        Time: 105000
+      - Level: 7
+        Time: 120000
+      - Level: 8
+        Time: 135000
+      - Level: 9
+        Time: 150000
+      - Level: 10
+        Time: 300000
     FixedCastTime:
       - Level: 1
         Time: 1000
@@ -15774,6 +15786,7 @@ Body:
     TargetType: Attack
     DamageFlags:
       IgnoreFlee: true
+      Critical: true
     Range: -5
     Hit: Multi_Hit
     HitCount: 1
