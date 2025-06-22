@@ -11131,7 +11131,7 @@ int32 skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, 
 	case GS_GLITTERING:
 		if(sd) {
 			clif_skill_nodamage(src,*bl,skill_id,skill_lv);
-			if(rnd()%100 < (20+10*skill_lv))
+			if(rnd()%100 < (1+20*skill_lv))
 				pc_addspiritball(sd,skill_get_time(skill_id,skill_lv),10);
 			else if(sd->spiritball > 0 && !pc_checkskill(sd,RL_RICHS_COIN))
 				pc_delspiritball(sd,1,0);

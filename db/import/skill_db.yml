@@ -14060,7 +14060,7 @@ Body:
   - Id: 509
     Name: GS_SINGLEACTION
     Description: Single Action
-    MaxLevel: 10
+    MaxLevel: 15
   - Id: 510
     Name: GS_SNAKEEYE
     Description: Snake Eye
@@ -14068,7 +14068,7 @@ Body:
   - Id: 511
     Name: GS_CHAINACTION
     Description: Chain Action
-    MaxLevel: 10
+    MaxLevel: 15
     Type: Weapon
     DamageFlags:
       Critical: true
@@ -14079,15 +14079,17 @@ Body:
   - Id: 512
     Name: GS_TRACKING
     Description: Tracking
-    MaxLevel: 10
+    MaxLevel: 15
     Type: Weapon
     TargetType: Attack
     Range: -9
     Hit: Single
     HitCount: 1
     Element: Weapon
+    DamageFlags:
+      Critical: true
     AfterCastActDelay: 1500
-    FixedCastTime:
+    CastTime:
       - Level: 1
         Time: 600
       - Level: 2
@@ -14108,6 +14110,16 @@ Body:
         Time: 1400
       - Level: 10
         Time: 1500
+      - Level: 11
+        Time: 1600
+      - Level: 12
+        Time: 1700
+      - Level: 13
+        Time: 1800
+      - Level: 14
+        Time: 1900
+      - Level: 15
+        Time: 2000
     CastTimeFlags:
       IgnoreDex: true
       IgnoreStatus: true
@@ -14178,8 +14190,6 @@ Body:
     MaxLevel: 5
     Type: Weapon
     TargetType: Attack
-    DamageFlags:
-      IgnoreDefense: true
     Flags:
       AlterRangeSnakeEye: true
     Range: -9
@@ -14300,7 +14310,7 @@ Body:
   - Id: 517
     Name: GS_GATLINGFEVER
     Description: Gatling Fever
-    MaxLevel: 10
+    MaxLevel: 15
     Type: Weapon
     TargetType: Self
     DamageFlags:
@@ -14333,6 +14343,16 @@ Body:
         Time: 150000
       - Level: 10
         Time: 165000
+      - Level: 11
+        Time: 180000
+      - Level: 12
+        Time: 195000
+      - Level: 13
+        Time: 210000
+      - Level: 14
+        Time: 240000
+      - Level: 15
+        Time: 300000
     FixedCastTime: 200
     Requires:
       SpCost:
@@ -14404,13 +14424,16 @@ Body:
     MaxLevel: 10
     Type: Weapon
     TargetType: Attack
+    DamageFlags:
+      Critical: true
     Flags:
       AlterRangeSnakeEye: true
-    Range: -9
+    Range: -3
     Hit: Single
     HitCount: 1
     Element: Weapon
     CastTime: 800
+    CoolDown: 3000
     AfterCastActDelay:
       - Level: 1
         Time: 1200

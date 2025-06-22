@@ -11788,7 +11788,7 @@ static bool status_change_start_post_delay(block_list* src, block_list* bl, sc_t
 		// gs_something1 [Vicious]
 		case SC_GATLINGFEVER:
 			val2 = 20*val1; // Aspd increase
-			val3 = 20+10*val1; // Atk increase
+			val3 = 250+50*val1; // Atk increase
 			val4 = 5*val1; // Flee decrease
 			break;
 

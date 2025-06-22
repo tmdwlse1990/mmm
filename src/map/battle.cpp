@@ -3248,6 +3248,10 @@ static bool is_attack_critical(struct Damage* wd, struct block_list *src, struct
 			case MO_EXTREMITYFIST:
 				cri += 1000;
 				break;
+			case GS_TRACKING:
+				cri = 0;
+				cri +=  sstatus->hit * 4;
+				break;
 			case NJ_ISSEN:
 				return true;
 		}
@@ -3270,7 +3274,10 @@ static int32 is_attack_piercing(struct Damage* wd, struct block_list *src, struc
 {
 	if (skill_id == MO_INVESTIGATE || skill_id == RL_MASS_SPIRAL)
 		return 2;
-
+	switch(skill_id) {
+		case GS_PIERCINGSHOT:
+			return 1;
+	}
 	if(src != nullptr) {
 		map_session_data *sd = BL_CAST(BL_PC, src);
 		status_data* tstatus = status_get_status_data(*target);
@@ -4644,7 +4651,7 @@ static void battle_calc_multi_attack(struct Damage* wd, struct block_list *src,s
 			wd->div_ = skill_get_num(GS_CHAINACTION,skill_lv);
 			wd->type = DMG_MULTI_HIT;
 
-			sc_start(src,src,SC_QD_SHOT_READY,100,target->id,skill_get_time(RL_QD_SHOT,1));
+			sc_start(src,src,SC_QD_SHOT_READY,500,target->id,skill_get_time(RL_QD_SHOT,1));
 		}
 	}
 
@@ -5232,23 +5239,23 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 				skillratio += 400;
 			break;
 		case GS_TRACKING:
-			skillratio += 100 * (skill_lv + 1);
+			skillratio += 250 * (skill_lv + 1);
 			break;
 		case GS_PIERCINGSHOT:
 #ifdef RENEWAL
 			if (sd && sd->weapontype1 == W_RIFLE)
-				skillratio += 150 + 30 * skill_lv;
+				skillratio += 150 + 80 * skill_lv;
 			else
-				skillratio += 100 + 20 * skill_lv;
+				skillratio += 100 + 30 * skill_lv;
 #else
 			skillratio += 20 * skill_lv;
 #endif
 			break;
 		case GS_RAPIDSHOWER:
-			skillratio += 400 + 50 * skill_lv;
+			skillratio += 600 + 50 * skill_lv;
 			break;
 		case GS_DESPERADO:
-			skillratio += 50 * (skill_lv - 1);
+			skillratio += 150 + 50 * (skill_lv - 1);
 			if (sc && sc->getSCE(SC_FALLEN_ANGEL))
 				skillratio *= 2;
 			break;
@@ -5256,18 +5263,18 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 			skillratio += 50 * skill_lv;
 			break;
 		case GS_FULLBUSTER:
-			skillratio += 100 * (skill_lv + 2);
+			skillratio += 500 + 500 * skill_lv;
 			break;
 		case GS_SPREADATTACK:
 #ifdef RENEWAL
-			skillratio += 30 * skill_lv;
+			skillratio += 60 * skill_lv;
 #else
 			skillratio += 20 * (skill_lv - 1);
 #endif
 			break;
 #ifdef RENEWAL
 		case GS_GROUNDDRIFT:
-			skillratio += 100 + 20 * skill_lv;
+			skillratio += 100 + 350 * skill_lv;
 			break;
 #endif
 		case NJ_HUUMA:

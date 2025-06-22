@@ -1764,19 +1764,19 @@ Body:
           - Name: GS_GLITTERING
             Level: 1
       - Name: GS_SINGLEACTION
-        MaxLevel: 10
+        MaxLevel: 15
       - Name: GS_SNAKEEYE
         MaxLevel: 10
       - Name: GS_CHAINACTION
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: GS_SINGLEACTION
             Level: 1
       - Name: GS_TRACKING
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: GS_SINGLEACTION
-            Level: 5
+            Level: 15
       - Name: GS_DISARM
         MaxLevel: 5
         Requires:
@@ -1798,7 +1798,7 @@ Body:
           - Name: GS_RAPIDSHOWER
             Level: 5
       - Name: GS_GATLINGFEVER
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: GS_RAPIDSHOWER
             Level: 7
