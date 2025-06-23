@@ -2483,7 +2483,6 @@ uint16 status_base_atk(const struct block_list *bl, const struct status_data *st
 				flag = 1;
 				break;
 			case W_BOW:
-			case W_MUSICAL:
 				flag = 2;
 				break;
 		}
@@ -11068,9 +11067,9 @@ static bool status_change_start_post_delay(block_list* src, block_list* bl, sc_t
 			}
 			break;
 		case SC_POISONREACT:
-			val2 = val1 / 2; // Number of Envenom autocasts
+			val2 = val1; // Number of Envenom autocasts
 			val3 = 50; // Chance to autocast Envenom on hit / Poison chance of attack after block
-			val4 = 0; // 0: Poison Block Mode; 1: Damage Boost Mode
+			val4 = 1; // 0: Poison Block Mode; 1: Damage Boost Mode
 			break;
 		case SC_MAGICROD:
 			val2 = val1*20; // SP gained
@@ -11760,7 +11759,8 @@ static bool status_change_start_post_delay(block_list* src, block_list* bl, sc_t
 				if (type == SC_OVERTHRUST) {
 					// val2 holds if it was casted on self, or is bonus received from others
 #ifdef RENEWAL
-						val3 = (val2) ? 5 * val1 : (val1 > 4) ? 15 : (val1 > 2) ? 10 : 5; // Power increase
+						//val3 = (val2) ? 5 * val1 : (val1 > 4) ? 15 : (val1 > 2) ? 10 : 5; // Power increase
+						val3 = (val2) ? 10 + val1 : val1; // Power increase
 #else
 						val3 = (val2) ? 5 * val1 : 5; // Power increase
 #endif
@@ -11813,7 +11813,7 @@ static bool status_change_start_post_delay(block_list* src, block_list* bl, sc_t
 		// gs_something1 [Vicious]
 		case SC_GATLINGFEVER:
 			val2 = 20*val1; // Aspd increase
-			val3 = 20+10*val1; // Atk increase
+			val3 = 250+50*val1; // Atk increase
 			val4 = 5*val1; // Flee decrease
 			break;
 
