@@ -764,7 +764,7 @@ int32 battle_calc_cardfix(int32 attack_type, struct block_list *src, struct bloc
 	map_session_data *sd, ///< Attacker session data if BL_PC
 		*tsd; ///< Target session data if BL_PC
 	int32 cardfix = 1000;
-	int32 sum_val,sum_atk_val,sum_atk_val_;
+	int32 sum_val = 0,sum_atk_val = 0,sum_atk_val_ = 0;
 	int32 s_class, ///< Attacker class
 		t_class; ///< Target class
 	std::vector<e_race2> s_race2, /// Attacker Race2
