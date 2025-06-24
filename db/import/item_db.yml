@@ -385,6 +385,10 @@ Body:
     Script: |
       if (!achievementexists(100003))
         achievementcomplete(100003);
+  - Id: 2000014
+    AegisName: Gacha_Ex_Ticket_Pass
+    Name: Gacha Ex Ticket
+    Type: Etc
 #   [Side Quest Item]
   - Id: 2005001
     AegisName: Golden_Egg

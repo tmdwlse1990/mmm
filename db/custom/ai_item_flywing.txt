@@ -5,7 +5,7 @@
 // itemid,only party leader,delete item or not ?
 // EX. 601
 //= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-601,false,true
 12212,true,true
 12323,false,true
 12887,false,false
+601,false,true

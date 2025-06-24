@@ -56,8 +56,12 @@ Body:
       - Index: 0
         Item: Costume_Ticket_Pass
         Stock: 99
-        Zeny: 3000000
+        Zeny: 1000000
       - Index: 1
         Item: Gacha_Ticket_Pass
         Stock: 99
-        Zeny: 5000000
+        Zeny: 2000000
+      - Index: 2
+        Item: Gacha_Ex_Ticket_Pass
+        Stock: 99
+        Zeny: 3000000

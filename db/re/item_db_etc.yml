@@ -365,7 +365,7 @@ Body:
     Name: 2carat Diamond
     Type: Etc
     Buy: 25000
-    Sell: 2000
+#    Sell: 2000
     Weight: 100
     Flags:
       BuyingStore: true
@@ -374,7 +374,7 @@ Body:
     Name: 3carat Diamond
     Type: Etc
     Buy: 55000
-    Sell: 2500
+#    Sell: 2500
     Weight: 100
     Flags:
       BuyingStore: true

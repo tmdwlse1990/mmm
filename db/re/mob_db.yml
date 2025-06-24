@@ -29598,8 +29598,8 @@ Body:
     MvpDrops:
       - Item: Old_Violet_Box
         Rate: 5500
-      - Item: Bs_Making_S
-        Rate: 5000
+#      - Item: Bs_Making_S
+#        Rate: 5000
       - Item: Crystal_Jewel__
         Rate: 2000
     Drops:
@@ -30697,8 +30697,8 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-      - Item: Bs_Making_S
-        Rate: 5000
+#      - Item: Bs_Making_S
+#        Rate: 5000
       - Item: Old_Blue_Box
         Rate: 5000
       - Item: Crystal_Jewel__
@@ -31212,8 +31212,8 @@ Body:
     MvpDrops:
       - Item: Old_Violet_Box
         Rate: 5500
-      - Item: Bs_Making_S
-        Rate: 5000
+#      - Item: Bs_Making_S
+#        Rate: 5000
       - Item: Crystal_Jewel__
         Rate: 2000
     Drops:
@@ -31725,8 +31725,8 @@ Body:
     MvpDrops:
       - Item: Old_Violet_Box
         Rate: 5500
-      - Item: Bs_Making_S
-        Rate: 5000
+#      - Item: Bs_Making_S
+#        Rate: 5000
       - Item: Old_Card_Album
         Rate: 2000
     Drops:
@@ -32365,8 +32365,8 @@ Body:
     MvpDrops:
       - Item: Old_Violet_Box
         Rate: 5500
-      - Item: Bs_Making_S
-        Rate: 5000
+#      - Item: Bs_Making_S
+#        Rate: 5000
       - Item: Old_Card_Album
         Rate: 2000
     Drops:
@@ -33054,9 +33054,9 @@ Body:
       - Item: Old_Violet_Box
         Index: 1
         Rate: 5000
-      - Item: Bs_Making_S
-        Index: 2
-        Rate: 5000
+#      - Item: Bs_Making_S
+#        Index: 2
+#        Rate: 5000
     Drops:
       - Item: Will_Of_Darkness_
         Rate: 3500
@@ -33635,9 +33635,9 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-      - Item: Bs_Making_S
-        Index: 0
-        Rate: 5000
+#      - Item: Bs_Making_S
+#        Index: 0
+#        Rate: 5000
       - Item: Old_Violet_Box
         Index: 1
         Rate: 5000
@@ -33937,9 +33937,9 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-      - Item: Bs_Making_S
-        Index: 0
-        Rate: 5500
+#      - Item: Bs_Making_S
+#        Index: 0
+#        Rate: 5500
       - Item: Old_Violet_Box
         Index: 1
         Rate: 5000
@@ -35729,8 +35729,8 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-      - Item: Bs_Making_S
-        Rate: 5000
+#      - Item: Bs_Making_S
+#        Rate: 5000
       - Item: Carnium
         Rate: 5000
       - Item: Old_Card_Album
@@ -37335,8 +37335,8 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-      - Item: Bs_Making_S
-        Rate: 5000
+#      - Item: Bs_Making_S
+#        Rate: 5000
       - Item: Seed_Of_Yggdrasil
         Rate: 3500
       - Item: Crystal_Jewel__
@@ -37455,8 +37455,8 @@ Body:
     MvpDrops:
       - Item: Old_Violet_Box
         Rate: 5500
-      - Item: Bs_Making_S
-        Rate: 5000
+#      - Item: Bs_Making_S
+#        Rate: 5000
       - Item: Box_Of_Grudge
         Rate: 5500
     Drops:
@@ -37936,9 +37936,9 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-      - Item: Bs_Making_S
-        Index: 0
-        Rate: 5000
+#      - Item: Bs_Making_S
+#        Index: 0
+#        Rate: 5000
       - Item: Old_Violet_Box
         Index: 1
         Rate: 5000
@@ -38916,9 +38916,9 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-      - Item: Bs_Making_S
-        Index: 0
-        Rate: 5000
+#      - Item: Bs_Making_S
+#        Index: 0
+#        Rate: 5000
       - Item: Old_Violet_Box
         Index: 1
         Rate: 5000
@@ -44737,8 +44737,8 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-      - Item: Bs_Making_S
-        Rate: 5000
+#      - Item: Bs_Making_S
+#        Rate: 5000
       - Item: Old_Violet_Box
         Rate: 5000
       - Item: Old_Card_Album
@@ -45584,9 +45584,9 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-      - Item: Bs_Making_S
-        Index: 0
-        Rate: 5000
+#      - Item: Bs_Making_S
+#        Index: 0
+#        Rate: 5000
       - Item: Old_Card_Album
         Index: 1
         Rate: 5000
@@ -48341,9 +48341,9 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-      - Item: Bs_Making_S
-        Index: 0
-        Rate: 5000
+#      - Item: Bs_Making_S
+#        Index: 0
+#        Rate: 5000
       - Item: Old_Violet_Box
         Index: 1
         Rate: 5000
@@ -48732,8 +48732,8 @@ Body:
         Rate: 5000
       - Item: Old_Card_Album
         Rate: 5000
-      - Item: Bs_Making_S
-        Rate: 5000
+#      - Item: Bs_Making_S
+#        Rate: 5000
     Drops:
       - Item: Queen_Wing_Piece
         Rate: 2500
@@ -50459,8 +50459,8 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-      - Item: Bs_Making_S
-        Rate: 5000
+#      - Item: Bs_Making_S
+#        Rate: 5000
       - Item: Old_Card_Album
         Rate: 5000
       - Item: Treasure_Box
@@ -52535,8 +52535,8 @@ Body:
     MvpDrops:
       - Item: Magic_Card_Album
         Rate: 5000
-      - Item: Bs_Making_S
-        Rate: 5000
+#      - Item: Bs_Making_S
+#        Rate: 5000
       - Item: Old_Violet_Box
         Rate: 5000
     Drops:
@@ -52645,8 +52645,8 @@ Body:
     MvpDrops:
       - Item: Magic_Card_Album
         Rate: 5000
-      - Item: Bs_Making_S
-        Rate: 5000
+#      - Item: Bs_Making_S
+#        Rate: 5000
       - Item: Old_Violet_Box
         Rate: 5000
     Drops:
@@ -52755,8 +52755,8 @@ Body:
     MvpDrops:
       - Item: Magic_Card_Album
         Rate: 5000
-      - Item: Bs_Making_S
-        Rate: 5000
+#      - Item: Bs_Making_S
+#        Rate: 5000
       - Item: Old_Violet_Box
         Rate: 5000
     Drops:
@@ -52868,8 +52868,8 @@ Body:
         Rate: 5000
       - Item: Old_Violet_Box
         Rate: 5000
-      - Item: Bs_Making_S
-        Rate: 5000
+#      - Item: Bs_Making_S
+#        Rate: 5000
     Drops:
       - Item: High_Weapon_Box
         Rate: 100
@@ -56583,8 +56583,8 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-      - Item: Bs_Making_S
-        Rate: 5000
+#      - Item: Bs_Making_S
+#        Rate: 5000
       - Item: Seed_Of_Yggdrasil
         Rate: 3500
       - Item: Crystal_Jewel__
@@ -82785,8 +82785,8 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-      - Item: Bs_Making_S
-        Rate: 5000
+#      - Item: Bs_Making_S
+#        Rate: 5000
       - Item: Yggdrasilberry
         Rate: 5000
       - Item: Key_Of_Twisted_Time
@@ -94953,8 +94953,8 @@ Body:
         Rate: 5000
       - Item: Old_Violet_Box
         Rate: 5000
-      - Item: Bs_Making_S
-        Rate: 5000
+#      - Item: Bs_Making_S
+#        Rate: 5000
     Drops:
       - Item: Piece_Of_Chimera
         Rate: 1000
@@ -96872,9 +96872,9 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-      - Item: Bs_Making_S
-        Index: 0
-        Rate: 5000
+#      - Item: Bs_Making_S
+#        Index: 0
+#        Rate: 5000
       - Item: Old_Violet_Box
         Index: 1
         Rate: 5000
@@ -103105,8 +103105,8 @@ Body:
     MvpDrops:
       - Item: EP17_1_EVT01
         Rate: 2000
-      - Item: Bs_Making_S
-        Rate: 5000
+#      - Item: Bs_Making_S
+#        Rate: 5000
       - Item: Magic_Card_Album
         Rate: 4000
     Drops:
