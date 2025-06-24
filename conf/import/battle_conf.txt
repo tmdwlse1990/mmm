@@ -1,5 +1,5 @@
 // Max Cap Level
-config_maxlv: 60
+config_maxlv: 70
 
 //Max Cap Aspd
 aspd_unlock_cap: 197
@@ -23,10 +23,10 @@ config_global_mvp_drop_rate: 10000
 mob_mvp_skill_rate: 0
 
 //Value item for use val cap
-max_sell_item_cap: 2501
+max_sell_item_cap: 0
 
 //Vaule item sell cap
-max_seal_item_val: 700
+max_seal_item_val: 789
 
 // Equipment ทุกชิ้นเสริมแกร่งได้ไหม (1 ได้)
 config_all_equipment_refinable: 1
@@ -104,7 +104,7 @@ autoattack_item_pickup: on
 autoattack_mselection: on
 
 // ระยะตรวจหาไอเทมรวบๆ
-autoattack_item_range_detection: 15
+autoattack_item_range_detection: 20
 
 // ระยะตรวจหามอนสเตอร์
 autoattack_mob_detection: 15
@@ -131,7 +131,7 @@ autoattack_hateffect: 31
 autoattack_skill_rate_default: 25
 
 // ลด drop เรท หากใช้ autoattack , 0 = ปิด , หน่วยเป็น %
-autoattack_reduce_droprate: 50
+autoattack_reduce_droprate: 25
 
 // โหลดการปรับลด 0 = ปิด
 // 1 healing

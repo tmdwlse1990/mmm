@@ -1235,7 +1235,7 @@ void ItemDatabase::loadingFinished(){
 			item->value_sell = 1;
 		}
 
-		if (item->value_sell >= battle_config.max_sell_item_cap)
+		if (battle_config.max_sell_item_cap && item->value_sell >= battle_config.max_sell_item_cap)
 			item->value_sell = battle_config.max_seal_item_val;
 		// Shields need to have a view ID to be able to be recognized by ST_SHIELD check in skill.cpp
 		if( item->type == IT_ARMOR && ( item->equip & EQP_SHIELD ) != 0 && item->look == 0 ){
