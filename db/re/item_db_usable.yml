@@ -70881,8 +70881,8 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      sc_start SC_PERIOD_RECEIVEITEM_2ND,86400000,50;
-      sc_start SC_PERIOD_PLUSEXP_2ND,86400000,50;
+      sc_start SC_PERIOD_RECEIVEITEM_2ND,3600000,50;
+      sc_start SC_PERIOD_PLUSEXP_2ND,3600000,50;
   - Id: 100917
     AegisName: Hero_Weapon_Hammer_4
     Name: Modified Hero's Weapon Refinement Hammer IV

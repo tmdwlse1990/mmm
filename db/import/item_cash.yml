@@ -46,7 +46,13 @@ Body:
       - Item: Costume_Ticket_Pass
         Price: 100
       - Item: Gacha_Ticket_Pass
+        Price: 150
+      - Item: Gacha_Ex_Ticket_Pass
         Price: 190
+      - Item: EXP_Drop_Up_1Hours
+        Price: 100
+      - Item: EXP_Drop_Up_7days
+        Price: 1440
   - Tab: Other
     Items:
       - Item: Random_Pet_Box
