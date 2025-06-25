@@ -1,38 +1,47 @@
-icecastle,188,199,1	script	ออเดิร์ฟ#new_commer	4_M_NOV_RUMIN,{
-	.@npcname$ = "[ Old Minister ]";
-	switch( checkquest(1) ) {
-		case -1:
-			mes .@npcname$;
-			mes "โฮ๊ๆ เจ้าคงเป็นผู้มาใหม่";
-			mes "ก็ขอต้อนรับด้วยภารกิจทดสอบฝีมือนิดหน่อยละกัน";
-			setquest 1;
-			break;
-		case 0:
-		case 1:
-		switch( checkquest(1,HUNTING) ) {
-			case 0:
-			case 1:
-				mes .@npcname$;
-				mes "ยังทำภารกิจไม่สำเร็จเลยนี่";
-				mes "ไปทำภารกิจก่อนเถอะ";
-				end;
-			case 2:
-				mes .@npcname$;
-				mes "ทำดีนี่น่า ถือว่าเป็นค่าตอบแทน";
-				mes "และต้อนรับสำหรับผู้มาใหม่ก็แล้วกันนะ";
-				completequest 1;
-				getitem 2000002,1;
-				next;
-				break;
-			default:
-				mes "Error Please contract Admin";
-				end;
-			}
-		case 2:
-		default:
-			mes .@npcname$;
-			mes "ขอบคุณมากๆนะ";
-			break;
+ayothaya,150,173,1	script	Fire pit#SHARK	4_TRACE,{
+	if(!countitem(2000002) || !countitem(2000003) || !countitem(2000004) || !countitem(2000005) || #Quest_Shark_H) {
+		mes "ฟู้วๆ";
+		close;
 	}
+	if(!isbegin_quest(8)) {
+		setquest 8;
+		mes "ผู้ที่ถูกเลือก";
+		mes "หรือผู้ที่เลือกถูก??";
+		sleep2 5000;
+		mes "(เหมือนว่าในกองไฟจะมีอะไรบางอย่าง ??)";
+		sleep2 7000;
+		next;
+	}
+	else {
+		mes "ฟู้วๆ ไฟมันร้อนนะ";
+		next;
+	}
+	if(select("ยื่นมือไปหยิบ:ช่างมัน") == 2 ) { warp "Save",0,0; end; }
+	mes "ฟู้ววว";
+	.@chance = rand(5);
+	if(countitem(523)) .@chance = 0;
+	sleep2 10000;
+	if(!.@chance) {
+		mes "ไม่ร้อนแล้ว";
+		sleep2 10000;
+		mes "เอื้อมอีกนิด.....";
+		sleep2 10000;
+		mes "อืมมม....";
+		sleep2 10000;
+		completequest 8;
+		getitem 2000006,1;
+		#Quest_Shark_K = 1;
+		if (!achievementexists(100002))
+			achievementcomplete(100002);
+		setquest 9;
+		end;
+	}
+	else {
+		message strcharinfo(0),"อ๊ากกกก ร้อนนน!!!";
+		percentheal -100,-100;
+		end;
+	}
+Oninit:
+	questinfo QTYPE_QUEST, QMARK_NONE, "!isbegin_quest(8) && countitem(2000002) && countitem(2000003) && countitem(2000004) && countitem(2000005)";
 	end;
 }

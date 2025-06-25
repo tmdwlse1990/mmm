@@ -774,7 +774,7 @@ Body:
       bonus bStr,10;
       bonus bAddMaxWeight,50000;
       bonus bDef,100;
-      autobonus "{bonus2 bHpRegenRate,777,1000}",50,5000,BF_WEAPON;
+      autobonus "{bonus2 bHpRegenRate,777,1000;}",50,5000,BF_WEAPON;
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;

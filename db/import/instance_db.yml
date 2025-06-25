@@ -42,6 +42,12 @@ Header:
   Version: 2
 
 Body:
+  - Id: 401
+    Name: Game Master Castle
+    Enter:
+      Map: Valkyrie
+      X: 48
+      Y: 9
   - Id: 500
     Name: Lake of fire
     Enter:

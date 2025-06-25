@@ -169,6 +169,37 @@ Body:
     AegisName: MD_PRI_RIGEL
     Name: Dummy
 
+  - Id: 2000
+    Level: 275
+    Hp: 1500000000
+    BaseExp: 0
+    JobExp: 0
+    Attack: 60260
+    Attack2: 22603
+    Defense: 1358
+    MagicDefense: 738
+    Resistance: 1833
+    MagicResistance: 850
+    Str: 815
+    Agi: 430
+    Vit: 1113
+    Int: 1408
+    Dex: 584
+    Luk: 980
+    AttackRange: 3
+    SkillRange: 12
+    ChaseRange: 15
+    Size: Medium
+    Race: Demihuman
+    Element: Neutral
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 190
+    AttackMotion: 652
+    DamageMotion: 232    # unknown
+    Ai: 21
+    Class: Boss
+    
   - Id: 22175
     AegisName: MD_PRI_RIGEL_AC
     # Name: Dimensional Criminal Rigel
@@ -660,6 +691,78 @@ Body:
         StealProtected: true
   - Id: 21634
     AegisName: HIDDEN_MOB_WARP_GREEN
+    Name: Monster
+    JapaneseName: Hidden Mob
+    Level: 151
+    Hp: 10000
+    Sp: 200
+    Attack2: 1000
+    Defense: 200
+    MagicDefense: 10
+    Str: 200
+    Agi: 200
+    Vit: 200
+    Int: 200
+    Dex: 200
+    Luk: 200
+    AttackRange: 7
+    SkillRange: 12
+    ChaseRange: 12
+    Size: Small
+    Race: Insect
+    RaceGroups:
+      Ogh_Hidden: true
+    Element: Ghost
+    ElementLevel: 4
+    WalkSpeed: 1000
+    AttackMotion: 1000
+    ClientAttackMotion: 768
+    Ai: 10
+    Class: Battlefield
+    Modes:
+      Detector: true
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+  - Id: 21635
+    AegisName: HIDDEN_MOB_WARP_PURPLE
+    Name: Monster
+    JapaneseName: Hidden Mob
+    Level: 151
+    Hp: 10000
+    Sp: 200
+    Attack2: 1000
+    Defense: 200
+    MagicDefense: 10
+    Str: 200
+    Agi: 200
+    Vit: 200
+    Int: 200
+    Dex: 200
+    Luk: 200
+    AttackRange: 7
+    SkillRange: 12
+    ChaseRange: 12
+    Size: Small
+    Race: Insect
+    RaceGroups:
+      Ogh_Hidden: true
+    Element: Ghost
+    ElementLevel: 4
+    WalkSpeed: 1000
+    AttackMotion: 1000
+    ClientAttackMotion: 768
+    Ai: 10
+    Class: Battlefield
+    Modes:
+      Detector: true
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+  - Id: 21636
+    AegisName: HIDDEN_MOB_WARP_RED
     Name: Monster
     JapaneseName: Hidden Mob
     Level: 151

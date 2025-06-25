@@ -1,0 +1,317 @@
+thana_boss,142,221,1	script(HIDDEN)	#activate_gate_cre	-1,5,5,{
+
+Ontouch:
+	if(isbegin_quest(9)) {
+		if(isbegin_quest(9) < 2) completequest 9;
+		cloakoffnpcself("Gate Way#Tocreation");
+	}
+	end;
+}
+
+thana_boss,142,230,1	script(CLOAKED)	Gate Way#Tocreation	21636,{
+	progressbar "FF0000" , 10;
+	end;
+}
+
+
+valkyrie,49,48,5	script	Game Master#Male	4_M_OPERATION,5,5,{
+	end;
+
+Ontouch:
+	cloakoffnpcself("Game Master#Male(Talk)");
+	donpcevent "Game Master#Male(Talk)" + "::OnEnable";
+	enablenpc ("#trap_1_door");
+	enablenpc ("#trap_2_door");
+	disablenpc;
+	end;
+}
+
+
+valkyrie,49,48,5	script(CLOAKED)	Game Master#Male(Talk)	4_M_OPERATION,{
+	end;
+	
+OnEnable:
+	initnpctimer;
+	announce "??????: ท้าทายผู้สร้าง ไม่ได้ง่ายขนาดนั้น~!", bc_all,0xFFFF00,FW_NORMAL,18;
+	end;
+OnTimer2000:
+	npctalk "Shalarm: กำลังง่วงๆอยู่พอดี";
+	end;
+OnTimer4500:
+	npctalk "Shalarm: ไหนๆก็มาแล้วนี่นะ";
+	end;
+OnTimer10000:
+	npctalk "Shalarm: เดี๋ยวจะส่งร่างแยกไปทดสอบละกัน";
+	end;
+OnTimer13000:
+	npctalk "Shalarm: ถ้าทำให้พอใจได้ ก็จะตบรางวัลให้";
+	end;
+OnTimer15000:
+	npctalk "Shalarm: เตรียมรับมือไว้ด้วยหละ";
+	end;
+OnTimer15100:
+OnTimer15200:
+OnTimer15300:
+OnTimer15400:
+OnTimer15500:
+OnTimer15600:
+OnTimer15700:
+OnTimer15800:
+OnTimer15900:
+OnTimer16000:
+OnTimer16100:
+OnTimer16200:
+OnTimer16300:
+OnTimer16400:
+OnTimer16500:
+OnTimer16600:
+OnTimer16700:
+OnTimer16800:
+OnTimer16900:
+OnTimer17000:
+OnTimer17100:
+OnTimer17200:
+OnTimer17300:
+OnTimer17400:
+OnTimer17500:
+OnTimer17600:
+OnTimer17700:
+OnTimer17800:
+OnTimer17900:
+OnTimer18000:
+OnTimer18100:
+OnTimer18200:
+OnTimer18300:
+OnTimer18400:
+OnTimer18500:
+OnTimer18600:
+OnTimer18700:
+OnTimer18800:
+OnTimer18900:
+OnTimer19000:
+OnTimer19100:
+OnTimer19200:
+OnTimer19300:
+OnTimer19400:
+OnTimer19500:
+	specialeffect EF_POTION_BERSERK;
+	specialeffect EF_PURPLEBODY;
+	end;
+OnTimer20000:
+	specialeffect EF_POTION_BERSERK;
+	specialeffect EF_PURPLEBODY;
+	end;
+OnTimer20100:
+	stopnpctimer;
+	donpcevent "#summon_gm"+"::OnVersus";
+	cloakonnpc;
+	end;
+}
+
+valkyrie,0,0,0	script	#summon_gm	-1,{
+	OnVersus:
+		.@label$ = "#summon_gm"+"::OnGMAgree";
+		monster "valkyrie",49,48,"Shalarm of Despair",2000,1,10,.@label$;
+		for(.@i=1; .@i <= 4; .@i++)
+			donpcevent "#trap_s_"+.@i+"_gm"+"::OnStart";
+		for(.@i=1; .@i <= 2; .@i++)
+			donpcevent "#trap_"+.@i+"_gm"+"::OnStart";
+		end;
+	OnGMAgree:
+		announce "??????", bc_all,0xFFFF00,FW_NORMAL,18;
+		for(.@i=1; .@i <= 4; .@i++)
+			donpcevent "#trap_s_"+.@i+"_gm"+"::OnStop";
+		for(.@i=1; .@i <= 2; .@i++)
+			donpcevent "#trap_"+.@i+"_gm"+"::OnStop";
+		initnpctimer;
+		end;
+OnTimer5000:
+	announce "??????: ถึงขนาดชนะร่างแยกข้าได้ ไม่เลวเลย~!", bc_all,0xFFFF00,FW_NORMAL,18;
+	end;
+	
+OnTimer9000:
+	announce "??????: ไว้คราวหน้า ข้าจะไปเล่นด้วยก็แล้วกันนะ~!", bc_all,0xFFFF00,FW_NORMAL,18;
+	end;
+	
+OnTimer15000:
+	announce "??????: ตอนนี้ไปพักผ่อนโลกของเจ้าก่อน ทางออกด้านหน้า~!", bc_all,0xFFFF00,FW_NORMAL,18;
+	enablenpc "#backtoworld";
+	end;
+	
+}
+
+valkyrie,48,66,0	script	#backtoworld	WARPNPC,2,2,{
+	warp "Save",0,0;
+	end;
+Oninit:
+	disablenpc;
+	end;
+}
+
+valkyrie,47,28,8	script(DISABLED)	#trap_1_door	20TH_GATE_PURPLE_S,1,1,{
+	OnTouch:
+	// Note: value = .@d/3 ~= 6 (max). Hpmax -6% (max) at barrier level 1, -100% at level 20.
+	.@value = 50 * MaxHp / 100;
+	heal -.@value,0;	// (placeholder)
+	pushpc DIR_North, 3;
+	specialeffect2 EF_CLAYMORE;
+	specialeffect2 EF_ACIDDEMON;
+	message strcharinfo(0),"ฉันไม่ควรเดินผ่านสิ่งนี้!!!!";
+	end;
+}
+valkyrie,50,28,8	duplicate(#trap_1_door)	#trap_2_door	20TH_GATE_PURPLE_S,1,1
+
+valkyrie,45,30,8	script(DISABLED)	#trap_1_gm	20TH_GATE_PURPLE_S,1,1,{
+	
+	//unitwalk getnpcid(0),45, 61;
+	donpcevent  strnpcinfo(0) + "::OnMove1";
+	end;
+	
+OnStart:
+	enablenpc();
+	
+	.@string$ = replacestr( strnpcinfo(2), "trap_", "" );
+	.@string$ = replacestr( .@string$, "_rigiel", "" );
+	.@num = atoi( .@string$ );
+	unitstopwalk getnpcid(0),USW_FORCE_STOP;
+	npcspeed 150;
+	donpcevent  strnpcinfo(0) + "::OnMove1";
+	end;
+	
+OnMove1:
+	getmapxy(.@map$, .@x, .@y, BL_NPC);
+	unitwalk getnpcid(0), .@x, 61, strnpcinfo(0) + "::OnMove2";
+	end;
+	
+OnMove2:
+	getmapxy(.@map$, .@x, .@y, BL_NPC);
+	unitwalk getnpcid(0), .@x, 31, strnpcinfo(0) + "::OnMove1";
+	end;
+	
+OnStop:
+	unitstopwalk getnpcid(0),USW_FORCE_STOP;
+	disablenpc();
+	end;
+
+OnTouch:
+	// Note: value = .@d/3 ~= 6 (max). Hpmax -6% (max) at barrier level 1, -100% at level 20.
+	.@value = 45 * MaxHp / 100;
+	heal -.@value,0;	// (placeholder)
+	pushpc DIR_East, 4;
+	specialeffect2 EF_CLAYMORE;
+	specialeffect2 EF_ACIDDEMON;
+	
+	// "Also, each time you or an ally takes damage from a trap, the Criminal's attack power become stronger."
+	//donpcevent instance_npcname("md_rigel_main_part_1") + "::OnPowerup";
+	end;
+}
+
+valkyrie,52,61,8	script(DISABLED)	#trap_2_gm	20TH_GATE_PURPLE_S,1,1,{
+	
+	//unitwalk getnpcid(0),45, 61;
+	donpcevent  strnpcinfo(0) + "::OnMove1";
+	end;
+	
+OnStart:
+	enablenpc();
+	unitstopwalk getnpcid(0),USW_FORCE_STOP;
+	npcspeed 150;
+	donpcevent  strnpcinfo(0) + "::OnMove1";
+	end;
+	
+OnMove1:
+	getmapxy(.@map$, .@x, .@y, BL_NPC);
+	unitwalk getnpcid(0), .@x, 31, strnpcinfo(0) + "::OnMove2";
+	end;
+	
+OnMove2:
+	getmapxy(.@map$, .@x, .@y, BL_NPC);
+	unitwalk getnpcid(0), .@x, 61, strnpcinfo(0) + "::OnMove1";
+	end;
+	
+OnStop:
+	unitstopwalk getnpcid(0),USW_FORCE_STOP;
+	disablenpc();
+	end;
+
+OnTouch:
+	// Note: value = .@d/3 ~= 6 (max). Hpmax -6% (max) at barrier level 1, -100% at level 20.
+	.@value = 45 * MaxHp / 100;
+	heal -.@value,0;	// (placeholder)
+	pushpc DIR_East, 4;
+	specialeffect2 EF_CLAYMORE;
+	specialeffect2 EF_ACIDDEMON;
+	
+	// "Also, each time you or an ally takes damage from a trap, the Criminal's attack power become stronger."
+	//donpcevent instance_npcname("md_rigel_main_part_1") + "::OnPowerup";
+	end;
+}
+
+valkyrie,42,35,8	script(DISABLED)	#trap_s_1_gm	20TH_GATE_GREEN_S,1,1,{
+	
+	//unitwalk getnpcid(0),45, 61;
+	donpcevent  strnpcinfo(0) + "::OnStart";
+	end;
+	
+OnStart:
+	enablenpc();
+	.@npc_id = getnpcid(0);
+	
+	.@string$ = replacestr( strnpcinfo(2), "trap_s_", "" );
+	.@string$ = replacestr( .@string$, "_gm", "" );
+	.@num = atoi( .@string$ );
+	
+	getmapxy( .@map$, .@x, .@y, BL_NPC );
+	.x_trap[.@npc_id] = .@x;
+	.y_trap[.@npc_id] = .@y;
+	.speed_min[.@npc_id] = 120;
+	.speed_max[.@npc_id] = 160;
+	switch( .@num ) {
+	case 1:
+	case 3:
+		.sign_x[.@npc_id] = -1;
+		break;
+	case 2:
+	case 4:
+		.sign_x[.@npc_id] = 1;
+		break;
+	}
+	unitstopwalk getnpcid(0),USW_FORCE_STOP;
+	donpcevent  strnpcinfo(0) + "::OnMove";
+	end;
+	
+OnMove:
+	.@npc_id = getnpcid(0);
+	npcspeed rand(.speed_min[.@npc_id], .speed_max[.@npc_id]);
+	
+	if (.sign_x[.@npc_id] != 0) {
+		if (.x_trap[.@npc_id] == 42 || .x_trap[.@npc_id] == 55)
+			.sign_x[.@npc_id] *= -1;
+		.x_trap[.@npc_id] += .sign_x[.@npc_id];
+	}
+	
+	unitwalk .@npc_id, .x_trap[.@npc_id],.y_trap[.@npc_id],strnpcinfo(0) + "::OnMove";
+	end;
+	
+OnStop:
+	unitstopwalk getnpcid(0),USW_FORCE_STOP;
+	disablenpc();
+	end;
+
+OnTouch:
+	// Note: value = .@d/3 ~= 6 (max). Hpmax -6% (max) at barrier level 1, -100% at level 20.
+	.@value = 25 * MaxHp / 100;
+	heal -.@value,0;	// (placeholder)
+	pushpc DIR_South, 4;
+	specialeffect2 EF_CLAYMORE;
+	specialeffect2 EF_ACIDDEMON;
+	
+	// "Also, each time you or an ally takes damage from a trap, the Criminal's attack power become stronger."
+	//donpcevent instance_npcname("md_rigel_main_part_1") + "::OnPowerup";
+	end;
+}
+
+// Dup Green Trap
+valkyrie,55,42,8	duplicate(#trap_s_1_gm)	#trap_s_2_gm	20TH_GATE_GREEN_S,1,1
+valkyrie,42,51,8	duplicate(#trap_s_1_gm)	#trap_s_3_gm	20TH_GATE_GREEN_S,1,1
+valkyrie,55,59,8	duplicate(#trap_s_1_gm)	#trap_s_4_gm	20TH_GATE_GREEN_S,1,1

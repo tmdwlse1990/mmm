@@ -1,0 +1,47 @@
+1@ep21b,28,171,7    script    Tan#TestTan01    22373,{
+    specialeffect EF_POTION_BERSERK;
+    sleep2 200;
+    for (.@i = 0; .@i < 50; .@i++) {
+        if (.@i % 2 == 0) {
+            cloakoffnpcself ( "Tan#TestTan02" );
+            cloakoffnpcself ( "Tan#TestTan01" );
+            setnpcdisplay "Tan#TestTan02", 4_EP21_TAN_S;
+        } else {
+            setnpcdisplay "Tan#TestTan01",22373;
+            cloakonnpcself ( "Tan#TestTan02" );
+            cloakonnpcself ( "Tan#TestTan01" );
+        }
+        specialeffect EF_POTION_BERSERK;
+        sleep2 50;
+    }
+    cloakoffnpcself ("Tan#FinalDirection");
+    sleep2 3000;
+    specialeffect EF_LANDPROTECTOR;
+    sleep2 1000;
+    specialeffect EF_BIG_PORTAL;
+    sleep2 1000;
+    specialeffect EF_PROVIDENCE;
+    sleep2 500;
+    cloakonnpcself ( "Tan#FinalDirection" );
+    monster "1@ep21b",28,171,"Suspicious Storage",22374,1;
+    cloakoffnpcself ("Nyar#NyarMDTan");
+    enablenpc("Nyar#NyarMDTan");
+    donpcevent "Nyar#NyarMDTan::OnMove";
+    npctalk "Nyar : เมี้ยว!!~","Nyar#NyarMDTan", bc_self;
+    end;
+}
+
+1@ep21b,28,171,5    duplicate(dummy_cloaked_npc)    Tan#TestTan02    22373
+
+1@ep21b,28,171,5    duplicate(dummy_cloaked_npc)    Tan#FinalDirection    4_EP21_TAN_S
+
+1@ep21b,39,165,1    script(DISABLED)    Nyar#NyarMDTan    22006,{
+    end;
+OnMove:
+    npcspeed 200;
+    npcwalkto 31,165;
+    sleep (distance(39,165, 31,165) * 200);
+    emotion ET_PROFUSELY_SWEAT;
+    sleep 1000;
+    end;
+}

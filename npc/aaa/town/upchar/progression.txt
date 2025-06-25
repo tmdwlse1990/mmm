@@ -206,13 +206,13 @@ icas_in,108,60,4	script	Guild Master#prog	22180,{
 	}
 	mes "ธุระคือ?";
 	next;
-	if(select("- ขอเลื่อนคราสหน่อยครับ:- ไม่มีอะไรครับ") == 2 ) { warp "save",0,0; end; }
+	if(select("- ขอเลื่อนคราสหน่อยครับ:- ไม่มีอะไรครับ") == 2 ) { warp "Save",0,0; end; }
 	.@checklvl = adv_clas;
 	mes .@npcname$;
 	mes "จะเลือนแรงค์ตัวเองหรอ เจ้านี่อยู่แค่แรงค์ " +.@rankname$[.@checklvl]+" "+ (.@checklvl < 5 ? "เองหรอ.":"แล้วหรอเนี่ย โตขึ้นเยอะนี่.");
 	mes "อยากทำสอบเลยไหมหละ ?";
 	next;
-	if(select("- พร้อมครับ:- ยังไม่พร้อมเลยครับ") == 2 ) { warp "save",0,0; end; }
+	if(select("- พร้อมครับ:- ยังไม่พร้อมเลยครับ") == 2 ) { warp "Save",0,0; end; }
 	switch (.@checklvl) {
 		case 0:
 			mes .@npcname$;
@@ -235,15 +235,9 @@ icas_in,108,60,4	script	Guild Master#prog	22180,{
 				}
 			}
 			if(@notenought) {setdialogsize(400,500); end;}
-			if(checkquest(81) <= 0 ) {
-				setquest 81;
+			if(!isbegin_quest(81)) setquest 81;
 			mes "ไปที่ป่าโปริ่งสิ ไปนำสมบัติของ King มาให้ข้า";
 			mes "ถ้าทำได้หละนะ";
-			}
-			else {
-				mes "อย่าเหลี่ยมเลื่อนแรงค์ซ้ำซี่";
-				mes "จงติดอยู่แรงค์นี้ตลอดชีวิตซะเถอะ";
-			}
 			break;
 		case 1:
 		case 2:
