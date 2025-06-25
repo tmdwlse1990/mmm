@@ -94,21 +94,21 @@ Body:
             Amount: 3
       - Index: 6
         Item: HD_Elunium
-        Zeny: 200000
+        Zeny: 100000
         RequiredItems:
           - Index: 0
             Item: Elunium
             Amount: 3
       - Index: 7
         Item: Enriched_Oridecon
-        Zeny: 200000
+        Zeny: 100000
         RequiredItems:
           - Index: 0
             Item: Oridecon
             Amount: 3
       - Index: 8
         Item: HD_Oridecon
-        Zeny: 200000
+        Zeny: 100000
         RequiredItems:
           - Index: 0
             Item: Oridecon

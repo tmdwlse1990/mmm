@@ -83,40 +83,42 @@ Body:
             Item: Purified_Bradium
       - Index: 5
         Item: Enriched_Elunium
-        Zeny: 200000
+        Zeny: 100000
         RequiredItems:
           - Index: 0
             Item: Elunium
-            Amount: 5
+            Amount: 10
       - Index: 6
         Item: HD_Elunium
-        Zeny: 250000
+        Zeny: 100000
         RequiredItems:
           - Index: 0
             Item: Elunium
-            Amount: 5
+            Amount: 10
       - Index: 7
         Item: Enriched_Oridecon
-        Zeny: 200000
+        Zeny: 100000
         RequiredItems:
           - Index: 0
             Item: Oridecon
-            Amount: 5
+            Amount: 10
       - Index: 8
         Item: HD_Oridecon
-        Zeny: 250000
+        Zeny: 100000
         RequiredItems:
           - Index: 0
             Item: Oridecon
-            Amount: 5
+            Amount: 10
       - Index: 9
         Item: Blacksmith_Blessing
-        Zeny: 500000
+        Zeny: 100000
         RequiredItems:
           - Index: 0
             Item: HD_Oridecon
+            Amount: 1
           - Index: 1
             Item: HD_Elunium
+            Amount: 1
   - Name: barter_refine_2
     Items:
       - Index: 0
