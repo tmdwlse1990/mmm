@@ -297,9 +297,9 @@ Oninit:
 	; // ใส่ item ID Common
 	
 	setarray .item_weights[getarraysize(.item_weights)],
-	10,25,25,25,25,25,40,40,
-	50,50,50,
-	100,100,100,100,100,100,100,100
+	5,8,8,8,8,8,8,8,
+	10,10,10,
+	20,20,20,20,20,20,20,20
 	; // น้ำหนัก ยิ่งมาก โอกาสยิ่งเยอะ COMMON
 	
 	// *copyarray <destination array>[<first value>],<source array>[<first value>],<amount of data to copy>;
