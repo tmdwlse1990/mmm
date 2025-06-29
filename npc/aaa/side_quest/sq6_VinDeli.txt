@@ -1,7 +1,47 @@
 //-----------------------Side Quest 6 ---------------------------
 icecastle,91,240,4	script	Vincent	407,{ //===NPCรับเควส===
     // === NPC Quest Handling ===
-	
+		
+    mes "[Vincent]";
+    mes "เฮ้ เอ็งอ่ะ มองมามีอะไร???";
+	next;
+				switch(select("พูดคุยธุระ:กระเป๋านายสวยดีนะ")) {
+				case 1:
+					goto L_QuestStart;
+				case 2:
+					goto L_BagShop;
+				}
+				end;
+
+				L_BagShop:
+					mes "[Vincent]";
+					mes "โอ้ ตาถึงนี่นา!";
+					mes "กระเป๋าเดินทางหนังแท้! ใส่ของได้เยอะ ไม่พังง่าย!";
+					mes "ถ้าอยากได้ ข้าขายให้ในราคา 500,000 zeny!";
+					next;
+					if (select("ซื้อเลย!:ขอคิดดูก่อน") == 1) {
+						if (Zeny < 500000) {
+							mes "[Vincent]";
+							mes "ดูเหมือนเจ้าจะไม่มีเงินพอ...";
+							close;
+						}
+						if (checkweight(480110, 1) == 0) {
+							mes "[Vincent]";
+							mes "ของในตัวเจ้าหนักเกินไป ข้าคงให้ไม่ได้...";
+							close;
+						}
+						set Zeny, Zeny - 500000;
+						getitem 480110, 1; // เปลี่ยน item id ได้ตามที่ใช้จริง
+						mes "[Vincent]";
+						mes "ขอให้ใช้กระเป๋าให้คุ้มนะ!";
+						close;
+					}
+					mes "[Vincent]";
+					mes "ไม่เป็นไร หากเปลี่ยนใจ ก็มาคุยกับข้าได้เสมอ!";
+					close;
+
+				L_QuestStart:
+		
 	if (No_more_vincent) {
         mes "[Vincent]";
 		mes "ข้าไม่คุยกับคนไม่มีความรับผิดชอบหรอกนะ";
@@ -73,47 +113,7 @@ icecastle,91,240,4	script	Vincent	407,{ //===NPCรับเควส===
     set johnD, 0;
     set johnE, 0;
 
-    // Start New Quest Dialogue
-	
-    mes "[Vincent]";
-    mes "เฮ้ เอ็งอ่ะ มองมามีอะไร???";
-	next;
-				switch(select("พูดคุยธุระ:กระเป๋านายสวยดีนะ")) {
-				case 1:
-					goto L_QuestStart;
-				case 2:
-					goto L_BagShop;
-				}
-				end;
-
-				L_BagShop:
-					mes "[Vincent]";
-					mes "โอ้ ตาถึงนี่นา!";
-					mes "กระเป๋าเดินทางหนังแท้! ใส่ของได้เยอะ ไม่พังง่าย!";
-					mes "ถ้าอยากได้ ข้าขายให้ในราคา 500,000 zeny!";
-					next;
-					if (select("ซื้อเลย!:ขอคิดดูก่อน") == 1) {
-						if (Zeny < 500000) {
-							mes "[Vincent]";
-							mes "ดูเหมือนเจ้าจะไม่มีเงินพอ...";
-							close;
-						}
-						if (checkweight(480110, 1) == 0) {
-							mes "[Vincent]";
-							mes "ของในตัวเจ้าหนักเกินไป ข้าคงให้ไม่ได้...";
-							close;
-						}
-						set Zeny, Zeny - 500000;
-						getitem 480110, 1; // เปลี่ยน item id ได้ตามที่ใช้จริง
-						mes "[Vincent]";
-						mes "ขอให้ใช้กระเป๋าให้คุ้มนะ!";
-						close;
-					}
-					mes "[Vincent]";
-					mes "ไม่เป็นไร หากเปลี่ยนใจ ก็มาคุยกับข้าได้เสมอ!";
-					close;
-
-				L_QuestStart:
+    // Start New Quest Dialogue		
     mes "เอ็งนี่มันคนดีใช้ได้เลยนี่....";
 	mes "งั้นเอาของไปส่งให้ข้าหน่อย ของแพงนะ!! ห้ามหาย!!";
 	mes "";

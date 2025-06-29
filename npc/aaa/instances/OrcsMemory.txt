@@ -1340,8 +1340,8 @@ function	script	F_Orcs_Reward	{
 	'var_name$ = $@var_names$['level_mode];
 	'party_id = instance_live_info(ILI_OWNER);
 	setd("#" + 'var_name$, getd("#" + 'var_name$) + 'instance_points);
-	if (achievementinfo(100101, ACHIEVEINFO_COUNT5) == 0)
-		achievementupdate(100101, ACHIEVEINFO_COUNT5, 1);
+	if (!achievementexists(100101))
+		achievementcomplete(100101);
 	message strcharinfo(0), "คุณได้รับแต้ม " + 'instance_points + " แต้ม " + 'var_name$ + ".";
 	message strcharinfo(0), "คุณมีแต้มปัจจุบันทั้งหมด : " + getd("#" + 'var_name$) + " " + 'var_name$ + ".";		
 	

@@ -189,6 +189,7 @@ Body:
       NoDispell: true
       NoBanishingBuster: true
       NoClearance: true
+      NoSave: true
   - Status: PREMIUMSERVICE
     Icon: EFST_PREMIUMSERVICE
     Flags:

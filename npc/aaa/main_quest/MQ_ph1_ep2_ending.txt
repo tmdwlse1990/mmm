@@ -1,0 +1,552 @@
+// =================== ผู้ใหญ่บ้านตัวปลอม (หลัก) ===================
+
+izlu2dun,144,166,7	script	Chief Baron#izl	EP18_NPC_SUAD,{
+
+	if (MQ != 14) end;
+
+	mes "[ผู้ใหญ่บ้าน]";
+	mes "...เจ้าตามข้ามาถึงนี่เลยงั้นหรือ?";
+	mes "เจ้าช่างยุ่งไม่เข้าเรื่องเลยจริง ๆ";
+	next;
+
+	mes "[ผู้ใหญ่บ้าน]";
+	mes "แต่ก็นะ... มันสายไปแล้ว...";
+	mes "อีกไม่นานทุกอย่างก็จะเรียบร้อย...";
+	next;
+
+	// เผยตัวจริงโผล่พร้อมเอฟเฟกต์
+	enablenpc "Suad#real";
+	specialeffect EF_KIRIKAGE;
+	next;
+
+	mes "[???]";
+	mes "หยุดนะ! เจ้านั่นไม่ใช่ข้า!!";
+	next;
+
+	mes "[ผู้ใหญ่บ้าน]";
+	mes "หึ! เจ้าหนีออกมาได้งั้นรึ?!";
+	mes "แต่ก็สายไปแล้วเหมือนกัน!";
+	next;
+
+	mes "[???]";
+	mes "รีบหนีไปซะ! เจ้านั่นมันไม่ใช่ข้า!!";
+	next;
+
+	mes "[ผู้ใหญ่บ้าน]";
+	mes "ฮ่า ๆ ๆ ๆ... ข้าควรจะกำจัดเจ้าตั้งแต่แรกแล้วด้วยซ้ำ!";
+	next;
+
+	mes "[ผู้ใหญ่บ้าน]";
+	mes "แต่ว่า... ข้าไม่อยากเสียตรงนี้อีกแล้ว!";
+	next;
+	
+	mes "[???]";
+	mes "ข้าไม่ปล่อยเจ้าหนีไปหรอก!!ย๊ากกก!!";
+	
+	close2;
+
+	
+	
+	specialeffect EF_CLOUD6;
+	specialeffect EF_QUAKEBODY4;
+	specialeffect EF_TELEPORTATION2;
+	specialeffect EF_READYPORTAL2;
+	sleep2 2000;
+	hideonnpc "Chief Baron#izl";	// ซ่อน NPC ตัวนี้เฉพาะตัวเองหลังจบ
+	hideonnpc "Suad#real";
+	set MQ, 15;
+	end;
+}
+
+//==================== ซ่อน NPC ตอนเริ่ม (เฉพาะตอน MQ != 14) ====================
+izlu2dun,1,1,0	script	HideFakeBaronInit	-1,{
+
+	OnInit:
+		if (MQ != 14)
+			hideonnpc "Chief Baron#izl";
+		else
+			hideoffnpc "Chief Baron#izl";
+
+		end;
+}
+
+// =============== ผู้ใหญ่บ้านตัวจริง (โผล่มาเฉลย) ==================
+izlu2dun,135,167,6	script	Suad#real	EP18_NPC_SUAD,{
+	OnTouchNPC:
+		
+			hideonnpc "Suad#real";
+		end;
+}
+
+// ================ ประตูที่ผู้ใหญ่บ้านหนีเข้าไป (ผู้เล่นตามได้) ==================
+izlu2dun,147,168,4	script	Dark Portal#follow	10007,{
+	if (MQ != 15) end;
+	mes "มันเพิ่งหนีเข้าไปในประตูมืดนั่น!";
+	mes "ต้องรีบตามมันไปก่อนจะสายเกินไป!";
+	close2;
+
+	warp "iz_dun05",75,240; // ไปต่อยังชั้นในของ Byalan
+	end;
+}
+
+
+
+// ---------------------- Chief Baron ตัวจริง ---------------------
+iz_dun05,73,242,6	script	Chief Baron#babi	EP18_NPC_SUAD,{
+
+	if (MQ == 15) {
+		mes "[Chief Baron]";
+		mes "มันหนีไปได้ก่อนที่ข้าจะจับมันทัน...";
+		mes "แต่ข้ารู้ว่ามันยังอยู่แถวนี้...";
+		mes "ช่วยข้าหาหลักฐานหน่อย...";
+		setquest 103;
+		set MQ, 16;
+		close;
+	}
+
+	if (MQ == 16) {
+		if (countitem(25297) < 30) {
+			mes "[Chief Baron]";
+			mes "เจ้าไปตามหามาให้ข้ารึยัง?";
+			mes "ไปลองค้นจากมอนแถวนี้ดูสิ...ข้าว่าต้องเจออะไรแน่ๆ!!";
+			close;
+		}
+		delitem 25297, 30;
+		completequest 103;
+		mes "[Chief Baron]";
+		mes "เยี่ยมมาก! เจ้าหลักฐานครบแล้ว!";
+		next;
+		mes "[Chief Baron]";
+		mes "เมื่อกี๊ข้าไปเดินสำรวจมา ข้าเห็นเสาประหลาดอยู่ตรงจตุจักร";
+		mes "ของเมืองบาดาลที่นี่ด้วย มันมีออร่าพลังเหมือนเศษเสี้ยวพวกนี้เลย!!";
+		next;
+		mes "[Chief Baron]";
+		mes "มันต้องเป็นพิธีกรรมอะไรซักอย่างแน่ๆ";
+		mes "ข้าจะตามรอยของมันไป";
+		next;
+		mes "[Chief Baron]";
+		mes "ข้าฝากจัดการในส่วนของตรงนี้ด้วยนะ!!!";
+		switch(select("ได้เลย!! ให้ข้าจัดการเอง!!:ข้าว่าข้าไม่ไหว...."))
+		{
+				case 1:
+					mes "[Chief Baron]";
+					mes "ข้าเชื่ออยู่แล้วว่าข้าไว้ในเจ้าได้!!";
+					break;
+				case 2:
+					mes "[Chief Baron]";
+					mes "เจ้าทำได้อยู่แล้ว ขนาดเนื้อหมูป่าทองคำเจ้ายังหามาได้เลย!!";
+					next;
+					mes "[นั่นมันเนื้อหมูปกติว้อยยย!!]";
+					break;
+		}
+		
+		set MQ, 17;
+		set @baron_spawned, 0;
+
+		close;
+	}
+
+	if (MQ == 17) {
+		if (@baron_spawned) {
+			mes "[Chief Baron]";
+			mes "รีบจัดการมันก่อนที่มันจะหนีไปอีก!";
+			close;
+		}
+
+		if (@pillar_locked[0] && @pillar_locked[1] && @pillar_locked[2] && @pillar_locked[3]) {
+			mes "[Chief Baron]";
+			mes "เจ้าเก่งมาก! เจ้าได้ปิดผนึกเสาทั้งหมดแล้ว!";
+			mes "ข้าได้จับพลังแปลก ๆ บริเวณนี้ได้อีกครั้ง...";
+			next;
+			mes "[???]";
+			mes "เจ้ามันพวกเสือกไม่เข้าเรื่อง!!";
+			mes "ข้าจะไม่หนีอีกแล้ว!";
+			close2;
+
+			// เรียกมอน 5 ตัวออกมา
+			monster "iz_dun05",85,239,"Chief Impostor",2206,1,0,"baron_fight::OnKill";
+			monster "iz_dun05",83,240,"Chief Impostor",2192,1,0,"baron_fight::OnKill";
+			monster "iz_dun05",84,237,"Chief Impostor",2192,1,0,"baron_fight::OnKill";
+			monster "iz_dun05",84,240,"Chief Impostor",2208,1,0,"baron_fight::OnKill";
+			monster "iz_dun05",86,237,"Chief Impostor",2208,1,0,"baron_fight::OnKill";
+
+			set @baron_spawned, 1;
+			end;
+		} else {
+			mes "[Chief Baron]";
+			mes "ดูเหมือนว่ายังมีเสาที่ยังไม่ได้ปิดผนึกอยู่...";
+			mes "กลับไปตรวจสอบให้ดีอีกครั้ง!";
+			close;
+		}
+	}
+
+	if (MQ == 18) {
+		mes "[Chief Baron]";
+		mes "มันหนีไปได้อีกแล้ว!!";
+		mes "ข้ารู้แล้วว่ามันกำลังไปที่เกาะหมึก!!";
+		mes "เจ้าอยากจะไปด้วยกันเลยไหม?";
+		next;
+
+		switch(select("ไปกันเลย!:ขอเตรียมตัวก่อน")) {
+			case 1:
+				mes "[Chief Baron]";
+				mes "ดีมาก! ไปกันเถอะ!!";
+				close2;
+				warp "mal_dun01",151,232; // ไปหน้า Instant Octopus Cave
+				set MQ, 19;
+				end;
+
+			case 2:
+				mes "[Chief Baron]";
+				mes "ได้ ข้าจะรออยู่ที่นี่";
+				close;
+		}
+	}
+
+	end;
+}
+
+// --------- Trigger เมื่อฆ่ามอนแปลงร่างสำเร็จ (แยกไว้)
+-	script	baron_fight	-1,{
+	OnKill:
+		if ((killedrid == 2206 || killedrid == 2192 || killedrid == 2208) && MQ == 17) {
+			set #impostor_kill, #impostor_kill + 1;
+			if (#impostor_kill >= 5) {
+				set MQ, 18;
+				set #impostor_kill, 0;
+				set @baron_spawned, 0;
+			}
+		}
+	end;
+}
+
+
+
+////////////// เสา 1 ////////////////
+iz_dun05,118,131,4	script	Stone Pillar#1	10371,{
+	if (@pillar_locked[0] == 1) {
+		mes "เสานี้ถูกปิดผนึกไปแล้ว";
+		close;
+	}
+	mes "ตอบคำถามให้ถูกต้องครบ 3 ครั้งติดกัน เพื่อปิดผนึกเสานี้";
+	.@ans = select("ดึงคันโยกขึ้น:ขยับก้อนหิน:ผลักก้อนหินออก") - 1;
+	if (.@ans != 2) goto L_Fail;
+	specialeffect EF_SHAKE;
+	mes "เสามีปฏิกิริยาเล็กน้อย...";
+	.@ans = select("ดึงคันโยกขึ้น:ขยับก้อนหิน:ผลักก้อนหินออก") - 1;
+	if (.@ans != 1) goto L_Fail;
+	specialeffect EF_QUAKEBODY4;
+	mes "เสากำลังสั่นไหวอย่างรุนแรง!";
+	.@ans = select("ดึงคันโยกขึ้น:ขยับก้อนหิน:ผลักก้อนหินออก") - 1;
+	if (.@ans != 2) goto L_Fail;
+	specialeffect EF_EARTHQUAKE;
+	mes "เสาหยุดทำงานแล้ว... พลังถูกปิดผนึก";
+	mes "เสาถูกปิดผนึกอย่างสมบูรณ์.";
+	@pillar_locked[0] = 1;
+	close;
+
+L_Fail:
+	mes "เสาส่งเสียงดังกึกก้อง!!";
+	
+	.@penalty = rand(1,4);
+
+	switch (.@penalty) {
+		case 1:
+			monster strnpcinfo(4), 118, 131, "มอนสเตอร์พิทักษ์เสา", 2208, 4, 0;
+			monster strnpcinfo(4), 118, 131, "มอนสเตอร์พิทักษ์เสา", 2070, 4, 0;
+			mes "มอนสเตอร์พิทักษ์เสาปรากฏตัวแล้ว!";
+			break;
+
+		case 2:
+			percentheal -80, -80; 
+			sc_start SC_STUN, 5000, 0; break;
+			mes "เจ้าโดนกระแทกอย่างรุนแรง!";
+			break;
+
+		case 3:
+			percentheal -20, -20; 
+			mes "เจ้ารู้สึกเจ็บปวดอย่างรุนแรง!";
+			break;
+
+		case 4:
+			.@status = rand(1,4);
+			switch (.@status) {
+				case 1: sc_start SC_BLIND, 5000, 0; break;
+				case 2: sc_start SC_STUN, 5000, 0; break;
+				case 3: sc_start SC_SILENCE, 5000, 0; break;
+				case 4: sc_start SC_DECREASEAGI, 5000, 0; break;
+			}
+			break;
+	}
+	close;
+}
+
+
+////////////// เสา 2 ////////////////
+iz_dun05,165,131,4	script	Stone Pillar#2	10371,{
+	if (@pillar_locked[1] == 1) {
+		mes "เสานี้ถูกปิดผนึกไปแล้ว";
+		close;
+	}
+	mes "ตอบคำถามให้ถูกต้องครบ 3 ครั้งติดกัน เพื่อปิดผนึกเสานี้";
+	.@ans = select("ดึงคันโยกขึ้น:ขยับก้อนหิน:ผลักก้อนหินออก") - 1;
+	if (.@ans != 1) goto L_Fail;
+	specialeffect EF_SHAKE;
+	mes "เสามีปฏิกิริยาเล็กน้อย...";
+	.@ans = select("ดึงคันโยกขึ้น:ขยับก้อนหิน:ผลักก้อนหินออก") - 1;
+	if (.@ans != 2) goto L_Fail;
+	specialeffect EF_QUAKEBODY4;
+	mes "เสากำลังสั่นไหวอย่างรุนแรง!";
+	.@ans = select("ดึงคันโยกขึ้น:ขยับก้อนหิน:ผลักก้อนหินออก") - 1;
+	if (.@ans != 0) goto L_Fail;
+	specialeffect EF_EARTHQUAKE;
+	mes "เสาหยุดทำงานแล้ว... พลังถูกปิดผนึก";
+	mes "เสาถูกปิดผนึกอย่างสมบูรณ์.";
+	@pillar_locked[1] = 1;
+	close;
+
+L_Fail:
+	mes "เสาส่งเสียงดังกึกก้อง!!";
+	
+	.@penalty = rand(1,4);
+
+	switch (.@penalty) {
+		case 1:
+			monster strnpcinfo(4), 165, 131, "มอนสเตอร์พิทักษ์เสา", 2208, 4, 0;
+			monster strnpcinfo(4), 165, 131, "มอนสเตอร์พิทักษ์เสา", 2070, 4, 0;
+			mes "มอนสเตอร์พิทักษ์เสาปรากฏตัวแล้ว!";
+			break;
+
+		case 2:
+			percentheal -80, -80; 
+			sc_start SC_STUN, 5000, 0; break;
+			mes "เจ้าโดนกระแทกอย่างรุนแรง!";
+			break;
+
+		case 3:
+			percentheal -20, -20; 
+			mes "เจ้ารู้สึกเจ็บปวดอย่างรุนแรง!";
+			break;
+
+		case 4:
+			.@status = rand(1,4);
+			switch (.@status) {
+				case 1: sc_start SC_BLIND, 5000, 0; break;
+				case 2: sc_start SC_STUN, 5000, 0; break;
+				case 3: sc_start SC_SILENCE, 5000, 0; break;
+				case 4: sc_start SC_DECREASEAGI, 5000, 0; break;
+			}
+			break;
+	}
+	close;
+}
+
+////////////// เสา 3 ////////////////
+iz_dun05,165,63,4	script	Stone Pillar#3	10371,{
+	if (@pillar_locked[2] == 1) {
+		mes "เสานี้ถูกปิดผนึกไปแล้ว";
+		close;
+	}
+	mes "ตอบคำถามให้ถูกต้องครบ 3 ครั้งติดกัน เพื่อปิดผนึกเสานี้";
+	.@ans = select("ดึงคันโยกขึ้น:ขยับก้อนหิน:ผลักก้อนหินออก") - 1;
+	if (.@ans != 0) goto L_Fail;
+	specialeffect EF_SHAKE;
+	mes "เสามีปฏิกิริยาเล็กน้อย...";
+	.@ans = select("ดึงคันโยกขึ้น:ขยับก้อนหิน:ผลักก้อนหินออก") - 1;
+	if (.@ans != 0) goto L_Fail;
+	specialeffect EF_QUAKEBODY4;
+	mes "เสากำลังสั่นไหวอย่างรุนแรง!";
+	.@ans = select("ดึงคันโยกขึ้น:ขยับก้อนหิน:ผลักก้อนหินออก") - 1;
+	if (.@ans != 1) goto L_Fail;
+	specialeffect EF_EARTHQUAKE;
+	mes "เสาหยุดทำงานแล้ว... พลังถูกปิดผนึก";
+	mes "เสาถูกปิดผนึกอย่างสมบูรณ์.";
+	@pillar_locked[2] = 1;
+	close;
+
+L_Fail:
+	mes "เสาส่งเสียงดังกึกก้อง!!";
+	
+	.@penalty = rand(1,4);
+
+	switch (.@penalty) {
+		case 1:
+			monster strnpcinfo(4), 165, 63, "มอนสเตอร์พิทักษ์เสา", 2208, 4, 0;
+			monster strnpcinfo(4), 165, 63, "มอนสเตอร์พิทักษ์เสา", 2070, 4, 0;
+			mes "มอนสเตอร์พิทักษ์เสาปรากฏตัวแล้ว!";
+			break;
+
+		case 2:
+			percentheal -80, -80; 
+			sc_start SC_STUN, 5000, 0; break;
+			mes "เจ้าโดนกระแทกอย่างรุนแรง!";
+			break;
+
+		case 3:
+			percentheal -20, -20; 
+			mes "เจ้ารู้สึกเจ็บปวดอย่างรุนแรง!";
+			break;
+
+		case 4:
+			.@status = rand(1,4);
+			switch (.@status) {
+				case 1: sc_start SC_BLIND, 5000, 0; break;
+				case 2: sc_start SC_STUN, 5000, 0; break;
+				case 3: sc_start SC_SILENCE, 5000, 0; break;
+				case 4: sc_start SC_DECREASEAGI, 5000, 0; break;
+			}
+			break;
+	}
+	close;
+}
+
+////////////// เสา 4 ////////////////
+iz_dun05,118,63,4	script	Stone Pillar#4	10371,{
+	if (@pillar_locked[3] == 1) {
+		mes "เสานี้ถูกปิดผนึกไปแล้ว";
+		close;
+	}
+	mes "ตอบคำถามให้ถูกต้องครบ 3 ครั้งติดกัน เพื่อปิดผนึกเสานี้";
+	.@ans = select("ดึงคันโยกขึ้น:ขยับก้อนหิน:ผลักก้อนหินออก") - 1;
+	if (.@ans != 0) goto L_Fail;
+	specialeffect EF_SHAKE;
+	mes "เสามีปฏิกิริยาเล็กน้อย...";
+	.@ans = select("ดึงคันโยกขึ้น:ขยับก้อนหิน:ผลักก้อนหินออก") - 1;
+	if (.@ans != 2) goto L_Fail;
+	specialeffect EF_QUAKEBODY4;
+	mes "เสากำลังสั่นไหวอย่างรุนแรง!";
+	.@ans = select("ดึงคันโยกขึ้น:ขยับก้อนหิน:ผลักก้อนหินออก") - 1;
+	if (.@ans != 2) goto L_Fail;
+	specialeffect EF_EARTHQUAKE;
+	mes "เสาหยุดทำงานแล้ว... พลังถูกปิดผนึก";
+	mes "เสาถูกปิดผนึกอย่างสมบูรณ์.";
+	@pillar_locked[3] = 1;
+	close;
+
+L_Fail:
+	mes "เสาส่งเสียงดังกึกก้อง!!";
+	
+	.@penalty = rand(1,4);
+
+	switch (.@penalty) {
+		case 1:
+			monster strnpcinfo(4), 118, 63, "มอนสเตอร์พิทักษ์เสา", 2208, 4, 0;
+			monster strnpcinfo(4), 118, 63, "มอนสเตอร์พิทักษ์เสา", 2070, 4, 0;
+			mes "มอนสเตอร์พิทักษ์เสาปรากฏตัวแล้ว!";
+			break;
+
+		case 2:
+			percentheal -80, -80; 
+			sc_start SC_STUN, 5000, 0; break;
+			mes "เจ้าโดนกระแทกอย่างรุนแรง!";
+			break;
+
+		case 3:
+			percentheal -20, -20; 
+			mes "เจ้ารู้สึกเจ็บปวดอย่างรุนแรง!";
+			break;
+
+		case 4:
+			.@status = rand(1,4);
+			switch (.@status) {
+				case 1: sc_start SC_BLIND, 5000, 0; break;
+				case 2: sc_start SC_STUN, 5000, 0; break;
+				case 3: sc_start SC_SILENCE, 5000, 0; break;
+				case 4: sc_start SC_DECREASEAGI, 5000, 0; break;
+			}
+			break;
+	}
+	close;
+}
+
+
+//--------------------------------เควสล่าหมึก Instant Oc Cave --------------------//
+mal_dun01,149,235,6	script	Chief Baron#octo	EP18_NPC_SUAD,{
+	if (MQ < 19) {
+		mes "เจ้ายังทำอะไรไม่ได้ตอนนี้.....";
+		end;
+	}
+	if (MQ == 19) {
+		mes "[Chief Baron]";
+		mes "เจ้าพร้อมจะลุยกับเจ้าหมึกยักษ์รึยัง?";
+		next;
+
+		switch(select("พร้อมแล้ว!:ขอเตรียมตัวอีกนิด")) {
+			case 1:
+				mes "[Chief Baron]";
+				mes "เยี่ยม! เจ้าต้องระวังให้ดี...";
+				mes "มันอาจไม่ใช่แค่มอนสเตอร์ธรรมดา...";
+				setquest 104; // ตั้งเควสล่าหมึกยักษ์
+				set MQ, 20;
+				close;
+
+			case 2:
+				mes "[Chief Baron]";
+				mes "เข้าใจแล้ว ข้าจะรออยู่ตรงนี้...";
+				close;
+		}
+	}
+	
+	if (MQ == 20){
+		switch (isbegin_quest(104)){
+			case 0: 
+				mes "[Chief Baron]";
+				mes "มันไม่น่าจะเกิดขึ้นได้นะ ฉันลืมให้เควสเจ้าหรอ....";
+				setquest 104;
+				end;
+				
+			case 1:
+				switch (checkquest(104,HUNTING)){
+					case 0: break;
+					case 1: //เควสยังไม่เสร็จ
+						mes "[Chief Baron]";
+						mes "ฉันรู้ว่างานนี้มันยาก....";
+						mes "แต่เราไปฆ่ามันมาทำหมึกย่างกันเถอะ!!";
+						break;
+					case 2: //เควสเสร็จ รับของ ต่อ Phase 2 Ep1 แพท C2
+						mes "[Chief Baron]";
+						mes "เจ้าทำสำเร็จแล้ว!!";
+						mes "ไม่รู้จะพูดยังไงดีเลย....เจ้าคือคนปกป้องเมืองของเรา!!";
+						next;
+						mes "[Chief Baron]";
+						mes "ได้โปรดรับนี่ไป";
+						getitem 2099001,2; //รับรางวัลจบ Phase 1 EP2 หมึกย่าง (หิน all stat+1 2ea)
+						completequest 104;
+						next;
+						mes "[Chief Baron]";
+						mes "หลังจากนี้คงจะไม่มีเรื่องอีกแล้วแหละ...";
+						mes "ฮ้าา ชีวิตในวันธรรมดาจะกลับมาซักที!!";
+						set MQ,21;
+						break;
+					default:
+						mes "Error Please contract Admin";
+						end;
+				}
+			case 2: break;
+		}
+	}
+
+	end;
+}
+
+mal_dun01,1,1,0	script	HideBaronInitOcto	-1,{
+
+	OnInit:
+		if (MQ > 19)
+			hideonnpc "Chief Baron#octo";
+		else
+			hideoffnpc "Chief Baron#octo";
+
+		end;
+}
+
+// Mapflag
+// แก้ไฟล์ mapflag
+iz_dun05	mapflag	loadevent
+
+// สคริปต์ reset @baron_spawned
+iz_dun05,1,1,0	script	ResetSpawnBaron	-1,{
+	OnPCLoadMapEvent:
+		if (MQ == 17) set @baron_spawned, 0;
+	end;
+}

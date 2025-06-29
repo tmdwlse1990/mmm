@@ -290,16 +290,16 @@ Oninit:
 	set .raresize2,getarraysize(.item_ids2);
 	set .raresize3,getarraysize(.item_ids3);
 	set .raresize4,getarraysize(.item_ids4);
-	setarray .item_ids[getarraysize(.item_ids)], 
+	setarray .item_ids, 
 	6635,7620,7619,6240,6241,12909,12208,12210,
 	13515,13534,13810,
 	12202,12203,12204,12205,12206,12207,12913,12914
 	; // ใส่ item ID Common
 	
-	setarray .item_weights[getarraysize(.item_weights)],
+	setarray .item_weights,
 	5,8,8,8,8,8,8,8,
-	10,10,10,
-	20,20,20,20,20,20,20,20
+	8,8,8,
+	10,10,10,10,10,10,10,10
 	; // น้ำหนัก ยิ่งมาก โอกาสยิ่งเยอะ COMMON
 	
 	// *copyarray <destination array>[<first value>],<source array>[<first value>],<amount of data to copy>;
@@ -307,10 +307,10 @@ Oninit:
 	copyarray .item_ids2[getarraysize(.item_ids2)],.item_ids[0],getarraysize(.item_ids);
 	copyarray .item_ids3[getarraysize(.item_ids3)],.item_ids[0],getarraysize(.item_ids);
 	copyarray .item_ids4[getarraysize(.item_ids4)],.item_ids[0],getarraysize(.item_ids);
-	copyarray .item_weights1[getarraysize(.item_weights1)],.item_ids[0],getarraysize(.item_weights);
-	copyarray .item_weights2[getarraysize(.item_weights2)],.item_ids[0],getarraysize(.item_weights);
-	copyarray .item_weights3[getarraysize(.item_weights3)],.item_ids[0],getarraysize(.item_weights);
-	copyarray .item_weights4[getarraysize(.item_weights4)],.item_ids[0],getarraysize(.item_weights);
+	copyarray .item_weights1[getarraysize(.item_weights1)],.item_weights[0],getarraysize(.item_weights);
+	copyarray .item_weights2[getarraysize(.item_weights2)],.item_weights[0],getarraysize(.item_weights);
+	copyarray .item_weights3[getarraysize(.item_weights3)],.item_weights[0],getarraysize(.item_weights);
+	copyarray .item_weights4[getarraysize(.item_weights4)],.item_weights[0],getarraysize(.item_weights);
 	
 	for(.@i=1; .@i <= getarraysize(.show$); .@i++) {
 		npcshopdelitem "#gachaex_preview"+.@i,501;

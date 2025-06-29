@@ -1824,7 +1824,7 @@ Body:
             RandomBonus: 2800
             Chances:
               - Type: Normal
-                Rate: 600
+                Rate: 6000
                 Price: 20000
                 Material: Oridecon
                 DowngradeAmount: 1
@@ -1863,7 +1863,7 @@ Body:
             BlacksmithBlessingAmount: 1
             Chances:
               - Type: Normal
-                Rate: 400
+                Rate: 4000
                 Price: 20000
                 Material: Oridecon
                 DowngradeAmount: 2
@@ -1955,12 +1955,12 @@ Body:
             BroadcastFailure: true
             Chances:
               - Type: Normal
-                Rate: 100
+                Rate: 1000
                 Price: 100000
                 Material: Bradium
                 DowngradeAmount: 3
               - Type: HD
-                Rate: 100
+                Rate: 1000
                 Price: 100000
                 Material: HD_Bradium
                 DowngradeAmount: 1
@@ -1972,12 +1972,12 @@ Body:
             BroadcastFailure: true
             Chances:
               - Type: Normal
-                Rate: 100
+                Rate: 1000
                 Price: 100000
                 Material: Bradium
                 DowngradeAmount: 3
               - Type: HD
-                Rate: 100
+                Rate: 1000
                 Price: 100000
                 Material: HD_Bradium
                 DowngradeAmount: 1

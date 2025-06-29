@@ -1,8 +1,9 @@
-icecastle,189,206,5	script	chicken test	800,{
-	if (!achievementexists(100001))
-		achievementcomplete(100001);
+icecastle,189,206,5	script	‰°Ë«‘‡»…	800,{
+	if(getgmlevel() < 99 ) {
+		mes "‰°Ë«‘‡»… °ÿÍ°Ê";
+		end;
+	}
+	if (!achievementexists(100101))
+		achievementcomplete(100101);
 end;
 }
-
-
-icecastle,180,206,0	monster	Dummy	2410,1,5000

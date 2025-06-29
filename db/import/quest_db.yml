@@ -101,6 +101,24 @@ Body: #ให้ใช้ ID ไม่เกิน 1000
       - Mob: ORK_HERO
         Count: 1
         Location: 2@orcs
+  - Id: 103
+    Title: Monster Clues
+    Targets: 
+      - Mob: POT_DOFLE
+        Count: 1
+        Location: iz_dun05
+    Drops:
+      - Mob: POT_DOFLE
+        Item: Frozen_PeiceOfRock
+        Count: 30
+        Rate: 10000
+  - Id: 104
+    Title: Let Cook That Octopus
+    Targets: 
+      - Mob: MD_GIANT_OCTOPUS
+        Count: 1
+        Location: 1@cash
+
 # // Side Quest ให้ใช้ตั้งแต่ 500 ขึ้นไป จะได้จัดระเบียบถูก มีดรอปของพิเศษเฉพาะตอนมีเควสด้วย ดูด้านบนเอา
   - Id: 501
     Title: Golden Egg
