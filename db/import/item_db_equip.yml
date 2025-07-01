@@ -329,6 +329,52 @@ Body:
     AegisName: CLB_SS_Egg02
     Name: Tai-Zi Egg
     Type: PetEgg
+#  [Costume]
+  - Id: 2121001
+    AegisName: test1
+    Name: test_cos3001
+    Type: Armor
+    Weight: 10
+    Locations:
+      Costume_Head_Mid: true
+    ArmorLevel: 1
+    View: 3001
+  - Id: 2121002
+    AegisName: test2
+    Name: test_cos3002
+    Type: Armor
+    Weight: 10
+    Locations:
+      Costume_Head_Low: true
+    ArmorLevel: 1
+    View: 3002
+  - Id: 2121003
+    AegisName: test3
+    Name: test_cos3003
+    Type: Armor
+    Weight: 10
+    Locations:
+      Costume_Head_Top: true
+    ArmorLevel: 1
+    View: 3003
+  - Id: 2121004
+    AegisName: test4
+    Name: test_cos3004
+    Type: Armor
+    Weight: 10
+    Locations:
+      Costume_Head_Top: true
+    ArmorLevel: 1
+    View: 3004
+  - Id: 2121005
+    AegisName: test5
+    Name: test_cos3005
+    Type: Armor
+    Weight: 10
+    Locations:
+      Costume_Head_Mid: true
+    ArmorLevel: 1
+    View: 3005
 #  [Lower]
   - Id: 2120001
     AegisName: Wrag_In_Mouth
