@@ -1,0 +1,7 @@
+icecastle,67,222,5	script	ตัวคราฟสารพัดประโยชน์#icecastle	4_EP20_LASGAND,{
+
+end;
+Oninit:
+	waitingroom "รวมคราฟที่คิดได้",0;
+	end;
+}

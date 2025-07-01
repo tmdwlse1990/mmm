@@ -1143,7 +1143,7 @@ Body:
       Thief: true
     Tree:
       - Name: SM_SWORD
-        MaxLevel: 10
+        MaxLevel: 15
       - Name: AC_VULTURE
         MaxLevel: 10
       - Name: AC_DOUBLE

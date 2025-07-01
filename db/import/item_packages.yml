@@ -119,6 +119,9 @@ Body:
       - Group: 5
         Items:
           - Item: 1Para_Rod
+      - Group: 6
+        Items:
+          - Item: 1Para_Revolver
   - Item: Paradise_Armor_1
     Groups:
       - Group: 0

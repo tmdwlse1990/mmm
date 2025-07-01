@@ -89,6 +89,14 @@ Body:
         Price: 50
       - Item: HD_Ori_Box10
         Price: 400
+      - Item: HD_Bradium
+        Price: 150
+      - Item: HD_Bradium_Box10
+        Price: 1350
+      - Item: HD_Carnium
+        Price: 150
+      - Item: HD_Carnium_Box10
+        Price: 1350
       - Item: Convex_Mirror_Box5
         Price: 250
       - Item: F_Max_Weight_Up_Box

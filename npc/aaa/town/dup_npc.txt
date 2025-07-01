@@ -19,8 +19,13 @@ icecastle,189,171,5	duplicate(Dietrich#ns_prt)	Ore Derler#2	1_M_SMITH
 
 // setunitdata getnpcid(0),UNPC_GROUP_ID,7; 	[ค่อยเล่น]
 //	[โซนขายของ]
-icecastle,65,221,5	duplicate(#over_arrow)	Arrow Merchant#ice	4_M_ARCHER
+icecastle,60,214,5	duplicate(#over_arrow)	Arrow Merchant#ice	4_M_ARCHER
+icecastle,60,211,5	duplicate(#over_bullet)	Ammunition Merchant#ice	4_F_GUNSLINGER
+icecastle,60,208,5	duplicate(#over_kunai)	Ninja Tool Merchant#ice	4_M_NINJA_RED
+//icecastle,73,99,3	duplicate(#over_madogear)	Mado Gear Merchant#ice	4_TOWER_17
+//icecastle,72,106,3	duplicate(#over_talisman)	Talisman Merchant#ice	4_M_POORSCHOLAR
 
+-	shop	#paradise_wep	-1,630014:1000,600020:1000,500033:1000,530017:1000,520011:1000,620011:1000,590026:1000,500034:1000,610024:1000,610025:1000,510036:1000,700037:1000,550034:1000,550035:1000,540027:1000,540028:1000,590027:1000,550036:1000,560022:1000,560023:1000,700038:1000,700039:1000,700040:1000,570021:1000,580021:1000,650011:1000,650010:1000,810003:1000,800005:1000,540029:1000,540030:1000,510037:1000,550037:1000
 -	shop	#dagger_katar	-1,1201:-1,1204:-1,1207:-1,1210:-1,1213:-1,1216:-1,1219:-1,1222:-1,1250:-1,1252:-1,1254:-1
 -	shop	#sword	-1,1101:-1,1104:-1,1107:-1,1110:-1,1113:-1,1119:-1,1122:-1,1123:-1,1126:-1,1129:-1,1116:-1,1151:-1,1154:-1,1157:-1,1160:-1
 -	shop	#spear	-1,1401:-1,1404:-1,1407:-1,1451:-1,1454:-1,1457:-1,1460:-1,1463:-1,1410:-1
@@ -29,10 +34,11 @@ icecastle,65,221,5	duplicate(#over_arrow)	Arrow Merchant#ice	4_M_ARCHER
 -	shop	#rod	-1,1601:-1,1604:-1,1607:-1,1610:-1
 -	shop	#bow	-1,1701:-1,1704:-1,1707:-1,1710:-1,1713:-1,1714:-1,1718:-1
 -	shop	#musicwep	-1,1901:-1,1903:-1,1905:-1,1909:-1,1911:-1,1907:-1,1950:-1,1952:-1,1954:-1,1958:-1,1960:-1,1956:-1
+-	shop	#guner	-1,13102:-1,13150:-1,13151:-1,13154:-1,13155:-1,13163:-1,13165:-1,13168:-1
 
-icecastle,68,224,5	script	Weapon Dealers#ice	49,{
+icecastle,69,230,5	script	Weapon Dealers#ice	49,{
 	
-	setarray .@list$,"Dagger Katar","Sword","Spear","Axe","Mace Knuckle","Staff","Bow","Musician";
+	setarray .@list$,"Dagger Katar","Sword","Spear","Axe","Mace Knuckle","Staff","Bow","Musician","Gun","Paradise Weapon";
 	.@menu$ = "";
 	for(.@i=0;.@i < getarraysize(.@list$); .@i++)
 		.@menu$ = .@menu$ + .@list$[.@i] + ":";
@@ -60,6 +66,12 @@ icecastle,68,224,5	script	Weapon Dealers#ice	49,{
 			break;
 		case 8:
 			callshop "#musicwep";
+			break;
+		case 9:
+			callshop "#guner";
+			break;
+		case 10:
+			callshop "#paradise_wep";
 			break;
 	}
 	end;
