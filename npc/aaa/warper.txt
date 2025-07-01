@@ -563,6 +563,7 @@ G8: Restrict("RE");
 	Instances:
 // --------------------------------------------------
 menu
+	"Octopus Cave",I14,
 	"Orc's Memory",I16
 	;
 /*

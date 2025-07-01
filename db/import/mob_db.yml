@@ -170,12 +170,12 @@ Body:
     Name: Dummy
 
   - Id: 2000
-    Level: 275
-    Hp: 1500000000
+    Level: 150
+    Hp: 100000000
     BaseExp: 0
     JobExp: 0
-    Attack: 60260
-    Attack2: 22603
+    Attack: 10260
+    Attack2: 7603
     Defense: 1358
     MagicDefense: 738
     Resistance: 1833
@@ -800,10 +800,10 @@ Body:
   - Id: 27002
     AegisName: MAYBEPECO
     Name: Maybe Peco
-    Level: 57
-    Hp: 55000
-    Attack: 91
-    Attack2: 70
+    Level: 97
+    Hp: 550000
+    Attack: 591
+    Attack2: 370
     Defense: 47
     MagicDefense: 38
     Str: 10
@@ -824,6 +824,7 @@ Body:
     AttackMotion: 180
     ClientAttackMotion: 130
     DamageMotion: 100
+    DamageTaken: 10
     Ai: 20
     Drops:
       - Item: Peco_Feather_Maybe
@@ -832,15 +833,15 @@ Body:
   - Id: 27003
     AegisName: BABY_KING_WOLF
     Name: Baby King Wolf
-    Level: 51
-    Hp: 55000
-    Attack: 165
-    Attack2: 114
+    Level: 91
+    Hp: 550000
+    Attack: 1565
+    Attack2: 414
     Defense: 53
     MagicDefense: 82
     Str: 11
     Agi: 44
-    Vit: 44
+    Vit: 103
     Int: 44
     Dex: 44
     Luk: 11
@@ -856,6 +857,7 @@ Body:
     AttackMotion: 587
     ClientAttackMotion: 521
     DamageMotion: 725
+    DamageTaken: 10
     Ai: 20
     Drops:
       - Item: Wolf_Jaw
@@ -864,13 +866,13 @@ Body:
   - Id: 27004
     AegisName: KING_RING
     Name: King Ring
-    Level: 66
-    Hp: 55000
-    Attack: 514
-    Attack2: 514
+    Level: 99
+    Hp: 550000
+    Attack: 1114
+    Attack2: 1114
     Defense: 47
     MagicDefense: 38
-    Str: 91
+    Str: 151
     Agi: 43
     Vit: 31
     Int: 65
@@ -888,6 +890,7 @@ Body:
     AttackMotion: 580
     ClientAttackMotion: 530
     DamageMotion: 400
+    DamageTaken: 10
     Ai: 20
     Drops:
       - Item: Broken_Poring_Card
@@ -901,13 +904,13 @@ Body:
     BaseExp: 0
     JobExp: 0
     #MvpExp:
-    Attack: 3851
-    Attack2: 1442
+    Attack: 5151
+    Attack2: 1042
     Defense: 147
     MagicDefense: 134
     Resistance: 100
     MagicResistance: 100
-    Str: 86
+    Str: 186
     Agi: 34
     Vit: 86
     Int: 11
@@ -928,7 +931,18 @@ Body:
     Ai: 21
     Class: Boss
     Drops:
-      - Item: 3stats_select_box
+      - Item: Pet_Food
+        Rate: 3500
+      - Item: CLB_SS_Egg01
+        Rate: 10
+        StealProtected: true
+      - Item: Wrag_In_Mouth
+        Rate: 10
+        StealProtected: true
+      - Item: Fei-Chai_doll
+        Rate: 1000
+        StealProtected: true
+      - Item: 4stats_select_box
         Rate: 100
         StealProtected: true
       - Item: CLB_SS_EA_Card

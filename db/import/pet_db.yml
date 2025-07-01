@@ -74,6 +74,24 @@ Body:
       bonus bWis,100;
       bonus bSpl,100;
       bonus bMaxHP,10000000;
+# Event Pet Settings  - Mob: MD_Error
+    EggItem: CLB_SS_Egg01
+    FoodItem: Pet_Food
+    Fullness: 1
+    IntimacyOwnerDie: 0
+    IntimacyFed: 100
+    HungryDelay: 120   # unknown
+    CaptureRate: 0
+    SpecialPerformance: true
+    AllowAutoFeed: true
+    Script: >
+      bonus bCritical,20;
+      bonus bCritAtkRate,15;
+      bonus bAtkRate,7;
+      bonus bMatkRate,7;
+      bonus2 bResEff,"Eff_Curse",10000;
+    SupportScript: >
+      petloot 15;
 # Common Pet Settings
   - Mob: PORING
     TameItem: Unripe_Apple

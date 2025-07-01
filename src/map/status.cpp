@@ -18085,9 +18085,9 @@ std::string pet_grade_text(int grade)
 			return "A";
 		case ENCHANTGRADE_R:
 			return "R";
-		case ENCHANTGRADE_S:
+		case ENCHANTGRADE_Meow:
 			return "Meow";
-		case ENCHANTGRADE_U:
+		case ENCHANTGRADE_Shark:
 			return "SHARK";
 		default:
 			return "";

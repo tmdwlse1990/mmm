@@ -80,6 +80,14 @@ Body:
       Item: Costume_Ticket_Pass
       Amount: 1
     Score: 10
+  - Id: 100102
+    Group: Battle
+    Name: Octopus Slayer # Complete Orcs Memorie
+    Rewards:
+      Item: Costume_Ticket_Pass
+      Amount: 1
+      TitleId: 1021
+    Score: 10
   - Id: 220001
     Group: Get_Zeny
     Name: Rich King (1) # 10,000,000 zeny

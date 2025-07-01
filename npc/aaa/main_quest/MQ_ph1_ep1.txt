@@ -177,7 +177,8 @@ icecastle,188,221,4	script	Chief Baron	EP18_NPC_SUAD,{
 	next;
 	mes "[ผู้ใหญ่บ้าน]";
 	mes "แล้วก็..... ลืมๆไปมันซะนะ....นะ";
-	getitem 607,1; //collection จบ EP2
+	if (!achievementexists(100101))
+		achievementcomplete(100101);
 	getitem 2099001,2;
 	next;
 	mes ".......";

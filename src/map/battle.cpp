@@ -764,7 +764,7 @@ int32 battle_calc_cardfix(int32 attack_type, struct block_list *src, struct bloc
 	map_session_data *sd, ///< Attacker session data if BL_PC
 		*tsd; ///< Target session data if BL_PC
 	int32 cardfix = 1000;
-	int32 sum_val = 0,sum_atk_val = 0,sum_atk_val_ = 0;
+	int32 sum_val = 0;int32 sum_atk_val = 0; int32 sum_atk_val_ = 0;
 	int32 s_class, ///< Attacker class
 		t_class; ///< Target class
 	std::vector<e_race2> s_race2, /// Attacker Race2
@@ -2119,7 +2119,7 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 			if (scc->getSCE(SC_MEMBER9)) f_dm = 5;
 			if (scc->getSCE(SC_MEMBER10)) f_dm = 10;
 	
-			damage =  damage *  (100 + f_dm) / 100;
+			damage =  i64max(damage *  (100 + f_dm) / 100,1);
 	}
 	if (tsc != nullptr && !tsc->empty()) {
 		if (!battle_status_block_damage(src, bl, tsc, d, damage, skill_id, skill_lv)) // Statuses that reduce damage to 0.
@@ -2560,6 +2560,7 @@ static int32 battle_calc_base_weapon_attack(struct block_list *src, struct statu
 		int16 base_stat;
 
 		switch (sd->status.weapon) {
+			/*
 			case W_BOW:
 			case W_MUSICAL:
 			case W_WHIP:
@@ -2572,6 +2573,14 @@ static int32 battle_calc_base_weapon_attack(struct block_list *src, struct statu
 					base_stat = status->str;
 				else
 					base_stat = status->dex;
+				break;
+			*/
+			case W_REVOLVER:
+			case W_RIFLE:
+			case W_GATLING:
+			case W_SHOTGUN:
+			case W_GRENADE:
+				base_stat = status->int_;
 				break;
 			default:
 				base_stat = status->str;
@@ -2648,7 +2657,7 @@ static int64 battle_calc_base_damage(struct block_list *src, struct status_data 
 		type = (wa == &status->lhw)?EQI_HAND_L:EQI_HAND_R;
 
 		if (!(flag&BDMG_CRIT) || (flag&BDMG_ARROW)) { //Normal attacks
-			atkmin = status->dex;
+			atkmin = status->str;
 
 			if (sd->equip_index[type] >= 0 && sd->inventory_data[sd->equip_index[type]] && sd->inventory_data[sd->equip_index[type]]->type == IT_WEAPON)
 				atkmin = atkmin*(80 + sd->inventory_data[sd->equip_index[type]]->weapon_level*20)/100;
@@ -4347,7 +4356,7 @@ static void battle_calc_skill_base_damage(struct Damage* wd, struct block_list *
 			}
 #else
 		case NJ_ISSEN:
-			wd->damage = 40 * sstatus->str + sstatus->hp * 8 * skill_lv / 10;
+			wd->damage = 40 * sstatus->str + sstatus->hp * 9 * skill_lv / 10;
 			wd->damage2 = 0;
 			break;
 		case LK_SPIRALPIERCE:
@@ -4916,13 +4925,13 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 			skillratio += 40 * skill_lv;
 			break;
 		case AS_GRIMTOOTH:
-			skillratio += 20 * skill_lv;
+			skillratio += 40 * skill_lv;
 			if (sd && !sc->getSCE(SC_HIDING))
 				skillratio = skillratio / 2;
 			break;
 		case AS_SONICBLOW:
 #ifdef RENEWAL
-			skillratio += 100 + 100 * skill_lv;
+			skillratio += -100 + 200 * skill_lv;
 			if (tstatus->hp < (tstatus->max_hp / 2))
 				skillratio += skillratio / 2;
 #else
@@ -5002,7 +5011,7 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 		case CR_HOLYCROSS:
 #ifdef RENEWAL
 			if(sd && sd->status.weapon == W_2HSPEAR)
-				skillratio += 100 * skill_lv;
+				skillratio += 200 * skill_lv;
 			else
 #endif
 				skillratio += 70 * skill_lv;
@@ -5038,7 +5047,7 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 #endif
 			break;
 		case MO_EXTREMITYFIST:
-			skillratio += 700 + sstatus->sp * 35;
+			skillratio += 700 + sstatus->sp * 15;
 #ifdef RENEWAL
 			if (wd->miscflag&1)
 				skillratio *= 2; // More than 5 spirit balls active
@@ -5050,14 +5059,14 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 			break;
 		case MO_CHAINCOMBO:
 #ifdef RENEWAL
-			skillratio += 150 + 20 * skill_lv;
+			skillratio += 150 + 10 * skill_lv;
 #else
 			skillratio += 50 + 50 * skill_lv;
 #endif
 			break;
 		case MO_COMBOFINISH:
 #ifdef RENEWAL
-			skillratio += 300 * skill_lv; // !TODO: How does STR play a role?
+			skillratio += 240 * skill_lv; // !TODO: How does STR play a role?
 #else
 			skillratio += 140 + 60 * skill_lv;
 #endif
@@ -5065,10 +5074,10 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 				skillratio += skillratio * 50 / 100;
 			break;
 		case BA_MUSICALSTRIKE:
-			skillratio += 10 + 14 * skill_lv;
+			skillratio += 10 + 25 * skill_lv;
 			break;
 		case DC_THROWARROW:
-			skillratio += 10 + 30 * skill_lv;
+			skillratio += 10 + 40 * skill_lv;
 			break;
 		case CH_TIGERFIST:
 #ifdef RENEWAL
@@ -5256,7 +5265,7 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 #endif
 			break;
 		case GS_RAPIDSHOWER:
-			skillratio += 600 + 50 * skill_lv;
+			skillratio += 600 + 150 * skill_lv;
 			break;
 		case GS_DESPERADO:
 			skillratio += 150 + 50 * (skill_lv - 1);
@@ -5264,14 +5273,14 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 				skillratio *= 2;
 			break;
 		case GS_DUST:
-			skillratio += 50 * skill_lv;
+			skillratio += 80 * skill_lv;
 			break;
 		case GS_FULLBUSTER:
-			skillratio += 500 + 500 * skill_lv;
+			skillratio += 500 + 510 * skill_lv;
 			break;
 		case GS_SPREADATTACK:
 #ifdef RENEWAL
-			skillratio += 60 * skill_lv;
+			skillratio += 80 * skill_lv;
 #else
 			skillratio += 20 * (skill_lv - 1);
 #endif
@@ -5310,10 +5319,10 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 			break;
 #ifdef RENEWAL
 		case NJ_SYURIKEN:
-			skillratio += 5 * skill_lv + 5 * pc_checkskill(sd,NJ_SYURIKEN);
+			skillratio += 10 * skill_lv + 5 * pc_checkskill(sd,NJ_SYURIKEN);
 			break;
 		case NJ_KUNAI:
-			skillratio += -100 + 100 * skill_lv + 20 * pc_checkskill(sd,NJ_SYURIKEN);
+			skillratio += -100 + 80 * skill_lv + 15 * pc_checkskill(sd,NJ_SYURIKEN);
 			break;
 		case KN_CHARGEATK:
 			skillratio += 600;
@@ -7779,8 +7788,8 @@ static struct Damage initialize_weapon_data(struct block_list *src, struct block
 					wd.div_ += min(4, wd.miscflag);
 				break;
 			case AC_DOUBLE:
-				if(sd == nullptr || !sd->special_state.skillup2)
-				wd.div_ += 1;
+				if(sd && sd->special_state.skillup2)
+					wd.div_ += 1;
 				break;
 		}
 	} else {

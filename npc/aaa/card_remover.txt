@@ -18,12 +18,13 @@ icecastle,200,158,4	script	Wise Old Woman#eAcustom	78,{
 
 	set .zenycost,1000000;    // base cost of the card remover services (in Zeny)
 	set .percardcost,100000;  // cost per card of the card remover services (in Zeny)
+	set .itemuse,6635;		  // Item use
 
 	disable_items;
 	mes "[ยายแก่]";
 	mes "อยากปลดปล่อยไอเท็มอะสิ";
 	next;
-	switch(select("สนใจ.:ราคาเท่าไหร่:ไม่เป็ยไน.")) {
+	switch(select("สนใจ.:ราคาเท่าไหร่:ไม่เป็นไร.")) {
 	case 1:
 		mes "[ยายแก่]";
 		mes "เลือกมาสิส่วนไหน";
@@ -65,16 +66,19 @@ icecastle,200,158,4	script	Wise Old Woman#eAcustom	78,{
 			.@opval[.@i] = getequiprandomoption(.@part,.@i,ROA_VALUE);
 			.@opparam[.@i] = getequiprandomoption(.@part,.@i,ROA_PARAM);
 		}
+		.@cardcount = getequipcardcnt(.@part);
 		mes "[ยายแก่]";
-		mes "มีอยู่ " + .@cardcount + " ในไอเท็มสินะ ";
+		mes "มีการ์ดอยู่ " + .@cardcount + " ใบในไอเท็มสินะ ";
 		mes "ต้องการเงิน "+ callfunc("F_InsertComma",(.zenycost+(.@cardcount * .percardcost))) + " zeny";
+		mes "ต้องการน้ำยา ^i[6635] ด้วยอันนึง.";
+		mes "โอกาสแค่ 30% นะหลาน";
 		next;
 		if(select("เอาเลย.:ไม่เอาดีกว่า.") == 2) {
 			mes "[ยายแก่]";
 			mes "จ้าๆ";
 			close;
 		}
-		if((zeny < (.zenycost+(.@cardcount * .percardcost)))) {
+		if((zeny < (.zenycost+(.@cardcount * .percardcost))) || !countitem(6635) ) {
 			mes "[ยายแก่]";
 			mes "ดูจนๆนะ หาเงินเพิ่มไหมหลาน";
 			close;
@@ -82,21 +86,38 @@ icecastle,200,158,4	script	Wise Old Woman#eAcustom	78,{
 		mes "[ยายแก่]";
 		mes "เริ่มกันเหอะ";
 		set Zeny, Zeny - (.zenycost+(.@cardcount * .percardcost));
-		
+		delitem .itemuse,1;
 		// Replace the constants in the next 3 lines with failure chance values defined in refine_db.txt
 		// First value = Total failure chance (item and cards destroyed)
 		// Second value = Partial failure chance (one or the other is destroyed, player decides which one is safe)
 		// Third value = Harmless failure chance (all that's lost is your investment)
 		next;
-		delequip .@part;
-		//*getitem4 <item id>,<amount>,<identify>,<refine>,<attribute>,<card1>,<card2>,<card3>,<card4>,<grade>,<RandomIDArray>,<RandomValueArray>,<RandomParamArray>{,<account ID>};
-		getitem4 .@id,1,1,.@refine,0,0,0,0,0,.@grade,.@opid,.@opval,.@opparam;
 		mes "[ยายแก่]";
-		mes "เสร็จแล้ว";
-		close;
+		.@num = rand(100);
+		mes "สุ่ม 1-100 ได้หมายเลข :";
+		sleep2 1000;
+		mes "เลข :"+.@num;
+		if(.@num < 30 ) {
+			successremovecards .@part;
+			//delequip .@part;
+			//*getitem4 <item id>,<amount>,<identify>,<refine>,<attribute>,<card1>,<card2>,<card3>,<card4>,<grade>,<RandomIDArray>,<RandomValueArray>,<RandomParamArray>{,<account ID>};
+			//getitem4 .@id,1,1,.@refine,0,0,0,0,0,.@grade,.@opid,.@opval,.@opparam;
+			mes "เสร็จแล้ว";
+			close;
+		}
+		else {
+			mes "แงะไม่สำเสร็จซะงั้น";
+			mes "ไว้มีของแล้วมาลองใหม่นะหลานเอ๋ย";
+			close;
+		}
 	case 2:
 		mes "[ยายแก่]";
+		mes "ต้องการเงิน "+ callfunc("F_InsertComma",(.zenycost+(.@cardcount * .percardcost))) + " zeny";
+		mes "บวกเงินตามจำนวนการ์ดด้วย";
+		mes "ต้องการน้ำยา ^i[6635] ด้วยอันนึง.";
 		mes "โชคดีนะหลายเอ้ย";
+		close;
+	case 3:
 		close;
 	}
 

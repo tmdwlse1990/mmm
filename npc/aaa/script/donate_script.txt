@@ -17,10 +17,10 @@ OnInit:
 				if(attachrid(.d_aid[.i])){
 
 					set #CASHPOINTS,(#CASHPOINTS + .d_amt[.i]);
-					//dispbottom "[ Donate ] : คุณได้รับ " + callfunc("F_InsertComma", .d_amt[.i]) + " Cash รวมเป็น "+callfunc("F_InsertComma",#CASHPOINTS)+" Cash",0xAEFF00;
-					dispbottom "[ Donate ] : คุณได้รับ " + callfunc("F_InsertComma", .d_amt[.i]) + " Cash.";
-					set #CASHPOINTS,(#CASHPOINTS + (.d_amt[.i] * 15 / 100 ));
-					dispbottom "[ Donate Bonus ] : ได้รับเพิ่มเติม " + callfunc("F_InsertComma", (.d_amt[.i] * 15 / 100 ) ) + " Cash รวมเป็น "+callfunc("F_InsertComma",#CASHPOINTS)+" Cash",0xAEFF00;
+					dispbottom "[ Donate ] : คุณได้รับ " + callfunc("F_InsertComma", .d_amt[.i]) + " Cash รวมเป็น "+callfunc("F_InsertComma",#CASHPOINTS)+" Cash",0xAEFF00;
+					//dispbottom "[ Donate ] : คุณได้รับ " + callfunc("F_InsertComma", .d_amt[.i]) + " Cash.";
+					//set #CASHPOINTS,(#CASHPOINTS + (.d_amt[.i] * 15 / 100 ));
+					//dispbottom "[ Donate Bonus ] : ได้รับเพิ่มเติม " + callfunc("F_InsertComma", (.d_amt[.i] * 15 / 100 ) ) + " Cash รวมเป็น "+callfunc("F_InsertComma",#CASHPOINTS)+" Cash",0xAEFF00;
 					
 					//set #CASHBONUS,(#CASHBONUS + (.d_amt[.i]/10));
 					//dispbottom "[ Donate ] : คุณได้รับ " + callfunc("F_InsertComma", .d_amt[.i]/10) + " Cash Bonus รวมเป็น "+callfunc("F_InsertComma",#CASHBONUS)+" Cash Bonus",0xAEFF00;

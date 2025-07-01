@@ -51,5 +51,5 @@ Footer:
   - Path: npc/aaa/barter/hat_quest.yml
   - Path: npc/aaa/barter/ticket_seller.yml
 # Event
-  - Path: npc/aaa/barter/event_ore_refi.yml
+#  - Path: npc/aaa/barter/event_ore_refi.yml
 #  - Path: npc/aaa/barter/event_pet.yml

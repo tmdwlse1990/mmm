@@ -27751,7 +27751,7 @@ Body:
       - Item: Old_Violet_Box
         Rate: 5
         StealProtected: true
-# [Wait Tier2 Boss]
+# [Wait Tier3 Boss Level 150+]
   - Id: 1646
     AegisName: B_SEYREN
     Name: Lord Knight Seyren
@@ -28474,7 +28474,7 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-      - Item: Old_Violet_Box
+      - Item: MVP_Option_Box_T2
         Rate: 5500
       - Item: Goast_Chill
         Rate: 5000
@@ -29598,8 +29598,8 @@ Body:
     MvpDrops:
       - Item: Old_Violet_Box
         Rate: 5500
-#      - Item: Bs_Making_S
-#        Rate: 5000
+      - Item: MVP_Option_Box_T2
+        Rate: 5000
       - Item: Crystal_Jewel__
         Rate: 2000
     Drops:
@@ -30697,8 +30697,8 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-#      - Item: Bs_Making_S
-#        Rate: 5000
+      - Item: MVP_Option_Box_T2
+        Rate: 5000
       - Item: Old_Blue_Box
         Rate: 5000
       - Item: Crystal_Jewel__
@@ -31212,8 +31212,8 @@ Body:
     MvpDrops:
       - Item: Old_Violet_Box
         Rate: 5500
-#      - Item: Bs_Making_S
-#        Rate: 5000
+      - Item: MVP_Option_Box_T2
+        Rate: 5000
       - Item: Crystal_Jewel__
         Rate: 2000
     Drops:
@@ -31725,8 +31725,8 @@ Body:
     MvpDrops:
       - Item: Old_Violet_Box
         Rate: 5500
-#      - Item: Bs_Making_S
-#        Rate: 5000
+      - Item: MVP_Option_Box_T2
+        Rate: 5000
       - Item: Old_Card_Album
         Rate: 2000
     Drops:
@@ -32365,8 +32365,8 @@ Body:
     MvpDrops:
       - Item: Old_Violet_Box
         Rate: 5500
-#      - Item: Bs_Making_S
-#        Rate: 5000
+      - Item: MVP_Option_Box_T2
+        Rate: 5000
       - Item: Old_Card_Album
         Rate: 2000
     Drops:
@@ -33054,9 +33054,9 @@ Body:
       - Item: Old_Violet_Box
         Index: 1
         Rate: 5000
-#      - Item: Bs_Making_S
-#        Index: 2
-#        Rate: 5000
+      - Item: MVP_Option_Box_T2
+        Index: 2
+        Rate: 5000
     Drops:
       - Item: Will_Of_Darkness_
         Rate: 3500
@@ -33635,9 +33635,9 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-#      - Item: Bs_Making_S
-#        Index: 0
-#        Rate: 5000
+      - Item: MVP_Option_Box_T2
+        Index: 0
+        Rate: 5000
       - Item: Old_Violet_Box
         Index: 1
         Rate: 5000
@@ -33937,9 +33937,9 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-#      - Item: Bs_Making_S
-#        Index: 0
-#        Rate: 5500
+      - Item: MVP_Option_Box_T1
+        Index: 0
+        Rate: 5500
       - Item: Old_Violet_Box
         Index: 1
         Rate: 5000
@@ -35729,8 +35729,8 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-#      - Item: Bs_Making_S
-#        Rate: 5000
+      - Item: MVP_Option_Box_T2
+        Rate: 5000
       - Item: Carnium
         Rate: 5000
       - Item: Old_Card_Album
@@ -37335,8 +37335,8 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-#      - Item: Bs_Making_S
-#        Rate: 5000
+      - Item: MVP_Option_Box_T2
+        Rate: 5000
       - Item: Seed_Of_Yggdrasil
         Rate: 3500
       - Item: Crystal_Jewel__
@@ -37455,8 +37455,8 @@ Body:
     MvpDrops:
       - Item: Old_Violet_Box
         Rate: 5500
-#      - Item: Bs_Making_S
-#        Rate: 5000
+      - Item: MVP_Option_Box_T2
+        Rate: 5000
       - Item: Box_Of_Grudge
         Rate: 5500
     Drops:
@@ -38916,9 +38916,9 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-#      - Item: Bs_Making_S
-#        Index: 0
-#        Rate: 5000
+      - Item: MVP_Option_Box_T2
+        Index: 0
+        Rate: 5000
       - Item: Old_Violet_Box
         Index: 1
         Rate: 5000
@@ -40396,6 +40396,8 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
+      - Item: MVP_Option_Box_T2
+        Rate: 5000
       - Item: Old_Violet_Box
         Rate: 5500
     Drops:
@@ -41352,6 +41354,8 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
+      - Item: MVP_Option_Box_T1
+        Rate: 5000
       - Item: Pickaxe
         Rate: 10000
     Drops:
@@ -43089,7 +43093,7 @@ Body:
       - Item: Old_Violet_Box
         Index: 0
         Rate: 5500
-      - Item: Old_Violet_Box
+      - Item: MVP_Option_Box_T2
         Index: 1
         Rate: 5000
       - Item: Old_Card_Album
@@ -44737,8 +44741,8 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-#      - Item: Bs_Making_S
-#        Rate: 5000
+      - Item: MVP_Option_Box_T2
+        Rate: 5000
       - Item: Old_Violet_Box
         Rate: 5000
       - Item: Old_Card_Album
@@ -45584,9 +45588,9 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-#      - Item: Bs_Making_S
-#        Index: 0
-#        Rate: 5000
+      - Item: MVP_Option_Box_T2
+        Index: 0
+        Rate: 5000
       - Item: Old_Card_Album
         Index: 1
         Rate: 5000
@@ -48341,9 +48345,9 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-#      - Item: Bs_Making_S
-#        Index: 0
-#        Rate: 5000
+      - Item: MVP_Option_Box_T2
+        Index: 0
+        Rate: 5000
       - Item: Old_Violet_Box
         Index: 1
         Rate: 5000
@@ -50077,9 +50081,6 @@ Body:
         Rate: 2500
       - Item: Sticky_Mucus
         Rate: 2500
-      - Item: Low_Coin_Pocket
-        Rate: 1
-        StealProtected: true
   - Id: 2194
     AegisName: MD_GIANT_OCTOPUS
     Name: Giant Octopus
@@ -50117,29 +50118,21 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
+      - Item: MVP_Option_Box_T2
+        Index: 0
+        Rate: 5500
       - Item: Old_Violet_Box
+        Index: 1
         Rate: 5500
     Drops:
-      - Item: Bgrade_Pocket
-        Index: 0
-        Rate: 1500
-      - Item: Mid_Coin_Pocket
-        Index: 1
-        Rate: 500
       - Item: High_Weapon_Box
-        Index: 2
+        Index: 0
         Rate: 250
-      - Item: White_Potion_Box
-        Index: 3
-        Rate: 1500
-      - Item: Low_Coin_Pocket
-        Index: 4
-        Rate: 2000
-      - Item: Low_Coin_Pocket
-        Index: 5
-        Rate: 2000
+      - Item: MVP_Option_Box_T1
+        Index: 0
+        Rate: 2500
       - Item: Giant_Octopus_Card
-        Index: 6
+        Index: 2
         Rate: 1
         StealProtected: true
   - Id: 2195
@@ -50459,8 +50452,8 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-#      - Item: Bs_Making_S
-#        Rate: 5000
+      - Item: MVP_Option_Box_T2
+        Rate: 5000
       - Item: Old_Card_Album
         Rate: 5000
       - Item: Treasure_Box
@@ -52535,8 +52528,8 @@ Body:
     MvpDrops:
       - Item: Magic_Card_Album
         Rate: 5000
-#      - Item: Bs_Making_S
-#        Rate: 5000
+      - Item: MVP_Option_Box_T2
+        Rate: 5000
       - Item: Old_Violet_Box
         Rate: 5000
     Drops:
@@ -52645,8 +52638,8 @@ Body:
     MvpDrops:
       - Item: Magic_Card_Album
         Rate: 5000
-#      - Item: Bs_Making_S
-#        Rate: 5000
+      - Item: MVP_Option_Box_T2
+        Rate: 5000
       - Item: Old_Violet_Box
         Rate: 5000
     Drops:
@@ -52755,8 +52748,8 @@ Body:
     MvpDrops:
       - Item: Magic_Card_Album
         Rate: 5000
-#      - Item: Bs_Making_S
-#        Rate: 5000
+      - Item: MVP_Option_Box_T2
+        Rate: 5000
       - Item: Old_Violet_Box
         Rate: 5000
     Drops:
@@ -52868,8 +52861,8 @@ Body:
         Rate: 5000
       - Item: Old_Violet_Box
         Rate: 5000
-#      - Item: Bs_Making_S
-#        Rate: 5000
+      - Item: MVP_Option_Box_T2
+        Rate: 5000
     Drops:
       - Item: High_Weapon_Box
         Rate: 100
@@ -56583,8 +56576,8 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-#      - Item: Bs_Making_S
-#        Rate: 5000
+      - Item: MVP_Option_Box_T2
+        Rate: 5000
       - Item: Seed_Of_Yggdrasil
         Rate: 3500
       - Item: Crystal_Jewel__
@@ -59001,7 +58994,7 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-      - Item: Old_Violet_Box
+      - Item: MVP_Option_Box_T2
         Rate: 5500
     Drops:
       - Item: Armlet_Of_Prisoner
@@ -59053,7 +59046,7 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-      - Item: Old_Violet_Box
+      - Item: MVP_Option_Box_T2
         Rate: 5500
     Drops:
       - Item: Armlet_Of_Prisoner
@@ -97581,7 +97574,7 @@ Body:
       IgnoreMisc: true
       Mvp: true
     MvpDrops:
-      - Item: Old_Violet_Box
+      - Item: MVP_Option_Box_T2
         Rate: 5000
       - Item: IllusionStone
         Rate: 500
@@ -97642,7 +97635,7 @@ Body:
     MvpDrops:
       - Item: Old_Violet_Box
         Rate: 5000
-      - Item: Yggdrasilberry
+      - Item: MVP_Option_Box_T2
         Rate: 2000
       - Item: IllusionStone
         Rate: 500
@@ -98445,7 +98438,7 @@ Body:
       - Item: IllusionStone
         Index: 0
         Rate: 3000
-      - Item: Yggdrasilberry
+      - Item: MVP_Option_Box_T2
         Index: 1
         Rate: 5000
       - Item: Yggdrasilberry
@@ -98895,8 +98888,6 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-      - Item: MVP_Option_Box_T1
-        Rate: 5000
       - Item: PoringTownOnion
         Rate: 1000
       - Item: PoringTownCarrot
@@ -106250,8 +106241,8 @@ Body:
     MvpDrops:
       - Item: Fruit_Basket
         Rate: 5000
-      - Item: Yggdrasilberry
-        Rate: 1000
+      - Item: MVP_Option_Box_T2
+        Rate: 5000
     Drops:
       - Item: Old_Violet_Box
         Rate: 2500

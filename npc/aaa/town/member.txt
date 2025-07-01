@@ -43,7 +43,7 @@ end;
 function	script	F_CalculateMember	{
 	
 	deletearray .dm_sum[0],getarraysize(.dm_sum);
-	set #Member,1;
+	set #Member,0;
 	query_sql "SELECT SUM(total_amount) FROM `web_payment` WHERE account_id = "+getarg(0),.dm_sum;
 	setarray .@memberlevel[0],100,300,500,1000,3000,5000,10000,20000,50000,100000,9999999;
 	if(.dm_sum) {

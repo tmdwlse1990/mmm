@@ -10897,8 +10897,8 @@
 	export_constant(ENCHANTGRADE_B);
 	export_constant(ENCHANTGRADE_A);
 	export_constant(ENCHANTGRADE_R);
-	export_constant(ENCHANTGRADE_S);
-	export_constant(ENCHANTGRADE_U);
+	export_constant(ENCHANTGRADE_Meow);
+	export_constant(ENCHANTGRADE_Shark);
 	export_constant(MAX_ENCHANTGRADE);
 
 	/* cash shop tabs */

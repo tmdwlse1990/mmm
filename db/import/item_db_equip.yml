@@ -320,6 +320,31 @@ Body:
     AegisName: GM_ERROR_EGG
     Name: GM ERROR Egg
     Type: PetEgg
+#  [Pet Drop or Event]
+  - Id: 9183
+    AegisName: CLB_SS_Egg01
+    Name: Fei-Chai Egg
+    Type: PetEgg
+  - Id: 9184
+    AegisName: CLB_SS_Egg02
+    Name: Tai-Zi Egg
+    Type: PetEgg
+#  [Lower]
+  - Id: 2120001
+    AegisName: Wrag_In_Mouth
+    Name: Wrag In Mouth
+    Type: Armor
+    Locations:
+      Head_Low: true
+    ArmorLevel: 1
+    EquipLevelMin: 1
+    Weight: 100
+    View: 1235
+    Script: |
+      bonus bAspd,2;
+      bonus bAtkRate,5;
+      bonus bMatkRate,5;
+      bonus bVariableCastrate,-10;
 #  [Armor]
   - Id: 2130001
     AegisName: Chicken_Armor

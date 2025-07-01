@@ -1819,7 +1819,9 @@ static int32 pet_ai_sub_hard(struct pet_data *pd, map_session_data *sd, t_tick t
 
 	if(!target && pd->loot && pd->loot->count < pd->loot->max && DIFF_TICK(tick,pd->ud.canact_tick) > 0) {
 		// Use half the pet's range of sight.
-		map_foreachinmap(pet_ai_sub_hard_lootsearch, pd->m, BL_ITEM, pd, &target);
+		//map_foreachinallrange(pet_ai_sub_hard_lootsearch, &pd->bl, pd->db->range2 /2, BL_ITEM, pd, &target);
+		map_foreachinallrange(pet_ai_sub_hard_lootsearch, pd, pd->db->range2, BL_ITEM, pd, &target);
+		//map_foreachinmap(pet_ai_sub_hard_lootsearch, pd->m, BL_ITEM, pd, &target);
 	}
 
 	if (!target) { // Just walk around.

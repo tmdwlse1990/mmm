@@ -18852,7 +18852,7 @@ Body:
   - Id: 1013
     Name: BS_GREED
     Description: Greed
-    MaxLevel: 1
+    MaxLevel: 5
     Type: Weapon
     TargetType: Self
     DamageFlags:
@@ -18863,7 +18863,17 @@ Body:
       AllowOnWarg: true
       AllowOnMado: true
     Hit: Single
-    SplashArea: 2
+    SplashArea:
+      - Level: 1
+        Area: 2
+      - Level: 2
+        Area: 3
+      - Level: 3
+        Area: 4
+      - Level: 4
+        Area: 5
+      - Level: 5
+        Area: 6
     Requires:
       SpCost: 10
   - Id: 1014

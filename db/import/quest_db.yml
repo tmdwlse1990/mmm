@@ -109,7 +109,7 @@ Body: #ให้ใช้ ID ไม่เกิน 1000
         Location: iz_dun05
     Drops:
       - Mob: POT_DOFLE
-        Item: Frozen_PeiceOfRock
+        Item: Frozen_PieceOfRock
         Count: 30
         Rate: 10000
   - Id: 104

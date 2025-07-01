@@ -145,12 +145,21 @@ OnInit:
 
 icecastle,201,171,4	script	พนักงานต้อนรับ	4_EP21_GALAXIA_B,{
 	cutin "ep21_galaxia01.png",2;
+	setarray .@rankname$[0],"F","E","D","C","B","A","S";
 	mes "สวัสดีนักพจญภัย ท่านต้องการบริการด้านใดค่ะ";
 	next;
 	switch(select("ตรวจสอบข้อมูลการอัพเกรด:ตรวจสอบค่าใช้จ่ายแต่ละระดับ:ติดต่อกิลมาสเตอร์:ไม่มีอะไรมาดูหน้าเฉยๆ") ) {
 		case 1:
 
 			mes "ปัจจุบันของท่านได้รับความสามารถตามนี้";
+			if(adv_clas) {
+				mes "Rank :"+.@rankname$[adv_clas]+" Bonus";
+				mes "ATK/MATK : "+(3 * adv_clas)+"%";
+				mes "HP/SP : "+(2 * adv_clas)+"%";
+				mes "Ignore Def/Mdef : "+(adv_clas)+"%";
+				mes "ได้รับ Skill Greed Lv: "+(adv_clas);
+			}
+			mes "--------------------------------";
 			for(.@i=0;.@i <= 1; .@i++)
 				mes ""+$class$[.@i]+" : "+getd($stats$[.@i])*10+" หน่วย.";
 			for(.@i=2;.@i <= 5; .@i++)
@@ -161,12 +170,12 @@ icecastle,201,171,4	script	พนักงานต้อนรับ	4_EP21_GALAXIA_B,{
 				mes ""+$class$[.@i]+" : "+getd($stats$[.@i])*25+" หน่วย.";
 			for(.@i=8;.@i <= 9; .@i++)
 				mes ""+$class$[.@i]+" : "+getd($stats$[.@i])+" หน่วย.";
+			mes "--------------------------------";
 			mes "ตามนี้";
 			setdialogsize(400,500);
 			next;
 		break;
 		case 2:
-			setarray .@rankname$[0],"F","E","D","C","B","A","S";
 			mes "ตามระดับของท่านปัจจุบันแล้ว";
 			mes "ปัจจุบันมีแต่การอัพระดับของคราส "+.@rankname$[adv_clas]+" ขึ้นเป็นคราส "+.@rankname$[adv_clas+1]+"";
 			switch(adv_clas) {
@@ -245,34 +254,44 @@ icas_in,108,60,4	script	Guild Master#prog	22180,{
 	mes "อยากทำสอบเลยไหมหละ ?";
 	next;
 	if(select("- พร้อมครับ:- ยังไม่พร้อมเลยครับ") == 2 ) { warp "Save",0,0; end; }
+
+	mes .@npcname$;
+	for(.@i = 0; .@i < getarraysize($stats$); .@i++) {
+		.@checkstats = (getd($stats$[.@i]) >= 10 * (.@checklvl+1) ? getd($stats$[.@i]) : getd($stats$[.@i]) % 10);
+		if(.@checkstats < 10 * (.@checklvl+1) ) {
+			@notenought++;	
+			do {
+				// สุ่มค่า RGB
+				set .@r, rand(0, 255);
+				set .@g, rand(0, 255);
+				set .@b, rand(0, 255);
+
+				// คำนวณ brightness แบบใกล้เคียง (ใช้ int ทั้งหมด)
+				set .@brightness, (.@r * 299 + .@g * 587 + .@b * 114) / 1000;
+			} while (.@brightness > 127); // เฉพาะโทนเข้ม (brightness <= 127)
+			// เรียกฟังก์ชันแปลงเป็น HEX สี HTML
+				set .@color$, RGBToHex(.@r, .@g, .@b);
+			mes "ดูเหมือนว่าค่าสถานะ ^"+ .@color$ + $class$[.@i]+"^000000 ยังไม่เก่งพอ^FF0000(ขาด "+((10 * (.@checklvl+1)) - getd($stats$[.@i]))+ " ขั้น)^000000";
+		}
+	}
+	if(@notenought) {setdialogsize(400,500); end;}
+	
 	switch (.@checklvl) {
 		case 0:
-			mes .@npcname$;
-			for(.@i = 0; .@i < getarraysize($stats$); .@i++) {
-				.@checkstats = (getd($stats$[.@i]) >= 10 ? getd($stats$[.@i]) : getd($stats$[.@i]) % 10);
-				if(.@checkstats < 10) {
-					@notenought++;	
-					do {
-						// สุ่มค่า RGB
-						set .@r, rand(0, 255);
-						set .@g, rand(0, 255);
-						set .@b, rand(0, 255);
-
-						// คำนวณ brightness แบบใกล้เคียง (ใช้ int ทั้งหมด)
-						set .@brightness, (.@r * 299 + .@g * 587 + .@b * 114) / 1000;
-					} while (.@brightness > 127); // เฉพาะโทนเข้ม (brightness <= 127)
-					// เรียกฟังก์ชันแปลงเป็น HEX สี HTML
-						set .@color$, RGBToHex(.@r, .@g, .@b);
-					mes "ดูเหมือนว่าค่าสถานะ ^"+ .@color$ + $class$[.@i]+"^000000 ยังไม่เก่งพอ^FF0000(ขาด "+(10 - getd($stats$[.@i]))+ " ขั้น)^000000";
-				}
-			}
-			if(@notenought) {setdialogsize(400,500); end;}
 			if(!isbegin_quest(81)) setquest 81;
 			mes "ไปที่ป่าโปริ่งสิ ไปนำสมบัติของ King มาให้ข้า";
 			mes "ถ้าทำได้หละนะ";
 			break;
 		case 1:
+			if(!isbegin_quest(82)) setquest 82;
+			mes "ไหนลองไปล่าเจ้าด้วง 2 เขามาให้ดูซัก 20 ตัวหน่อย";
+			mes "ถ้าทำได้หละนะ";
+			break;
 		case 2:
+			if(!isbegin_quest(83)) setquest 83;
+			mes "Rank นี้คนบาดเจ็บเยอะมากๆจากป่าพิษ ไปจัดการเจ้าตัวปล่อยพิษที";
+			mes "ถ้าทำได้หละนะ";
+			break;
 		case 3:
 		case 4:
 		case 5:

@@ -45,7 +45,7 @@ Body:
   - Id: 401
     Name: Game Master Castle
     Enter:
-      Map: Valkyrie
+      Map: valkyrie
       X: 48
       Y: 9
   - Id: 500

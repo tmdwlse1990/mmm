@@ -10,6 +10,7 @@ Ontouch:
 
 thana_boss,142,230,1	script(CLOAKED)	Gate Way#Tocreation	21636,{
 	progressbar "FF0000" , 10;
+	mes "ผู้สร้างกำลังทำงานอยู่ กรุณารอก่อน";
 	end;
 }
 

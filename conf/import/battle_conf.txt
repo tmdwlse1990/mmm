@@ -1,5 +1,5 @@
 // Max Cap Level
-config_maxlv: 70
+config_maxlv: 99
 
 //Max Cap Aspd
 aspd_unlock_cap: 197
@@ -19,8 +19,8 @@ config_global_mvp_drop: 0
 // %
 config_global_mvp_drop_rate: 10000
 
-//Boss use skill
-mob_mvp_skill_rate: 0
+//Boss use skill ( 0:On 1:Off)
+mob_mvp_skill_rate: 1
 
 //Value item for use val cap
 max_sell_item_cap: 0

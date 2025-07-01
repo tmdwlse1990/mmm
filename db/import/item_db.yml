@@ -235,6 +235,13 @@ Body:
       bonus bmaxsp,adv_sp*25;
       bonus bIgnoreDef,adv_igdef;
       bonus bIgnoreMDef,adv_igmdef;
+      bonus bAtkRate,3*adv_clas;
+      bonus bMAtkRate,3*adv_clas;
+      bonus bMaxHpRate,2*adv_clas;
+      bonus bMaxSpRate,2*adv_clas;
+      bonus2 bIgnoreDefClassRate,Class_All,adv_clas;
+      bonus2 bIgnoreMDefClassRate,Class_All,adv_clas;
+      if(adv_clas) skill "BS_GREED",adv_clas;
   - Id: 2000002
     AegisName: S_Alpha
     Name: S
@@ -597,6 +604,141 @@ Body:
     Weight: 200
     Script: |
       callfunc("F_MVPReward",1);
+  - Id: 2002002
+    AegisName: MVP_Option_Box_T2
+    Name: MVP Option Tier 2
+    Type: Usable
+    Flags:
+      BuyingStore: true
+    Trade:
+      NoDrop: true
+      NoSell: true
+    NoUse:
+      Sitting: true
+    Buy: 1000
+    Weight: 200
+    Script: |
+      callfunc("F_MVPReward",2);
+  - Id: 2002003
+    AegisName: MVP_Option_Box_T3
+    Name: MVP Option Tier 3
+    Type: Usable
+    Flags:
+      BuyingStore: true
+    Trade:
+      NoDrop: true
+      NoSell: true
+    NoUse:
+      Sitting: true
+    Buy: 1000
+    Weight: 200
+    Script: |
+      callfunc("F_MVPReward",3);
+  - Id: 2002004
+    AegisName: MVP_Option_Box_T4
+    Name: MVP Option Tier 4
+    Type: Usable
+    Flags:
+      BuyingStore: true
+    Trade:
+      NoDrop: true
+      NoSell: true
+    NoUse:
+      Sitting: true
+    Buy: 1000
+    Weight: 200
+    Script: |
+      callfunc("F_MVPReward",4);
+  - Id: 2002005
+    AegisName: MVP_Option_Box_T5
+    Name: MVP Option Tier 5
+    Type: Usable
+    Flags:
+      BuyingStore: true
+    Trade:
+      NoDrop: true
+      NoSell: true
+    NoUse:
+      Sitting: true
+    Buy: 1000
+    Weight: 200
+    Script: |
+      callfunc("F_MVPReward",5);
+  - Id: 2002006
+    AegisName: MVP_Option_Box_T6
+    Name: MVP Option Tier 6
+    Type: Usable
+    Flags:
+      BuyingStore: true
+    Trade:
+      NoDrop: true
+      NoSell: true
+    NoUse:
+      Sitting: true
+    Buy: 1000
+    Weight: 200
+    Script: |
+      callfunc("F_MVPReward",6);
+  - Id: 2002007
+    AegisName: MVP_Option_Box_T7
+    Name: MVP Option Tier 7
+    Type: Usable
+    Flags:
+      BuyingStore: true
+    Trade:
+      NoDrop: true
+      NoSell: true
+    NoUse:
+      Sitting: true
+    Buy: 1000
+    Weight: 200
+    Script: |
+      callfunc("F_MVPReward",7);
+  - Id: 2002008
+    AegisName: MVP_Option_Box_T8
+    Name: MVP Option Tier 8
+    Type: Usable
+    Flags:
+      BuyingStore: true
+    Trade:
+      NoDrop: true
+      NoSell: true
+    NoUse:
+      Sitting: true
+    Buy: 1000
+    Weight: 200
+    Script: |
+      callfunc("F_MVPReward",8);
+  - Id: 2002009
+    AegisName: MVP_Option_Box_T9
+    Name: MVP Option Tier 9
+    Type: Usable
+    Flags:
+      BuyingStore: true
+    Trade:
+      NoDrop: true
+      NoSell: true
+    NoUse:
+      Sitting: true
+    Buy: 1000
+    Weight: 200
+    Script: |
+      callfunc("F_MVPReward",9);
+  - Id: 2002010
+    AegisName: MVP_Option_Box_T10
+    Name: MVP Option Tier 10
+    Type: Usable
+    Flags:
+      BuyingStore: true
+    Trade:
+      NoDrop: true
+      NoSell: true
+    NoUse:
+      Sitting: true
+    Buy: 1000
+    Weight: 200
+    Script: |
+      callfunc("F_MVPReward",10);
 #   [Enchant Item]
   - Id: 2099001
     AegisName: All_STATS1_NT
@@ -856,6 +998,14 @@ Body:
     Script: |
       bonus bStr,2;
       bonus bBaseAtk,20;
+#   [Etc Item]
+  - Id: 2239001
+    AegisName: Fei-Chai_doll
+    Name: Fei-Chai Doll
+    Type: etc
+    Buy: 150000
+    Weight: 10
+
 # THQ Quest Items
 #=============================================================
 #  - Id: 1998

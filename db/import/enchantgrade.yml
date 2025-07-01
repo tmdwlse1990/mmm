@@ -355,7 +355,7 @@ Body:
                 Item: Crystal_Jewel 
                 Amount: 10 
                 Zeny: 1750000
-          - Grade: S
+          - Grade: Meow
             Chances:
               - Refine: 10
                 Chance: 500
@@ -836,7 +836,7 @@ Body:
                 Item: Crystal_Jewel 
                 Amount: 10 
                 Zeny: 1750000
-          - Grade: S
+          - Grade: Meow
             Chances:
               - Refine: 10
                 Chance: 1000
@@ -1153,7 +1153,7 @@ Body:
                 Item: Crystal_Jewel 
                 Amount: 10 
                 Zeny: 1750000
-          - Grade: S
+          - Grade: Meow
             Chances:
               - Refine: 10
                 Chance: 1000
@@ -1470,7 +1470,7 @@ Body:
                 Item: Crystal_Jewel 
                 Amount: 10 
                 Zeny: 1750000
-          - Grade: S
+          - Grade: Meow
             Chances:
               - Refine: 10
                 Chance: 500
@@ -1787,7 +1787,7 @@ Body:
                 Item: Crystal_Jewel 
                 Amount: 10 
                 Zeny: 1750000
-          - Grade: S
+          - Grade: Meow
             Chances:
               - Refine: 10
                 Chance: 500
