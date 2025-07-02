@@ -2598,13 +2598,13 @@ uint16 status_base_matk_min(struct block_list *bl, const struct status_data* sta
 		case BL_MOB:
 		case BL_MER:
 		case BL_ELEM:
-			return status->int_ + level + status->rhw.matk * 70 / 100;
+			return status->int_ + (level/2) + status->rhw.matk * 70 / 100;
 		case BL_HOM:
 			return status_get_homint(bl) + level + (status_get_homint(bl) + status_get_homdex(bl)) / 5;
 		case BL_PC:
 		default:
 			//return status->int_ + (status->int_ / 2) + (status->dex / 5) + (status->luk / 3) + (level / 4) + 5 * status->spl;
-			return status->int_ * 4 + status->luk;
+			return status->int_ * 10 + status->luk;
 	}
 }
 
@@ -2618,13 +2618,13 @@ uint16 status_base_matk_max(struct block_list *bl, const struct status_data* sta
 		case BL_MOB:
 		case BL_MER:
 		case BL_ELEM:
-			return status->int_ + level + status->rhw.matk * 130 / 100;
+			return status->int_ + (level/2) + status->rhw.matk * 130 / 100;
 		case BL_HOM:
 			return status_get_homint(bl) + level + (status_get_homluk(bl) + status_get_homint(bl) + status_get_homdex(bl)) / 3;
 		case BL_PC:
 		default:
 			//return status->int_ + (status->int_ / 2) + (status->dex / 5) + (status->luk / 3) + (level / 4) + 5 * status->spl;
-			return status->int_ * 4 + status->luk;
+			return status->int_ * 12 + status->luk;
 	}
 }
 #endif
@@ -2688,7 +2688,7 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int32 l
 			stat = (int32)(status->vit + ((float)level / 10) + ((float)status->vit / 5));
 		else {
 			stat = status->def2;
-			stat += (int32)(((float)level + status->vit * 5) / 2 + (bl->type == BL_PC ?  (status->vit * 5) : 0)) + (bl->type == BL_MOB ? (status->vit * 3) + (level) : 0 ); //base level + (every 2 vit = +1 def) + (every 5 agi = +1 def)
+			stat += (int32)(((float)level + status->vit * 5) / 2 + (bl->type == BL_PC ?  (status->vit * 5) : 0)) + (bl->type == BL_MOB ? (status->vit * 3) : 0 ); //base level + (every 2 vit = +1 def) + (every 5 agi = +1 def)
 		}
 		status->def2 = cap_value(stat, 0, SHRT_MAX);
 		// Mdef2
@@ -2696,7 +2696,7 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int32 l
 			stat = (int32)(((float)level / 10) + ((float)status->int_ / 5));
 		else {
 			stat = status->mdef2;
-			stat += (int32)(bl->type == BL_PC ? ((status->int_ * 10) + ((float)level / 4) + ((float)(status->dex + status->vit) / 5)) : ((float)(status->int_ + level) / 4)) + (bl->type == BL_MOB ? (status->int_ * 3) + (level * 4) : 0 ) ; //(every 4 base level = +1 mdef) + (every 1 int32 = +1 mdef) + (every 5 dex = +1 mdef) + (every 5 vit = +1 mdef)
+			stat += (int32)(bl->type == BL_PC ? ((status->int_ * 10) + ((float)level / 4) + ((float)(status->dex + status->vit) / 5)) : ((float)(status->int_ + level) / 4)) + (bl->type == BL_MOB ? (status->int_ * 2) : 0 ) ; //(every 4 base level = +1 mdef) + (every 1 int32 = +1 mdef) + (every 5 dex = +1 mdef) + (every 5 vit = +1 mdef)
 		}
 		status->mdef2 = cap_value(stat, 0, SHRT_MAX);
 		// PAtk
@@ -2735,11 +2735,11 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int32 l
 		status->dex += level / 5;
 		
 		//status->rhw.atk += status->rhw.atk * (100 + level / 100);
-		status->rhw.atk = status->rhw.atk + (status->rhw.atk * level / 100);
+		status->rhw.atk = status->rhw.atk + (status->rhw.atk * (level/2) / 100);
 		//status->rhw.atk2 += status->rhw.atk2 * (100 + level / 100);
-		status->rhw.atk2 = status->rhw.atk2 + (status->rhw.atk2 * level / 100);
-		status->def += level;
-		status->mdef += level;
+		status->rhw.atk2 = status->rhw.atk2 + (status->rhw.atk2 * (level/3) / 100);
+		status->def += level / 2;
+		status->mdef += level / 4;
 	}
 	// ATK
 	if (bl->type != BL_PC) {
@@ -7951,6 +7951,10 @@ static defType status_calc_def(struct block_list *bl, status_change *sc, int32 d
 #ifdef RENEWAL
 	if (sc->getSCE(SC_ASSUMPTIO))
 		def += sc->getSCE(SC_ASSUMPTIO)->val1 * 50;
+	if (sc->getSCE(SC_CP_ARMOR))
+		def += 100;
+	if (sc->getSCE(SC_CP_HELM))
+		def += 100;
 #endif
 	if (bl->type == BL_HOM && sc->getSCE(SC_DEFENCE))
 		def += sc->getSCE(SC_DEFENCE)->val2;
@@ -8142,6 +8146,10 @@ static defType status_calc_mdef(struct block_list *bl, status_change *sc, int32 
 		mdef += sc->getSCE(SC_STONE_WALL)->val3;
 	if (sc->getSCE(SC_CLIMAX_CRYIMP))
 		mdef += 100;
+	if (sc->getSCE(SC_CP_ARMOR))
+		mdef += 50;
+	if (sc->getSCE(SC_CP_HELM))
+		mdef += 50;
 
 	return (defType)cap_value(mdef,DEFTYPE_MIN,DEFTYPE_MAX);
 }

@@ -61,9 +61,9 @@ THREETOP:
 	mes "จะออฟเจ้านี่หรอ ^i["+.@equip_id+"](^0000FF" + getitemname(.@equip_id) + "^000000)";
 	mes "อยากจะออฟช่องไหน ?";
 	if (.@part == EQI_COSTUME_HEAD_TOP)
-		.@slot = select( "Upper", "Middle", "Lower", "Cancel" ) - 1;	// the slot enchanted changes according to the location
+		.@slot = select( "Upper", "", "", "Cancel" ) - 1;	// the slot enchanted changes according to the location
 	else if (.@part == EQI_COSTUME_HEAD_MID)
-		.@slot = select( "", "Middle", "Lower", "Cancel" ) - 1;
+		.@slot = select( "", "Middle", "", "Cancel" ) - 1;
 	else if (.@part == EQI_COSTUME_HEAD_LOW)
 		.@slot = select( "", "", "Lower", "Cancel" ) - 1;
 

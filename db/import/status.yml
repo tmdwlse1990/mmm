@@ -46,6 +46,14 @@ Header:
   Version: 4
 
 Body:
+  - Status: Cp_Armor
+    CalcFlags:
+      Def: true
+      Mdef: true
+  - Status: Cp_Helm
+    CalcFlags:
+      Def: true
+      Mdef: true
   - Status: C_Buff_3
     Icon: EFST_C_BUFF_3
     Flags:

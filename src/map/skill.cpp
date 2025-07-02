@@ -20423,6 +20423,11 @@ struct s_skill_condition skill_get_requirement(map_session_data* sd, uint16 skil
 			if (sc != nullptr && sc->hasSCE(SC_RESEARCHREPORT) && req.amount[0] > 0)
 				req.amount[0]--;
 			break;
+		case AM_ACIDTERROR:
+		case AM_DEMONSTRATION:
+			if (sc != nullptr && sc->hasSCE(SC_CP_WEAPON) && req.amount[0] > 0)
+				req.amount[0]--;
+			break;
 	}
 
 	//Check if player is using the copied skill [Cydh]

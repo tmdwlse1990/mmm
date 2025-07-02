@@ -4393,6 +4393,7 @@ static void battle_calc_skill_base_damage(struct Damage* wd, struct block_list *
 			}
 #endif
 			break;
+		case CR_SHIELDCHARGE:
 		case CR_SHIELDBOOMERANG:
 		case PA_SHIELDCHAIN:
 			wd->damage = sstatus->batk;
@@ -5003,14 +5004,18 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 			skillratio += 30 * skill_lv;
 			break;
 		case CR_SHIELDCHARGE:
-			skillratio += 20 * skill_lv;
+			skillratio += 120 * skill_lv;
+			if (sc->getSCE(SC_CP_SHIELD))
+				skillratio += skillratio * 50 / 100;
 			break;
 		case CR_SHIELDBOOMERANG:
 #ifdef RENEWAL
-			skillratio += -100 + skill_lv * 80;
+			skillratio += -100 + skill_lv * 160;
 #else
 			skillratio += 30 * skill_lv;
 #endif
+			if (sc->getSCE(SC_CP_SHIELD))
+				skillratio += skillratio * 50 / 100;
 			break;
 		case NPC_DARKCROSS:
 		case CR_HOLYCROSS:
@@ -5022,11 +5027,11 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 				skillratio += 70 * skill_lv;
 			break;
 		case AM_DEMONSTRATION:
-			skillratio += 40 * skill_lv;
+			skillratio += 400;
 			break;
 		case AM_ACIDTERROR:
 #ifdef RENEWAL
-			skillratio += -100 + 200 * skill_lv;
+			skillratio += -100 + 175 * skill_lv;
 			if (sd && pc_checkskill(sd, AM_LEARNINGPOTION))
 				skillratio += 20 * pc_checkskill(sd, AM_LEARNINGPOTION); // !TODO: What's this bonus increase?
 #else
@@ -9662,7 +9667,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 			if (mdef < 0)
 				mdef = 0; // Negative eMDEF is treated as 0 on official
 
-			ad.damage = ad.damage * (1000 + mdef) / (1000 + mdef * 10) - mdef2;
+			ad.damage = ad.damage * (2000 + mdef) / (2000 + mdef * 10) - mdef2;
 #else
 			// On pre-renewal, Mdef reduction is rounded down before being subtracted from Mdef
 			if (i > 0)

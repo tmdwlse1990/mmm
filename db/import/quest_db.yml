@@ -78,6 +78,9 @@ Body: #ให้ใช้ ID ไม่เกิน 1000
   - Id: 10
     Title: The God of Creation
     TimeLimit: 7d 4h
+  - Id: 11
+    Title: Chaos Dungeon
+    TimeLimit: 3h
   - Id: 81
     Title: Rank E Condition
     Targets: 
@@ -88,6 +91,16 @@ Body: #ให้ใช้ ID ไม่เกิน 1000
         Item: Poring_Loofah
         Count: 1
         Rate: 10000
+  - Id: 82
+    Title: Rank D Condition
+    Targets: 
+      - Mob: MD_OCTOPUS_LEG
+        Count: 200
+  - Id: 83
+    Title: Rank C Condition
+    Targets: 
+      - Mob: FACEWORM_QUEEN
+        Count: 1
 # // Main Quest ให้ใช้ตั้งแต่ 100 ขึ้นไป จะได้จัดระเบียบถูก มีดรอปของพิเศษเฉพาะตอนมีเควสด้วย ดูด้านบนเอา
   - Id: 101
     Title: Golden Savage

@@ -132,7 +132,7 @@ icecastle,209,170,4	script	อัพเกรดบัตรนักผจญภัย	4_EP21_HEINE_TAB,{
 	sc_start SC_BLESSING, 600000, 10;
 
 	if(getequipid(EQI_SHADOW_ACC_L) > 0) unequip EQI_SHADOW_ACC_L;
-
+	equip 2000001;
 	end;
 
 OnInit:
@@ -284,7 +284,7 @@ icas_in,108,60,4	script	Guild Master#prog	22180,{
 			break;
 		case 1:
 			if(!isbegin_quest(82)) setquest 82;
-			mes "ไหนลองไปล่าเจ้าด้วง 2 เขามาให้ดูซัก 20 ตัวหน่อย";
+			mes "ไหนลองไปล่าเจ้าหนวดหมึกย่างนั่นมาซัก 200 ตัวหน่อย";
 			mes "ถ้าทำได้หละนะ";
 			break;
 		case 2:
