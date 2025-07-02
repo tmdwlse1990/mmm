@@ -5354,11 +5354,11 @@ void pc_bonus2(map_session_data *sd,int32 type,int32 type2,int32 val)
 		pc_bonus_itembonus( sd->itemgroupsphealrate, type2, val, false );
 		break;
 	case SP_SKILLRATE:
-		PC_SKILLRATE_CHECK(type2, val);
+		//PC_SKILLRATE_CHECK(type2, val);
 		sd->indexed_bonus.skill_rate[type2] += val;
 		break;
 	case SP_SKILLRATE_DEF:
-		PC_SKILLRATE_CHECK(type2, val);
+		//PC_SKILLRATE_CHECK(type2, val);
 		sd->indexed_bonus.skill_rate_def[type2] += val;
 		break;
 	default:
@@ -5826,7 +5826,7 @@ int32 pc_insert_card(map_session_data* sd, int32 idx_card, int32 idx_equip)
 		return 0;
 	}
 
-	int32 i;
+	int32 i = 0;
 	t_itemid nameid;
 	struct item_data* item_eq = sd->inventory_data[idx_equip];
 	struct item_data* item_card = sd->inventory_data[idx_card];

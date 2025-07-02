@@ -26741,7 +26741,7 @@ static bool skill_parse_ai_sphere_skills(char* fields[], size_t columns, size_t 
 	return true;
 }
 
-int get_bonus_skillrate(struct block_list *src, uint16 skill_id)
+int32 get_bonus_skillrate(struct block_list *src, uint16 skill_id)
 {
 	if (src == nullptr)
 		return 0;
@@ -26769,7 +26769,7 @@ int get_bonus_skillrate(struct block_list *src, uint16 skill_id)
 	return rate;
 }
 
-int get_bonus_skillratedef(struct block_list *target, uint16 skill_id)
+int32 get_bonus_skillratedef(struct block_list *target, uint16 skill_id)
 {
 	if (target == nullptr)
 		return 0;
