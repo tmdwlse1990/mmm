@@ -118,7 +118,7 @@ Body: #ให้ใช้ ID ไม่เกิน 1000
     Title: Monster Clues
     Targets: 
       - Mob: POT_DOFLE
-        Count: 1
+        Count: 30
         Location: iz_dun05
     Drops:
       - Mob: POT_DOFLE

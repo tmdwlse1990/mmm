@@ -24,7 +24,7 @@ icecastle,200,158,4	script	Wise Old Woman#eAcustom	78,{
 	mes "[ยายแก่]";
 	mes "อยากปลดปล่อยไอเท็มอะสิ";
 	next;
-	switch(select("สนใจ.:ราคาเท่าไหร่:ไม่เป็นไร.")) {
+	switch(select("ถอดการ์ด.:ลบการ์ดและออฟ:ไม่เป็นไร.")) {
 	case 1:
 		mes "[ยายแก่]";
 		mes "เลือกมาสิส่วนไหน";
@@ -112,11 +112,76 @@ icecastle,200,158,4	script	Wise Old Woman#eAcustom	78,{
 		}
 	case 2:
 		mes "[ยายแก่]";
-		mes "ต้องการเงิน "+ callfunc("F_InsertComma",(.zenycost+(.@cardcount * .percardcost))) + " zeny";
-		mes "บวกเงินตามจำนวนการ์ดด้วย";
+		mes "เลือกมาสิส่วนไหน";
+		next;
+
+		setarray .@indices[1], EQI_HEAD_TOP, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R, EQI_HEAD_MID, EQI_HEAD_LOW;
+		for( set .@i,1; .@i <= 10; set .@i,.@i+1 ) {
+			if( getequipisequiped(.@indices[.@i]) )
+				set .@menu$, .@menu$ + F_getpositionname(.@indices[.@i]) + "-[" + getequipname(.@indices[.@i]) + "]";
+			set .@menu$, .@menu$ + ":";
+		}
+		set .@part, .@indices[ select(.@menu$) ];
+		if(!getequipisequiped(.@part)) {
+			mes "[ยายแก่]";
+			mes "เจ้าหนู ใส่ของก่อน";
+			close;
+		}
+		for(.@i=0; .@i <4; .@i++) {
+			if(getequipcardid(.@part,.@i) != 0) .@slothave++;
+		}
+		if(!.@slothave) {
+			mes "[ยายแก่]";
+			mes "เจ้าหนู ของแกมันไม่มีอะไรให้ลบนี่";
+			close;
+		}
+		//set .@cardcount,getequipcardcnt(.@part);
+		set .@cardcount,.@slothave;
+		if (!checkweight(1202,(.@cardcount+1))) { 
+			mes "ยัยหนูของเยอะไป เก็บของเข้าคลังซะหน่อยนะ";
+			close;
+		}
+		
+		// คิดค่าทั้งหมดก่อนทำของใหม่
+		.@id = getequipid(.@part);
+		.@refine = getequiprefinerycnt(.@part);
+		.@grade = getenchantgrade(.@part);
+		for(.@i=0; .@i <= 3; .@i++) {
+			.@opid[.@i] = getequiprandomoption(.@part,.@i,ROA_ID);
+			.@opval[.@i] = getequiprandomoption(.@part,.@i,ROA_VALUE);
+			.@opparam[.@i] = getequiprandomoption(.@part,.@i,ROA_PARAM);
+		}
+		.@calzen = .zenycost / 4;
+		mes "[ยายแก่]";
+		mes "มีการ์ดอยู่ " + .@cardcount + " ใบในไอเท็มสินะ ";
+		mes "ต้องการเงิน "+ callfunc("F_InsertComma",.@calzen) + " zeny";
 		mes "ต้องการน้ำยา ^i[6635] ด้วยอันนึง.";
-		mes "โชคดีนะหลายเอ้ย";
-		close;
+		mes "โอกาสแค่ 30% นะหลาน";
+		next;
+		if(select("เอาเลย.:ไม่เอาดีกว่า.") == 2) {
+			mes "[ยายแก่]";
+			mes "จ้าๆ";
+			close;
+		}
+		if(zeny < .@calzen ) {
+			mes "[ยายแก่]";
+			mes "ดูจนๆนะ หาเงินเพิ่มไหมหลาน";
+			close;
+		}
+		mes "[ยายแก่]";
+		mes "เริ่มกันเหอะ";
+		set Zeny, Zeny - .@calzen;
+		// Replace the constants in the next 3 lines with failure chance values defined in refine_db.txt
+		// First value = Total failure chance (item and cards destroyed)
+		// Second value = Partial failure chance (one or the other is destroyed, player decides which one is safe)
+		// Third value = Harmless failure chance (all that's lost is your investment)
+		next;
+		mes "[ยายแก่]";
+		//successremovecards .@part;
+		delequip .@part;
+		getitem4 .@id,1,1,.@refine,0,0,0,0,0,.@grade,.@opid,.@opval,.@opparam;
+			mes "เสร็จแล้ว";
+			close;
 	case 3:
 		close;
 	}
