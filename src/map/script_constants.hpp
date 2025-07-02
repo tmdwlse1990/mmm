@@ -845,16 +845,19 @@
 	export_constant2("bAddItemSPHealRate", SP_ADD_ITEM_SPHEAL_RATE);
 	export_constant2("bAddItemGroupSPHealRate", SP_ADD_ITEMGROUP_SPHEAL_RATE);
 	export_constant2("bWeaponSubSize", SP_WEAPON_SUBSIZE);
-	export_constant2("bNoFatalDamage", SP_NO_FATAL);
-	export_constant2("bSkillUpgrade1", SP_UPSKILL1);
-	export_constant2("bSkillUpgrade2", SP_UPSKILL2);
 	
 	// [Custom Bonus]
 	
+	export_constant2("bNoFatalDamage", SP_NO_FATAL);
+	export_constant2("bSkillUpgrade1", SP_UPSKILL1);
+	export_constant2("bSkillUpgrade2", SP_UPSKILL2);
 	export_constant2("bIgnoreDef",SP_IGNORE_DEF_POINTS);
 	export_constant2("bIgnoreMDef",SP_IGNORE_MDEF_POINTS);
 	export_constant2("bAspdCap",SP_ASPD_CAP);
 	export_constant2("bDropUp",SP_DROP_UP);
+	export_constant2("bSkillRate", SP_SKILLRATE);
+	export_constant2("bSkillRateDef", SP_SKILLRATE_DEF);
+
 	/* equip indices */
 	export_constant(EQI_COMPOUND_ON);
 	export_constant(EQI_HEAD_TOP);
@@ -11008,6 +11011,11 @@
 	export_constant(GUILDINFO_NEXTEXP);
 	export_constant(GUILDINFO_MASTERID);
 	export_constant(GUILDINFO_MASTERNAME);
+	
+	export_constant(SKILLRATE_TYPE_WEAPON);
+	export_constant(SKILLRATE_TYPE_MAGIC);
+	export_constant(SKILLRATE_TYPE_MISC);
+	export_constant(SKILLRATE_TYPE_ALL);
 
 	#undef export_constant
 	#undef export_constant2

@@ -725,6 +725,8 @@ public:
 		int32 magic_subdefele[ELE_MAX];
 		int32 ignore_res_by_race[RC_MAX];
 		int32 ignore_mres_by_race[RC_MAX];
+		int skill_rate[SKILLRATE_TYPE_ALL];
+		int skill_rate_def[SKILLRATE_TYPE_ALL];
 	} indexed_bonus;
 	// zeroed arrays end here.
 

@@ -3319,6 +3319,8 @@ int32 pc_disguise(map_session_data *sd, int32 class_)
 /// Check for valid SC, break & show error message if invalid SC
 #define PC_BONUS_CHK_SC(sc,bonus) { if ((sc) <= SC_NONE || (sc) >= SC_MAX) { PC_BONUS_SHOW_ERROR((bonus),Effect,(sc)); }}
 
+#define PC_SKILLRATE_CHECK(type,val) { ShowError("%s: %s: Invalid %d.\n",__FUNCTION__,#type,(val)); break; }
+
 /**
  * Add auto spell bonus for player while attacking/attacked
  * @param spell: Spell array
@@ -5350,6 +5352,14 @@ void pc_bonus2(map_session_data *sd,int32 type,int32 type2,int32 val)
 		}
 
 		pc_bonus_itembonus( sd->itemgroupsphealrate, type2, val, false );
+		break;
+	case SP_SKILLRATE:
+		PC_SKILLRATE_CHECK(type2, val);
+		sd->indexed_bonus.skill_rate[type2] += val;
+		break;
+	case SP_SKILLRATE_DEF:
+		PC_SKILLRATE_CHECK(type2, val);
+		sd->indexed_bonus.skill_rate_def[type2] += val;
 		break;
 	default:
 		if (current_equip_combo_pos > 0) {

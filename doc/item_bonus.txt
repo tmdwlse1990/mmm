@@ -77,6 +77,20 @@ This list contains all available constants referenced in the 'bonus' commands.
 	Weapon type (w): see 'doc/item_db.txt' -> SubType
 
 
+V1.0
+ - แก้ไขและเพิ่ม โบนัส
+ -- End of Logs --
+
+bonus2 bSkillRate,<type>,<val>; เพิ่มความแรงของสกิล ตามประเภท
+bonus2 bSkillRateDef,<type>,<val>; เพิ่มพลังป้องกันของสกิล ตามประเภท
+
+-- Type --
+	SKILLRATE_TYPE_WEAPON	= กายภาพ
+	SKILLRATE_TYPE_MAGIC	= เวทย์
+	SKILLRATE_TYPE_MISC		= อื่นๆ Misc
+	SKILLRATE_TYPE_ALL		= All
+	
+	
 Bonuses
 -------
 The format of bonuses listed in this file is as follows:

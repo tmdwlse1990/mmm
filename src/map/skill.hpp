@@ -2915,4 +2915,14 @@ struct s_ai_sphere_skill {
 
 extern std::map<uint16, std::shared_ptr<s_ai_sphere_skill>> skill_ai_sphere;
 
+enum e_skillrate_type : uint8 {
+	SKILLRATE_TYPE_WEAPON = 0,
+	SKILLRATE_TYPE_MAGIC  = 1,
+	SKILLRATE_TYPE_MISC   = 2,
+	SKILLRATE_TYPE_ALL    = 3
+};
+
+int get_bonus_skillrate(struct block_list *src, uint16 skill_id);
+int get_bonus_skillratedef(struct block_list *target, uint16 skill_id);
+
 #endif /* SKILL_HPP */

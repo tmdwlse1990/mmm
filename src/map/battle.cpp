@@ -2958,7 +2958,7 @@ static int32 battle_skill_damage(struct block_list *src, struct block_list *targ
 	if (!target || !skill_id)
 		return 0;
 	skill_id = skill_dummy2skill_id(skill_id);
-	return battle_skill_damage_skill(src, target, skill_id) + battle_skill_damage_map(src, target, skill_id);
+	return battle_skill_damage_skill(src, target, skill_id) + battle_skill_damage_map(src, target, skill_id) + get_bonus_skillrate(src, skill_id)  - get_bonus_skillratedef(target,skill_id);
 }
 
 /**

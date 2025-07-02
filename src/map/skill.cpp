@@ -26741,6 +26741,61 @@ static bool skill_parse_ai_sphere_skills(char* fields[], size_t columns, size_t 
 	return true;
 }
 
+int get_bonus_skillrate(struct block_list *src, uint16 skill_id)
+{
+	if (src == nullptr)
+		return 0;
+	
+	map_session_data *sd = BL_CAST(BL_PC, src);
+	
+	if (sd == nullptr)
+		return 0;
+
+	int16 rate = 0;
+
+	switch (skill_get_type(skill_id))
+	{
+		case BF_WEAPON:
+			rate = sd->indexed_bonus.skill_rate[SKILLRATE_TYPE_WEAPON] + sd->indexed_bonus.skill_rate[SKILLRATE_TYPE_ALL];
+			break;
+		case BF_MAGIC:
+			rate = sd->indexed_bonus.skill_rate[SKILLRATE_TYPE_MAGIC] + sd->indexed_bonus.skill_rate[SKILLRATE_TYPE_ALL];
+			break;
+		case BF_MISC:
+			rate = sd->indexed_bonus.skill_rate[SKILLRATE_TYPE_MISC] + sd->indexed_bonus.skill_rate[SKILLRATE_TYPE_ALL];
+			break;
+	}
+
+	return rate;
+}
+
+int get_bonus_skillratedef(struct block_list *target, uint16 skill_id)
+{
+	if (target == nullptr)
+		return 0;
+	
+	map_session_data *tsd = BL_CAST(BL_PC, target);
+	
+	if (tsd == nullptr)
+		return 0;
+
+	int16 rate = 0;
+
+	switch (skill_get_type(skill_id))
+	{
+		case BF_WEAPON:
+			rate = tsd->indexed_bonus.skill_rate_def[SKILLRATE_TYPE_WEAPON] + tsd->indexed_bonus.skill_rate_def[SKILLRATE_TYPE_ALL];
+			break;
+		case BF_MAGIC:
+			rate = tsd->indexed_bonus.skill_rate_def[SKILLRATE_TYPE_MAGIC] + tsd->indexed_bonus.skill_rate_def[SKILLRATE_TYPE_ALL];
+			break;
+		case BF_MISC:
+			rate = tsd->indexed_bonus.skill_rate_def[SKILLRATE_TYPE_MISC] + tsd->indexed_bonus.skill_rate_def[SKILLRATE_TYPE_ALL];
+			break;
+	}
+
+	return rate;
+}
 /** Reads skill database files */
 static void skill_readdb(void) {
 	int32 i;
