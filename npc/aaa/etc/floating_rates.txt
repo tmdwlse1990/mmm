@@ -18,14 +18,40 @@
 -	script	FloatingRates	-1,{
 OnInit:
 //add any other HOURS
-OnHour00:
-OnHour06:
+//OnHour00:
+//OnHour06:
+if(gettime(DT_DAYOFWEEK) == 6|| !gettime(DT_DAYOFWEEK)) {
+	set $@brate,150;
+	set $@jrate,150;
+	set $@drate,150;
+	donpcevent strnpcinfo(0)+"::DoNewRate";
+}
+	end;
 OnHour12:
-OnHour18:
+//OnHour18:
 //-------------------
-	set $@brate,rand(100,150);
-	set $@jrate,rand(100,150);
-	set $@drate,rand(100,150);
+	//set $@brate,rand(100,150);
+	//set $@jrate,rand(100,150);
+	//set $@drate,rand(100,150);
+	
+if(gettime(DT_DAYOFWEEK) == FRIDAY) {
+	
+	set $@brate,150;
+	set $@jrate,150;
+	set $@drate,150;
+	
+	donpcevent strnpcinfo(0)+"::DoNewRate";
+}
+else if(gettime(DT_DAYOFWEEK) == MONDAY) {
+	
+	set $@brate,100;
+	set $@jrate,100;
+	set $@drate,100;
+	
+	donpcevent strnpcinfo(0)+"::DoNewRate";
+}
+end;
+DoNewRate:
 	//Base exp
 	setbattleflag("base_exp_rate",$@brate);
 	//Job exp
@@ -37,6 +63,6 @@ OnHour18:
 	setbattleflag("item_rate_equip",$@drate,true); // Apply new rates to configs set above
 	//we don't change card drops rate, because these values won't change them anyway
 	
-	announce "Current rates are: 1."+($@brate-100)+"x 1."+($@jrate-100)+"x 1."+($@drate-100)+"x",bc_all,0xFF6060;
+	announce "Weekend Heppytime: Exp +"+($@brate-100)+"% And Drop"+($@drate-100)+"x",bc_all,0xFF6060;
 	end;
 }
