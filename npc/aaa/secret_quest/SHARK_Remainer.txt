@@ -9,20 +9,91 @@ Ontouch:
 }
 
 thana_boss,142,230,1	script(CLOAKED)	Gate Way#Tocreation	21636,{
+	if(#SHARK_COMBINE) {
+		mes "ไม่รู้สึกถึงอะไรภายในนี้แล้ว";
+		end;
+	}
 	progressbar "FF0000" , 10;
-	mes "ผู้สร้างกำลังทำงานอยู่ กรุณารอก่อน";
+	mes "รู้สึกได้ถึงพลังแปลกๆไหลผ่านตัวไป";
+	next;
+	set .@party_id,getcharid(1);
+	getpartymember .@party_id, 1;
+	set .@online_members_count, $@partymembercount;	
+	set .@md_name$,"Game Master Castle";
+	if (is_party_leader() == false) {
+		mes "คงจะมีแค่หัวหน้าปาตี้ ที่จะเข้าไปได้สินะ";
+		end;
+	}
+	switch(checkquest(10,PLAYTIME)) {
+		case -1:
+		case 2:
+			mes "ท่านมองเห็นประตูมิติกำลังส่องแสงสว่างขึ่น.";
+			sleep2 3000;
+			// Check Number Party
+			if (!instance_check_party(getcharid(1), 1)) {
+				mes "โอ้ยย.";
+				sleep2 2000;
+				message strcharinfo(0),"เหมือนข้าจะต้องไปคนเดียว.";
+				close;				
+			}			
+			if (instance_create(.@md_name$) < 0) {
+				mes "Party Name: "+ getpartyname(.@party_id);
+				mes "Party Leader: "+strcharinfo(0);
+				mes "^0000ff"+.@md_name$+" ^000000 - Reservation Failed.";
+				mes "เหมือน Admin ไม่อยากเจอเราเท่าไหร่ ไปทำอะไรไว้กันนะ..";
+				close;
+			}
+			message strcharinfo(0),"ประตูเหมือนกำลังเรียกพวกเรา";
+			sleep2 3000;
+			message strcharinfo(0),"เราควรจะ เข้าไปรึเปล่านะ";
+			if(select("เดินเข้าไปยังประตูมิติ","ไม่ดีกว่าน่ากลัวจะกลับบ้าน") == 2 ) { instance_destroy; warp "Save",0,0; end;}
+			announce "??????: ท้าทายผู้สร้าง ไม่ได้ง่ายขนาดนั้น เจ้า"+strcharinfo(0)+"~!", bc_all,0xFFFF00,FW_NORMAL,14;
+			message strcharinfo(0),"System: ตัวท่านกำลังถูกดูดเข้าไปในประมิติจนตัวท่านดูเป็นสปาเก็ตตี้";
+			sleep2 4000;
+			switch(instance_enter(.@md_name$)) {
+			case IE_OTHER:
+				mes "Error แบบงงๆ";
+				close;
+			case IE_NOINSTANCE:
+				mes "กรุณาเปิดดันก่อน";
+				close;
+			case IE_NOMEMBER:
+				mes "ให้เฉพาะสมาชิกในปาตี้เท่านั้น";
+				close;
+			case IE_OK:
+				//if (!isbegin_quest(10)) setquest 10;
+				break;
+			}
+			end;
+		case 1:
+		case 0:
+			mes "ผู้สร้างกำลังทำงานอยู่ กรุณารอก่อน";
+			end;
+			
+	}
+	end;
+}
+
+valkyrie,0,0,0	script(CLOAKED)	#game_master_controller	-1,{
+	OninstanceInit:
+		'mapname$ = instance_mapname("valkyrie");
+		
+	enablenpc instance_npcname("Game Master#Male");
+	enablenpc instance_npcname("#summon_gm");
+	
+	disablenpc instance_npcname("#backtoworld");
 	end;
 }
 
 
-valkyrie,49,48,5	script	Game Master#Male	4_M_OPERATION,5,5,{
+valkyrie,49,48,5	script(DISABLED)	Game Master#Male	4_M_OPERATION,5,5,{
 	end;
 
 Ontouch:
-	cloakoffnpcself("Game Master#Male(Talk)");
-	donpcevent "Game Master#Male(Talk)" + "::OnEnable";
-	enablenpc ("#trap_1_door");
-	enablenpc ("#trap_2_door");
+	cloakoffnpcself(instance_npcname("Game Master#Male(Talk)"));
+	donpcevent instance_npcname("Game Master#Male(Talk)") + "::OnEnable";
+	enablenpc instance_npcname("#trap_1_door");
+	enablenpc instance_npcname("#trap_2_door");
 	disablenpc;
 	end;
 }
@@ -33,7 +104,6 @@ valkyrie,49,48,5	script(CLOAKED)	Game Master#Male(Talk)	4_M_OPERATION,{
 	
 OnEnable:
 	initnpctimer;
-	announce "??????: ท้าทายผู้สร้าง ไม่ได้ง่ายขนาดนั้น~!", bc_all,0xFFFF00,FW_NORMAL,18;
 	end;
 OnTimer2000:
 	npctalk "Shalarm: กำลังง่วงๆอยู่พอดี";
@@ -104,49 +174,78 @@ OnTimer20000:
 	end;
 OnTimer20100:
 	stopnpctimer;
-	donpcevent "#summon_gm"+"::OnVersus";
+	donpcevent instance_npcname("#summon_gm") + "::OnVersus";
 	cloakonnpc;
 	end;
 }
 
-valkyrie,0,0,0	script	#summon_gm	-1,{
+valkyrie,0,0,0	script(CLOAKED)	#summon_gm	-1,{
 	OnVersus:
-		.@label$ = "#summon_gm"+"::OnGMAgree";
-		monster "valkyrie",49,48,"Shalarm of Despair",2000,1,10,.@label$;
+		.@label$ = instance_npcname("#summon_gm") + "::OnGMAgree";
+		monster 'mapname$,49,48,"Shalarm of Despair",2000,1,2,.@label$;
+		'boss_id = $@mobid[0];
+		
+		donpcevent instance_npcname("#game_master_condition") + "::OnStart";
+		
 		for(.@i=1; .@i <= 4; .@i++)
-			donpcevent "#trap_s_"+.@i+"_gm"+"::OnStart";
+			donpcevent instance_npcname("#trap_s_"+.@i+"_gm")+"::OnStart";
 		for(.@i=1; .@i <= 2; .@i++)
-			donpcevent "#trap_"+.@i+"_gm"+"::OnStart";
+			donpcevent instance_npcname("#trap_"+.@i+"_gm")+"::OnStart";
 		end;
 	OnGMAgree:
 		announce "??????", bc_all,0xFFFF00,FW_NORMAL,18;
 		for(.@i=1; .@i <= 4; .@i++)
-			donpcevent "#trap_s_"+.@i+"_gm"+"::OnStop";
+			donpcevent instance_npcname("#trap_s_"+.@i+"_gm")+"::OnStop";
 		for(.@i=1; .@i <= 2; .@i++)
-			donpcevent "#trap_"+.@i+"_gm"+"::OnStop";
+			donpcevent instance_npcname("#trap_"+.@i+"_gm")+"::OnStop";
 		initnpctimer;
 		end;
 OnTimer5000:
-	announce "??????: ถึงขนาดชนะร่างแยกข้าได้ ไม่เลวเลย~!", bc_all,0xFFFF00,FW_NORMAL,18;
+	mapannounce 'mapname$,"??????: ถึงขนาดเล่นกับร่างแยกข้าได้ ไม่เลวเลย~!", bc_all,0xFFFF00,FW_NORMAL,18;
 	end;
 	
 OnTimer9000:
-	announce "??????: ไว้คราวหน้า ข้าจะไปเล่นด้วยก็แล้วกันนะ~!", bc_all,0xFFFF00,FW_NORMAL,18;
+	mapannounce 'mapname$,"??????: ไว้คราวหน้า ข้าจะไปเล่นด้วยจริงๆก็แล้วกันนะ~!", bc_all,0xFFFF00,FW_NORMAL,18;
 	end;
 	
 OnTimer15000:
-	announce "??????: ตอนนี้ไปพักผ่อนโลกของเจ้าก่อน ทางออกด้านหน้า~!", bc_all,0xFFFF00,FW_NORMAL,18;
-	enablenpc "#backtoworld";
+	mapannounce 'mapname$,"??????: ตอนนี้ไปพักผ่อนโลกของเจ้าก่อน ทางออกด้านหน้า~!", bc_all,0xFFFF00,FW_NORMAL,18;
+	enablenpc instance_npcname("#Combine");
+	enablenpc instance_npcname("#backtoworld");
 	end;
 	
 }
 
+valkyrie,0,0,0	script(DISABLED)	#game_master_condition	-1,{
+	
+OnStart:
+	initnpctimer;
+	end;
+OnTimer9000:
+	getunitdata 'boss_id, .@data;
+	'Boss_MaxHP = .@data[UMOB_MAXHP];
+	'Boss_HP = .@data[UMOB_HP];
+	if( 'Boss_HP <= (9*'Boss_MaxHP)/10 ) {
+		stopnpctimer;
+		killmonster 'mapname$,instance_npcname("#summon_gm") + "::OnGMAgree";
+		donpcevent instance_npcname("#summon_gm") + "::OnGMAgree";
+		end;
+	}
+	initnpctimer;
+	end;
+}
+
+
+valkyrie,40,66,5	script(DISABLED)	#Combine	4_M_OPERATION,{
+	callshop "Shark_Combination",1;
+	end;
+}
+
 valkyrie,48,66,0	script	#backtoworld	WARPNPC,2,2,{
+	#SHARK_COMBINE++;
 	warp "Save",0,0;
 	end;
-Oninit:
-	disablenpc;
-	end;
+
 }
 
 valkyrie,47,28,8	script(DISABLED)	#trap_1_door	20TH_GATE_PURPLE_S,1,1,{
@@ -165,7 +264,7 @@ valkyrie,50,28,8	duplicate(#trap_1_door)	#trap_2_door	20TH_GATE_PURPLE_S,1,1
 valkyrie,45,30,8	script(DISABLED)	#trap_1_gm	20TH_GATE_PURPLE_S,1,1,{
 	
 	//unitwalk getnpcid(0),45, 61;
-	donpcevent  strnpcinfo(0) + "::OnMove1";
+	donpcevent  instance_npcname( strnpcinfo(0) ) + "::OnMove1";
 	end;
 	
 OnStart:
@@ -176,17 +275,17 @@ OnStart:
 	.@num = atoi( .@string$ );
 	unitstopwalk getnpcid(0),USW_FORCE_STOP;
 	npcspeed 150;
-	donpcevent  strnpcinfo(0) + "::OnMove1";
+	donpcevent  instance_npcname( strnpcinfo(0) ) + "::OnMove1";
 	end;
 	
 OnMove1:
 	getmapxy(.@map$, .@x, .@y, BL_NPC);
-	unitwalk getnpcid(0), .@x, 61, strnpcinfo(0) + "::OnMove2";
+	unitwalk getnpcid(0), .@x, 61, instance_npcname( strnpcinfo(0) ) + "::OnMove2";
 	end;
 	
 OnMove2:
 	getmapxy(.@map$, .@x, .@y, BL_NPC);
-	unitwalk getnpcid(0), .@x, 31, strnpcinfo(0) + "::OnMove1";
+	unitwalk getnpcid(0), .@x, 31, instance_npcname( strnpcinfo(0) ) + "::OnMove1";
 	end;
 	
 OnStop:
@@ -210,24 +309,24 @@ OnTouch:
 valkyrie,52,61,8	script(DISABLED)	#trap_2_gm	20TH_GATE_PURPLE_S,1,1,{
 	
 	//unitwalk getnpcid(0),45, 61;
-	donpcevent  strnpcinfo(0) + "::OnMove1";
+	donpcevent  instance_npcname( strnpcinfo(0) ) + "::OnMove1";
 	end;
 	
 OnStart:
 	enablenpc();
 	unitstopwalk getnpcid(0),USW_FORCE_STOP;
 	npcspeed 150;
-	donpcevent  strnpcinfo(0) + "::OnMove1";
+	donpcevent  instance_npcname( strnpcinfo(0) ) + "::OnMove1";
 	end;
 	
 OnMove1:
 	getmapxy(.@map$, .@x, .@y, BL_NPC);
-	unitwalk getnpcid(0), .@x, 31, strnpcinfo(0) + "::OnMove2";
+	unitwalk getnpcid(0), .@x, 31, instance_npcname( strnpcinfo(0) ) + "::OnMove2";
 	end;
 	
 OnMove2:
 	getmapxy(.@map$, .@x, .@y, BL_NPC);
-	unitwalk getnpcid(0), .@x, 61, strnpcinfo(0) + "::OnMove1";
+	unitwalk getnpcid(0), .@x, 61, instance_npcname( strnpcinfo(0) ) + "::OnMove1";
 	end;
 	
 OnStop:
@@ -251,7 +350,7 @@ OnTouch:
 valkyrie,42,35,8	script(DISABLED)	#trap_s_1_gm	20TH_GATE_GREEN_S,1,1,{
 	
 	//unitwalk getnpcid(0),45, 61;
-	donpcevent  strnpcinfo(0) + "::OnStart";
+	donpcevent  instance_npcname( strnpcinfo(0) ) + "::OnStart";
 	end;
 	
 OnStart:
@@ -263,35 +362,35 @@ OnStart:
 	.@num = atoi( .@string$ );
 	
 	getmapxy( .@map$, .@x, .@y, BL_NPC );
-	.x_trap[.@npc_id] = .@x;
-	.y_trap[.@npc_id] = .@y;
-	.speed_min[.@npc_id] = 120;
-	.speed_max[.@npc_id] = 160;
+	'x_trap[.@npc_id] = .@x;
+	'y_trap[.@npc_id] = .@y;
+	'speed_min[.@npc_id] = 120;
+	'speed_max[.@npc_id] = 160;
 	switch( .@num ) {
 	case 1:
 	case 3:
-		.sign_x[.@npc_id] = -1;
+		'sign_x[.@npc_id] = -1;
 		break;
 	case 2:
 	case 4:
-		.sign_x[.@npc_id] = 1;
+		'sign_x[.@npc_id] = 1;
 		break;
 	}
 	unitstopwalk getnpcid(0),USW_FORCE_STOP;
-	donpcevent  strnpcinfo(0) + "::OnMove";
+	donpcevent  instance_npcname( strnpcinfo(0) ) + "::OnMove";
 	end;
 	
 OnMove:
 	.@npc_id = getnpcid(0);
-	npcspeed rand(.speed_min[.@npc_id], .speed_max[.@npc_id]);
+	npcspeed rand('speed_min[.@npc_id], 'speed_max[.@npc_id]);
 	
-	if (.sign_x[.@npc_id] != 0) {
-		if (.x_trap[.@npc_id] == 42 || .x_trap[.@npc_id] == 55)
-			.sign_x[.@npc_id] *= -1;
-		.x_trap[.@npc_id] += .sign_x[.@npc_id];
+	if ('sign_x[.@npc_id] != 0) {
+		if ('x_trap[.@npc_id] == 42 || 'x_trap[.@npc_id] == 55)
+			'sign_x[.@npc_id] *= -1;
+		'x_trap[.@npc_id] += 'sign_x[.@npc_id];
 	}
 	
-	unitwalk .@npc_id, .x_trap[.@npc_id],.y_trap[.@npc_id],strnpcinfo(0) + "::OnMove";
+	unitwalk .@npc_id, 'x_trap[.@npc_id],'y_trap[.@npc_id],instance_npcname( strnpcinfo(0) ) + "::OnMove";
 	end;
 	
 OnStop:

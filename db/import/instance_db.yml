@@ -42,6 +42,13 @@ Header:
   Version: 2
 
 Body:
+  - Id: 400
+    Name: Chaos Dungeon
+    TimeLimit: 600
+    Enter:
+      Map: 1@def01
+      X: 50
+      Y: 50
   - Id: 401
     Name: Game Master Castle
     Enter:

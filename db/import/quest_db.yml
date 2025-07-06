@@ -77,10 +77,10 @@ Body: #ให้ใช้ ID ไม่เกิน 1000
     Title: Preparing to Creation World
   - Id: 10
     Title: The God of Creation
-    TimeLimit: 7d 4h
+    TimeLimit: Monday 4h
   - Id: 11
     Title: Chaos Dungeon
-    TimeLimit: 3h
+    TimeLimit: 1h
   - Id: 81
     Title: Rank E Condition
     Targets: 
