@@ -132,271 +132,271 @@ Body:
           - Enchant: Chaos_Speed_Gamma_Level_1
             Upgrade: Chaos_Speed_Gamma_Level_2
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 2
         
           - Enchant: Chaos_Speed_Gamma_Level_2
             Upgrade: Chaos_Speed_Gamma_Level_3
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 6
         
           - Enchant: Chaos_Speed_Gamma_Level_3
             Upgrade: Chaos_Speed_Gamma_Level_4
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 18
         
           - Enchant: Chaos_Speed_Gamma_Level_4
             Upgrade: Chaos_Speed_Gamma_Level_5
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 54
         
           - Enchant: Chaos_Speed_Gamma_Level_5
             Upgrade: Chaos_Speed_Gamma_Level_6
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 162
         
           - Enchant: Chaos_Speed_Gamma_Level_6
             Upgrade: Chaos_Speed_Gamma_Level_7
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 486
         
           - Enchant: Chaos_Speed_Gamma_Level_7
             Upgrade: Chaos_Speed_Gamma_Level_8
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 1458
         
           - Enchant: Chaos_Speed_Gamma_Level_8
             Upgrade: Chaos_Speed_Gamma_Level_9
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 4374
         
           - Enchant: Chaos_Speed_Gamma_Level_9
             Upgrade: Chaos_Speed_Gamma_Level_10
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 13122
         
           - Enchant: Chaos_Def1_Gamma_Level_1
             Upgrade: Chaos_Def1_Gamma_Level_2
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 2
         
           - Enchant: Chaos_Def1_Gamma_Level_2
             Upgrade: Chaos_Def1_Gamma_Level_3
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 6
         
           - Enchant: Chaos_Def1_Gamma_Level_3
             Upgrade: Chaos_Def1_Gamma_Level_4
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 18
         
           - Enchant: Chaos_Def1_Gamma_Level_4
             Upgrade: Chaos_Def1_Gamma_Level_5
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 54
         
           - Enchant: Chaos_Def1_Gamma_Level_5
             Upgrade: Chaos_Def1_Gamma_Level_6
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 162
         
           - Enchant: Chaos_Def1_Gamma_Level_6
             Upgrade: Chaos_Def1_Gamma_Level_7
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 486
         
           - Enchant: Chaos_Def1_Gamma_Level_7
             Upgrade: Chaos_Def1_Gamma_Level_8
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 1458
         
           - Enchant: Chaos_Def1_Gamma_Level_8
             Upgrade: Chaos_Def1_Gamma_Level_9
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 4374
         
           - Enchant: Chaos_Def1_Gamma_Level_9
             Upgrade: Chaos_Def1_Gamma_Level_10
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 13122
         
           - Enchant: Chaos_MDef1_Gamma_Level_1
             Upgrade: Chaos_MDef1_Gamma_Level_2
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 2
         
           - Enchant: Chaos_MDef1_Gamma_Level_2
             Upgrade: Chaos_MDef1_Gamma_Level_3
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 6
         
           - Enchant: Chaos_MDef1_Gamma_Level_3
             Upgrade: Chaos_MDef1_Gamma_Level_4
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 18
         
           - Enchant: Chaos_MDef1_Gamma_Level_4
             Upgrade: Chaos_MDef1_Gamma_Level_5
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 54
         
           - Enchant: Chaos_MDef1_Gamma_Level_5
             Upgrade: Chaos_MDef1_Gamma_Level_6
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 162
         
           - Enchant: Chaos_MDef1_Gamma_Level_6
             Upgrade: Chaos_MDef1_Gamma_Level_7
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 486
         
           - Enchant: Chaos_MDef1_Gamma_Level_7
             Upgrade: Chaos_MDef1_Gamma_Level_8
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 1458
         
           - Enchant: Chaos_MDef1_Gamma_Level_8
             Upgrade: Chaos_MDef1_Gamma_Level_9
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 4374
         
           - Enchant: Chaos_MDef1_Gamma_Level_9
             Upgrade: Chaos_MDef1_Gamma_Level_10
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 13122
         
           - Enchant: Chaos_Def21_Gamma_Level_1
             Upgrade: Chaos_Def21_Gamma_Level_2
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 2
         
           - Enchant: Chaos_Def21_Gamma_Level_2
             Upgrade: Chaos_Def21_Gamma_Level_3
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 6
         
           - Enchant: Chaos_Def21_Gamma_Level_3
             Upgrade: Chaos_Def21_Gamma_Level_4
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 18
         
           - Enchant: Chaos_Def21_Gamma_Level_4
             Upgrade: Chaos_Def21_Gamma_Level_5
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 54
         
           - Enchant: Chaos_Def21_Gamma_Level_5
             Upgrade: Chaos_Def21_Gamma_Level_6
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 162
         
           - Enchant: Chaos_Def21_Gamma_Level_6
             Upgrade: Chaos_Def21_Gamma_Level_7
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 486
         
           - Enchant: Chaos_Def21_Gamma_Level_7
             Upgrade: Chaos_Def21_Gamma_Level_8
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 1458
         
           - Enchant: Chaos_Def21_Gamma_Level_8
             Upgrade: Chaos_Def21_Gamma_Level_9
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 4374
         
           - Enchant: Chaos_Def21_Gamma_Level_9
             Upgrade: Chaos_Def21_Gamma_Level_10
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 13122
                 
           - Enchant: Chaos_MDef21_Gamma_Level_1
             Upgrade: Chaos_MDef21_Gamma_Level_2
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 2
         
           - Enchant: Chaos_MDef21_Gamma_Level_2
             Upgrade: Chaos_MDef21_Gamma_Level_3
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 6
         
           - Enchant: Chaos_MDef21_Gamma_Level_3
             Upgrade: Chaos_MDef21_Gamma_Level_4
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 18
         
           - Enchant: Chaos_MDef21_Gamma_Level_4
             Upgrade: Chaos_MDef21_Gamma_Level_5
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 54
         
           - Enchant: Chaos_MDef21_Gamma_Level_5
             Upgrade: Chaos_MDef21_Gamma_Level_6
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 162
         
           - Enchant: Chaos_MDef21_Gamma_Level_6
             Upgrade: Chaos_MDef21_Gamma_Level_7
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 486
         
           - Enchant: Chaos_MDef21_Gamma_Level_7
             Upgrade: Chaos_MDef21_Gamma_Level_8
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 1458
         
           - Enchant: Chaos_MDef21_Gamma_Level_8
             Upgrade: Chaos_MDef21_Gamma_Level_9
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 4374
         
           - Enchant: Chaos_MDef21_Gamma_Level_9
             Upgrade: Chaos_MDef21_Gamma_Level_10
             Materials:
-              - Material: Chaos_stone_3
+              - Material: Chaos_stone_4
                 Amount: 13122
         RandomUpgrades:
           - Enchant: Chaos_Speed_Gamma_Level_1

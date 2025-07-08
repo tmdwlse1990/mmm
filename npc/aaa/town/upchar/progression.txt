@@ -225,7 +225,7 @@ Oninit:
 }
 
 //	มอนสเตอร์ อัพ Rank
-pay_fild04,201,178	boss_monster	King Poring	3810,1,10800000,600000,0		// E Rank
+pay_fild04,201,178	boss_monster	King Poring	3810,1,10800000,600000		// E Rank
 // =================
 
 icas_in,108,60,4	script	Guild Master#prog	22180,{
