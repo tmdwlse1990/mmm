@@ -1,0 +1,573 @@
+###########################################################################
+# Whispering Rain
+###########################################################################
+#
+###########################################################################
+
+Header:
+  Type: CHANGE_MATERIAL_DB
+  Version: 1
+
+Body:
+  - Id: 1
+    Result: Acorn # ผลลัพธ์ // หากเปิดใช้สุ่มของจากกลุ่ม # จะเป็นไอเท็มไว้โชว์
+    Amount: 4 # จำนวนที่จะได้รับ
+#    ItemGroup: IG_ACCESORY # ชื่อกลุ่ม // หากกำหนด จะได้ของจากกลุ่มแทน "Result"
+    Rate: 10000
+    Materials:
+      - Item: Snail's_Shell
+        Amount: 10
+      - Item: Cactus_Needle
+        Amount: 10
+  - Id: 2
+    Result: Apro_Hair
+    Amount: 1
+    Rate: 10000
+    Materials:
+      - Item: Baphomet_Doll
+        Amount: 50
+      - Item: Aromatic_Flower
+        Amount: 50
+      - Item: Soft_Feather
+        Amount: 40
+      - Item: Konts_Letter
+        Amount: 30
+  - Id: 3
+    Result: Alchol
+    Amount: 3
+    Rate: 10000
+    Materials:
+      - Item: Skel_Bone
+        Amount: 10
+      - Item: IL_Twins_Acid
+        Amount: 10
+  - Id: 4
+    Result: Tooth_Of_Ancient_Fish
+    Amount: 7
+    Rate: 10000
+    Materials:
+      - Item: Bill_Of_Birds
+        Amount: 10
+      - Item: Transparent_Cloth
+        Amount: 20
+  - Id: 5
+    Result: Jaws_Of_Ant
+    Amount: 5
+    Rate: 10000
+    Materials:
+      - Item: Spore_Doll
+        Amount: 10
+      - Item: Peaked_Hat
+        Amount: 10
+  - Id: 6
+    Result: Jaws_Of_Ant
+    Amount: 5
+    Rate: 10000
+    Materials:
+      - Item: Spore_Doll
+        Amount: 10
+      - Item: Peaked_Hat
+        Amount: 10
+  - Id: 7
+    Result: Long_Hair
+    Amount: 4
+    Rate: 10000
+    Materials:
+      - Item: Pencil_Case
+        Amount: 20
+      - Item: Raccoondog_Doll
+        Amount: 10
+  - Id: 8
+    Result: Cobold_Hair
+    Amount: 7
+    Rate: 10000
+    Materials:
+      - Item: Wedding_Bouquet
+        Amount: 5
+      - Item: Jellopy
+        Amount: 20
+  - Id: 9
+    Result: Short_Leg
+    Amount: 6
+    Rate: 10000
+    Materials:
+      - Item: Scell
+        Amount: 40
+      - Item: Bear's_Foot
+        Amount: 25
+  - Id: 10
+    Result: Coal
+    Amount: 1
+    Rate: 10000
+    Materials:
+      - Item: Guard
+        Amount: 1
+  - Id: 11
+    Result: Spiderweb
+    Amount: 8
+    Rate: 10000
+    Materials:
+      - Item: Fin
+        Amount: 25
+      - Item: Slender_Snake
+        Amount: 2
+  - Id: 12
+    Result: Oilpalm_Coconut
+    Amount: 1
+    Rate: 10000
+    Materials:
+      - Item: Yggdrasilberry
+        Amount: 30
+      - Item: Whittling
+        Amount: 150
+      - Item: Coal
+        Amount: 50
+      - Item: Blaze_Stone
+        Amount: 150
+      - Item: Scale_Of_Red_Dragon
+        Amount: 40
+  - Id: 13
+    Result: Conch
+    Amount: 1
+    Rate: 10000
+    Materials:
+      - Item: Immortal_Heart
+        Amount: 5
+      - Item: Gill
+        Amount: 5
+  - Id: 14
+    Result: Counteragent
+    Amount: 3
+    Rate: 10000
+    Materials:
+      - Item: Evil_Horn
+        Amount: 10
+      - Item: Mementos
+        Amount: 10
+  - Id: 15
+    Result: Crap_Shell
+    Amount: 8
+    Rate: 10000
+    Materials:
+      - Item: Horseshoe
+        Amount: 6
+      - Item: Fish_Tail
+        Amount: 35
+  - Id: 16
+    Result: Crystal_Blue
+    Amount: 1
+    Rate: 10000
+    Materials:
+      - Item: Claw_Of_Wolves
+        Amount: 30
+  - Id: 17
+    Result: Sacred_Masque
+    Amount: 1
+    Rate: 10000
+    Materials:
+      - Item: Grasshopper's_Leg
+        Amount: 4
+      - Item: Yoyo_Tail
+        Amount: 4
+  - Id: 18
+    Result: Detonator
+    Amount: 3
+    Rate: 10000
+    Materials:
+      - Item: Feather_Of_Birds
+        Amount: 9
+      - Item: Nose_Ring
+        Amount: 9
+  - Id: 19
+    Result: Detrimindexta
+    Amount: 5
+    Rate: 10000
+    Materials:
+      - Item: Chrysalis
+        Amount: 15
+      - Item: Flesh_Of_Clam
+        Amount: 1
+  - Id: 20
+    Result: Dokkaebi_Horn
+    Amount: 2
+    Rate: 10000
+    Materials:
+      - Item: Shining_Scales
+        Amount: 5
+      - Item: Lip_Of_Ancient_Fish
+        Amount: 101
+  - Id: 21
+    Result: Dragon_Canine
+    Amount: 10
+    Rate: 10000
+    Materials:
+      - Item: Sticky_Webfoot
+        Amount: 25
+  - Id: 22
+    Result: Dragon_Train
+    Amount: 1
+    Rate: 10000
+    Materials:
+      - Item: Tooth_Of_Bat
+        Amount: 3
+      - Item: Sharpened_Cuspid
+        Amount: 3
+  - Id: 23
+    Result: Elder_Branch
+    Amount: 1
+    Rate: 10000
+    Materials:
+      - Item: Clover
+        Amount: 15
+      - Item: Shoot
+        Amount: 5
+  - Id: 24
+    Result: Elder_Pixie's_Beard
+    Amount: 10
+    Rate: 10000
+    Materials:
+      - Item: Chrysalis
+        Amount: 50
+      - Item: Bee_Sting
+        Amount: 50
+  - Id: 25
+    Result: Transparent_Cloth
+    Amount: 5
+    Rate: 10000
+    Materials:
+      - Item: Soft_Silk_Cloth
+        Amount: 2
+  - Id: 26
+    Result: Lizard_Scruff
+    Amount: 3
+    Rate: 10000
+    Materials:
+      - Item: Spawn
+        Amount: 5
+      - Item: Scale_Of_Snakes
+        Amount: 20
+  - Id: 27
+    Result: Gold
+    Amount: 1
+    Rate: 10000
+    Materials:
+      - Item: Purified_Bradium
+        Amount: 50
+      - Item: Shining_Crystal
+        Amount: 50
+  - Id: 28
+    Result: Yellow_Live
+    Amount: 1
+    Rate: 10000
+    Materials:
+      - Item: Crystal_Of_Soul_01
+        Amount: 8
+  - Id: 29
+    Result: Grit
+    Amount: 2
+    Rate: 10000
+    Materials:
+      - Item: Crystal_Mirror
+        Amount: 2
+      - Item: Limb_Of_Mantis
+        Amount: 10
+  - Id: 30
+    Result: Sacred_Marks
+    Amount: 4
+    Rate: 10000
+    Materials:
+      - Item: Scorpion's_Tail
+        Amount: 30
+      - Item: Pumpkin_Head
+        Amount: 40
+  - Id: 31
+    Result: Voucher_Of_Orcish_Hero
+    Amount: 3
+    Rate: 7000
+    Materials:
+      - Item: Frozen_Rose
+        Amount: 50
+      - Item: Nail_Of_Mole
+        Amount: 50
+  - Id: 32
+    Result: Hinalle
+    Amount: 3
+    Rate: 10000
+    Materials:
+      - Item: Bunch_Of_Flowers
+        Amount: 5
+      - Item: Moustache_Of_Mole
+        Amount: 10
+  - Id: 33
+    Result: Horrendous_Mouth
+    Amount: 9
+    Rate: 10000
+    Materials:
+      - Item: Stem
+        Amount: 15
+      - Item: Dragon_Scale
+        Amount: 15
+  - Id: 34
+    Result: Lantern
+    Amount: 3
+    Rate: 10000
+    Materials:
+      - Item: Solid_Shell
+        Amount: 40
+      - Item: Blossom_Of_Maneater
+        Amount: 40
+  - Id: 35
+    Result: Light_Granule
+    Amount: 1
+    Rate: 10000
+    Materials:
+      - Item: Yellow_Live
+        Amount: 5
+      - Item: Golden_Hair
+        Amount: 5
+  - Id: 36
+    Result: Petite_DiablOfs_Horn
+    Amount: 1
+    Rate: 10000
+    Materials:
+      - Item: Horn
+        Amount: 15
+      - Item: Stone_Heart
+        Amount: 20
+  - Id: 37
+    Result: Mandragora_Flowerpot
+    Amount: 1
+    Rate: 8000
+    Materials:
+      - Item: Shoot
+        Amount: 5
+      - Item: Yellow_Live
+        Amount: 5
+  - Id: 38
+    Result: Root_Of_Maneater
+    Amount: 5
+    Rate: 10000
+    Materials:
+      - Item: Blossom_Of_Maneater
+        Amount: 20
+      - Item: Tooth_Of_
+        Amount: 40
+  - Id: 39
+    Result: Mixture
+    Amount: 5
+    Rate: 10000
+    Materials:
+      - Item: Powder_Of_Butterfly
+        Amount: 20
+      - Item: Posionous_Canine
+        Amount: 10
+  - Id: 40
+    Result: Bs_Making_S
+    Amount: 1
+    Rate: 8000
+    Materials:
+      - Item: Baphomet_Doll
+        Amount: 4
+      - Item: Rojerta_Piece
+        Amount: 4
+      - Item: Valhalla_Flower
+        Amount: 4
+  - Id: 41
+    Result: Frozen_Heart
+    Amount: 6
+    Rate: 10000
+    Materials:
+      - Item: Raccoondog_Doll
+        Amount: 10
+      - Item: Moth_Dust
+        Amount: 35
+  - Id: 42
+    Result: Fox_Tail
+    Amount: 2
+    Rate: 8000
+    Materials:
+      - Item: Rouge
+        Amount: 6
+      - Item: Animal's_Skin
+        Amount: 25
+  - Id: 43
+    Result: Nipper
+    Amount: 8
+    Rate: 10000
+    Materials:
+      - Item: Sticky_Webfoot
+        Amount: 20
+      - Item: Grasshopper's_Leg
+        Amount: 30
+  - Id: 44
+    Result: Nail_Of_Orc
+    Amount: 1
+    Rate: 10000
+    Materials:
+      - Item: Garlet
+        Amount: 4
+      - Item: Raccoon_Leaf
+        Amount: 4
+  - Id: 45
+    Result: Colorful_Shell
+    Amount: 10
+    Rate: 10000
+    Materials:
+      - Item: Chrysalis
+        Amount: 40
+      - Item: Horn
+        Amount: 40
+  - Id: 46
+    Result: Rat_Tail
+    Amount: 8
+    Rate: 10000
+    Materials:
+      - Item: Mushroom_Spore
+        Amount: 18
+      - Item: Golden_Hair
+        Amount: 10
+  - Id: 47
+    Result: Boody_Red
+    Amount: 1
+    Rate: 10000
+    Materials:
+      - Item: Fin
+        Amount: 8
+  - Id: 48
+    Result: Reins
+    Amount: 2
+    Rate: 10000
+    Materials:
+      - Item: Stuffed_Doll
+        Amount: 10
+      - Item: Chonchon_Doll
+        Amount: 3
+  - Id: 49
+    Result: Tweezer
+    Amount: 2
+    Rate: 10000
+    Materials:
+      - Item: Worm_Peelings
+        Amount: 25
+  - Id: 50
+    Result: Sharp_Scale
+    Amount: 3
+    Rate: 10000
+    Materials:
+      - Item: Horseshoe
+        Amount: 2
+      - Item: Clam_Shell
+        Amount: 10
+  - Id: 51
+    Result: Skirt_Of_Virgin
+    Amount: 6
+    Rate: 10000
+    Materials:
+      - Item: Raccoon_Leaf
+        Amount: 40
+      - Item: Head_Of_Medusa
+        Amount: 40
+  - Id: 52
+    Result: Soft_Feather
+    Amount: 1
+    Rate: 10000
+    Materials:
+      - Item: Feather_Of_Birds
+        Amount: 4
+      - Item: Feather
+        Amount: 4
+  - Id: 53
+    Result: Soft_Silk_Cloth
+    Amount: 2
+    Rate: 10000
+    Materials:
+      - Item: Feather_Of_Birds
+        Amount: 10
+      - Item: Transparent_Cloth
+        Amount: 15
+  - Id: 54
+    Result: Chinese_Ink
+    Amount: 4
+    Rate: 10000
+    Materials:
+      - Item: Black_Ladle
+        Amount: 11
+      - Item: Bear's_Foot
+        Amount: 11
+  - Id: 55
+    Result: Steel
+    Amount: 10
+    Rate: 10000
+    Materials:
+      - Item: Tsurugi
+        Amount: 1
+  - Id: 56
+    Result: Rotten_Scale
+    Amount: 7
+    Rate: 10000
+    Materials:
+      - Item: Shell
+        Amount: 30
+      - Item: Thin_N'_Long_Tongue
+        Amount: 20
+  - Id: 57
+    Result: Tendon
+    Amount: 3
+    Rate: 10000
+    Materials:
+      - Item: Orcish_Cuspid
+        Amount: 20
+      - Item: Feather
+        Amount: 30
+  - Id: 58
+    Result: Tentacle
+    Amount: 5
+    Rate: 10000
+    Materials:
+      - Item: Decayed_Nail
+        Amount: 10
+      - Item: Wild_Boar's_Mane
+        Amount: 10
+  - Id: 59
+    Result: Tiger_Footskin
+    Amount: 2
+    Rate: 10000
+    Materials:
+      - Item: Pointed_Scale
+        Amount: 30
+      - Item: Sharpened_Cuspid
+        Amount: 30
+  - Id: 60
+    Result: Wooden_Block
+    Amount: 2
+    Rate: 10000
+    Materials:
+      - Item: Rotten_Bandage
+        Amount: 15
+      - Item: Single_Cell
+        Amount: 15
+  - Id: 61
+    Result: Turtle_Shell
+    Amount: 4
+    Rate: 10000
+    Materials:
+      - Item: Poring_Doll
+        Amount: 40
+      - Item: Fluff
+        Amount: 30
+  - Id: 62
+    Result: Wind_Of_Verdure
+    Amount: 1
+    Rate: 10000
+    Materials:
+      - Item: Ice_Piece
+        Amount: 10
+  - Id: 63
+    Result: Starsand_Of_Witch
+    Amount: 2
+    Rate: 10000
+    Materials:
+      - Item: Blue_Porcelain
+        Amount: 1
+      - Item: Insect_Feeler
+        Amount: 15

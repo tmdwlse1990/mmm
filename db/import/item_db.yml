@@ -491,7 +491,6 @@ Body:
     Script: |
       getitem 20019511,1;
       getitem 2001005,1;
-      getitem 2001102,1;
       getitem 2001101,1;
   - Id: 2001101
     AegisName: Yee_Bubble_Gum
