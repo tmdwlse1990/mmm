@@ -2,7 +2,7 @@
 // by pajodex
 // Video preview : https://www.youtube.com/watch?v=RoLhYx-Iny8
 
-icecastle,140,240,0	script(CLOCKED)	Set Parameters#0	844,{
+icecastle,140,240,0	script	Set Parameters#0	844,{
 function get_size_name;
 function get_race_name;
 function get_ele_name;

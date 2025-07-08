@@ -4802,8 +4802,10 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 		//ATK percent modifier (in renewal, it's applied before the skillratio)
 		skillratio = battle_get_atkpercent(*src, skill_id, *sc);
 #endif
-		if (sd != nullptr)
+		if (sd != nullptr && skill_id)
 			skillratio += sd->bonus.skill_ratio;
+		if (sd != nullptr && !skill_id)
+			skillratio += sd->bonus.normal_ratio;
 		if(sc->getSCE(SC_OVERTHRUST))
 			skillratio += sc->getSCE(SC_OVERTHRUST)->val3;
 		if(sc->getSCE(SC_MAXOVERTHRUST))
@@ -8433,7 +8435,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 
 	if (!flag.infdef) { //No need to do the math for plants
 		uint32 skillratio = 100; //Skill dmg modifiers.
-		if (sd != nullptr)
+		if (sd != nullptr && skill_id)
 			skillratio += sd->bonus.skill_ratio;
 
 #ifdef RENEWAL

@@ -7225,7 +7225,7 @@ static int32 script_countitem_sub(struct item *items, std::shared_ptr<item_data>
 	nullpo_retr(-1, items);
 	nullpo_retr(-1, st);
 
-	int32 count,time = 0;
+	int32 count = 0, time = 0;
 
 	if (!expanded) { // For non-expanded functions
 		t_itemid nameid = id->nameid;

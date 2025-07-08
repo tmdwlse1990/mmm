@@ -19,11 +19,11 @@ icecastle,197,155,4	script	Reset Girl	124,{
 		mes "Sorry you can only reset "+callfunc("F_InsertPlural",.@Reset[3],"time")+" in your life.";
 		close;
 	}
-	if(Level <60) {
+	if(BaseLevel < 98) {
 		setarray .@Reset,	0,	0,	0,	0;
-		}
+	}
 	mes "I am the Reset Girl.";
-	mes "^FF0000 Free if your level lower than 60^000000";
+	mes "^FF0000 Free if your level lower than 98^000000";
 	mes "Reset Stats: "+ callfunc("F_InsertComma",.@Reset[1]) +"z ";
 	mes "Reset Skills: "+ callfunc("F_InsertComma",.@Reset[0]) +"z";
 	mes "Reset Both: "+ callfunc("F_InsertComma",.@Reset[2]) +"z";

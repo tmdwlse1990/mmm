@@ -55,6 +55,15 @@ Body:
       Map: valkyrie
       X: 48
       Y: 9
+
+  - Id: 601
+    Name: Guardian Raid
+    TimeLimit: 1200
+    Enter:
+      Map: 1@pop3
+      X: 54
+      Y: 36
+      
   - Id: 500
     Name: Lake of fire
     Enter:

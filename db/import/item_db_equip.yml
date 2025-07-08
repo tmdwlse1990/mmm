@@ -331,50 +331,44 @@ Body:
     Type: PetEgg
 #  [Costume]
   - Id: 2121001
-    AegisName: test1
-    Name: test_cos3001
+    AegisName: Costume_Drooping_Toothless
+    Name: Costume Drooping Toothless
     Type: Armor
     Weight: 10
     Locations:
-      Costume_Head_Mid: true
+      Costume_Head_Top: true
     ArmorLevel: 1
-    View: 3001
+    View: 2901
   - Id: 2121002
-    AegisName: test2
-    Name: test_cos3002
+    AegisName: Costume_Toothless_Mask
+    Name: Costume Toothless Mask
     Type: Armor
     Weight: 10
     Locations:
+      Costume_Head_Top: true
+      Costume_Head_Mid: true
       Costume_Head_Low: true
     ArmorLevel: 1
-    View: 3002
+    View: 2902
   - Id: 2121003
-    AegisName: test3
-    Name: test_cos3003
-    Type: Armor
-    Weight: 10
-    Locations:
-      Costume_Head_Top: true
-    ArmorLevel: 1
-    View: 3003
-  - Id: 2121004
-    AegisName: test4
-    Name: test_cos3004
-    Type: Armor
-    Weight: 10
-    Locations:
-      Costume_Head_Top: true
-    ArmorLevel: 1
-    View: 3004
-  - Id: 2121005
-    AegisName: test5
-    Name: test_cos3005
+    AegisName: Costume_Mini_Toothless
+    Name: Costume Mini Toothless
     Type: Armor
     Weight: 10
     Locations:
       Costume_Head_Mid: true
     ArmorLevel: 1
-    View: 3005
+    View: 2903
+  - Id: 2121004
+    AegisName: Costume_Mini_Hood
+    Name: Costume Mini Hood
+    Type: Armor
+    Weight: 10
+    Locations:
+      Costume_Head_Top: true
+      Costume_Head_Mid: true
+    ArmorLevel: 1
+    View: 2904
 #  [Lower]
   - Id: 2120001
     AegisName: Wrag_In_Mouth

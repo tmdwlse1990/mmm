@@ -110,6 +110,20 @@ Body:
             Item: Oridecon
             Amount: 10
       - Index: 9
+        Item: HD_Carnium
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: Carnium
+            Amount: 10
+      - Index: 10
+        Item: HD_Bradium
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: Bradium
+            Amount: 10
+      - Index: 11
         Item: Blacksmith_Blessing
         Zeny: 100000
         RequiredItems:

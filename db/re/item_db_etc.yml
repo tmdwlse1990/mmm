@@ -31485,14 +31485,6 @@ Body:
     Name: Golden Tulip Flower
     Type: Etc
     Buy: 10
-    Trade:
-      NoDrop: true
-      NoTrade: true
-      NoCart: true
-      NoStorage: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
   - Id: 7952
     AegisName: Gift_From_Romiros
     Name: Gift Of Lomi Ross

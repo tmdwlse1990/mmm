@@ -82850,7 +82850,7 @@ Body:
   - Id: 3076
     AegisName: WA_MONSTER_1
     Name: Go!
-    Level: 100
+    Level: 10
     Hp: 10000
     Sp: 0
     Attack: 78
@@ -82878,7 +82878,7 @@ Body:
   - Id: 3077
     AegisName: WA_MONSTER_2
     Name: Go!
-    Level: 100
+    Level: 10
     Hp: 10500
     Sp: 0
     Attack: 78
@@ -82906,7 +82906,7 @@ Body:
   - Id: 3078
     AegisName: WA_MONSTER_3
     Name: Go!
-    Level: 105
+    Level: 10
     Hp: 11000
     Attack: 657
     Attack2: 135
@@ -82934,7 +82934,7 @@ Body:
   - Id: 3079
     AegisName: WA_MONSTER_4
     Name: Go!
-    Level: 120
+    Level: 10
     Hp: 12000
     Attack: 403
     Attack2: 522
@@ -82962,7 +82962,7 @@ Body:
   - Id: 3080
     AegisName: WA_MONSTER_5
     Name: Go!
-    Level: 123
+    Level: 10
     Hp: 13000
     Attack: 1234
     Attack2: 165
@@ -82990,7 +82990,7 @@ Body:
   - Id: 3081
     AegisName: WA_MONSTER_6
     Name: Go!
-    Level: 125
+    Level: 10
     Hp: 14000
     Attack: 1067
     Attack2: 944
@@ -83018,7 +83018,7 @@ Body:
   - Id: 3082
     AegisName: WA_MONSTER_7
     Name: Go!
-    Level: 131
+    Level: 10
     Hp: 15000
     Attack: 1100
     Attack2: 325
@@ -83046,7 +83046,7 @@ Body:
   - Id: 3083
     AegisName: WA_MONSTER_8
     Name: Go!
-    Level: 131
+    Level: 10
     Hp: 18000
     Attack: 1151
     Attack2: 218
@@ -83074,7 +83074,7 @@ Body:
   - Id: 3084
     AegisName: WA_MONSTER_9
     Name: Go!
-    Level: 135
+    Level: 10
     Hp: 20000
     Attack: 1401
     Attack2: 1501
@@ -83102,7 +83102,7 @@ Body:
   - Id: 3085
     AegisName: WA_MONSTER_10
     Name: Go!
-    Level: 98
+    Level: 10
     Hp: 30000
     Attack: 8450
     Attack2: 3300

@@ -47,6 +47,7 @@ Header:
 
 Footer:
   Imports:
+  - Path: npc/aaa/barter/shark.yml
   - Path: npc/aaa/barter/powerupitem.yml
   - Path: npc/aaa/barter/hat_quest.yml
   - Path: npc/aaa/barter/ticket_seller.yml

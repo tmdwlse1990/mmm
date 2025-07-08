@@ -90,8 +90,20 @@ bonus2 bSkillRateDef,<type>,<val>; เพิ่มพลังป้องกันของสกิล ตามประเภท
 	SKILLRATE_TYPE_MISC		= อื่นๆ Misc
 	SKILLRATE_TYPE_ALL		= All
 	
-	
+
+bonus bAspdcap,n;		n is max cap aspd
+bonus bDropUp,n;		Add drop n/10000% drop rate
+bonus bIgnoreDef,n;		Decrease N Def From enermy
+bonus bIgnoreMDef,n;	Decrease N MDef From enermy
+bonus bNormalRatio,n;	Increase Normal Attack n%
+
+bonus bSkillUpgrade1;	// Skill upgrade 1
+bonus bSkillUpgrade2;	// Skill upgrade 2
+bonus bNoFatalDamage;	// No Death
+
+
 Bonuses
+
 -------
 The format of bonuses listed in this file is as follows:
 	1. Basic Bonuses

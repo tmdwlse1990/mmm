@@ -1,0 +1,212 @@
+icecastle,14,121,5	script	Sir Serpan#Guardian_raid	4_EM_SERPENS,{
+	// Setting.
+	.@npcname$ = "[ Sir Serpan Nightwhisper, Warden of Shadows ]";
+	.@guardianlevelmenu$ = "Guardian Level 1";
+	
+	setdialogsize(400,300);
+	mes .@npcname$;
+	mes "จงเอ๋ยชื่อของข้าาาา";
+	message strcharinfo(0),strcharinfo(0)+" : ขอคำนับ";
+	sleep2 1000;
+	message strcharinfo(0),strcharinfo(0)+" : Sir Serpan Nightwhisper, Warden of Shadows";
+	sleep2 1000;
+	mes "ยอดเยี่ยม มีอะไรให้ข้าช่วย";
+	next;
+	switch(select("อยากจะสำรวจกาเดี้ยน:เช็คร้านค้ากาเดี้ยน:ไม่มีอะไรครับท่าน") ) {
+		case 1:
+			break;
+		case 2:
+			.@glevel = select(.@guardianlevelmenu$);
+			close2;
+			callshop "Guardian_"+.@glevel;
+			end;
+		case 3:
+			end;
+		default:
+			end;
+	}		
+	mes "Guardian Raid";
+	mes "คือเหล่า Boss Monster ที่ปกป้อง Server เราไว้";
+	mes "แต่บางครั้งมันก็อาละวาดเพราะได้อิสระที่มากเกินไป เราจึงต้องออกจัดการให้เข้าที่เข้าทาง";
+	next;
+	set .@cooltime,checkquest(12,PLAYTIME);
+	set .@party_id,getcharid(1);
+	getpartymember .@party_id, 1;
+	set .@online_members_count, $@partymembercount;	
+	if(.@online_members_count > 4 ) .@online_members_count = 4;
+	
+	switch(.@cooltime) {
+	case 2:
+		erasequest 11;
+	case -1:
+		if(select("พร้อม","ยังไม่พร้อม") == 2 ) end;
+				
+			switch(.@glevel = select(.@guardianlevelmenu$) ) {
+				case 1:
+					mes "โปรดเลือก Stage ของ Guardian";
+					mes "ยิ่ง Stage สูง Guardian จะยิ่งโหด";
+					mes "พร้อมให้รางวัลที่มากขึ้น.";
+					.@gstate = select("1-1:1-2:1-3:1-4");
+					break;
+				default:
+					mes "เหมือนว่าจะมีอะไรผิดพลาด ยังไปไม่ได้ตอนนี้";
+					mes "ลองถามเจ้า ฉลามหน้าดิสดู(Shalarm)";
+					end;
+			}
+			
+			set .@md_name$,"Guardian Raid";
+	Checkagain:
+			if (is_party_leader() == true) {
+				.@menusec = select(
+				( .@party_id && getpartyleader(.@party_id,2) && !instance_id(IM_PARTY) )? "สร้างดันเจี้ยน "+.@md_name$:"",
+				( .@party_id && instance_id(IM_PARTY) )?"เข้าสู่ดันเจี้ยน":"",
+				"ยกเลิก");
+			}
+			else {
+			.@menusec = select(
+			"",
+			( .@party_id && instance_id(IM_PARTY) )?"เข้าสู่ดันเจี้ยน":"",
+			"ยกเลิก");
+			}
+			
+			switch(.@menusec) {
+			case 1:
+				if (!instance_check_party(getcharid(1), .@online_members_count)) {
+					mes "จำนวนสมาชิกไม่ตรงกับที่ลงทะเบียบไว้.(ลงได้มากสุดแค่ 4 คน)"; 
+					close;				
+				}		
+				$@numberppl = .@online_members_count;
+				$@glevel = .@glevel;
+				$@gstate = .@gstate;
+				if (instance_create(.@md_name$) < 0) {
+					mes "Party Name: "+ getpartyname(.@party_id);
+					mes "Party Leader: "+strcharinfo(0);
+					mes "^0000ff"+.@md_name$+" ^000000 - Reservation Failed.";
+					mes "แจ้ง Admin.";
+					close;
+				}
+				mes "^0000ff"+.@md_name$+"^000000- กำลังพยายามจองทางเข้า";
+				mes "หลังจากทำการจองแล้ว คุณต้องเลือก 'เข้าสู่ดันเจี้ยน' จากเมนูหากคุณต้องการเข้าสู่ "+.@md_name$+".";
+				goto Checkagain;
+			case 2:
+				switch(instance_enter(.@md_name$)) {
+				case IE_OTHER:
+					mes "Error แบบงงๆ";
+					close;
+				case IE_NOINSTANCE:
+					mes "กรุณาเปิดดันก่อน";
+					close;
+				case IE_NOMEMBER:
+					mes "ให้เฉพาะสมาชิกในปาตี้เท่านั้น";
+					close;
+				case IE_OK:
+					if (!isbegin_quest(12)) setquest 12;
+					//warp "1@orcs",179,15;
+				}
+				end;
+			case 3:
+				close;
+			}
+	case 0:
+	case 1:
+		clear;
+		mes "ยังไม่ถึงเวลา Reset ดันเจี้ยนรายวัน";
+		mes "กรุณากลับมาใหม่หลังตี 1 ครับ";
+		end;
+	}
+}
+
+1@pop3,0,0,0	script(DISABLED)	#guardian_Init	-1,{
+
+/*
+OnTouch:
+//*viewpointmap "<map name>",<action>,<x>,<y>,<point number>,<color>;
+	viewpoint 1,'boss_x,'boss_y,1,0xFF0000;
+	end;
+*/
+OnBossDead:
+	set 'party_id,getcharid(1);
+	getpartymember 'party_id,0,'partymembername$;
+	for(.@i=0;.@i < getarraysize('partymembername$); .@i++) {
+		donpcevent instance_npcname("#boxp_"+.@i) + "::OnStart";
+	}
+	end;
+OnInstanceInit:
+	enablenpc;
+	'mapname$ = instance_mapname(strnpcinfo(4));
+	'numberppl = $@numberppl;
+	'glevel = $@glevel;
+	'gstate = $@gstate;
+	//announce "Player : "+'numberppl+" level : "+'glevel+" Stage : "+'gstate,bc_all;
+	.@label$ = instance_npcname(strnpcinfo(0)) + "::OnBossDead";
+	setarray .@monsterid[1],
+	3333,3334,3335,3336		// Level 1-1 , 1-2, 1-3, 1-4
+	;
+	.@numbermob = (4 * ('glevel - 1) + 'gstate);
+	monster 'mapname$,55,67,"--ja--",.@monsterid[.@numbermob],1,('numberppl - 1),.@label$;
+	.@boss_id = $@mobid[0];
+	getunitdata .@boss_id, .@data;
+	setunitdata .@boss_id, UMOB_MAXHP, (.@data[UMOB_MAXHP] * 'numberppl);
+	setunitdata .@boss_id, UMOB_HP, (.@data[UMOB_MAXHP] * 'numberppl);
+	end;
+}
+
+1@pop3,44,59,0	script(DISABLED)	#boxp_0	4_STAR_BOX_N,{
+	
+	.@string$ = replacestr( strnpcinfo(2), "boxp_", "" );
+	.@num = atoi( .@string$ );
+	
+	if(strcharinfo(0) != 'partymembername$[.@num]){
+		mes "เปิดได้เฉพาะเจ้าของกล่อง.";
+		end;
+	}
+	delwaitingroom;
+	cloakonnpc;
+	setarray .@goldid,2002011,2002012,2002013,2002014;
+	.@levelguard = (4 * ('glevel - 1) + 'gstate);
+	getmapxy(.@mapname$, .@mapx, .@mapy, BL_NPC, instance_npcname(strnpcinfo(0)));
+	getitem 2233001,rand( (.@levelguard * 3),(.@levelguard * 7));
+	.@luck = rand(100000);
+	switch(.@levelguard) {
+		case 1:
+			.@numdrop = 2;
+			if(.@luck < 100 ) .@set = 2;
+			else if (.@luck < 2500) .@set = 1;
+			else .@set = 0;
+			break;
+		case 2:
+			.@numdrop = 3;
+			if(.@luck < 200 ) .@set = 2;
+			else if (.@luck < 3500) .@set = 1;
+			else .@set = 0;
+		case 3:
+			.@numdrop = 3;
+			if(.@luck < 300 ) .@set = 2;
+			else if (.@luck < 4500) .@set = 1;
+			else .@set = 0;
+		case 4:
+			.@numdrop = 4;
+			if(.@luck < 50 ) .@set = 3;
+			else if (.@luck < 650) .@set = 2;
+			else if (.@luck < 4500) .@set = 1;
+			else .@set = 0;
+		default:
+			break;
+	}
+	for(.@j=0; .@j < .@numdrop; .@j++) {
+		makeitem .@goldid[.@set],1,.@mapname$,.@mapx + rand(-2,2),.@mapy  + rand(-2,2),true;
+		sleep 500;
+	}
+	end;
+OnStart:
+	enablenpc instance_npcname(strnpcinfo(0));
+	.@string$ = replacestr( strnpcinfo(2), "boxp_", "" );
+	.@num = atoi( .@string$ );
+	
+	waitingroom ""+'partymembername$[.@num]+" Box",0;
+	end;
+}
+
+1@pop3,51,59,0	duplicate(#boxp_0)	#boxp_1	4_STAR_BOX_N
+1@pop3,60,59,0	duplicate(#boxp_0)	#boxp_2	4_STAR_BOX_N
+1@pop3,69,59,0	duplicate(#boxp_0)	#boxp_3	4_STAR_BOX_N

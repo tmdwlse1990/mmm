@@ -474,6 +474,25 @@ Body:
     Type: DelayConsume
     Flags:
       BuyingStore: true
+  - Id: 2001006
+    AegisName: Thanks_you_Donation 
+    Name: Thanks You For Donation
+    Type: Usable
+    Flags:
+      BuyingStore: true
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoSell: true
+      NoCart: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Script: |
+      getitem 20019511,1;
+      getitem 2001005,1;
+      getitem 2001102,1;
+      getitem 2001101,1;
   - Id: 2001101
     AegisName: Yee_Bubble_Gum
     Name: Yee Gum
@@ -493,6 +512,49 @@ Body:
       NoAuction: true
     Script: |
       sc_start SC_ITEMBOOST,60000,777;
+  - Id: 2001102
+    AegisName: Aura_Of_Restoration_Chaos_Box
+    Name: Aura Of Restoration Chaos Box
+    Type: Usable
+    Script: |
+      rentitem 2001103,3600;
+  - Id: 2001103
+    AegisName: Aura_Of_Restoration_Chaos
+    Name: Aura Of Restoration Chaos
+    Type: etc
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoStorage: true
+      NoSell: true
+      NoCart: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 2001104
+    AegisName: Less_Times_Chaos_Agreement
+    Name: Core Of Chaos Fragment
+    Type: etc
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 2001105
+    AegisName: Aura_Of_Restoration_Chaos_Box_NT
+    Name: Aura Of Restoration Chaos Box
+    Type: Usable
+    Script: |
+      rentitem 2001103,3600;
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoSell: true
+      NoCart: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
   - Id: 2001901
     AegisName: Common2rare
     Name: Combine Common Pet
@@ -739,6 +801,64 @@ Body:
     Weight: 200
     Script: |
       callfunc("F_MVPReward",10);
+  - Id: 2002011
+    AegisName: Zeny_Bag_10K
+    Name: Zeny Bag 10k
+    Type: Usable
+    Flags:
+      BuyingStore: true
+    Trade:
+      NoDrop: true
+      NoSell: true
+    NoUse:
+      Sitting: true
+    Weight: 1
+    Script: |
+      zeny += 10000;
+  - Id: 2002012
+    AegisName: Zeny_Bag_100K
+    Name: Zeny Bag 10k
+    Type: Usable
+    Flags:
+      BuyingStore: true
+    Trade:
+      NoDrop: true
+      NoSell: true
+    NoUse:
+      Sitting: true
+    Weight: 1
+    Script: |
+      zeny += 100000;
+  - Id: 2002013
+    AegisName: Zeny_Bag_1M
+    Name: Zeny Bag 1 M
+    Type: Usable
+    Flags:
+      BuyingStore: true
+      DropEffect: GREEN_PILLAR
+    Trade:
+      NoDrop: true
+      NoSell: true
+    NoUse:
+      Sitting: true
+    Weight: 1
+    Script: |
+      zeny += 1000000;
+  - Id: 2002014
+    AegisName: Zeny_Bag_10M
+    Name: Zeny Bag 10 M
+    Type: Usable
+    Flags:
+      BuyingStore: true
+      DropEffect: YELLOW_PILLAR
+    Trade:
+      NoDrop: true
+      NoSell: true
+    NoUse:
+      Sitting: true
+    Weight: 1
+    Script: |
+      zeny += 10000000;
 #   [Enchant Item]
   - Id: 2099001
     AegisName: All_STATS1_NT
@@ -760,6 +880,1468 @@ Body:
       NoAuction: true
     Script: |
       bonus bAllStats,1;
+#   [Guardian Stone Special]
+  - Id: 2233001
+    AegisName: Guardian_Coin
+    Name: Guardian Coin
+    Type: etc
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+  - Id: 2233501
+    AegisName: Guardian_Armor_Level_1-1
+    Name: Guardian Armor (Tier 1)
+    Type: Shadowgear
+    Flags:
+      DropEffect: BLUE_PILLAR
+    Locations:
+      Shadow_Armor: true
+    EquipLevelMin: 1
+    Script: |
+      bonus bMdef,50;
+      bonus bDef,50;
+  - Id: 2233502
+    AegisName: Guardian_Armor_Level_1-2
+    Name: Guardian Armor (Tier 1)
+    Type: Shadowgear
+    Flags:
+      DropEffect: BLUE_PILLAR
+    Locations:
+      Shadow_Armor: true
+    EquipLevelMin: 1
+    Script: |
+      bonus bUseSPrate,-5;
+      bonus bDelayrate,-5;
+  - Id: 2233503
+    AegisName: Guardian_Armor_Level_1-3
+    Name: Guardian Armor (Tier 1)
+    Type: Shadowgear
+    Flags:
+      DropEffect: BLUE_PILLAR
+    Locations:
+      Shadow_Armor: true
+    EquipLevelMin: 1
+    Script: |
+      bonus bVariableCastrate,-10;
+      bonus bAspdRate,10;
+#   [Enchant Stone Special]
+  - Id: 2234001
+    AegisName: Chaos_stone_1
+    Name: Chaos Stone Alpha 
+    Type: etc
+    Flags:
+      BuyingStore: true
+  - Id: 2234002
+    AegisName: Chaos_stone_2
+    Name: Chaos Stone Beta
+    Type: etc
+    Flags:
+      BuyingStore: true
+  - Id: 2234003
+    AegisName: Chaos_stone_3
+    Name: Chaos Stone Delta
+    Type: etc
+    Flags:
+      BuyingStore: true
+  - Id: 2234004
+    AegisName: Chaos_stone_4
+    Name: Chaos Stone Gamma
+    Type: etc
+    Flags:
+      BuyingStore: true
+  - Id: 2234101
+    AegisName: Chaos_Atk_Alpla_Level_1
+    Name: Chaos Atk Alpla Level 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bAtkRate,2;
+  - Id: 2234102
+    AegisName: Chaos_Atk_Alpla_Level_2
+    Name: Chaos Atk Alpla Level 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bAtkRate,5;
+  - Id: 2234103
+    AegisName: Chaos_Atk_Alpla_Level_3
+    Name: Chaos Atk Alpla Level 3
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bAtkRate,10;
+  - Id: 2234104
+    AegisName: Chaos_Atk_Alpla_Level_4
+    Name: Chaos Atk Alpla Level 4
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bAtkRate,17;
+  - Id: 2234105
+    AegisName: Chaos_Atk_Alpla_Level_5
+    Name: Chaos Atk Alpla Level 5
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bAtkRate,26;
+  - Id: 2234106
+    AegisName: Chaos_Atk_Alpla_Level_6
+    Name: Chaos Atk Alpla Level 6
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bAtkRate,37;
+  - Id: 2234107
+    AegisName: Chaos_Atk_Alpla_Level_7
+    Name: Chaos Atk Alpla Level 7
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bAtkRate,49;
+  - Id: 2234108
+    AegisName: Chaos_Atk_Alpla_Level_8
+    Name: Chaos Atk Alpla Level 8
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bAtkRate,64;
+  - Id: 2234109
+    AegisName: Chaos_Atk_Alpla_Level_9
+    Name: Chaos Atk Alpla Level 9
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bAtkRate,80;
+  - Id: 2234110
+    AegisName: Chaos_Atk_Alpla_Level_10
+    Name: Chaos Atk Alpla Level 10
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bAtkRate,100;
+  - Id: 2234111
+    AegisName: Chaos_MAtk_Alpla_Level_1
+    Name: Chaos Matk Alpla Level 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMAtkRate,2;
+  - Id: 2234112
+    AegisName: Chaos_MAtk_Alpla_Level_2
+    Name: Chaos Matk Alpla Level 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMAtkRate,5;
+  - Id: 2234113
+    AegisName: Chaos_MAtk_Alpla_Level_3
+    Name: Chaos Matk Alpla Level 3
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMAtkRate,10;
+  - Id: 2234114
+    AegisName: Chaos_MAtk_Alpla_Level_4
+    Name: Chaos Matk Alpla Level 4
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMAtkRate,17;
+  - Id: 2234115
+    AegisName: Chaos_MAtk_Alpla_Level_5
+    Name: Chaos Matk Alpla Level 5
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMAtkRate,26;
+  - Id: 2234116
+    AegisName: Chaos_MAtk_Alpla_Level_6
+    Name: Chaos Matk Alpla Level 6
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMAtkRate,37;
+  - Id: 2234117
+    AegisName: Chaos_MAtk_Alpla_Level_7
+    Name: Chaos Matk Alpla Level 7
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMAtkRate,49;
+  - Id: 2234118
+    AegisName: Chaos_MAtk_Alpla_Level_8
+    Name: Chaos Matk Alpla Level 8
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMAtkRate,64;
+  - Id: 2234119
+    AegisName: Chaos_MAtk_Alpla_Level_9
+    Name: Chaos Matk Alpla Level 9
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMAtkRate,80;
+  - Id: 2234120
+    AegisName: Chaos_MAtk_Alpla_Level_10
+    Name: Chaos Matk Alpla Level 10
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMAtkRate,100;
+  - Id: 2234121
+    AegisName: Chaos_FAtk_Alpla_Level_1
+    Name: Chaos Flat Atk Alpla Level 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bBaseAtk,10;
+  - Id: 2234122
+    AegisName: Chaos_FAtk_Alpla_Level_2
+    Name: Chaos Flat Atk Alpla Level 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bBaseAtk,20;
+  - Id: 2234123
+    AegisName: Chaos_FAtk_Alpla_Level_3
+    Name: Chaos Flat Atk Alpla Level 3
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bBaseAtk,50;
+  - Id: 2234124
+    AegisName: Chaos_FAtk_Alpla_Level_4
+    Name: Chaos Flat Atk Alpla Level 4
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bBaseAtk,100;
+  - Id: 2234125
+    AegisName: Chaos_FAtk_Alpla_Level_5
+    Name: Chaos Flat Atk Alpla Level 5
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bBaseAtk,200;
+  - Id: 2234126
+    AegisName: Chaos_FAtk_Alpla_Level_6
+    Name: Chaos Flat Atk Alpla Level 6
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bBaseAtk,350;
+  - Id: 2234127
+    AegisName: Chaos_FAtk_Alpla_Level_7
+    Name: Chaos Flat Atk Alpla Level 7
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bBaseAtk,500;
+  - Id: 2234128
+    AegisName: Chaos_FAtk_Alpla_Level_8
+    Name: Chaos Flat Atk Alpla Level 8
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bBaseAtk,700;
+  - Id: 2234129
+    AegisName: Chaos_FAtk_Alpla_Level_9
+    Name: Chaos Flat Atk Alpla Level 9
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bBaseAtk,1000;
+  - Id: 2234130
+    AegisName: Chaos_FAtk_Alpla_Level_10
+    Name: Chaos Flat Atk Alpla Level 10
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bBaseAtk,1500;
+  - Id: 2234131
+    AegisName: Chaos_FMAtk_Alpla_Level_1
+    Name: Chaos Flat MAtk Alpla Level 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMatk,10;
+  - Id: 2234132
+    AegisName: Chaos_FMAtk_Alpla_Level_2
+    Name: Chaos Flat MAtk Alpla Level 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMatk,20;
+  - Id: 2234133
+    AegisName: Chaos_FMAtk_Alpla_Level_3
+    Name: Chaos Flat MAtk Alpla Level 3
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMatk,50;
+  - Id: 2234134
+    AegisName: Chaos_FMAtk_Alpla_Level_4
+    Name: Chaos Flat MAtk Alpla Level 4
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMatk,100;
+  - Id: 2234135
+    AegisName: Chaos_FMAtk_Alpla_Level_5
+    Name: Chaos Flat MAtk Alpla Level 5
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMatk,200;
+  - Id: 2234136
+    AegisName: Chaos_FMAtk_Alpla_Level_6
+    Name: Chaos Flat MAtk Alpla Level 6
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMatk,350;
+  - Id: 2234137
+    AegisName: Chaos_FMAtk_Alpla_Level_7
+    Name: Chaos Flat MAtk Alpla Level 7
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMatk,500;
+  - Id: 2234138
+    AegisName: Chaos_FMAtk_Alpla_Level_8
+    Name: Chaos Flat MAtk Alpla Level 8
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMatk,700;
+  - Id: 2234139
+    AegisName: Chaos_FMAtk_Alpla_Level_9
+    Name: Chaos Flat MAtk Alpla Level 9
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMatk,1000;
+  - Id: 2234140
+    AegisName: Chaos_FMAtk_Alpla_Level_10
+    Name: Chaos Flat MAtk Alpla Level 10
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMatk,1500;
+  - Id: 2234141
+    AegisName: Chaos_SkillRatio_Alpla_Level_1
+    Name: Chaos SkillRatio Alpla Level 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bSkillRatio,20;
+  - Id: 2234142
+    AegisName: Chaos_SkillRatio_Alpla_Level_2
+    Name: Chaos SkillRatio Alpla Level 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bSkillRatio,40;
+  - Id: 2234143
+    AegisName: Chaos_SkillRatio_Alpla_Level_3
+    Name: Chaos SkillRatio Alpla Level 3
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bSkillRatio,60;
+  - Id: 2234144
+    AegisName: Chaos_SkillRatio_Alpla_Level_4
+    Name: Chaos SkillRatio Alpla Level 4
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bSkillRatio,80;
+  - Id: 2234145
+    AegisName: Chaos_SkillRatio_Alpla_Level_5
+    Name: Chaos SkillRatio Alpla Level 5
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bSkillRatio,100;
+  - Id: 2234146
+    AegisName: Chaos_SkillRatio_Alpla_Level_6
+    Name: Chaos SkillRatio Alpla Level 6
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bSkillRatio,140;
+  - Id: 2234147
+    AegisName: Chaos_SkillRatio_Alpla_Level_7
+    Name: Chaos SkillRatio Alpla Level 7
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bSkillRatio,180;
+  - Id: 2234148
+    AegisName: Chaos_SkillRatio_Alpla_Level_8
+    Name: Chaos SkillRatio Alpla Level 8
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bSkillRatio,250;
+  - Id: 2234149
+    AegisName: Chaos_SkillRatio_Alpla_Level_9
+    Name: Chaos SkillRatio Alpla Level 9
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bSkillRatio,400;
+  - Id: 2234150
+    AegisName: Chaos_SkillRatio_Alpla_Level_10
+    Name: Chaos SkillRatio Alpla Level 10
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bSkillRatio,650;
+  - Id: 2234201
+    AegisName: Chaos_PSkill_Beta_Level_1
+    Name: Chaos Physical Beta Level 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSkillrate,SKILLRATE_TYPE_WEAPON,3;
+  - Id: 2234202
+    AegisName: Chaos_PSkill_Beta_Level_2
+    Name: Chaos Physical Beta Level 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSkillrate,SKILLRATE_TYPE_WEAPON,6;
+  - Id: 2234203
+    AegisName: Chaos_PSkill_Beta_Level_3
+    Name: Chaos Physical Beta Level 3
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSkillrate,SKILLRATE_TYPE_WEAPON,9;
+  - Id: 2234204
+    AegisName: Chaos_PSkill_Beta_Level_4
+    Name: Chaos Physical Beta Level 4
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSkillrate,SKILLRATE_TYPE_WEAPON,12;
+  - Id: 2234205
+    AegisName: Chaos_PSkill_Beta_Level_5
+    Name: Chaos Physical Beta Level 5
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSkillrate,SKILLRATE_TYPE_WEAPON,15;
+  - Id: 2234206
+    AegisName: Chaos_PSkill_Beta_Level_6
+    Name: Chaos Physical Beta Level 6
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSkillrate,SKILLRATE_TYPE_WEAPON,18;
+  - Id: 2234207
+    AegisName: Chaos_PSkill_Beta_Level_7
+    Name: Chaos Physical Beta Level 7
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSkillrate,SKILLRATE_TYPE_WEAPON,21;
+  - Id: 2234208
+    AegisName: Chaos_PSkill_Beta_Level_8
+    Name: Chaos Physical Beta Level 8
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSkillrate,SKILLRATE_TYPE_WEAPON,24;
+  - Id: 2234209
+    AegisName: Chaos_PSkill_Beta_Level_9
+    Name: Chaos Physical Beta Level 9
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSkillrate,SKILLRATE_TYPE_WEAPON,30;
+  - Id: 2234210
+    AegisName: Chaos_PSkill_Beta_Level_10
+    Name: Chaos Physical Beta Level 10
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSkillrate,SKILLRATE_TYPE_WEAPON,40;
+  - Id: 2234211
+    AegisName: Chaos_MSkill_Beta_Level_1
+    Name: Chaos Magical Beta Level 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSkillrate,SKILLRATE_TYPE_MAGIC,3;
+  - Id: 2234212
+    AegisName: Chaos_MSkill_Beta_Level_2
+    Name: Chaos Magical Beta Level 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSkillrate,SKILLRATE_TYPE_MAGIC,6;
+  - Id: 2234213
+    AegisName: Chaos_MSkill_Beta_Level_3
+    Name: Chaos Magical Beta Level 3
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSkillrate,SKILLRATE_TYPE_MAGIC,9;
+  - Id: 2234214
+    AegisName: Chaos_MSkill_Beta_Level_4
+    Name: Chaos Magical Beta Level 4
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSkillrate,SKILLRATE_TYPE_MAGIC,12;
+  - Id: 2234215
+    AegisName: Chaos_MSkill_Beta_Level_5
+    Name: Chaos Magical Beta Level 5
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSkillrate,SKILLRATE_TYPE_MAGIC,15;
+  - Id: 2234216
+    AegisName: Chaos_MSkill_Beta_Level_6
+    Name: Chaos Magical Beta Level 6
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSkillrate,SKILLRATE_TYPE_MAGIC,18;
+  - Id: 2234217
+    AegisName: Chaos_MSkill_Beta_Level_7
+    Name: Chaos Magical Beta Level 7
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSkillrate,SKILLRATE_TYPE_MAGIC,21;
+  - Id: 2234218
+    AegisName: Chaos_MSkill_Beta_Level_8
+    Name: Chaos Magical Beta Level 8
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSkillrate,SKILLRATE_TYPE_MAGIC,24;
+  - Id: 2234219
+    AegisName: Chaos_MSkill_Beta_Level_9
+    Name: Chaos Magical Beta Level 9
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSkillrate,SKILLRATE_TYPE_MAGIC,30;
+  - Id: 2234220
+    AegisName: Chaos_MSkill_Beta_Level_10
+    Name: Chaos Magical Beta Level 10
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSkillrate,SKILLRATE_TYPE_MAGIC,40;
+  - Id: 2234221
+    AegisName: Chaos_OSkill_Beta_Level_1
+    Name: Chaos Misc Beta Level 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSkillrate,SKILLRATE_TYPE_MISC,3;
+  - Id: 2234222
+    AegisName: Chaos_OSkill_Beta_Level_2
+    Name: Chaos Misc Beta Level 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSkillrate,SKILLRATE_TYPE_MISC,6;
+  - Id: 2234223
+    AegisName: Chaos_OSkill_Beta_Level_3
+    Name: Chaos Misc Beta Level 3
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSkillrate,SKILLRATE_TYPE_MISC,9;
+  - Id: 2234224
+    AegisName: Chaos_OSkill_Beta_Level_4
+    Name: Chaos Misc Beta Level 4
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSkillrate,SKILLRATE_TYPE_MISC,12;
+  - Id: 2234225
+    AegisName: Chaos_OSkill_Beta_Level_5
+    Name: Chaos Misc Beta Level 5
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSkillrate,SKILLRATE_TYPE_MISC,15;
+  - Id: 2234226
+    AegisName: Chaos_OSkill_Beta_Level_6
+    Name: Chaos Misc Beta Level 6
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSkillrate,SKILLRATE_TYPE_MISC,18;
+  - Id: 2234227
+    AegisName: Chaos_OSkill_Beta_Level_7
+    Name: Chaos Misc Beta Level 7
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSkillrate,SKILLRATE_TYPE_MISC,21;
+  - Id: 2234228
+    AegisName: Chaos_OSkill_Beta_Level_8
+    Name: Chaos Misc Beta Level 8
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSkillrate,SKILLRATE_TYPE_MISC,24;
+  - Id: 2234229
+    AegisName: Chaos_OSkill_Beta_Level_9
+    Name: Chaos Misc Beta Level 9
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSkillrate,SKILLRATE_TYPE_MISC,30;
+  - Id: 2234230
+    AegisName: Chaos_OSkill_Beta_Level_10
+    Name: Chaos Misc Beta Level 10
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSkillrate,SKILLRATE_TYPE_MISC,40;
+  - Id: 2234301
+    AegisName: Chaos_Str_Delta_Level_1
+    Name: Chaos Str Delta Level 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bStr,2;
+  - Id: 2234302
+    AegisName: Chaos_Str_Delta_Level_2
+    Name: Chaos Str Delta Level 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bStr,4;
+  - Id: 2234303
+    AegisName: Chaos_Str_Delta_Level_3
+    Name: Chaos Str Delta Level 3
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bStr,6;
+  - Id: 2234304
+    AegisName: Chaos_Str_Delta_Level_4
+    Name: Chaos Str Delta Level 4
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bStr,8;
+  - Id: 2234305
+    AegisName: Chaos_Str_Delta_Level_5
+    Name: Chaos Str Delta Level 5
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bStr,10;
+  - Id: 2234306
+    AegisName: Chaos_Str_Delta_Level_6
+    Name: Chaos Str Delta Level 6
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bStr,14;
+  - Id: 2234307
+    AegisName: Chaos_Str_Delta_Level_7
+    Name: Chaos Str Delta Level 7
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bStr,18;
+  - Id: 2234308
+    AegisName: Chaos_Str_Delta_Level_8
+    Name: Chaos Str Delta Level 8
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bStr,25;
+  - Id: 2234309
+    AegisName: Chaos_Str_Delta_Level_9
+    Name: Chaos Str Delta Level 9
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bStr,35;
+  - Id: 2234310
+    AegisName: Chaos_Str_Delta_Level_10
+    Name: Chaos Str Delta Level 10
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bStr,50;
+  - Id: 2234311
+    AegisName: Chaos_Agi_Delta_Level_1
+    Name: Chaos Agi Delta Level 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bAgi,2;
+  - Id: 2234312
+    AegisName: Chaos_Agi_Delta_Level_2
+    Name: Chaos Agi Delta Level 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bAgi,4;
+  - Id: 2234313
+    AegisName: Chaos_Agi_Delta_Level_3
+    Name: Chaos Agi Delta Level 3
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bAgi,6;
+  - Id: 2234314
+    AegisName: Chaos_Agi_Delta_Level_4
+    Name: Chaos Agi Delta Level 4
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bAgi,8;
+  - Id: 2234315
+    AegisName: Chaos_Agi_Delta_Level_5
+    Name: Chaos Agi Delta Level 5
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bAgi,10;
+  - Id: 2234316
+    AegisName: Chaos_Agi_Delta_Level_6
+    Name: Chaos Agi Delta Level 6
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bAgi,14;
+  - Id: 2234317
+    AegisName: Chaos_Agi_Delta_Level_7
+    Name: Chaos Agi Delta Level 7
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bAgi,18;
+  - Id: 2234318
+    AegisName: Chaos_Agi_Delta_Level_8
+    Name: Chaos Agi Delta Level 8
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bAgi,25;
+  - Id: 2234319
+    AegisName: Chaos_Agi_Delta_Level_9
+    Name: Chaos Agi Delta Level 9
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bAgi,35;
+  - Id: 2234320
+    AegisName: Chaos_Agi_Delta_Level_10
+    Name: Chaos Agi Delta Level 10
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bAgi,50;
+  - Id: 2234331
+    AegisName: Chaos_Vit_Delta_Level_1
+    Name: Chaos Vit Delta Level 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bVit,2;
+  - Id: 2234332
+    AegisName: Chaos_Vit_Delta_Level_2
+    Name: Chaos Vit Delta Level 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bVit,4;
+  - Id: 2234333
+    AegisName: Chaos_Vit_Delta_Level_3
+    Name: Chaos Vit Delta Level 3
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bVit,6;
+  - Id: 2234334
+    AegisName: Chaos_Vit_Delta_Level_4
+    Name: Chaos Vit Delta Level 4
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bVit,8;
+  - Id: 2234335
+    AegisName: Chaos_Vit_Delta_Level_5
+    Name: Chaos Vit Delta Level 5
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bVit,10;
+  - Id: 2234336
+    AegisName: Chaos_Vit_Delta_Level_6
+    Name: Chaos Vit Delta Level 6
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bVit,14;
+  - Id: 2234337
+    AegisName: Chaos_Vit_Delta_Level_7
+    Name: Chaos Vit Delta Level 7
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bVit,18;
+  - Id: 2234338
+    AegisName: Chaos_Vit_Delta_Level_8
+    Name: Chaos Vit Delta Level 8
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bVit,25;
+  - Id: 2234339
+    AegisName: Chaos_Vit_Delta_Level_9
+    Name: Chaos Vit Delta Level 9
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bVit,35;
+  - Id: 2234340
+    AegisName: Chaos_Vit_Delta_Level_10
+    Name: Chaos Vit Delta Level 10
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bVit,50;
+  - Id: 2234341
+    AegisName: Chaos_Int_Delta_Level_1
+    Name: Chaos Int Delta Level 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bInt,2;
+  - Id: 2234342
+    AegisName: Chaos_Int_Delta_Level_2
+    Name: Chaos Int Delta Level 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bInt,4;
+  - Id: 2234343
+    AegisName: Chaos_Int_Delta_Level_3
+    Name: Chaos Int Delta Level 3
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bInt,6;
+  - Id: 2234344
+    AegisName: Chaos_Int_Delta_Level_4
+    Name: Chaos Int Delta Level 4
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bInt,8;
+  - Id: 2234345
+    AegisName: Chaos_Int_Delta_Level_5
+    Name: Chaos Int Delta Level 5
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bInt,10;
+  - Id: 2234346
+    AegisName: Chaos_Int_Delta_Level_6
+    Name: Chaos Int Delta Level 6
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bInt,14;
+  - Id: 2234347
+    AegisName: Chaos_Int_Delta_Level_7
+    Name: Chaos Int Delta Level 7
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bInt,18;
+  - Id: 2234348
+    AegisName: Chaos_Int_Delta_Level_8
+    Name: Chaos Int Delta Level 8
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bInt,25;
+  - Id: 2234349
+    AegisName: Chaos_Int_Delta_Level_9
+    Name: Chaos Int Delta Level 9
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bInt,35;
+  - Id: 2234350
+    AegisName: Chaos_Int_Delta_Level_10
+    Name: Chaos Int Delta Level 10
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bInt,50;
+  - Id: 2234351
+    AegisName: Chaos_Dex_Delta_Level_1
+    Name: Chaos Dex Delta Level 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bDex,2;
+  - Id: 2234352
+    AegisName: Chaos_Dex_Delta_Level_2
+    Name: Chaos Dex Delta Level 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bDex,4;
+  - Id: 2234353
+    AegisName: Chaos_Dex_Delta_Level_3
+    Name: Chaos Dex Delta Level 3
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bDex,6;
+  - Id: 2234354
+    AegisName: Chaos_Dex_Delta_Level_4
+    Name: Chaos Dex Delta Level 4
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bDex,8;
+  - Id: 2234355
+    AegisName: Chaos_Dex_Delta_Level_5
+    Name: Chaos Dex Delta Level 5
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bDex,10;
+  - Id: 2234356
+    AegisName: Chaos_Dex_Delta_Level_6
+    Name: Chaos Dex Delta Level 6
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bDex,14;
+  - Id: 2234357
+    AegisName: Chaos_Dex_Delta_Level_7
+    Name: Chaos Dex Delta Level 7
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bDex,18;
+  - Id: 2234358
+    AegisName: Chaos_Dex_Delta_Level_8
+    Name: Chaos Dex Delta Level 8
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bDex,25;
+  - Id: 2234359
+    AegisName: Chaos_Dex_Delta_Level_9
+    Name: Chaos Dex Delta Level 9
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bDex,35;
+  - Id: 2234360
+    AegisName: Chaos_Dex_Delta_Level_10
+    Name: Chaos Dex Delta Level 10
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bDex,50;
+  - Id: 2234321
+    AegisName: Chaos_Luk_Delta_Level_1
+    Name: Chaos Luk Delta Level 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bLuk,2;
+  - Id: 2234322
+    AegisName: Chaos_Luk_Delta_Level_2
+    Name: Chaos Luk Delta Level 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bLuk,4;
+  - Id: 2234323
+    AegisName: Chaos_Luk_Delta_Level_3
+    Name: Chaos Luk Delta Level 3
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bLuk,6;
+  - Id: 2234324
+    AegisName: Chaos_Luk_Delta_Level_4
+    Name: Chaos Luk Delta Level 4
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bLuk,8;
+  - Id: 2234325
+    AegisName: Chaos_Luk_Delta_Level_5
+    Name: Chaos Luk Delta Level 5
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bLuk,10;
+  - Id: 2234326
+    AegisName: Chaos_Luk_Delta_Level_6
+    Name: Chaos Luk Delta Level 6
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bLuk,14;
+  - Id: 2234327
+    AegisName: Chaos_Luk_Delta_Level_7
+    Name: Chaos Luk Delta Level 7
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bLuk,18;
+  - Id: 2234328
+    AegisName: Chaos_Luk_Delta_Level_8
+    Name: Chaos Luk Delta Level 8
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bLuk,25;
+  - Id: 2234329
+    AegisName: Chaos_Luk_Delta_Level_9
+    Name: Chaos Luk Delta Level 9
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bLuk,35;
+  - Id: 2234330
+    AegisName: Chaos_Luk_Delta_Level_10
+    Name: Chaos Luk Delta Level 10
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bLuk,50;
+  - Id: 2234401
+    AegisName: Chaos_Speed_Gamma_Level_1
+    Name: Chaos Speed Gamma Level 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bSpeedAddRate,2;
+      bonus bAspdrate,2;
+      bonus bAspdcap,1;
+  - Id: 2234402
+    AegisName: Chaos_Speed_Gamma_Level_2
+    Name: Chaos Speed Gamma Level 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bSpeedAddRate,4;
+      bonus bAspdrate,4;
+      bonus bAspdcap,1;
+  - Id: 2234403
+    AegisName: Chaos_Speed_Gamma_Level_3
+    Name: Chaos Speed Gamma Level 3
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bSpeedAddRate,6;
+      bonus bAspdrate,6;
+      bonus bAspdcap,1;
+  - Id: 2234404
+    AegisName: Chaos_Speed_Gamma_Level_4
+    Name: Chaos Speed Gamma Level 4
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bSpeedAddRate,8;
+      bonus bAspdrate,8;
+      bonus bAspdcap,1;
+  - Id: 2234405
+    AegisName: Chaos_Speed_Gamma_Level_5
+    Name: Chaos Speed Gamma Level 5
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bSpeedAddRate,10;
+      bonus bAspdrate,10;
+      bonus bAspdcap,1;
+  - Id: 2234406
+    AegisName: Chaos_Speed_Gamma_Level_6
+    Name: Chaos Speed Gamma Level 6
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bSpeedAddRate,12;
+      bonus bAspdrate,12;
+      bonus bAspdcap,2;
+  - Id: 2234407
+    AegisName: Chaos_Speed_Gamma_Level_7
+    Name: Chaos Speed Gamma Level 7
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bSpeedAddRate,14;
+      bonus bAspdrate,14;
+      bonus bAspdcap,2;
+  - Id: 2234408
+    AegisName: Chaos_Speed_Gamma_Level_8
+    Name: Chaos Speed Gamma Level 8
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bSpeedAddRate,16;
+      bonus bAspdrate,16;
+      bonus bAspdcap,2;
+  - Id: 2234409
+    AegisName: Chaos_Speed_Gamma_Level_9
+    Name: Chaos Speed Gamma Level 9
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bSpeedAddRate,18;
+      bonus bAspdrate,18;
+      bonus bAspdcap,2;
+  - Id: 2234410
+    AegisName: Chaos_Speed_Gamma_Level_10
+    Name: Chaos Speed Gamma Level 10
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bSpeedAddRate,20;
+      bonus bAspdrate,20;
+      bonus bAspdcap,3;
+  - Id: 2234411
+    AegisName: Chaos_Def1_Gamma_Level_1
+    Name: Chaos Equip Def Gamma Level 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bDef,10;
+      bonus bDefRate,2;
+  - Id: 2234412
+    AegisName: Chaos_Def1_Gamma_Level_2
+    Name: Chaos Equip Def Gamma Level 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bDef,20;
+      bonus bDefRate,4;
+  - Id: 2234413
+    AegisName: Chaos_Def1_Gamma_Level_3
+    Name: Chaos Equip Def Gamma Level 3
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bDef,30;
+      bonus bDefRate,6;
+  - Id: 2234414
+    AegisName: Chaos_Def1_Gamma_Level_4
+    Name: Chaos Equip Def Gamma Level 4
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bDef,40;
+      bonus bDefRate,8;
+  - Id: 2234415
+    AegisName: Chaos_Def1_Gamma_Level_5
+    Name: Chaos Equip Def Gamma Level 5
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bDef,50;
+      bonus bDefRate,10;
+  - Id: 2234416
+    AegisName: Chaos_Def1_Gamma_Level_6
+    Name: Chaos Equip Def Gamma Level 6
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bDef,60;
+      bonus bDefRate,12;
+  - Id: 2234417
+    AegisName: Chaos_Def1_Gamma_Level_7
+    Name: Chaos Equip Def Gamma Level 7
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bDef,70;
+      bonus bDefRate,14;
+  - Id: 2234418
+    AegisName: Chaos_Def1_Gamma_Level_8
+    Name: Chaos Equip Def Gamma Level 8
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bDef,80;
+      bonus bDefRate,16;
+  - Id: 2234419
+    AegisName: Chaos_Def1_Gamma_Level_9
+    Name: Chaos Equip Def Gamma Level 9
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bDef,100;
+      bonus bDefRate,20;
+  - Id: 2234420
+    AegisName: Chaos_Def1_Gamma_Level_10
+    Name: Chaos Equip Def Gamma Level 10
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bDef,150;
+      bonus bDefRate,25;
+  - Id: 2234421
+    AegisName: Chaos_MDef1_Gamma_Level_1
+    Name: Chaos Equip MDef Gamma Level 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMDef,10;
+      bonus bMDefRate,2;
+  - Id: 2234422
+    AegisName: Chaos_MDef1_Gamma_Level_2
+    Name: Chaos Equip MDef Gamma Level 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMDef,20;
+      bonus bMDefRate,4;
+  - Id: 2234423
+    AegisName: Chaos_MDef1_Gamma_Level_3
+    Name: Chaos Equip MDef Gamma Level 3
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMDef,30;
+      bonus bMDefRate,6;
+  - Id: 2234424
+    AegisName: Chaos_MDef1_Gamma_Level_4
+    Name: Chaos Equip MDef Gamma Level 4
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMDef,40;
+      bonus bMDefRate,8;
+  - Id: 2234425
+    AegisName: Chaos_MDef1_Gamma_Level_5
+    Name: Chaos Equip MDef Gamma Level 5
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMDef,50;
+      bonus bMDefRate,10;
+  - Id: 2234426
+    AegisName: Chaos_MDef1_Gamma_Level_6
+    Name: Chaos Equip MDef Gamma Level 6
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMDef,60;
+      bonus bMDefRate,12;
+  - Id: 2234427
+    AegisName: Chaos_MDef1_Gamma_Level_7
+    Name: Chaos Equip MDef Gamma Level 7
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMDef,70;
+      bonus bMDefRate,14;
+  - Id: 2234428
+    AegisName: Chaos_MDef1_Gamma_Level_8
+    Name: Chaos Equip MDef Gamma Level 8
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMDef,80;
+      bonus bMDefRate,16;
+  - Id: 2234429
+    AegisName: Chaos_MDef1_Gamma_Level_9
+    Name: Chaos Equip MDef Gamma Level 9
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMDef,100;
+      bonus bMDefRate,20;
+  - Id: 2234430
+    AegisName: Chaos_MDef1_Gamma_Level_10
+    Name: Chaos Equip MDef Gamma Level 10
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMDef,150;
+      bonus bMDefRate,25;
+  - Id: 2234431
+    AegisName: Chaos_Def21_Gamma_Level_1
+    Name: Chaos Vit Def Gamma Level 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bDef2,10;
+      bonus bDef2Rate,2;
+  - Id: 2234432
+    AegisName: Chaos_Def21_Gamma_Level_2
+    Name: Chaos Vit Def Gamma Level 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bDef2,20;
+      bonus bDef2Rate,4;
+  - Id: 2234433
+    AegisName: Chaos_Def21_Gamma_Level_3
+    Name: Chaos Vit Def Gamma Level 3
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bDef2,30;
+      bonus bDef2Rate,6;
+  - Id: 2234434
+    AegisName: Chaos_Def21_Gamma_Level_4
+    Name: Chaos Vit Def Gamma Level 4
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bDef2,40;
+      bonus bDef2Rate,8;
+  - Id: 2234435
+    AegisName: Chaos_Def21_Gamma_Level_5
+    Name: Chaos Vit Def Gamma Level 5
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bDef2,50;
+      bonus bDef2Rate,10;
+  - Id: 2234436
+    AegisName: Chaos_Def21_Gamma_Level_6
+    Name: Chaos Vit Def Gamma Level 6
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bDef2,60;
+      bonus bDef2Rate,12;
+  - Id: 2234437
+    AegisName: Chaos_Def21_Gamma_Level_7
+    Name: Chaos Vit Def Gamma Level 7
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bDef2,70;
+      bonus bDef2Rate,14;
+  - Id: 2234438
+    AegisName: Chaos_Def21_Gamma_Level_8
+    Name: Chaos Vit Def Gamma Level 8
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bDef2,80;
+      bonus bDef2Rate,16;
+  - Id: 2234439
+    AegisName: Chaos_Def21_Gamma_Level_9
+    Name: Chaos Vit Def Gamma Level 9
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bDef2,100;
+      bonus bDef2Rate,20;
+  - Id: 2234440
+    AegisName: Chaos_Def21_Gamma_Level_10
+    Name: Chaos Vit Def Gamma Level 10
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bDef2,150;
+      bonus bDef2Rate,25;
+  - Id: 2234441
+    AegisName: Chaos_Mdef21_Gamma_Level_1
+    Name: Chaos Int MDef Gamma Level 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMdef2,10;
+      bonus bMdef2Rate,2;
+  - Id: 2234442
+    AegisName: Chaos_Mdef21_Gamma_Level_2
+    Name: Chaos Int MDef Gamma Level 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMdef2,20;
+      bonus bMdef2Rate,4;
+  - Id: 2234443
+    AegisName: Chaos_Mdef21_Gamma_Level_3
+    Name: Chaos Int MDef Gamma Level 3
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMdef2,30;
+      bonus bMdef2Rate,6;
+  - Id: 2234444
+    AegisName: Chaos_Mdef21_Gamma_Level_4
+    Name: Chaos Int MDef Gamma Level 4
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMdef2,40;
+      bonus bMdef2Rate,8;
+  - Id: 2234445
+    AegisName: Chaos_Mdef21_Gamma_Level_5
+    Name: Chaos Int MDef Gamma Level 5
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMdef2,50;
+      bonus bMdef2Rate,10;
+  - Id: 2234446
+    AegisName: Chaos_Mdef21_Gamma_Level_6
+    Name: Chaos Int MDef Gamma Level 6
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMdef2,60;
+      bonus bMdef2Rate,12;
+  - Id: 2234447
+    AegisName: Chaos_Mdef21_Gamma_Level_7
+    Name: Chaos Int MDef Gamma Level 7
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMdef2,70;
+      bonus bMdef2Rate,14;
+  - Id: 2234448
+    AegisName: Chaos_Mdef21_Gamma_Level_8
+    Name: Chaos Int MDef Gamma Level 8
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMdef2,80;
+      bonus bMdef2Rate,16;
+  - Id: 2234449
+    AegisName: Chaos_Mdef21_Gamma_Level_9
+    Name: Chaos Int MDef Gamma Level 9
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMdef2,100;
+      bonus bMdef2Rate,20;
+  - Id: 2234450
+    AegisName: Chaos_Mdef21_Gamma_Level_10
+    Name: Chaos Int MDef Gamma Level 10
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bMdef2,150;
+      bonus bMdef2Rate,25;
 #   [Enchant Stone]
   - Id: 2235001
     AegisName: SM_UP_Skill_1

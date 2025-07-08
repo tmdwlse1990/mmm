@@ -761,6 +761,7 @@ public:
 	struct s_bonus {
 		int32 ignoredef_point,ignoremdef_point;
 		int32 aspd_cap, drop_up;
+		int32 normal_ratio;
 		// [Custom Bonus]
 		int32 hp, sp, ap;
 		int32 atk_rate;

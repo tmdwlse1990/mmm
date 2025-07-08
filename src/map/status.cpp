@@ -2731,8 +2731,8 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int32 l
 		status->vit += level;
 		status->int_ += level;
 		status->luk += level;
-		status->agi += level / 5;
-		status->dex += level / 5;
+		status->agi += (level >= 120 ? level : level / 5 );
+		status->dex += (level >= 120 ? level : level / 5 );
 		
 		//status->rhw.atk += status->rhw.atk * (100 + level / 100);
 		status->rhw.atk = status->rhw.atk + (status->rhw.atk * (level/2) / 100);
