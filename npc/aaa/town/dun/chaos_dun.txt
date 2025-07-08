@@ -1,0 +1,425 @@
+icecastle,14,116,5	script	Chaos Dungeon#main	4_EP19_LUNCH,{
+	mes "เป็นรูปแบบการ Clear Monster Wave";
+	mes "มอนจะมาแบบ Wave";
+	mes "สามารถเพิ่มระดับได้ ถ้าหาก Rank นักพจญภัยเพิ่มขึ้น";
+	mes "แต่ Monster ก็จะโหดขึ้นด้วย";
+	mes "Monster จะไม่ให้ Item และ EXP ใดๆ";
+	mes "ทุกอย่างจะได้ตอนจบเท่านั้น เพราะงั้น โปรดระวัง..";
+	setdialogsize(400,200);
+	next;
+	set .@cooltime,checkquest(11,PLAYTIME);
+	set .@party_id,getcharid(1);
+	getpartymember .@party_id, 1;
+	set .@online_members_count, $@partymembercount;	
+	set .@md_name$,"Chaos Dungeon";
+	
+	if(select("เข้าดันเจี้ยน:เสริมพลังบตรนักพจญภัย") == 2 ) goto EnchantCard;
+	if(rentalcountitem(2001103)) {
+		goto Bypassevent;
+	}
+	switch(.@cooltime) {
+	case 2:
+		erasequest 11;
+	case -1:
+	Bypassevent:
+		if(select("พร้อม","ยังไม่พร้อม") == 2 ) end;
+			if (is_party_leader() == true) {
+				
+				mes "สถานะปาร์ตี้ได้รับการยืนยันแล้ว คุณต้องการจองทางเข้าสู่ "+.@md_name$+" หรือไม่?";
+				next;
+	Checkagain:
+					switch(select(
+					( .@party_id && getpartyleader(.@party_id,2) && !instance_id(IM_PARTY) )? "สร้างดันเจี้ยน "+.@md_name$:"",
+					( .@party_id && instance_id(IM_PARTY) )?"เข้าสู่ดันเจี้ยน":"",
+					"ยกเลิก")) {
+					case 1:
+		// Difficulty 
+		//============================================================
+						if (!instance_check_party(getcharid(1), 1)) {
+							mes "กรุณาลุยเดียว."; 
+							close;				
+						}
+		//=============================================================				
+						if (instance_create(.@md_name$) < 0) {
+							mes "Party Name: "+ getpartyname(.@party_id);
+							mes "Party Leader: "+strcharinfo(0);
+							mes "^0000ff"+.@md_name$+" ^000000 - Reservation Failed.";
+							mes "แจ้ง Admin.";
+							close;
+						}
+						mes "^0000ff"+.@md_name$+"^000000- กำลังพยายามจองทางเข้า";
+						mes "หลังจากทำการจองแล้ว คุณต้องเลือก 'เข้าสู่ดันเจี้ยน' จากเมนูหากคุณต้องการเข้าสู่ "+.@md_name$+".";
+						goto Checkagain;
+					case 2:
+						switch(instance_enter(.@md_name$)) {
+						case IE_OTHER:
+							mes "Error แบบงงๆ";
+							close;
+						case IE_NOINSTANCE:
+							mes "กรุณาเปิดดันก่อน";
+							close;
+						case IE_NOMEMBER:
+							mes "ให้เฉพาะสมาชิกในปาตี้เท่านั้น";
+							close;
+						case IE_OK:
+							if (!isbegin_quest(11)) setquest 11;
+							//warp "1@orcs",179,15;
+						}
+						end;
+					case 3:
+						close;
+					}
+			}
+		else {
+			mes "มีเพียง หัวหน้าปาตี้เท่านั้นที่เข้าได้";
+			mes "นี่ดัน Solo";
+			end;
+		}
+	case 0:
+	case 1:
+		clear;
+		mes "ยังไม่ถึงเวลา Reset ดันเจี้ยนรายวัน";
+		mes "กรุณากลับมาใหม่หลังตี 1 ครับ";
+		end;
+	}
+	end;
+L_Enter:
+	switch(instance_enter(.@md_name$)) {
+	case IE_OTHER:
+		mes "Error แบบงงๆ";
+		close;
+	case IE_NOINSTANCE:
+		mes "กรุณาเปิดดันก่อน";
+		close;
+	case IE_NOMEMBER:
+		mes "ให้เฉพาะสมาชิกในปาตี้เท่านั้น";
+		close;
+	case IE_OK:
+		//if (checkquest(11) == -1) setquest 11;
+		//warp "1@orcs",179,15;
+		if (getarg(0) == 0) close;
+		else end;
+	}
+	end;
+EnchantCard:
+	close2;
+	item_enchant(290);
+	end;
+}
+
+
+function	script	F_mobidle	{
+	sleep2 1000;	// stop if no RID
+
+	.@game_id = getattachedrid();
+	.@dist_min = 300;
+	.@size = getarg(1);
+	.@dx = getarg(3);
+	getunitdata .@game_id, .@data;
+
+	for ( .@i = 0; .@i < .@size; .@i++ ) {
+		.@dist_to_spot[.@i] = distance( .@data[UMOB_X], .@data[UMOB_Y], (getelementofarray( getarg(2),.@i ) + .@dx), getelementofarray( getarg(4),.@i ) );
+		if (.@dist_min >= .@dist_to_spot[.@i]) {
+			.@dist_min = .@dist_to_spot[.@i];
+			.@index = .@i;
+		}
+	}
+
+	if (.@dist_min <= 1) {
+		.@index++;
+		if (.@index >= .@size) {
+			unitskilluseid .@game_id,301,1,.@game_id,1,false,41;	// SA_INSTANTDEATH
+			return;
+		}
+	}
+	else if (.@index < (.@size -1)) {
+		.@total[0] = .@dist_min + getelementofarray( getarg(5), .@index );
+		.@total[1] = .@dist_to_spot[.@index + 1] + getelementofarray( getarg(5), .@index+1 );
+		if (.@total[0] > .@total[1])
+			.@index = .@index + 1;
+	}
+
+	if (.@dist_to_spot[.@index] > 14) {
+		unitkill .@game_id;
+		end;
+	}
+	if (!.@data[UMOB_TARGETID]) {
+		unitwalk .@game_id, (getelementofarray( getarg(2),.@index ) + .@dx), getelementofarray( getarg(4),.@index );
+		sleep2 50;	// for now a delay between unitwalk and mob_setidleevent is needed
+	}
+	mob_setidleevent .@game_id, getarg(0);
+	end;
+}
+
+1@def01	mapflag	nodrop
+1@def01	mapflag	noexp
+1@def01	mapflag	nopenalty
+1@def01	mapflag	nosave
+1@def01	mapflag	nomemo
+1@def01	mapflag	noautoattack
+
+// Wave mode forest
+1@def01,50,50,0	script(DISABLED)	#chaos_dun_entrance	EP18_MD_SCHULANG_L,{
+	
+	setarray .@rankname$[0],"F","E","D","C","B","A";
+	.@level_mode$ = "";
+	for(.@i=0; .@i <= adv_clas; .@i++)
+		.@level_mode$ = .@level_mode$ +.@rankname$[.@i]+" Rank" + ":";
+	'rank_level = select(.@level_mode$) - 1;
+	if(countitem(2001104)) {
+		delitem 2001104,1;
+		'double_reward = 1;
+	}
+					
+	disablenpc instance_npcname("#chaos_dun_entrance");
+	initnpctimer;
+	end;
+OnTimer1000:
+	mapannounce 'map_def01$, "เหล่า Player ที่น่ารัก พร้อมซัดละยางงง", bc_map;
+	end;
+OnTimer3000:
+	stopnpctimer;
+	donpcevent instance_npcname("#chaos_dun_system") + "::OnStart";
+	end;
+}
+
+1@def01,1,1,0	script	#chaos_dun_system	-1,{
+	end;
+OnStart:
+	initnpctimer;
+	end;
+OnTimer1000:
+	if('wave >= 'max_wave) {
+		donpcevent instance_npcname("#chaos_dun_system") + "::OnStop";
+		end;
+	}
+	mapannounce 'map_def01$, "3", bc_map;
+	end;
+OnTimer2000:
+	mapannounce 'map_def01$, "2", bc_map;
+	end;
+OnTimer3000:
+	mapannounce 'map_def01$, "1", bc_map;
+	end;
+OnTimer4000:
+	'wave++;
+	if ('wave % 10)
+		mapannounce 'map_def01$, "-- Wave " + 'wave + " --", bc_map;
+	else
+		mapannounce 'map_def01$, "!! มอนสเตอร์ระดับสูงกำลังจะมา !!", bc_map;
+	donpcevent 'npc_name$ + "::OnSpawn";
+	end;
+OnTimer24000:
+	mapannounce 'map_def01$, "รอบต่อไปจะมาแล้วน้า. พร้อมยางง.", bc_map;
+	initnpctimer;
+	end;
+OnStop:
+	stopnpctimer;
+	end;
+}
+
+1@def01,1,1,0	script	#chaos_dun_spawn	-1,{
+	end;
+OnSpawn:
+	/*
+	switch( 'wave % 'max_wave ) {
+	case 1:
+		setarray .@mobidlist,2401,2859,1457
+		'mob_id = .@mobidlist['rank_level];	// G_PORING
+		break;
+	case 2:
+		setarray .@mobidlist,2582,2578,1424
+		'mob_id = .@mobidlist['rank_level];	// G_LUNATIC
+		break;
+	case 3:
+		setarray .@mobidlist,2573,2601,1429
+		'mob_id = .@mobidlist['rank_level];	// G_CHONCHON
+		break;
+	case 4:
+		setarray .@mobidlist,2590,2575,1441
+		'mob_id = .@mobidlist['rank_level];	// G_ROCKER
+		break;
+	case 5:
+		setarray .@mobidlist,2577,2583,1422
+		'mob_id = .@mobidlist['rank_level];	// G_FABRE
+		break;
+	case 6:
+		setarray .@mobidlist,1747,2600,2585
+		'mob_id = .@mobidlist['rank_level];	// G_SNAKE
+		break;
+	case 7:
+		setarray .@mobidlist,2595,1430,2592
+		'mob_id = .@mobidlist['rank_level];	// G_STAINER
+		break;
+	case 8:
+		setarray .@mobidlist,2576,2597,2571
+		'mob_id = .@mobidlist['rank_level];	// G_CREAMY
+		break;
+	case 9:
+		setarray .@mobidlist,2572,1431,2673
+		'mob_id = .@mobidlist['rank_level];	// G_CARAMEL
+		break;
+	default:
+		setarray .@mobidlist,1603,2591,1459
+		'mob_id = .@mobidlist['rank_level];	// G_BIGFOOT
+		break;
+	}
+	*/
+	.@i = 'wave - 1;
+	setarray .@mob_list[0],
+		3076,	// WA_MONSTER_1
+		3077,	// WA_MONSTER_2
+		3078,	// WA_MONSTER_3
+		3079,	// WA_MONSTER_4
+		3080,	// WA_MONSTER_5 (skipped)
+		3081,	// WA_MONSTER_6
+		3082,	// WA_MONSTER_7
+		3083,	// WA_MONSTER_8
+		3084,	// WA_MONSTER_9
+		3085;	// WA_MONSTER_10 (skipped)
+	'mob_id = .@mob_list[.@i];
+	initnpctimer;
+	end;
+OnTimer1000:
+	stopnpctimer;
+	if (('wave % 10) == 0) {	// champion
+		donpcevent 'npc_name$ + "::OnSpawn0";
+		//donpcevent 'npc_name$ + "::OnSpawn1";
+		donpcevent 'npc_name$ + "::OnSpawn2";
+		//donpcevent 'npc_name$ + "::OnSpawn3";
+		donpcevent 'npc_name$ + "::OnSpawn4";
+		end;
+	}
+	if ('wave == 1)	// first wave at x = 51
+		.@dx = 3;
+	else
+		.@dx = 2;
+	for ( .@i = 0; .@i < 'nummber_mob; .@i++ ) {
+		donpcevent 'npc_name$ + "::OnSpawn" + .@dx;
+		sleep 300;
+	}
+	// total ~7 secs
+	end;
+OnSpawn0: callsub( S_Spawn, 0 );
+OnSpawn1: callsub( S_Spawn, 1 );
+OnSpawn2: callsub( S_Spawn, 2 );
+OnSpawn3: callsub( S_Spawn, 3 );
+OnSpawn4: callsub( S_Spawn, 4 );
+S_Spawn:
+	.@x = 48 + getarg(0);
+	monster 'map_def01$,.@x,74, "Invader!", 'mob_id,1,('wave == 'max_wave ? instance_npcname("#chaos_dun_spawn") + "::OnLastWave":"");
+	.@gid = $@mobid[0];
+	if('rank_level > 1) {
+		.@param = ('wave * 1000);
+	}
+	else {
+		.@param = ('wave * 10);
+	}
+	setunitdata .@gid, UMOB_MAXHP, (.@param * pow(('rank_level + 1),2) );
+	setunitdata .@gid, UMOB_HP, (.@param * pow(('rank_level + 1),2) );
+	setunitdata .@gid, UMOB_MODE, ( MD_CANMOVE|MD_NORANDOMWALK );
+	setunitdata .@gid, UMOB_IGNORE_CELL_STACK_LIMIT, true;
+	mob_setidleevent .@gid, 'npc_name$ + "::OnIdle" + getarg(0);
+	end;
+
+OnIdle0: callsub( S_Idle, 0 );
+OnIdle1: callsub( S_Idle, 1 );
+OnIdle2: callsub( S_Idle, 2 );
+OnIdle3: callsub( S_Idle, 3 );
+OnIdle4: callsub( S_Idle, 4 );
+S_Idle:
+	callfunc( "F_mobidle", ('npc_name$ + "::OnIdle" + getarg(0)), 'size_coord, 'x_mob, getarg(0), 'y_mob, 'dist_spot_AZ );
+	'mob_escaped++;
+	if ('mob_escaped <= 5)
+		mapannounce 'map_def01$, "" + 'mob_escaped + " " + ('mob_escaped == 1 ? "monster has" : "monsters have") + " escaped.", bc_map;
+	if ('mob_escaped == 5)
+		donpcevent instance_npcname("#chaos_dun_out") + "::OnFail";
+	end;
+	
+OnLastWave:
+	//if(!mobcount('map_def01$,instance_npcname("#chaos_dun_spawn") + "::OnLastWave") ) {
+	if(!mobcount('map_def01$,"all") ) {
+		mapannounce 'map_def01$, "<Chaos Dungeon> จบลงแล้ว คุณชนะ ยินดีด้วย", bc_map;
+		donpcevent instance_npcname("#chaos_dun_system") + "::OnStop";
+		enablenpc instance_npcname("Reward Box#chaos_reward");
+		initnpctimer instance_npcname("#chaos_dun_out");
+		end;
+	}
+	end;
+}
+
+1@def01,50,45,0	script(DISABLED)	Reward Box#chaos_reward	4_STAR_BOX_SCORE,{
+	setarray .@itemreward,2234001,2234002,2234003,2234004;
+	setarray .@multipletimes,1,2,4,8,16,32;
+	setarray .@bsbreward,0,1,2,4,7,11;
+	if('rank_level) {
+		getitem 6635,.@bsbreward['rank_level];
+	}
+	cloakonnpc;
+	for(.@i=0; .@i < (.@multipletimes['rank_level] * 7); .@i++) {
+		//makeitem <item id>,<amount>,"<map name>",<X>,<Y>{,<canShowEffect>};
+		makeitem .@itemreward[rand(getarraysize(.@itemreward))],(1 + 'double_reward),'map_def01$,50+rand(-6,6),45+rand(-6,6);
+		sleep2 50;
+	}
+	disablenpc;
+	end;
+}
+
+// 1@def01,50,23,0	script	#wave_mode_forest_warp	WARPNPC,2,2,{
+1@def01,50,30,0	script	#chaos_dun_warp	WARPNPC,2,2,{// official warp out
+	end;
+OnTouch:
+	if (wave_mode_map$ == "")
+		warp "icecastle",184,211;
+	else {
+		warp wave_mode_map$, wave_mode_x, wave_mode_y;
+		wave_mode_map$ = "";
+		wave_mode_x = wave_mode_y = 0;
+	}
+	end;
+}
+
+1@def01,1,1,0	script	#chaos_dun_out	-1,{
+	end;
+OnFail:
+	donpcevent instance_npcname("#chaos_dun_system") + "::OnStop";
+
+	mapannounce 'map_def01$, "นายแพ้ให้กับ <Chaos Dungeon> challenge.", bc_map;
+	initnpctimer;
+	end;
+OnTimer1000:
+	enablenpc instance_npcname("#chaos_dun_warp");
+	mapannounce 'map_def01$, "<Chaos Dungeon> จบลงแล้ว ขอบคุณที่ใช้บริการ", bc_map;
+	end;
+OnTimer3000:
+	mapannounce 'map_def01$, "<Chaos Dungeon> กรุณารับรางวัล ท่านจะถูกดีดออกดันเจียนใน 60 วินาที", bc_map;
+	end;
+OnTimer60000:
+	stopnpctimer;
+	instance_destroy();
+	end;
+
+OnInstanceInit:
+	'wave = 'mob_escaped = 'rank_level = 0;
+	'max_wave = 10;
+	'nummber_mob = 5;
+	'map_def01$ = instance_mapname("1@def01");
+	'npc_name$ = instance_npcname("#chaos_dun_spawn");
+
+	enablenpc instance_npcname("#chaos_dun_entrance");
+	disablenpc instance_npcname("#chaos_dun_system");
+	disablenpc instance_npcname("#chaos_dun_warp");
+	disablenpc instance_npcname("#chaos_dun_out");
+
+	setarray 'x_mob[0], 48, 48, 48, 48, 48, 48, 48;
+	setarray 'y_mob[0], 74, 65, 56, 48, 40, 31, 23;
+
+	'size_coord = getarraysize('y_mob);
+	for ( .@i = 0; .@i < 'size_coord -1; .@i++ ) {
+		.@dist_mob[.@i+1] = distance( 'x_mob[.@i], 'y_mob[.@i], 'x_mob[.@i+1], 'y_mob[.@i+1] );
+		.@total_mob += .@dist_mob[.@i+1];
+	}
+	for ( .@i = 0; .@i < 'size_coord -1; .@i++ )
+		'dist_spot_AZ[.@i] = .@total_mob - .@dist_mob[.@i];
+	end;
+}

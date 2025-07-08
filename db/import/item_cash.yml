@@ -173,6 +173,8 @@ Body:
         Price: 200
       - Item: Blue_Herb_Box
         Price: 200
+      - Item: Less_Times_Chaos_Agreement
+        Price: 199
   - Tab: Rental
     Items:
       - Item: Infiltrator_Box

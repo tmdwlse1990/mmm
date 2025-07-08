@@ -1,9 +1,7 @@
 icecastle,189,206,5	script	‰°Ë«‘‡»…	800,{
-	if(getgmlevel() < 99 ) {
-		mes "‰°Ë«‘‡»… °ÿÍ°Ê";
-		end;
-	}
-	if (!achievementexists(100101))
-		achievementcomplete(100101);
+	makeitem 2002011,1,"this",189 + rand(-2,2),206  + rand(-2,2),true;
+	makeitem 2002012,1,"this",189 + rand(-2,2),206  + rand(-2,2),true;
+	makeitem 2002013,1,"this",189 + rand(-2,2),206  + rand(-2,2),true;
+	makeitem 2002014,1,"this",189 + rand(-2,2),206  + rand(-2,2),true;
 end;
 }

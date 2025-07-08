@@ -82,6 +82,130 @@ Header:
 
 Body:
 # [Boss Add Drop from Main]
+
+  - Id: 3333
+    AegisName: RUBY_CORE
+    Name: Ruby
+    Level: 50
+    Hp: 1000000
+    Attack: 712
+    Attack2: 714
+    Defense: 100
+    MagicDefense: 100
+    Str: 50
+    Agi: 50
+    Vit: 50
+    Int: 50
+    Dex: 50
+    Luk: 50
+    AttackRange: 4
+    SkillRange: 13
+    ChaseRange: 15
+    Size: Small
+    Race: Angel
+    Element: Fire
+    ElementLevel: 1
+    WalkSpeed: 150
+    AttackDelay: 430
+    AttackMotion: 221
+    DamageMotion: 376
+    Ai: 26
+    Class: Boss
+    Modes:
+      Mvp: true
+      
+  - Id: 3334
+    AegisName: SAPPHIRE_CORE
+    Name: Sapphire
+    Level: 60
+    Hp: 4000000
+    Attack: 1274
+    Attack2: 1212
+    Defense: 110
+    MagicDefense: 110
+    Str: 60
+    Agi: 60
+    Vit: 60
+    Int: 60
+    Dex: 60
+    Luk: 60
+    AttackRange: 4
+    SkillRange: 13
+    ChaseRange: 15
+    Size: Small
+    Race: Angel
+    Element: Water
+    ElementLevel: 1
+    WalkSpeed: 150
+    AttackDelay: 450
+    AttackMotion: 200
+    DamageMotion: 100
+    Ai: 26
+    Class: Boss
+    Modes:
+      Mvp: true
+      
+  - Id: 3335
+    AegisName: EMERALD_CORE
+    Name: Emerald
+    Level: 70
+    Hp: 10000000
+    Attack: 1434
+    Attack2: 1491
+    Defense: 120
+    MagicDefense: 120
+    Str: 70
+    Agi: 70
+    Vit: 70
+    Int: 70
+    Dex: 70
+    Luk: 70
+    AttackRange: 4
+    SkillRange: 13
+    ChaseRange: 15
+    Size: Small
+    Race: Angel
+    Element: Wind
+    ElementLevel: 1
+    WalkSpeed: 150
+    AttackDelay: 450
+    AttackMotion: 200
+    DamageMotion: 100
+    Ai: 26
+    Class: Boss
+    Modes:
+      Mvp: true
+      
+  - Id: 3336
+    AegisName: TOPAZ_CORE
+    Name: Topaz
+    Level: 80
+    Hp: 20000000
+    Attack: 1534
+    Attack2: 1691
+    Defense: 130
+    MagicDefense: 130
+    Str: 80
+    Agi: 80
+    Vit: 80
+    Int: 80
+    Dex: 80
+    Luk: 80
+    AttackRange: 4
+    SkillRange: 13
+    ChaseRange: 15
+    Size: Small
+    Race: Angel
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 150
+    AttackDelay: 450
+    AttackMotion: 200
+    DamageMotion: 100
+    Ai: 26
+    Class: Boss
+    Modes:
+      Mvp: true
 # [Boss Add Drop from Main]
   - Id: 30001
     AegisName: MD_Error
@@ -899,18 +1023,16 @@ Body:
   - Id: 22381
     AegisName: CLB_SS_FC
     Name: Fei-Chai
-    Level: 100
+    Level: 60
     Hp: 7000000
     BaseExp: 0
     JobExp: 0
     #MvpExp:
-    Attack: 5151
+    Attack: 1751
     Attack2: 1042
     Defense: 147
     MagicDefense: 134
-    Resistance: 100
-    MagicResistance: 100
-    Str: 186
+    Str: 96
     Agi: 34
     Vit: 86
     Int: 11
@@ -927,7 +1049,6 @@ Body:
     AttackDelay: 345
     AttackMotion: 420
     DamageMotion: 432    # unknown
-    DamageTaken: 1
     Ai: 21
     Class: Boss
     Drops:

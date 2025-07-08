@@ -81,6 +81,9 @@ Body: #ให้ใช้ ID ไม่เกิน 1000
   - Id: 11
     Title: Chaos Dungeon
     TimeLimit: 1h
+  - Id: 12
+    Title: Guardian Raid
+    TimeLimit: 1h
   - Id: 81
     Title: Rank E Condition
     Targets: 

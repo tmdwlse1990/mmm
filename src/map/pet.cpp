@@ -1744,6 +1744,27 @@ static int32 pet_randomwalk(struct pet_data *pd,t_tick tick)
 	return 0;
 }
 
+static int pet_loot_aoe(struct block_list *bl, va_list ap) {
+	struct pet_data *pd = va_arg(ap, struct pet_data *);
+	class map_session_data *sd = va_arg(ap, class map_session_data *);
+
+	if (!bl || !pd || !sd)
+		return 0;
+
+	struct flooritem_data *fitem = (struct flooritem_data *)bl;
+
+	// เงื่อนไข: ต้องอยู่ในระยะ 1 ช่อง และเป็นของเจ้าของ
+	if (!check_distance_bl(pd, bl, (pd->loot->max - 1)))
+		return 0;
+
+	if (fitem->first_get_charid && fitem->first_get_charid != pd->master->status.char_id)
+		return 0;
+
+	if (pc_additem(sd, &fitem->item, fitem->item.amount, LOG_TYPE_PICKDROP_PLAYER) == ADDITEM_SUCCESS)
+		map_clearflooritem(bl);
+	return 0;
+}
+
 /**
  * Pet AI decision making when supporting master.
  * @param pd : pet requesting
@@ -1860,20 +1881,12 @@ static int32 pet_ai_sub_hard(struct pet_data *pd, map_session_data *sd, t_tick t
 
 			return 0;
 		} else {
-			struct flooritem_data *fitem = (struct flooritem_data *)target;
 
-			/* ให้เก็บเฉพาะ type
-			if (!(itemdb_type(fitem->item.nameid) == IT_ETC || itemdb_type(fitem->item.nameid) == IT_CARD)) {
-			pet_unlocktarget(pd); // Skip the item if it's one of the types to ignore
-			clif_emotion(&pd->bl, ET_STARE_ABOUT); //ET_CRY
-			map_clearflooritem(target);
-			return 0;
-			}*/
-			
-			if(pd->loot->count < pd->loot->max) {
-				memcpy(&pd->loot->item[pd->loot->count++],&fitem->item,sizeof(pd->loot->item[0]));
-				pd->loot->weight += itemdb_weight(fitem->item.nameid)*fitem->item.amount;
-//				map_clearflooritem(target);
+			if (pd->loot->max < 2) {
+				struct flooritem_data* fitem = (struct flooritem_data*)target;
+				memcpy(&pd->loot->item[pd->loot->count++], &fitem->item, sizeof(pd->loot->item[0]));
+				pd->loot->weight += itemdb_weight(fitem->item.nameid) * fitem->item.amount;
+				//				map_clearflooritem(target);
 				pd->loot->count = 0;
 				//clif_emotion(&pd->bl, ET_OK); //ET_CRY	
 
@@ -1881,15 +1894,16 @@ static int32 pet_ai_sub_hard(struct pet_data *pd, map_session_data *sd, t_tick t
 					map_clearflooritem(target);
 				}
 			}
-
-			//Target is unlocked regardless of whether it was picked or not.
+			else 
+				map_foreachinallrange(pet_loot_aoe, pd, pd->loot->max, BL_ITEM, pd, sd);
+			//ShowDebug("pet Loot Aoe: %d.\n", pd->loot->max);
+			// ระยะเก็บของรอบตัว map_foreachinallrange(pet_loot_aoe, &pd->bl, ใส่ตรงนี้, BL_ITEM, pd, sd);
 			pet_unlocktarget(pd);
 		}
 	}
 
 	return 0;
 }
-
 /**
  * Call pet AI based on targets around.
  * @param sd : player requesting

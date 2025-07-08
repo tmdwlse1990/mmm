@@ -65,6 +65,23 @@
 #           Materials:         Items required for this enchant upgrade (Default: null)
 #             - Material       Item name of the required item.
 #               Amount         Amount of the required item. (Default: 1)
+#        RandomUpgrades:
+#          - Enchant: Physical_Fruit_10                 Item name of the enchant item available for upgrade.
+#            Price: 0                                   Price required for this enchant upgrade. (Default: 0)
+#            Materials:                                 Items required for this enchant upgrade (Default: null)
+#              - Material: Energy_Of_Spring             Item name of the required item.
+#                Amount: 20                             Amount of the required item. (Default: 1)
+#              - Material: Energy_Of_Ground             
+#                Amount: 25                     
+#              - Material: Energy_Of_Wind               
+#                Amount: 20                     
+#              - Material: Grace_Of_Spirit              
+#                Amount: 5                      
+#            Items:                                     Item name of the enchant item to upgrade. (Default: null)
+#              - Item: Physical_Fruit_10                Item name of the targer encahnt item.
+#                Chance: 15000                          Base chance for the normal enchant process. (Default: 100000)
+#              - Item: Physical_Fruit_11                
+#                Chance: 85000                      
 ###########################################################################
 
 Header:
@@ -72,6 +89,3648 @@ Header:
   Version: 1
 
 Body:
+  - Id: 290
+    TargetItems:
+      Adventure_Card: true
+    Reset:
+      Chance: 100000
+      Price: 3300000
+    Order:
+      - Slot: 3
+      - Slot: 2
+      - Slot: 1
+      - Slot: 0
+    Slots:
+      - Slot: 0
+        PerfectEnchants:
+          - Item: Chaos_Speed_Gamma_Level_1
+            Price: 100000
+            Materials:
+              - Material: Chaos_stone_4
+                Amount: 1
+          - Item: Chaos_Def1_Gamma_Level_1
+            Price: 100000
+            Materials:
+              - Material: Chaos_stone_4
+                Amount: 1
+          - Item: Chaos_MDef1_Gamma_Level_1
+            Price: 100000
+            Materials:
+              - Material: Chaos_stone_4
+                Amount: 1
+          - Item: Chaos_Def21_Gamma_Level_1
+            Price: 100000
+            Materials:
+              - Material: Chaos_stone_4
+                Amount: 1
+          - Item: Chaos_MDef21_Gamma_Level_1
+            Price: 100000
+            Materials:
+              - Material: Chaos_stone_4
+                Amount: 1
+        Upgrades:
+          - Enchant: Chaos_Speed_Gamma_Level_1
+            Upgrade: Chaos_Speed_Gamma_Level_2
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 2
+        
+          - Enchant: Chaos_Speed_Gamma_Level_2
+            Upgrade: Chaos_Speed_Gamma_Level_3
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 6
+        
+          - Enchant: Chaos_Speed_Gamma_Level_3
+            Upgrade: Chaos_Speed_Gamma_Level_4
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 18
+        
+          - Enchant: Chaos_Speed_Gamma_Level_4
+            Upgrade: Chaos_Speed_Gamma_Level_5
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 54
+        
+          - Enchant: Chaos_Speed_Gamma_Level_5
+            Upgrade: Chaos_Speed_Gamma_Level_6
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 162
+        
+          - Enchant: Chaos_Speed_Gamma_Level_6
+            Upgrade: Chaos_Speed_Gamma_Level_7
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 486
+        
+          - Enchant: Chaos_Speed_Gamma_Level_7
+            Upgrade: Chaos_Speed_Gamma_Level_8
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 1458
+        
+          - Enchant: Chaos_Speed_Gamma_Level_8
+            Upgrade: Chaos_Speed_Gamma_Level_9
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 4374
+        
+          - Enchant: Chaos_Speed_Gamma_Level_9
+            Upgrade: Chaos_Speed_Gamma_Level_10
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 13122
+        
+          - Enchant: Chaos_Def1_Gamma_Level_1
+            Upgrade: Chaos_Def1_Gamma_Level_2
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 2
+        
+          - Enchant: Chaos_Def1_Gamma_Level_2
+            Upgrade: Chaos_Def1_Gamma_Level_3
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 6
+        
+          - Enchant: Chaos_Def1_Gamma_Level_3
+            Upgrade: Chaos_Def1_Gamma_Level_4
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 18
+        
+          - Enchant: Chaos_Def1_Gamma_Level_4
+            Upgrade: Chaos_Def1_Gamma_Level_5
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 54
+        
+          - Enchant: Chaos_Def1_Gamma_Level_5
+            Upgrade: Chaos_Def1_Gamma_Level_6
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 162
+        
+          - Enchant: Chaos_Def1_Gamma_Level_6
+            Upgrade: Chaos_Def1_Gamma_Level_7
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 486
+        
+          - Enchant: Chaos_Def1_Gamma_Level_7
+            Upgrade: Chaos_Def1_Gamma_Level_8
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 1458
+        
+          - Enchant: Chaos_Def1_Gamma_Level_8
+            Upgrade: Chaos_Def1_Gamma_Level_9
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 4374
+        
+          - Enchant: Chaos_Def1_Gamma_Level_9
+            Upgrade: Chaos_Def1_Gamma_Level_10
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 13122
+        
+          - Enchant: Chaos_MDef1_Gamma_Level_1
+            Upgrade: Chaos_MDef1_Gamma_Level_2
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 2
+        
+          - Enchant: Chaos_MDef1_Gamma_Level_2
+            Upgrade: Chaos_MDef1_Gamma_Level_3
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 6
+        
+          - Enchant: Chaos_MDef1_Gamma_Level_3
+            Upgrade: Chaos_MDef1_Gamma_Level_4
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 18
+        
+          - Enchant: Chaos_MDef1_Gamma_Level_4
+            Upgrade: Chaos_MDef1_Gamma_Level_5
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 54
+        
+          - Enchant: Chaos_MDef1_Gamma_Level_5
+            Upgrade: Chaos_MDef1_Gamma_Level_6
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 162
+        
+          - Enchant: Chaos_MDef1_Gamma_Level_6
+            Upgrade: Chaos_MDef1_Gamma_Level_7
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 486
+        
+          - Enchant: Chaos_MDef1_Gamma_Level_7
+            Upgrade: Chaos_MDef1_Gamma_Level_8
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 1458
+        
+          - Enchant: Chaos_MDef1_Gamma_Level_8
+            Upgrade: Chaos_MDef1_Gamma_Level_9
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 4374
+        
+          - Enchant: Chaos_MDef1_Gamma_Level_9
+            Upgrade: Chaos_MDef1_Gamma_Level_10
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 13122
+        
+          - Enchant: Chaos_Def21_Gamma_Level_1
+            Upgrade: Chaos_Def21_Gamma_Level_2
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 2
+        
+          - Enchant: Chaos_Def21_Gamma_Level_2
+            Upgrade: Chaos_Def21_Gamma_Level_3
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 6
+        
+          - Enchant: Chaos_Def21_Gamma_Level_3
+            Upgrade: Chaos_Def21_Gamma_Level_4
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 18
+        
+          - Enchant: Chaos_Def21_Gamma_Level_4
+            Upgrade: Chaos_Def21_Gamma_Level_5
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 54
+        
+          - Enchant: Chaos_Def21_Gamma_Level_5
+            Upgrade: Chaos_Def21_Gamma_Level_6
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 162
+        
+          - Enchant: Chaos_Def21_Gamma_Level_6
+            Upgrade: Chaos_Def21_Gamma_Level_7
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 486
+        
+          - Enchant: Chaos_Def21_Gamma_Level_7
+            Upgrade: Chaos_Def21_Gamma_Level_8
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 1458
+        
+          - Enchant: Chaos_Def21_Gamma_Level_8
+            Upgrade: Chaos_Def21_Gamma_Level_9
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 4374
+        
+          - Enchant: Chaos_Def21_Gamma_Level_9
+            Upgrade: Chaos_Def21_Gamma_Level_10
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 13122
+                
+          - Enchant: Chaos_MDef21_Gamma_Level_1
+            Upgrade: Chaos_MDef21_Gamma_Level_2
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 2
+        
+          - Enchant: Chaos_MDef21_Gamma_Level_2
+            Upgrade: Chaos_MDef21_Gamma_Level_3
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 6
+        
+          - Enchant: Chaos_MDef21_Gamma_Level_3
+            Upgrade: Chaos_MDef21_Gamma_Level_4
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 18
+        
+          - Enchant: Chaos_MDef21_Gamma_Level_4
+            Upgrade: Chaos_MDef21_Gamma_Level_5
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 54
+        
+          - Enchant: Chaos_MDef21_Gamma_Level_5
+            Upgrade: Chaos_MDef21_Gamma_Level_6
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 162
+        
+          - Enchant: Chaos_MDef21_Gamma_Level_6
+            Upgrade: Chaos_MDef21_Gamma_Level_7
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 486
+        
+          - Enchant: Chaos_MDef21_Gamma_Level_7
+            Upgrade: Chaos_MDef21_Gamma_Level_8
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 1458
+        
+          - Enchant: Chaos_MDef21_Gamma_Level_8
+            Upgrade: Chaos_MDef21_Gamma_Level_9
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 4374
+        
+          - Enchant: Chaos_MDef21_Gamma_Level_9
+            Upgrade: Chaos_MDef21_Gamma_Level_10
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 13122
+        RandomUpgrades:
+          - Enchant: Chaos_Speed_Gamma_Level_1
+            Price: 1000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_1
+                Chance: 3
+              - Item: Chaos_Def1_Gamma_Level_1
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_1
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_1
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_1
+                Chance: 1
+          
+          - Enchant: Chaos_Speed_Gamma_Level_2
+            Price: 2000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_2
+                Chance: 3
+              - Item: Chaos_Def1_Gamma_Level_2
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_2
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_2
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_2
+                Chance: 1
+          
+          - Enchant: Chaos_Speed_Gamma_Level_3
+            Price: 6000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_3
+                Chance: 3
+              - Item: Chaos_Def1_Gamma_Level_3
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_3
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_3
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_3
+                Chance: 1
+          
+          - Enchant: Chaos_Speed_Gamma_Level_4
+            Price: 18000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_4
+                Chance: 3
+              - Item: Chaos_Def1_Gamma_Level_4
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_4
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_4
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_4
+                Chance: 1
+          
+          - Enchant: Chaos_Speed_Gamma_Level_5
+            Price: 54000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_5
+                Chance: 3
+              - Item: Chaos_Def1_Gamma_Level_5
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_5
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_5
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_5
+                Chance: 1
+          
+          - Enchant: Chaos_Speed_Gamma_Level_6
+            Price: 162000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_6
+                Chance: 3
+              - Item: Chaos_Def1_Gamma_Level_6
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_6
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_6
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_6
+                Chance: 1
+          
+          - Enchant: Chaos_Speed_Gamma_Level_7
+            Price: 486000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_7
+                Chance: 3
+              - Item: Chaos_Def1_Gamma_Level_7
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_7
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_7
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_7
+                Chance: 1
+          
+          - Enchant: Chaos_Speed_Gamma_Level_8
+            Price: 1458000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_8
+                Chance: 3
+              - Item: Chaos_Def1_Gamma_Level_8
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_8
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_8
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_8
+                Chance: 1
+          
+          - Enchant: Chaos_Speed_Gamma_Level_9
+            Price: 4374000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_9
+                Chance: 3
+              - Item: Chaos_Def1_Gamma_Level_9
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_9
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_9
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_9
+                Chance: 1
+          
+          - Enchant: Chaos_Speed_Gamma_Level_10
+            Price: 13122000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_10
+                Chance: 3
+              - Item: Chaos_Def1_Gamma_Level_10
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_10
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_10
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_10
+                Chance: 1
+          - Enchant: Chaos_Def1_Gamma_Level_1
+            Price: 1000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_1
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_1
+                Chance: 3
+              - Item: Chaos_MDef1_Gamma_Level_1
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_1
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_1
+                Chance: 1
+          
+          - Enchant: Chaos_Def1_Gamma_Level_2
+            Price: 2000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_2
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_2
+                Chance: 3
+              - Item: Chaos_MDef1_Gamma_Level_2
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_2
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_2
+                Chance: 1
+          
+          - Enchant: Chaos_Def1_Gamma_Level_3
+            Price: 6000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_3
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_3
+                Chance: 3
+              - Item: Chaos_MDef1_Gamma_Level_3
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_3
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_3
+                Chance: 1
+          
+          - Enchant: Chaos_Def1_Gamma_Level_4
+            Price: 18000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_4
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_4
+                Chance: 3
+              - Item: Chaos_MDef1_Gamma_Level_4
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_4
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_4
+                Chance: 1
+          
+          - Enchant: Chaos_Def1_Gamma_Level_5
+            Price: 54000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_5
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_5
+                Chance: 3
+              - Item: Chaos_MDef1_Gamma_Level_5
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_5
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_5
+                Chance: 1
+          
+          - Enchant: Chaos_Def1_Gamma_Level_6
+            Price: 162000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_6
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_6
+                Chance: 3
+              - Item: Chaos_MDef1_Gamma_Level_6
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_6
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_6
+                Chance: 1
+          
+          - Enchant: Chaos_Def1_Gamma_Level_7
+            Price: 486000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_7
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_7
+                Chance: 3
+              - Item: Chaos_MDef1_Gamma_Level_7
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_7
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_7
+                Chance: 1
+          
+          - Enchant: Chaos_Def1_Gamma_Level_8
+            Price: 1458000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_8
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_8
+                Chance: 3
+              - Item: Chaos_MDef1_Gamma_Level_8
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_8
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_8
+                Chance: 1
+          
+          - Enchant: Chaos_Def1_Gamma_Level_9
+            Price: 4374000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_9
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_9
+                Chance: 3
+              - Item: Chaos_MDef1_Gamma_Level_9
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_9
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_9
+                Chance: 1
+          
+          - Enchant: Chaos_Def1_Gamma_Level_10
+            Price: 13122000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_10
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_10
+                Chance: 3
+              - Item: Chaos_MDef1_Gamma_Level_10
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_10
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_10
+                Chance: 1
+          - Enchant: Chaos_MDef1_Gamma_Level_1
+            Price: 1000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_1
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_1
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_1
+                Chance: 3
+              - Item: Chaos_Def21_Gamma_Level_1
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_1
+                Chance: 1
+          
+          - Enchant: Chaos_MDef1_Gamma_Level_2
+            Price: 2000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_2
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_2
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_2
+                Chance: 3
+              - Item: Chaos_Def21_Gamma_Level_2
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_2
+                Chance: 1
+          
+          - Enchant: Chaos_MDef1_Gamma_Level_3
+            Price: 6000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_3
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_3
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_3
+                Chance: 3
+              - Item: Chaos_Def21_Gamma_Level_3
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_3
+                Chance: 1
+          
+          - Enchant: Chaos_MDef1_Gamma_Level_4
+            Price: 18000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_4
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_4
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_4
+                Chance: 3
+              - Item: Chaos_Def21_Gamma_Level_4
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_4
+                Chance: 1
+          
+          - Enchant: Chaos_MDef1_Gamma_Level_5
+            Price: 54000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_5
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_5
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_5
+                Chance: 3
+              - Item: Chaos_Def21_Gamma_Level_5
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_5
+                Chance: 1
+          
+          - Enchant: Chaos_MDef1_Gamma_Level_6
+            Price: 162000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_6
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_6
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_6
+                Chance: 3
+              - Item: Chaos_Def21_Gamma_Level_6
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_6
+                Chance: 1
+          
+          - Enchant: Chaos_MDef1_Gamma_Level_7
+            Price: 486000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_7
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_7
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_7
+                Chance: 3
+              - Item: Chaos_Def21_Gamma_Level_7
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_7
+                Chance: 1
+          
+          - Enchant: Chaos_MDef1_Gamma_Level_8
+            Price: 1458000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_8
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_8
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_8
+                Chance: 3
+              - Item: Chaos_Def21_Gamma_Level_8
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_8
+                Chance: 1
+          
+          - Enchant: Chaos_MDef1_Gamma_Level_9
+            Price: 4374000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_9
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_9
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_9
+                Chance: 3
+              - Item: Chaos_Def21_Gamma_Level_9
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_9
+                Chance: 1
+          
+          - Enchant: Chaos_MDef1_Gamma_Level_10
+            Price: 13122000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_10
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_10
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_10
+                Chance: 3
+              - Item: Chaos_Def21_Gamma_Level_10
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_10
+                Chance: 1
+          - Enchant: Chaos_Def21_Gamma_Level_1
+            Price: 1000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_1
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_1
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_1
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_1
+                Chance: 3
+              - Item: Chaos_MDef21_Gamma_Level_1
+                Chance: 1
+          
+          - Enchant: Chaos_Def21_Gamma_Level_2
+            Price: 2000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_2
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_2
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_2
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_2
+                Chance: 3
+              - Item: Chaos_MDef21_Gamma_Level_2
+                Chance: 1
+          
+          - Enchant: Chaos_Def21_Gamma_Level_3
+            Price: 6000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_3
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_3
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_3
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_3
+                Chance: 3
+              - Item: Chaos_MDef21_Gamma_Level_3
+                Chance: 1
+          
+          - Enchant: Chaos_Def21_Gamma_Level_4
+            Price: 18000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_4
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_4
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_4
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_4
+                Chance: 3
+              - Item: Chaos_MDef21_Gamma_Level_4
+                Chance: 1
+          
+          - Enchant: Chaos_Def21_Gamma_Level_5
+            Price: 54000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_5
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_5
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_5
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_5
+                Chance: 3
+              - Item: Chaos_MDef21_Gamma_Level_5
+                Chance: 1
+          
+          - Enchant: Chaos_Def21_Gamma_Level_6
+            Price: 162000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_6
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_6
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_6
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_6
+                Chance: 3
+              - Item: Chaos_MDef21_Gamma_Level_6
+                Chance: 1
+          
+          - Enchant: Chaos_Def21_Gamma_Level_7
+            Price: 486000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_7
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_7
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_7
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_7
+                Chance: 3
+              - Item: Chaos_MDef21_Gamma_Level_7
+                Chance: 1
+          
+          - Enchant: Chaos_Def21_Gamma_Level_8
+            Price: 1458000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_8
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_8
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_8
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_8
+                Chance: 3
+              - Item: Chaos_MDef21_Gamma_Level_8
+                Chance: 1
+          
+          - Enchant: Chaos_Def21_Gamma_Level_9
+            Price: 4374000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_9
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_9
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_9
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_9
+                Chance: 3
+              - Item: Chaos_MDef21_Gamma_Level_9
+                Chance: 1
+          
+          - Enchant: Chaos_Def21_Gamma_Level_10
+            Price: 13122000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_10
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_10
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_10
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_10
+                Chance: 3
+              - Item: Chaos_MDef21_Gamma_Level_10
+                Chance: 1
+          - Enchant: Chaos_MDef21_Gamma_Level_1
+            Price: 1000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_1
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_1
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_1
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_1
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_1
+                Chance: 3
+          
+          - Enchant: Chaos_MDef21_Gamma_Level_2
+            Price: 2000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_2
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_2
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_2
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_2
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_2
+                Chance: 3
+          
+          - Enchant: Chaos_MDef21_Gamma_Level_3
+            Price: 6000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_3
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_3
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_3
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_3
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_3
+                Chance: 3
+          
+          - Enchant: Chaos_MDef21_Gamma_Level_4
+            Price: 18000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_4
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_4
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_4
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_4
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_4
+                Chance: 3
+          
+          - Enchant: Chaos_MDef21_Gamma_Level_5
+            Price: 54000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_5
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_5
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_5
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_5
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_5
+                Chance: 3
+          
+          - Enchant: Chaos_MDef21_Gamma_Level_6
+            Price: 162000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_6
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_6
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_6
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_6
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_6
+                Chance: 3
+          
+          - Enchant: Chaos_MDef21_Gamma_Level_7
+            Price: 486000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_7
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_7
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_7
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_7
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_7
+                Chance: 3
+          
+          - Enchant: Chaos_MDef21_Gamma_Level_8
+            Price: 1458000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_8
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_8
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_8
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_8
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_8
+                Chance: 3
+          
+          - Enchant: Chaos_MDef21_Gamma_Level_9
+            Price: 4374000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_9
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_9
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_9
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_9
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_9
+                Chance: 3
+          
+          - Enchant: Chaos_MDef21_Gamma_Level_10
+            Price: 13122000
+            Items:
+              - Item: Chaos_Speed_Gamma_Level_10
+                Chance: 1
+              - Item: Chaos_Def1_Gamma_Level_10
+                Chance: 1
+              - Item: Chaos_MDef1_Gamma_Level_10
+                Chance: 1
+              - Item: Chaos_Def21_Gamma_Level_10
+                Chance: 1
+              - Item: Chaos_MDef21_Gamma_Level_10
+                Chance: 3
+
+      - Slot: 1
+        PerfectEnchants:
+          - Item: Chaos_Str_Delta_Level_1
+            Price: 100000
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 1
+          - Item: Chaos_Agi_Delta_Level_1
+            Price: 100000
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 1
+          - Item: Chaos_Luk_Delta_Level_1
+            Price: 100000
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 1
+          - Item: Chaos_Vit_Delta_Level_1
+            Price: 100000
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 1
+          - Item: Chaos_Int_Delta_Level_1
+            Price: 100000
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 1
+          - Item: Chaos_Dex_Delta_Level_1
+            Price: 100000
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 1
+        Upgrades:     
+          - Enchant: Chaos_Str_Delta_Level_1
+            Upgrade: Chaos_Str_Delta_Level_2
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 2
+        
+          - Enchant: Chaos_Str_Delta_Level_2
+            Upgrade: Chaos_Str_Delta_Level_3
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 6
+        
+          - Enchant: Chaos_Str_Delta_Level_3
+            Upgrade: Chaos_Str_Delta_Level_4
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 18
+        
+          - Enchant: Chaos_Str_Delta_Level_4
+            Upgrade: Chaos_Str_Delta_Level_5
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 54
+        
+          - Enchant: Chaos_Str_Delta_Level_5
+            Upgrade: Chaos_Str_Delta_Level_6
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 162
+        
+          - Enchant: Chaos_Str_Delta_Level_6
+            Upgrade: Chaos_Str_Delta_Level_7
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 486
+        
+          - Enchant: Chaos_Str_Delta_Level_7
+            Upgrade: Chaos_Str_Delta_Level_8
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 1458
+        
+          - Enchant: Chaos_Str_Delta_Level_8
+            Upgrade: Chaos_Str_Delta_Level_9
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 4374
+        
+          - Enchant: Chaos_Str_Delta_Level_9
+            Upgrade: Chaos_Str_Delta_Level_10
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 13122
+        
+          - Enchant: Chaos_Agi_Delta_Level_1
+            Upgrade: Chaos_Agi_Delta_Level_2
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 2
+        
+          - Enchant: Chaos_Agi_Delta_Level_2
+            Upgrade: Chaos_Agi_Delta_Level_3
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 6
+        
+          - Enchant: Chaos_Agi_Delta_Level_3
+            Upgrade: Chaos_Agi_Delta_Level_4
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 18
+        
+          - Enchant: Chaos_Agi_Delta_Level_4
+            Upgrade: Chaos_Agi_Delta_Level_5
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 54
+        
+          - Enchant: Chaos_Agi_Delta_Level_5
+            Upgrade: Chaos_Agi_Delta_Level_6
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 162
+        
+          - Enchant: Chaos_Agi_Delta_Level_6
+            Upgrade: Chaos_Agi_Delta_Level_7
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 486
+        
+          - Enchant: Chaos_Agi_Delta_Level_7
+            Upgrade: Chaos_Agi_Delta_Level_8
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 1458
+        
+          - Enchant: Chaos_Agi_Delta_Level_8
+            Upgrade: Chaos_Agi_Delta_Level_9
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 4374
+        
+          - Enchant: Chaos_Agi_Delta_Level_9
+            Upgrade: Chaos_Agi_Delta_Level_10
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 13122
+                
+          - Enchant: Chaos_Int_Delta_Level_1
+            Upgrade: Chaos_Int_Delta_Level_2
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 2
+        
+          - Enchant: Chaos_Int_Delta_Level_2
+            Upgrade: Chaos_Int_Delta_Level_3
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 6
+        
+          - Enchant: Chaos_Int_Delta_Level_3
+            Upgrade: Chaos_Int_Delta_Level_4
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 18
+        
+          - Enchant: Chaos_Int_Delta_Level_4
+            Upgrade: Chaos_Int_Delta_Level_5
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 54
+        
+          - Enchant: Chaos_Int_Delta_Level_5
+            Upgrade: Chaos_Int_Delta_Level_6
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 162
+        
+          - Enchant: Chaos_Int_Delta_Level_6
+            Upgrade: Chaos_Int_Delta_Level_7
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 486
+        
+          - Enchant: Chaos_Int_Delta_Level_7
+            Upgrade: Chaos_Int_Delta_Level_8
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 1458
+        
+          - Enchant: Chaos_Int_Delta_Level_8
+            Upgrade: Chaos_Int_Delta_Level_9
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 4374
+        
+          - Enchant: Chaos_Int_Delta_Level_9
+            Upgrade: Chaos_Int_Delta_Level_10
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 13122
+        
+          - Enchant: Chaos_Vit_Delta_Level_1
+            Upgrade: Chaos_Vit_Delta_Level_2
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 2
+        
+          - Enchant: Chaos_Vit_Delta_Level_2
+            Upgrade: Chaos_Vit_Delta_Level_3
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 6
+        
+          - Enchant: Chaos_Vit_Delta_Level_3
+            Upgrade: Chaos_Vit_Delta_Level_4
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 18
+        
+          - Enchant: Chaos_Vit_Delta_Level_4
+            Upgrade: Chaos_Vit_Delta_Level_5
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 54
+        
+          - Enchant: Chaos_Vit_Delta_Level_5
+            Upgrade: Chaos_Vit_Delta_Level_6
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 162
+        
+          - Enchant: Chaos_Vit_Delta_Level_6
+            Upgrade: Chaos_Vit_Delta_Level_7
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 486
+        
+          - Enchant: Chaos_Vit_Delta_Level_7
+            Upgrade: Chaos_Vit_Delta_Level_8
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 1458
+        
+          - Enchant: Chaos_Vit_Delta_Level_8
+            Upgrade: Chaos_Vit_Delta_Level_9
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 4374
+        
+          - Enchant: Chaos_Vit_Delta_Level_9
+            Upgrade: Chaos_Vit_Delta_Level_10
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 13122
+        
+          - Enchant: Chaos_Dex_Delta_Level_1
+            Upgrade: Chaos_Dex_Delta_Level_2
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 2
+        
+          - Enchant: Chaos_Dex_Delta_Level_2
+            Upgrade: Chaos_Dex_Delta_Level_3
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 6
+        
+          - Enchant: Chaos_Dex_Delta_Level_3
+            Upgrade: Chaos_Dex_Delta_Level_4
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 18
+        
+          - Enchant: Chaos_Dex_Delta_Level_4
+            Upgrade: Chaos_Dex_Delta_Level_5
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 54
+        
+          - Enchant: Chaos_Dex_Delta_Level_5
+            Upgrade: Chaos_Dex_Delta_Level_6
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 162
+        
+          - Enchant: Chaos_Dex_Delta_Level_6
+            Upgrade: Chaos_Dex_Delta_Level_7
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 486
+        
+          - Enchant: Chaos_Dex_Delta_Level_7
+            Upgrade: Chaos_Dex_Delta_Level_8
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 1458
+        
+          - Enchant: Chaos_Dex_Delta_Level_8
+            Upgrade: Chaos_Dex_Delta_Level_9
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 4374
+        
+          - Enchant: Chaos_Dex_Delta_Level_9
+            Upgrade: Chaos_Dex_Delta_Level_10
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 13122
+        
+          - Enchant: Chaos_Luk_Delta_Level_1
+            Upgrade: Chaos_Luk_Delta_Level_2
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 2
+        
+          - Enchant: Chaos_Luk_Delta_Level_2
+            Upgrade: Chaos_Luk_Delta_Level_3
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 6
+        
+          - Enchant: Chaos_Luk_Delta_Level_3
+            Upgrade: Chaos_Luk_Delta_Level_4
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 18
+        
+          - Enchant: Chaos_Luk_Delta_Level_4
+            Upgrade: Chaos_Luk_Delta_Level_5
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 54
+        
+          - Enchant: Chaos_Luk_Delta_Level_5
+            Upgrade: Chaos_Luk_Delta_Level_6
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 162
+        
+          - Enchant: Chaos_Luk_Delta_Level_6
+            Upgrade: Chaos_Luk_Delta_Level_7
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 486
+        
+          - Enchant: Chaos_Luk_Delta_Level_7
+            Upgrade: Chaos_Luk_Delta_Level_8
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 1458
+        
+          - Enchant: Chaos_Luk_Delta_Level_8
+            Upgrade: Chaos_Luk_Delta_Level_9
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 4374
+        
+          - Enchant: Chaos_Luk_Delta_Level_9
+            Upgrade: Chaos_Luk_Delta_Level_10
+            Materials:
+              - Material: Chaos_stone_3
+                Amount: 13122
+        RandomUpgrades:
+          - Enchant: Chaos_Str_Delta_Level_1
+            Price: 1000
+            Items:
+              - Item: Chaos_Str_Delta_Level_1
+                Chance: 3
+              - Item: Chaos_Agi_Delta_Level_1
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_1
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_1
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_1
+                Chance: 1
+          
+          - Enchant: Chaos_Str_Delta_Level_2
+            Price: 2000
+            Items:
+              - Item: Chaos_Str_Delta_Level_2
+                Chance: 3
+              - Item: Chaos_Agi_Delta_Level_2
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_2
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_2
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_2
+                Chance: 1
+          
+          - Enchant: Chaos_Str_Delta_Level_3
+            Price: 6000
+            Items:
+              - Item: Chaos_Str_Delta_Level_3
+                Chance: 3
+              - Item: Chaos_Agi_Delta_Level_3
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_3
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_3
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_3
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_3
+                Chance: 1
+          
+          - Enchant: Chaos_Str_Delta_Level_4
+            Price: 18000
+            Items:
+              - Item: Chaos_Str_Delta_Level_4
+                Chance: 3
+              - Item: Chaos_Agi_Delta_Level_4
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_4
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_4
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_4
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_4
+                Chance: 1
+          
+          - Enchant: Chaos_Str_Delta_Level_5
+            Price: 54000
+            Items:
+              - Item: Chaos_Str_Delta_Level_5
+                Chance: 3
+              - Item: Chaos_Agi_Delta_Level_5
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_5
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_5
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_5
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_5
+                Chance: 1
+          
+          - Enchant: Chaos_Str_Delta_Level_6
+            Price: 162000
+            Items:
+              - Item: Chaos_Str_Delta_Level_6
+                Chance: 3
+              - Item: Chaos_Agi_Delta_Level_6
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_6
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_6
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_6
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_6
+                Chance: 1
+          
+          - Enchant: Chaos_Str_Delta_Level_7
+            Price: 486000
+            Items:
+              - Item: Chaos_Str_Delta_Level_7
+                Chance: 3
+              - Item: Chaos_Agi_Delta_Level_7
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_7
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_7
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_7
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_7
+                Chance: 1
+          
+          - Enchant: Chaos_Str_Delta_Level_8
+            Price: 1458000
+            Items:
+              - Item: Chaos_Str_Delta_Level_8
+                Chance: 3
+              - Item: Chaos_Agi_Delta_Level_8
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_8
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_8
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_8
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_8
+                Chance: 1
+          
+          - Enchant: Chaos_Str_Delta_Level_9
+            Price: 4374000
+            Items:
+              - Item: Chaos_Str_Delta_Level_9
+                Chance: 3
+              - Item: Chaos_Agi_Delta_Level_9
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_9
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_9
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_9
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_9
+                Chance: 1
+          
+          - Enchant: Chaos_Str_Delta_Level_10
+            Price: 13122000
+            Items:
+              - Item: Chaos_Str_Delta_Level_10
+                Chance: 3
+              - Item: Chaos_Agi_Delta_Level_10
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_10
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_10
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_10
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_10
+                Chance: 1
+          - Enchant: Chaos_Agi_Delta_Level_1
+            Price: 1000
+            Items:
+              - Item: Chaos_Str_Delta_Level_1
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_1
+                Chance: 3
+              - Item: Chaos_Int_Delta_Level_1
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_1
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_1
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_1
+                Chance: 1
+          - Enchant: Chaos_Agi_Delta_Level_2
+            Price: 2000
+            Items:
+              - Item: Chaos_Str_Delta_Level_2
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_2
+                Chance: 3
+              - Item: Chaos_Int_Delta_Level_2
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_2
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_2
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_2
+                Chance: 1
+          - Enchant: Chaos_Agi_Delta_Level_3
+            Price: 6000
+            Items:
+              - Item: Chaos_Str_Delta_Level_3
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_3
+                Chance: 3
+              - Item: Chaos_Int_Delta_Level_3
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_3
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_3
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_3
+                Chance: 1
+          - Enchant: Chaos_Agi_Delta_Level_4
+            Price: 18000
+            Items:
+              - Item: Chaos_Str_Delta_Level_4
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_4
+                Chance: 3
+              - Item: Chaos_Int_Delta_Level_4
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_4
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_4
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_4
+                Chance: 1
+          - Enchant: Chaos_Agi_Delta_Level_5
+            Price: 54000
+            Items:
+              - Item: Chaos_Str_Delta_Level_5
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_5
+                Chance: 3
+              - Item: Chaos_Int_Delta_Level_5
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_5
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_5
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_5
+                Chance: 1
+          - Enchant: Chaos_Agi_Delta_Level_6
+            Price: 162000
+            Items:
+              - Item: Chaos_Str_Delta_Level_6
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_6
+                Chance: 3
+              - Item: Chaos_Int_Delta_Level_6
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_6
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_6
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_6
+                Chance: 1
+          - Enchant: Chaos_Agi_Delta_Level_7
+            Price: 486000
+            Items:
+              - Item: Chaos_Str_Delta_Level_7
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_7
+                Chance: 3
+              - Item: Chaos_Int_Delta_Level_7
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_7
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_7
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_7
+                Chance: 1
+          - Enchant: Chaos_Agi_Delta_Level_8
+            Price: 1458000
+            Items:
+              - Item: Chaos_Str_Delta_Level_8
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_8
+                Chance: 3
+              - Item: Chaos_Int_Delta_Level_8
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_8
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_8
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_8
+                Chance: 1
+          - Enchant: Chaos_Agi_Delta_Level_9
+            Price: 4374000
+            Items:
+              - Item: Chaos_Str_Delta_Level_9
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_9
+                Chance: 3
+              - Item: Chaos_Int_Delta_Level_9
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_9
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_9
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_9
+                Chance: 1
+          - Enchant: Chaos_Agi_Delta_Level_10
+            Price: 13122000
+            Items:
+              - Item: Chaos_Str_Delta_Level_10
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_10
+                Chance: 3
+              - Item: Chaos_Int_Delta_Level_10
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_10
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_10
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_10
+                Chance: 1
+          - Enchant: Chaos_Int_Delta_Level_1
+            Price: 1000
+            Items:
+              - Item: Chaos_Str_Delta_Level_1
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_1
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_1
+                Chance: 3
+              - Item: Chaos_Vit_Delta_Level_1
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_1
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_1
+                Chance: 1
+          - Enchant: Chaos_Int_Delta_Level_2
+            Price: 2000
+            Items:
+              - Item: Chaos_Str_Delta_Level_2
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_2
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_2
+                Chance: 3
+              - Item: Chaos_Vit_Delta_Level_2
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_2
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_2
+                Chance: 1
+          - Enchant: Chaos_Int_Delta_Level_3
+            Price: 6000
+            Items:
+              - Item: Chaos_Str_Delta_Level_3
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_3
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_3
+                Chance: 3
+              - Item: Chaos_Vit_Delta_Level_3
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_3
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_3
+                Chance: 1
+          - Enchant: Chaos_Int_Delta_Level_4
+            Price: 18000
+            Items:
+              - Item: Chaos_Str_Delta_Level_4
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_4
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_4
+                Chance: 3
+              - Item: Chaos_Vit_Delta_Level_4
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_4
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_4
+                Chance: 1
+          - Enchant: Chaos_Int_Delta_Level_5
+            Price: 54000
+            Items:
+              - Item: Chaos_Str_Delta_Level_5
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_5
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_5
+                Chance: 3
+              - Item: Chaos_Vit_Delta_Level_5
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_5
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_5
+                Chance: 1
+          - Enchant: Chaos_Int_Delta_Level_6
+            Price: 162000
+            Items:
+              - Item: Chaos_Str_Delta_Level_6
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_6
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_6
+                Chance: 3
+              - Item: Chaos_Vit_Delta_Level_6
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_6
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_6
+                Chance: 1
+          - Enchant: Chaos_Int_Delta_Level_7
+            Price: 486000
+            Items:
+              - Item: Chaos_Str_Delta_Level_7
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_7
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_7
+                Chance: 3
+              - Item: Chaos_Vit_Delta_Level_7
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_7
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_7
+                Chance: 1
+          - Enchant: Chaos_Int_Delta_Level_8
+            Price: 1458000
+            Items:
+              - Item: Chaos_Str_Delta_Level_8
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_8
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_8
+                Chance: 3
+              - Item: Chaos_Vit_Delta_Level_8
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_8
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_8
+                Chance: 1
+          - Enchant: Chaos_Int_Delta_Level_9
+            Price: 4374000
+            Items:
+              - Item: Chaos_Str_Delta_Level_9
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_9
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_9
+                Chance: 3
+              - Item: Chaos_Vit_Delta_Level_9
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_9
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_9
+                Chance: 1
+          - Enchant: Chaos_Int_Delta_Level_10
+            Price: 13122000
+            Items:
+              - Item: Chaos_Str_Delta_Level_10
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_10
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_10
+                Chance: 3
+              - Item: Chaos_Vit_Delta_Level_10
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_10
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_10
+                Chance: 1
+          - Enchant: Chaos_Vit_Delta_Level_1
+            Price: 1000
+            Items:
+              - Item: Chaos_Str_Delta_Level_1
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_1
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_1
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_1
+                Chance: 3
+              - Item: Chaos_Dex_Delta_Level_1
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_1
+                Chance: 1
+          - Enchant: Chaos_Vit_Delta_Level_2
+            Price: 2000
+            Items:
+              - Item: Chaos_Str_Delta_Level_2
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_2
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_2
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_2
+                Chance: 3
+              - Item: Chaos_Dex_Delta_Level_2
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_2
+                Chance: 1
+          - Enchant: Chaos_Vit_Delta_Level_3
+            Price: 6000
+            Items:
+              - Item: Chaos_Str_Delta_Level_3
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_3
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_3
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_3
+                Chance: 3
+              - Item: Chaos_Dex_Delta_Level_3
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_3
+                Chance: 1
+          - Enchant: Chaos_Vit_Delta_Level_4
+            Price: 18000
+            Items:
+              - Item: Chaos_Str_Delta_Level_4
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_4
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_4
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_4
+                Chance: 3
+              - Item: Chaos_Dex_Delta_Level_4
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_4
+                Chance: 1
+          - Enchant: Chaos_Vit_Delta_Level_5
+            Price: 54000
+            Items:
+              - Item: Chaos_Str_Delta_Level_5
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_5
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_5
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_5
+                Chance: 3
+              - Item: Chaos_Dex_Delta_Level_5
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_5
+                Chance: 1
+          - Enchant: Chaos_Vit_Delta_Level_6
+            Price: 162000
+            Items:
+              - Item: Chaos_Str_Delta_Level_6
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_6
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_6
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_6
+                Chance: 3
+              - Item: Chaos_Dex_Delta_Level_6
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_6
+                Chance: 1
+          - Enchant: Chaos_Vit_Delta_Level_7
+            Price: 486000
+            Items:
+              - Item: Chaos_Str_Delta_Level_7
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_7
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_7
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_7
+                Chance: 3
+              - Item: Chaos_Dex_Delta_Level_7
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_7
+                Chance: 1
+          - Enchant: Chaos_Vit_Delta_Level_8
+            Price: 1458000
+            Items:
+              - Item: Chaos_Str_Delta_Level_8
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_8
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_8
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_8
+                Chance: 3
+              - Item: Chaos_Dex_Delta_Level_8
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_8
+                Chance: 1
+          - Enchant: Chaos_Vit_Delta_Level_9
+            Price: 4374000
+            Items:
+              - Item: Chaos_Str_Delta_Level_9
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_9
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_9
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_9
+                Chance: 3
+              - Item: Chaos_Dex_Delta_Level_9
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_9
+                Chance: 1
+          - Enchant: Chaos_Vit_Delta_Level_10
+            Price: 13122000
+            Items:
+              - Item: Chaos_Str_Delta_Level_10
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_10
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_10
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_10
+                Chance: 3
+              - Item: Chaos_Dex_Delta_Level_10
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_10
+                Chance: 1
+          - Enchant: Chaos_Dex_Delta_Level_1
+            Price: 1000
+            Items:
+              - Item: Chaos_Str_Delta_Level_1
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_1
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_1
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_1
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_1
+                Chance: 3
+              - Item: Chaos_Luk_Delta_Level_1
+                Chance: 1
+          - Enchant: Chaos_Dex_Delta_Level_2
+            Price: 2000
+            Items:
+              - Item: Chaos_Str_Delta_Level_2
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_2
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_2
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_2
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_2
+                Chance: 3
+              - Item: Chaos_Luk_Delta_Level_2
+                Chance: 1
+          - Enchant: Chaos_Dex_Delta_Level_3
+            Price: 6000
+            Items:
+              - Item: Chaos_Str_Delta_Level_3
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_3
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_3
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_3
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_3
+                Chance: 3
+              - Item: Chaos_Luk_Delta_Level_3
+                Chance: 1
+          - Enchant: Chaos_Dex_Delta_Level_4
+            Price: 18000
+            Items:
+              - Item: Chaos_Str_Delta_Level_4
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_4
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_4
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_4
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_4
+                Chance: 3
+              - Item: Chaos_Luk_Delta_Level_4
+                Chance: 1
+          - Enchant: Chaos_Dex_Delta_Level_5
+            Price: 54000
+            Items:
+              - Item: Chaos_Str_Delta_Level_5
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_5
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_5
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_5
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_5
+                Chance: 3
+              - Item: Chaos_Luk_Delta_Level_5
+                Chance: 1
+          - Enchant: Chaos_Dex_Delta_Level_6
+            Price: 162000
+            Items:
+              - Item: Chaos_Str_Delta_Level_6
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_6
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_6
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_6
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_6
+                Chance: 3
+              - Item: Chaos_Luk_Delta_Level_6
+                Chance: 1
+          - Enchant: Chaos_Dex_Delta_Level_7
+            Price: 486000
+            Items:
+              - Item: Chaos_Str_Delta_Level_7
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_7
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_7
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_7
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_7
+                Chance: 3
+              - Item: Chaos_Luk_Delta_Level_7
+                Chance: 1
+          - Enchant: Chaos_Dex_Delta_Level_8
+            Price: 1458000
+            Items:
+              - Item: Chaos_Str_Delta_Level_8
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_8
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_8
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_8
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_8
+                Chance: 3
+              - Item: Chaos_Luk_Delta_Level_8
+                Chance: 1
+          - Enchant: Chaos_Dex_Delta_Level_9
+            Price: 4374000
+            Items:
+              - Item: Chaos_Str_Delta_Level_9
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_9
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_9
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_9
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_9
+                Chance: 3
+              - Item: Chaos_Luk_Delta_Level_9
+                Chance: 1
+          - Enchant: Chaos_Dex_Delta_Level_10
+            Price: 13122000
+            Items:
+              - Item: Chaos_Str_Delta_Level_10
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_10
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_10
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_10
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_10
+                Chance: 3
+              - Item: Chaos_Luk_Delta_Level_10
+                Chance: 1
+          - Enchant: Chaos_Luk_Delta_Level_1
+            Price: 1000
+            Items:
+              - Item: Chaos_Str_Delta_Level_1
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_1
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_1
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_1
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_1
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_1
+                Chance: 3
+          - Enchant: Chaos_Luk_Delta_Level_2
+            Price: 2000
+            Items:
+              - Item: Chaos_Str_Delta_Level_2
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_2
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_2
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_2
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_2
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_2
+                Chance: 3
+          - Enchant: Chaos_Luk_Delta_Level_3
+            Price: 6000
+            Items:
+              - Item: Chaos_Str_Delta_Level_3
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_3
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_3
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_3
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_3
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_3
+                Chance: 3
+          - Enchant: Chaos_Luk_Delta_Level_4
+            Price: 18000
+            Items:
+              - Item: Chaos_Str_Delta_Level_4
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_4
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_4
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_4
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_4
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_4
+                Chance: 3
+          - Enchant: Chaos_Luk_Delta_Level_5
+            Price: 54000
+            Items:
+              - Item: Chaos_Str_Delta_Level_5
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_5
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_5
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_5
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_5
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_5
+                Chance: 3
+          - Enchant: Chaos_Luk_Delta_Level_6
+            Price: 162000
+            Items:
+              - Item: Chaos_Str_Delta_Level_6
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_6
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_6
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_6
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_6
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_6
+                Chance: 3
+          - Enchant: Chaos_Luk_Delta_Level_7
+            Price: 486000
+            Items:
+              - Item: Chaos_Str_Delta_Level_7
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_7
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_7
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_7
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_7
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_7
+                Chance: 3
+          - Enchant: Chaos_Luk_Delta_Level_8
+            Price: 1458000
+            Items:
+              - Item: Chaos_Str_Delta_Level_8
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_8
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_8
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_8
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_8
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_8
+                Chance: 3
+          - Enchant: Chaos_Luk_Delta_Level_9
+            Price: 4374000
+            Items:
+              - Item: Chaos_Str_Delta_Level_9
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_9
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_9
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_9
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_9
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_9
+                Chance: 3
+          - Enchant: Chaos_Luk_Delta_Level_10
+            Price: 13122000
+            Items:
+              - Item: Chaos_Str_Delta_Level_10
+                Chance: 1
+              - Item: Chaos_Agi_Delta_Level_10
+                Chance: 1
+              - Item: Chaos_Int_Delta_Level_10
+                Chance: 1
+              - Item: Chaos_Vit_Delta_Level_10
+                Chance: 1
+              - Item: Chaos_Dex_Delta_Level_10
+                Chance: 1
+              - Item: Chaos_Luk_Delta_Level_10
+                Chance: 3
+      - Slot: 2
+        PerfectEnchants:
+          - Item: Chaos_PSkill_Beta_Level_1
+            Price: 100000
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 1
+          - Item: Chaos_MSkill_Beta_Level_1
+            Price: 100000
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 1
+          - Item: Chaos_OSkill_Beta_Level_1
+            Price: 100000
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 1
+        Upgrades:
+          - Enchant: Chaos_PSkill_Beta_Level_1
+            Upgrade: Chaos_PSkill_Beta_Level_2
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 2
+        
+          - Enchant: Chaos_PSkill_Beta_Level_2
+            Upgrade: Chaos_PSkill_Beta_Level_3
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 6
+        
+          - Enchant: Chaos_PSkill_Beta_Level_3
+            Upgrade: Chaos_PSkill_Beta_Level_4
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 18
+        
+          - Enchant: Chaos_PSkill_Beta_Level_4
+            Upgrade: Chaos_PSkill_Beta_Level_5
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 54
+        
+          - Enchant: Chaos_PSkill_Beta_Level_5
+            Upgrade: Chaos_PSkill_Beta_Level_6
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 162
+        
+          - Enchant: Chaos_PSkill_Beta_Level_6
+            Upgrade: Chaos_PSkill_Beta_Level_7
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 486
+        
+          - Enchant: Chaos_PSkill_Beta_Level_7
+            Upgrade: Chaos_PSkill_Beta_Level_8
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 1458
+        
+          - Enchant: Chaos_PSkill_Beta_Level_8
+            Upgrade: Chaos_PSkill_Beta_Level_9
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 4374
+        
+          - Enchant: Chaos_PSkill_Beta_Level_9
+            Upgrade: Chaos_PSkill_Beta_Level_10
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 13122
+                
+          - Enchant: Chaos_MSkill_Beta_Level_1
+            Upgrade: Chaos_MSkill_Beta_Level_2
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 2
+        
+          - Enchant: Chaos_MSkill_Beta_Level_2
+            Upgrade: Chaos_MSkill_Beta_Level_3
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 6
+        
+          - Enchant: Chaos_MSkill_Beta_Level_3
+            Upgrade: Chaos_MSkill_Beta_Level_4
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 18
+        
+          - Enchant: Chaos_MSkill_Beta_Level_4
+            Upgrade: Chaos_MSkill_Beta_Level_5
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 54
+        
+          - Enchant: Chaos_MSkill_Beta_Level_5
+            Upgrade: Chaos_MSkill_Beta_Level_6
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 162
+        
+          - Enchant: Chaos_MSkill_Beta_Level_6
+            Upgrade: Chaos_MSkill_Beta_Level_7
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 486
+        
+          - Enchant: Chaos_MSkill_Beta_Level_7
+            Upgrade: Chaos_MSkill_Beta_Level_8
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 1458
+        
+          - Enchant: Chaos_MSkill_Beta_Level_8
+            Upgrade: Chaos_MSkill_Beta_Level_9
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 4374
+        
+          - Enchant: Chaos_MSkill_Beta_Level_9
+            Upgrade: Chaos_MSkill_Beta_Level_10
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 13122
+                
+          - Enchant: Chaos_OSkill_Beta_Level_1
+            Upgrade: Chaos_OSkill_Beta_Level_2
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 2
+        
+          - Enchant: Chaos_OSkill_Beta_Level_2
+            Upgrade: Chaos_OSkill_Beta_Level_3
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 6
+        
+          - Enchant: Chaos_OSkill_Beta_Level_3
+            Upgrade: Chaos_OSkill_Beta_Level_4
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 18
+        
+          - Enchant: Chaos_OSkill_Beta_Level_4
+            Upgrade: Chaos_OSkill_Beta_Level_5
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 54
+        
+          - Enchant: Chaos_OSkill_Beta_Level_5
+            Upgrade: Chaos_OSkill_Beta_Level_6
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 162
+        
+          - Enchant: Chaos_OSkill_Beta_Level_6
+            Upgrade: Chaos_OSkill_Beta_Level_7
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 486
+        
+          - Enchant: Chaos_OSkill_Beta_Level_7
+            Upgrade: Chaos_OSkill_Beta_Level_8
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 1458
+        
+          - Enchant: Chaos_OSkill_Beta_Level_8
+            Upgrade: Chaos_OSkill_Beta_Level_9
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 4374
+        
+          - Enchant: Chaos_OSkill_Beta_Level_9
+            Upgrade: Chaos_OSkill_Beta_Level_10
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 13122
+        RandomUpgrades:
+          - Enchant: Chaos_PSkill_Beta_Level_1
+            Price: 1000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_1
+                Chance: 3
+              - Item: Chaos_MSkill_Beta_Level_1
+                Chance: 1
+              - Item: Chaos_OSkill_Beta_Level_1
+                Chance: 1
+          - Enchant: Chaos_PSkill_Beta_Level_2
+            Price: 2000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_2
+                Chance: 3
+              - Item: Chaos_MSkill_Beta_Level_2
+                Chance: 1
+              - Item: Chaos_OSkill_Beta_Level_2
+                Chance: 1
+          - Enchant: Chaos_PSkill_Beta_Level_3
+            Price: 6000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_3
+                Chance: 3
+              - Item: Chaos_MSkill_Beta_Level_3
+                Chance: 1
+              - Item: Chaos_OSkill_Beta_Level_3
+                Chance: 1
+          - Enchant: Chaos_PSkill_Beta_Level_4
+            Price: 18000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_4
+                Chance: 3
+              - Item: Chaos_MSkill_Beta_Level_4
+                Chance: 1
+              - Item: Chaos_OSkill_Beta_Level_4
+                Chance: 1
+          - Enchant: Chaos_PSkill_Beta_Level_5
+            Price: 54000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_5
+                Chance: 3
+              - Item: Chaos_MSkill_Beta_Level_5
+                Chance: 1
+              - Item: Chaos_OSkill_Beta_Level_5
+                Chance: 1
+          - Enchant: Chaos_PSkill_Beta_Level_6
+            Price: 162000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_6
+                Chance: 3
+              - Item: Chaos_MSkill_Beta_Level_6
+                Chance: 1
+              - Item: Chaos_OSkill_Beta_Level_6
+                Chance: 1
+          - Enchant: Chaos_PSkill_Beta_Level_7
+            Price: 486000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_7
+                Chance: 3
+              - Item: Chaos_MSkill_Beta_Level_7
+                Chance: 1
+              - Item: Chaos_OSkill_Beta_Level_7
+                Chance: 1
+          - Enchant: Chaos_PSkill_Beta_Level_8
+            Price: 1458000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_8
+                Chance: 3
+              - Item: Chaos_MSkill_Beta_Level_8
+                Chance: 1
+              - Item: Chaos_OSkill_Beta_Level_8
+                Chance: 1
+          - Enchant: Chaos_PSkill_Beta_Level_9
+            Price: 4374000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_9
+                Chance: 3
+              - Item: Chaos_MSkill_Beta_Level_9
+                Chance: 1
+              - Item: Chaos_OSkill_Beta_Level_9
+                Chance: 1
+          - Enchant: Chaos_PSkill_Beta_Level_10
+            Price: 13122000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_10
+                Chance: 3
+              - Item: Chaos_MSkill_Beta_Level_10
+                Chance: 1
+              - Item: Chaos_OSkill_Beta_Level_10
+                Chance: 1
+          - Enchant: Chaos_MSkill_Beta_Level_1
+            Price: 1000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_1
+                Chance: 1
+              - Item: Chaos_MSkill_Beta_Level_1
+                Chance: 3
+              - Item: Chaos_OSkill_Beta_Level_1
+                Chance: 1
+          
+          - Enchant: Chaos_MSkill_Beta_Level_2
+            Price: 2000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_2
+                Chance: 1
+              - Item: Chaos_MSkill_Beta_Level_2
+                Chance: 3
+              - Item: Chaos_OSkill_Beta_Level_2
+                Chance: 1
+          
+          - Enchant: Chaos_MSkill_Beta_Level_3
+            Price: 6000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_3
+                Chance: 1
+              - Item: Chaos_MSkill_Beta_Level_3
+                Chance: 3
+              - Item: Chaos_OSkill_Beta_Level_3
+                Chance: 1
+          
+          - Enchant: Chaos_MSkill_Beta_Level_4
+            Price: 18000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_4
+                Chance: 1
+              - Item: Chaos_MSkill_Beta_Level_4
+                Chance: 3
+              - Item: Chaos_OSkill_Beta_Level_4
+                Chance: 1
+          
+          - Enchant: Chaos_MSkill_Beta_Level_5
+            Price: 54000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_5
+                Chance: 1
+              - Item: Chaos_MSkill_Beta_Level_5
+                Chance: 3
+              - Item: Chaos_OSkill_Beta_Level_5
+                Chance: 1
+          
+          - Enchant: Chaos_MSkill_Beta_Level_6
+            Price: 162000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_6
+                Chance: 1
+              - Item: Chaos_MSkill_Beta_Level_6
+                Chance: 3
+              - Item: Chaos_OSkill_Beta_Level_6
+                Chance: 1
+          
+          - Enchant: Chaos_MSkill_Beta_Level_7
+            Price: 486000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_7
+                Chance: 1
+              - Item: Chaos_MSkill_Beta_Level_7
+                Chance: 3
+              - Item: Chaos_OSkill_Beta_Level_7
+                Chance: 1
+          
+          - Enchant: Chaos_MSkill_Beta_Level_8
+            Price: 1458000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_8
+                Chance: 1
+              - Item: Chaos_MSkill_Beta_Level_8
+                Chance: 3
+              - Item: Chaos_OSkill_Beta_Level_8
+                Chance: 1
+          
+          - Enchant: Chaos_MSkill_Beta_Level_9
+            Price: 4374000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_9
+                Chance: 1
+              - Item: Chaos_MSkill_Beta_Level_9
+                Chance: 3
+              - Item: Chaos_OSkill_Beta_Level_9
+                Chance: 1
+          
+          - Enchant: Chaos_MSkill_Beta_Level_10
+            Price: 13122000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_10
+                Chance: 1
+              - Item: Chaos_MSkill_Beta_Level_10
+                Chance: 3
+              - Item: Chaos_OSkill_Beta_Level_10
+                Chance: 1
+          
+          - Enchant: Chaos_OSkill_Beta_Level_1
+            Price: 1000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_1
+                Chance: 1
+              - Item: Chaos_MSkill_Beta_Level_1
+                Chance: 1
+              - Item: Chaos_OSkill_Beta_Level_1
+                Chance: 3
+          
+          - Enchant: Chaos_OSkill_Beta_Level_2
+            Price: 2000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_2
+                Chance: 1
+              - Item: Chaos_MSkill_Beta_Level_2
+                Chance: 1
+              - Item: Chaos_OSkill_Beta_Level_2
+                Chance: 3
+          
+          - Enchant: Chaos_OSkill_Beta_Level_3
+            Price: 6000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_3
+                Chance: 1
+              - Item: Chaos_MSkill_Beta_Level_3
+                Chance: 1
+              - Item: Chaos_OSkill_Beta_Level_3
+                Chance: 3
+          
+          - Enchant: Chaos_OSkill_Beta_Level_4
+            Price: 18000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_4
+                Chance: 1
+              - Item: Chaos_MSkill_Beta_Level_4
+                Chance: 1
+              - Item: Chaos_OSkill_Beta_Level_4
+                Chance: 3
+          
+          - Enchant: Chaos_OSkill_Beta_Level_5
+            Price: 54000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_5
+                Chance: 1
+              - Item: Chaos_MSkill_Beta_Level_5
+                Chance: 1
+              - Item: Chaos_OSkill_Beta_Level_5
+                Chance: 3
+          
+          - Enchant: Chaos_OSkill_Beta_Level_6
+            Price: 162000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_6
+                Chance: 1
+              - Item: Chaos_MSkill_Beta_Level_6
+                Chance: 1
+              - Item: Chaos_OSkill_Beta_Level_6
+                Chance: 3
+          
+          - Enchant: Chaos_OSkill_Beta_Level_7
+            Price: 486000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_7
+                Chance: 1
+              - Item: Chaos_MSkill_Beta_Level_7
+                Chance: 1
+              - Item: Chaos_OSkill_Beta_Level_7
+                Chance: 3
+          
+          - Enchant: Chaos_OSkill_Beta_Level_8
+            Price: 1458000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_8
+                Chance: 1
+              - Item: Chaos_MSkill_Beta_Level_8
+                Chance: 1
+              - Item: Chaos_OSkill_Beta_Level_8
+                Chance: 3
+          
+          - Enchant: Chaos_OSkill_Beta_Level_9
+            Price: 4374000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_9
+                Chance: 1
+              - Item: Chaos_MSkill_Beta_Level_9
+                Chance: 1
+              - Item: Chaos_OSkill_Beta_Level_9
+                Chance: 3
+          
+          - Enchant: Chaos_OSkill_Beta_Level_10
+            Price: 13122000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_10
+                Chance: 1
+              - Item: Chaos_MSkill_Beta_Level_10
+                Chance: 1
+              - Item: Chaos_OSkill_Beta_Level_10
+                Chance: 3
+          
+      - Slot: 3
+        PerfectEnchants:
+          - Item: Chaos_Atk_Alpla_Level_1
+            Price: 100000
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 1
+          - Item: Chaos_MAtk_Alpla_Level_1
+            Price: 100000
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 1
+          - Item: Chaos_FAtk_Alpla_Level_1
+            Price: 100000
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 1
+          - Item: Chaos_FMAtk_Alpla_Level_1
+            Price: 100000
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 1
+          - Item: Chaos_SkillRatio_Alpla_Level_1
+            Price: 100000
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 1
+        Upgrades:
+          - Enchant: Chaos_Atk_Alpla_Level_1
+            Upgrade: Chaos_Atk_Alpla_Level_2
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 2
+          - Enchant: Chaos_Atk_Alpla_Level_2
+            Upgrade: Chaos_Atk_Alpla_Level_3
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 6
+          - Enchant: Chaos_Atk_Alpla_Level_3
+            Upgrade: Chaos_Atk_Alpla_Level_4
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 18
+          - Enchant: Chaos_Atk_Alpla_Level_4
+            Upgrade: Chaos_Atk_Alpla_Level_5
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 54
+          - Enchant: Chaos_Atk_Alpla_Level_5
+            Upgrade: Chaos_Atk_Alpla_Level_6
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 162
+          - Enchant: Chaos_Atk_Alpla_Level_6
+            Upgrade: Chaos_Atk_Alpla_Level_7
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 486
+          - Enchant: Chaos_Atk_Alpla_Level_7
+            Upgrade: Chaos_Atk_Alpla_Level_8
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 1458
+          - Enchant: Chaos_Atk_Alpla_Level_8
+            Upgrade: Chaos_Atk_Alpla_Level_9
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 4374
+          - Enchant: Chaos_Atk_Alpla_Level_9
+            Upgrade: Chaos_Atk_Alpla_Level_10
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 13122
+          - Enchant: Chaos_MAtk_Alpla_Level_1
+            Upgrade: Chaos_MAtk_Alpla_Level_2
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 2
+          - Enchant: Chaos_MAtk_Alpla_Level_2
+            Upgrade: Chaos_MAtk_Alpla_Level_3
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 6
+          - Enchant: Chaos_MAtk_Alpla_Level_3
+            Upgrade: Chaos_MAtk_Alpla_Level_4
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 18
+          - Enchant: Chaos_MAtk_Alpla_Level_4
+            Upgrade: Chaos_MAtk_Alpla_Level_5
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 54
+          - Enchant: Chaos_MAtk_Alpla_Level_5
+            Upgrade: Chaos_MAtk_Alpla_Level_6
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 162
+          - Enchant: Chaos_MAtk_Alpla_Level_6
+            Upgrade: Chaos_MAtk_Alpla_Level_7
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 486
+          - Enchant: Chaos_MAtk_Alpla_Level_7
+            Upgrade: Chaos_MAtk_Alpla_Level_8
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 1458
+          - Enchant: Chaos_MAtk_Alpla_Level_8
+            Upgrade: Chaos_MAtk_Alpla_Level_9
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 4374
+          - Enchant: Chaos_MAtk_Alpla_Level_9
+            Upgrade: Chaos_MAtk_Alpla_Level_10
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 13122
+          - Enchant: Chaos_FAtk_Alpla_Level_1
+            Upgrade: Chaos_FAtk_Alpla_Level_2
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 2
+          - Enchant: Chaos_FAtk_Alpla_Level_2
+            Upgrade: Chaos_FAtk_Alpla_Level_3
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 6
+          - Enchant: Chaos_FAtk_Alpla_Level_3
+            Upgrade: Chaos_FAtk_Alpla_Level_4
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 18
+          - Enchant: Chaos_FAtk_Alpla_Level_4
+            Upgrade: Chaos_FAtk_Alpla_Level_5
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 54
+          - Enchant: Chaos_FAtk_Alpla_Level_5
+            Upgrade: Chaos_FAtk_Alpla_Level_6
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 162
+          - Enchant: Chaos_FAtk_Alpla_Level_6
+            Upgrade: Chaos_FAtk_Alpla_Level_7
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 486
+          - Enchant: Chaos_FAtk_Alpla_Level_7
+            Upgrade: Chaos_FAtk_Alpla_Level_8
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 1458
+          - Enchant: Chaos_FAtk_Alpla_Level_8
+            Upgrade: Chaos_FAtk_Alpla_Level_9
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 4374
+          - Enchant: Chaos_FAtk_Alpla_Level_9
+            Upgrade: Chaos_FAtk_Alpla_Level_10
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 13122
+          - Enchant: Chaos_FMAtk_Alpla_Level_1
+            Upgrade: Chaos_FMAtk_Alpla_Level_2
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 2
+          - Enchant: Chaos_FMAtk_Alpla_Level_2
+            Upgrade: Chaos_FMAtk_Alpla_Level_3
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 6
+          - Enchant: Chaos_FMAtk_Alpla_Level_3
+            Upgrade: Chaos_FMAtk_Alpla_Level_4
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 18
+          - Enchant: Chaos_FMAtk_Alpla_Level_4
+            Upgrade: Chaos_FMAtk_Alpla_Level_5
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 54
+          - Enchant: Chaos_FMAtk_Alpla_Level_5
+            Upgrade: Chaos_FMAtk_Alpla_Level_6
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 162
+          - Enchant: Chaos_FMAtk_Alpla_Level_6
+            Upgrade: Chaos_FMAtk_Alpla_Level_7
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 486
+          - Enchant: Chaos_FMAtk_Alpla_Level_7
+            Upgrade: Chaos_FMAtk_Alpla_Level_8
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 1458
+          - Enchant: Chaos_FMAtk_Alpla_Level_8
+            Upgrade: Chaos_FMAtk_Alpla_Level_9
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 4374
+          - Enchant: Chaos_FMAtk_Alpla_Level_9
+            Upgrade: Chaos_FMAtk_Alpla_Level_10
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 13122
+          - Enchant: Chaos_SkillRatio_Alpla_Level_1
+            Upgrade: Chaos_SkillRatio_Alpla_Level_2
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 2
+          - Enchant: Chaos_SkillRatio_Alpla_Level_2
+            Upgrade: Chaos_SkillRatio_Alpla_Level_3
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 6
+          - Enchant: Chaos_SkillRatio_Alpla_Level_3
+            Upgrade: Chaos_SkillRatio_Alpla_Level_4
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 18
+          - Enchant: Chaos_SkillRatio_Alpla_Level_4
+            Upgrade: Chaos_SkillRatio_Alpla_Level_5
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 54
+          - Enchant: Chaos_SkillRatio_Alpla_Level_5
+            Upgrade: Chaos_SkillRatio_Alpla_Level_6
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 162
+          - Enchant: Chaos_SkillRatio_Alpla_Level_6
+            Upgrade: Chaos_SkillRatio_Alpla_Level_7
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 486
+          - Enchant: Chaos_SkillRatio_Alpla_Level_7
+            Upgrade: Chaos_SkillRatio_Alpla_Level_8
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 1458
+          - Enchant: Chaos_SkillRatio_Alpla_Level_8
+            Upgrade: Chaos_SkillRatio_Alpla_Level_9
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 4374
+          - Enchant: Chaos_SkillRatio_Alpla_Level_9
+            Upgrade: Chaos_SkillRatio_Alpla_Level_10
+            Materials:
+              - Material: Chaos_stone_1
+                Amount: 13122
+        RandomUpgrades:
+          - Enchant: Chaos_Atk_Alpla_Level_1
+            Price: 1000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_1
+                Chance: 3
+              - Item: Chaos_MAtk_Alpla_Level_1
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_1
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_1
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_1
+                Chance: 1
+          - Enchant: Chaos_Atk_Alpla_Level_2
+            Price: 2000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_2
+                Chance: 3
+              - Item: Chaos_MAtk_Alpla_Level_2
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_2
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_2
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_2
+                Chance: 1
+          - Enchant: Chaos_Atk_Alpla_Level_3
+            Price: 6000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_3
+                Chance: 3
+              - Item: Chaos_MAtk_Alpla_Level_3
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_3
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_3
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_3
+                Chance: 1
+          - Enchant: Chaos_Atk_Alpla_Level_4
+            Price: 18000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_4
+                Chance: 3
+              - Item: Chaos_MAtk_Alpla_Level_4
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_4
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_4
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_4
+                Chance: 1
+          - Enchant: Chaos_Atk_Alpla_Level_5
+            Price: 54000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_5
+                Chance: 3
+              - Item: Chaos_MAtk_Alpla_Level_5
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_5
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_5
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_5
+                Chance: 1
+          - Enchant: Chaos_Atk_Alpla_Level_6
+            Price: 162000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_6
+                Chance: 3
+              - Item: Chaos_MAtk_Alpla_Level_6
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_6
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_6
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_6
+                Chance: 1
+          - Enchant: Chaos_Atk_Alpla_Level_7
+            Price: 486000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_7
+                Chance: 3
+              - Item: Chaos_MAtk_Alpla_Level_7
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_7
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_7
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_7
+                Chance: 1
+          - Enchant: Chaos_Atk_Alpla_Level_8
+            Price: 1458000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_8
+                Chance: 3
+              - Item: Chaos_MAtk_Alpla_Level_8
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_8
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_8
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_8
+                Chance: 1
+          - Enchant: Chaos_Atk_Alpla_Level_9
+            Price: 4374000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_9
+                Chance: 3
+              - Item: Chaos_MAtk_Alpla_Level_9
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_9
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_9
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_9
+                Chance: 1
+          - Enchant: Chaos_Atk_Alpla_Level_10
+            Price: 13122000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_10
+                Chance: 3
+              - Item: Chaos_MAtk_Alpla_Level_10
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_10
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_10
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_10
+                Chance: 1
+          - Enchant: Chaos_MAtk_Alpla_Level_1
+            Price: 1000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_1
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_1
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_1
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_1
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_1
+                Chance: 1
+          - Enchant: Chaos_MAtk_Alpla_Level_2
+            Price: 2000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_2
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_2
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_2
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_2
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_2
+                Chance: 1
+          - Enchant: Chaos_MAtk_Alpla_Level_3
+            Price: 6000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_3
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_3
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_3
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_3
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_3
+                Chance: 1
+          - Enchant: Chaos_MAtk_Alpla_Level_4
+            Price: 18000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_4
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_4
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_4
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_4
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_4
+                Chance: 1
+          - Enchant: Chaos_MAtk_Alpla_Level_5
+            Price: 54000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_5
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_5
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_5
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_5
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_5
+                Chance: 1
+          - Enchant: Chaos_MAtk_Alpla_Level_6
+            Price: 162000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_6
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_6
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_6
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_6
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_6
+                Chance: 1
+          - Enchant: Chaos_MAtk_Alpla_Level_7
+            Price: 486000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_7
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_7
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_7
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_7
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_7
+                Chance: 1
+          - Enchant: Chaos_MAtk_Alpla_Level_8
+            Price: 1458000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_8
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_8
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_8
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_8
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_8
+                Chance: 1
+          - Enchant: Chaos_MAtk_Alpla_Level_9
+            Price: 4374000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_9
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_9
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_9
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_9
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_9
+                Chance: 1
+          - Enchant: Chaos_MAtk_Alpla_Level_10
+            Price: 13122000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_10
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_10
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_10
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_10
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_10
+                Chance: 1
+          - Enchant: Chaos_FAtk_Alpla_Level_1
+            Price: 1000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_1
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_1
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_1
+                Chance: 3
+              - Item: Chaos_FMAtk_Alpla_Level_1
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_1
+                Chance: 1
+          - Enchant: Chaos_FAtk_Alpla_Level_2
+            Price: 2000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_2
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_2
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_2
+                Chance: 3
+              - Item: Chaos_FMAtk_Alpla_Level_2
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_2
+                Chance: 1
+          - Enchant: Chaos_FAtk_Alpla_Level_3
+            Price: 6000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_3
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_3
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_3
+                Chance: 3
+              - Item: Chaos_FMAtk_Alpla_Level_3
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_3
+                Chance: 1
+          - Enchant: Chaos_FAtk_Alpla_Level_4
+            Price: 18000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_4
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_4
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_4
+                Chance: 3
+              - Item: Chaos_FMAtk_Alpla_Level_4
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_4
+                Chance: 1
+          - Enchant: Chaos_FAtk_Alpla_Level_5
+            Price: 54000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_5
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_5
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_5
+                Chance: 3
+              - Item: Chaos_FMAtk_Alpla_Level_5
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_5
+                Chance: 1
+          - Enchant: Chaos_FAtk_Alpla_Level_6
+            Price: 162000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_6
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_6
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_6
+                Chance: 3
+              - Item: Chaos_FMAtk_Alpla_Level_6
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_6
+                Chance: 1
+          - Enchant: Chaos_FAtk_Alpla_Level_7
+            Price: 486000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_7
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_7
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_7
+                Chance: 3
+              - Item: Chaos_FMAtk_Alpla_Level_7
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_7
+                Chance: 1
+          - Enchant: Chaos_FAtk_Alpla_Level_8
+            Price: 1458000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_8
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_8
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_8
+                Chance: 3
+              - Item: Chaos_FMAtk_Alpla_Level_8
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_8
+                Chance: 1
+          - Enchant: Chaos_FAtk_Alpla_Level_9
+            Price: 4374000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_9
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_9
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_9
+                Chance: 3
+              - Item: Chaos_FMAtk_Alpla_Level_9
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_9
+                Chance: 1
+          - Enchant: Chaos_FAtk_Alpla_Level_10
+            Price: 13122000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_10
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_10
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_10
+                Chance: 3
+              - Item: Chaos_FMAtk_Alpla_Level_10
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_10
+                Chance: 1
+          - Enchant: Chaos_FMAtk_Alpla_Level_1
+            Price: 1000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_1
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_1
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_1
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_1
+                Chance: 3
+              - Item: Chaos_SkillRatio_Alpla_Level_1
+                Chance: 1
+          - Enchant: Chaos_FMAtk_Alpla_Level_2
+            Price: 2000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_2
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_2
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_2
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_2
+                Chance: 3
+              - Item: Chaos_SkillRatio_Alpla_Level_2
+                Chance: 1
+          - Enchant: Chaos_FMAtk_Alpla_Level_3
+            Price: 6000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_3
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_3
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_3
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_3
+                Chance: 3
+              - Item: Chaos_SkillRatio_Alpla_Level_3
+                Chance: 1
+          - Enchant: Chaos_FMAtk_Alpla_Level_4
+            Price: 18000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_4
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_4
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_4
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_4
+                Chance: 3
+              - Item: Chaos_SkillRatio_Alpla_Level_4
+                Chance: 1
+          - Enchant: Chaos_FMAtk_Alpla_Level_5
+            Price: 54000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_5
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_5
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_5
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_5
+                Chance: 3
+              - Item: Chaos_SkillRatio_Alpla_Level_5
+                Chance: 1
+          - Enchant: Chaos_FMAtk_Alpla_Level_6
+            Price: 162000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_6
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_6
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_6
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_6
+                Chance: 3
+              - Item: Chaos_SkillRatio_Alpla_Level_6
+                Chance: 1
+          - Enchant: Chaos_FMAtk_Alpla_Level_7
+            Price: 486000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_7
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_7
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_7
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_7
+                Chance: 3
+              - Item: Chaos_SkillRatio_Alpla_Level_7
+                Chance: 1
+          - Enchant: Chaos_FMAtk_Alpla_Level_8
+            Price: 1458000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_8
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_8
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_8
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_8
+                Chance: 3
+              - Item: Chaos_SkillRatio_Alpla_Level_8
+                Chance: 1
+          - Enchant: Chaos_FMAtk_Alpla_Level_9
+            Price: 4374000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_9
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_9
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_9
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_9
+                Chance: 3
+              - Item: Chaos_SkillRatio_Alpla_Level_9
+                Chance: 1
+          - Enchant: Chaos_FMAtk_Alpla_Level_10
+            Price: 13122000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_10
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_10
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_10
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_10
+                Chance: 3
+              - Item: Chaos_SkillRatio_Alpla_Level_10
+                Chance: 1
+          - Enchant: Chaos_SkillRatio_Alpla_Level_1
+            Price: 1000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_1
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_1
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_1
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_1
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_1
+                Chance: 3
+          - Enchant: Chaos_SkillRatio_Alpla_Level_2
+            Price: 2000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_2
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_2
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_2
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_2
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_2
+                Chance: 3
+          - Enchant: Chaos_SkillRatio_Alpla_Level_3
+            Price: 6000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_3
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_3
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_3
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_3
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_3
+                Chance: 3
+          - Enchant: Chaos_SkillRatio_Alpla_Level_4
+            Price: 18000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_4
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_4
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_4
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_4
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_4
+                Chance: 3
+          - Enchant: Chaos_SkillRatio_Alpla_Level_5
+            Price: 54000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_5
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_5
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_5
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_5
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_5
+                Chance: 3
+          - Enchant: Chaos_SkillRatio_Alpla_Level_6
+            Price: 162000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_6
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_6
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_6
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_6
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_6
+                Chance: 3
+          - Enchant: Chaos_SkillRatio_Alpla_Level_7
+            Price: 486000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_7
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_7
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_7
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_7
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_7
+                Chance: 3
+          - Enchant: Chaos_SkillRatio_Alpla_Level_8
+            Price: 1458000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_8
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_8
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_8
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_8
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_8
+                Chance: 3
+          - Enchant: Chaos_SkillRatio_Alpla_Level_9
+            Price: 4374000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_9
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_9
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_9
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_9
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_9
+                Chance: 3
+          - Enchant: Chaos_SkillRatio_Alpla_Level_10
+            Price: 13122000
+            Items:
+              - Item: Chaos_Atk_Alpla_Level_10
+                Chance: 1
+              - Item: Chaos_MAtk_Alpla_Level_10
+                Chance: 1
+              - Item: Chaos_FAtk_Alpla_Level_10
+                Chance: 1
+              - Item: Chaos_FMAtk_Alpla_Level_10
+                Chance: 1
+              - Item: Chaos_SkillRatio_Alpla_Level_10
+                Chance: 3
   - Id: 13  # Skipped (some fields are not supported on rAthena for now)
     TargetItems:
       Signet_Of_Pow_Star: true

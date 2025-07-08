@@ -857,6 +857,7 @@
 	export_constant2("bDropUp",SP_DROP_UP);
 	export_constant2("bSkillRate", SP_SKILLRATE);
 	export_constant2("bSkillRateDef", SP_SKILLRATE_DEF);
+	export_constant2("bNormalRatio", SP_SKILL_RATIO);
 
 	/* equip indices */
 	export_constant(EQI_COMPOUND_ON);

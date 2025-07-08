@@ -74,7 +74,8 @@ Body:
       bonus bWis,100;
       bonus bSpl,100;
       bonus bMaxHP,10000000;
-# Event Pet Settings  - Mob: MD_Error
+# Event Pet Settings
+  - Mob: CLB_SS_FC
     EggItem: CLB_SS_Egg01
     FoodItem: Pet_Food
     Fullness: 1
@@ -91,7 +92,11 @@ Body:
       bonus bMatkRate,7;
       bonus2 bResEff,"Eff_Curse",10000;
     SupportScript: >
-      petloot 15;
+      .@i = getpetinfo(PETINFO_INTIMATE);
+      .@a = 1;
+      if (.@i > PET_INTIMATE_CORDIAL) .@a += 1;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
+      petloot .@a;
 # Common Pet Settings
   - Mob: PORING
     TameItem: Unripe_Apple
@@ -108,10 +113,7 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: DROPS
     TameItem: Orange_Juice
@@ -128,10 +130,7 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: POPORING
     TameItem: Bitter_Herb
@@ -150,10 +149,7 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: LUNATIC
     TameItem: Rainbow_Carrot
@@ -171,10 +167,7 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: PICKY
     TameItem: Earthworm_The_Dude
@@ -192,10 +185,7 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: CHONCHON
     TameItem: Rotten_Fish
@@ -213,10 +203,7 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: DESERT_WOLF_B
     TameItem: Well_Dried_Bone
@@ -234,10 +221,7 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: ROCKER
     TameItem: Singing_Flower
@@ -255,10 +239,7 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: SPORE
     TameItem: Dew_Laden_Moss
@@ -276,10 +257,7 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: PECOPECO
     TameItem: Fatty_Chubby_Earthworm
@@ -297,10 +275,7 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: SAVAGE_BABE
     TameItem: Sweet_Milk
@@ -319,10 +294,7 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
 # Rare Pet Settings
   - Mob: ORK_WARRIOR
@@ -341,10 +313,7 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: SOHEE
     EggItem: Sohee_Egg
@@ -362,10 +331,7 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: ISIS
     EggItem: Isis_Egg
@@ -383,10 +349,7 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: PETIT
     EggItem: Green_Petite_Egg
@@ -404,10 +367,7 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: DEVIRUCHI
     EggItem: Deviruchi_Egg
@@ -425,10 +385,7 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: BAPHOMET_
     EggItem: Bapho_Jr._Egg
@@ -446,10 +403,7 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: BON_GUN
     EggItem: Bongun_Egg
@@ -469,10 +423,7 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: ALICE
     EggItem: Alice_Egg
@@ -489,10 +440,7 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: INCUBUS
     EggItem: Incubus_Egg
@@ -510,10 +458,7 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: SUCCUBUS
     EggItem: Succubus_Egg
@@ -531,10 +476,7 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: SMOKIE
     EggItem: Smokie_Egg
@@ -552,10 +494,7 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
 # Epic Pet Settings
   - Mob: ANGELING
@@ -575,10 +514,8 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_CORDIAL) .@a += 1;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: CAT_O_NINE_TAIL
     EggItem: Cat_O_Nine_Tail_Egg
@@ -597,10 +534,8 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_CORDIAL) .@a += 1;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: DARK_ILLUSION2
     EggItem: Dark_Illusion_Egg
@@ -619,10 +554,8 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_CORDIAL) .@a += 1;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: Ghostring
     EggItem: Ghostring_Egg
@@ -641,10 +574,8 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_CORDIAL) .@a += 1;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: GRYPHON
     EggItem: Gryphon_Egg
@@ -663,10 +594,8 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_CORDIAL) .@a += 1;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: HYDRO
     EggItem: Hydro_Egg
@@ -685,10 +614,8 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_CORDIAL) .@a += 1;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: MUTANT_DRAGON
     EggItem: Mutant_Dragon_Egg
@@ -707,10 +634,8 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_CORDIAL) .@a += 1;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: OWL_BARON
     EggItem: Owl_Baron_Egg
@@ -729,10 +654,8 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_CORDIAL) .@a += 1;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: EP17_2_CHILD_ADMIN1
     EggItem: Ep17_2_C_Admin1_Egg
@@ -751,10 +674,8 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_CORDIAL) .@a += 1;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: EP17_2_CHILD_ADMIN2
     EggItem: Ep17_2_C_Admin2_Egg
@@ -772,10 +693,8 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_CORDIAL) .@a += 1;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
 # Legendary Pet Settings
   - Mob: DOPPELGANGER
@@ -796,10 +715,8 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_CORDIAL) .@a += 1;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: ORC_LORD
     EggItem: Orc_Lord_Egg_
@@ -819,10 +736,8 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_CORDIAL) .@a += 1;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: MAYA
     EggItem: Maya_Egg
@@ -842,10 +757,8 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_CORDIAL) .@a += 1;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: MOONLIGHT
     EggItem: Moonlight_Egg
@@ -865,10 +778,8 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_CORDIAL) .@a += 1;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: BAPHOMET
     EggItem: Baphomet_Egg
@@ -888,10 +799,8 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_CORDIAL) .@a += 1;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: MISTRESS
     EggItem: Mistress_Egg
@@ -911,10 +820,8 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_CORDIAL) .@a += 1;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: EDDGA
     EggItem: Eddga_Egg2
@@ -934,10 +841,8 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_CORDIAL) .@a += 1;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: OSIRIS
     EggItem: Osiris_Egg
@@ -959,10 +864,8 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_CORDIAL) .@a += 1;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: DRACULA
     EggItem: Dracula_Egg
@@ -982,10 +885,8 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_CORDIAL) .@a += 1;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: DARK_SNAKE_LORD
     EggItem: Dark_Snake_Lord_Egg
@@ -1009,10 +910,8 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_CORDIAL) .@a += 1;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: TURTLE_GENERAL
     EggItem: Turtle_General_Egg
@@ -1035,10 +934,8 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_CORDIAL) .@a += 1;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: RANDGRIS
     EggItem: Randgris_Egg
@@ -1059,10 +956,8 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_CORDIAL) .@a += 1;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: PHREEONI2
     EggItem: Phreeoni_Egg
@@ -1080,10 +975,8 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_CORDIAL) .@a += 1;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: KIEL_D_01_2
     EggItem: Kiel_Egg
@@ -1101,10 +994,8 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_CORDIAL) .@a += 1;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: GLOOMUNDERNIGHT2
     EggItem: Gloom_Under_Egg
@@ -1123,10 +1014,8 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_CORDIAL) .@a += 1;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;
   - Mob: ORK_HERO2
     EggItem: Ork_Hero_EGG
@@ -1145,8 +1034,6 @@ Body:
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 1;
-      if (.@i > PET_INTIMATE_SHY) .@a += 1;
-      if (.@i > PET_INTIMATE_CORDIAL) .@a += 3;
-      if (.@i > PET_INTIMATE_AWKWARD) .@a += 9;
+      if (.@i > PET_INTIMATE_CORDIAL) .@a += 1;
+      if (.@i > PET_INTIMATE_LOYAL) .@a += 1;
       petloot .@a;

@@ -98,6 +98,48 @@
 22381,Valkyrie Randgris@WZ_STORMGUST,attack,85,21,1000,1000,5000,no,target,always,0,,,,,,,
 22381,Valkyrie Randgris@WZ_STORMGUST,chase,85,21,2000,1000,5000,no,target,always,0,,,,,,,
 
+// Guardian
+
+3333,Diabolic@MO_BODYRELOCATION,chase,264,1,2000,500,5000,no,target,always,0,,,,,,29,
+3333,Diabolic@NPC_FIREATTACK,attack,186,2,500,500,5000,no,target,always,0,,,,,,6,
+3333,Diabolic@WZ_METEOR,attack,83,3,500,1500,5000,no,target,always,0,,,,,,29,
+3333,Diabolic@WZ_METEOR,chase,83,3,500,1500,5000,no,target,always,0,,,,,,29,
+3333,Diabolic@MO_BODYRELOCATION,follow,264,1,2000,500,5000,no,target,always,0,,,,,,29,
+3333,Diabolic@NPC_FIREATTACK,angry,186,2,500,500,5000,no,target,always,0,,,,,,6,
+3333,Diabolic@WZ_METEOR,angry,83,3,500,1500,5000,no,target,always,0,,,,,,29,
+3333,Diabolic@WZ_METEOR,follow,83,3,500,1500,5000,no,target,always,0,,,,,,29,
+3333,Chepet@NPC_GUIDEDATTACK,attack,172,5,10000,1000,20000,no,target,always,0,,,,,,,
+
+3334,Diabolic@MO_BODYRELOCATION,chase,264,1,2000,500,5000,no,target,always,0,,,,,,29,
+3334,Diabolic@NPC_WATERATTACK,attack,186,2,500,500,5000,no,target,always,0,,,,,,6,
+3334,Diabolic@WZ_STORMGUST,attack,83,3,500,1500,5000,no,target,always,0,,,,,,29,
+3334,Diabolic@WZ_STORMGUST,chase,83,3,500,1500,5000,no,target,always,0,,,,,,29,
+3334,Diabolic@MO_BODYRELOCATION,follow,264,1,2000,500,5000,no,target,always,0,,,,,,29,
+3334,Diabolic@NPC_WATERATTACK,angry,186,2,500,500,5000,no,target,always,0,,,,,,6,
+3334,Diabolic@WZ_STORMGUST,angry,83,3,500,1500,5000,no,target,always,0,,,,,,29,
+3334,Diabolic@WZ_STORMGUST,follow,83,3,500,1500,5000,no,target,always,0,,,,,,29,
+3334,Chepet@NPC_GUIDEDATTACK,attack,172,5,10000,1000,20000,no,target,always,0,,,,,,,
+
+3335,Diabolic@MO_BODYRELOCATION,chase,264,1,2000,500,5000,no,target,always,0,,,,,,29,
+3335,Diabolic@NPC_WINDATTACK,attack,186,2,500,500,5000,no,target,always,0,,,,,,6,
+3335,Diabolic@WZ_VERMILION,attack,83,3,500,1500,5000,no,target,always,0,,,,,,29,
+3335,Diabolic@WZ_VERMILION,chase,83,3,500,1500,5000,no,target,always,0,,,,,,29,
+3335,Diabolic@MO_BODYRELOCATION,follow,264,1,2000,500,5000,no,target,always,0,,,,,,29,
+3335,Diabolic@NPC_WINDATTACK,angry,186,2,500,500,5000,no,target,always,0,,,,,,6,
+3335,Diabolic@WZ_VERMILION,angry,83,3,500,1500,5000,no,target,always,0,,,,,,29,
+3335,Diabolic@WZ_VERMILION,follow,83,3,500,1500,5000,no,target,always,0,,,,,,29,
+3335,Chepet@NPC_GUIDEDATTACK,attack,172,5,10000,1000,20000,no,target,always,0,,,,,,,
+
+3336,Diabolic@MO_BODYRELOCATION,chase,264,1,2000,500,5000,no,target,always,0,,,,,,29,
+3336,Diabolic@WZ_EARTHSPIKE,attack,186,2,500,500,5000,no,target,always,0,,,,,,6,
+3336,Diabolic@WZ_HEAVENDRIVE,attack,83,3,500,1500,5000,yes,target,always,0,,,,,,29,
+3336,Diabolic@WZ_HEAVENDRIVE,chase,83,3,500,1500,5000,yes,target,always,0,,,,,,29,
+3336,Diabolic@MO_BODYRELOCATION,follow,264,1,2000,500,5000,no,target,always,0,,,,,,29,
+3336,Diabolic@WZ_EARTHSPIKE,angry,186,2,500,500,5000,no,target,always,0,,,,,,6,
+3336,Diabolic@WZ_HEAVENDRIVE,angry,83,3,500,1500,5000,yes,target,always,0,,,,,,29,
+3333,Diabolic@WZ_HEAVENDRIVE,follow,83,3,500,1500,5000,yes,target,always,0,,,,,,29,
+3336,Chepet@NPC_GUIDEDATTACK,attack,172,5,10000,1000,20000,no,target,always,0,,,,,,,
+
 // Dev Team
 
 2000,MD_MANHOLE4@NPC_WIDELEASH,attack,748,3,10000,0,5000,yes,target,always,0,,,,,,,

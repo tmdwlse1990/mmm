@@ -25522,6 +25522,8 @@ void clif_parse_enchantwindow_random_upgrade(int fd, map_session_data *sd)
 	// Log retrieving the item again -> with the new enchant
 	log_pick_pc (sd, LOG_TYPE_ENCHANT, 1, &EnchantItem);
 
+	sd->enchantIndex = sd->state.item_enchant_index;
+	
 	clif_enchantwindow_result(*sd, true, EnchantItem.card[Slot]);
 #endif
 }
