@@ -16,7 +16,7 @@
 
 // Instance Creation :: oct
 //============================================================
-mal_dun01,151,235,5	script	Starfish	551,{
+mal_dun01,201,233,5	script	Starfish	551,{
 
 	set .@party_id,getcharid(1);
 	set .@md_name$,"Octopus Cave";
@@ -112,7 +112,7 @@ mal_dun01,151,235,5	script	Starfish	551,{
 	}
 }
 
-mal_dun01,153,237,5	script	Weird Entrance	844,{
+mal_dun01,205,233,5	script	Weird Entrance	21887,{
 	mes "There is a strange entrance";
 	mes "blocked roughly with some boards.";
 	next;
@@ -134,7 +134,7 @@ mal_dun01,153,237,5	script	Weird Entrance	844,{
 			case IE_OK:
 				mapannounce "mal_dun01", getpartyname(getcharid(1))+" party's "+strcharinfo(0)+" member started to hunt the Octopus!",bc_map,"0x00ff99";
 				if (checkquest(4197) == -1) setquest 4197;
-				//warp instance_mapname("1@cash"),199,99;
+				//warp instance_mapname("1@cash1"),199,99;
 				close;
 			default:
 				mes "[Starfish]";
@@ -159,7 +159,7 @@ mal_dun01,153,237,5	script	Weird Entrance	844,{
 
 // Instance Scripts :: oct_in
 //============================================================
-1@cash,199,99,0	script	oct_enter	139,4,4,{
+1@cash1,199,99,0	script	oct_enter	139,4,4,{
 	end;
 OnTouch_:
 	donpcevent instance_npcname("oct_enter_broad")+"::OnEnable";
@@ -168,7 +168,7 @@ OnTouch_:
 	end;
 }
 
-1@cash,1,1,0	script	oct_enter_broad	-1,{
+1@cash1,1,1,0	script	oct_enter_broad	-1,{
 	end;
 OnInstanceInit:
 	disablenpc instance_npcname("oct_foot_exit1");
@@ -188,19 +188,19 @@ OnDisable:
 	disablenpc instance_npcname("oct_enter_broad");
 	end;
 OnTimer1000:
-	mapannounce instance_mapname("1@cash"),"Pervert Octopus : How dare you to come inside of my place!",bc_map,"0xFFFF00";
+	mapannounce instance_mapname("1@cash1"),"Pervert Octopus : How dare you to come inside of my place!",bc_map,"0xFFFF00";
 	end;
 OnTimer4000:
-	mapannounce instance_mapname("1@cash"),"Pervert Octopus : But I blocked all the cave gates!! There is nothing you can do!",bc_map,"0xFFFF00";
+	mapannounce instance_mapname("1@cash1"),"Pervert Octopus : But I blocked all the cave gates!! There is nothing you can do!",bc_map,"0xFFFF00";
 	end;
 OnTimer7000:
-	mapannounce instance_mapname("1@cash"),"Pervert Octopus : My juniors~ There is your toy! Play with it~ kakaka",bc_map,"0xFFFF00";
+	mapannounce instance_mapname("1@cash1"),"Pervert Octopus : My juniors~ There is your toy! Play with it~ kakaka",bc_map,"0xFFFF00";
 	stopnpctimer;
 	donpcevent instance_npcname("oct_enter_broad")+"::OnDisable";
 	end;
 }
 
-1@cash,3,3,0	script	oct_foot_4	-1,{
+1@cash1,3,3,0	script	oct_foot_4	-1,{
 	end;
 OnInstanceInit:
 	donpcevent instance_npcname("oct_foot_4")+"::OnDisable";
@@ -211,7 +211,7 @@ OnEnable:
 	donpcevent instance_npcname("oct_foot2")+"::OnEnable";
 	donpcevent instance_npcname("oct_foot3")+"::OnEnable";
 	donpcevent instance_npcname("oct_foot4")+"::OnEnable";
-	set .@map$, instance_mapname("1@cash");
+	set .@map$, instance_mapname("1@cash1");
 	monster .@map$,20,114,"Octopus Leg#1",2193,1,instance_npcname("oct_foot_4")+"::OnMyMobDead";
 	monster .@map$,88,190,"Octopus Leg#2",2193,1,instance_npcname("oct_foot_4")+"::OnMyMobDead";
 	monster .@map$,307,215,"Octopus Leg#3",2193,1,instance_npcname("oct_foot_4")+"::OnMyMobDead";
@@ -221,7 +221,7 @@ OnDisable:
 	disablenpc instance_npcname("oct_foot_4");
 	end;
 OnMyMobDead:
-	set .@map$, instance_mapname("1@cash");
+	set .@map$, instance_mapname("1@cash1");
 	if (mobcount(.@map$,instance_npcname("oct_foot_4")+"::OnMyMobDead") < 1) {
 		donpcevent instance_npcname("oct_boss_con")+"::OnEnable";
 		mapannounce .@map$,"Hey you!! I'll personally take care of you all! Let's bring it on!",bc_map,"0x00ff99";
@@ -233,7 +233,7 @@ OnMyMobDead:
 	end;
 }
 
-1@cash,20,114,0	script	oct_foot1	139,6,6,{
+1@cash1,20,114,0	script	oct_foot1	139,6,6,{
 	end;
 OnInstanceInit:
 	donpcevent instance_npcname(strnpcinfo(0))+"::OnDisable";
@@ -242,7 +242,7 @@ OnEnable:
 	enablenpc();
 	set .@label$, instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
 	set .@i, atoi(charat(strnpcinfo(0),8));
-	set .@map$, instance_mapname("1@cash");
+	set .@map$, instance_mapname("1@cash1");
 	switch(.@i) {
 	case 1:
 		areamonster .@map$,34,96,38,100,"Octopus's Henchman",2192,3,.@label$;
@@ -299,18 +299,18 @@ OnEnable:
 	}
 	end;
 OnDisable:
-	killmonster instance_mapname("1@cash"),instance_npcname(strnpcinfo(0))+"::OnMyMobDead"; // Not in official script.
+	killmonster instance_mapname("1@cash1"),instance_npcname(strnpcinfo(0))+"::OnMyMobDead"; // Not in official script.
 	disablenpc();
 	end;
 OnTouch_:
 	if (getd("."+strnpcinfo(0)+instance_id())) end;
 	setd "."+strnpcinfo(0)+instance_id(),1;
 	hideonnpc instance_npcname(strnpcinfo(0));
-	mapannounce instance_mapname("1@cash"),"Come out all my babies and help me out!",bc_map,"0xFFFF00";
+	mapannounce instance_mapname("1@cash1"),"Come out all my babies and help me out!",bc_map,"0xFFFF00";
 	initnpctimer;
 	end;
 OnTimer5000:
-	set .@map$, instance_mapname("1@cash");
+	set .@map$, instance_mapname("1@cash1");
 	mapannounce .@map$,"Let's give them a lesson!",bc_map,"0xFFFF00";
 	set .@label$, instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
 	set .@i, atoi(charat(strnpcinfo(0),8));
@@ -341,7 +341,7 @@ OnTimer30000:
 	donpcevent instance_npcname(strnpcinfo(0))+"::OnDisable";
 	end;
 OnMyMobDead:
-	set .@map$, instance_mapname("1@cash");
+	set .@map$, instance_mapname("1@cash1");
 	if (mobcount(.@map$,instance_npcname(strnpcinfo(0))+"::OnMyMobDead") < 1) {
 		mapannounce .@map$,"You hurt my babies!!? You'll have to pay for this!!!",bc_map,"0x00ff99";
 		setd "."+strnpcinfo(0)+instance_id(),0;
@@ -353,17 +353,17 @@ OnMyMobDead:
 	}
 	end;
 }
-1@cash,88,190,0	duplicate(oct_foot1)	oct_foot2	139,6,6
-1@cash,307,215,0	duplicate(oct_foot1)	oct_foot3	139,6,6
-1@cash,372,131,0	duplicate(oct_foot1)	oct_foot4	139,6,6
+1@cash1,88,190,0	duplicate(oct_foot1)	oct_foot2	139,6,6
+1@cash1,307,215,0	duplicate(oct_foot1)	oct_foot3	139,6,6
+1@cash1,372,131,0	duplicate(oct_foot1)	oct_foot4	139,6,6
 
-1@cash,15,15,0	script	oct_mob_con	-1,{
+1@cash1,15,15,0	script	oct_mob_con	-1,{
 	end;
 OnInstanceInit:
 	donpcevent instance_npcname("oct_mob_con")+"::OnDisable";
 	end;
 OnEnable:
-	set .@map$, instance_mapname("1@cash");
+	set .@map$, instance_mapname("1@cash1");
 	enablenpc instance_npcname("oct_mob_con");
 	monster .@map$,32,94,"Hydra",1068,1;
 	monster .@map$,41,101,"Hydra",1068,1;
@@ -419,13 +419,13 @@ OnDisable:
 	end;
 }
 
-1@cash,45,53,0	script	oct_backattack1	139,3,3,{
+1@cash1,45,53,0	script	oct_backattack1	139,3,3,{
 	end;
 OnInstanceInit:
 	disablenpc instance_npcname("oct_backattack1");
 	end;
 OnTouch_:
-	set .@map$, instance_mapname("1@cash");
+	set .@map$, instance_mapname("1@cash1");
 	monster .@map$,39,59,"Hydra",1068,1;
 	monster .@map$,40,59,"Hydra",1068,1;
 	monster .@map$,41,59,"Hydra",1068,1;
@@ -442,7 +442,7 @@ OnEnable:
 	end;
 }
 
-1@cash,78,99,0	script	oct_backattack2	139,3,3,{
+1@cash1,78,99,0	script	oct_backattack2	139,3,3,{
 	end;
 OnInstanceInit:
 	disablenpc instance_npcname("oct_backattack2");
@@ -451,28 +451,28 @@ OnTouch_:
 	if (getd("."+instance_id())) end;
 	setd "."+instance_id(),1;
 	initnpctimer;
-	set .@map$, instance_mapname("1@cash");
+	set .@map$, instance_mapname("1@cash1");
 	monster .@map$,71,105,"Octopus's Henchman ",2192,1;
 	mapannounce .@map$,"Headquarters are empty, GO!!!",bc_map,"0x00ff99";
 	hideonnpc instance_npcname("oct_backattack2");
 	end;
 OnTimer2000:
-	set .@map$, instance_mapname("1@cash");
+	set .@map$, instance_mapname("1@cash1");
 	monster .@map$,71,105,"Octopus's Henchman ",2192,1;
 	mapannounce .@map$,"Run, RUN! Go, GO!!!",bc_map,"0x00ff99";
 	end;
 OnTimer4000:
-	set .@map$, instance_mapname("1@cash");
+	set .@map$, instance_mapname("1@cash1");
 	monster .@map$,71,105,"Octopus's Henchman ",2192,1;
 	mapannounce .@map$,"No time, come out fast!",bc_map,"0x00ff99";
 	end;
 OnTimer6000:
-	set .@map$, instance_mapname("1@cash");
+	set .@map$, instance_mapname("1@cash1");
 	monster .@map$,71,105,"Octopus's Henchman ",2192,3;
 	mapannounce .@map$,"Let's take over the headquarters!!!",bc_map,"0x00ff99";
 	end;
 OnTimer8000:
-	set .@map$, instance_mapname("1@cash");
+	set .@map$, instance_mapname("1@cash1");
 	monster .@map$,71,105,"Octopus's Henchman ",2192,1;
 	mapannounce .@map$,"There is no time to lose, hurry up!!!",bc_map,"0x00ff99";
 	stopnpctimer;
@@ -482,7 +482,7 @@ OnEnable:
 	end;
 }
 
-1@cash,299,144,0	script	oct_backattack3	139,3,3,{
+1@cash1,299,144,0	script	oct_backattack3	139,3,3,{
 	end;
 OnInstanceInit:
 	disablenpc instance_npcname("oct_backattack3");
@@ -490,7 +490,7 @@ OnInstanceInit:
 OnTouch_:
 	if (getd("."+instance_id())) end;
 	setd "."+instance_id(),1;
-	set .@map$, instance_mapname("1@cash");
+	set .@map$, instance_mapname("1@cash1");
 	monster .@map$,293,153,"Octopus's Henchman ",2192,1;
 	monster .@map$,294,152,"Octopus's Henchman ",2192,1;
 	monster .@map$,292,153,"Octopus's Henchman ",2192,1;
@@ -501,7 +501,7 @@ OnTouch_:
 	hideonnpc instance_npcname("oct_backattack3");
 	end;
 OnTimer5000:
-	mapannounce instance_mapname("1@cash"),"... Looks like we have a spy among us.",bc_map,"0x00ff99";
+	mapannounce instance_mapname("1@cash1"),"... Looks like we have a spy among us.",bc_map,"0x00ff99";
 	stopnpctimer;
 	end;
 OnEnable:
@@ -509,7 +509,7 @@ OnEnable:
 	end;
 }
 
-1@cash,336,36,0	script	oct_backattack4	139,3,3,{
+1@cash1,336,36,0	script	oct_backattack4	139,3,3,{
 	end;
 OnInstanceInit:
 	disablenpc instance_npcname("oct_backattack4");
@@ -517,7 +517,7 @@ OnInstanceInit:
 OnTouch_:
 	if (getd("."+instance_id())) end;
 	setd "."+instance_id(),1;
-	set .@map$, instance_mapname("1@cash");
+	set .@map$, instance_mapname("1@cash1");
 	monster .@map$,332,37,"Octopus's Henchman ",2192,1;
 	monster .@map$,332,36,"Octopus's Henchman ",2192,1;
 	monster .@map$,332,35,"Octopus's Henchman ",2192,1;
@@ -536,10 +536,10 @@ OnTouch_:
 	hideonnpc instance_npcname("oct_backattack4");
 	end;
 OnTimer5000:
-	mapannounce instance_mapname("1@cash"),"Mercenary Squid : eh...eh... wrong direction. No enemies are shown in this direction.",bc_map,"0x00ff99";
+	mapannounce instance_mapname("1@cash1"),"Mercenary Squid : eh...eh... wrong direction. No enemies are shown in this direction.",bc_map,"0x00ff99";
 	end;
 OnTimer7000:
-	mapannounce instance_mapname("1@cash"),"Pervert Octopus : Fools! Can't you read the map??!! Useless!!",bc_map,"0x00ff99";
+	mapannounce instance_mapname("1@cash1"),"Pervert Octopus : Fools! Can't you read the map??!! Useless!!",bc_map,"0x00ff99";
 	stopnpctimer;
 	end;
 OnEnable:
@@ -547,7 +547,7 @@ OnEnable:
 	end;
 }
 
-1@cash,2,2,0	script	oct_boss_con	-1,{
+1@cash1,2,2,0	script	oct_boss_con	-1,{
 	end;
 OnInstanceInit:
 	donpcevent instance_npcname("oct_boss_con")+"::OnDisable";
@@ -558,7 +558,7 @@ OnDisable:
 OnEnable:
 	enablenpc instance_npcname("oct_boss_con");
 	donpcevent instance_npcname("oct_boss_foot")+"::OnEnable";
-	monster instance_mapname("1@cash"),199,188,"Disgusting Octopus",2194,1,instance_npcname("oct_boss_con")+"::OnMyMobDead";
+	monster instance_mapname("1@cash1"),199,188,"Disgusting Octopus",2194,1,instance_npcname("oct_boss_con")+"::OnMyMobDead";
 	initnpctimer;
 	end;
 OnTimer7000:
@@ -606,10 +606,10 @@ OnTimer49000:
 	initnpctimer;
 	end;
 OnAnnounce:
-	mapannounce instance_mapname("1@cash"),"Disgusting Octopus : "+getarg(rand(3)),bc_map,"0xFFFF00";
+	mapannounce instance_mapname("1@cash1"),"Disgusting Octopus : "+getarg(rand(3)),bc_map,"0xFFFF00";
 	return;
 OnMyMobDead:
-	set .@map$, instance_mapname("1@cash");
+	set .@map$, instance_mapname("1@cash1");
 	if (mobcount(.@map$,instance_npcname("oct_boss_con")+"::OnMyMobDead") < 1) {
 		mapannounce .@map$,"Disgusting Octopus : That's it for the today! Next time, I will play with you badly!",bc_map,"0xFFFF00";
 		enablenpc instance_npcname("oct_exit_1");
@@ -622,7 +622,7 @@ OnMyMobDead:
 	end;
 }
 
-1@cash,4,4,0	script	oct_boss_foot	-1,{
+1@cash1,4,4,0	script	oct_boss_foot	-1,{
 	end;
 OnInstanceInit:
 	donpcevent instance_npcname("oct_boss_foot")+"::OnDisable";
@@ -632,7 +632,7 @@ OnEnable:
 	initnpctimer;
 	end;
 OnCall:
-	set .@map$, instance_mapname("1@cash");
+	set .@map$, instance_mapname("1@cash1");
 	if (mobcount(.@map$,instance_npcname("oct_boss_foot")+"::OnMyMobDead") < 100) {
 		switch(rand(2)) {
 		case 0:
@@ -653,7 +653,7 @@ OnTimer10000:
 	end;
 OnDisable:
 	stopnpctimer;
-	killmonster instance_mapname("1@cash"),instance_npcname("oct_boss_foot")+"::OnMyMobDead"; // Not in official script.
+	killmonster instance_mapname("1@cash1"),instance_npcname("oct_boss_foot")+"::OnMyMobDead"; // Not in official script.
 	disablenpc instance_npcname("oct_boss_foot");
 	end;
 OnMyMobDead:
@@ -661,7 +661,7 @@ OnMyMobDead:
 }
 
 
-1@cash,190,208,0	script	oct_exit_1	45,2,2,{
+1@cash1,190,208,0	script	oct_exit_1	45,2,2,{
 	end;
 OnInstanceInit:
 	disablenpc();
@@ -673,23 +673,24 @@ OnTouch:
 		warp "mal_dun01",153,233;
 	close;
 }
-1@cash,198,82,0	duplicate(oct_exit_1)	oct_exit_2	45,2,2
+1@cash1,198,82,0	duplicate(oct_exit_1)	oct_exit_2	45,2,2
 // This is never enabled in the official script.
-//1@cash,200,161,0	duplicate(oct_exit_1)	oct_exit_3	45,2,2
+//1@cash1,200,161,0	duplicate(oct_exit_1)	oct_exit_3	45,2,2
 
 // Warp Portals
 //============================================================
-1@cash,16,117,0	warp2	oct_foot_exit1	2,2,1@cash,198,99
-1@cash,77,193,0	warp2	oct_foot_exit2	2,2,1@cash,198,99
-1@cash,312,214,0	warp2	oct_foot_exit3	2,2,1@cash,198,99
-1@cash,370,139,0	warp2	oct_foot_exit4	2,2,1@cash,198,99
-1@cash,198,116,0	warp2	oct_boss_warp	2,2,1@cash,210,172
+1@cash1,16,117,0	warp2	oct_foot_exit1	2,2,1@cash1,198,99
+1@cash1,77,193,0	warp2	oct_foot_exit2	2,2,1@cash1,198,99
+1@cash1,312,214,0	warp2	oct_foot_exit3	2,2,1@cash1,198,99
+1@cash1,370,139,0	warp2	oct_foot_exit4	2,2,1@cash1,198,99
+1@cash1,198,116,0	warp2	oct_boss_warp	2,2,1@cash1,210,172
+1@cash1,200,161,0	warp2	oct_boss_warp_back	2,2,1@cash1,198,100
 
-1@cash,193,82,0	warp2	oct_door1	2,2,1@cash,151,48
-1@cash,154,53,0	warp2	oct_door2	2,2,1@cash,197,87
-1@cash,187,99,0	warp2	oct_door3	2,2,1@cash,148,128
-1@cash,153,133,0	warp2	oct_door4	2,2,1@cash,197,99
-1@cash,209,100,0	warp2	oct_door5	2,2,1@cash,250,111
-1@cash,244,118,0	warp2	oct_door6	2,2,1@cash,199,100
-1@cash,209,83,0	warp2	oct_door7	2,2,1@cash,252,46
-1@cash,246,53,0	warp2	oct_door8	2,2,1@cash,203,83
+1@cash1,193,82,0	warp2	oct_door1	2,2,1@cash1,151,48
+1@cash1,154,53,0	warp2	oct_door2	2,2,1@cash1,197,87
+1@cash1,187,99,0	warp2	oct_door3	2,2,1@cash1,148,128
+1@cash1,153,133,0	warp2	oct_door4	2,2,1@cash1,197,99
+1@cash1,209,100,0	warp2	oct_door5	2,2,1@cash1,250,111
+1@cash1,244,118,0	warp2	oct_door6	2,2,1@cash1,199,100
+1@cash1,209,83,0	warp2	oct_door7	2,2,1@cash1,252,46
+1@cash1,246,53,0	warp2	oct_door8	2,2,1@cash1,203,83

@@ -55,6 +55,12 @@ Body:
       Map: valkyrie
       X: 48
       Y: 9
+  - Id: 451
+    Name: Kraken Raid
+    Enter:
+      Map: 1@cash1
+      X: 198
+      Y: 92
   - Id: 500
     Name: Lake of fire
     Enter:

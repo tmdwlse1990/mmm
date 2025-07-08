@@ -1,0 +1,4 @@
+icecastle,185,212,4	script	Event Free#event	800,{
+		callshop "event_drug_free";
+	end;
+}

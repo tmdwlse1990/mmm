@@ -1,0 +1,541 @@
+mal_dun01,205,233,5	script	Weird Entrance	21887,{
+	if(getgmlevel() < 99) end;
+	set .@party_id,getcharid(1);
+	getpartymember .@party_id, 1;
+	set .@online_members_count, $@partymembercount;	
+	set .@md_name$,"Kraken Raid";
+	if (is_party_leader() == false) {
+		mes "คงจะมีแค่หัวหน้าปาตี้ ที่จะเข้าไปได้สินะ";
+		end;
+	}
+
+			if (instance_create(.@md_name$) < 0) {
+				mes "Party Name: "+ getpartyname(.@party_id);
+				mes "Party Leader: "+strcharinfo(0);
+				mes "^0000ff"+.@md_name$+" ^000000 - Reservation Failed.";
+				mes "เหมือน Admin ไม่อยากเจอเราเท่าไหร่ ไปทำอะไรไว้กันนะ..";
+				close;
+			}
+			
+			if(select("เดินเข้าไปยังประตูมิติ","ไม่ดีกว่าน่ากลัวจะกลับบ้าน") == 2 ) { instance_destroy; warp "Save",0,0; end;}
+			switch(instance_enter(.@md_name$)) {
+			case IE_OTHER:
+				mes "Error แบบงงๆ";
+				close;
+			case IE_NOINSTANCE:
+				mes "กรุณาเปิดดันก่อน";
+				close;
+			case IE_NOMEMBER:
+				mes "ให้เฉพาะสมาชิกในปาตี้เท่านั้น";
+				close;
+			case IE_OK:
+				//if (!isbegin_quest(10)) setquest 10;
+				break;
+			}
+			end;
+}
+
+1@cash1,198,92,0	script	kra_enter	139,4,4,{
+	end;
+OnTouch_:
+	donpcevent instance_npcname("kra_enter_broad")+"::OnEnable";
+	specialeffect EF_BASH;
+	disablenpc instance_npcname("kra_enter");
+	end;
+}
+
+1@cash1,1,1,0	script	kra_enter_broad	-1,{
+	end;
+OnInstanceInit:
+	set 'BRank , 0;
+	disablenpc instance_npcname("kra_boss_warp"); //ปิดวาปเข้าบอส
+	disablenpc instance_npcname("kra_door1"); //ปิดวาปไปเสา
+	disablenpc instance_npcname("kra_door3"); //ปิดวาปไปเสา
+	disablenpc instance_npcname("kra_door5"); //ปิดวาปไปเสา
+	disablenpc instance_npcname("kra_door7"); //ปิดวาปไปเสา
+	donpcevent instance_npcname("PillarInit")+"::OnEnable"; //สุ่มเลขเสา
+	disablenpc instance_npcname("Chief Baron#KraBoss"); //เอา npc boss เก็บ
+	donpcevent instance_npcname("kra_enter_broad")+"::OnDisable";
+	end;
+OnEnable:
+	enablenpc instance_npcname("kra_enter_broad");
+	//donpcevent instance_npcname("kra_foot_4")+"::OnEnable";
+	//donpcevent instance_npcname("kra_mob_con")+"::OnEnable";
+	initnpctimer; //ตัวเริ่ม OnTimer
+	end;
+OnDisable:
+	disablenpc instance_npcname("kra_enter_broad");
+	end;
+OnTimer1000:
+	mapannounce instance_mapname("1@cash1"),"Kraken : เจ้ากล้าตามมาที่ถิ่นของข้าเลยเรอะ!!",bc_map,"0xFFFF00";
+	end;
+OnTimer4000:
+	mapannounce instance_mapname("1@cash1"),"Kraken : เก่งมาก ที่ดูออกว่านั่นคือร่างแยกที่ข้าเอาไว้ล่อพวกโง่เง่า!",bc_map,"0xFFFF00";
+	end;
+OnTimer7000:
+	mapannounce instance_mapname("1@cash1"),"Kraken : แต่ข้าปิดทางเข้าไว้หมดแล้ว!! เจ้านั้นแหละที่ติดกับของข้า วะฮ่าๆๆ",bc_map,"0xFFFF00";
+	stopnpctimer;
+	donpcevent instance_npcname("kra_enter_broad")+"::OnDisable";
+	end;
+}
+
+1@cash1,2,2,0	script	PillarInit	-1,{
+	OnEnable:
+		for (set .@i, 0; .@i < 4; .@i++) {
+			set 'pillar_code[.@i], rand(10); // สุ่มเลข 0–9
+			set 'pillar_checked[.@i], 0;
+		}
+		end;
+}
+
+1@cash1,83,191,4	script	Pillar #1	10371,{
+	set 'pillar_checked[0], 1; // <== บันทึกว่าเคยคุยแล้ว
+	mes "[เสาเรืองแสงที่ 1]";
+	mes "คุณเห็นตัวเลขปรากฏขึ้น:";
+	mes "^FF0000" + 'pillar_code[0] + "^000000";
+	
+	donpcevent instance_npcname("kra_foot_1")+"::OnEnable"; //เรียกสมุน
+	close;
+}
+
+//==============================
+// เรียกมอนจากเสา1
+//==============================
+
+1@cash1,3,3,0	script	kra_foot_1	-1,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("kra_foot_1")+"::OnDisable";
+	end;
+OnEnable:
+	enablenpc instance_npcname("kra_foot_1");
+	disablenpc instance_npcname("kra_door2"); // ปิดวาปไปเสา
+	mapannounce instance_mapname("1@cash1"),"Kraken : เจ้าคิดว่าข้าจะอยู่เฉยๆรึไง ออกมาสมุนข้า!!",bc_map,"0xFFFF00";
+	set .@map$, instance_mapname("1@cash1");
+
+	// Kraken Legs
+	monster .@map$,137,124,"Kraken Leg#1",2206,1,2,instance_npcname("kra_foot_1")+"::OnMyMobDead";
+	monster .@map$,106,87,"Kraken Leg#2",2206,1,2,instance_npcname("kra_foot_1")+"::OnMyMobDead";
+	monster .@map$,68,106,"Kraken Leg#3",2206,1,2,instance_npcname("kra_foot_1")+"::OnMyMobDead";
+	monster .@map$,92,145,"Kraken Leg#4",2206,1,2,instance_npcname("kra_foot_1")+"::OnMyMobDead";
+	monster .@map$,99,183,"Kraken Leg#5",2206,1,2,instance_npcname("kra_foot_1")+"::OnMyMobDead";
+	// Mermaid
+	monster .@map$,148,128,"Mermaid#1",20647,1,2,instance_npcname("kra_foot_1")+"::OnMyMobDead";
+	
+	// สมุนสุ่มรอบ Kraken Leg #1
+	for (set .@i, 0; .@i < 5; .@i++) {
+		monster .@map$, rand(136,144), rand(118,125), "Wild Rider", 2208, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(136,144), rand(118,125), "Furious Seadora", 2669, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(136,144), rand(118,125), "Sropho", 2201, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+	}
+
+	// สมุนสุ่มรอบ Kraken Leg #2
+	for (set .@i, 0; .@i < 5; .@i++) {
+		monster .@map$, rand(103,107), rand(88,91), "Wild Rider", 2208, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(103,107), rand(88,91), "Furious Seadora", 2669, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(103,107), rand(88,91), "Sropho", 2201, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+	}
+
+	// สมุนสุ่มรอบ Kraken Leg #3
+	for (set .@i, 0; .@i < 5; .@i++) {
+		monster .@map$, rand(71,77), rand(103,107), "Wild Rider", 2208, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(71,77), rand(103,107), "Furious Seadora", 2669, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(71,77), rand(103,107), "Sropho", 2201, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+	}
+
+	// สมุนสุ่มรอบ Kraken Leg #4
+	for (set .@i, 0; .@i < 5; .@i++) {
+		monster .@map$, rand(91,96), rand(140,145), "Wild Rider", 2208, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(91,96), rand(140,145), "Furious Seadora", 2669, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(91,96), rand(140,145), "Sropho", 2201, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+	}
+
+	// สมุนสุ่มรอบ Kraken Leg #5
+	for (set .@i, 0; .@i < 5; .@i++) {
+		monster .@map$, rand(94,99), rand(179,183), "Wild Rider", 2208, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(94,99), rand(179,183), "Furious Seadora", 2669, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(94,99), rand(179,183), "Sropho", 2201, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+	}
+	end;
+OnDisable:
+	disablenpc instance_npcname("kra_foot_1");
+	end;
+OnMyMobDead:
+	set .@map$, instance_mapname("1@cash1");
+	if (mobcount(.@map$,instance_npcname("kra_foot_1")+"::OnMyMobDead") < 1) {
+		//donpcevent instance_npcname("oct_boss_con")+"::OnEnable";
+		mapannounce instance_mapname("1@cash1"),"ดีหละ!! เราจัดการพวกมอนเตอร์ไปหมดแล้ว...ลุยกันต่อ!!",bc_map,"0xFFFF00";
+		enablenpc instance_npcname("kra_door2"); // แก้เป็นวาปกลับไปห้องใส่รหัส
+		end;
+	}
+	end;
+}
+
+1@cash1,306,215,4	script	Pillar #2	10371,{
+	set 'pillar_checked[1], 1; // <== บันทึกว่าเคยคุยแล้ว
+	mes "[เสาเรืองแสงที่ 2]";
+	mes "คุณเห็นตัวเลขปรากฏขึ้น:";
+	mes "^FF0000" + 'pillar_code[1] + "^000000";
+	donpcevent instance_npcname("kra_foot_2")+"::OnEnable"; //เรียกสมุน
+	close;
+}
+
+//==============================
+// เรียกมอนจากเสา2
+//==============================
+
+1@cash1,4,4,0	script	kra_foot_2	-1,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("kra_foot_2")+"::OnDisable";
+	end;
+OnEnable:
+	enablenpc instance_npcname("kra_foot_2");
+	disablenpc instance_npcname("kra_door4"); // ปิดวาปทางออกจากทางแคบ
+	mapannounce instance_mapname("1@cash1"),"Kraken : เจ้านี่มันน่ารำคาณจริงๆ ลูกน้องข้าจัดการมัน!!",bc_map,"0xFFFF00";
+	set .@map$, instance_mapname("1@cash1");
+	monster .@map$,251,110,"Kraken Leg#6",2206,1,2,instance_npcname("kra_foot_2")+"::OnMyMobDead";
+	monster .@map$,296,97,"Kraken Leg#7",2206,1,2,instance_npcname("kra_foot_2")+"::OnMyMobDead";
+	monster .@map$,299,143,"Kraken Leg#8",2206,1,2,instance_npcname("kra_foot_2")+"::OnMyMobDead";
+	monster .@map$,295,176,"Kraken Leg#9",2206,1,2,instance_npcname("kra_foot_2")+"::OnMyMobDead";
+	monster .@map$,301,208,"Kraken Leg#10",2206,1,2,instance_npcname("kra_foot_2")+"::OnMyMobDead";
+		areamonster .@map$,299,209,303,213,"Octopus's Henchman",2192,3,2,instance_npcname("kra_foot_2")+"::OnMyMobDead";
+		areamonster .@map$,292,203,296,207,"Octopus's Henchman",2192,3,2,instance_npcname("kra_foot_2")+"::OnMyMobDead";
+		areamonster .@map$,291,186,293,188,"Octopus's Henchman",2192,2,2,instance_npcname("kra_foot_2")+"::OnMyMobDead";
+		areamonster .@map$,292,166,294,168,"Octopus's Henchman",2192,2,2,instance_npcname("kra_foot_2")+"::OnMyMobDead";
+		areamonster .@map$,293,151,295,153,"Octopus's Henchman",2192,2,2,instance_npcname("kra_foot_2")+"::OnMyMobDead";
+		areamonster .@map$,299,137,303,141,"Octopus's Henchman",2192,2,2,instance_npcname("kra_foot_2")+"::OnMyMobDead";
+		areamonster .@map$,300,123,304,127,"Octopus's Henchman",2192,2,2,instance_npcname("kra_foot_2")+"::OnMyMobDead";
+		areamonster .@map$,300,104,304,108,"Octopus's Henchman",2192,3,2,instance_npcname("kra_foot_2")+"::OnMyMobDead";
+		areamonster .@map$,279,101,281,103,"Octopus's Henchman",2192,2,2,instance_npcname("kra_foot_2")+"::OnMyMobDead";
+	end;
+OnDisable:
+	disablenpc instance_npcname("kra_foot_2");
+	end;
+OnMyMobDead:
+	set .@map$, instance_mapname("1@cash1");
+	if (mobcount(.@map$,instance_npcname("kra_foot_2")+"::OnMyMobDead") < 1) {
+		//donpcevent instance_npcname("oct_boss_con")+"::OnEnable";
+		mapannounce .@map$,"ดีหละ!! เราจัดการพวกมอนเตอร์ไปหมดแล้ว...ลุยกันต่อ!!",bc_map,"0x00ff99";
+		enablenpc instance_npcname("kra_door4"); // แก้เป็นวาปกลับไปห้องใส่รหัส
+		end;
+	}
+	end;
+}
+
+1@cash1,19,114,4	script	Pillar #3	10371,{
+	set 'pillar_checked[2], 1; // <== บันทึกว่าเคยคุยแล้ว
+	mes "[เสาเรืองแสงที่ 3]";
+	mes "คุณเห็นตัวเลขปรากฏขึ้น:";
+	mes "^FF0000" + 'pillar_code[2] + "^000000";
+	donpcevent instance_npcname("kra_foot_3")+"::OnEnable"; //เรียกสมุน
+	close;
+}
+
+//==============================
+// เรียกมอนจากเสา3
+//==============================
+
+1@cash1,5,5,0	script	kra_foot_3	-1,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("kra_foot_3")+"::OnDisable";
+	end;
+OnEnable:
+	enablenpc instance_npcname("kra_foot_3");
+	disablenpc instance_npcname("kra_door6"); // ปิดวาปทางออกจากทางแคบ
+	mapannounce instance_mapname("1@cash1"),"Kraken : พวกเจ้ามันดื้อด้าน!! อย่ามาขัดขวางแผนการข้า!!",bc_map,"0xFFFF00";
+	set .@map$, instance_mapname("1@cash1");
+	monster .@map$,27,103,"Kraken Leg#11",2206,1,2,instance_npcname("kra_foot_3")+"::OnMyMobDead";
+	monster .@map$,41,80,"Kraken Leg#12",2206,1,2,instance_npcname("kra_foot_3")+"::OnMyMobDead";
+	monster .@map$,43,54,"Kraken Leg#13",2206,1,2,instance_npcname("kra_foot_3")+"::OnMyMobDead";
+	monster .@map$,115,26,"Kraken Leg#14",2206,1,2,instance_npcname("kra_foot_3")+"::OnMyMobDead";
+	monster .@map$,140,46,"Kraken Leg#15",2206,1,2,instance_npcname("kra_foot_3")+"::OnMyMobDead";
+		areamonster .@map$,34,96,38,100,"Octopus's Henchman",2192,3,2,instance_npcname("kra_foot_3")+"::OnMyMobDead";
+		areamonster .@map$,39,90,41,92,"Octopus's Henchman",2192,2,2,instance_npcname("kra_foot_3")+"::OnMyMobDead";
+		areamonster .@map$,38,76,40,78,"Octopus's Henchman",2192,2,2,instance_npcname("kra_foot_3")+"::OnMyMobDead";
+		areamonster .@map$,39,58,41,60,"Octopus's Henchman",2192,2,2,instance_npcname("kra_foot_3")+"::OnMyMobDead";
+		areamonster .@map$,50,38,56,44,"Octopus's Henchman",2192,5,2,instance_npcname("kra_foot_3")+"::OnMyMobDead";
+		areamonster .@map$,68,32,72,36,"Octopus's Henchman",2192,5,2,instance_npcname("kra_foot_3")+"::OnMyMobDead";
+		areamonster .@map$,83,26,85,28,"Octopus's Henchman",2192,2,2,instance_npcname("kra_foot_3")+"::OnMyMobDead";
+		areamonster .@map$,107,28,109,30,"Octopus's Henchman",2192,1,2,instance_npcname("kra_foot_3")+"::OnMyMobDead";
+		areamonster .@map$,123,28,125,30,"Octopus's Henchman",2192,2,2,instance_npcname("kra_foot_3")+"::OnMyMobDead";
+		areamonster .@map$,134,31,138,35,"Octopus's Henchman",2192,5,2,instance_npcname("kra_foot_3")+"::OnMyMobDead";
+		areamonster .@map$,142,39,146,43,"Octopus's Henchman",2192,2,2,instance_npcname("kra_foot_3")+"::OnMyMobDead";
+	end;
+OnDisable:
+	disablenpc instance_npcname("kra_foot_3");
+	end;
+OnMyMobDead:
+	set .@map$, instance_mapname("1@cash1");
+	if (mobcount(.@map$,instance_npcname("kra_foot_3")+"::OnMyMobDead") < 1) {
+		//donpcevent instance_npcname("oct_boss_con")+"::OnEnable";
+		mapannounce .@map$,"ดีหละ!! เราจัดการพวกมอนเตอร์ไปหมดแล้ว...ลุยกันต่อ!!",bc_map,"0x00ff99";
+		enablenpc instance_npcname("kra_door6"); // แก้เป็นวาปกลับไปห้องใส่รหัส
+		end;
+	}
+	end;
+}
+
+1@cash1,372,134,4	script	Pillar #4	10371,{
+	set 'pillar_checked[3], 1; // <== บันทึกว่าเคยคุยแล้ว
+	mes "[เสาเรืองแสงที่ 4]";
+	mes "คุณเห็นตัวเลขปรากฏขึ้น:";
+	mes "^FF0000" + 'pillar_code[3] + "^000000";
+	donpcevent instance_npcname("kra_foot_4")+"::OnEnable"; //เรียกสมุน
+	close;
+}
+
+//==============================
+// เรียกมอนจากเสา4
+//==============================
+
+1@cash1,6,6,0	script	kra_foot_4	-1,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("kra_foot_4")+"::OnDisable";
+	end;
+OnEnable:
+	enablenpc instance_npcname("kra_foot_4");
+	disablenpc instance_npcname("kra_door8"); // ปิดวาปทางออกจากทางแคบ
+	mapannounce instance_mapname("1@cash1"),"Kraken : แผนการข้าใกล้จะสมบูรณ์แล้ว!! อย่ามาขวางข้า!!",bc_map,"0xFFFF00";
+	set .@map$, instance_mapname("1@cash1");
+	monster .@map$,261,42,"Kraken Leg#16",2206,1,2,instance_npcname("kra_foot_4")+"::OnMyMobDead";
+	monster .@map$,301,27,"Kraken Leg#17",2206,1,2,instance_npcname("kra_foot_4")+"::OnMyMobDead";
+	monster .@map$,355,45,"Kraken Leg#18",2206,1,2,instance_npcname("kra_foot_4")+"::OnMyMobDead";
+	monster .@map$,368,80,"Kraken Leg#19",2206,1,2,instance_npcname("kra_foot_4")+"::OnMyMobDead";
+	monster .@map$,364,126,"Kraken Leg#20",2206,1,2,instance_npcname("kra_foot_4")+"::OnMyMobDead";
+		areamonster .@map$,363,123,367,127,"Octopus's Henchman",2192,2,2,instance_npcname("kra_foot_4")+"::OnMyMobDead";
+		areamonster .@map$,364,108,368,112,"Octopus's Henchman",2192,5,2,instance_npcname("kra_foot_4")+"::OnMyMobDead";
+		areamonster .@map$,363,93,367,97,"Octopus's Henchman",2192,3,2,instance_npcname("kra_foot_4")+"::OnMyMobDead";
+		areamonster .@map$,364,72,366,74,"Octopus's Henchman",2192,2,2,instance_npcname("kra_foot_4")+"::OnMyMobDead";
+		areamonster .@map$,364,58,366,60,"Octopus's Henchman",2192,2,2,instance_npcname("kra_foot_4")+"::OnMyMobDead";
+		areamonster .@map$,355,44,359,48,"Octopus's Henchman",2192,3,2,instance_npcname("kra_foot_4")+"::OnMyMobDead";
+		areamonster .@map$,346,36,350,40,"Octopus's Henchman",2192,3,2,instance_npcname("kra_foot_4")+"::OnMyMobDead";
+		areamonster .@map$,319,28,325,34,"Octopus's Henchman",2192,5,2,instance_npcname("kra_foot_4")+"::OnMyMobDead";
+		areamonster .@map$,305,27,307,29,"Octopus's Henchman",2192,2,2,instance_npcname("kra_foot_4")+"::OnMyMobDead";
+		areamonster .@map$,276,29,280,33,"Octopus's Henchman",2192,5,2,instance_npcname("kra_foot_4")+"::OnMyMobDead";
+		areamonster .@map$,258,37,262,41,"Octopus's Henchman",2192,2,2,instance_npcname("kra_foot_4")+"::OnMyMobDead";
+	end;
+OnDisable:
+	disablenpc instance_npcname("kra_foot_4");
+	end;
+OnMyMobDead:
+	set .@map$, instance_mapname("1@cash1");
+	if (mobcount(.@map$,instance_npcname("kra_foot_4")+"::OnMyMobDead") < 1) {
+		//donpcevent instance_npcname("oct_boss_con")+"::OnEnable";
+		mapannounce .@map$,"ดีหละ!! เราจัดการพวกมอนเตอร์ไปหมดแล้ว...ลุยกันต่อ!!",bc_map,"0x00ff99";
+		enablenpc instance_npcname("kra_door8"); // แก้เป็นวาปกลับไปห้องใส่รหัส
+		end;
+	}
+	end;
+}
+
+//==============================
+// ผู้ใหญ่บ้านมอบเควสหารหัสเสา+ทวนรหัส
+//==============================
+
+1@cash1,201,103,4	script	Chief Baron#KraRaid	EP18_NPC_SUAD,{
+	if( 'BwarpOpen == 1){
+		mes "[ผู้ใหญ่บ้าน]";
+		mes "ได้เวลาล่าหมึกแล้ว!!!";
+		end;
+	}
+	if( 'talk != 1){
+			mes "[ผู้ใหญ่บ้าน]";
+			mes "เจ้าอย่าได้กลัวไป";
+			mes "ข้ามีแผนการเสมอ!!";
+			next;
+			mes "[ผู้ใหญ่บ้าน]";
+			mes "ข้าเตรียมการเสาพลังงานพวกนี้ เพื่อจำกัดพลังของไอ้เจ้าหมึกนั่น!!";
+			next;
+			mes "[ผู้ใหญ่บ้าน]";
+			mes "แต่มันต้องการรหัสจากจุดทั้ง 4 จุด ";
+			mes "รหัสมันเปลี่ยนไปแล้วหลังจากที่ข้ามาล่าสุด...";
+			next;
+			mes "[ผู้ใหญ่บ้าน]";
+			mes "เจ้าต้องไปเอารหัสมาจาก 4 จุด เพื่อทำให้ไอ้เจ้าหมึกนั่นอ่อนแอลงซะ!!";
+			enablenpc instance_npcname("kra_door1"); //ปิดวาปไปเสา
+			enablenpc instance_npcname("kra_door3"); //ปิดวาปไปเสา
+			enablenpc instance_npcname("kra_door5"); //ปิดวาปไปเสา
+			enablenpc instance_npcname("kra_door7"); //ปิดวาปไปเสา
+			set 'talk ,1;
+	end;
+	}
+	mes "[ผู้ใหญ่บ้าน]";
+	mes "รหัสที่เจ้าได้มาคือ:";
+
+	set .@i, 0;
+	while (.@i < 4) {
+		if ('pillar_checked[.@i])
+			mes "หลักที่ " + (.@i+1) + ": " + 'pillar_code[.@i];
+		else
+			mes "หลักที่ " + (.@i+1) + ": X";
+		set .@i, .@i + 1;
+	}
+	close;
+}
+
+//==============================
+// เสาที่ 5 สำหรับป้อนรหัส
+//==============================
+
+1@cash1,196,110,4	script	Pillar Code	10371,{
+	mes "[เสาประตู]";
+	mes "กรุณาป้อนรหัส 4 หลักที่ได้จากเสาทั้ง 4:";
+	input .@input$;
+
+	if (getstrlen(.@input$) != 4) {
+		mes "รหัสต้องมี 4 หลักเท่านั้น!";
+		close;
+	}
+	disablenpc instance_npcname("kra_door1"); //ปิดวาปไปเสา
+	disablenpc instance_npcname("kra_door3"); //ปิดวาปไปเสา
+	disablenpc instance_npcname("kra_door5"); //ปิดวาปไปเสา
+	disablenpc instance_npcname("kra_door7"); //ปิดวาปไปเสา
+	set 'wrong, 0;
+	//mes "ผลการตรวจสอบรหัส:";
+	for (set .@i, 0; .@i < 4; .@i++) {
+		set .@digit$[.@i], charat(.@input$, .@i);
+		if (.@digit$[.@i] != "" + 'pillar_code[.@i]) {
+			//mes " - หลักที่ " + (.@i+1) + ": ^FF0000ผิด^000000 (คุณใส่ " + .@digit$[.@i] + ", ควรเป็น " + 'pillar_code[.@i] + ")";
+			set 'wrong, 'wrong + 1;
+		} //else {
+			//mes " - หลักที่ " + (.@i+1) + ": ^00FF00ถูกต้อง^000000 (" + .@digit$[.@i] + ")";
+		//}
+	}
+	
+	switch (4 - 'wrong) {
+		case 4:
+			mapannounce instance_mapname("1@cash1"), "Kraken : อ๊ากก!! พวกเจ้าทำอะไรกับข้า!!?", bc_map, "0xFFFF00";
+			set 'BRank , 0;
+			break;
+		case 3:
+			mapannounce instance_mapname("1@cash1"), "Kraken : อึก!! พลังของข้ามันหายไป!!", bc_map, "0xFFFF00";
+			set 'BRank , 'BRank+1;
+			break;
+		case 2:
+			mapannounce instance_mapname("1@cash1"), "Kraken : อึก!! คิดว่าแค่นี้จะทำอะไรข้าได้รึไง!!", bc_map, "0xFFFF00";
+			set 'BRank , 'BRank+1;
+			break;
+		case 1:
+			mapannounce instance_mapname("1@cash1"), "Kraken : ฮ่า ฮ่า ฮ่า! น่าสมเพชนัก ของที่เจ้าสร้างมามันกระจอก!!", bc_map, "0xFFFF00";
+			set 'BRank , 'BRank+2;
+			break;
+		case 0:
+			mapannounce instance_mapname("1@cash1"), "Kraken : ฮ่า ฮ่า ฮ่า! ของที่มนุษย์สร้างมามันกระจอก!!", bc_map, "0xFFFF00";
+			set 'BRank , 'BRank+2;
+			break;
+		default:
+			mapannounce instance_mapname("1@cash1"), "Kraken : คิดว่าตอบถูกนิดหน่อยแล้วจะรอดรึ? ฝันไปเถอะ!!", bc_map, "0xFFFF00";
+	}
+	//mes "ระดับบอสคือ : " + 'BRank ;
+	//mes "รวมทั้งหมด: ผิด " + 'wrong + " หลัก";
+	enablenpc instance_npcname("kra_boss_warp"); //เปิดวาปเข้าบอส
+	disablenpc instance_npcname("Pillar Code"); //ปิดเสาใส่รหัส
+	enablenpc instance_npcname("Chief Baron#KraBoss"); //เอา npc boss โผล่ออกมา
+	set 'BwarpOpen , 1;
+	close;
+}
+
+//==============================
+// npc เรียกบอส
+//==============================
+
+1@cash1,199,193,4	script	Chief Baron#KraBoss	EP18_NPC_SUAD,{
+	
+	if ('kraken_defeated == 2) {
+		mes "[ผู้ใหญ่บ้าน]";
+		mes "กลับเลยไหม?";
+		if(select("แปป อยากเดินดูอะไรหน่อย!:ป่ะ กลับกันเถอะ!") == 2)
+		warp "mal_dun01",203,229;
+		close;
+	}
+	
+	if ('kraken_defeated == 1) {
+		mes "[ผู้ใหญ่บ้าน]";
+		mes "เจ้าทำได้สำเร็จ!!";
+		mes "ไม่น่าเชื่อว่าจะสามารถฆ่ามันลงได้!!";
+		next;
+		mes "[ผู้ใหญ่บ้าน]";
+		mes "นี่คือของตอบแทนจากข้า.....";
+		getitem 2002002, 1;
+		set 'kraken_defeated , 2;
+		end;
+	}
+	
+	switch (.@correct) {
+		case 4:
+			mes "[Kraken ในร่างผู้ใหญ่บ้าน]";
+			mes "อึก.... พวกแกร่วมมือกับ Valkyries สวะนั่นสินะ";
+			mes "ช่างน่ารำคาญจริง ๆ !";
+			break;
+		case 3:
+			mes "[Kraken ในร่างผู้ใหญ่บ้าน]";
+			mes "พวกแกมันดื้อด้าน!! สิ่งที่พวกเจ้าทำหนะมันไร้ประโยชน์!!";
+			break;
+		case 2:
+			mes "[Kraken ในร่างผู้ใหญ่บ้าน]";
+			mes "ไอ้พวกเล่นสกปรก!! กล้ามาทำให้ข้าบาดเจ็บได้!!";
+			break;
+		case 1:
+			mes "[Kraken ในร่างผู้ใหญ่บ้าน]";
+			mes "ข้าขอชื่นชมในความพยายาม แต่ว่า....";
+			mes "ของที่พวกเจ้าสร้างหนะ.....มันเปล่าประโยชน์";
+			break;
+		case 0:
+			mes "[Kraken ในร่างผู้ใหญ่บ้าน]";
+			mes "ฮ่า ๆๆๆๆ!! เจ้าช่างโง่เขลา รหัสพวกนั้นก็มั่วไปหมด!";
+			break;
+	}
+
+	next;
+	mes "[Kraken ในร่างผู้ใหญ่บ้าน]";
+	mes "มันจะสำคัญอะไร... พวกแกในตอนนี้ไม่มีทางหยุดแผนการของ ???? ได้หรอก!!";
+	next;
+	mes "[Kraken ในร่างผู้ใหญ่บ้าน]";
+	mes "และพวกแกจะตายอยู่ตรงนี้!!";
+	close2;
+	disablenpc instance_npcname("Chief Baron#KraBoss");
+	donpcevent instance_npcname("CallTheKraken") + "::OnStart";
+	
+	end;
+}
+
+1@cash1,7,7,0	script	CallTheKraken	-1,{
+// เปลี่ยนร่างเป็นบอส Kraken
+OnStart:
+	set .@map$, instance_mapname("1@cash1");
+	monster .@map$,199,193,"Kraken",2202,1,'BRank,instance_npcname("CallTheKraken")+"::OnMyMobDead";
+	end;
+
+OnMyMobDead:
+	set 'kraken_defeated, 1;
+	enablenpc instance_npcname("Chief Baron#KraBoss");
+		initnpctimer; //ตัวเริ่ม OnTimer
+	end;
+
+	OnTimer1000:
+	mapannounce instance_mapname("1@cash1"),"Kraken : ถึงข้าจะตาย แต่พวกเจ้าหยุดแผนการของเขาไม่ได้หรอก!!",bc_map,"0xFFFF00";
+	end;
+	OnTimer4000:
+	mapannounce instance_mapname("1@cash1"),"Kraken : ทะ...ท่าน......!",bc_map,"0xFFFF00";
+	stopnpctimer;
+	end;
+}
+//effect 726 799 830 831 910 881 594
+
+
+// Warp Portals
+//============================================================
+
+1@cash1,198,116,0	warp2	kra_boss_warp	2,2,1@cash1,200,166 //เข้าห้องบอส
+
+1@cash1,187,99,0	warp2	kra_door1	2,2,1@cash1,148,128 //เข้าหนวด 1
+1@cash1,153,133,0	warp2	kra_door2	2,2,1@cash1,192,100 //กลับหนวด 1
+1@cash1,209,100,0	warp2	kra_door3	2,2,1@cash1,250,111 //เข้าหนวด 2
+1@cash1,244,118,0	warp2	kra_door4	2,2,1@cash1,203,100 //กลับหนวด 2
+1@cash1,187,82,0	warp2	kra_door5	2,2,1@cash1,151,48 //เข้าหนวด 3
+1@cash1,154,53,0	warp2	kra_door6	2,2,1@cash1,192,83 //กลับหนวด 3 
+1@cash1,209,83,0	warp2	kra_door7	2,2,1@cash1,252,46 //เข้าหนวด 4
+1@cash1,246,53,0	warp2	kra_door8	2,2,1@cash1,203,83 //กลับหนวด 4

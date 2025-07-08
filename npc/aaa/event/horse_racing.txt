@@ -1,0 +1,226 @@
+// ==========================
+// NPC: Horse Race Betting
+// ==========================
+
+cmd_in02,97,59,5	script	Horse Race Manager	1932,{
+
+	setarray .@horse_name$, "เรเซอร์", "วายุ", "แบล็กบูม", "สตาร์", "อัลฟ่า";
+	set .@item_bribe, 60002; // เหรียญใต้โต๊ะ
+	set .@min_bet, 100000;
+
+	mes "^0000FF[ผู้จัดพนันม้า]^000000";
+	mes "ยินดีต้อนรับสู่สนามแข่ง!";
+	next;
+	switch(select("แทงม้า (ใส่จำนวนเงิน):ยัดเงินใต้โต๊ะ (ใช้ "+getitemname(.@item_bribe)+" 1 ชิ้น):ยกเลิก")) {
+
+		case 1:
+			mes "คุณมี Zeny: "+F_InsertComma(Zeny);
+			mes "กรอกจำนวนที่ต้องการเดิมพัน (ขั้นต่ำ "+F_InsertComma(.@min_bet)+" Zeny):";
+			input .@race_fee;
+			if (.@race_fee < .@min_bet) {
+				mes "^FF0000จำนวนเดิมพันต้องไม่น้อยกว่า "+F_InsertComma(.@min_bet)+" Zeny!^000000";
+				close;
+			}
+			if (Zeny < .@race_fee) {
+				mes "^FF0000คุณมี Zeny ไม่เพียงพอ!^000000";
+				close;
+			}
+			Zeny -= .@race_fee;
+
+			// ถ้าเคยยัดเงิน ตัดม้าสุ่ม 1 ตัวก่อนเลือกแทง
+			if (@bribed == 1) {
+				set .@cut, rand(5);
+				set @bribed, 2;
+			}
+
+			// สุ่มม้าชนะ (0~4) โดยห้ามซ้ำกับม้าที่ถูกตัด
+			set .@winner, rand(5);
+			if (@bribed == 2) {
+				while (.@winner == .@cut) set .@winner, rand(5);
+			}
+
+			mes "^0000FF[ผู้จัดพนันม้า]^000000";
+			mes "เลือกม้าที่คุณต้องการแทง:";
+			set .@i, 0;
+			while (.@i < 5) {
+				if (@bribed == 2 && .@i == .@cut)
+					setarray .@menu$[.@i], "^888888["+(.@i+1)+"] "+.@horse_name$[.@i]+" (ตัดออก)^000000";
+				else
+					setarray .@menu$[.@i], "["+(.@i+1)+"] "+.@horse_name$[.@i];
+				set .@i, .@i + 1;
+			}
+			set .@sel, select(.@menu$[0],.@menu$[1],.@menu$[2],.@menu$[3],.@menu$[4]) - 1;
+
+			if (@bribed == 2 && .@sel == .@cut) {
+				mes "^FF0000ม้าตัวนี้ถูกตัดสิทธิ์จากการแข่งขัน!^000000";
+				close;
+			}
+			mes "คุณเลือกแทง: "+.@horse_name$[.@sel];
+			mes "เริ่มการแข่งขัน!";
+			
+
+			// ========= บทพากย์ =========
+			set .@style, rand(1,13);
+
+			switch (.@style) {
+				// จริงจัง
+				case 1:
+					set .@lead, rand(5); while (.@lead == .@winner) set .@lead, rand(5);
+					mes "ม้าเบอร์ "+(.@lead+1)+" ขึ้นนำตั้งแต่ต้น!";
+					next;
+					mes "แต่โค้งสุดท้าย ม้าเบอร์ "+(.@winner+1)+" พุ่งทะยานขึ้นมา!";
+					next;
+					mes "มันเร่งสปีดสุดแรง!";
+					next;
+					mes "และเข้าเส้นชัยเป็นที่ 1!!";
+					break;
+
+				case 2:
+					set .@a, rand(5); set .@b, rand(5);
+					while (.@b == .@a) set .@b, rand(5);
+					mes "การแข่งขันเข้มข้น!";
+					next;
+					mes "เบอร์ "+(.@a+1)+" และ "+(.@b+1)+" วิ่งตีคู่กัน!";
+					next;
+					mes "สุดท้าย... ม้าเบอร์ "+(.@winner+1)+" เฉือนชนะ!";
+					break;
+
+				case 3:
+					mes "ม้าทุกตัวออกตัวพร้อมกัน!";
+					next;
+					mes "ม้าเบอร์ "+(.@winner+1)+" เร่งความเร็วขึ้นเรื่อย ๆ!";
+					next;
+					mes "ไม่มีใครหยุดมันได้!";
+					next;
+					mes "และมันเข้าเส้นชัยแบบไร้คู่แข่ง!";
+					break;
+
+				// กาว
+				case 4:
+					set .@wrong, rand(5); while (.@wrong == .@winner) set .@wrong, rand(5);
+					mes "เริ่มแข่งแล้ว!";
+					next;
+					mes "เอ๊ะ!? ม้าเบอร์ "+(.@wrong+1)+" วิ่งย้อนศร!?!";
+					next;
+					mes "มันกำลังไล่คนขายกล้วย?!";
+					next;
+					mes "ม้าเบอร์ "+(.@winner+1)+" วิ่งชนะฉิวเฉียด!";
+					break;
+
+				case 5:
+					set .@ufo, rand(5); while (.@ufo == .@winner) set .@ufo, rand(5);
+					mes "การแข่งขันกำลังเร้าใจ!";
+					next;
+					mes "แต่จู่ ๆ... แสงสีฟ้าสว่างวาบ!";
+					next;
+					mes "ม้าเบอร์ "+(.@ufo+1)+" ถูก UFO ดูดขึ้นไป!";
+					next;
+					mes "ม้าเบอร์ "+(.@winner+1)+" ชนะโดยไม่คาดคิด!";
+					break;
+
+				case 6:
+					set .@call, rand(5); while (.@call == .@winner) set .@call, rand(5);
+					mes "ทุกอย่างดูปกติ...";
+					next;
+					mes "แต่ม้าเบอร์ "+(.@call+1)+" หยุดวิ่งกลางสนาม...";
+					next;
+					mes "เพราะกำลังคุยโทรศัพท์กับแม่!!";
+					next;
+					mes "ม้าเบอร์ "+(.@winner+1)+" ฉวยโอกาสคว้าชัย!";
+					break;
+
+				// เพิ่ม
+				case 7:
+					set .@sneaky, rand(5); while (.@sneaky == .@winner) set .@sneaky, rand(5);
+					mes "สนามเริ่มลั่นจากเสียงเชียร์!";
+					next;
+					mes "แต่ม้าเบอร์ "+(.@sneaky+1)+" หายไปไหน?";
+					next;
+					mes "มันวิ่งลัดผ่านพุ่มไม้!?";
+					next;
+					mes "แต่สุดท้าย ม้าเบอร์ "+(.@winner+1)+" เข้าเส้นชัย!";
+					break;
+
+				case 8:
+					mes "การแข่งขันดุเดือด!";
+					next;
+					mes "เสียงกีบม้ากระทบพื้นดังก้อง!";
+					next;
+					mes "ผู้ชมลุกขึ้นยืนทั้งสนาม!";
+					next;
+					mes "และเป็นม้าเบอร์ "+(.@winner+1)+" คว้าชัยไป!";
+					break;
+
+				case 9:
+					set .@stuck, rand(5); while (.@stuck == .@winner) set .@stuck, rand(5);
+					mes "ม้าเบอร์ "+(.@stuck+1)+" วิ่งดีมาก!";
+					next;
+					mes "แต่เหยียบเปลือกกล้วยลื่นล้มลง!?";
+					next;
+					mes "เบอร์ "+(.@winner+1)+" ชิงเข้าเส้นชัย!";
+					break;
+
+				case 10:
+					mes "เหล่าม้ากำลังวิ่งอย่างดุเดือด!";
+					next;
+					mes "พวกมันไม่ยอมแพ้กันง่าย ๆ!";
+					next;
+					mes "และม้าเบอร์ "+(.@winner+1)+" แสดงความอึดอย่างแท้จริง!";
+					break;
+
+				case 11:
+					set .@trip, rand(5); while (.@trip == .@winner) set .@trip, rand(5);
+					mes "ทุกอย่างดูปกติ...";
+					next;
+					mes "จนกระทั่ง ม้าเบอร์ "+(.@trip+1)+" สะดุดหญ้า!";
+					next;
+					mes "ม้าเบอร์ "+(.@winner+1)+" วิ่งแซงแบบไม่เห็นฝุ่น!";
+					break;
+
+				case 12:
+					set .@late, rand(5); while (.@late == .@winner) set .@late, rand(5);
+					mes "การแข่งขันเริ่มขึ้น!";
+					next;
+					mes "แต่เบอร์ "+(.@late+1)+" มาช้าไปครึ่งสนาม!?";
+					next;
+					mes "เบอร์ "+(.@winner+1)+" เลยชนะไปแบบสบาย ๆ!";
+					break;
+
+				case 13:
+					mes "เสียงเชียร์กระหึ่มสนาม!";
+					next;
+					mes "เบอร์ "+(.@winner+1)+" ตอบสนองอย่างยอดเยี่ยม!";
+					next;
+					mes "เร่งฝีเท้าก่อนเข้าเส้นชัย!";
+					break;
+			}
+// ========= ประกาศผล =========
+			next;
+			if (.@sel == .@winner) {
+				mes "^00FF00คุณแทงถูก! รับรางวัล 3 เท่า!^000000";
+				Zeny += .@race_fee * 3;
+			} else {
+				mes "^FF0000คุณแทงผิด ม้าแพ้พนัน...^000000";
+			}
+			set @bribed, 0;
+			close;
+
+		case 2:
+			if (countitem(.@item_bribe) < 1) {
+				mes "^FF0000คุณไม่มี "+getitemname(.@item_bribe)+"!^000000";
+				close;
+			}
+			delitem .@item_bribe, 1;
+			set @bribed, 1;
+			mes "^777777คุณยัดเงินใต้โต๊ะเรียบร้อย...^000000";
+			mes "ม้าจะเหลือแค่ 4 ตัวในการแข่ง!";
+			close;
+
+		default:
+			mes "กลับมาใหม่นะ!";
+			close;
+	}
+	OnInit:
+	waitingroom "=||= Horse Racing =||=",0;
+	end;
+}

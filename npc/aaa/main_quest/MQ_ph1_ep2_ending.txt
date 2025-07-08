@@ -2,7 +2,11 @@
 
 izlu2dun,144,166,7	script	Chief Baron#izl	EP18_NPC_SUAD,{
 
-	if (MQ != 14) end;
+	if (MQ != 14) {
+		mes "[ดูเหมือนผู้ใหญ่บ้านกำลังทำอะไรบางอย่างอยู่...]";
+		mes "[เขาดูมีท่าทีแปลก ๆ ชอบกล...]";
+		close;
+	}
 
 	mes "[ผู้ใหญ่บ้าน]";
 	mes "...เจ้าตามข้ามาถึงนี่เลยงั้นหรือ?";
@@ -37,48 +41,24 @@ izlu2dun,144,166,7	script	Chief Baron#izl	EP18_NPC_SUAD,{
 	next;
 
 	mes "[ผู้ใหญ่บ้าน]";
-	mes "แต่ว่า... ข้าไม่อยากเสียตรงนี้อีกแล้ว!";
-	next;
-	
-	mes "[???]";
-	mes "ข้าไม่ปล่อยเจ้าหนีไปหรอก!!ย๊ากกก!!";
-	
-	close2;
-
-	
-	
+	mes "แต่ว่า... ข้าไม่อยากเสียเวลาตรงนี้อีกแล้ว!";
 	specialeffect EF_CLOUD6;
 	specialeffect EF_QUAKEBODY4;
 	specialeffect EF_TELEPORTATION2;
 	specialeffect EF_READYPORTAL2;
-	sleep2 2000;
-	hideonnpc "Chief Baron#izl";	// ซ่อน NPC ตัวนี้เฉพาะตัวเองหลังจบ
-	hideonnpc "Suad#real";
+	next;
+	mes "[???]";
+	mes "ข้าไม่ปล่อยเจ้าหนีไปหรอก!!ย๊ากกก!!";
+	next;
+	mes "[เราต้องตามพวกเขาไป!!]";
 	set MQ, 15;
+	warp "iz_dun05",75,240;
+		
 	end;
-}
-
-//==================== ซ่อน NPC ตอนเริ่ม (เฉพาะตอน MQ != 14) ====================
-izlu2dun,1,1,0	script	HideFakeBaronInit	-1,3,3,{
-
-	OnInit:
-		hideonnpc "Chief Baron#izl";
-		end;
-	OnTouch:
-		if (MQ != 14)
-			hideonnpc "Chief Baron#izl";
-		else
-			hideoffnpc "Chief Baron#izl";
-
-		end;
 }
 
 // =============== ผู้ใหญ่บ้านตัวจริง (โผล่มาเฉลย) ==================
 izlu2dun,135,167,6	script	Suad#real	EP18_NPC_SUAD,{
-	OnTouch:
-		
-			hideonnpc "Suad#real";
-		end;
 }
 
 // ================ ประตูที่ผู้ใหญ่บ้านหนีเข้าไป (ผู้เล่นตามได้) ==================
@@ -108,17 +88,36 @@ iz_dun05,73,242,6	script	Chief Baron#babi	EP18_NPC_SUAD,{
 	}
 
 	if (MQ == 16) {
+		// ตรวจสอบว่าเริ่มเควสหรือยัง
+		if (!isbegin_quest(103)) {
+			mes "[Chief Baron]";
+			mes "ดูเหมือนว่าเจ้าจะยังไม่ได้รับเควส...";
+			mes "ข้าจะเพิ่มมันให้เจ้าเดี๋ยวนี้!";
+			setquest 103;
+			close;
+		}
+
+		if (checkquest(103, HUNTING) == 2) {
+			// เผื่อมีกรณีผู้เล่นทำเควสจบแต่ยังไม่ได้ส่ง
+			delitem 25297, 30;
+			completequest 103;
+			mes "[Chief Baron]";
+			mes "เยี่ยมมาก! เจ้าหลักฐานครบแล้ว!";
+			goto L_MQ16_Continue;
+		}
+
 		if (countitem(25297) < 30) {
 			mes "[Chief Baron]";
 			mes "เจ้าไปตามหามาให้ข้ารึยัง?";
 			mes "ไปลองค้นจากมอนแถวนี้ดูสิ...ข้าว่าต้องเจออะไรแน่ๆ!!";
 			close;
 		}
+
+		// ส่งหลักฐาน
 		delitem 25297, 30;
 		completequest 103;
-		mes "[Chief Baron]";
-		mes "เยี่ยมมาก! เจ้าหลักฐานครบแล้ว!";
-		next;
+
+L_MQ16_Continue:
 		mes "[Chief Baron]";
 		mes "เมื่อกี๊ข้าไปเดินสำรวจมา ข้าเห็นเสาประหลาดอยู่ตรงจตุจักร";
 		mes "ของเมืองบาดาลที่นี่ด้วย มันมีออร่าพลังเหมือนเศษเสี้ยวพวกนี้เลย!!";
@@ -142,10 +141,9 @@ iz_dun05,73,242,6	script	Chief Baron#babi	EP18_NPC_SUAD,{
 					mes "[นั่นมันเนื้อหมูปกติว้อยยย!!]";
 					break;
 		}
-		
+
 		set MQ, 17;
 		set @baron_spawned, 0;
-
 		close;
 	}
 
@@ -227,6 +225,11 @@ iz_dun05,73,242,6	script	Chief Baron#babi	EP18_NPC_SUAD,{
 
 ////////////// เสา 1 ////////////////
 iz_dun05,118,131,4	script	Stone Pillar#1	10371,{
+	if (MQ != 17) {
+		mes "เสานี้มีพลังลึกลับบางอย่างห่อหุ้มอยู่...";
+		mes "เจ้ารู้สึกว่ามันยังไม่ถึงเวลาที่จะทำอะไรกับมัน...";
+		close;
+	}
 	if (@pillar_locked[0] == 1) {
 		mes "เสานี้ถูกปิดผนึกไปแล้ว";
 		close;
@@ -287,6 +290,11 @@ L_Fail:
 
 ////////////// เสา 2 ////////////////
 iz_dun05,165,131,4	script	Stone Pillar#2	10371,{
+	if (MQ != 17) {
+		mes "เสานี้มีพลังลึกลับบางอย่างห่อหุ้มอยู่...";
+		mes "เจ้ารู้สึกว่ามันยังไม่ถึงเวลาที่จะทำอะไรกับมัน...";
+		close;
+	}
 	if (@pillar_locked[1] == 1) {
 		mes "เสานี้ถูกปิดผนึกไปแล้ว";
 		close;
@@ -346,6 +354,11 @@ L_Fail:
 
 ////////////// เสา 3 ////////////////
 iz_dun05,165,63,4	script	Stone Pillar#3	10371,{
+	if (MQ != 17) {
+		mes "เสานี้มีพลังลึกลับบางอย่างห่อหุ้มอยู่...";
+		mes "เจ้ารู้สึกว่ามันยังไม่ถึงเวลาที่จะทำอะไรกับมัน...";
+		close;
+	}
 	if (@pillar_locked[2] == 1) {
 		mes "เสานี้ถูกปิดผนึกไปแล้ว";
 		close;
@@ -405,6 +418,11 @@ L_Fail:
 
 ////////////// เสา 4 ////////////////
 iz_dun05,118,63,4	script	Stone Pillar#4	10371,{
+	if (MQ != 17) {
+		mes "เสานี้มีพลังลึกลับบางอย่างห่อหุ้มอยู่...";
+		mes "เจ้ารู้สึกว่ามันยังไม่ถึงเวลาที่จะทำอะไรกับมัน...";
+		close;
+	}
 	if (@pillar_locked[3] == 1) {
 		mes "เสานี้ถูกปิดผนึกไปแล้ว";
 		close;
@@ -532,19 +550,7 @@ mal_dun01,149,235,6	script	Chief Baron#octo	EP18_NPC_SUAD,{
 	end;
 }
 
-mal_dun01,1,1,0	script	HideBaronInitOcto	-1,3,3,{
 
-	OnInit:
-		hideonnpc "Chief Baron#octo";
-		end;
-	OnTouch:
-		if (MQ > 19)
-			hideonnpc "Chief Baron#octo";
-		else
-			hideoffnpc "Chief Baron#octo";
-
-		end;
-}
 
 // Mapflag
 // แก้ไฟล์ mapflag

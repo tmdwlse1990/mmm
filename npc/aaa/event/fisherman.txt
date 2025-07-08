@@ -1,0 +1,91 @@
+alberta,201,142,7	script	Old Man	766,{
+	set OldMan,0;
+	// ===== ถ้าชนะครบ 3 ครั้ง =====
+	if (#rps_win_streak >= 3) {
+		mes "[ชายแก่]";
+		mes "เหลือเชื่อ! เจ้าชนะข้า 3 ครั้งติด!!";
+		mes "รับไปเลย... ^00FF00[ชุดของข้า]^000000";
+		getitem 15125,1;
+		set #rps_win_streak, 0;
+		close;
+	}
+
+	// ===== ตรวจ Cooldown (2 ชม.) =====
+	if (gettimetick(2) - #rps_last_time < 1800) {
+		mes "[ชายแก่]";
+		.@wait = 1800 - (gettimetick(2) - #rps_last_time);
+		mes "เจ้ายังต้องรออีก "+((.@wait / 60) + 1)+" นาที...";
+		mes "ข้าต้องไปซื้อน้ำปลาให้เมีย...";
+		close;
+	}
+
+	mes "[ชายแก่]";
+	mes "อยากแข่งเป่ายิ้งฉุบกับข้าเหรอ?";
+	mes "ข้าชนะมาทั้งหมู่บ้านแล้วนะ!";
+	mes "เจ้าชนะข้ามาแล้ว "+#rps_win_streak+" ครั้ง";
+	next;
+
+	menu "เริ่มเป่า!",L_Janken,"ไม่ล่ะ",L_Cancel;
+
+L_Cancel:
+	close;
+
+L_Janken:
+	mes "[ชายแก่]";
+	mes "เลือกมาเลย!";
+
+L_Janken_Select:
+	next;
+	menu "ค้อน",L_Rock,"กรรไกร",L_Scissors,"กระดาษ",L_Paper;
+
+L_Rock:
+	.@player = 1;
+	goto L_Play;
+
+L_Scissors:
+	.@player = 2;
+	goto L_Play;
+
+L_Paper:
+	.@player = 3;
+	goto L_Play;
+
+L_Play:
+	.@npc = rand(1,3); // 1=ค้อน 2=กรรไกร 3=กระดาษ
+
+	mes "[ชายแก่]";
+	mes "เจ้าหยิบ [" + ((.@player==1)?"ค้อน":(.@player==2)?"กรรไกร":"กระดาษ") + "]";
+	mes "ข้าหยิบ [" + ((.@npc==1)?"ค้อน":(.@npc==2)?"กรรไกร":"กระดาษ") + "]";
+
+	if (.@player == .@npc) {
+		mes "ผลคือ: ^AAAA00เสมอ^000000";
+		mes "เป่าใหม่ทันที!";
+		goto L_Janken_Select; // วนกลับไปเลือกมือทันที
+	}
+
+	if ((.@player == 1 && .@npc == 2) || (.@player == 2 && .@npc == 3) || (.@player == 3 && .@npc == 1)) {
+		mes "ผลคือ: ^00CC00ชนะ!^000000";
+		set #rps_win_streak, #rps_win_streak + 1;
+		set #rps_last_time, gettimetick(2);
+
+		if (#rps_win_streak >= 3) {
+			mes "เจ้าชนะครบ 3 ครั้งแล้ว!";
+			mes "คุยกับข้าอีกครั้งเพื่อรับรางวัล!";
+		} else {
+			mes "เจ้าชนะไปแล้ว "+#rps_win_streak+" ครั้ง";
+			mes "รออีก 2 ชั่วโมง แล้วกลับมาเป่ารอบต่อไป!";
+		}
+		close;
+	}
+
+	mes "ผลคือ: ^FF0000แพ้...^000000";
+	mes "ฮ่าๆๆ เจ้าต้องเริ่มใหม่แล้วล่ะ!";
+	set #rps_win_streak, 0;
+	set #rps_last_time, gettimetick(2);
+	close;
+	
+	Oninit:
+			questinfo ( QTYPE_QUEST, QMARK_NONE, "OldMan == 0");
+			questinfo ( QTYPE_QUEST2, QMARK_NONE, "OldMan == 0");
+}
+

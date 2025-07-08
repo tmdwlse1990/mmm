@@ -20,11 +20,14 @@ OnInit:
 //add any other HOURS
 //OnHour00:
 //OnHour06:
+	.bexp = 200;
+	.jexp = 200;
+	.bdrop = 100;
 if(gettime(DT_DAYOFWEEK) == 6|| !gettime(DT_DAYOFWEEK)) {
-	set $@brate,150;
-	set $@jrate,150;
+	set $@brate,250;
+	set $@jrate,250;
 	set $@drate,150;
-	donpcevent strnpcinfo(0)+"::DoNewRate";
+	donpcevent strnpcinfo(0)+"::OnDoNewRate";
 }
 	end;
 OnHour12:
@@ -36,22 +39,22 @@ OnHour12:
 	
 if(gettime(DT_DAYOFWEEK) == FRIDAY) {
 	
-	set $@brate,150;
-	set $@jrate,150;
-	set $@drate,150;
+	set $@brate,250;
+	set $@jrate,250;
+	set $@drate,250;
 	
 	donpcevent strnpcinfo(0)+"::DoNewRate";
 }
 else if(gettime(DT_DAYOFWEEK) == MONDAY) {
 	
-	set $@brate,100;
-	set $@jrate,100;
+	set $@brate,200;
+	set $@jrate,200;
 	set $@drate,100;
 	
-	donpcevent strnpcinfo(0)+"::DoNewRate";
+	donpcevent strnpcinfo(0)+"::OnDoNewRate";
 }
 end;
-DoNewRate:
+OnDoNewRate:
 	//Base exp
 	setbattleflag("base_exp_rate",$@brate);
 	//Job exp
@@ -60,9 +63,17 @@ DoNewRate:
 	setbattleflag("item_rate_common",$@drate);
 	setbattleflag("item_rate_heal",$@drate);
 	setbattleflag("item_rate_use",$@drate);
-	setbattleflag("item_rate_equip",$@drate,true); // Apply new rates to configs set above
+	setbattleflag("item_rate_equip",$@drate);
+	setbattleflag("item_rate_common_boss",$@drate);
+	setbattleflag("item_rate_heal_boss",$@drate);
+	setbattleflag("item_rate_use_boss",$@drate);
+	setbattleflag("item_rate_equip_boss",$@drate);
+	setbattleflag("item_rate_common_mvp",$@drate);
+	setbattleflag("item_rate_heal_mvp",$@drate);
+	setbattleflag("item_rate_use_mvp",$@drate);
+	setbattleflag("item_rate_equip_mvp",$@drate , true); // Apply new rates to configs set above
 	//we don't change card drops rate, because these values won't change them anyway
 	
-	announce "Weekend Heppytime: Exp +"+($@brate-100)+"% And Drop"+($@drate-100)+"x",bc_all,0xFF6060;
+	announce "Weekend Heppytime: Exp +"+($@brate-200)+"% And Drop +"+($@drate-100)+"%",bc_all,0xFF6060,FW_NORMAL,14;
 	end;
 }

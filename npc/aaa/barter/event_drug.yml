@@ -45,12 +45,54 @@ Header:
   Type: BARTER_DB
   Version: 2
 
-Footer:
-  Imports:
-  - Path: npc/aaa/barter/powerupitem.yml
-  - Path: npc/aaa/barter/hat_quest.yml
-  - Path: npc/aaa/barter/ticket_seller.yml
-# Event
-  - Path: npc/aaa/barter/event_drug.yml
-#  - Path: npc/aaa/barter/event_ore_refi.yml
-#  - Path: npc/aaa/barter/event_pet.yml
+Body:
+  - Name: event_drug_free
+    Items:
+      - Index: 0
+        Item: G_Small_Life_Potion
+        Stock: 5
+        Zeny: 10000
+      - Index: 1
+        Item: G_Med_Life_Potion
+        Stock: 5
+        Zeny: 10000
+      - Index: 2
+        Item: G_Mysterious_Water
+        Stock: 5
+        Zeny: 10000
+      - Index: 3
+        Item: G_Small_Mana_Potion
+        Stock: 5
+        Zeny: 10000
+      - Index: 4
+        Item: G_M_DEFScroll
+        Stock: 5
+        Zeny: 10000
+      - Index: 5
+        Item: G_Almighty
+        Stock: 5
+        Zeny: 10000
+      - Index: 6
+        Item: G_Limit_Power_Booster
+        Stock: 5
+        Zeny: 10000
+      - Index: 7
+        Item: G_Infinity_Drink
+        Stock: 5
+        Zeny: 10000
+      - Index: 8
+        Item: G_Red_Booster
+        Stock: 5
+        Zeny: 10000
+      - Index: 9
+        Item: G_ASPD_Potion
+        Stock: 5
+        Zeny: 10000
+      - Index: 10
+        Item: G_Tyrs_Blessing
+        Stock: 5
+        Zeny: 10000
+      - Index: 11
+        Item: G_Mental_Potion
+        Stock: 5
+        Zeny: 10000
