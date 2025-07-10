@@ -1,3 +1,9 @@
+1@cash1	mapflag	nosave
+1@cash1	mapflag	nomemo
+1@cash1	mapflag	noautoattack
+1@cash1	mapflag	noteleport
+1@cash1	mapflag	monster_noteleport
+
 mal_dun01,205,233,5	script	Weird Entrance	21887,{
 	if(getgmlevel() < 99) end;
 	set .@party_id,getcharid(1);
@@ -93,8 +99,8 @@ OnTimer7000:
 	mes "[เสาเรืองแสงที่ 1]";
 	mes "คุณเห็นตัวเลขปรากฏขึ้น:";
 	mes "^FF0000" + 'pillar_code[0] + "^000000";
-	
 	donpcevent instance_npcname("kra_foot_1")+"::OnEnable"; //เรียกสมุน
+	disablenpc instance_npcname("Pillar #1"); // ปิดเสา1
 	close;
 }
 
@@ -114,47 +120,58 @@ OnEnable:
 	set .@map$, instance_mapname("1@cash1");
 
 	// Kraken Legs
-	monster .@map$,137,124,"Kraken Leg#1",2206,1,2,instance_npcname("kra_foot_1")+"::OnMyMobDead";
+	monster .@map$,rand(136,144), rand(105,125),"Kraken Leg#1",2206,1,2,instance_npcname("kra_foot_1")+"::OnMyMobDead";
 	monster .@map$,106,87,"Kraken Leg#2",2206,1,2,instance_npcname("kra_foot_1")+"::OnMyMobDead";
 	monster .@map$,68,106,"Kraken Leg#3",2206,1,2,instance_npcname("kra_foot_1")+"::OnMyMobDead";
 	monster .@map$,92,145,"Kraken Leg#4",2206,1,2,instance_npcname("kra_foot_1")+"::OnMyMobDead";
 	monster .@map$,99,183,"Kraken Leg#5",2206,1,2,instance_npcname("kra_foot_1")+"::OnMyMobDead";
-	// Mermaid
-	monster .@map$,148,128,"Mermaid#1",20647,1,2,instance_npcname("kra_foot_1")+"::OnMyMobDead";
+	
+	// สมุนสุ่มในบริเวณเสา 1 
+	for (set .@i, 0; .@i < 7; .@i++) {
+		monster .@map$, rand(74,78), rand(98,130), "Vadon", 2174, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(74,78), rand(98,130), "Marse", 2175, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(74,78), rand(98,130), "Anolian", 1206, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(84,122), rand(89,92), "Vadon", 2174, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(84,122), rand(89,92), "Marse", 2175, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(84,122), rand(89,92), "Anolian", 1206, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(98,101), rand(143,175), "Vadon", 2174, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(98,101), rand(143,175), "Marse", 2175, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(98,101), rand(143,175), "Anolian", 1206, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+	}	
 	
 	// สมุนสุ่มรอบ Kraken Leg #1
 	for (set .@i, 0; .@i < 5; .@i++) {
-		monster .@map$, rand(136,144), rand(118,125), "Wild Rider", 2208, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
-		monster .@map$, rand(136,144), rand(118,125), "Furious Seadora", 2669, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
-		monster .@map$, rand(136,144), rand(118,125), "Sropho", 2201, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(136,144), rand(105,125), "Wild Rider", 2208, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(136,144), rand(105,125), "Furious Seadora", 2669, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(136,144), rand(105,125), "Sropho", 2201, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
 	}
 
 	// สมุนสุ่มรอบ Kraken Leg #2
 	for (set .@i, 0; .@i < 5; .@i++) {
-		monster .@map$, rand(103,107), rand(88,91), "Wild Rider", 2208, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
-		monster .@map$, rand(103,107), rand(88,91), "Furious Seadora", 2669, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
-		monster .@map$, rand(103,107), rand(88,91), "Sropho", 2201, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(103,107), rand(88,91), "Wild Rider", 2208, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(103,107), rand(88,91), "Furious Seadora", 2669, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(103,107), rand(88,91), "Sropho", 2201, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
 	}
 
 	// สมุนสุ่มรอบ Kraken Leg #3
 	for (set .@i, 0; .@i < 5; .@i++) {
-		monster .@map$, rand(71,77), rand(103,107), "Wild Rider", 2208, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
-		monster .@map$, rand(71,77), rand(103,107), "Furious Seadora", 2669, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
-		monster .@map$, rand(71,77), rand(103,107), "Sropho", 2201, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(71,77), rand(103,107), "Wild Rider", 2208, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(71,77), rand(103,107), "Furious Seadora", 2669, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(71,77), rand(103,107), "Sropho", 2201, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
 	}
 
 	// สมุนสุ่มรอบ Kraken Leg #4
 	for (set .@i, 0; .@i < 5; .@i++) {
-		monster .@map$, rand(91,96), rand(140,145), "Wild Rider", 2208, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
-		monster .@map$, rand(91,96), rand(140,145), "Furious Seadora", 2669, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
-		monster .@map$, rand(91,96), rand(140,145), "Sropho", 2201, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(91,96), rand(140,145), "Wild Rider", 2208, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(91,96), rand(140,145), "Furious Seadora", 2669, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(91,96), rand(140,145), "Sropho", 2201, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
 	}
 
 	// สมุนสุ่มรอบ Kraken Leg #5
 	for (set .@i, 0; .@i < 5; .@i++) {
-		monster .@map$, rand(94,99), rand(179,183), "Wild Rider", 2208, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
-		monster .@map$, rand(94,99), rand(179,183), "Furious Seadora", 2669, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
-		monster .@map$, rand(94,99), rand(179,183), "Sropho", 2201, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(92,99), rand(177,185), "Wild Rider", 2208, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(92,99), rand(177,185), "Furious Seadora", 2669, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(92,99), rand(177,185), "Sropho", 2201, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
 	}
 	end;
 OnDisable:
@@ -177,6 +194,7 @@ OnMyMobDead:
 	mes "คุณเห็นตัวเลขปรากฏขึ้น:";
 	mes "^FF0000" + 'pillar_code[1] + "^000000";
 	donpcevent instance_npcname("kra_foot_2")+"::OnEnable"; //เรียกสมุน
+	disablenpc instance_npcname("Pillar #2"); // ปิดเสา2
 	close;
 }
 
@@ -199,15 +217,55 @@ OnEnable:
 	monster .@map$,299,143,"Kraken Leg#8",2206,1,2,instance_npcname("kra_foot_2")+"::OnMyMobDead";
 	monster .@map$,295,176,"Kraken Leg#9",2206,1,2,instance_npcname("kra_foot_2")+"::OnMyMobDead";
 	monster .@map$,301,208,"Kraken Leg#10",2206,1,2,instance_npcname("kra_foot_2")+"::OnMyMobDead";
-		areamonster .@map$,299,209,303,213,"Octopus's Henchman",2192,3,2,instance_npcname("kra_foot_2")+"::OnMyMobDead";
-		areamonster .@map$,292,203,296,207,"Octopus's Henchman",2192,3,2,instance_npcname("kra_foot_2")+"::OnMyMobDead";
-		areamonster .@map$,291,186,293,188,"Octopus's Henchman",2192,2,2,instance_npcname("kra_foot_2")+"::OnMyMobDead";
-		areamonster .@map$,292,166,294,168,"Octopus's Henchman",2192,2,2,instance_npcname("kra_foot_2")+"::OnMyMobDead";
-		areamonster .@map$,293,151,295,153,"Octopus's Henchman",2192,2,2,instance_npcname("kra_foot_2")+"::OnMyMobDead";
-		areamonster .@map$,299,137,303,141,"Octopus's Henchman",2192,2,2,instance_npcname("kra_foot_2")+"::OnMyMobDead";
-		areamonster .@map$,300,123,304,127,"Octopus's Henchman",2192,2,2,instance_npcname("kra_foot_2")+"::OnMyMobDead";
-		areamonster .@map$,300,104,304,108,"Octopus's Henchman",2192,3,2,instance_npcname("kra_foot_2")+"::OnMyMobDead";
-		areamonster .@map$,279,101,281,103,"Octopus's Henchman",2192,2,2,instance_npcname("kra_foot_2")+"::OnMyMobDead";
+		
+		// สมุนสุ่มในบริเวณเสา 2 
+	for (set .@i, 0; .@i < 7; .@i++) {
+		monster .@map$, rand(289,293), rand(163,206), "Vadon", 2174, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(289,293), rand(163,206), "Marse", 2175, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(289,293), rand(163,206), "Anolian", 1206, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(298,304), rand(107,142), "Vadon", 2174, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(298,304), rand(107,142), "Marse", 2175, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(298,304), rand(107,142), "Anolian", 1206, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(256,297), rand(101,104), "Vadon", 2174, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(256,297), rand(101,104), "Marse", 2175, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(256,297), rand(101,104), "Anolian", 1206, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+	}	
+	
+	// สมุนสุ่มรอบ Kraken Leg #6
+	for (set .@i, 0; .@i < 5; .@i++) {
+		monster .@map$, rand(244,251), rand(109,112), "Wild Rider", 2208, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(244,251), rand(109,112), "Furious Seadora", 2669, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(244,251), rand(109,112), "Sropho", 2201, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+	}
+
+	// สมุนสุ่มรอบ Kraken Leg #7
+	for (set .@i, 0; .@i < 5; .@i++) {
+		monster .@map$, rand(291,298), rand(101,104), "Wild Rider", 2208, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(291,298), rand(101,104), "Furious Seadora", 2669, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(291,298), rand(101,104), "Sropho", 2201, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+	}
+
+	// สมุนสุ่มรอบ Kraken Leg #8
+	for (set .@i, 0; .@i < 5; .@i++) {
+		monster .@map$, rand(298,304), rand(139,145), "Wild Rider", 2208, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(298,304), rand(139,145), "Furious Seadora", 2669, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(298,304), rand(139,145), "Sropho", 2201, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+	}
+
+	// สมุนสุ่มรอบ Kraken Leg #9
+	for (set .@i, 0; .@i < 5; .@i++) {
+		monster .@map$, rand(290,296), rand(170,177), "Wild Rider", 2208, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(290,296), rand(170,177), "Furious Seadora", 2669, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(290,296), rand(170,177), "Sropho", 2201, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+	}
+
+	// สมุนสุ่มรอบ Kraken Leg #10
+	for (set .@i, 0; .@i < 5; .@i++) {
+		monster .@map$, rand(292,303), rand(205,210), "Wild Rider", 2208, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(292,303), rand(205,210), "Furious Seadora", 2669, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(292,303), rand(205,210), "Sropho", 2201, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+	}
+	
 	end;
 OnDisable:
 	disablenpc instance_npcname("kra_foot_2");
@@ -229,6 +287,7 @@ OnMyMobDead:
 	mes "คุณเห็นตัวเลขปรากฏขึ้น:";
 	mes "^FF0000" + 'pillar_code[2] + "^000000";
 	donpcevent instance_npcname("kra_foot_3")+"::OnEnable"; //เรียกสมุน
+	disablenpc instance_npcname("Pillar #3"); // ปิดเสา3
 	close;
 }
 
@@ -246,22 +305,60 @@ OnEnable:
 	disablenpc instance_npcname("kra_door6"); // ปิดวาปทางออกจากทางแคบ
 	mapannounce instance_mapname("1@cash1"),"Kraken : พวกเจ้ามันดื้อด้าน!! อย่ามาขัดขวางแผนการข้า!!",bc_map,"0xFFFF00";
 	set .@map$, instance_mapname("1@cash1");
-	monster .@map$,27,103,"Kraken Leg#11",2206,1,2,instance_npcname("kra_foot_3")+"::OnMyMobDead";
+	monster .@map$,rand(24,33), rand(101,109),"Kraken Leg#11",2206,1,2,instance_npcname("kra_foot_3")+"::OnMyMobDead";
 	monster .@map$,41,80,"Kraken Leg#12",2206,1,2,instance_npcname("kra_foot_3")+"::OnMyMobDead";
 	monster .@map$,43,54,"Kraken Leg#13",2206,1,2,instance_npcname("kra_foot_3")+"::OnMyMobDead";
 	monster .@map$,115,26,"Kraken Leg#14",2206,1,2,instance_npcname("kra_foot_3")+"::OnMyMobDead";
 	monster .@map$,140,46,"Kraken Leg#15",2206,1,2,instance_npcname("kra_foot_3")+"::OnMyMobDead";
-		areamonster .@map$,34,96,38,100,"Octopus's Henchman",2192,3,2,instance_npcname("kra_foot_3")+"::OnMyMobDead";
-		areamonster .@map$,39,90,41,92,"Octopus's Henchman",2192,2,2,instance_npcname("kra_foot_3")+"::OnMyMobDead";
-		areamonster .@map$,38,76,40,78,"Octopus's Henchman",2192,2,2,instance_npcname("kra_foot_3")+"::OnMyMobDead";
-		areamonster .@map$,39,58,41,60,"Octopus's Henchman",2192,2,2,instance_npcname("kra_foot_3")+"::OnMyMobDead";
-		areamonster .@map$,50,38,56,44,"Octopus's Henchman",2192,5,2,instance_npcname("kra_foot_3")+"::OnMyMobDead";
-		areamonster .@map$,68,32,72,36,"Octopus's Henchman",2192,5,2,instance_npcname("kra_foot_3")+"::OnMyMobDead";
-		areamonster .@map$,83,26,85,28,"Octopus's Henchman",2192,2,2,instance_npcname("kra_foot_3")+"::OnMyMobDead";
-		areamonster .@map$,107,28,109,30,"Octopus's Henchman",2192,1,2,instance_npcname("kra_foot_3")+"::OnMyMobDead";
-		areamonster .@map$,123,28,125,30,"Octopus's Henchman",2192,2,2,instance_npcname("kra_foot_3")+"::OnMyMobDead";
-		areamonster .@map$,134,31,138,35,"Octopus's Henchman",2192,5,2,instance_npcname("kra_foot_3")+"::OnMyMobDead";
-		areamonster .@map$,142,39,146,43,"Octopus's Henchman",2192,2,2,instance_npcname("kra_foot_3")+"::OnMyMobDead";
+		
+		// สมุนสุ่มในบริเวณเสา 3
+	for (set .@i, 0; .@i < 7; .@i++) {
+		monster .@map$, rand(75,139), rand(27,30), "Vadon", 2174, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(75,139), rand(27,30), "Marse", 2175, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(75,139), rand(27,30), "Anolian", 1206, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(48,67), rand(38,46), "Vadon", 2174, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(48,67), rand(38,46), "Marse", 2175, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(48,67), rand(38,46), "Anolian", 1206, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(39,41), rand(54,100), "Vadon", 2174, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(39,41), rand(54,100), "Marse", 2175, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(39,41), rand(54,100), "Anolian", 1206, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+	}	
+	
+	// สมุนสุ่มรอบ Kraken Leg #11
+	for (set .@i, 0; .@i < 5; .@i++) {
+		monster .@map$, rand(24,33), rand(101,109), "Wild Rider", 2208, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(24,33), rand(101,109), "Furious Seadora", 2669, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(24,33), rand(101,109), "Sropho", 2201, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+	}
+
+	// สมุนสุ่มรอบ Kraken Leg #12
+	for (set .@i, 0; .@i < 5; .@i++) {
+		monster .@map$, rand(39,42), rand(76,86), "Wild Rider", 2208, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(39,42), rand(76,86), "Furious Seadora", 2669, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(39,42), rand(76,86), "Sropho", 2201, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+	}
+
+	// สมุนสุ่มรอบ Kraken Leg #13
+	for (set .@i, 0; .@i < 5; .@i++) {
+		monster .@map$, rand(39,42), rand(54,64), "Wild Rider", 2208, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(39,42), rand(54,64), "Furious Seadora", 2669, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(39,42), rand(54,64), "Sropho", 2201, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+	}
+
+	// สมุนสุ่มรอบ Kraken Leg #14
+	for (set .@i, 0; .@i < 5; .@i++) {
+		monster .@map$, rand(110,119), rand(27,30), "Wild Rider", 2208, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(110,119), rand(27,30), "Furious Seadora", 2669, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(110,119), rand(27,30), "Sropho", 2201, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+	}
+
+	// สมุนสุ่มรอบ Kraken Leg #15
+	for (set .@i, 0; .@i < 5; .@i++) {
+		monster .@map$, rand(140,147), rand(36,45), "Wild Rider", 2208, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(140,147), rand(36,45), "Furious Seadora", 2669, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(140,147), rand(36,45), "Sropho", 2201, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+	}	
+		
 	end;
 OnDisable:
 	disablenpc instance_npcname("kra_foot_3");
@@ -283,6 +380,7 @@ OnMyMobDead:
 	mes "คุณเห็นตัวเลขปรากฏขึ้น:";
 	mes "^FF0000" + 'pillar_code[3] + "^000000";
 	donpcevent instance_npcname("kra_foot_4")+"::OnEnable"; //เรียกสมุน
+	disablenpc instance_npcname("Pillar #4"); // ปิดเสา4
 	close;
 }
 
@@ -305,17 +403,55 @@ OnEnable:
 	monster .@map$,355,45,"Kraken Leg#18",2206,1,2,instance_npcname("kra_foot_4")+"::OnMyMobDead";
 	monster .@map$,368,80,"Kraken Leg#19",2206,1,2,instance_npcname("kra_foot_4")+"::OnMyMobDead";
 	monster .@map$,364,126,"Kraken Leg#20",2206,1,2,instance_npcname("kra_foot_4")+"::OnMyMobDead";
-		areamonster .@map$,363,123,367,127,"Octopus's Henchman",2192,2,2,instance_npcname("kra_foot_4")+"::OnMyMobDead";
-		areamonster .@map$,364,108,368,112,"Octopus's Henchman",2192,5,2,instance_npcname("kra_foot_4")+"::OnMyMobDead";
-		areamonster .@map$,363,93,367,97,"Octopus's Henchman",2192,3,2,instance_npcname("kra_foot_4")+"::OnMyMobDead";
-		areamonster .@map$,364,72,366,74,"Octopus's Henchman",2192,2,2,instance_npcname("kra_foot_4")+"::OnMyMobDead";
-		areamonster .@map$,364,58,366,60,"Octopus's Henchman",2192,2,2,instance_npcname("kra_foot_4")+"::OnMyMobDead";
-		areamonster .@map$,355,44,359,48,"Octopus's Henchman",2192,3,2,instance_npcname("kra_foot_4")+"::OnMyMobDead";
-		areamonster .@map$,346,36,350,40,"Octopus's Henchman",2192,3,2,instance_npcname("kra_foot_4")+"::OnMyMobDead";
-		areamonster .@map$,319,28,325,34,"Octopus's Henchman",2192,5,2,instance_npcname("kra_foot_4")+"::OnMyMobDead";
-		areamonster .@map$,305,27,307,29,"Octopus's Henchman",2192,2,2,instance_npcname("kra_foot_4")+"::OnMyMobDead";
-		areamonster .@map$,276,29,280,33,"Octopus's Henchman",2192,5,2,instance_npcname("kra_foot_4")+"::OnMyMobDead";
-		areamonster .@map$,258,37,262,41,"Octopus's Henchman",2192,2,2,instance_npcname("kra_foot_4")+"::OnMyMobDead";
+		
+		// สมุนสุ่มในบริเวณเสา 4
+	for (set .@i, 0; .@i < 7; .@i++) {
+		monster .@map$, rand(361,367), rand(56,124), "Vadon", 2174, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(361,367), rand(56,124), "Marse", 2175, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(361,367), rand(56,124), "Anolian", 1206, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(318,351), rand(34,38), "Vadon", 2174, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(318,351), rand(34,38), "Marse", 2175, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(318,351), rand(34,38), "Anolian", 1206, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(253,276), rand(33,37), "Vadon", 2174, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(253,276), rand(33,37), "Marse", 2175, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(253,276), rand(33,37), "Anolian", 1206, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+	}	
+	
+	// สมุนสุ่มรอบ Kraken Leg #16
+	for (set .@i, 0; .@i < 5; .@i++) {
+		monster .@map$, rand(253,263), rand(34,45), "Wild Rider", 2208, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(253,263), rand(34,45), "Furious Seadora", 2669, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(253,263), rand(34,45), "Sropho", 2201, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+	}
+
+	// สมุนสุ่มรอบ Kraken Leg #17
+	for (set .@i, 0; .@i < 5; .@i++) {
+		monster .@map$, rand(295,310), rand(25,30), "Wild Rider", 2208, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(295,310), rand(25,30), "Furious Seadora", 2669, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(295,310), rand(25,30), "Sropho", 2201, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+	}
+
+	// สมุนสุ่มรอบ Kraken Leg #18
+	for (set .@i, 0; .@i < 5; .@i++) {
+		monster .@map$, rand(346,359), rand(41,46), "Wild Rider", 2208, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(346,359), rand(41,46), "Furious Seadora", 2669, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(346,359), rand(41,46), "Sropho", 2201, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+	}
+
+	// สมุนสุ่มรอบ Kraken Leg #19
+	for (set .@i, 0; .@i < 5; .@i++) {
+		monster .@map$, rand(362,368), rand(75,86), "Wild Rider", 2208, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(362,368), rand(75,86), "Furious Seadora", 2669, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(362,368), rand(75,86), "Sropho", 2201, 1, 2, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+	}
+
+	// สมุนสุ่มรอบ Kraken Leg #20
+	for (set .@i, 0; .@i < 5; .@i++) {
+		monster .@map$, rand(361,368), rand(118,129), "Wild Rider", 2208, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(361,368), rand(118,129), "Furious Seadora", 2669, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+		monster .@map$, rand(361,368), rand(118,129), "Sropho", 2201, 1, instance_npcname("kra_foot_1")+"::OnMyMobDead";
+	}	
+
 	end;
 OnDisable:
 	disablenpc instance_npcname("kra_foot_4");
@@ -412,19 +548,19 @@ OnMyMobDead:
 			break;
 		case 3:
 			mapannounce instance_mapname("1@cash1"), "Kraken : อึก!! พลังของข้ามันหายไป!!", bc_map, "0xFFFF00";
-			set 'BRank , 'BRank+1;
+			set 'BRank , 1;
 			break;
 		case 2:
 			mapannounce instance_mapname("1@cash1"), "Kraken : อึก!! คิดว่าแค่นี้จะทำอะไรข้าได้รึไง!!", bc_map, "0xFFFF00";
-			set 'BRank , 'BRank+1;
+			set 'BRank , 1;
 			break;
 		case 1:
 			mapannounce instance_mapname("1@cash1"), "Kraken : ฮ่า ฮ่า ฮ่า! น่าสมเพชนัก ของที่เจ้าสร้างมามันกระจอก!!", bc_map, "0xFFFF00";
-			set 'BRank , 'BRank+2;
+			set 'BRank , 2;
 			break;
 		case 0:
 			mapannounce instance_mapname("1@cash1"), "Kraken : ฮ่า ฮ่า ฮ่า! ของที่มนุษย์สร้างมามันกระจอก!!", bc_map, "0xFFFF00";
-			set 'BRank , 'BRank+2;
+			set 'BRank , 2;
 			break;
 		default:
 			mapannounce instance_mapname("1@cash1"), "Kraken : คิดว่าตอบถูกนิดหน่อยแล้วจะรอดรึ? ฝันไปเถอะ!!", bc_map, "0xFFFF00";
@@ -506,7 +642,7 @@ OnMyMobDead:
 // เปลี่ยนร่างเป็นบอส Kraken
 OnStart:
 	set .@map$, instance_mapname("1@cash1");
-	monster .@map$,199,193,"Kraken",2202,1,'BRank,instance_npcname("CallTheKraken")+"::OnMyMobDead";
+	monster .@map$,199,193,"Kraken",2202,1,10,instance_npcname("CallTheKraken")+"::OnMyMobDead";
 	end;
 
 OnMyMobDead:

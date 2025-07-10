@@ -37,7 +37,7 @@ icecastle,14,121,5	script	Sir Serpan#Guardian_raid	4_EM_SERPENS,{
 	
 	switch(.@cooltime) {
 	case 2:
-		erasequest 11;
+		erasequest 12;
 	case -1:
 		if(select("พร้อม","ยังไม่พร้อม") == 2 ) end;
 				
@@ -166,36 +166,47 @@ OnInstanceInit:
 	.@levelguard = (4 * ('glevel - 1) + 'gstate);
 	getmapxy(.@mapname$, .@mapx, .@mapy, BL_NPC, instance_npcname(strnpcinfo(0)));
 	getitem 2233001,rand( (.@levelguard * 3),(.@levelguard * 7));
-	.@luck = rand(100000);
 	switch(.@levelguard) {
 		case 1:
-			.@numdrop = 2;
-			if(.@luck < 100 ) .@set = 2;
-			else if (.@luck < 2500) .@set = 1;
-			else .@set = 0;
+			.@numdrop =2;
 			break;
 		case 2:
-			.@numdrop = 3;
-			if(.@luck < 200 ) .@set = 2;
-			else if (.@luck < 3500) .@set = 1;
-			else .@set = 0;
 		case 3:
 			.@numdrop = 3;
-			if(.@luck < 300 ) .@set = 2;
-			else if (.@luck < 4500) .@set = 1;
-			else .@set = 0;
+			break;
 		case 4:
 			.@numdrop = 4;
-			if(.@luck < 50 ) .@set = 3;
-			else if (.@luck < 650) .@set = 2;
-			else if (.@luck < 4500) .@set = 1;
-			else .@set = 0;
+			break;
 		default:
+			.@numdrop = 1;
 			break;
 	}
 	for(.@j=0; .@j < .@numdrop; .@j++) {
-		makeitem .@goldid[.@set],1,.@mapname$,.@mapx + rand(-2,2),.@mapy  + rand(-2,2),true;
-		sleep 500;
+		.@luck = rand(100000);
+		switch(.@levelguard) {
+			case 1:
+				if(.@luck < 100 ) .@set = 2;
+				else if (.@luck < 2500) .@set = 1;
+				else .@set = 0;
+				break;
+			case 2:
+				if(.@luck < 200 ) .@set = 2;
+				else if (.@luck < 3500) .@set = 1;
+				else .@set = 0;
+			case 3:
+				if(.@luck < 300 ) .@set = 2;
+				else if (.@luck < 4500) .@set = 1;
+				else .@set = 0;
+			case 4:
+				if(.@luck < 10 ) .@set = 3;
+				else if (.@luck < 450) .@set = 2;
+				else if (.@luck < 4500) .@set = 1;
+				else .@set = 0;
+			default:
+				break;
+		}
+		if(rand(100) < 51 ) makeitem .@goldid[.@set],1,.@mapname$,.@mapx + rand(-2,2),.@mapy  + rand(-2,2),true;
+		sleep2 500;
 	}
 	end;
 OnStart:

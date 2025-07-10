@@ -16,7 +16,7 @@ OnInit:
 			for (.i = 0; .i < getarraysize(.d_id); .i++) {
 				if(attachrid(.d_aid[.i])){
 
-					//set #CASHPOINTS,(#CASHPOINTS + .d_amt[.i]);
+					set #CASHPOINTS,(#CASHPOINTS + .d_amt[.i]);
 					//dispbottom "[ Donate ] : คุณได้รับ " + callfunc("F_InsertComma", .d_amt[.i]) + " Cash รวมเป็น "+callfunc("F_InsertComma",#CASHPOINTS)+" Cash",0xAEFF00;
 					
 					// โบนัส 15%

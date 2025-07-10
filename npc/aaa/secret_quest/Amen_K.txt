@@ -1,5 +1,5 @@
 ayothaya,150,173,1	script	Fire pit#SHARK	4_TRACE,{
-	if(!countitem(2000002) || !countitem(2000003) || !countitem(2000004) || !countitem(2000005) || #Quest_Shark_H) {
+	if(!countitem(2000002) || !countitem(2000003) || !countitem(2000004) || !countitem(2000005) || #Quest_Shark_K) {
 		mes "¿ÙéÇæ";
 		close;
 	}

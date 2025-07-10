@@ -67,43 +67,43 @@ OnAtcommand:
 		mes "^ff0000---ส่งเลยไหม---^000000";
 		switch(.@atcmd_parameters$[1]) {
 			case 100:
-                setarray .@mailitem[0], 12412,17314,0,0,0;
-                setarray .@mailamount[0],1,1,0,0,0;
+                setarray .@mailitem[0], 12412,2001104,17314,0,0;
+                setarray .@mailamount[0],1,1,1,0,0;
 				.@cashamount = 1000;
 				break;
 			case 300:
-                setarray .@mailitem[0], 12412,17251,0,0,0;
-                setarray .@mailamount[0],3,1,0,0,0;
+                setarray .@mailitem[0], 12412,2001104,17314,0,0;
+                setarray .@mailamount[0],3,3,3,0,0;
 				.@cashamount = 3300;
 				break;
 			case 500:
-                setarray .@mailitem[0], 12412,17474,0,0,0;
-                setarray .@mailamount[0],5,1,0,0,0;
+                setarray .@mailitem[0], 12412,2001104,17314,0,0;
+                setarray .@mailamount[0],5,5,5,0,0;
 				.@cashamount = 5500;
 				break;
 			case 1000:
-                setarray .@mailitem[0], 12412,17229,2001101,2001004,2001951;
-                setarray .@mailamount[0],10,1,1,1,1;
+                setarray .@mailitem[0], 12412,2001104,17314,2001006,0;
+                setarray .@mailamount[0],10,10,10,1,0;
 				.@cashamount = 11000;
 				break;
 			case 3000:
-                setarray .@mailitem[0], 12412,17229,2001101,2001004,2001951;
-                setarray .@mailamount[0],30, 2,3,3,3;
+                setarray .@mailitem[0], 12412,2001104,17314,2001006,0;
+                setarray .@mailamount[0],30,30,30,3,0;
 				.@cashamount = 35000;
 				break;
 			case 5000:
-                setarray .@mailitem[0], 12412,17229,2001101,2001004,2001951;
-                setarray .@mailamount[0],50 ,2 ,5 ,5 ,5;
+                setarray .@mailitem[0], 12412,2001104,17314,2001006,0;
+                setarray .@mailamount[0],50,50,50,5,0;
 				.@cashamount = 65000;
 				break;
 			case 10000:
-                setarray .@mailitem[0], 12412,17229,2001101,2001004,2001951;
-                setarray .@mailamount[0],100, 4, 10, 10, 10;
+                setarray .@mailitem[0], 12412,2001104,17314,2001006,0;
+                setarray .@mailamount[0],100,100,100,10,0;
 				.@cashamount = 140000;
 				break;
 			case 20000:
-                setarray .@mailitem[0], 12412,17229,2001101,2001004,2001951;
-                setarray .@mailamount[0],200, 10, 20, 20, 20;
+                setarray .@mailitem[0], 12412,2001104,17314,2001006,0;
+                setarray .@mailamount[0],200,200,200,20,0;
 				.@cashamount = 300000;
 				break;
 			default:

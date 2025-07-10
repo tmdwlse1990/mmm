@@ -489,7 +489,7 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      getitem 20019511,1;
+      getitem 2001951,1;
       getitem 2001005,1;
       getitem 2001101,1;
   - Id: 2001101

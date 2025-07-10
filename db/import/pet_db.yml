@@ -837,7 +837,7 @@ Body:
       bonus bCritical,15;
       bonus bCritAtkRate,10;
       bonus bMaxHPrate,10;
-      bonus3 bAutosell,"PR_LEXAETERNA",1,30;
+#      bonus3 bAutosell,"PR_LEXAETERNA",1,30;
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);
       .@a = 1;
