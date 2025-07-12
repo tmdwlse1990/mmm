@@ -2412,6 +2412,126 @@ Body:
     Name: Novice Upgrade Skill 2
     Type: etc
     Weight: 100
+  - Id: 2235015
+    AegisName: KN_UP_Skill_1
+    Name: Knight Upgrade Skill 1
+    Type: etc
+    Weight: 100
+  - Id: 2235016
+    AegisName: KN_UP_Skill_2
+    Name: Knight Upgrade Skill 2
+    Type: etc
+    Weight: 100
+  - Id: 2235017
+    AegisName: PR_UP_Skill_1
+    Name: Priest Upgrade Skill 1
+    Type: etc
+    Weight: 100
+  - Id: 2235018
+    AegisName: PR_UP_Skill_2
+    Name: Priest Upgrade Skill 2
+    Type: etc
+    Weight: 100
+  - Id: 2235019
+    AegisName: WZ_UP_Skill_1
+    Name: Wizard Upgrade Skill 1
+    Type: etc
+    Weight: 100
+  - Id: 2235020
+    AegisName: WZ_UP_Skill_2
+    Name: Wizard Upgrade Skill 2
+    Type: etc
+    Weight: 100
+  - Id: 2235021
+    AegisName: BS_UP_Skill_1
+    Name: Blacksmith Upgrade Skill 1
+    Type: etc
+    Weight: 100
+  - Id: 2235022
+    AegisName: BS_UP_Skill_2
+    Name: Blacksmith Upgrade Skill 2
+    Type: etc
+    Weight: 100
+  - Id: 2235023
+    AegisName: HT_UP_Skill_1
+    Name: Hunter Upgrade Skill 1
+    Type: etc
+    Weight: 100
+  - Id: 2235024
+    AegisName: HT_UP_Skill_2
+    Name: Hunter Upgrade Skill 2
+    Type: etc
+    Weight: 100
+  - Id: 2235025
+    AegisName: AS_UP_Skill_1
+    Name: Assassin Upgrade Skill 1
+    Type: etc
+    Weight: 100
+  - Id: 2235026
+    AegisName: AS_UP_Skill_2
+    Name: Assassin Upgrade Skill 2
+    Type: etc
+    Weight: 100
+  - Id: 2235027
+    AegisName: CR_UP_Skill_1
+    Name: Crusader Upgrade Skill 1
+    Type: etc
+    Weight: 100
+  - Id: 2235028
+    AegisName: CR_UP_Skill_2
+    Name: Crusader Upgrade Skill 2
+    Type: etc
+    Weight: 100
+  - Id: 2235029
+    AegisName: MO_UP_Skill_1
+    Name: Monk Upgrade Skill 1
+    Type: etc
+    Weight: 100
+  - Id: 2235030
+    AegisName: MO_UP_Skill_2
+    Name: Monk Upgrade Skill 2
+    Type: etc
+    Weight: 100
+  - Id: 2235031
+    AegisName: SG_UP_Skill_1
+    Name: Sage Upgrade Skill 1
+    Type: etc
+    Weight: 100
+  - Id: 2235032
+    AegisName: SG_UP_Skill_2
+    Name: Sage Upgrade Skill 2
+    Type: etc
+    Weight: 100
+  - Id: 2235033
+    AegisName: RG_UP_Skill_1
+    Name: Rogue Upgrade Skill 1
+    Type: etc
+    Weight: 100
+  - Id: 2235034
+    AegisName: RG_UP_Skill_2
+    Name: Rogue Upgrade Skill 2
+    Type: etc
+    Weight: 100
+  - Id: 2235035
+    AegisName: AM_UP_Skill_1
+    Name: Alchemist Upgrade Skill 1
+    Type: etc
+    Weight: 100
+  - Id: 2235036
+    AegisName: AM_UP_Skill_2
+    Name: Alchemist Upgrade Skill 2
+    Type: etc
+    Weight: 100
+  - Id: 2235037
+    AegisName: BD_UP_Skill_1
+    Name: Musician Upgrade Skill 1
+    Type: etc
+    Weight: 100
+  - Id: 2235038
+    AegisName: BD_UP_Skill_2
+    Name: Musician Upgrade Skill 2
+    Type: etc
+    Weight: 100
 #   [Enchant Result]
   - Id: 2236001
     AegisName: SM_Up_Skill_Ston_1
