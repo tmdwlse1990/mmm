@@ -155,8 +155,6 @@ icecastle,200,158,4	script	Wise Old Woman#eAcustom	78,{
 		mes "[ยายแก่]";
 		mes "มีการ์ดอยู่ " + .@cardcount + " ใบในไอเท็มสินะ ";
 		mes "ต้องการเงิน "+ callfunc("F_InsertComma",.@calzen) + " zeny";
-		mes "ต้องการน้ำยา ^i[6635] ด้วยอันนึง.";
-		mes "โอกาสแค่ 30% นะหลาน";
 		next;
 		if(select("เอาเลย.:ไม่เอาดีกว่า.") == 2) {
 			mes "[ยายแก่]";

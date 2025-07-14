@@ -544,7 +544,7 @@ OnMyMobDead:
 	switch (4 - 'wrong) {
 		case 4:
 			mapannounce instance_mapname("1@cash1"), "Kraken : อ๊ากก!! พวกเจ้าทำอะไรกับข้า!!?", bc_map, "0xFFFF00";
-			set 'BRank , 0;
+			set 'BRank , -1;
 			break;
 		case 3:
 			mapannounce instance_mapname("1@cash1"), "Kraken : อึก!! พลังของข้ามันหายไป!!", bc_map, "0xFFFF00";

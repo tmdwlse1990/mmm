@@ -23,7 +23,7 @@ OnInit:
 	.bexp = 200;
 	.jexp = 200;
 	.bdrop = 100;
-if(gettime(DT_DAYOFWEEK) == 6|| !gettime(DT_DAYOFWEEK)) {
+if(gettime(DT_DAYOFWEEK) >= FRIDAY || !gettime(DT_DAYOFWEEK)) {
 	set $@brate,250;
 	set $@jrate,250;
 	set $@drate,150;
@@ -43,7 +43,7 @@ if(gettime(DT_DAYOFWEEK) == FRIDAY) {
 	set $@jrate,250;
 	set $@drate,250;
 	
-	donpcevent strnpcinfo(0)+"::DoNewRate";
+	donpcevent strnpcinfo(0)+"::OnDoNewRate";
 }
 else if(gettime(DT_DAYOFWEEK) == MONDAY) {
 	

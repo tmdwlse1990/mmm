@@ -34,6 +34,7 @@
 	}
 	specialeffect2 EF_HEAL2;
 	percentheal 100,100;
+	repairall;
 	if (.@Buffs) {
 		specialeffect2 EF_INCAGILITY;
 		sc_start SC_INCREASEAGI,.@bufftime,5;
