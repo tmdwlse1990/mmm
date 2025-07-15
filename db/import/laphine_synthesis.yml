@@ -37,6 +37,105 @@ Header:
   Version: 1
 
 Body:
+  - Item: STATSBOX2
+    RewardGroup: STATSBOX2
+    RequiredRequirementsCount: 4
+    Requirements:
+      - Item: Strength1
+      - Item: Inteligence1
+      - Item: Dexterity1
+      - Item: Agility1
+      - Item: Vitality1
+      - Item: Luck1
+
+  - Item: STATSBOX3
+    RewardGroup: STATSBOX3
+    RequiredRequirementsCount: 4
+    Requirements:
+      - Item: Strength2
+      - Item: Inteligence2
+      - Item: Dexterity2
+      - Item: Agility2
+      - Item: Vitality2
+      - Item: Luck2
+
+  - Item: STATSBOX4
+    RewardGroup: STATSBOX4
+    RequiredRequirementsCount: 4
+    Requirements:
+      - Item: Strength3
+      - Item: Inteligence3
+      - Item: Dexterity3
+      - Item: Agility3
+      - Item: Vitality3
+      - Item: Luck3
+
+  - Item: STATSBOX5
+    RewardGroup: STATSBOX5
+    RequiredRequirementsCount: 4
+    Requirements:
+      - Item: Strength4
+      - Item: Inteligence4
+      - Item: Dexterity4
+      - Item: Agility4
+      - Item: Vitality4
+      - Item: Luck4
+
+  - Item: STATSBOX6
+    RewardGroup: STATSBOX6
+    RequiredRequirementsCount: 4
+    Requirements:
+      - Item: Strength5
+      - Item: Inteligence5
+      - Item: Dexterity5
+      - Item: Agility5
+      - Item: Vitality5
+      - Item: Luck5
+
+  - Item: STATSBOX7
+    RewardGroup: STATSBOX7
+    RequiredRequirementsCount: 4
+    Requirements:
+      - Item: Strength6
+      - Item: Inteligence6
+      - Item: Dexterity6
+      - Item: Agility6
+      - Item: Vitality6
+      - Item: Luck6
+
+  - Item: STATSBOX8
+    RewardGroup: STATSBOX8
+    RequiredRequirementsCount: 4
+    Requirements:
+      - Item: Strength7
+      - Item: Inteligence7
+      - Item: Dexterity7
+      - Item: Agility7
+      - Item: Vitality7
+      - Item: Luck7
+
+  - Item: STATSBOX9
+    RewardGroup: STATSBOX9
+    RequiredRequirementsCount: 4
+    Requirements:
+      - Item: Strength8
+      - Item: Inteligence8
+      - Item: Dexterity8
+      - Item: Agility8
+      - Item: Vitality8
+      - Item: Luck8
+
+  - Item: STATSBOX10
+    RewardGroup: STATSBOX10
+    RequiredRequirementsCount: 4
+    Requirements:
+      - Item: Strength9
+      - Item: Inteligence9
+      - Item: Dexterity9
+      - Item: Agility9
+      - Item: Vitality9
+      - Item: Luck9
+
   - Item: Common2rare
     RewardGroup: COMMON2RARE_PET
     RequiredRequirementsCount: 4

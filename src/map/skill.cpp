@@ -1352,7 +1352,7 @@ int32 skill_additional_effect( struct block_list* src, struct block_list *bl, ui
 
 					// Automatic trigger of Blitz Beat
 					//if (pc_isfalcon(sd) && sd->status.weapon == W_BOW && (skill = pc_checkskill(sd, HT_BLITZBEAT)) > 0 && rnd() % 1000 <= sstatus->luk * 10 / 3 + 1) {
-					if (pc_isfalcon(sd) && sd->status.weapon == W_BOW && (skill = pc_checkskill(sd, HT_BLITZBEAT)) > 0 && rnd() % 1000 <= 330 + 1) {
+					if (pc_isfalcon(sd) && sd->status.weapon == W_BOW && (skill = pc_checkskill(sd, HT_BLITZBEAT)) > 0 && rnd() % 1000 <= 330 + (sd->special_state.skillup3 ? 90 : 0) + 1) {
 
 						skill_castend_damage_id(src, bl, HT_BLITZBEAT, skill, tick, SD_LEVEL);
 					}
@@ -1599,6 +1599,8 @@ int32 skill_additional_effect( struct block_list* src, struct block_list *bl, ui
 
 	case RG_BACKSTAP:
 		sc_start(src,bl,SC_STUN,(5+2*skill_lv),skill_lv,skill_get_time(skill_id,skill_lv));
+		if (sd && sd->special_state.skillup4)
+			sc_start(src, bl, SC_JYUMONJIKIRI, 100, skill_lv, 3000);
 #endif
 		break;
 
@@ -4214,6 +4216,15 @@ int64 skill_attack (int32 attack_type, struct block_list* src, struct block_list
 				)
 					skill_addtimerskill(src, tick + dmg.amotion + skill_get_delay(skill_id, skill_lv), bl->id, 0, 0, skill_id, skill_lv, attack_type, flag|2);
 				break;
+			case MO_TRIPLEATTACK:
+				if ( sd && pc_checkskill(sd,MO_CHAINCOMBO) &&
+					 sd->special_state.skillup3 &&
+					 !sc->getSCE(SC_STEELBODY)
+					)
+					{
+					skill_addtimerskill(src, tick + dmg.amotion + skill_get_delay(skill_id, skill_lv), bl->id, 0, 0, MO_CHAINCOMBO, pc_checkskill(sd,MO_CHAINCOMBO), attack_type, flag|2);
+					}
+				break;
 		}
 	}
 
@@ -5925,7 +5936,7 @@ int32 skill_castend_damage_id (struct block_list* src, struct block_list *bl, ui
 	case NPC_AIMED_SHOWER:
 	case NPC_LIGHTNING_JUDGEMENT:
 	case AL_CRUCIS:
-	case BS_HAMMERFALL:
+	//case BS_HAMMERFALL:
 		if( flag&1 ) {//Recursive invocation
 			int32 sflag = skill_area_temp[0] & 0xFFF;
 			int32 heal = 0;
@@ -6714,6 +6725,11 @@ int32 skill_castend_damage_id (struct block_list* src, struct block_list *bl, ui
 	}
 	break;
 #endif
+	case BS_HAMMERFALL:
+		skill_attack(BF_WEAPON,src,src,bl,skill_id,skill_lv,tick,flag);
+		if(sd && sd->special_state.skillup3)
+			skill_attack(BF_WEAPON,src,src,bl,skill_id,skill_lv,tick,flag);
+		break;
 	case RK_DRAGONBREATH_WATER:
 	case RK_DRAGONBREATH:
 	case NPC_DRAGONBREATH:
@@ -8044,7 +8060,7 @@ int32 skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, 
 	case SA_SUMMONMONSTER:
 		clif_skill_nodamage(src,*bl,skill_id,skill_lv);
 		if (sd)
-			mob_once_spawn(sd, src->m, src->x, src->y,"--ja--", -1, 1, "", SZ_SMALL, AI_NONE);
+			mob_once_spawn(sd, src->m, src->x, src->y,"--ja--", -1, 1, "", SZ_SMALL, AI_NONE,0);
 		break;
 	case SA_LEVELUP:
 		clif_skill_nodamage(src,*bl,skill_id,skill_lv);
@@ -9007,11 +9023,6 @@ int32 skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, 
 			clif_skill_nodamage(src,*bl,skill_id,skill_lv);
 		}
 		break;
-	
-	case BS_HAMMERFALL:
-		skill_addtimerskill(src, tick+1000, bl->id, 0, 0, skill_id, skill_lv, min(20+10*skill_lv, 50+5*skill_lv), flag);
-		break;
-
 	case RG_RAID:
 		skill_area_temp[1] = 0;
 		clif_skill_nodamage(src,*bl,skill_id,skill_lv);
@@ -9339,9 +9350,13 @@ int32 skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, 
 			}
 
 			sc_start(src, bl, type, 100, skill_lv, skill_get_time(skill_id, skill_lv));
+			if(skill_id == PR_IMPOSITIO && sd->special_state.skillup4) {
+				sc_start(src,bl,SC_EXPIATIO,100,5,skill_get_time(skill_id,skill_lv));
+			}
 		}
-		else if (sd)
+		else if (sd) {
 			party_foreachsamemap(skill_area_sub, sd, skill_get_splash(skill_id, skill_lv), src, skill_id, skill_lv, tick, flag | BCT_PARTY | 1, skill_castend_nodamage_id);
+		}
 		break;
 #ifdef RENEWAL
 	case MC_LOUD:
@@ -15234,6 +15249,8 @@ int32 skill_castend_pos2(struct block_list* src, int32 x, int32 y, uint16 skill_
 		break;
 	case BS_HAMMERFALL:
 		i = skill_get_splash(skill_id, skill_lv);
+		if(sd && sd->special_state.skillup3)
+			i += pc_skillaoe_bonus(sd, skill_id);
 		map_foreachinarea(skill_area_sub,src->m,x-i,y-i,x+i,y+i,BL_CHAR|BL_SKILL,src,skill_id,skill_lv,tick,flag|BCT_ENEMY|1,skill_castend_damage_id);
 		break;
 
@@ -16224,7 +16241,7 @@ std::shared_ptr<s_skill_unit_group> skill_unitsetting(struct block_list *src, ui
 		val1=skill_lv+2;
 		break;
 	case WZ_QUAGMIRE:	//The target changes to "all" if used in a gvg map. [Skotlex]
-	case AM_DEMONSTRATION:
+//	case AM_DEMONSTRATION:
 		if (battle_config.vs_traps_bctall && (src->type&battle_config.vs_traps_bctall) && map_flag_vs(src->m))
 			target = BCT_ALL;
 		break;
@@ -16543,6 +16560,10 @@ std::shared_ptr<s_skill_unit_group> skill_unitsetting(struct block_list *src, ui
 		
 	case NW_GRENADES_DROPPING:
 		limit = skill_get_time2(skill_id,skill_lv);
+		break;
+	case PR_MAGNUS:
+		if(sd && sd->special_state.skillup3)
+			interval = 200;
 		break;
 	}
 
@@ -17357,7 +17378,7 @@ int32 skill_unit_onplace_timer(struct skill_unit *unit, struct block_list *bl, t
 			if (!battle_check_undead(tstatus->race,tstatus->def_ele) && tstatus->race!=RC_DEMON)
 				break;
 #endif
-			skill_attack(BF_MAGIC,ss,unit,bl,sg->skill_id,sg->skill_lv,tick,0);
+			skill_attack(BF_MAGIC,ss,unit,bl,sg->skill_id,sg->skill_lv,tick,0); 
 			break;
 
 		case UNT_FIREPILLAR_WAITING:
@@ -20737,7 +20758,9 @@ int32 skill_vfcastfix(struct block_list *bl, double time, uint16 skill_id, uint1
 	fixed = 0; //[No fix cast]
 	time = time * (1 - (float)min(reduce_cast_rate, 100) / 100);
 	time = max((int32)time, 0) + (1 - (float)min(fixcast_r, 100) / 100) * max(fixed, 0); //Underflow checking/capping
-
+	
+	if(sd && sd->special_state.skillup4 && sd->class_ == MAPID_WIZARD)
+		time = max(time,1500);
 	return (int32)time;
 }
 #endif
@@ -24139,9 +24162,10 @@ void skill_select_menu( map_session_data& sd, uint16 skill_id ){
 		return;
 	}
 
-	lv = (aslvl + 5) / 2; // The level the skill will be autocasted
+	lv = (aslvl/2) + 1; // The level the skill will be autocasted
 	lv = min(lv,sd.status.skill[sk_idx].lv);
-	prob = (aslvl >= 10) ? 15 : (30 - 2 * aslvl); // Probability at level 10 was increased to 15.
+	//prob = (aslvl >= 10) ? 15 : (30 - 2 * aslvl); // Probability at level 10 was increased to 15.
+	prob = 15;
 	sc_start4(&sd,&sd,SC__AUTOSHADOWSPELL,100,id,lv,prob,(aslvl*5),skill_get_time(SC_AUTOSHADOWSPELL,aslvl));
 }
 

@@ -46,6 +46,10 @@ Header:
   Version: 4
 
 Body:
+  - Status: Cp_Weapon
+    CalcFlags:
+      Watk: true
+      Matk: true
   - Status: Cp_Armor
     CalcFlags:
       Def: true

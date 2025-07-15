@@ -12271,8 +12271,6 @@ Body:
     TargetType: Support
     DamageFlags:
       NoDamage: true
-    Flags:
-      NoTargetSelf: true
     Range: 9
     Hit: Single
     HitCount: 1
@@ -20134,8 +20132,8 @@ Body:
     Flags:
       AlterRangeRadius: true
     Range: 11
-    Hit: Multi_Hit
-    HitCount: -10
+    Hit: Single
+    HitCount: 1
     SplashArea: 6
     Knockback: 2
     CopyFlags:
@@ -23735,7 +23733,7 @@ Body:
   - Id: 2286
     Name: SC_AUTOSHADOWSPELL
     Description: Auto Shadow Spell
-    MaxLevel: 10
+    MaxLevel: 15
     TargetType: Self
     DamageFlags:
       NoDamage: true
@@ -33412,9 +33410,6 @@ Body:
       Weapon:
         Musical: true
         Whip: true
-      ItemCost:
-        - Item: Heartbroken_Tears
-          Amount: 1
     Status: Frigg_Song
   - Id: 5008
     Name: SO_ELEMENTAL_SHIELD

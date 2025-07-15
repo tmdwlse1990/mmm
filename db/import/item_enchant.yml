@@ -2374,6 +2374,11 @@ Body:
             Materials:
               - Material: Chaos_stone_2
                 Amount: 1
+          - Item: Chaos_NSkill_Beta_Level_1
+            Price: 100000
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 1
         Upgrades:
           - Enchant: Chaos_PSkill_Beta_Level_1
             Upgrade: Chaos_PSkill_Beta_Level_2
@@ -2483,6 +2488,60 @@ Body:
               - Material: Chaos_stone_2
                 Amount: 13122
                 
+          - Enchant: Chaos_NSkill_Beta_Level_1
+            Upgrade: Chaos_NSkill_Beta_Level_2
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 2
+        
+          - Enchant: Chaos_NSkill_Beta_Level_2
+            Upgrade: Chaos_NSkill_Beta_Level_3
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 6
+        
+          - Enchant: Chaos_NSkill_Beta_Level_3
+            Upgrade: Chaos_NSkill_Beta_Level_4
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 18
+        
+          - Enchant: Chaos_NSkill_Beta_Level_4
+            Upgrade: Chaos_NSkill_Beta_Level_5
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 54
+        
+          - Enchant: Chaos_NSkill_Beta_Level_5
+            Upgrade: Chaos_NSkill_Beta_Level_6
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 162
+        
+          - Enchant: Chaos_NSkill_Beta_Level_6
+            Upgrade: Chaos_NSkill_Beta_Level_7
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 486
+        
+          - Enchant: Chaos_NSkill_Beta_Level_7
+            Upgrade: Chaos_NSkill_Beta_Level_8
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 1458
+        
+          - Enchant: Chaos_NSkill_Beta_Level_8
+            Upgrade: Chaos_NSkill_Beta_Level_9
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 4374
+        
+          - Enchant: Chaos_NSkill_Beta_Level_9
+            Upgrade: Chaos_NSkill_Beta_Level_10
+            Materials:
+              - Material: Chaos_stone_2
+                Amount: 13122
+                 
           - Enchant: Chaos_OSkill_Beta_Level_1
             Upgrade: Chaos_OSkill_Beta_Level_2
             Materials:
@@ -2546,6 +2605,8 @@ Body:
                 Chance: 1
               - Item: Chaos_OSkill_Beta_Level_1
                 Chance: 1
+              - Item: Chaos_NSkill_Beta_Level_1
+                Chance: 1
           - Enchant: Chaos_PSkill_Beta_Level_2
             Price: 2000
             Items:
@@ -2554,6 +2615,8 @@ Body:
               - Item: Chaos_MSkill_Beta_Level_2
                 Chance: 1
               - Item: Chaos_OSkill_Beta_Level_2
+                Chance: 1
+              - Item: Chaos_NSkill_Beta_Level_3
                 Chance: 1
           - Enchant: Chaos_PSkill_Beta_Level_3
             Price: 6000
@@ -2564,6 +2627,8 @@ Body:
                 Chance: 1
               - Item: Chaos_OSkill_Beta_Level_3
                 Chance: 1
+              - Item: Chaos_NSkill_Beta_Level_3
+                Chance: 1
           - Enchant: Chaos_PSkill_Beta_Level_4
             Price: 18000
             Items:
@@ -2572,6 +2637,8 @@ Body:
               - Item: Chaos_MSkill_Beta_Level_4
                 Chance: 1
               - Item: Chaos_OSkill_Beta_Level_4
+                Chance: 1
+              - Item: Chaos_NSkill_Beta_Level_4
                 Chance: 1
           - Enchant: Chaos_PSkill_Beta_Level_5
             Price: 54000
@@ -2582,6 +2649,8 @@ Body:
                 Chance: 1
               - Item: Chaos_OSkill_Beta_Level_5
                 Chance: 1
+              - Item: Chaos_NSkill_Beta_Level_5
+                Chance: 1
           - Enchant: Chaos_PSkill_Beta_Level_6
             Price: 162000
             Items:
@@ -2590,6 +2659,8 @@ Body:
               - Item: Chaos_MSkill_Beta_Level_6
                 Chance: 1
               - Item: Chaos_OSkill_Beta_Level_6
+                Chance: 1
+              - Item: Chaos_NSkill_Beta_Level_6
                 Chance: 1
           - Enchant: Chaos_PSkill_Beta_Level_7
             Price: 486000
@@ -2600,6 +2671,8 @@ Body:
                 Chance: 1
               - Item: Chaos_OSkill_Beta_Level_7
                 Chance: 1
+              - Item: Chaos_NSkill_Beta_Level_7
+                Chance: 1
           - Enchant: Chaos_PSkill_Beta_Level_8
             Price: 1458000
             Items:
@@ -2608,6 +2681,8 @@ Body:
               - Item: Chaos_MSkill_Beta_Level_8
                 Chance: 1
               - Item: Chaos_OSkill_Beta_Level_8
+                Chance: 1
+              - Item: Chaos_NSkill_Beta_Level_8
                 Chance: 1
           - Enchant: Chaos_PSkill_Beta_Level_9
             Price: 4374000
@@ -2618,6 +2693,8 @@ Body:
                 Chance: 1
               - Item: Chaos_OSkill_Beta_Level_9
                 Chance: 1
+              - Item: Chaos_NSkill_Beta_Level_9
+                Chance: 1
           - Enchant: Chaos_PSkill_Beta_Level_10
             Price: 13122000
             Items:
@@ -2627,6 +2704,8 @@ Body:
                 Chance: 1
               - Item: Chaos_OSkill_Beta_Level_10
                 Chance: 1
+              - Item: Chaos_NSkill_Beta_Level_10
+                Chance: 1
           - Enchant: Chaos_MSkill_Beta_Level_1
             Price: 1000
             Items:
@@ -2635,6 +2714,8 @@ Body:
               - Item: Chaos_MSkill_Beta_Level_1
                 Chance: 3
               - Item: Chaos_OSkill_Beta_Level_1
+                Chance: 1
+              - Item: Chaos_NSkill_Beta_Level_1
                 Chance: 1
           
           - Enchant: Chaos_MSkill_Beta_Level_2
@@ -2646,6 +2727,8 @@ Body:
                 Chance: 3
               - Item: Chaos_OSkill_Beta_Level_2
                 Chance: 1
+              - Item: Chaos_NSkill_Beta_Level_2
+                Chance: 1
           
           - Enchant: Chaos_MSkill_Beta_Level_3
             Price: 6000
@@ -2655,6 +2738,8 @@ Body:
               - Item: Chaos_MSkill_Beta_Level_3
                 Chance: 3
               - Item: Chaos_OSkill_Beta_Level_3
+                Chance: 1
+              - Item: Chaos_NSkill_Beta_Level_3
                 Chance: 1
           
           - Enchant: Chaos_MSkill_Beta_Level_4
@@ -2666,6 +2751,8 @@ Body:
                 Chance: 3
               - Item: Chaos_OSkill_Beta_Level_4
                 Chance: 1
+              - Item: Chaos_NSkill_Beta_Level_4
+                Chance: 1
           
           - Enchant: Chaos_MSkill_Beta_Level_5
             Price: 54000
@@ -2675,6 +2762,8 @@ Body:
               - Item: Chaos_MSkill_Beta_Level_5
                 Chance: 3
               - Item: Chaos_OSkill_Beta_Level_5
+                Chance: 1
+              - Item: Chaos_NSkill_Beta_Level_5
                 Chance: 1
           
           - Enchant: Chaos_MSkill_Beta_Level_6
@@ -2686,6 +2775,8 @@ Body:
                 Chance: 3
               - Item: Chaos_OSkill_Beta_Level_6
                 Chance: 1
+              - Item: Chaos_NSkill_Beta_Level_6
+                Chance: 1
           
           - Enchant: Chaos_MSkill_Beta_Level_7
             Price: 486000
@@ -2695,6 +2786,8 @@ Body:
               - Item: Chaos_MSkill_Beta_Level_7
                 Chance: 3
               - Item: Chaos_OSkill_Beta_Level_7
+                Chance: 1
+              - Item: Chaos_NSkill_Beta_Level_7
                 Chance: 1
           
           - Enchant: Chaos_MSkill_Beta_Level_8
@@ -2706,6 +2799,8 @@ Body:
                 Chance: 3
               - Item: Chaos_OSkill_Beta_Level_8
                 Chance: 1
+              - Item: Chaos_NSkill_Beta_Level_8
+                Chance: 1
           
           - Enchant: Chaos_MSkill_Beta_Level_9
             Price: 4374000
@@ -2716,6 +2811,8 @@ Body:
                 Chance: 3
               - Item: Chaos_OSkill_Beta_Level_9
                 Chance: 1
+              - Item: Chaos_NSkill_Beta_Level_9
+                Chance: 1
           
           - Enchant: Chaos_MSkill_Beta_Level_10
             Price: 13122000
@@ -2723,6 +2820,128 @@ Body:
               - Item: Chaos_PSkill_Beta_Level_10
                 Chance: 1
               - Item: Chaos_MSkill_Beta_Level_10
+                Chance: 3
+              - Item: Chaos_OSkill_Beta_Level_10
+                Chance: 1
+              - Item: Chaos_NSkill_Beta_Level_10
+                Chance: 1
+          
+          - Enchant: Chaos_NSkill_Beta_Level_1
+            Price: 1000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_1
+                Chance: 1
+              - Item: Chaos_MSkill_Beta_Level_1
+                Chance: 1
+              - Item: Chaos_NSkill_Beta_Level_1
+                Chance: 3
+              - Item: Chaos_OSkill_Beta_Level_1
+                Chance: 1
+          
+          - Enchant: Chaos_NSkill_Beta_Level_2
+            Price: 2000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_2
+                Chance: 1
+              - Item: Chaos_MSkill_Beta_Level_2
+                Chance: 1
+              - Item: Chaos_NSkill_Beta_Level_2
+                Chance: 3
+              - Item: Chaos_OSkill_Beta_Level_2
+                Chance: 1
+          
+          - Enchant: Chaos_NSkill_Beta_Level_3
+            Price: 6000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_3
+                Chance: 1
+              - Item: Chaos_MSkill_Beta_Level_3
+                Chance: 1
+              - Item: Chaos_NSkill_Beta_Level_3
+                Chance: 3
+              - Item: Chaos_OSkill_Beta_Level_3
+                Chance: 1
+          
+          - Enchant: Chaos_NSkill_Beta_Level_4
+            Price: 18000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_4
+                Chance: 1
+              - Item: Chaos_MSkill_Beta_Level_4
+                Chance: 1
+              - Item: Chaos_NSkill_Beta_Level_4
+                Chance: 3
+              - Item: Chaos_OSkill_Beta_Level_4
+                Chance: 1
+          
+          - Enchant: Chaos_NSkill_Beta_Level_5
+            Price: 54000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_5
+                Chance: 1
+              - Item: Chaos_MSkill_Beta_Level_5
+                Chance: 1
+              - Item: Chaos_NSkill_Beta_Level_5
+                Chance: 3
+              - Item: Chaos_OSkill_Beta_Level_5
+                Chance: 1
+          
+          - Enchant: Chaos_NSkill_Beta_Level_6
+            Price: 162000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_6
+                Chance: 1
+              - Item: Chaos_MSkill_Beta_Level_6
+                Chance: 1
+              - Item: Chaos_NSkill_Beta_Level_6
+                Chance: 3
+              - Item: Chaos_OSkill_Beta_Level_6
+                Chance: 1
+          
+          - Enchant: Chaos_NSkill_Beta_Level_7
+            Price: 486000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_7
+                Chance: 1
+              - Item: Chaos_MSkill_Beta_Level_7
+                Chance: 1
+              - Item: Chaos_NSkill_Beta_Level_7
+                Chance: 3
+              - Item: Chaos_OSkill_Beta_Level_7
+                Chance: 1
+          
+          - Enchant: Chaos_NSkill_Beta_Level_8
+            Price: 1458000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_8
+                Chance: 1
+              - Item: Chaos_MSkill_Beta_Level_8
+                Chance: 1
+              - Item: Chaos_NSkill_Beta_Level_8
+                Chance: 3
+              - Item: Chaos_OSkill_Beta_Level_8
+                Chance: 1
+          
+          - Enchant: Chaos_NSkill_Beta_Level_9
+            Price: 4374000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_9
+                Chance: 1
+              - Item: Chaos_MSkill_Beta_Level_9
+                Chance: 1
+              - Item: Chaos_NSkill_Beta_Level_9
+                Chance: 3
+              - Item: Chaos_OSkill_Beta_Level_9
+                Chance: 1
+          
+          - Enchant: Chaos_NSkill_Beta_Level_10
+            Price: 13122000
+            Items:
+              - Item: Chaos_PSkill_Beta_Level_10
+                Chance: 1
+              - Item: Chaos_MSkill_Beta_Level_10
+                Chance: 1
+              - Item: Chaos_NSkill_Beta_Level_10
                 Chance: 3
               - Item: Chaos_OSkill_Beta_Level_10
                 Chance: 1
@@ -2736,6 +2955,8 @@ Body:
                 Chance: 1
               - Item: Chaos_OSkill_Beta_Level_1
                 Chance: 3
+              - Item: Chaos_NSkill_Beta_Level_1
+                Chance: 1
           
           - Enchant: Chaos_OSkill_Beta_Level_2
             Price: 2000
@@ -2746,6 +2967,8 @@ Body:
                 Chance: 1
               - Item: Chaos_OSkill_Beta_Level_2
                 Chance: 3
+              - Item: Chaos_NSkill_Beta_Level_2
+                Chance: 1
           
           - Enchant: Chaos_OSkill_Beta_Level_3
             Price: 6000
@@ -2756,6 +2979,8 @@ Body:
                 Chance: 1
               - Item: Chaos_OSkill_Beta_Level_3
                 Chance: 3
+              - Item: Chaos_NSkill_Beta_Level_3
+                Chance: 1
           
           - Enchant: Chaos_OSkill_Beta_Level_4
             Price: 18000
@@ -2766,6 +2991,8 @@ Body:
                 Chance: 1
               - Item: Chaos_OSkill_Beta_Level_4
                 Chance: 3
+              - Item: Chaos_NSkill_Beta_Level_4
+                Chance: 1
           
           - Enchant: Chaos_OSkill_Beta_Level_5
             Price: 54000
@@ -2776,6 +3003,8 @@ Body:
                 Chance: 1
               - Item: Chaos_OSkill_Beta_Level_5
                 Chance: 3
+              - Item: Chaos_NSkill_Beta_Level_5
+                Chance: 1
           
           - Enchant: Chaos_OSkill_Beta_Level_6
             Price: 162000
@@ -2786,6 +3015,8 @@ Body:
                 Chance: 1
               - Item: Chaos_OSkill_Beta_Level_6
                 Chance: 3
+              - Item: Chaos_NSkill_Beta_Level_6
+                Chance: 1
           
           - Enchant: Chaos_OSkill_Beta_Level_7
             Price: 486000
@@ -2796,6 +3027,8 @@ Body:
                 Chance: 1
               - Item: Chaos_OSkill_Beta_Level_7
                 Chance: 3
+              - Item: Chaos_NSkill_Beta_Level_7
+                Chance: 1
           
           - Enchant: Chaos_OSkill_Beta_Level_8
             Price: 1458000
@@ -2806,6 +3039,8 @@ Body:
                 Chance: 1
               - Item: Chaos_OSkill_Beta_Level_8
                 Chance: 3
+              - Item: Chaos_NSkill_Beta_Level_8
+                Chance: 1
           
           - Enchant: Chaos_OSkill_Beta_Level_9
             Price: 4374000
@@ -2816,6 +3051,8 @@ Body:
                 Chance: 1
               - Item: Chaos_OSkill_Beta_Level_9
                 Chance: 3
+              - Item: Chaos_NSkill_Beta_Level_9
+                Chance: 1
           
           - Enchant: Chaos_OSkill_Beta_Level_10
             Price: 13122000
@@ -2826,6 +3063,8 @@ Body:
                 Chance: 1
               - Item: Chaos_OSkill_Beta_Level_10
                 Chance: 3
+              - Item: Chaos_NSkill_Beta_Level_10
+                Chance: 1
           
       - Slot: 3
         PerfectEnchants:

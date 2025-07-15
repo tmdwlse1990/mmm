@@ -1,3 +1,4 @@
+-	shop	Octo_Shop	-1,512:-1
 mal_dun01,214,229,4	script	[ Octopus Shop ]	10539,{
 function ShopSettings;
 function ValidateCost;
@@ -26,7 +27,6 @@ mes "";
 callshop "Octo_Shop",1;
 npcshopattach "Octo_Shop";
 end;
-}
 
 function	ShopSettings	{
 	switch( getarg(0) ){	
@@ -51,7 +51,7 @@ function	ShopSettings	{
 			set @Currency$,"#OCTO_POINT";
 			// Item ID Lists
 			// Option Class 1
-			setarray @ItemLists[0]	,28522		// รองเท้าบอส
+			setarray @ItemLists[0]	,2170001		// รองเท้าบอส
 									,2235015	
 									,2235016
 									,2235017

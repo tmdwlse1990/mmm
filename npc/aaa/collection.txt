@@ -8,7 +8,54 @@
 //= Collection demonstrates.
 //============================================================
 
--	script	Collection	105,{
-	openstorage2 1,STOR_MODE_GET|STOR_MODE_PUT;
+-	script	Collection	-1,{
+Main:
+	setdialogsize(250,400);
+	mes "[Personal Manager]";
+	mes "Chaos Dungeon :"+( ( (checkquest(11,PLAYTIME) == -1) || (checkquest(11,PLAYTIME) == 2) ) ? "^33fc4c พร้อมลง":"^ff0000 ลงแล้ว" )+"^000000";
+	mes "Guardian Dungeon :"+( ( (checkquest(12,PLAYTIME) == -1) || (checkquest(12,PLAYTIME) == 2) ) ? "^33fc4c พร้อมลง":"^ff0000 ลงแล้ว" )+"^000000";
+	mes "ท่านต้องการจะทำอะไร";
+GOODS:
+	menu 	
+	"• วาปไปหน้าดันเจี้ยนเซิฟเวอร์",-,
+	"• เช็คเวลา Instance",-,
+	"• ผสมหินออฟชั่น Stats",-,
+	"• เปิดคลัง Collection",-,
+	"• ออก.",-;
+	.@menu = @menu;
+	switch(.@menu) {
+		case 2:
+			clear;
+			mes "[Personal Manager]";
+			mes "Kraken Raid :"+( ( (checkquest(51,PLAYTIME) == -1) || (checkquest(51,PLAYTIME) == 2) ) ? "^33fc4c พร้อมลง":"^ff0000 ลงแล้ว" )+"^000000";
+			mes "Orcs Memories :"+( ( (checkquest(12059,PLAYTIME) == -1) || (checkquest(12059,PLAYTIME) == 2) ) ? "^33fc4c พร้อมลง":"^ff0000 ลงแล้ว" )+"^000000";
+			goto GOODS;
+			break;
+		case 1:
+			warp "icecastle",24,120;
+			break;
+		case 3:
+			openstorage2 1,STOR_MODE_GET|STOR_MODE_PUT;
+			break;
+		default:
+			break;
+	}
+	end;
+
+}
+
+-	script	#stats_combine	-1,{
+	
+			menu 
+			"ย่อยเม็ด Stats ที่ไม่ใช้",-,
+			"เปิดร้านค้ากล่อง Stats",-,
+			"Main Menu",GOODS,
+			.@menu2 = @menu;
+			end;
+OnBuyItem:
+	end;
+OnSellItem:
+	end;
+Oninit:
 	end;
 }

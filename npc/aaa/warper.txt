@@ -564,7 +564,8 @@ G8: Restrict("RE");
 // --------------------------------------------------
 menu
 	"Octopus Cave",I14,
-	"Orc's Memory",I16
+	"Orc's Memory",I16,
+	"Kraken Raid",I31
 	;
 /*
 menu	"Bakonawa Lake",I1, "Bangungot Hospital 2F",I2, "Buwaya Cave",I3,
@@ -611,6 +612,8 @@ I18: Restrict("RE");
 I19: Go("monk_test",306,143);
 I20: Restrict("RE");
 	Go("lhz_dun04",148,269);
+I31: Restrict("RE");
+	Go("mal_dun01",208,225);
 
 // --------------------------------------------------
 	Special:

@@ -304,7 +304,32 @@ GarmentOP:
 			2235011, 2236011,	//	Mage skill 1
 			2235012, 2236012,	//	Mage skill 2
 			2235013, 2236013,	//	Novice skill 1
-			2235014, 2236014;	//	Novice skill 2
+			2235014, 2236014,	//	Novice skill 2
+			2235015, 2236015,	//	Knight skill 1
+			2235016, 2236016,	//	Knight skill 2
+			2235017, 2236017,	//	Priest skill 1
+			2235018, 2236018,	//	Priest skill 2
+			2235019, 2236019,	//	Wizard skill 1
+			2235020, 2236020,	//	Wizard skill 2
+			2235021, 2236021,	//	Blacksmith skill 1
+			2235022, 2236022,	//	Blacksmith skill 2
+			2235023, 2236023,	//	Hunter skill 1
+			2235024, 2236024,	//	Hunter skill 2
+			2235025, 2236025,	//	Ass skill 1
+			2235026, 2236026,	//	Ass skill 2
+			2235027, 2236027,	//	Crusa skill 1
+			2235028, 2236028,	//	Crusa skill 2
+			2235029, 2236029,	//	monk skill 1
+			2235030, 2236030,	//	monk skill 2
+			2235031, 2236031,	//	sage skill 1
+			2235032, 2236032,	//	sage skill 2
+			2235033, 2236033,	//	rogue skill 1
+			2235034, 2236034,	//	rogue skill 2
+			2235035, 2236035,	//	alche skill 1
+			2235036, 2236036,	//	alche skill 2
+			2235037, 2236037,	//	bd skill 1
+			2235038, 2236038,	//	bd skill 2
+			2235039, 2236039;	//	S-Novice skill 1
 
 	.@size = getarraysize(.@stone_id);
 	.@max_menu_size = 2047;	// temporary fix the menu length until new data

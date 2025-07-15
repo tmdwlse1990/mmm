@@ -1,0 +1,10 @@
+-	shop	#look	-1,501:-1
+
+icecastle,189,206,5	script	ไก่วิเศษ	800,{
+	callshop "#look";
+	end;
+Oninit:
+	for(.@i=0; .@i < 24; .@i++)
+		npcshopadditem "#look",(2235015+.@i),100;
+	npcshopdelitem "#look",501;
+}

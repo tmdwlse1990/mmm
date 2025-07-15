@@ -680,7 +680,7 @@ struct mob_data *mob_once_spawn_sub(struct block_list *bl, int16 m, int16 x, int
 /*==========================================
  * Spawn a single mob on the specified coordinates.
  *------------------------------------------*/
-int32 mob_once_spawn(map_session_data* sd, int16 m, int16 x, int16 y, const char* mobname, int32 mob_id, int32 amount, const char* event, uint32 size, enum mob_ai ai)
+int32 mob_once_spawn(map_session_data* sd, int16 m, int16 x, int16 y, const char* mobname, int32 mob_id, int32 amount, const char* event, uint32 size, enum mob_ai ai, int16 rank)
 {
 	struct mob_data* md = nullptr;
 	int32 count, lv;
@@ -718,7 +718,9 @@ int32 mob_once_spawn(map_session_data* sd, int16 m, int16 x, int16 y, const char
 					add_timer(gettick() + battle_config.mob_respawn_time,mob_spawn_guardian_sub,md->id,md->guardian_data->guild_id);
 			}
 		}	// end addition [Valaris]
-
+		
+		md->rank = rank;
+		
 		mob_spawn(md);
 
 		if (mob_id < 0 && battle_config.dead_branch_active)
@@ -733,7 +735,7 @@ int32 mob_once_spawn(map_session_data* sd, int16 m, int16 x, int16 y, const char
 /*==========================================
  * Spawn mobs in the specified area.
  *------------------------------------------*/
-int32 mob_once_spawn_area(map_session_data* sd, int16 m, int16 x0, int16 y0, int16 x1, int16 y1, const char* mobname, int32 mob_id, int32 amount, const char* event, uint32 size, enum mob_ai ai)
+int32 mob_once_spawn_area(map_session_data* sd, int16 m, int16 x0, int16 y0, int16 x1, int16 y1, const char* mobname, int32 mob_id, int32 amount, const char* event, uint32 size, enum mob_ai ai, int16 rank)
 {
 	int32 i, max, id = 0;
 	int32 lx = -1, ly = -1;
@@ -779,7 +781,7 @@ int32 mob_once_spawn_area(map_session_data* sd, int16 m, int16 x0, int16 y0, int
 		lx = x;
 		ly = y;
 
-		id = mob_once_spawn(sd, m, x, y, mobname, mob_id, 1, event, size, ai);
+		id = mob_once_spawn(sd, m, x, y, mobname, mob_id, 1, event, size, ai, rank);
 	}
 
 	return id; // id of last spawned mob
@@ -1220,7 +1222,9 @@ int32 mob_spawn (struct mob_data *md)
 	md->last_skillcheck = tick;
 	md->trickcasting = 0;
 	if(!md->rank) md->rank = rnd() % battle_config.config_random_monster_rank; // [Start's] Rank 0~90
-
+	else if (md->rank < 0) md->rank = 0;
+	
+	
 	for (i = 0; i < MAX_MOBSKILL; i++)
 		md->skilldelay[i] = 0;
 	for (i = 0; i < DAMAGELOG_SIZE; i++)

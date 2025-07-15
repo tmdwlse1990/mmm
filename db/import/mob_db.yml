@@ -1072,6 +1072,94 @@ Body:
   - Id: 22382
     AegisName: CLB_SS_TZ
     Name: Tai-Zi
+
+  - Id: 28001
+    AegisName: KRAKEN_ICE
+    Name: Ice Kraken
+    Title: "<Ice Lord>"
+    Level: 100
+    Hp: 3502800
+    Sp: 0
+    BaseExp: 0
+    JobExp: 0
+    MvpExp: 0
+    Attack: 1411
+    Attack2: 744
+    Defense: 55
+    MagicDefense: 229
+    Str: 196
+    Agi: 99
+    Vit: 61
+    Int: 44
+    Dex: 162
+    Luk: 99
+    AttackRange: 4
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Fish
+    Element: Water
+    ElementLevel: 4
+    WalkSpeed: 130
+    AttackDelay: 432
+    AttackMotion: 864
+    ClientAttackMotion: 480
+    DamageMotion: 360
+    Ai: 21
+    Class: Boss
+    Modes:
+      Mvp: true
+    MvpDrops:
+      - Item: MVP_Option_Box_T2
+        Rate: 5000
+      - Item: Treasure_Box
+        Rate: 5000
+    Drops:
+      - Item: Tentacle
+        Rate: 2500
+      - Item: Shadowdecon
+        Rate: 50
+      - Item: Mistic_Frozen
+        Rate: 250
+      - Item: Kraken_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 28002
+    AegisName: KRAKEN_LEG_ICE
+    Name: Ice Kraken Leg
+    Title: "<Ice Tentacle>"
+    Level: 100
+    Hp: 339190
+    Sp: 0
+    Attack: 441
+    Attack2: 372
+    Defense: 127
+    MagicDefense: 158
+    Str: 130
+    Agi: 92
+    Vit: 0
+    Int: 0
+    Dex: 389
+    Luk: 54
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Fish
+    Element: Water
+    ElementLevel: 3
+    WalkSpeed: 300
+    AttackDelay: 576
+    AttackMotion: 864
+    ClientAttackMotion: 288
+    DamageMotion: 240
+    Ai: 21
+    Class: Boss
+    Drops:
+      - Item: Sticky_Poison
+        Rate: 1
+      - Item: Cold_Ice
+        Rate: 1
 # New
   - Id: 23000
     AegisName: DARK_ILLUSION2

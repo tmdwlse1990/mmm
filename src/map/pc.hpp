@@ -596,6 +596,12 @@ public:
 		uint32 no_fatal_dmg : 1;
 		uint32 skillup1 : 1;
 		uint32 skillup2 : 1;
+		uint32 skillup3 : 1;
+		uint32 skillup4 : 1;
+		uint32 skillup5 : 1;
+		uint32 skillup6 : 1;
+		uint32 skillup7 : 1;
+		uint32 skillup8 : 1;
 	} special_state;
 	uint32 login_id1, login_id2;
 	uint64 class_;	//This is the internal job ID used by the map server to simplify comparisons/queries/etc. [Skotlex]

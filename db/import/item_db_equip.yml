@@ -454,3 +454,21 @@ Body:
         skill "MC_OVERCHARGE",10;
         skill "MC_DISCOUNT",10;
       }
+#  [Shoes]
+  - Id: 2170001
+    AegisName: Ice Tentacle Skins Shoes
+    Name: Ice_Tentacle_Skins_Shoes
+    Type: Armor
+    Weight: 1000
+    Locations:
+      Shoes: true
+    ArmorLevel: 1
+    Slots: 1
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoGuildStorage: true
+      NoMail: true
+    Script: |
+      bonus2 bSubEle,Ele_Water,5;
+      bonus2 bResEff,Eff_Freeze,10000;

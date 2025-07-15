@@ -1,7 +1,0 @@
-icecastle,189,206,5	script	ä¡èÇÔàÈÉ	800,{
-	makeitem 2002011,1,"this",189 + rand(-2,2),206  + rand(-2,2),true;
-	makeitem 2002012,1,"this",189 + rand(-2,2),206  + rand(-2,2),true;
-	makeitem 2002013,1,"this",189 + rand(-2,2),206  + rand(-2,2),true;
-	makeitem 2002014,1,"this",189 + rand(-2,2),206  + rand(-2,2),true;
-end;
-}

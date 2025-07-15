@@ -6755,7 +6755,7 @@
 2173,Gold Two-Horn Scaraba@NPC_STONESKIN,attack,675,3,10000,0,30000,yes,self,always,0,,,,,,,
 
 // Malangdo Island
-2174,Deep Sea Vadon@ST_FULLSTRIP,attack,476,5,1000,0,5000,yes,target,always,0,,,,,,6,
+//2174,Deep Sea Vadon@ST_FULLSTRIP,attack,476,5,1000,0,5000,yes,target,always,0,,,,,,6,
 2174,Deep Sea Vadon@NPC_STUNATTACK,attack,179,2,500,1500,5000,no,target,always,0,,,,,,6,
 2174,Deep Sea Vadon@NPC_WATERATTACK,attack,184,1,2000,0,5000,yes,target,always,0,,,,,,,
 2174,Deep Sea Vadon@CR_AUTOGUARD,chase,249,2,2000,0,300000,yes,target,longrangeattacked,,,,,,,,

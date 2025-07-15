@@ -76,16 +76,24 @@ icecastle,209,170,4	script	อัพเกรดบัตรนักผจญภัย	4_EP21_HEINE_TAB,{
 
 	// ชื่อ Rank
 	setarray .@rankname$[0],"F","E","D","C","B","A";
-
+	
+	// จำนวนขั้นสูงสุดที่อัพได้ต่อ Rank (10 ขั้น)
+	.@max_level = 10;
+	
 	// เมนูเลือก stat ที่จะอัพ
 	.@menu$ = "";
 	for(.@i = 0; .@i < getarraysize($class$); .@i++) {
-		.@menu$ += $class$[.@i] + ":";
+		
+		.@total_check = getd($stats$[.@i]);
+		.@cur_check = .@total_check - (adv_clas * .@max_level);
+		if(.@cur_check < .@max_level)
+			.@menu$ += $class$[.@i] + ":";
+		else
+			.@menu$ += ":";
 	}
 	.@menu = select(.@menu$) - 1;
 
-	// จำนวนขั้นสูงสุดที่อัพได้ต่อ Rank (10 ขั้น)
-	.@max_level = 10;
+	
 
 	// ค่า stat รวมสะสมทั้งหมด (ทุก Rank รวมกัน)
 	.@total_stat = getd($stats$[.@menu]);

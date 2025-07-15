@@ -7500,6 +7500,7 @@ static int32 status_calc_batk(struct block_list *bl, status_change *sc, int32 ba
 		batk += batk * sc->getSCE(SC_SUNSTANCE)->val2 / 100;
 	if (sc->getSCE(SC_INTENSIVE_AIM))
 		batk += 150;
+	
 
 	return batk;
 }
@@ -7592,6 +7593,8 @@ static uint16 status_calc_watk(struct block_list *bl, status_change *sc, int32 w
 		watk += sc->getSCE(SC_POWERFUL_FAITH)->val2;
 	if (sc->getSCE(SC_GUARD_STANCE))
 		watk -= sc->getSCE(SC_GUARD_STANCE)->val3;
+	if (sc->getSCE(SC_CP_WEAPON))
+		watk += sc->getSCE(SC_CP_WEAPON)->val3;
 
 	return (uint16)cap_value(watk,0,USHRT_MAX);
 }
@@ -7650,6 +7653,8 @@ uint16 status_calc_pseudobuff_matk( map_session_data* sd, status_change *sc, int
 		matk += 50;
 	if (sc->getSCE(SC_CLIMAX_DES_HU))
 		matk += 100;
+	if (sc->getSCE(SC_CP_WEAPON))
+		matk += sc->getSCE(SC_CP_WEAPON)->val3;
 
 	return static_cast<uint16>( cap_value(matk,0,USHRT_MAX) );
 }
@@ -7952,9 +7957,9 @@ static defType status_calc_def(struct block_list *bl, status_change *sc, int32 d
 	if (sc->getSCE(SC_ASSUMPTIO))
 		def += sc->getSCE(SC_ASSUMPTIO)->val1 * 50;
 	if (sc->getSCE(SC_CP_ARMOR))
-		def += 100;
+		def += 100 + sc->getSCE(SC_CP_ARMOR)->val3;
 	if (sc->getSCE(SC_CP_HELM))
-		def += 100;
+		def += 100 + sc->getSCE(SC_CP_HELM)->val3;
 #endif
 	if (bl->type == BL_HOM && sc->getSCE(SC_DEFENCE))
 		def += sc->getSCE(SC_DEFENCE)->val2;
@@ -8147,9 +8152,9 @@ static defType status_calc_mdef(struct block_list *bl, status_change *sc, int32 
 	if (sc->getSCE(SC_CLIMAX_CRYIMP))
 		mdef += 100;
 	if (sc->getSCE(SC_CP_ARMOR))
-		mdef += 50;
+		mdef += 50 + sc->getSCE(SC_CP_ARMOR)->val4;
 	if (sc->getSCE(SC_CP_HELM))
-		mdef += 50;
+		mdef += 50 + sc->getSCE(SC_CP_HELM)->val4;
 
 	return (defType)cap_value(mdef,DEFTYPE_MIN,DEFTYPE_MAX);
 }
@@ -10998,7 +11003,20 @@ static bool status_change_start_post_delay(block_list* src, block_list* bl, sc_t
 		case SC_SOULATTACK:
 			tick = INFINITE_TICK;
 			break;
-
+		
+		case SC_CP_WEAPON:
+			if(sd && sd->special_state.skillup4) {
+				val3 = 315;
+			}
+			break;
+		case SC_CP_HELM:
+		case SC_CP_ARMOR:
+			if(sd && sd->special_state.skillup4) {
+				val3 = 100; // Def increase
+				val4 = 50;
+			}
+			break;
+			
 		case SC_KEEPING:
 		case SC_BARRIER:
 			if (unit_data* ud = unit_bl2ud(bl); ud != nullptr) {

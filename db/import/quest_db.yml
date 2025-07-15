@@ -84,6 +84,9 @@ Body: #ให้ใช้ ID ไม่เกิน 1000
   - Id: 12
     Title: Guardian Raid
     TimeLimit: 1h
+  - Id: 51
+    Title: Kraken Raid
+    TimeLimit: 1h
   - Id: 81
     Title: Rank E Condition
     Targets: 

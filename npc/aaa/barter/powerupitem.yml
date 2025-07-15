@@ -123,6 +123,44 @@ Body:
           - Index: 0
             Item: Ancient_Gold_Coin
             Amount: 5
+  - Name: PowerupItemNoCoin
+    Items:
+      - Index: 1
+        Item: Small_Life_Potion
+        Zeny: 40000
+      - Index: 2
+        Item: Med_Life_Potion
+        Zeny: 60000
+      - Index: 3
+        Item: Mysterious_Water
+        Zeny: 60000
+      - Index: 4
+        Item: Small_Mana_Potion
+        Zeny: 50000
+      - Index: 5
+        Item: M_DEFScroll
+        Zeny: 60000
+      - Index: 6
+        Item: Almighty
+        Zeny: 300000
+      - Index: 7
+        Item: Limit_Power_Booster
+        Zeny: 150000
+      - Index: 8
+        Item: Infinity_Drink
+        Zeny: 150000
+      - Index: 9
+        Item: Red_Booster
+        Zeny: 100000
+      - Index: 10
+        Item: ASPD_Potion
+        Zeny: 60000
+      - Index: 11
+        Item: Tyr's_Blessing
+        Zeny: 50000
+      - Index: 12
+        Item: Mental_Potion
+        Zeny: 50000
   - Name: PowerupItemCombine
     Items:
       - Index: 0

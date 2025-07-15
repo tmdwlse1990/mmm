@@ -851,6 +851,12 @@
 	export_constant2("bNoFatalDamage", SP_NO_FATAL);
 	export_constant2("bSkillUpgrade1", SP_UPSKILL1);
 	export_constant2("bSkillUpgrade2", SP_UPSKILL2);
+	export_constant2("bSkillUpgrade3", SP_UPSKILL3);
+	export_constant2("bSkillUpgrade4", SP_UPSKILL4);
+	export_constant2("bSkillUpgrade5", SP_UPSKILL5);
+	export_constant2("bSkillUpgrade6", SP_UPSKILL6);
+	export_constant2("bSkillUpgrade7", SP_UPSKILL7);
+	export_constant2("bSkillUpgrade8", SP_UPSKILL8);
 	export_constant2("bIgnoreDef",SP_IGNORE_DEF_POINTS);
 	export_constant2("bIgnoreMDef",SP_IGNORE_MDEF_POINTS);
 	export_constant2("bAspdCap",SP_ASPD_CAP);
@@ -7341,6 +7347,15 @@
 	export_constant(IG_SHADOW_CUBE_SAK);
 
 	// [Custom IG]
+	export_constant(IG_STATSBOX2);
+	export_constant(IG_STATSBOX3);
+	export_constant(IG_STATSBOX4);
+	export_constant(IG_STATSBOX5);
+	export_constant(IG_STATSBOX6);
+	export_constant(IG_STATSBOX7);
+	export_constant(IG_STATSBOX8);
+	export_constant(IG_STATSBOX9);
+	export_constant(IG_STATSBOX10);
 	export_constant(IG_COMMON2RARE_PET);
 	export_constant(IG_RARE2EPIC_PET);
 	export_constant(IG_EPIC2LEGEND_PET);

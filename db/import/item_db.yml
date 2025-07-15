@@ -582,6 +582,69 @@ Body:
     Weight: 10
     Script: |
       laphine_synthesis();
+  - Id: 2001905
+    AegisName: STATSBOX2
+    Name: STATSBOX2
+    Type: Usable
+    Weight: 10
+    Script: |
+      getgroupitem(IG_STATSBOX2);
+  - Id: 2001906
+    AegisName: STATSBOX3
+    Name: STATSBOX3
+    Type: Usable
+    Weight: 10
+    Script: |
+      getgroupitem(IG_STATSBOX3);
+  - Id: 2001907
+    AegisName: STATSBOX4
+    Name: STATSBOX4
+    Type: Usable
+    Weight: 10
+    Script: |
+      getgroupitem(IG_STATSBOX4);
+  - Id: 2001908
+    AegisName: STATSBOX5
+    Name: STATSBOX5
+    Type: Usable
+    Weight: 10
+    Script: |
+      getgroupitem(IG_STATSBOX5);
+  - Id: 2001909
+    AegisName: STATSBOX6
+    Name: STATSBOX6
+    Type: Usable
+    Weight: 10
+    Script: |
+      getgroupitem(IG_STATSBOX6);
+  - Id: 2001910
+    AegisName: STATSBOX7
+    Name: STATSBOX7
+    Type: Usable
+    Weight: 10
+    Script: |
+      getgroupitem(IG_STATSBOX7);
+  - Id: 2001911
+    AegisName: STATSBOX8
+    Name: STATSBOX8
+    Type: Usable
+    Weight: 10
+    Script: |
+      getgroupitem(IG_STATSBOX8);
+  - Id: 2001912
+    AegisName: STATSBOX9
+    Name: STATSBOX9
+    Type: Usable
+    Weight: 10
+    Script: |
+      getgroupitem(IG_STATSBOX9);
+  - Id: 2001913
+    AegisName: STATSBOX10
+    Name: STATSBOX10
+    Type: Usable
+    Weight: 10
+    Script: |
+      getgroupitem(IG_STATSBOX10);
   - Id: 2001951
     AegisName: Donate_Pet_Box
     Name: Donate Pet Box
@@ -1511,6 +1574,76 @@ Body:
     SubType: Enchant
     Script: |
       bonus2 bSkillrate,SKILLRATE_TYPE_MISC,40;
+  - Id: 2234231
+    AegisName: Chaos_NSkill_Beta_Level_1
+    Name: Chaos Normal Beta Level 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bNormalRatio,10;
+  - Id: 2234232
+    AegisName: Chaos_NSkill_Beta_Level_2
+    Name: Chaos Normal Beta Level 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bNormalRatio,20;
+  - Id: 2234233
+    AegisName: Chaos_NSkill_Beta_Level_3
+    Name: Chaos Normal Beta Level 3
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bNormalRatio,30;
+  - Id: 2234234
+    AegisName: Chaos_NSkill_Beta_Level_4
+    Name: Chaos Normal Beta Level 4
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bNormalRatio,40;
+  - Id: 2234235
+    AegisName: Chaos_NSkill_Beta_Level_5
+    Name: Chaos Normal Beta Level 5
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bNormalRatio,50;
+  - Id: 2234236
+    AegisName: Chaos_NSkill_Beta_Level_6
+    Name: Chaos Normal Beta Level 6
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bNormalRatio,60;
+  - Id: 2234237
+    AegisName: Chaos_NSkill_Beta_Level_7
+    Name: Chaos Normal Beta Level 7
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bNormalRatio,70;
+  - Id: 2234238
+    AegisName: Chaos_NSkill_Beta_Level_8
+    Name: Chaos Normal Beta Level 8
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bNormalRatio,80;
+  - Id: 2234239
+    AegisName: Chaos_NSkill_Beta_Level_9
+    Name: Chaos Normal Beta Level 9
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bNormalRatio,100;
+  - Id: 2234240
+    AegisName: Chaos_NSkill_Beta_Level_10
+    Name: Chaos Normal Beta Level 10
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bNormalRatio,150;
   - Id: 2234301
     AegisName: Chaos_Str_Delta_Level_1
     Name: Chaos Str Delta Level 1
@@ -2671,6 +2804,280 @@ Body:
       if( BaseClass == Job_Novice) {
          autobonus3 "{ sc_start SC_ASSUMPTIO,600000,3;sc_start SC_Impositio,600000,10;sc_start SC_Slowpoison,600000,1;sc_start SC_Suffragium,600000,3;sc_start SC_Kyrie,600000,7;sc_start SC_Gloria,600000,1;sc_start SC_Weaponperfection,600000,3;sc_start SC_Overthrust,600000,3;sc_start SC_Loud,600000,1;sc_start SC_Explosionspirits,600000,3;sc_start SC_Magnificat,600000,3; }",1000,600000,"NV_FIRSTAID","{ specialeffect2 EF_ASSUMPTIO; specialeffect2 EF_Weaponperfection; specialeffect2 EF_Overthrust; specialeffect2 EF_Loud;specialeffect2 EF_Impositio;specialeffect2 EF_Gloria;specialeffect2 EF_Slowpoison; }";
       }
+  - Id: 2236015
+    AegisName: KN_Up_Skill_Ston_1
+    Name: Knight Upgrade Skill 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == Job_Swordman) {
+        if(getskilllv("KN_PIERCE") >= 15)
+        bonus4 bAutoSpellOnSkill,"KN_SPEARBOOMERANG","KN_PIERCE",getskilllv("KN_PIERCE"),1000;
+      }
+  - Id: 2236016
+    AegisName: KN_Up_Skill_Ston_2
+    Name: Knight Upgrade Skill 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == Job_Swordman) {
+        if(getskilllv("KN_TWOHANDQUICKEN") >= 10) {
+          skill "KN_ONEHAND",1;
+          autobonus3 "{ bonus bCritical,50; bonus bDoubleRate,50; }",1000,300000,"KN_ONEHAND";
+          autobonus3 "{ bonus bCritical,50; bonus bDoubleRate,50; }",1000,300000,"KN_TWOHANDQUICKEN";
+        }
+      }
+  - Id: 2236017
+    AegisName: PR_Up_Skill_Ston_1
+    Name: Priest Upgrade Skill 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == Job_Acolyte) {
+        if(getskilllv("PR_MAGNUS") >= 10) {
+          bonus bSkillUpgrade3;
+        }
+      }
+  - Id: 2236018
+    AegisName: PR_Up_Skill_Ston_2
+    Name: Priest Upgrade Skill 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == Job_Acolyte) {
+        if(getskilllv("PR_IMPOSITIO") >= 15) {
+          bonus bSkillUpgrade4;
+        }
+      }
+  - Id: 2236019
+    AegisName: WZ_Up_Skill_Ston_1
+    Name: Wizard Upgrade Skill 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == Job_Mage) {
+        if(getskilllv("WZ_JUPITEL") >= 10) {
+          bonus bVariableCastrate,-45;
+        }
+        if(getskilllv("WZ_WATERBALL") >= 10) {
+          bonus bDex,10;
+        }
+        bonus4 bAutoSpellOnSkill,"MG_ENERGYCOAT","WL_RECOGNIZEDSPELL",1,1000;
+      }
+  - Id: 2236020
+    AegisName: WZ_Up_Skill_Ston_2
+    Name: Wizard Upgrade Skill 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == Job_Mage) {
+        if(getskilllv("WZ_STORMGUST") >= 15 && getskilllv("WZ_VERMILION") >= 15 && getskilllv("WZ_METEOR") >= 10 ) {
+          bonus bSkillUpgrade4;
+          skill "WL_COMET",5;
+          bonus2 bSkillAtk,"WZ_STORMGUST",35;
+          bonus2 bSkillAtk,"WZ_VERMILION",35;
+          bonus2 bSkillAtk,"WZ_METEOR",35;
+        }
+      }
+  - Id: 2236021
+    AegisName: BS_Up_Skill_Ston_1
+    Name: Blacksmith Upgrade Skill 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == Job_Merchant) {
+        if(getskilllv("BS_HAMMERFALL") >= 15) {
+          bonus bSkillUpgrade3;
+          bonus2 bSkillAoe,"BS_HAMMERFALL",2;
+        }
+      }
+  - Id: 2236022
+    AegisName: BS_Up_Skill_Ston_2
+    Name: Blacksmith Upgrade Skill 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == Job_Merchant) {
+        if(getskilllv("BS_OVERTHRUST") >= 15) {
+          bonus bSkillUpgrade4;
+        }
+      }
+  - Id: 2236023
+    AegisName: HT_Up_Skill_Ston_1
+    Name: Hunter Upgrade Skill 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == Job_Archer) {
+        if(getskilllv("HT_BLITZBEAT") >= 15) {
+          bonus bSkillUpgrade3;
+        }
+      }
+  - Id: 2236024
+    AegisName: HT_Up_Skill_Ston_2
+    Name: Hunter Upgrade Skill 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == Job_Archer) {
+        if(getskilllv("HT_CLAYMORETRAP")) {
+          skill "RA_DETONATOR",1;
+          skill "RA_RESEARCHTRAP",10;
+        }
+      }
+  - Id: 2236025
+    AegisName: AS_Up_Skill_Ston_1
+    Name: Assassin Upgrade Skill 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == Job_Thief) {
+        if(getskilllv("AS_GRIMTOOTH") >= 15) {
+          bonus4 bAutoSpellOnSkill,"AS_GRIMTOOTH","AS_SONICBLOW",5,1000;
+        }
+      }
+  - Id: 2236026
+    AegisName: AS_Up_Skill_Ston_2
+    Name: Assassin Upgrade Skill 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == Job_Thief) {
+        if(getskilllv("AS_RIGHT") >= 10 && getskilllv("AS_LEFT") >= 10) {
+          bonus bSkillUpgrade4;
+        }
+      }
+  - Id: 2236027
+    AegisName: CR_Up_Skill_Ston_1
+    Name: Crusader Upgrade Skill 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == Job_Swordman) {
+        if(getskilllv("CR_TRUST") || getskilllv("CR_AUTOGUARD")) {
+          bonus2 bAddClass,Class_All,20;
+          bonus2 bMagicAddClass,Class_All,20;
+          skill "IG_ATTACK_STANCE",5;
+        }
+      }
+  - Id: 2236028
+    AegisName: CR_Up_Skill_Ston_2
+    Name: Crusader Upgrade Skill 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == Job_Swordman) {
+        if(getskilllv("CR_TRUST") || getskilllv("CR_AUTOGUARD")) {
+          bonus2 bSubClass,Class_All,20;
+          skill "IG_GUARD_STANCE",5;
+        }
+      }
+  - Id: 2236029
+    AegisName: MO_Up_Skill_Ston_1
+    Name: Monk Upgrade Skill 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == Job_Acolyte) {
+        if(getskilllv("MO_TRIPLEATTACK") >= 10 ) {
+          bonus bSkillUpgrade3;
+        }
+      }
+  - Id: 2236030
+    AegisName: MO_Up_Skill_Ston_2
+    Name: Monk Upgrade Skill 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == Job_Acolyte) {
+        if(getskilllv("MO_IRONHAND") ) {
+          bonus bCritAtkRate,30;
+        }
+      }
+  - Id: 2236031
+    AegisName: SG_Up_Skill_Ston_1
+    Name: Sage Upgrade Skill 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == Job_Mage) {
+        if(getskilllv("SA_AUTOSPELL")>= 15 ) {
+          skill "SL_SAGE",5;
+        }
+      }
+  - Id: 2236032
+    AegisName: SG_Up_Skill_Ston_2
+    Name: Sage Upgrade Skill 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == Job_Mage) {
+        if(getskilllv("SA_AUTOSPELL")>= 15 ) {
+          skill "SO_SPELLFIST",10;
+        }
+      }
+  - Id: 2236033
+    AegisName: RG_Up_Skill_Ston_1
+    Name: Rogue Upgrade Skill 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == Job_Thief) {
+        if(getskilllv("RG_PLAGIARISM") ) {
+          skill "SC_AUTOSHADOWSPELL",min(10,getskilllv("RG_PLAGIARISM"));
+        }
+      }
+  - Id: 2236034
+    AegisName: RG_Up_Skill_Ston_2
+    Name: Rogue Upgrade Skill 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == Job_Thief) {
+        if(getskilllv("RG_RAID") >= 5 && getskilllv("RG_BACKSTAP") >= 10) {
+          bonus bSkillUpgrade4;
+        }
+      }
+  - Id: 2236035
+    AegisName: AM_Up_Skill_Ston_1
+    Name: Alchemist Upgrade Skill 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == Job_Merchant) {
+        if(getskilllv("AM_ACIDTERROR") >= 10) {
+          bonus4 bAutoSpellOnSkill,"AM_DEMONSTRATION","AM_ACIDTERROR",10,350;
+        }
+      }
+  - Id: 2236036
+    AegisName: AM_Up_Skill_Ston_2
+    Name: Alchemist Upgrade Skill 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == Job_Merchant) {
+        bonus bSkillUpgrade4;
+      }
+  - Id: 2236037
+    AegisName: BD_Up_Skill_Ston_1
+    Name: Musician Upgrade Skill 1
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == Job_Archer) {
+        if(getskilllv("DC_THROWARROW") >= 15 || getskilllv("BA_MUSICALSTRIKE") >= 15) {
+          bonus bSkillUpgrade3;
+        }
+      }
+  - Id: 2236038
+    AegisName: BD_Up_Skill_Ston_2
+    Name: Musician Upgrade Skill 2
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == Job_Archer) {
+        skill "WM_FRIGG_SONG",5;
+      }
 #   [Card Item]
   - Id: 2230001
     AegisName: GOLDEN_SAVAGE_Card
@@ -2700,6 +3107,10 @@ Body:
       bonus bStr,2;
       bonus bBaseAtk,20;
 #   [Etc Item]
+  - Id: 2239000
+    AegisName: Stats Powder
+    Name: Stats_Powder
+    Type: etc
   - Id: 2239001
     AegisName: Fei-Chai_doll
     Name: Fei-Chai Doll

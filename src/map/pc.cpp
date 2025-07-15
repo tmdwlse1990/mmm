@@ -4705,6 +4705,30 @@ void pc_bonus(map_session_data *sd,int32 type,int32 val)
 			if (sd->state.lr_flag != LR_FLAG_ARROW)
 				sd->special_state.skillup2 = 1;
 			break;
+		case SP_UPSKILL3:
+			if (sd->state.lr_flag != LR_FLAG_ARROW)
+				sd->special_state.skillup3 = 1;
+			break;
+		case SP_UPSKILL4:
+			if (sd->state.lr_flag != LR_FLAG_ARROW)
+				sd->special_state.skillup4 = 1;
+			break;
+		case SP_UPSKILL5:
+			if (sd->state.lr_flag != LR_FLAG_ARROW)
+				sd->special_state.skillup5 = 1;
+			break;
+		case SP_UPSKILL6:
+			if (sd->state.lr_flag != LR_FLAG_ARROW)
+				sd->special_state.skillup6 = 1;
+			break;
+		case SP_UPSKILL7:
+			if (sd->state.lr_flag != LR_FLAG_ARROW)
+				sd->special_state.skillup7 = 1;
+			break;
+		case SP_UPSKILL8:
+			if (sd->state.lr_flag != LR_FLAG_ARROW)
+				sd->special_state.skillup8 = 1;
+			break;
 		default:
 			if (current_equip_combo_pos > 0) {
 				ShowWarning("pc_bonus: unknown bonus type %d %d in a combo with item #%u\n", type, val, sd->inventory_data[pc_checkequip( sd, current_equip_combo_pos )]->nameid);

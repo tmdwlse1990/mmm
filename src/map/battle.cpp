@@ -3170,7 +3170,7 @@ static bool is_attack_critical(struct Damage* wd, struct block_list *src, struct
 
 		//The official equation is *2, but that only applies when sd's do critical.
 		//Therefore, we use the old value 3 on cases when an sd gets attacked by a mob
-		cri -= tstatus->luk * ((!sd && tsd) ? 3 : 2);
+		cri -= tstatus->luk	;
 
 		if( tsc && tsc->getSCE(SC_SLEEP) )
 			cri *= 2;
@@ -3265,6 +3265,10 @@ static bool is_attack_critical(struct Damage* wd, struct block_list *src, struct
 			case GS_TRACKING:
 				cri = 0;
 				cri +=  sstatus->hit * 4;
+				break;
+			case DC_THROWARROW:
+				if(sd != nullptr && sd->special_state.skillup3)
+					cri += 500;
 				break;
 			case NJ_ISSEN:
 				return true;
@@ -4402,7 +4406,7 @@ static void battle_calc_skill_base_damage(struct Damage* wd, struct block_list *
 
 				//Base damage of shield skills is [batk + 4*refine + weight]
 				if (index >= 0 && sd->inventory_data[index] && sd->inventory_data[index]->type == IT_ARMOR) {
-					ATK_ADD(wd->damage, wd->damage2, 13 * sd->inventory.u.items_inventory[index].refine * (sd->inventory.u.items_inventory[index].enchantgrade + 1));
+					ATK_ADD(wd->damage, wd->damage2, 20 * sd->inventory.u.items_inventory[index].refine * (sd->inventory.u.items_inventory[index].enchantgrade + 1));
 					ATK_ADD(wd->damage, wd->damage2, sd->inventory_data[index]->weight / 10);
 #ifdef RENEWAL
 					ATK_ADD(wd->weaponAtk, wd->weaponAtk2, 13 * sd->inventory.u.items_inventory[index].refine * (sd->inventory.u.items_inventory[index].enchantgrade+1));
@@ -4656,7 +4660,10 @@ static void battle_calc_multi_attack(struct Damage* wd, struct block_list *src,s
 #else
 				max_rate = max(5 * skill_lv, sd->bonus.double_rate);
 #endif
-
+			if(sd && sd->special_state.skillup4 && pc_checkskill(sd,TF_DOUBLE) >= 15) {
+				max_rate = max(80,sd->bonus.double_rate);
+				max_rate2 = 45;
+			}
 			if( rnd()%100 < max_rate ) {
 				wd->div_ = skill_get_num(TF_DOUBLE,skill_lv?skill_lv:1);
 				if( rnd()%100 < max_rate2 )
@@ -4802,6 +4809,8 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 		//ATK percent modifier (in renewal, it's applied before the skillratio)
 		skillratio = battle_get_atkpercent(*src, skill_id, *sc);
 #endif
+		if (sd && !skill_id)
+			skillratio += 50;
 		if (sd != nullptr && skill_id)
 			skillratio += sd->bonus.skill_ratio;
 		if (sd != nullptr && !skill_id)
@@ -4994,6 +5003,8 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 				skillratio += (200 + 60 * skill_lv) / 2;
 			else
 				skillratio += 200 + 60 * skill_lv;
+			if(tsc && tsc->getSCE(SC_JYUMONJIKIRI))
+				skillratio += skillratio;
 			break;
 		case RG_RAID:
 #ifdef RENEWAL
@@ -5006,13 +5017,13 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 			skillratio += 30 * skill_lv;
 			break;
 		case CR_SHIELDCHARGE:
-			skillratio += 120 * skill_lv;
+			skillratio += 250 * skill_lv;
 			if (sc->getSCE(SC_CP_SHIELD))
 				skillratio += skillratio * 50 / 100;
 			break;
 		case CR_SHIELDBOOMERANG:
 #ifdef RENEWAL
-			skillratio += -100 + skill_lv * 160;
+			skillratio += -100 + skill_lv * 330;
 #else
 			skillratio += 30 * skill_lv;
 #endif
@@ -6962,6 +6973,12 @@ static void battle_attack_sc_bonus(struct Damage* wd, struct block_list *src, st
 					break;
 			}
 		}
+		if (sc->getSCE(SC_OVERTHRUST)) {
+			if (sd && sd->special_state.skillup4) {
+				ATK_RATE(wd->weaponAtk, wd->weaponAtk2, 200);
+				ATK_RATE(wd->equipAtk, wd->equipAtk2, 200);
+			}
+		}
 #endif
 		if (sc->getSCE(SC_DANCEWITHWUG)) {
 			if (skill_get_inf2(skill_id, INF2_INCREASEDANCEWITHWUGDAMAGE)) {
@@ -7742,6 +7759,8 @@ static struct Damage initialize_weapon_data(struct block_list *src, struct block
 				*/
 				if (sd && sd->status.weapon == W_2HSWORD)
 					wd.div_ = 4;
+				else if (sd && sd->status.weapon == W_1HSWORD)
+					wd.div_ = 3;
 				break;
 #endif
 			case KN_AUTOCOUNTER:
@@ -7816,6 +7835,10 @@ static struct Damage initialize_weapon_data(struct block_list *src, struct block
 				break;
 			case AC_DOUBLE:
 				if(sd && sd->special_state.skillup2)
+					wd.div_ += 1;
+				break;
+			case BA_MUSICALSTRIKE:
+				if(sd && sd->special_state.skillup3)
 					wd.div_ += 1;
 				break;
 		}
@@ -8145,9 +8168,12 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src, struct bl
 #ifdef RENEWAL
 	if (is_attack_critical(&wd, src, target, skill_id, skill_lv, false)) {
 		if (sd) { //Check for player so we don't crash out, monsters don't have bonus crit rates [helvetica]
-			wd.damage = (int64)floor((float)((wd.damage * (1.4f + (0.05f * sstatus->crate)))));
+			if(skill_id)
+				wd.damage = (int64)floor((float)((wd.damage * (1.5f + (0.05f * sstatus->crate)))));
+			else
+				wd.damage = (int64)floor((float)((wd.damage * (2.0f + (0.1f * sstatus->crate)))));
 			if (is_attack_left_handed(src, skill_id))
-				wd.damage2 = (int64)floor((float)((wd.damage2 * (1.4f + (0.05f * sstatus->crate)))));
+				wd.damage2 = (int64)floor((float)((wd.damage2 * (1.5f + (0.05f * sstatus->crate)))));
 		} else
 			wd.damage = (int64)floor((float)(wd.damage * 1.2f));
 
@@ -8407,6 +8433,9 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 				if(skill_id == WZ_EARTHSPIKE && sc->getSCE(SC_EARTHWEAPON) != nullptr)
 					ad.div_ += 3;
 			}
+		case PR_MAGNUS:
+			if(sd && sd->special_state.skillup3)
+				ad.div_ = 1;
 			break;
 	}
 
@@ -8728,6 +8757,9 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 					case PR_MAGNUS:
 						if (battle_check_undead(tstatus->race, tstatus->def_ele) || tstatus->race == RC_DEMON)
 							skillratio += 30;
+						
+						if(sd && sd->special_state.skillup3)
+							skillratio =+ -100 + skill_lv * 100;
 						break;
 					case BA_DISSONANCE:
 						skillratio += 10 + skill_lv * 50;
@@ -8804,7 +8836,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						RE_LVL_DMOD(100);
 						break;
 					case WL_COMET:
-						skillratio += -100 + 2500 + 700 * skill_lv;
+						skillratio += -100 + 3000 * skill_lv;
 						RE_LVL_DMOD(100);
 						break;
 					case WL_CHAINLIGHTNING_ATK:
@@ -9917,10 +9949,15 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 		case MA_LANDMINE:
 		case HT_BLASTMINE:
 		case HT_CLAYMORETRAP:
-			//md.damage = (int64)(skill_lv * sstatus->dex * (3.0 + (float)status_get_lv(src) / 100.0) * (1.0 + (float)sstatus->int_ / 35.0));
-			md.damage = (int64)( (skill_lv  * (10.0 + (float)status_get_lv(src) / 20.0) * (1.0 + (float)sstatus->int_ * 21)) );
-			md.damage += md.damage * (rnd()%20 - 10) / 100;
-			md.damage += (sd ? pc_checkskill(sd,RA_RESEARCHTRAP) * 40 : 0);
+			if (sd) {
+				//md.damage = (int64)(skill_lv * sstatus->dex * (3.0 + (float)status_get_lv(src) / 100.0) * (1.0 + (float)sstatus->int_ / 35.0));
+				md.damage = (int64)((skill_lv * (10.0 + (float)status_get_lv(src) / 20.0) * (1.0 + (float)sstatus->int_ * 19)));
+				md.damage += md.damage * (rnd() % 20 - 10) / 100;
+				md.damage += (sd ? pc_checkskill(sd, RA_RESEARCHTRAP) * 100 : 0); 
+			}
+			else {
+				md.damage = (int64)(skill_lv * sstatus->dex * (3.0 + (float)status_get_lv(src) / 100.0) * (1.0 + (float)sstatus->int_ / 35.0));
+			}
 			break;
 #else
 		case HT_LANDMINE:

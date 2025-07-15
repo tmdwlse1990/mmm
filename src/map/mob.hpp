@@ -411,7 +411,7 @@ struct mob_data : public block_list {
 	e_mob_damagereduction damagereduction;
 	bool nodrop;
 	uint16 damagemodifier;
-	uint16 rank; // [Start's]
+	int16 rank; // [Start's]
 
 	e_mob_bosstype get_bosstype();
 	map_session_data* get_mvp_player();
@@ -522,10 +522,10 @@ void mob_free_dynamic_viewdata( struct mob_data* md );
 struct mob_data *mob_once_spawn_sub(struct block_list *bl, int16 m, int16 x, int16 y, const char *mobname, int32 mob_id, const char *event, uint32 size, enum mob_ai ai);
 
 int32 mob_once_spawn(map_session_data* sd, int16 m, int16 x, int16 y,
-	const char* mobname, int32 mob_id, int32 amount, const char* event, uint32 size, enum mob_ai ai);
+	const char* mobname, int32 mob_id, int32 amount, const char* event, uint32 size, enum mob_ai ai, int16 rank);
 
 int32 mob_once_spawn_area(map_session_data* sd, int16 m,
-	int16 x0, int16 y0, int16 x1, int16 y1, const char* mobname, int32 mob_id, int32 amount, const char* event, uint32 size, enum mob_ai ai);
+	int16 x0, int16 y0, int16 x1, int16 y1, const char* mobname, int32 mob_id, int32 amount, const char* event, uint32 size, enum mob_ai ai, int16 rank);
 
 bool mob_ksprotected (struct block_list *src, struct block_list *target);
 

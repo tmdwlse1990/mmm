@@ -2288,6 +2288,7 @@ ACMD_FUNC(monster)
 	int32 count;
 	int32 i, range;
 	int16 mx, my;
+	int16 rank = 0;
 	uint32 size;
 	nullpo_retr(-1, sd);
 
@@ -2365,7 +2366,7 @@ ACMD_FUNC(monster)
 	for (i = 0; i < number; i++) {
 		int32 k;
 		map_search_freecell(sd, 0, &mx,  &my, range, range, 0);
-		k = mob_once_spawn(sd, sd->m, mx, my, name, mob_id, 1, eventname, size, AI_NONE);
+		k = mob_once_spawn(sd, sd->m, mx, my, name, mob_id, 1, eventname, size, AI_NONE,0);
 		if(k) {
 			//mapreg_setreg(reference_uid(add_str("$@mobid"), i),k); //retain created mobid in array uncomment if needed
 			count ++;
@@ -5318,9 +5319,32 @@ ACMD_FUNC(reloadnpcfile) {
 	}
 
 	npc_read_event_script();
-
+	 
 	ShowStatus( "NPC file '" CL_WHITE "%s" CL_RESET "' was reloaded.\n", message );
 	npc_event_doall_path( script_config.init_event_name, message );
+
+	clif_displaymessage(fd, msg_txt(sd,262)); // Script loaded.
+	return 0;
+}
+
+ACMD_FUNC(npc) {
+	if (!message || !*message) {
+		clif_displaymessage(fd, msg_txt(sd,733)); // Please enter a NPC file name (usage: @reloadnpcfile <file name>).
+		return -1;
+	}
+
+	if (npc_unloadfile(message))
+		clif_displaymessage(fd, msg_txt(sd,1386)); // File unloaded. Be aware that mapflags and monsters spawned directly are not removed.
+
+	if (!npc_addsrcfile(message, true)) {
+		clif_displaymessage(fd, msg_txt(sd,261)); // Script could not be loaded.
+		return -1;
+	}
+
+	npc_read_event_script();
+
+	ShowStatus("NPC file '" CL_WHITE "%s" CL_RESET "' was reloaded.\n", message);
+	npc_event_doall_path(script_config.init_event_name, message);
 
 	clif_displaymessage(fd, msg_txt(sd,262)); // Script loaded.
 	return 0;
@@ -11832,6 +11856,7 @@ void atcommand_basecommands(void) {
 
 		ACMD_DEF(itemmap),
 		ACMD_DEF2("itemmapbound",itemmap),
+		ACMD_DEF(npc),
 		
 		ACMD_DEF(mapmove),
 		ACMD_DEF(where),
