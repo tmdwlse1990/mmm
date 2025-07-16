@@ -8079,6 +8079,11 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src, struct bl
 						wd.damage2 += (int64)floor((float)(wd.damage2 * sd->bonus.crit_atk_rate / 100));
 				}
 			}
+			else {
+				wd.damage += (int64)floor((float)(wd.damage * sd->bonus.hit_physical_damage_rate / 100));
+				if (is_attack_left_handed(src, skill_id))
+					wd.damage2 += (int64)floor((float)(wd.damage2 * sd->bonus.hit_physical_damage_rate / 100));
+			}
 
 			if (wd.flag & BF_SHORT)
 				ATK_ADDRATE(wd.damage, wd.damage2, sd->bonus.short_attack_atk_rate);

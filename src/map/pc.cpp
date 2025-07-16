@@ -3941,6 +3941,10 @@ void pc_bonus(map_session_data *sd,int32 type,int32 val)
 			if (sd->state.lr_flag != LR_FLAG_ARROW)
 				sd->bonus.normal_ratio += val;
 			break;
+		case SP_HIT_PHYSICAL_DAMAGE_RATE:
+			if (sd->state.lr_flag != LR_FLAG_ARROW)
+				sd->bonus.hit_physical_damage_rate += val;
+			break;
 		/*
 		case SP_PERFECT_HIT_ADD_RATE:
 			if (sd->state.lr_flag != LR_FLAG_ARROW)
@@ -10567,6 +10571,7 @@ int64 pc_readparam(map_session_data* sd,int64 type)
 		case SP_ASPD_CAP:	val = sd->bonus.aspd_cap; break;
 		case SP_DROP_UP:	val = sd->bonus.drop_up; break;
 		case SP_NORMAL_RATIO:     val = sd->bonus.normal_ratio; break;
+		case SP_HIT_PHYSICAL_DAMAGE_RATE:     val = sd->bonus.hit_physical_damage_rate; break;
 		// [Custom Bonus]
 		case SP_SKILLPOINT:      val = sd->status.skill_point; break;
 		case SP_STATUSPOINT:     val = sd->status.status_point; break;

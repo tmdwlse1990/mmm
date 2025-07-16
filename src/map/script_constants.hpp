@@ -857,6 +857,7 @@
 	export_constant2("bSkillUpgrade6", SP_UPSKILL6);
 	export_constant2("bSkillUpgrade7", SP_UPSKILL7);
 	export_constant2("bSkillUpgrade8", SP_UPSKILL8);
+	export_constant2("bHitPhysicalDamageRate",SP_HIT_PHYSICAL_DAMAGE_RATE);
 	export_constant2("bIgnoreDef",SP_IGNORE_DEF_POINTS);
 	export_constant2("bIgnoreMDef",SP_IGNORE_MDEF_POINTS);
 	export_constant2("bAspdCap",SP_ASPD_CAP);
