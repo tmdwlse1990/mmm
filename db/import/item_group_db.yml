@@ -55,21 +55,39 @@ Body:
         List:
           - Index: 0
             Item: Strength2
-            Rate: 1
+            Rate: 10
           - Index: 1
             Item: Inteligence2
-            Rate: 1
+            Rate: 10
           - Index: 2
             Item: Dexterity2
-            Rate: 1
+            Rate: 10
           - Index: 3
             Item: Agility2
-            Rate: 1
+            Rate: 10
           - Index: 4
             Item: Vitality2
-            Rate: 1
+            Rate: 10
           - Index: 5
             Item: Luck2
+            Rate: 10
+          - Index: 6
+            Item: Strength3
+            Rate: 1
+          - Index: 7
+            Item: Inteligence3
+            Rate: 1
+          - Index: 8
+            Item: Dexterity3
+            Rate: 1
+          - Index: 9
+            Item: Agility3
+            Rate: 1
+          - Index: 10
+            Item: Vitality3
+            Rate: 1
+          - Index: 11
+            Item: Luck3
             Rate: 1
   - Group: STATSBOX3
     SubGroups:
@@ -77,21 +95,39 @@ Body:
         List:
           - Index: 0
             Item: Strength3
-            Rate: 1
+            Rate: 10
           - Index: 1
             Item: Inteligence3
-            Rate: 1
+            Rate: 10
           - Index: 2
             Item: Dexterity3
-            Rate: 1
+            Rate: 10
           - Index: 3
             Item: Agility3
-            Rate: 1
+            Rate: 10
           - Index: 4
             Item: Vitality3
-            Rate: 1
+            Rate: 10
           - Index: 5
             Item: Luck3
+            Rate: 10
+          - Index: 6
+            Item: Strength4
+            Rate: 1
+          - Index: 7
+            Item: Inteligence4
+            Rate: 1
+          - Index: 8
+            Item: Dexterity4
+            Rate: 1
+          - Index: 9
+            Item: Agility4
+            Rate: 1
+          - Index: 10
+            Item: Vitality4
+            Rate: 1
+          - Index: 11
+            Item: Luck4
             Rate: 1
   - Group: STATSBOX4
     SubGroups:
@@ -99,21 +135,39 @@ Body:
         List:
           - Index: 0
             Item: Strength4
-            Rate: 1
+            Rate: 10
           - Index: 1
             Item: Inteligence4
-            Rate: 1
+            Rate: 10
           - Index: 2
             Item: Dexterity4
-            Rate: 1
+            Rate: 10
           - Index: 3
             Item: Agility4
-            Rate: 1
+            Rate: 10
           - Index: 4
             Item: Vitality4
-            Rate: 1
+            Rate: 10
           - Index: 5
             Item: Luck4
+            Rate: 10
+          - Index: 6
+            Item: Strength5
+            Rate: 1
+          - Index: 7
+            Item: Inteligence5
+            Rate: 1
+          - Index: 8
+            Item: Dexterity5
+            Rate: 1
+          - Index: 9
+            Item: Agility5
+            Rate: 1
+          - Index: 10
+            Item: Vitality5
+            Rate: 1
+          - Index: 11
+            Item: Luck5
             Rate: 1
   - Group: STATSBOX5
     SubGroups:
@@ -121,21 +175,39 @@ Body:
         List:
           - Index: 0
             Item: Strength5
-            Rate: 1
+            Rate: 10
           - Index: 1
             Item: Inteligence5
-            Rate: 1
+            Rate: 10
           - Index: 2
             Item: Dexterity5
-            Rate: 1
+            Rate: 10
           - Index: 3
             Item: Agility5
-            Rate: 1
+            Rate: 10
           - Index: 4
             Item: Vitality5
-            Rate: 1
+            Rate: 10
           - Index: 5
             Item: Luck5
+            Rate: 10
+          - Index: 6
+            Item: Strength6
+            Rate: 1
+          - Index: 7
+            Item: Inteligence6
+            Rate: 1
+          - Index: 8
+            Item: Dexterity6
+            Rate: 1
+          - Index: 9
+            Item: Agility6
+            Rate: 1
+          - Index: 10
+            Item: Vitality6
+            Rate: 1
+          - Index: 11
+            Item: Luck6
             Rate: 1
   - Group: STATSBOX6
     SubGroups:
@@ -143,21 +215,39 @@ Body:
         List:
           - Index: 0
             Item: Strength6
-            Rate: 1
+            Rate: 10
           - Index: 1
             Item: Inteligence6
-            Rate: 1
+            Rate: 10
           - Index: 2
             Item: Dexterity6
-            Rate: 1
+            Rate: 10
           - Index: 3
             Item: Agility6
-            Rate: 1
+            Rate: 10
           - Index: 4
             Item: Vitality6
-            Rate: 1
+            Rate: 10
           - Index: 5
             Item: Luck6
+            Rate: 10
+          - Index: 6
+            Item: Strength7
+            Rate: 1
+          - Index: 7
+            Item: Inteligence7
+            Rate: 1
+          - Index: 8
+            Item: Dexterity7
+            Rate: 1
+          - Index: 9
+            Item: Agility7
+            Rate: 1
+          - Index: 10
+            Item: Vitality7
+            Rate: 1
+          - Index: 11
+            Item: Luck7
             Rate: 1
   - Group: STATSBOX7
     SubGroups:
@@ -165,21 +255,39 @@ Body:
         List:
           - Index: 0
             Item: Strength7
-            Rate: 1
+            Rate: 10
           - Index: 1
             Item: Inteligence7
-            Rate: 1
+            Rate: 10
           - Index: 2
             Item: Dexterity7
-            Rate: 1
+            Rate: 10
           - Index: 3
             Item: Agility7
-            Rate: 1
+            Rate: 10
           - Index: 4
             Item: Vitality7
-            Rate: 1
+            Rate: 10
           - Index: 5
             Item: Luck7
+            Rate: 10
+          - Index: 6
+            Item: Strength8
+            Rate: 1
+          - Index: 7
+            Item: Inteligence8
+            Rate: 1
+          - Index: 8
+            Item: Dexterity8
+            Rate: 1
+          - Index: 9
+            Item: Agility8
+            Rate: 1
+          - Index: 10
+            Item: Vitality8
+            Rate: 1
+          - Index: 11
+            Item: Luck8
             Rate: 1
   - Group: STATSBOX8
     SubGroups:
@@ -187,21 +295,39 @@ Body:
         List:
           - Index: 0
             Item: Strength8
-            Rate: 1
+            Rate: 10
           - Index: 1
             Item: Inteligence8
-            Rate: 1
+            Rate: 10
           - Index: 2
             Item: Dexterity8
-            Rate: 1
+            Rate: 10
           - Index: 3
             Item: Agility8
-            Rate: 1
+            Rate: 10
           - Index: 4
             Item: Vitality8
-            Rate: 1
+            Rate: 10
           - Index: 5
             Item: Luck8
+            Rate: 10
+          - Index: 6
+            Item: Strength9
+            Rate: 1
+          - Index: 7
+            Item: Inteligence9
+            Rate: 1
+          - Index: 8
+            Item: Dexterity9
+            Rate: 1
+          - Index: 9
+            Item: Agility9
+            Rate: 1
+          - Index: 10
+            Item: Vitality9
+            Rate: 1
+          - Index: 11
+            Item: Luck9
             Rate: 1
   - Group: STATSBOX9
     SubGroups:
@@ -209,21 +335,39 @@ Body:
         List:
           - Index: 0
             Item: Strength9
-            Rate: 1
+            Rate: 10
           - Index: 1
             Item: Inteligence9
-            Rate: 1
+            Rate: 10
           - Index: 2
             Item: Dexterity9
-            Rate: 1
+            Rate: 10
           - Index: 3
             Item: Agility9
-            Rate: 1
+            Rate: 10
           - Index: 4
             Item: Vitality9
-            Rate: 1
+            Rate: 10
           - Index: 5
             Item: Luck9
+            Rate: 10
+          - Index: 6
+            Item: Strength10
+            Rate: 1
+          - Index: 7
+            Item: Inteligence10
+            Rate: 1
+          - Index: 8
+            Item: Dexterity10
+            Rate: 1
+          - Index: 9
+            Item: Agility10
+            Rate: 1
+          - Index: 10
+            Item: Vitality10
+            Rate: 1
+          - Index: 11
+            Item: Luck10
             Rate: 1
   - Group: STATSBOX10
     SubGroups:

@@ -456,8 +456,8 @@ Body:
       }
 #  [Shoes]
   - Id: 2170001
-    AegisName: Ice Tentacle Skins Shoes
-    Name: Ice_Tentacle_Skins_Shoes
+    AegisName: Ice_Tentacle_Skins_Shoes
+    Name: Ice Tentacle Skins Shoes
     Type: Armor
     Weight: 1000
     Locations:

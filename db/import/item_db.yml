@@ -1334,35 +1334,35 @@ Body:
     Type: Card
     SubType: Enchant
     Script: |
-      bonus bSkillRatio,140;
+      bonus bSkillRatio,120;
   - Id: 2234147
     AegisName: Chaos_SkillRatio_Alpla_Level_7
     Name: Chaos SkillRatio Alpla Level 7
     Type: Card
     SubType: Enchant
     Script: |
-      bonus bSkillRatio,180;
+      bonus bSkillRatio,140;
   - Id: 2234148
     AegisName: Chaos_SkillRatio_Alpla_Level_8
     Name: Chaos SkillRatio Alpla Level 8
     Type: Card
     SubType: Enchant
     Script: |
-      bonus bSkillRatio,250;
+      bonus bSkillRatio,160;
   - Id: 2234149
     AegisName: Chaos_SkillRatio_Alpla_Level_9
     Name: Chaos SkillRatio Alpla Level 9
     Type: Card
     SubType: Enchant
     Script: |
-      bonus bSkillRatio,400;
+      bonus bSkillRatio,200;
   - Id: 2234150
     AegisName: Chaos_SkillRatio_Alpla_Level_10
     Name: Chaos SkillRatio Alpla Level 10
     Type: Card
     SubType: Enchant
     Script: |
-      bonus bSkillRatio,650;
+      bonus bSkillRatio,250;
   - Id: 2234201
     AegisName: Chaos_PSkill_Beta_Level_1
     Name: Chaos Physical Beta Level 1
@@ -3106,16 +3106,24 @@ Body:
       bonus bStr,2;
       bonus bBaseAtk,20;
 #   [Etc Item]
-  - Id: 2239000
-    AegisName: Stats Powder
-    Name: Stats_Powder
-    Type: etc
   - Id: 2239001
     AegisName: Fei-Chai_doll
     Name: Fei-Chai Doll
     Type: etc
     Buy: 150000
     Weight: 10
+  - Id: 2239002
+    AegisName: Low_Stats_Powder
+    Name: Low Stats Powder
+    Type: etc
+  - Id: 2239003
+    AegisName: Mid_Stats_Powder
+    Name: Mid Stats Powder
+    Type: etc
+  - Id: 2239004
+    AegisName: High_Stats_Powder
+    Name: High Stats Powder
+    Type: etc
 
 # THQ Quest Items
 #=============================================================
