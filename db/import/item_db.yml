@@ -227,18 +227,18 @@ Body:
     Script: |
       bonus bBaseAtk,adv_atk*10;
       bonus bMatk,adv_matk*10;
-      bonus bdef,adv_def*3;
+      bonus bDef,adv_def*3;
       bonus bMdef,adv_mdef*3;
       bonus bHit,adv_hit*3;
       bonus bFlee,adv_flee*3;
-      bonus bmaxhp,adv_hp*100;
-      bonus bmaxsp,adv_sp*25;
+      bonus bMaxHP,adv_hp*100;
+      bonus bMaxSP,adv_sp*25;
       bonus bIgnoreDef,adv_igdef;
       bonus bIgnoreMDef,adv_igmdef;
       bonus bAtkRate,3*adv_clas;
-      bonus bMAtkRate,3*adv_clas;
-      bonus bMaxHpRate,2*adv_clas;
-      bonus bMaxSpRate,2*adv_clas;
+      bonus bMatkRate,3*adv_clas;
+      bonus bMaxHPrate,2*adv_clas;
+      bonus bMaxSPrate,2*adv_clas;
       bonus2 bIgnoreDefClassRate,Class_All,adv_clas;
       bonus2 bIgnoreMDefClassRate,Class_All,adv_clas;
       if(adv_clas) skill "BS_GREED",adv_clas;
@@ -316,7 +316,6 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
