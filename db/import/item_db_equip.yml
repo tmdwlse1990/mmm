@@ -385,6 +385,168 @@ Body:
       bonus bAtkRate,5;
       bonus bMatkRate,5;
       bonus bVariableCastrate,-10;
+#  [Weapon]
+  - Id: 1941
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoGuildStorage: true
+      NoMail: true
+    Script: |
+      .@g = getenchantgrade();
+      if(.@g >= ENCHANTGRADE_D) bonus bHit,100;
+      if(.@g >= ENCHANTGRADE_C) bonus2 bAddSize,Size_All,10;
+      if(.@g >= ENCHANTGRADE_B) bonus2 bAddRace,Race_All,10;
+      if(.@g >= ENCHANTGRADE_A) bonus2 bAddEle,Ele_All,10;
+      if(.@g >= ENCHANTGRADE_R) bonus bLongAtkRate,10;
+  - Id: 1997
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoGuildStorage: true
+      NoMail: true
+    Script: |
+      .@g = getenchantgrade();
+      if(.@g >= ENCHANTGRADE_D) bonus bCritical,25;
+      if(.@g >= ENCHANTGRADE_C) bonus2 bAddSize,Size_All,10;
+      if(.@g >= ENCHANTGRADE_B) bonus2 bAddRace,Race_All,10;
+      if(.@g >= ENCHANTGRADE_A) bonus2 bAddEle,Ele_All,10;
+      if(.@g >= ENCHANTGRADE_R) bonus bLongAtkRate,10;
+  - Id: 2030
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoGuildStorage: true
+      NoMail: true
+    Script: |
+      .@g = getenchantgrade();
+      if(.@g >= ENCHANTGRADE_D) bonus bVariableCast,-500;
+      if(.@g >= ENCHANTGRADE_C) bonus2 bMagicAddSize,Size_All,10;
+      if(.@g >= ENCHANTGRADE_B) bonus2 bMagicAddRace,Race_All,10;
+      if(.@g >= ENCHANTGRADE_A) bonus2 bMagicAddEle,Ele_All,10;
+      if(.@g >= ENCHANTGRADE_R) bonus2 bMagicAddClass,Class_All,10;
+      bonus2 bSubClass,Class_All,10;
+  - Id: 13129
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoGuildStorage: true
+      NoMail: true
+    Script: |
+      .@g = getenchantgrade();
+      if(.@g >= ENCHANTGRADE_D) bonus bHit,100;
+      if(.@g >= ENCHANTGRADE_C) bonus2 bAddSize,Size_All,10;
+      if(.@g >= ENCHANTGRADE_B) bonus2 bAddRace,Race_All,10;
+      if(.@g >= ENCHANTGRADE_A) bonus2 bAddEle,Ele_All,10;
+      if(.@g >= ENCHANTGRADE_R) bonus bLongAtkRate,10;
+      bonus2 bSubClass,Class_All,10;
+  - Id: 13329
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoGuildStorage: true
+      NoMail: true
+    Script: |
+      .@g = getenchantgrade();
+      if(.@g >= ENCHANTGRADE_D) bonus bHit,100;
+      if(.@g >= ENCHANTGRADE_C) bonus2 bAddSize,Size_All,10;
+      if(.@g >= ENCHANTGRADE_B) bonus2 bAddRace,Race_All,10;
+      if(.@g >= ENCHANTGRADE_A) bonus2 bAddEle,Ele_All,10;
+      if(.@g >= ENCHANTGRADE_R) bonus bLongAtkRate,10;
+  - Id: 13456
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoGuildStorage: true
+      NoMail: true
+    Script: |
+      .@g = getenchantgrade();
+      if(.@g >= ENCHANTGRADE_D) bonus bHit,100;
+      if(.@g >= ENCHANTGRADE_C) bonus2 bAddSize,Size_All,10;
+      if(.@g >= ENCHANTGRADE_B) bonus2 bAddRace,Race_All,10;
+      if(.@g >= ENCHANTGRADE_A) bonus2 bAddEle,Ele_All,10;
+      if(.@g >= ENCHANTGRADE_R) bonus bShortAtkRate,10;
+  - Id: 13457
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoGuildStorage: true
+      NoMail: true
+    Script: |
+      .@g = getenchantgrade();
+      if(.@g >= ENCHANTGRADE_D) bonus bHit,100;
+      if(.@g >= ENCHANTGRADE_C) bonus2 bAddSize,Size_All,10;
+      if(.@g >= ENCHANTGRADE_B) bonus2 bAddRace,Race_All,10;
+      if(.@g >= ENCHANTGRADE_A) bonus2 bAddEle,Ele_All,10;
+      if(.@g >= ENCHANTGRADE_R) bonus bShortAtkRate,10;
+  - Id: 16048
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoGuildStorage: true
+      NoMail: true
+    Script: |
+      .@g = getenchantgrade();
+      if(.@g >= ENCHANTGRADE_D) bonus bHit,100;
+      if(.@g >= ENCHANTGRADE_C) bonus2 bAddSize,Size_All,10;
+      if(.@g >= ENCHANTGRADE_B) bonus2 bAddRace,Race_All,10;
+      if(.@g >= ENCHANTGRADE_A) bonus2 bAddEle,Ele_All,10;
+      if(.@g >= ENCHANTGRADE_R) bonus bShortAtkRate,10;
+  - Id: 18132
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoGuildStorage: true
+      NoMail: true
+    Script: |
+      .@g = getenchantgrade();
+      if(.@g >= ENCHANTGRADE_D) bonus bHit,100;
+      if(.@g >= ENCHANTGRADE_C) bonus2 bAddSize,Size_All,10;
+      if(.@g >= ENCHANTGRADE_B) bonus2 bAddRace,Race_All,10;
+      if(.@g >= ENCHANTGRADE_A) bonus2 bAddEle,Ele_All,10;
+      if(.@g >= ENCHANTGRADE_R) bonus bLongAtkRate,10;
+      bonus2 bSubClass,Class_All,10;
+  - Id: 28011
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoGuildStorage: true
+      NoMail: true
+    Script: |
+      .@g = getenchantgrade();
+      if(.@g >= ENCHANTGRADE_D) bonus bCritical,25;
+      if(.@g >= ENCHANTGRADE_C) bonus2 bAddSize,Size_All,10;
+      if(.@g >= ENCHANTGRADE_B) bonus2 bAddRace,Race_All,10;
+      if(.@g >= ENCHANTGRADE_A) bonus2 bAddEle,Ele_All,10;
+      if(.@g >= ENCHANTGRADE_R) bonus bShortAtkRate,10;
+      bonus2 bSubClass,Class_All,10;
+  - Id: 28110
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoGuildStorage: true
+      NoMail: true
+    Script: |
+      .@g = getenchantgrade();
+      if(.@g >= ENCHANTGRADE_D) bonus bHit,100;
+      if(.@g >= ENCHANTGRADE_C) bonus2 bAddSize,Size_All,10;
+      if(.@g >= ENCHANTGRADE_B) bonus2 bAddRace,Race_All,10;
+      if(.@g >= ENCHANTGRADE_A) bonus2 bAddEle,Ele_All,10;
+      if(.@g >= ENCHANTGRADE_R) bonus bShortAtkRate,10;
+      bonus2 bSubClass,Class_All,10;
+  - Id: 28606
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoGuildStorage: true
+      NoMail: true
+    Script: |
+      .@g = getenchantgrade();
+      if(.@g >= ENCHANTGRADE_D) { bonus bHit,100; bonus bVariableCast,-500;}
+      if(.@g >= ENCHANTGRADE_C) { bonus2 bAddSize,Size_All,10; bonus2 bMagicAddSize,Size_All,10; }
+      if(.@g >= ENCHANTGRADE_B) { bonus2 bAddRace,Race_All,10; bonus2 bMagicAddRace,Race_All,10; }
+      if(.@g >= ENCHANTGRADE_A) { bonus2 bAddEle,Ele_All,10; bonus2 bMagicAddEle,Ele_All,10; }
+      if(.@g >= ENCHANTGRADE_R) { bonus bMeleeAtkRate,10; bonus2 bMagicAddClass,Class_All,10; }
 #  [Armor]
   - Id: 2130001
     AegisName: Chicken_Armor

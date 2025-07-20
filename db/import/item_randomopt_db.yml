@@ -30,3 +30,49 @@
 Header:
   Type: RANDOM_OPTION_DB
   Version: 1
+
+Body:
+  - Id: 401
+    Option: VAR_STRRATE
+    Script: |
+      bonus bStrRate,getrandomoptinfo(ROA_VALUE);
+  - Id: 402
+    Option: VAR_AGIRATE
+    Script: |
+      bonus bAgiRate,getrandomoptinfo(ROA_VALUE);
+  - Id: 403
+    Option: VAR_VITRATE
+    Script: |
+      bonus bVitRate,getrandomoptinfo(ROA_VALUE);
+  - Id: 404
+    Option: VAR_INTRATE
+    Script: |
+      bonus bIntRate,getrandomoptinfo(ROA_VALUE);
+  - Id: 405
+    Option: VAR_DEXRATE
+    Script: |
+      bonus bDexRate,getrandomoptinfo(ROA_VALUE);
+  - Id: 406
+    Option: VAR_LUKRATE
+    Script: |
+      bonus bLukRate,getrandomoptinfo(ROA_VALUE);
+  - Id: 407
+    Option: CLASS_MDAMAGE_ALL
+    Script: |
+      bonus2 bMagicAddClass,Class_ALL,getrandomoptinfo(ROA_VALUE);
+  - Id: 408
+    Option: HIT_PHYSICAL_DAMAGE
+    Script: |
+      bonus bHitPhysicalDamageRate,getrandomoptinfo(ROA_VALUE);
+  - Id: 409
+    Option: ASPD_CAP_UNLOCK
+    Script: |
+      bonus bAspdcap,getrandomoptinfo(ROA_VALUE);
+  - Id: 410
+    Option: VAR_ALLSTATS
+    Script: |
+      bonus bAllstats,getrandomoptinfo(ROA_VALUE);
+  - Id: 411
+    Option: VAR_ALLSTATS_RATE
+    Script: |
+      bonus bAllstatsRate,getrandomoptinfo(ROA_VALUE);

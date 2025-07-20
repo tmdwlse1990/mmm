@@ -46,6 +46,188 @@ Header:
   Version: 2
 
 Body:
+  - Name: Cube_seller
+    Items:
+      - Index: 0
+        Item: Stronghold_Box
+        Zeny: 1200000
+      - Index: 1
+        Item: Silvergrade_Box
+        Zeny: 2400000
+      - Index: 2
+        Item: Catora_Box
+        Zeny: 9600000
+      - Index: 3
+        Item: Sharkora_Box
+        Zeny: 22000000
+  - Name: Union_Wep
+    Items:
+      - Index: 0
+        Item: Union_Viollin
+        Zeny: 4000000
+        RequiredItems:
+          - Index: 0
+            Item: Guitar_ 
+            Amount: 1
+            Refine: 13
+      - Index: 1
+        Item: Union_Wire 
+        Zeny: 4000000
+        RequiredItems:
+          - Index: 0
+            Item: Whip_Of_Balance 
+            Amount: 1
+            Refine: 13
+      - Index: 2
+        Item: Union_Twohand_Staff  
+        Zeny: 4000000
+        RequiredItems:
+          - Index: 0
+            Item: Staff_Of_Soul 
+            Amount: 1
+            Refine: 13
+      - Index: 3
+        Item: Union_Revolver  
+        Zeny: 4000000
+        RequiredItems:
+          - Index: 0
+            Item: Wasteland_Outlaw  
+            Amount: 1
+            Refine: 13
+      - Index: 4
+        Item: Union_Huuma  
+        Zeny: 4000000
+        RequiredItems:
+          - Index: 0
+            Item: Huuma_Calm_Mind  
+            Amount: 1
+            Refine: 13
+      - Index: 5
+        Item: Union_Sword  
+        Zeny: 4000000
+        RequiredItems:
+          - Index: 0
+            Item: Elemental_Sword 
+            Amount: 1
+            Refine: 13
+      - Index: 6
+        Item: Union_Dagger  
+        Zeny: 4000000
+        RequiredItems:
+          - Index: 0
+            Item: Dagger_Of_Hunter  
+            Amount: 1
+            Refine: 13
+      - Index: 7
+        Item: Union_Mace  
+        Zeny: 4000000
+        RequiredItems:
+          - Index: 0
+            Item: Lunakaligo  
+            Amount: 1
+            Refine: 13
+      - Index: 8
+        Item: Union_Bow  
+        Zeny: 4000000
+        RequiredItems:
+          - Index: 0
+            Item: Double_Bound  
+            Amount: 1
+            Refine: 13
+      - Index: 9
+        Item: Union_Katar  
+        Zeny: 4000000
+        RequiredItems:
+          - Index: 0
+            Item: Nail_Of_Loki  
+            Amount: 1
+            Refine: 13
+      - Index: 10
+        Item: Union_Twohand_Axe  
+        Zeny: 4000000
+        RequiredItems:
+          - Index: 0
+            Item: Veteran_Axe  
+            Amount: 1
+            Refine: 13
+      - Index: 11
+        Item: Union_Bible  
+        Zeny: 4000000
+        RequiredItems:
+          - Index: 0
+            Item: Encyclopedia  
+            Amount: 1
+            Refine: 13
+  - Name: Stats_Box
+    Items:
+      - Index: 0
+        Item: STATSBOX2
+        RequiredItems:
+          - Index: 0
+            Item: Low_Stats_Powder
+            Amount: 4
+      - Index: 1
+        Item: STATSBOX3
+        RequiredItems:
+          - Index: 0
+            Item: Low_Stats_Powder
+            Amount: 8
+      - Index: 2
+        Item: STATSBOX4
+        RequiredItems:
+          - Index: 0
+            Item: Low_Stats_Powder
+            Amount: 16
+      - Index: 3
+        Item: STATSBOX5
+        RequiredItems:
+          - Index: 0
+            Item: Mid_Stats_Powder
+            Amount: 2
+      - Index: 4
+        Item: STATSBOX6
+        RequiredItems:
+          - Index: 0
+            Item: Mid_Stats_Powder
+            Amount: 4
+      - Index: 5
+        Item: STATSBOX7
+        RequiredItems:
+          - Index: 0
+            Item: Mid_Stats_Powder
+            Amount: 8
+      - Index: 6
+        Item: STATSBOX8
+        RequiredItems:
+          - Index: 0
+            Item: Mid_Stats_Powder
+            Amount: 16
+      - Index: 7
+        Item: STATSBOX9
+        RequiredItems:
+          - Index: 0
+            Item: High_Stats_Powder
+            Amount: 2
+      - Index: 8
+        Item: STATSBOX10
+        RequiredItems:
+          - Index: 0
+            Item: High_Stats_Powder
+            Amount: 4
+  - Name: Stats_Powder
+    Items:
+      - Index: 0
+        Item: Mid_Stats_Powder
+        RequiredItems:
+          - Index: 0
+            Item: Low_Stats_Powder
+            Amount: 48
+      - Index: 1
+        Item: High_Stats_Powder
+        RequiredItems:
+          - Index: 0
+            Item: Mid_Stats_Powder
+            Amount: 48
   - Name: Shark_Combination
     Items:
       - Index: 0

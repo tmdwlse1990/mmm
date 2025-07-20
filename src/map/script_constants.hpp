@@ -864,7 +864,21 @@
 	export_constant2("bDropUp",SP_DROP_UP);
 	export_constant2("bSkillRate", SP_SKILLRATE);
 	export_constant2("bSkillRateDef", SP_SKILLRATE_DEF);
-	export_constant2("bNormalRatio", SP_SKILL_RATIO);
+	export_constant2("bNormalRatio", SP_NORMAL_RATIO);
+	export_constant2("bStrRate",SP_STRRATE);
+	export_constant2("bAgiRate",SP_AGIRATE);
+	export_constant2("bVitRate",SP_VITRATE);
+	export_constant2("bIntRate",SP_INTRATE);
+	export_constant2("bDexRate",SP_DEXRATE);
+	export_constant2("bLukRate",SP_LUKRATE);
+	export_constant2("bPowRate",SP_POWRATE);
+	export_constant2("bStaRate",SP_STARATE);
+	export_constant2("bWisRate",SP_WISRATE);
+	export_constant2("bSplRate",SP_SPLRATE);
+	export_constant2("bConRate",SP_CONRATE);
+	export_constant2("bCrtRate",SP_CRTRATE);
+	export_constant2("bAllStatsRate",SP_ALL_STATS_RATE);
+	export_constant2("bAllTraitStatsRatr",SP_ALL_TRAIT_STATS_RATE);
 
 	/* equip indices */
 	export_constant(EQI_COMPOUND_ON);
@@ -913,6 +927,10 @@
 	export_constant(EQP_SHADOW_SHOES);
 	export_constant(EQP_SHADOW_ACC_R);
 	export_constant(EQP_SHADOW_ACC_L);
+	export_constant(EQP_ALL_HEAD);
+	export_constant(EQP_COS_HM);
+	export_constant(EQP_COS_HL);
+	export_constant(EQP_COS_ML);
 	export_constant(EQP_ACC_RL);
 	export_constant(EQP_SHADOW_ACC_RL);
 

@@ -4408,28 +4408,40 @@ int32 status_calc_pc_sub(map_session_data* sd, uint8 opt)
 
 	// Bonuses from cards and equipment as well as base stat, remember to avoid overflows.
 	i = base_status->str + sd->status.str + sd->indexed_bonus.param_bonus[PARAM_STR] + sd->indexed_bonus.param_equip[PARAM_STR];
+	i = i + (i * sd->indexed_bonus.param_bonus_rate[PARAM_STR] / 100);
 	base_status->str = cap_value(i,0,USHRT_MAX);
 	i = base_status->agi + sd->status.agi + sd->indexed_bonus.param_bonus[PARAM_AGI] + sd->indexed_bonus.param_equip[PARAM_AGI];
+	i = i + (i * sd->indexed_bonus.param_bonus_rate[PARAM_AGI] / 100);
 	base_status->agi = cap_value(i,0,USHRT_MAX);
 	i = base_status->vit + sd->status.vit + sd->indexed_bonus.param_bonus[PARAM_VIT] + sd->indexed_bonus.param_equip[PARAM_VIT];
+	i = i + (i * sd->indexed_bonus.param_bonus_rate[PARAM_VIT] / 100);
 	base_status->vit = cap_value(i,0,USHRT_MAX);
 	i = base_status->int_+ sd->status.int_+ sd->indexed_bonus.param_bonus[PARAM_INT] + sd->indexed_bonus.param_equip[PARAM_INT];
+	i = i + (i * sd->indexed_bonus.param_bonus_rate[PARAM_INT] / 100);
 	base_status->int_ = cap_value(i,0,USHRT_MAX);
 	i = base_status->dex + sd->status.dex + sd->indexed_bonus.param_bonus[PARAM_DEX] + sd->indexed_bonus.param_equip[PARAM_DEX];
+	i = i + (i * sd->indexed_bonus.param_bonus_rate[PARAM_DEX] / 100);
 	base_status->dex = cap_value(i,0,USHRT_MAX);
 	i = base_status->luk + sd->status.luk + sd->indexed_bonus.param_bonus[PARAM_LUK] + sd->indexed_bonus.param_equip[PARAM_LUK];
+	i = i + (i * sd->indexed_bonus.param_bonus_rate[PARAM_LUK] / 100);
 	base_status->luk = cap_value(i,0,USHRT_MAX);
 	i = base_status->pow + sd->status.pow + sd->indexed_bonus.param_bonus[PARAM_POW] + sd->indexed_bonus.param_equip[PARAM_POW];
+	i = i + (i * sd->indexed_bonus.param_bonus_rate[PARAM_POW] / 100);
 	base_status->pow = cap_value(i, 0, USHRT_MAX);
 	i = base_status->sta + sd->status.sta + sd->indexed_bonus.param_bonus[PARAM_STA] + sd->indexed_bonus.param_equip[PARAM_STA];
+	i = i + (i * sd->indexed_bonus.param_bonus_rate[PARAM_STA] / 100);
 	base_status->sta = cap_value(i, 0, USHRT_MAX);
 	i = base_status->wis + sd->status.wis + sd->indexed_bonus.param_bonus[PARAM_WIS] + sd->indexed_bonus.param_equip[PARAM_WIS];
+	i = i + (i * sd->indexed_bonus.param_bonus_rate[PARAM_WIS] / 100);
 	base_status->wis = cap_value(i, 0, USHRT_MAX);
 	i = base_status->spl + sd->status.spl + sd->indexed_bonus.param_bonus[PARAM_SPL] + sd->indexed_bonus.param_equip[PARAM_SPL];
+	i = i + (i * sd->indexed_bonus.param_bonus_rate[PARAM_SPL] / 100);
 	base_status->spl = cap_value(i, 0, USHRT_MAX);
 	i = base_status->con + sd->status.con + sd->indexed_bonus.param_bonus[PARAM_CON] + sd->indexed_bonus.param_equip[PARAM_CON];
+	i = i + (i * sd->indexed_bonus.param_bonus_rate[PARAM_CON] / 100);
 	base_status->con = cap_value(i, 0, USHRT_MAX);
 	i = base_status->crt + sd->status.crt + sd->indexed_bonus.param_bonus[PARAM_CRT] + sd->indexed_bonus.param_equip[PARAM_CRT];
+	i = i + (i * sd->indexed_bonus.param_bonus_rate[PARAM_CRT] / 100);
 	base_status->crt = cap_value(i, 0, USHRT_MAX);
 
 	if (sd->special_state.no_walk_delay) {

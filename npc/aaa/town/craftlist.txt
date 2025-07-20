@@ -1,6 +1,15 @@
 icecastle,67,222,5	script	ตัวคราฟสารพัดประโยชน์#icecastle	4_EP20_LASGAND,{
-
-end;
+menu
+	"Cube",Cube_store,
+	"Union Weapon",Union_store;
+	end;
+	
+Cube_store:
+	callshop "Cube_seller";
+	end;
+Union_store:
+	callshop "Union_Wep";
+	end;
 Oninit:
 	waitingroom "รวมคราฟที่คิดได้",0;
 	end;

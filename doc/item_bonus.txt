@@ -91,14 +91,35 @@ bonus2 bSkillRateDef,<type>,<val>; เพิ่มพลังป้องกันของสกิล ตามประเภท
 	SKILLRATE_TYPE_ALL		= All
 	
 
-bonus bAspdcap,n;		n is max cap aspd
-bonus bDropUp,n;		Add drop n/10000% drop rate
-bonus bIgnoreDef,n;		Decrease N Def From enermy
-bonus bIgnoreMDef,n;	Decrease N MDef From enermy
-bonus bNormalRatio,n;	Increase Normal Attack n%
+bonus bAspdcap,n;						n is max cap aspd
+bonus bDropUp,n;						Add drop n/10000% drop rate
+bonus bIgnoreDef,n;						Decrease N Def From enermy
+bonus bIgnoreMDef,n;					Decrease N MDef From enermy
+bonus bNormalRatio,n;					Increase Normal Attack n%
+bonus bHitPhysicalDamageRate,n;			Increase Damage n% for non critical hit (only Physical)
 
-bonus bSkillUpgrade1;	// Skill upgrade 1
-bonus bSkillUpgrade2;	// Skill upgrade 2
+bonus bStrRate,n;      			STR + n%
+bonus bAgiRate,n;      			AGI + n%
+bonus bVitRate,n;      			VIT + n%
+bonus bIntRate,n;      			INT + n%
+bonus bDexRate,n;      			DEX + n%
+bonus bLukRate,n;      			LUK + n%
+
+bonus bPowRate,n;      			Pow + n%
+bonus bStaRate,n;      			Sta + n%
+bonus bWisRate,n;      			Wis + n%
+bonus bSplRate,n;      			Spl + n%
+bonus bConRate,n;      			Con + n%
+bonus bCrtRate,n;      			Crt + n%
+
+bonus bSkillUpgrade1;	// Skill upgrade 1  Class - 1 
+bonus bSkillUpgrade2;	// Skill upgrade 2  Class - 2 
+bonus bSkillUpgrade3;	// Skill upgrade 3  Class - 3 
+bonus bSkillUpgrade4;	// Skill upgrade 4  Class - 4 
+bonus bSkillUpgrade5;	// Skill upgrade 5  Class - 5 
+bonus bSkillUpgrade6;	// Skill upgrade 6  Class - 6 
+bonus bSkillUpgrade7;	// Skill upgrade 7  Class - 7 
+bonus bSkillUpgrade8;	// Skill upgrade 8  Class - 8 
 bonus bNoFatalDamage;	// No Death
 
 

@@ -44,3 +44,3152 @@
 Header:
   Type: RANDOM_OPTION_GROUP
   Version: 1
+
+Body:
+  - Id: 401
+    Group: MYS_CUBE_ARMOR
+    Slots:
+      - Slot: 1
+        Options:
+          - Option: VAR_STRRATE
+            MinValue: 1
+            MaxValue: 3
+            Chance: 1000
+          - Option: VAR_AGIRATE
+            MinValue: 1
+            MaxValue: 3
+            Chance: 1000
+          - Option: VAR_VITRATE
+            MinValue: 1
+            MaxValue: 3
+            Chance: 1000
+          - Option: VAR_INTRATE
+            MinValue: 1
+            MaxValue: 3
+            Chance: 1000
+          - Option: VAR_DEXRATE
+            MinValue: 1
+            MaxValue: 3
+            Chance: 1000
+          - Option: VAR_LUKRATE
+            MinValue: 1
+            MaxValue: 3
+            Chance: 1000
+          - Option: VAR_STRAMOUNT
+            MinValue: 1
+            MaxValue: 4
+            Chance: 2500
+          - Option: VAR_AGIAMOUNT
+            MinValue: 1
+            MaxValue: 4
+            Chance: 2500
+          - Option: VAR_VITAMOUNT
+            MinValue: 1
+            MaxValue: 4
+            Chance: 2500
+          - Option: VAR_INTAMOUNT
+            MinValue: 1
+            MaxValue: 4
+            Chance: 2500
+          - Option: VAR_DEXAMOUNT
+            MinValue: 1
+            MaxValue: 4
+            Chance: 2500
+          - Option: VAR_LUKAMOUNT
+            MinValue: 1
+            MaxValue: 4
+            Chance: 2500
+          - Option: VAR_MAXHPPERCENT
+            MinValue: 1
+            MaxValue: 3
+            Chance: 2500
+          - Option: VAR_MAXSPPERCENT
+            MinValue: 1
+            MaxValue: 3
+            Chance: 2500
+          - Option: VAR_ITEMDEFPOWER
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_MDEFPOWER
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_AVOIDSUCCESSVALUE
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_MAXHPAMOUNT
+            MinValue: 10
+            MaxValue: 50
+            Chance: 2500
+          - Option: VAR_MAXSPAMOUNT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_ALLSTATS
+            MinValue: 1
+            MaxValue: 2
+            Chance: 1000
+          - Option: VAR_ALLSTATS_RATE
+            MinValue: 1
+            MaxValue: 2
+            Chance: 1000
+      - Slot: 2
+        Options:
+          - Option: VAR_STRRATE
+            MinValue: 1
+            MaxValue: 3
+            Chance: 1000
+          - Option: VAR_AGIRATE
+            MinValue: 1
+            MaxValue: 3
+            Chance: 1000
+          - Option: VAR_VITRATE
+            MinValue: 1
+            MaxValue: 3
+            Chance: 1000
+          - Option: VAR_INTRATE
+            MinValue: 1
+            MaxValue: 3
+            Chance: 1000
+          - Option: VAR_DEXRATE
+            MinValue: 1
+            MaxValue: 3
+            Chance: 1000
+          - Option: VAR_LUKRATE
+            MinValue: 1
+            MaxValue: 3
+            Chance: 1000
+          - Option: VAR_STRAMOUNT
+            MinValue: 1
+            MaxValue: 4
+            Chance: 2500
+          - Option: VAR_AGIAMOUNT
+            MinValue: 1
+            MaxValue: 4
+            Chance: 2500
+          - Option: VAR_VITAMOUNT
+            MinValue: 1
+            MaxValue: 4
+            Chance: 2500
+          - Option: VAR_INTAMOUNT
+            MinValue: 1
+            MaxValue: 4
+            Chance: 2500
+          - Option: VAR_DEXAMOUNT
+            MinValue: 1
+            MaxValue: 4
+            Chance: 2500
+          - Option: VAR_LUKAMOUNT
+            MinValue: 1
+            MaxValue: 4
+            Chance: 2500
+          - Option: VAR_MAXHPPERCENT
+            MinValue: 1
+            MaxValue: 3
+            Chance: 2500
+          - Option: VAR_MAXSPPERCENT
+            MinValue: 1
+            MaxValue: 3
+            Chance: 2500
+          - Option: VAR_ITEMDEFPOWER
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_MDEFPOWER
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_AVOIDSUCCESSVALUE
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_MAXHPAMOUNT
+            MinValue: 10
+            MaxValue: 50
+            Chance: 2500
+          - Option: VAR_MAXSPAMOUNT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_ALLSTATS
+            MinValue: 1
+            MaxValue: 2
+            Chance: 1000
+          - Option: VAR_ALLSTATS_RATE
+            MinValue: 1
+            MaxValue: 2
+            Chance: 1000
+  - Id: 402
+    Group: MYS_CUBE_Weapon
+    Slots:
+      - Slot: 1
+        Options:
+          - Option: VAR_STRRATE
+            MinValue: 1
+            MaxValue: 3
+            Chance: 1500
+          - Option: VAR_AGIRATE
+            MinValue: 1
+            MaxValue: 3
+            Chance: 1500
+          - Option: VAR_VITRATE
+            MinValue: 1
+            MaxValue: 3
+            Chance: 1500
+          - Option: VAR_INTRATE
+            MinValue: 1
+            MaxValue: 3
+            Chance: 1500
+          - Option: VAR_DEXRATE
+            MinValue: 1
+            MaxValue: 3
+            Chance: 1500
+          - Option: VAR_LUKRATE
+            MinValue: 1
+            MaxValue: 3
+            Chance: 2500
+          - Option: VAR_STRAMOUNT
+            MinValue: 1
+            MaxValue: 3
+            Chance: 5000
+          - Option: VAR_AGIAMOUNT
+            MinValue: 1
+            MaxValue: 4
+            Chance: 5000
+          - Option: VAR_VITAMOUNT
+            MinValue: 1
+            MaxValue: 4
+            Chance: 5000
+          - Option: VAR_INTAMOUNT
+            MinValue: 1
+            MaxValue: 4
+            Chance: 5000
+          - Option: VAR_DEXAMOUNT
+            MinValue: 1
+            MaxValue: 4
+            Chance: 5000
+          - Option: VAR_LUKAMOUNT
+            MinValue: 1
+            MaxValue: 4
+            Chance: 5000
+          - Option: VAR_MAXHPPERCENT
+            MinValue: 1
+            MaxValue: 3
+            Chance: 2500
+          - Option: VAR_MAXSPPERCENT
+            MinValue: 1
+            MaxValue: 3
+            Chance: 2500
+          - Option: VAR_MAXHPAMOUNT
+            MinValue: 10
+            MaxValue: 50
+            Chance: 7000
+          - Option: VAR_MAXSPAMOUNT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 7000
+          - Option: VAR_ATTPOWER
+            MinValue: 10
+            MaxValue: 30
+            Chance: 7000
+          - Option: VAR_ATTMPOWER
+            MinValue: 10
+            MaxValue: 30
+            Chance: 7000
+          - Option: VAR_HITSUCCESSVALUE
+            MinValue: 10
+            MaxValue: 30
+            Chance: 2500
+          - Option: VAR_CRITICALSUCCESSVALUE
+            MinValue: 1
+            MaxValue: 4
+            Chance: 2500
+          - Option: VAR_PLUSASPDPERCENT
+            MinValue: 1
+            MaxValue: 5
+            Chance: 2500
+          - Option: VAR_ATKPERCENT
+            MinValue: 1
+            MaxValue: 3
+            Chance: 2500
+          - Option: VAR_MAGICATKPERCENT
+            MinValue: 1
+            MaxValue: 3
+            Chance: 2500
+          - Option: CLASS_DAMAGE_NORMAL_TARGET
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: CLASS_DAMAGE_BOSS_TARGET
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: CLASS_MDAMAGE_NORMAL
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: CLASS_MDAMAGE_BOSS
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: CLASS_IGNORE_DEF_PERCENT_NORMAL
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: CLASS_IGNORE_DEF_PERCENT_BOSS
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: CLASS_IGNORE_MDEF_PERCENT_NORMAL
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: CLASS_IGNORE_MDEF_PERCENT_BOSS
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_ALLSTATS
+            MinValue: 1
+            MaxValue: 2
+            Chance: 1000
+          - Option: VAR_ALLSTATS_RATE
+            MinValue: 1
+            MaxValue: 2
+            Chance: 1000
+      - Slot: 2
+        Options:
+          - Option: VAR_STRRATE
+            MinValue: 1
+            MaxValue: 3
+            Chance: 1500
+          - Option: VAR_AGIRATE
+            MinValue: 1
+            MaxValue: 3
+            Chance: 1500
+          - Option: VAR_VITRATE
+            MinValue: 1
+            MaxValue: 3
+            Chance: 1500
+          - Option: VAR_INTRATE
+            MinValue: 1
+            MaxValue: 3
+            Chance: 1500
+          - Option: VAR_DEXRATE
+            MinValue: 1
+            MaxValue: 3
+            Chance: 1500
+          - Option: VAR_LUKRATE
+            MinValue: 1
+            MaxValue: 3
+            Chance: 2500
+          - Option: VAR_STRAMOUNT
+            MinValue: 1
+            MaxValue: 3
+            Chance: 5000
+          - Option: VAR_AGIAMOUNT
+            MinValue: 1
+            MaxValue: 4
+            Chance: 5000
+          - Option: VAR_VITAMOUNT
+            MinValue: 1
+            MaxValue: 4
+            Chance: 5000
+          - Option: VAR_INTAMOUNT
+            MinValue: 1
+            MaxValue: 4
+            Chance: 5000
+          - Option: VAR_DEXAMOUNT
+            MinValue: 1
+            MaxValue: 4
+            Chance: 5000
+          - Option: VAR_LUKAMOUNT
+            MinValue: 1
+            MaxValue: 4
+            Chance: 5000
+          - Option: VAR_MAXHPPERCENT
+            MinValue: 1
+            MaxValue: 3
+            Chance: 2500
+          - Option: VAR_MAXSPPERCENT
+            MinValue: 1
+            MaxValue: 3
+            Chance: 2500
+          - Option: VAR_MAXHPAMOUNT
+            MinValue: 10
+            MaxValue: 50
+            Chance: 7000
+          - Option: VAR_MAXSPAMOUNT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 7000
+          - Option: VAR_ATTPOWER
+            MinValue: 10
+            MaxValue: 30
+            Chance: 7000
+          - Option: VAR_ATTMPOWER
+            MinValue: 10
+            MaxValue: 30
+            Chance: 7000
+          - Option: VAR_HITSUCCESSVALUE
+            MinValue: 10
+            MaxValue: 30
+            Chance: 2500
+          - Option: VAR_CRITICALSUCCESSVALUE
+            MinValue: 1
+            MaxValue: 4
+            Chance: 2500
+          - Option: VAR_PLUSASPDPERCENT
+            MinValue: 1
+            MaxValue: 5
+            Chance: 2500
+          - Option: VAR_ATKPERCENT
+            MinValue: 1
+            MaxValue: 3
+            Chance: 2500
+          - Option: VAR_MAGICATKPERCENT
+            MinValue: 1
+            MaxValue: 3
+            Chance: 2500
+          - Option: CLASS_DAMAGE_NORMAL_TARGET
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: CLASS_DAMAGE_BOSS_TARGET
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: CLASS_MDAMAGE_NORMAL
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: CLASS_MDAMAGE_BOSS
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: CLASS_IGNORE_DEF_PERCENT_NORMAL
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: CLASS_IGNORE_DEF_PERCENT_BOSS
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: CLASS_IGNORE_MDEF_PERCENT_NORMAL
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: CLASS_IGNORE_MDEF_PERCENT_BOSS
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_ALLSTATS
+            MinValue: 1
+            MaxValue: 2
+            Chance: 1000
+          - Option: VAR_ALLSTATS_RATE
+            MinValue: 1
+            MaxValue: 2
+            Chance: 1000
+  - Id: 403
+    Group: MYS_CUBE_Weapon_2H
+    Slots:
+      - Slot: 1
+        Options:
+          - Option: VAR_STRRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1500
+          - Option: VAR_AGIRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1500
+          - Option: VAR_VITRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1500
+          - Option: VAR_INTRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1500
+          - Option: VAR_DEXRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1500
+          - Option: VAR_LUKRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 2500
+          - Option: VAR_STRAMOUNT
+            MinValue: 1
+            MaxValue: 5
+            Chance: 5000
+          - Option: VAR_AGIAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 5000
+          - Option: VAR_VITAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 5000
+          - Option: VAR_INTAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 5000
+          - Option: VAR_DEXAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 5000
+          - Option: VAR_LUKAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 5000
+          - Option: VAR_MAXHPPERCENT
+            MinValue: 1
+            MaxValue: 6
+            Chance: 2500
+          - Option: VAR_MAXSPPERCENT
+            MinValue: 1
+            MaxValue: 6
+            Chance: 2500
+          - Option: VAR_MAXHPAMOUNT
+            MinValue: 10
+            MaxValue: 100
+            Chance: 7000
+          - Option: VAR_MAXSPAMOUNT
+            MinValue: 1
+            MaxValue: 20
+            Chance: 7000
+          - Option: VAR_ATTPOWER
+            MinValue: 10
+            MaxValue: 60
+            Chance: 7000
+          - Option: VAR_ATTMPOWER
+            MinValue: 10
+            MaxValue: 60
+            Chance: 7000
+          - Option: VAR_HITSUCCESSVALUE
+            MinValue: 10
+            MaxValue: 60
+            Chance: 2500
+          - Option: VAR_CRITICALSUCCESSVALUE
+            MinValue: 1
+            MaxValue: 8
+            Chance: 2500
+          - Option: VAR_PLUSASPDPERCENT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_ATKPERCENT
+            MinValue: 1
+            MaxValue: 6
+            Chance: 2500
+          - Option: VAR_MAGICATKPERCENT
+            MinValue: 1
+            MaxValue: 6
+            Chance: 2500
+          - Option: CLASS_DAMAGE_NORMAL_TARGET
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: CLASS_DAMAGE_BOSS_TARGET
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: CLASS_MDAMAGE_NORMAL
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: CLASS_MDAMAGE_BOSS
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: CLASS_IGNORE_DEF_PERCENT_NORMAL
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: CLASS_IGNORE_DEF_PERCENT_BOSS
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: CLASS_IGNORE_MDEF_PERCENT_NORMAL
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: CLASS_IGNORE_MDEF_PERCENT_BOSS
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: VAR_ALLSTATS
+            MinValue: 1
+            MaxValue: 3
+            Chance: 1000
+          - Option: VAR_ALLSTATS_RATE
+            MinValue: 1
+            MaxValue: 3
+            Chance: 1000
+      - Slot: 2
+        Options:
+          - Option: VAR_STRRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1500
+          - Option: VAR_AGIRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1500
+          - Option: VAR_VITRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1500
+          - Option: VAR_INTRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1500
+          - Option: VAR_DEXRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1500
+          - Option: VAR_LUKRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 2500
+          - Option: VAR_STRAMOUNT
+            MinValue: 1
+            MaxValue: 5
+            Chance: 5000
+          - Option: VAR_AGIAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 5000
+          - Option: VAR_VITAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 5000
+          - Option: VAR_INTAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 5000
+          - Option: VAR_DEXAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 5000
+          - Option: VAR_LUKAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 5000
+          - Option: VAR_MAXHPPERCENT
+            MinValue: 1
+            MaxValue: 6
+            Chance: 2500
+          - Option: VAR_MAXSPPERCENT
+            MinValue: 1
+            MaxValue: 6
+            Chance: 2500
+          - Option: VAR_MAXHPAMOUNT
+            MinValue: 10
+            MaxValue: 100
+            Chance: 7000
+          - Option: VAR_MAXSPAMOUNT
+            MinValue: 1
+            MaxValue: 20
+            Chance: 7000
+          - Option: VAR_ATTPOWER
+            MinValue: 10
+            MaxValue: 60
+            Chance: 7000
+          - Option: VAR_ATTMPOWER
+            MinValue: 10
+            MaxValue: 60
+            Chance: 7000
+          - Option: VAR_HITSUCCESSVALUE
+            MinValue: 10
+            MaxValue: 60
+            Chance: 2500
+          - Option: VAR_CRITICALSUCCESSVALUE
+            MinValue: 1
+            MaxValue: 8
+            Chance: 2500
+          - Option: VAR_PLUSASPDPERCENT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_ATKPERCENT
+            MinValue: 1
+            MaxValue: 6
+            Chance: 2500
+          - Option: VAR_MAGICATKPERCENT
+            MinValue: 1
+            MaxValue: 6
+            Chance: 2500
+          - Option: CLASS_DAMAGE_NORMAL_TARGET
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: CLASS_DAMAGE_BOSS_TARGET
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: CLASS_MDAMAGE_NORMAL
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: CLASS_MDAMAGE_BOSS
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: CLASS_IGNORE_DEF_PERCENT_NORMAL
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: CLASS_IGNORE_DEF_PERCENT_BOSS
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: CLASS_IGNORE_MDEF_PERCENT_NORMAL
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: CLASS_IGNORE_MDEF_PERCENT_BOSS
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: VAR_ALLSTATS
+            MinValue: 1
+            MaxValue: 3
+            Chance: 1000
+          - Option: VAR_ALLSTATS_RATE
+            MinValue: 1
+            MaxValue: 3
+            Chance: 1000
+  - Id: 404
+    Group: HARD_CUBE_ARMOR
+    Slots:
+      - Slot: 1
+        Options:
+          - Option: VAR_STRRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1000
+          - Option: VAR_AGIRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1000
+          - Option: VAR_VITRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1000
+          - Option: VAR_INTRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1000
+          - Option: VAR_DEXRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1000
+          - Option: VAR_LUKRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1000
+          - Option: VAR_STRAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 2500
+          - Option: VAR_AGIAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 2500
+          - Option: VAR_VITAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 2500
+          - Option: VAR_INTAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 2500
+          - Option: VAR_DEXAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 2500
+          - Option: VAR_LUKAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 2500
+          - Option: VAR_MAXHPPERCENT
+            MinValue: 1
+            MaxValue: 5
+            Chance: 2500
+          - Option: VAR_MAXSPPERCENT
+            MinValue: 1
+            MaxValue: 5
+            Chance: 2500
+          - Option: VAR_ITEMDEFPOWER
+            MinValue: 1
+            MaxValue: 30
+            Chance: 2500
+          - Option: VAR_MDEFPOWER
+            MinValue: 1
+            MaxValue: 30
+            Chance: 2500
+          - Option: VAR_AVOIDSUCCESSVALUE
+            MinValue: 1
+            MaxValue: 30
+            Chance: 2500
+          - Option: VAR_MAXHPAMOUNT
+            MinValue: 10
+            MaxValue: 500
+            Chance: 2500
+          - Option: VAR_MAXSPAMOUNT
+            MinValue: 1
+            MaxValue: 20
+            Chance: 2500
+          - Option: CLASS_DAMAGE_NORMAL_USER
+            MinValue: 1
+            MaxValue: 1
+            Chance: 500
+          - Option: CLASS_DAMAGE_BOSS_USER
+            MinValue: 1
+            MaxValue: 1
+            Chance: 500
+          - Option: VAR_ALLSTATS
+            MinValue: 1
+            MaxValue: 3
+            Chance: 1000
+          - Option: VAR_ALLSTATS_RATE
+            MinValue: 1
+            MaxValue: 3
+            Chance: 1000
+      - Slot: 2
+        Options:
+          - Option: VAR_STRRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1000
+          - Option: VAR_AGIRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1000
+          - Option: VAR_VITRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1000
+          - Option: VAR_INTRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1000
+          - Option: VAR_DEXRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1000
+          - Option: VAR_LUKRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1000
+          - Option: VAR_STRAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 2500
+          - Option: VAR_AGIAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 2500
+          - Option: VAR_VITAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 2500
+          - Option: VAR_INTAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 2500
+          - Option: VAR_DEXAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 2500
+          - Option: VAR_LUKAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 2500
+          - Option: VAR_MAXHPPERCENT
+            MinValue: 1
+            MaxValue: 5
+            Chance: 2500
+          - Option: VAR_MAXSPPERCENT
+            MinValue: 1
+            MaxValue: 5
+            Chance: 2500
+          - Option: VAR_ITEMDEFPOWER
+            MinValue: 1
+            MaxValue: 30
+            Chance: 2500
+          - Option: VAR_MDEFPOWER
+            MinValue: 1
+            MaxValue: 30
+            Chance: 2500
+          - Option: VAR_AVOIDSUCCESSVALUE
+            MinValue: 1
+            MaxValue: 30
+            Chance: 2500
+          - Option: VAR_MAXHPAMOUNT
+            MinValue: 10
+            MaxValue: 500
+            Chance: 2500
+          - Option: VAR_MAXSPAMOUNT
+            MinValue: 1
+            MaxValue: 20
+            Chance: 2500
+          - Option: CLASS_DAMAGE_NORMAL_USER
+            MinValue: 1
+            MaxValue: 1
+            Chance: 500
+          - Option: CLASS_DAMAGE_BOSS_USER
+            MinValue: 1
+            MaxValue: 1
+            Chance: 500
+          - Option: VAR_ALLSTATS
+            MinValue: 1
+            MaxValue: 3
+            Chance: 1000
+          - Option: VAR_ALLSTATS_RATE
+            MinValue: 1
+            MaxValue: 3
+            Chance: 1000
+    MaxRandom: 3
+    Random:
+          - Option: VAR_STRRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1000
+          - Option: VAR_AGIRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1000
+          - Option: VAR_VITRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1000
+          - Option: VAR_INTRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1000
+          - Option: VAR_DEXRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1000
+          - Option: VAR_LUKRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1000
+          - Option: VAR_STRAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 2500
+          - Option: VAR_AGIAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 2500
+          - Option: VAR_VITAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 2500
+          - Option: VAR_INTAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 2500
+          - Option: VAR_DEXAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 2500
+          - Option: VAR_LUKAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 2500
+          - Option: VAR_MAXHPPERCENT
+            MinValue: 1
+            MaxValue: 5
+            Chance: 2500
+          - Option: VAR_MAXSPPERCENT
+            MinValue: 1
+            MaxValue: 5
+            Chance: 2500
+          - Option: VAR_ITEMDEFPOWER
+            MinValue: 1
+            MaxValue: 30
+            Chance: 2500
+          - Option: VAR_MDEFPOWER
+            MinValue: 1
+            MaxValue: 30
+            Chance: 2500
+          - Option: VAR_AVOIDSUCCESSVALUE
+            MinValue: 1
+            MaxValue: 30
+            Chance: 2500
+          - Option: VAR_MAXHPAMOUNT
+            MinValue: 10
+            MaxValue: 500
+            Chance: 2500
+          - Option: VAR_MAXSPAMOUNT
+            MinValue: 1
+            MaxValue: 20
+            Chance: 2500
+          - Option: CLASS_DAMAGE_NORMAL_USER
+            MinValue: 1
+            MaxValue: 1
+            Chance: 500
+          - Option: CLASS_DAMAGE_BOSS_USER
+            MinValue: 1
+            MaxValue: 1
+            Chance: 500
+          - Option: VAR_ALLSTATS
+            MinValue: 1
+            MaxValue: 3
+            Chance: 1000
+          - Option: VAR_ALLSTATS_RATE
+            MinValue: 1
+            MaxValue: 3
+            Chance: 1000
+  - Id: 405
+    Group: HARD_CUBE_Weapon
+    Slots:
+      - Slot: 1
+        Options:
+          - Option: VAR_STRRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1500
+          - Option: VAR_AGIRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1500
+          - Option: VAR_VITRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1500
+          - Option: VAR_INTRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1500
+          - Option: VAR_DEXRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1500
+          - Option: VAR_LUKRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 2500
+          - Option: VAR_STRAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 5000
+          - Option: VAR_AGIAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 5000
+          - Option: VAR_VITAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 5000
+          - Option: VAR_INTAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 5000
+          - Option: VAR_DEXAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 5000
+          - Option: VAR_LUKAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 5000
+          - Option: VAR_MAXHPPERCENT
+            MinValue: 1
+            MaxValue: 5
+            Chance: 2500
+          - Option: VAR_MAXSPPERCENT
+            MinValue: 1
+            MaxValue: 5
+            Chance: 2500
+          - Option: VAR_MAXHPAMOUNT
+            MinValue: 10
+            MaxValue: 500
+            Chance: 7000
+          - Option: VAR_MAXSPAMOUNT
+            MinValue: 1
+            MaxValue: 20
+            Chance: 7000
+          - Option: VAR_ATTPOWER
+            MinValue: 10
+            MaxValue: 100
+            Chance: 7000
+          - Option: VAR_ATTMPOWER
+            MinValue: 10
+            MaxValue: 100
+            Chance: 7000
+          - Option: VAR_HITSUCCESSVALUE
+            MinValue: 10
+            MaxValue: 50
+            Chance: 2500
+          - Option: VAR_CRITICALSUCCESSVALUE
+            MinValue: 1
+            MaxValue: 7
+            Chance: 2500
+          - Option: VAR_PLUSASPDPERCENT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_ATKPERCENT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_MAGICATKPERCENT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: CLASS_DAMAGE_NORMAL_TARGET
+            MinValue: 1
+            MaxValue: 20
+            Chance: 2500
+          - Option: CLASS_DAMAGE_BOSS_TARGET
+            MinValue: 1
+            MaxValue: 20
+            Chance: 2500
+          - Option: CLASS_MDAMAGE_NORMAL
+            MinValue: 1
+            MaxValue: 20
+            Chance: 2500
+          - Option: CLASS_MDAMAGE_BOSS
+            MinValue: 1
+            MaxValue: 20
+            Chance: 2500
+          - Option: CLASS_IGNORE_DEF_PERCENT_NORMAL
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: CLASS_IGNORE_DEF_PERCENT_BOSS
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: CLASS_IGNORE_MDEF_PERCENT_NORMAL
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: CLASS_IGNORE_MDEF_PERCENT_BOSS
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: RANGE_ATTACK_DAMAGE_TARGET
+            MinValue: 1
+            MaxValue: 15
+            Chance: 1500
+          - Option: DAMAGE_CRI_TARGET
+            MinValue: 1
+            MaxValue: 15
+            Chance: 1500
+          - Option: MELEE_ATTACK_DAMAGE_TARGET
+            MinValue: 1
+            MaxValue: 15
+            Chance: 1500
+          - Option: CLASS_MDAMAGE_ALL
+            MinValue: 1
+            MaxValue: 15
+            Chance: 1500
+          - Option: HIT_PHYSICAL_DAMAGE
+            MinValue: 1
+            MaxValue: 15
+            Chance: 1500
+          - Option: VAR_ALLSTATS
+            MinValue: 1
+            MaxValue: 3
+            Chance: 1000
+          - Option: VAR_ALLSTATS_RATE
+            MinValue: 1
+            MaxValue: 3
+            Chance: 1000
+      - Slot: 2
+        Options:
+          - Option: VAR_STRRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1500
+          - Option: VAR_AGIRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1500
+          - Option: VAR_VITRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1500
+          - Option: VAR_INTRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1500
+          - Option: VAR_DEXRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1500
+          - Option: VAR_LUKRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 2500
+          - Option: VAR_STRAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 5000
+          - Option: VAR_AGIAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 5000
+          - Option: VAR_VITAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 5000
+          - Option: VAR_INTAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 5000
+          - Option: VAR_DEXAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 5000
+          - Option: VAR_LUKAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 5000
+          - Option: VAR_MAXHPPERCENT
+            MinValue: 1
+            MaxValue: 5
+            Chance: 2500
+          - Option: VAR_MAXSPPERCENT
+            MinValue: 1
+            MaxValue: 5
+            Chance: 2500
+          - Option: VAR_MAXHPAMOUNT
+            MinValue: 10
+            MaxValue: 500
+            Chance: 7000
+          - Option: VAR_MAXSPAMOUNT
+            MinValue: 1
+            MaxValue: 20
+            Chance: 7000
+          - Option: VAR_ATTPOWER
+            MinValue: 10
+            MaxValue: 100
+            Chance: 7000
+          - Option: VAR_ATTMPOWER
+            MinValue: 10
+            MaxValue: 100
+            Chance: 7000
+          - Option: VAR_HITSUCCESSVALUE
+            MinValue: 10
+            MaxValue: 50
+            Chance: 2500
+          - Option: VAR_CRITICALSUCCESSVALUE
+            MinValue: 1
+            MaxValue: 7
+            Chance: 2500
+          - Option: VAR_PLUSASPDPERCENT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_ATKPERCENT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_MAGICATKPERCENT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: CLASS_DAMAGE_NORMAL_TARGET
+            MinValue: 1
+            MaxValue: 20
+            Chance: 2500
+          - Option: CLASS_DAMAGE_BOSS_TARGET
+            MinValue: 1
+            MaxValue: 20
+            Chance: 2500
+          - Option: CLASS_MDAMAGE_NORMAL
+            MinValue: 1
+            MaxValue: 20
+            Chance: 2500
+          - Option: CLASS_MDAMAGE_BOSS
+            MinValue: 1
+            MaxValue: 20
+            Chance: 2500
+          - Option: CLASS_IGNORE_DEF_PERCENT_NORMAL
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: CLASS_IGNORE_DEF_PERCENT_BOSS
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: CLASS_IGNORE_MDEF_PERCENT_NORMAL
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: CLASS_IGNORE_MDEF_PERCENT_BOSS
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: RANGE_ATTACK_DAMAGE_TARGET
+            MinValue: 1
+            MaxValue: 15
+            Chance: 1500
+          - Option: DAMAGE_CRI_TARGET
+            MinValue: 1
+            MaxValue: 15
+            Chance: 1500
+          - Option: MELEE_ATTACK_DAMAGE_TARGET
+            MinValue: 1
+            MaxValue: 15
+            Chance: 1500
+          - Option: CLASS_MDAMAGE_ALL
+            MinValue: 1
+            MaxValue: 15
+            Chance: 1500
+          - Option: HIT_PHYSICAL_DAMAGE
+            MinValue: 1
+            MaxValue: 15
+            Chance: 1500
+          - Option: VAR_ALLSTATS
+            MinValue: 1
+            MaxValue: 3
+            Chance: 1000
+          - Option: VAR_ALLSTATS_RATE
+            MinValue: 1
+            MaxValue: 3
+            Chance: 1000
+    MaxRandom: 3
+    Random:
+          - Option: VAR_STRRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1500
+          - Option: VAR_AGIRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1500
+          - Option: VAR_VITRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1500
+          - Option: VAR_INTRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1500
+          - Option: VAR_DEXRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 1500
+          - Option: VAR_LUKRATE
+            MinValue: 1
+            MaxValue: 5
+            Chance: 2500
+          - Option: VAR_STRAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 5000
+          - Option: VAR_AGIAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 5000
+          - Option: VAR_VITAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 5000
+          - Option: VAR_INTAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 5000
+          - Option: VAR_DEXAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 5000
+          - Option: VAR_LUKAMOUNT
+            MinValue: 1
+            MaxValue: 7
+            Chance: 5000
+          - Option: VAR_MAXHPPERCENT
+            MinValue: 1
+            MaxValue: 5
+            Chance: 2500
+          - Option: VAR_MAXSPPERCENT
+            MinValue: 1
+            MaxValue: 5
+            Chance: 2500
+          - Option: VAR_MAXHPAMOUNT
+            MinValue: 10
+            MaxValue: 500
+            Chance: 7000
+          - Option: VAR_MAXSPAMOUNT
+            MinValue: 1
+            MaxValue: 20
+            Chance: 7000
+          - Option: VAR_ATTPOWER
+            MinValue: 10
+            MaxValue: 100
+            Chance: 7000
+          - Option: VAR_ATTMPOWER
+            MinValue: 10
+            MaxValue: 100
+            Chance: 7000
+          - Option: VAR_HITSUCCESSVALUE
+            MinValue: 10
+            MaxValue: 50
+            Chance: 2500
+          - Option: VAR_CRITICALSUCCESSVALUE
+            MinValue: 1
+            MaxValue: 7
+            Chance: 2500
+          - Option: VAR_PLUSASPDPERCENT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_ATKPERCENT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_MAGICATKPERCENT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: CLASS_DAMAGE_NORMAL_TARGET
+            MinValue: 1
+            MaxValue: 20
+            Chance: 2500
+          - Option: CLASS_DAMAGE_BOSS_TARGET
+            MinValue: 1
+            MaxValue: 20
+            Chance: 2500
+          - Option: CLASS_MDAMAGE_NORMAL
+            MinValue: 1
+            MaxValue: 20
+            Chance: 2500
+          - Option: CLASS_MDAMAGE_BOSS
+            MinValue: 1
+            MaxValue: 20
+            Chance: 2500
+          - Option: CLASS_IGNORE_DEF_PERCENT_NORMAL
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: CLASS_IGNORE_DEF_PERCENT_BOSS
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: CLASS_IGNORE_MDEF_PERCENT_NORMAL
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: CLASS_IGNORE_MDEF_PERCENT_BOSS
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: RANGE_ATTACK_DAMAGE_TARGET
+            MinValue: 1
+            MaxValue: 15
+            Chance: 1500
+          - Option: DAMAGE_CRI_TARGET
+            MinValue: 1
+            MaxValue: 15
+            Chance: 1500
+          - Option: MELEE_ATTACK_DAMAGE_TARGET
+            MinValue: 1
+            MaxValue: 15
+            Chance: 1500
+          - Option: CLASS_MDAMAGE_ALL
+            MinValue: 1
+            MaxValue: 15
+            Chance: 1500
+          - Option: HIT_PHYSICAL_DAMAGE
+            MinValue: 1
+            MaxValue: 15
+            Chance: 1500
+          - Option: VAR_ALLSTATS
+            MinValue: 1
+            MaxValue: 3
+            Chance: 1000
+          - Option: VAR_ALLSTATS_RATE
+            MinValue: 1
+            MaxValue: 3
+            Chance: 1000
+  - Id: 406
+    Group: HARD_CUBE_Weapon_2H
+    Slots:
+      - Slot: 1
+        Options:
+          - Option: VAR_STRRATE
+            MinValue: 1
+            MaxValue: 8
+            Chance: 1500
+          - Option: VAR_AGIRATE
+            MinValue: 1
+            MaxValue: 8
+            Chance: 1500
+          - Option: VAR_VITRATE
+            MinValue: 1
+            MaxValue: 8
+            Chance: 1500
+          - Option: VAR_INTRATE
+            MinValue: 1
+            MaxValue: 8
+            Chance: 1500
+          - Option: VAR_DEXRATE
+            MinValue: 1
+            MaxValue: 8
+            Chance: 1500
+          - Option: VAR_LUKRATE
+            MinValue: 1
+            MaxValue: 8
+            Chance: 2500
+          - Option: VAR_STRAMOUNT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 5000
+          - Option: VAR_AGIAMOUNT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 5000
+          - Option: VAR_VITAMOUNT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 5000
+          - Option: VAR_INTAMOUNT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 5000
+          - Option: VAR_DEXAMOUNT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 5000
+          - Option: VAR_LUKAMOUNT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 5000
+          - Option: VAR_MAXHPPERCENT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_MAXSPPERCENT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_MAXHPAMOUNT
+            MinValue: 10
+            MaxValue: 500
+            Chance: 7000
+          - Option: VAR_MAXSPAMOUNT
+            MinValue: 1
+            MaxValue: 30
+            Chance: 7000
+          - Option: VAR_ATTPOWER
+            MinValue: 10
+            MaxValue: 150
+            Chance: 7000
+          - Option: VAR_ATTMPOWER
+            MinValue: 10
+            MaxValue: 150
+            Chance: 7000
+          - Option: VAR_HITSUCCESSVALUE
+            MinValue: 10
+            MaxValue: 50
+            Chance: 2500
+          - Option: VAR_CRITICALSUCCESSVALUE
+            MinValue: 1
+            MaxValue: 7
+            Chance: 2500
+          - Option: VAR_PLUSASPDPERCENT
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: VAR_ATKPERCENT
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: VAR_MAGICATKPERCENT
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: CLASS_DAMAGE_NORMAL_TARGET
+            MinValue: 1
+            MaxValue: 20
+            Chance: 2500
+          - Option: CLASS_DAMAGE_BOSS_TARGET
+            MinValue: 1
+            MaxValue: 20
+            Chance: 2500
+          - Option: CLASS_MDAMAGE_NORMAL
+            MinValue: 1
+            MaxValue: 20
+            Chance: 2500
+          - Option: CLASS_MDAMAGE_BOSS
+            MinValue: 1
+            MaxValue: 20
+            Chance: 2500
+          - Option: CLASS_IGNORE_DEF_PERCENT_NORMAL
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: CLASS_IGNORE_DEF_PERCENT_BOSS
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: RANGE_ATTACK_DAMAGE_TARGET
+            MinValue: 1
+            MaxValue: 15
+            Chance: 1500
+          - Option: DAMAGE_CRI_TARGET
+            MinValue: 1
+            MaxValue: 15
+            Chance: 1500
+          - Option: MELEE_ATTACK_DAMAGE_TARGET
+            MinValue: 1
+            MaxValue: 15
+            Chance: 1500
+          - Option: CLASS_MDAMAGE_ALL
+            MinValue: 1
+            MaxValue: 15
+            Chance: 1500
+          - Option: HIT_PHYSICAL_DAMAGE
+            MinValue: 1
+            MaxValue: 15
+            Chance: 1500
+          - Option: VAR_ALLSTATS
+            MinValue: 1
+            MaxValue: 4
+            Chance: 1000
+          - Option: VAR_ALLSTATS_RATE
+            MinValue: 1
+            MaxValue: 4
+            Chance: 1000
+      - Slot: 2
+        Options:
+          - Option: VAR_STRRATE
+            MinValue: 1
+            MaxValue: 8
+            Chance: 1500
+          - Option: VAR_AGIRATE
+            MinValue: 1
+            MaxValue: 8
+            Chance: 1500
+          - Option: VAR_VITRATE
+            MinValue: 1
+            MaxValue: 8
+            Chance: 1500
+          - Option: VAR_INTRATE
+            MinValue: 1
+            MaxValue: 8
+            Chance: 1500
+          - Option: VAR_DEXRATE
+            MinValue: 1
+            MaxValue: 8
+            Chance: 1500
+          - Option: VAR_LUKRATE
+            MinValue: 1
+            MaxValue: 8
+            Chance: 2500
+          - Option: VAR_STRAMOUNT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 5000
+          - Option: VAR_AGIAMOUNT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 5000
+          - Option: VAR_VITAMOUNT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 5000
+          - Option: VAR_INTAMOUNT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 5000
+          - Option: VAR_DEXAMOUNT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 5000
+          - Option: VAR_LUKAMOUNT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 5000
+          - Option: VAR_MAXHPPERCENT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_MAXSPPERCENT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_MAXHPAMOUNT
+            MinValue: 10
+            MaxValue: 500
+            Chance: 7000
+          - Option: VAR_MAXSPAMOUNT
+            MinValue: 1
+            MaxValue: 30
+            Chance: 7000
+          - Option: VAR_ATTPOWER
+            MinValue: 10
+            MaxValue: 150
+            Chance: 7000
+          - Option: VAR_ATTMPOWER
+            MinValue: 10
+            MaxValue: 150
+            Chance: 7000
+          - Option: VAR_HITSUCCESSVALUE
+            MinValue: 10
+            MaxValue: 50
+            Chance: 2500
+          - Option: VAR_CRITICALSUCCESSVALUE
+            MinValue: 1
+            MaxValue: 7
+            Chance: 2500
+          - Option: VAR_PLUSASPDPERCENT
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: VAR_ATKPERCENT
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: VAR_MAGICATKPERCENT
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: CLASS_DAMAGE_NORMAL_TARGET
+            MinValue: 1
+            MaxValue: 20
+            Chance: 2500
+          - Option: CLASS_DAMAGE_BOSS_TARGET
+            MinValue: 1
+            MaxValue: 20
+            Chance: 2500
+          - Option: CLASS_MDAMAGE_NORMAL
+            MinValue: 1
+            MaxValue: 20
+            Chance: 2500
+          - Option: CLASS_MDAMAGE_BOSS
+            MinValue: 1
+            MaxValue: 20
+            Chance: 2500
+          - Option: CLASS_IGNORE_DEF_PERCENT_NORMAL
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: CLASS_IGNORE_DEF_PERCENT_BOSS
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: RANGE_ATTACK_DAMAGE_TARGET
+            MinValue: 1
+            MaxValue: 15
+            Chance: 1500
+          - Option: DAMAGE_CRI_TARGET
+            MinValue: 1
+            MaxValue: 15
+            Chance: 1500
+          - Option: MELEE_ATTACK_DAMAGE_TARGET
+            MinValue: 1
+            MaxValue: 15
+            Chance: 1500
+          - Option: CLASS_MDAMAGE_ALL
+            MinValue: 1
+            MaxValue: 15
+            Chance: 1500
+          - Option: HIT_PHYSICAL_DAMAGE
+            MinValue: 1
+            MaxValue: 15
+            Chance: 1500
+          - Option: VAR_ALLSTATS
+            MinValue: 1
+            MaxValue: 4
+            Chance: 1000
+          - Option: VAR_ALLSTATS_RATE
+            MinValue: 1
+            MaxValue: 4
+            Chance: 1000
+    MaxRandom: 3
+    Random:
+          - Option: VAR_STRRATE
+            MinValue: 1
+            MaxValue: 8
+            Chance: 1500
+          - Option: VAR_AGIRATE
+            MinValue: 1
+            MaxValue: 8
+            Chance: 1500
+          - Option: VAR_VITRATE
+            MinValue: 1
+            MaxValue: 8
+            Chance: 1500
+          - Option: VAR_INTRATE
+            MinValue: 1
+            MaxValue: 8
+            Chance: 1500
+          - Option: VAR_DEXRATE
+            MinValue: 1
+            MaxValue: 8
+            Chance: 1500
+          - Option: VAR_LUKRATE
+            MinValue: 1
+            MaxValue: 8
+            Chance: 2500
+          - Option: VAR_STRAMOUNT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 5000
+          - Option: VAR_AGIAMOUNT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 5000
+          - Option: VAR_VITAMOUNT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 5000
+          - Option: VAR_INTAMOUNT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 5000
+          - Option: VAR_DEXAMOUNT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 5000
+          - Option: VAR_LUKAMOUNT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 5000
+          - Option: VAR_MAXHPPERCENT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_MAXSPPERCENT
+            MinValue: 1
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_MAXHPAMOUNT
+            MinValue: 10
+            MaxValue: 500
+            Chance: 7000
+          - Option: VAR_MAXSPAMOUNT
+            MinValue: 1
+            MaxValue: 30
+            Chance: 7000
+          - Option: VAR_ATTPOWER
+            MinValue: 10
+            MaxValue: 150
+            Chance: 7000
+          - Option: VAR_ATTMPOWER
+            MinValue: 10
+            MaxValue: 150
+            Chance: 7000
+          - Option: VAR_HITSUCCESSVALUE
+            MinValue: 10
+            MaxValue: 50
+            Chance: 2500
+          - Option: VAR_CRITICALSUCCESSVALUE
+            MinValue: 1
+            MaxValue: 7
+            Chance: 2500
+          - Option: VAR_PLUSASPDPERCENT
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: VAR_ATKPERCENT
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: VAR_MAGICATKPERCENT
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: CLASS_DAMAGE_NORMAL_TARGET
+            MinValue: 1
+            MaxValue: 20
+            Chance: 2500
+          - Option: CLASS_DAMAGE_BOSS_TARGET
+            MinValue: 1
+            MaxValue: 20
+            Chance: 2500
+          - Option: CLASS_MDAMAGE_NORMAL
+            MinValue: 1
+            MaxValue: 20
+            Chance: 2500
+          - Option: CLASS_MDAMAGE_BOSS
+            MinValue: 1
+            MaxValue: 20
+            Chance: 2500
+          - Option: CLASS_IGNORE_DEF_PERCENT_NORMAL
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: CLASS_IGNORE_DEF_PERCENT_BOSS
+            MinValue: 1
+            MaxValue: 15
+            Chance: 2500
+          - Option: RANGE_ATTACK_DAMAGE_TARGET
+            MinValue: 1
+            MaxValue: 15
+            Chance: 1500
+          - Option: DAMAGE_CRI_TARGET
+            MinValue: 1
+            MaxValue: 15
+            Chance: 1500
+          - Option: MELEE_ATTACK_DAMAGE_TARGET
+            MinValue: 1
+            MaxValue: 15
+            Chance: 1500
+          - Option: CLASS_MDAMAGE_ALL
+            MinValue: 1
+            MaxValue: 15
+            Chance: 1500
+          - Option: HIT_PHYSICAL_DAMAGE
+            MinValue: 1
+            MaxValue: 15
+            Chance: 1500
+          - Option: VAR_ALLSTATS
+            MinValue: 1
+            MaxValue: 4
+            Chance: 1000
+          - Option: VAR_ALLSTATS_RATE
+            MinValue: 1
+            MaxValue: 4
+            Chance: 1000
+  - Id: 407
+    Group: GLOWING_CUBE_ARMOR
+    Slots:
+      - Slot: 1
+        Options:
+          - Option: VAR_STRRATE
+            MinValue: 3
+            MaxValue: 9
+            Chance: 1000
+          - Option: VAR_AGIRATE
+            MinValue: 3
+            MaxValue: 9
+            Chance: 1000
+          - Option: VAR_VITRATE
+            MinValue: 3
+            MaxValue: 9
+            Chance: 1000
+          - Option: VAR_INTRATE
+            MinValue: 3
+            MaxValue: 9
+            Chance: 1000
+          - Option: VAR_DEXRATE
+            MinValue: 3
+            MaxValue: 9
+            Chance: 1000
+          - Option: VAR_LUKRATE
+            MinValue: 3
+            MaxValue: 9
+            Chance: 1000
+          - Option: VAR_STRAMOUNT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_AGIAMOUNT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_VITAMOUNT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_INTAMOUNT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_DEXAMOUNT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_LUKAMOUNT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_MAXHPPERCENT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_MAXSPPERCENT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_ITEMDEFPOWER
+            MinValue: 20
+            MaxValue: 100
+            Chance: 2500
+          - Option: VAR_MDEFPOWER
+            MinValue: 10
+            MaxValue: 50
+            Chance: 2500
+          - Option: VAR_AVOIDSUCCESSVALUE
+            MinValue: 10
+            MaxValue: 50
+            Chance: 2500
+          - Option: VAR_MAXHPAMOUNT
+            MinValue: 1000
+            MaxValue: 2000
+            Chance: 2500
+          - Option: VAR_MAXSPAMOUNT
+            MinValue: 10
+            MaxValue: 50
+            Chance: 2500
+          - Option: CLASS_DAMAGE_NORMAL_USER
+            MinValue: 1
+            MaxValue: 2
+            Chance: 500
+          - Option: CLASS_DAMAGE_BOSS_USER
+            MinValue: 1
+            MaxValue: 2
+            Chance: 500
+          - Option: VAR_ALLSTATS
+            MinValue: 2
+            MaxValue: 6
+            Chance: 1000
+          - Option: VAR_ALLSTATS_RATE
+            MinValue: 2
+            MaxValue: 6
+            Chance: 1000
+      - Slot: 2
+        Options:
+          - Option: VAR_STRRATE
+            MinValue: 3
+            MaxValue: 9
+            Chance: 1000
+          - Option: VAR_AGIRATE
+            MinValue: 3
+            MaxValue: 9
+            Chance: 1000
+          - Option: VAR_VITRATE
+            MinValue: 3
+            MaxValue: 9
+            Chance: 1000
+          - Option: VAR_INTRATE
+            MinValue: 3
+            MaxValue: 9
+            Chance: 1000
+          - Option: VAR_DEXRATE
+            MinValue: 3
+            MaxValue: 9
+            Chance: 1000
+          - Option: VAR_LUKRATE
+            MinValue: 3
+            MaxValue: 9
+            Chance: 1000
+          - Option: VAR_STRAMOUNT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_AGIAMOUNT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_VITAMOUNT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_INTAMOUNT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_DEXAMOUNT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_LUKAMOUNT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_MAXHPPERCENT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_MAXSPPERCENT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_ITEMDEFPOWER
+            MinValue: 20
+            MaxValue: 100
+            Chance: 2500
+          - Option: VAR_MDEFPOWER
+            MinValue: 10
+            MaxValue: 50
+            Chance: 2500
+          - Option: VAR_AVOIDSUCCESSVALUE
+            MinValue: 10
+            MaxValue: 50
+            Chance: 2500
+          - Option: VAR_MAXHPAMOUNT
+            MinValue: 1000
+            MaxValue: 2000
+            Chance: 2500
+          - Option: VAR_MAXSPAMOUNT
+            MinValue: 10
+            MaxValue: 50
+            Chance: 2500
+          - Option: CLASS_DAMAGE_NORMAL_USER
+            MinValue: 1
+            MaxValue: 2
+            Chance: 500
+          - Option: CLASS_DAMAGE_BOSS_USER
+            MinValue: 1
+            MaxValue: 2
+            Chance: 500
+          - Option: VAR_ALLSTATS
+            MinValue: 2
+            MaxValue: 6
+            Chance: 1000
+          - Option: VAR_ALLSTATS_RATE
+            MinValue: 2
+            MaxValue: 6
+            Chance: 1000
+      - Slot: 3
+        Options:
+          - Option: VAR_STRRATE
+            MinValue: 3
+            MaxValue: 9
+            Chance: 1000
+          - Option: VAR_AGIRATE
+            MinValue: 3
+            MaxValue: 9
+            Chance: 1000
+          - Option: VAR_VITRATE
+            MinValue: 3
+            MaxValue: 9
+            Chance: 1000
+          - Option: VAR_INTRATE
+            MinValue: 3
+            MaxValue: 9
+            Chance: 1000
+          - Option: VAR_DEXRATE
+            MinValue: 3
+            MaxValue: 9
+            Chance: 1000
+          - Option: VAR_LUKRATE
+            MinValue: 3
+            MaxValue: 9
+            Chance: 1000
+          - Option: VAR_STRAMOUNT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_AGIAMOUNT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_VITAMOUNT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_INTAMOUNT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_DEXAMOUNT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_LUKAMOUNT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_MAXHPPERCENT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_MAXSPPERCENT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_ITEMDEFPOWER
+            MinValue: 20
+            MaxValue: 100
+            Chance: 2500
+          - Option: VAR_MDEFPOWER
+            MinValue: 10
+            MaxValue: 50
+            Chance: 2500
+          - Option: VAR_AVOIDSUCCESSVALUE
+            MinValue: 10
+            MaxValue: 50
+            Chance: 2500
+          - Option: VAR_MAXHPAMOUNT
+            MinValue: 1000
+            MaxValue: 2000
+            Chance: 2500
+          - Option: VAR_MAXSPAMOUNT
+            MinValue: 10
+            MaxValue: 50
+            Chance: 2500
+          - Option: CLASS_DAMAGE_NORMAL_USER
+            MinValue: 1
+            MaxValue: 2
+            Chance: 500
+          - Option: CLASS_DAMAGE_BOSS_USER
+            MinValue: 1
+            MaxValue: 2
+            Chance: 500
+          - Option: VAR_ALLSTATS
+            MinValue: 2
+            MaxValue: 6
+            Chance: 1000
+          - Option: VAR_ALLSTATS_RATE
+            MinValue: 2
+            MaxValue: 6
+            Chance: 1000
+  - Id: 408
+    Group: GLOWING_CUBE_Weapon
+    Slots:
+      - Slot: 1
+        Options:
+          - Option: VAR_STRRATE
+            MinValue: 3
+            MaxValue: 9
+            Chance: 1500
+          - Option: VAR_AGIRATE
+            MinValue: 3
+            MaxValue: 9
+            Chance: 1500
+          - Option: VAR_VITRATE
+            MinValue: 3
+            MaxValue: 9
+            Chance: 1500
+          - Option: VAR_INTRATE
+            MinValue: 3
+            MaxValue: 9
+            Chance: 1500
+          - Option: VAR_DEXRATE
+            MinValue: 3
+            MaxValue: 9
+            Chance: 1500
+          - Option: VAR_LUKRATE
+            MinValue: 3
+            MaxValue: 9
+            Chance: 2500
+          - Option: VAR_STRAMOUNT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 5000
+          - Option: VAR_AGIAMOUNT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 5000
+          - Option: VAR_VITAMOUNT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 5000
+          - Option: VAR_INTAMOUNT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 5000
+          - Option: VAR_DEXAMOUNT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 5000
+          - Option: VAR_LUKAMOUNT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 5000
+          - Option: VAR_MAXHPPERCENT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_MAXSPPERCENT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_MAXHPAMOUNT
+            MinValue: 100
+            MaxValue: 2500
+            Chance: 7000
+          - Option: VAR_MAXSPAMOUNT
+            MinValue: 3
+            MaxValue: 50
+            Chance: 7000
+          - Option: VAR_ATTPOWER
+            MinValue: 30
+            MaxValue: 400
+            Chance: 7000
+          - Option: VAR_ATTMPOWER
+            MinValue: 30
+            MaxValue: 400
+            Chance: 7000
+          - Option: VAR_HITSUCCESSVALUE
+            MinValue: 40
+            MaxValue: 200
+            Chance: 2500
+          - Option: VAR_CRITICALSUCCESSVALUE
+            MinValue: 3
+            MaxValue: 15
+            Chance: 2500
+          - Option: VAR_PLUSASPDPERCENT
+            MinValue: 3
+            MaxValue: 20
+            Chance: 2500
+          - Option: VAR_ATKPERCENT
+            MinValue: 5
+            MaxValue: 17
+            Chance: 2500
+          - Option: VAR_MAGICATKPERCENT
+            MinValue: 5
+            MaxValue: 17
+            Chance: 2500
+          - Option: CLASS_DAMAGE_NORMAL_TARGET
+            MinValue: 7
+            MaxValue: 30
+            Chance: 2500
+          - Option: CLASS_DAMAGE_BOSS_TARGET
+            MinValue: 7
+            MaxValue: 30
+            Chance: 2500
+          - Option: CLASS_MDAMAGE_NORMAL
+            MinValue: 7
+            MaxValue: 30
+            Chance: 2500
+          - Option: CLASS_MDAMAGE_BOSS
+            MinValue: 7
+            MaxValue: 30
+            Chance: 2500
+          - Option: CLASS_IGNORE_DEF_PERCENT_NORMAL
+            MinValue: 7
+            MaxValue: 20
+            Chance: 2500
+          - Option: CLASS_IGNORE_DEF_PERCENT_BOSS
+            MinValue: 7
+            MaxValue: 20
+            Chance: 2500
+          - Option: CLASS_IGNORE_MDEF_PERCENT_NORMAL
+            MinValue: 7
+            MaxValue: 20
+            Chance: 2500
+          - Option: CLASS_IGNORE_MDEF_PERCENT_BOSS
+            MinValue: 7
+            MaxValue: 20
+            Chance: 2500
+          - Option: RANGE_ATTACK_DAMAGE_TARGET
+            MinValue: 7
+            MaxValue: 25
+            Chance: 1500
+          - Option: DAMAGE_CRI_TARGET
+            MinValue: 7
+            MaxValue: 25
+            Chance: 1500
+          - Option: MELEE_ATTACK_DAMAGE_TARGET
+            MinValue: 7
+            MaxValue: 25
+            Chance: 1500
+          - Option: CLASS_MDAMAGE_ALL
+            MinValue: 7
+            MaxValue: 25
+            Chance: 1500
+          - Option: HIT_PHYSICAL_DAMAGE
+            MinValue: 7
+            MaxValue: 25
+            Chance: 1500
+          - Option: ASPD_CAP_UNLOCK
+            MinValue: 1
+            MaxValue: 2
+            Chance: 500
+          - Option: VAR_ALLSTATS
+            MinValue: 2
+            MaxValue: 6
+            Chance: 1000
+          - Option: VAR_ALLSTATS_RATE
+            MinValue: 2
+            MaxValue: 6
+            Chance: 1000
+      - Slot: 2
+        Options:
+          - Option: VAR_STRRATE
+            MinValue: 3
+            MaxValue: 9
+            Chance: 1500
+          - Option: VAR_AGIRATE
+            MinValue: 3
+            MaxValue: 9
+            Chance: 1500
+          - Option: VAR_VITRATE
+            MinValue: 3
+            MaxValue: 9
+            Chance: 1500
+          - Option: VAR_INTRATE
+            MinValue: 3
+            MaxValue: 9
+            Chance: 1500
+          - Option: VAR_DEXRATE
+            MinValue: 3
+            MaxValue: 9
+            Chance: 1500
+          - Option: VAR_LUKRATE
+            MinValue: 3
+            MaxValue: 9
+            Chance: 2500
+          - Option: VAR_STRAMOUNT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 5000
+          - Option: VAR_AGIAMOUNT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 5000
+          - Option: VAR_VITAMOUNT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 5000
+          - Option: VAR_INTAMOUNT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 5000
+          - Option: VAR_DEXAMOUNT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 5000
+          - Option: VAR_LUKAMOUNT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 5000
+          - Option: VAR_MAXHPPERCENT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_MAXSPPERCENT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_MAXHPAMOUNT
+            MinValue: 100
+            MaxValue: 2500
+            Chance: 7000
+          - Option: VAR_MAXSPAMOUNT
+            MinValue: 3
+            MaxValue: 50
+            Chance: 7000
+          - Option: VAR_ATTPOWER
+            MinValue: 30
+            MaxValue: 400
+            Chance: 7000
+          - Option: VAR_ATTMPOWER
+            MinValue: 30
+            MaxValue: 400
+            Chance: 7000
+          - Option: VAR_HITSUCCESSVALUE
+            MinValue: 40
+            MaxValue: 200
+            Chance: 2500
+          - Option: VAR_CRITICALSUCCESSVALUE
+            MinValue: 3
+            MaxValue: 15
+            Chance: 2500
+          - Option: VAR_PLUSASPDPERCENT
+            MinValue: 3
+            MaxValue: 20
+            Chance: 2500
+          - Option: VAR_ATKPERCENT
+            MinValue: 5
+            MaxValue: 17
+            Chance: 2500
+          - Option: VAR_MAGICATKPERCENT
+            MinValue: 5
+            MaxValue: 17
+            Chance: 2500
+          - Option: CLASS_DAMAGE_NORMAL_TARGET
+            MinValue: 7
+            MaxValue: 30
+            Chance: 2500
+          - Option: CLASS_DAMAGE_BOSS_TARGET
+            MinValue: 7
+            MaxValue: 30
+            Chance: 2500
+          - Option: CLASS_MDAMAGE_NORMAL
+            MinValue: 7
+            MaxValue: 30
+            Chance: 2500
+          - Option: CLASS_MDAMAGE_BOSS
+            MinValue: 7
+            MaxValue: 30
+            Chance: 2500
+          - Option: CLASS_IGNORE_DEF_PERCENT_NORMAL
+            MinValue: 7
+            MaxValue: 20
+            Chance: 2500
+          - Option: CLASS_IGNORE_DEF_PERCENT_BOSS
+            MinValue: 7
+            MaxValue: 20
+            Chance: 2500
+          - Option: CLASS_IGNORE_MDEF_PERCENT_NORMAL
+            MinValue: 7
+            MaxValue: 20
+            Chance: 2500
+          - Option: CLASS_IGNORE_MDEF_PERCENT_BOSS
+            MinValue: 7
+            MaxValue: 20
+            Chance: 2500
+          - Option: RANGE_ATTACK_DAMAGE_TARGET
+            MinValue: 7
+            MaxValue: 25
+            Chance: 1500
+          - Option: DAMAGE_CRI_TARGET
+            MinValue: 7
+            MaxValue: 25
+            Chance: 1500
+          - Option: MELEE_ATTACK_DAMAGE_TARGET
+            MinValue: 7
+            MaxValue: 25
+            Chance: 1500
+          - Option: CLASS_MDAMAGE_ALL
+            MinValue: 7
+            MaxValue: 25
+            Chance: 1500
+          - Option: HIT_PHYSICAL_DAMAGE
+            MinValue: 7
+            MaxValue: 25
+            Chance: 1500
+          - Option: ASPD_CAP_UNLOCK
+            MinValue: 1
+            MaxValue: 2
+            Chance: 500
+          - Option: VAR_ALLSTATS
+            MinValue: 2
+            MaxValue: 6
+            Chance: 1000
+          - Option: VAR_ALLSTATS_RATE
+            MinValue: 2
+            MaxValue: 6
+            Chance: 1000
+      - Slot: 3
+        Options:
+          - Option: VAR_STRRATE
+            MinValue: 3
+            MaxValue: 9
+            Chance: 1500
+          - Option: VAR_AGIRATE
+            MinValue: 3
+            MaxValue: 9
+            Chance: 1500
+          - Option: VAR_VITRATE
+            MinValue: 3
+            MaxValue: 9
+            Chance: 1500
+          - Option: VAR_INTRATE
+            MinValue: 3
+            MaxValue: 9
+            Chance: 1500
+          - Option: VAR_DEXRATE
+            MinValue: 3
+            MaxValue: 9
+            Chance: 1500
+          - Option: VAR_LUKRATE
+            MinValue: 3
+            MaxValue: 9
+            Chance: 2500
+          - Option: VAR_STRAMOUNT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 5000
+          - Option: VAR_AGIAMOUNT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 5000
+          - Option: VAR_VITAMOUNT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 5000
+          - Option: VAR_INTAMOUNT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 5000
+          - Option: VAR_DEXAMOUNT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 5000
+          - Option: VAR_LUKAMOUNT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 5000
+          - Option: VAR_MAXHPPERCENT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_MAXSPPERCENT
+            MinValue: 3
+            MaxValue: 10
+            Chance: 2500
+          - Option: VAR_MAXHPAMOUNT
+            MinValue: 100
+            MaxValue: 2500
+            Chance: 7000
+          - Option: VAR_MAXSPAMOUNT
+            MinValue: 3
+            MaxValue: 50
+            Chance: 7000
+          - Option: VAR_ATTPOWER
+            MinValue: 30
+            MaxValue: 400
+            Chance: 7000
+          - Option: VAR_ATTMPOWER
+            MinValue: 30
+            MaxValue: 400
+            Chance: 7000
+          - Option: VAR_HITSUCCESSVALUE
+            MinValue: 40
+            MaxValue: 200
+            Chance: 2500
+          - Option: VAR_CRITICALSUCCESSVALUE
+            MinValue: 3
+            MaxValue: 15
+            Chance: 2500
+          - Option: VAR_PLUSASPDPERCENT
+            MinValue: 3
+            MaxValue: 20
+            Chance: 2500
+          - Option: VAR_ATKPERCENT
+            MinValue: 5
+            MaxValue: 17
+            Chance: 2500
+          - Option: VAR_MAGICATKPERCENT
+            MinValue: 5
+            MaxValue: 17
+            Chance: 2500
+          - Option: CLASS_DAMAGE_NORMAL_TARGET
+            MinValue: 7
+            MaxValue: 30
+            Chance: 2500
+          - Option: CLASS_DAMAGE_BOSS_TARGET
+            MinValue: 7
+            MaxValue: 30
+            Chance: 2500
+          - Option: CLASS_MDAMAGE_NORMAL
+            MinValue: 7
+            MaxValue: 30
+            Chance: 2500
+          - Option: CLASS_MDAMAGE_BOSS
+            MinValue: 7
+            MaxValue: 30
+            Chance: 2500
+          - Option: CLASS_IGNORE_DEF_PERCENT_NORMAL
+            MinValue: 7
+            MaxValue: 20
+            Chance: 2500
+          - Option: CLASS_IGNORE_DEF_PERCENT_BOSS
+            MinValue: 7
+            MaxValue: 20
+            Chance: 2500
+          - Option: CLASS_IGNORE_MDEF_PERCENT_NORMAL
+            MinValue: 7
+            MaxValue: 20
+            Chance: 2500
+          - Option: CLASS_IGNORE_MDEF_PERCENT_BOSS
+            MinValue: 7
+            MaxValue: 20
+            Chance: 2500
+          - Option: RANGE_ATTACK_DAMAGE_TARGET
+            MinValue: 7
+            MaxValue: 25
+            Chance: 1500
+          - Option: DAMAGE_CRI_TARGET
+            MinValue: 7
+            MaxValue: 25
+            Chance: 1500
+          - Option: MELEE_ATTACK_DAMAGE_TARGET
+            MinValue: 7
+            MaxValue: 25
+            Chance: 1500
+          - Option: CLASS_MDAMAGE_ALL
+            MinValue: 7
+            MaxValue: 25
+            Chance: 1500
+          - Option: HIT_PHYSICAL_DAMAGE
+            MinValue: 7
+            MaxValue: 25
+            Chance: 1500
+          - Option: ASPD_CAP_UNLOCK
+            MinValue: 1
+            MaxValue: 2
+            Chance: 500
+          - Option: VAR_ALLSTATS
+            MinValue: 2
+            MaxValue: 6
+            Chance: 1000
+          - Option: VAR_ALLSTATS_RATE
+            MinValue: 2
+            MaxValue: 6
+            Chance: 1000
+  - Id: 409
+    Group: GLOWING_CUBE_Weapon_2H
+    Slots:
+      - Slot: 1
+        Options:
+          - Option: VAR_STRRATE
+            MinValue: 3
+            MaxValue: 11
+            Chance: 1500
+          - Option: VAR_AGIRATE
+            MinValue: 3
+            MaxValue: 11
+            Chance: 1500
+          - Option: VAR_VITRATE
+            MinValue: 3
+            MaxValue: 11
+            Chance: 1500
+          - Option: VAR_INTRATE
+            MinValue: 3
+            MaxValue: 11
+            Chance: 1500
+          - Option: VAR_DEXRATE
+            MinValue: 3
+            MaxValue: 11
+            Chance: 1500
+          - Option: VAR_LUKRATE
+            MinValue: 3
+            MaxValue: 11
+            Chance: 2500
+          - Option: VAR_STRAMOUNT
+            MinValue: 3
+            MaxValue: 14
+            Chance: 5000
+          - Option: VAR_AGIAMOUNT
+            MinValue: 3
+            MaxValue: 14
+            Chance: 5000
+          - Option: VAR_VITAMOUNT
+            MinValue: 3
+            MaxValue: 14
+            Chance: 5000
+          - Option: VAR_INTAMOUNT
+            MinValue: 3
+            MaxValue: 14
+            Chance: 5000
+          - Option: VAR_DEXAMOUNT
+            MinValue: 3
+            MaxValue: 14
+            Chance: 5000
+          - Option: VAR_LUKAMOUNT
+            MinValue: 3
+            MaxValue: 14
+            Chance: 5000
+          - Option: VAR_MAXHPPERCENT
+            MinValue: 3
+            MaxValue: 14
+            Chance: 2500
+          - Option: VAR_MAXSPPERCENT
+            MinValue: 3
+            MaxValue: 14
+            Chance: 2500
+          - Option: VAR_MAXHPAMOUNT
+            MinValue: 200
+            MaxValue: 3500
+            Chance: 7000
+          - Option: VAR_MAXSPAMOUNT
+            MinValue: 3
+            MaxValue: 80
+            Chance: 7000
+          - Option: VAR_ATTPOWER
+            MinValue: 40
+            MaxValue: 550
+            Chance: 7000
+          - Option: VAR_ATTMPOWER
+            MinValue: 40
+            MaxValue: 550
+            Chance: 7000
+          - Option: VAR_HITSUCCESSVALUE
+            MinValue: 40
+            MaxValue: 280
+            Chance: 2500
+          - Option: VAR_CRITICALSUCCESSVALUE
+            MinValue: 4
+            MaxValue: 19
+            Chance: 2500
+          - Option: VAR_PLUSASPDPERCENT
+            MinValue: 3
+            MaxValue: 20
+            Chance: 2500
+          - Option: VAR_ATKPERCENT
+            MinValue: 5
+            MaxValue: 22
+            Chance: 2500
+          - Option: VAR_MAGICATKPERCENT
+            MinValue: 5
+            MaxValue: 22
+            Chance: 2500
+          - Option: CLASS_DAMAGE_NORMAL_TARGET
+            MinValue: 7
+            MaxValue: 41
+            Chance: 2500
+          - Option: CLASS_DAMAGE_BOSS_TARGET
+            MinValue: 7
+            MaxValue: 41
+            Chance: 2500
+          - Option: CLASS_MDAMAGE_NORMAL
+            MinValue: 7
+            MaxValue: 41
+            Chance: 2500
+          - Option: CLASS_MDAMAGE_BOSS
+            MinValue: 7
+            MaxValue: 41
+            Chance: 2500
+          - Option: CLASS_IGNORE_DEF_PERCENT_NORMAL
+            MinValue: 7
+            MaxValue: 27
+            Chance: 2500
+          - Option: CLASS_IGNORE_DEF_PERCENT_BOSS
+            MinValue: 7
+            MaxValue: 27
+            Chance: 2500
+          - Option: CLASS_IGNORE_MDEF_PERCENT_NORMAL
+            MinValue: 7
+            MaxValue: 27
+            Chance: 2500
+          - Option: CLASS_IGNORE_MDEF_PERCENT_BOSS
+            MinValue: 7
+            MaxValue: 27
+            Chance: 2500
+          - Option: RANGE_ATTACK_DAMAGE_TARGET
+            MinValue: 7
+            MaxValue: 31
+            Chance: 1500
+          - Option: DAMAGE_CRI_TARGET
+            MinValue: 7
+            MaxValue: 31
+            Chance: 1500
+          - Option: MELEE_ATTACK_DAMAGE_TARGET
+            MinValue: 7
+            MaxValue: 31
+            Chance: 1500
+          - Option: CLASS_MDAMAGE_ALL
+            MinValue: 7
+            MaxValue: 31
+            Chance: 1500
+          - Option: HIT_PHYSICAL_DAMAGE
+            MinValue: 7
+            MaxValue: 31
+            Chance: 1500
+          - Option: ASPD_CAP_UNLOCK
+            MinValue: 1
+            MaxValue: 2
+            Chance: 500
+          - Option: VAR_ALLSTATS
+            MinValue: 2
+            MaxValue: 8
+            Chance: 1000
+          - Option: VAR_ALLSTATS_RATE
+            MinValue: 2
+            MaxValue: 8
+            Chance: 1000
+      - Slot: 2
+        Options:
+          - Option: VAR_STRRATE
+            MinValue: 3
+            MaxValue: 11
+            Chance: 1500
+          - Option: VAR_AGIRATE
+            MinValue: 3
+            MaxValue: 11
+            Chance: 1500
+          - Option: VAR_VITRATE
+            MinValue: 3
+            MaxValue: 11
+            Chance: 1500
+          - Option: VAR_INTRATE
+            MinValue: 3
+            MaxValue: 11
+            Chance: 1500
+          - Option: VAR_DEXRATE
+            MinValue: 3
+            MaxValue: 11
+            Chance: 1500
+          - Option: VAR_LUKRATE
+            MinValue: 3
+            MaxValue: 11
+            Chance: 2500
+          - Option: VAR_STRAMOUNT
+            MinValue: 3
+            MaxValue: 14
+            Chance: 5000
+          - Option: VAR_AGIAMOUNT
+            MinValue: 3
+            MaxValue: 14
+            Chance: 5000
+          - Option: VAR_VITAMOUNT
+            MinValue: 3
+            MaxValue: 14
+            Chance: 5000
+          - Option: VAR_INTAMOUNT
+            MinValue: 3
+            MaxValue: 14
+            Chance: 5000
+          - Option: VAR_DEXAMOUNT
+            MinValue: 3
+            MaxValue: 14
+            Chance: 5000
+          - Option: VAR_LUKAMOUNT
+            MinValue: 3
+            MaxValue: 14
+            Chance: 5000
+          - Option: VAR_MAXHPPERCENT
+            MinValue: 3
+            MaxValue: 14
+            Chance: 2500
+          - Option: VAR_MAXSPPERCENT
+            MinValue: 3
+            MaxValue: 14
+            Chance: 2500
+          - Option: VAR_MAXHPAMOUNT
+            MinValue: 200
+            MaxValue: 3500
+            Chance: 7000
+          - Option: VAR_MAXSPAMOUNT
+            MinValue: 3
+            MaxValue: 80
+            Chance: 7000
+          - Option: VAR_ATTPOWER
+            MinValue: 40
+            MaxValue: 550
+            Chance: 7000
+          - Option: VAR_ATTMPOWER
+            MinValue: 40
+            MaxValue: 550
+            Chance: 7000
+          - Option: VAR_HITSUCCESSVALUE
+            MinValue: 40
+            MaxValue: 280
+            Chance: 2500
+          - Option: VAR_CRITICALSUCCESSVALUE
+            MinValue: 4
+            MaxValue: 19
+            Chance: 2500
+          - Option: VAR_PLUSASPDPERCENT
+            MinValue: 3
+            MaxValue: 20
+            Chance: 2500
+          - Option: VAR_ATKPERCENT
+            MinValue: 5
+            MaxValue: 22
+            Chance: 2500
+          - Option: VAR_MAGICATKPERCENT
+            MinValue: 5
+            MaxValue: 22
+            Chance: 2500
+          - Option: CLASS_DAMAGE_NORMAL_TARGET
+            MinValue: 7
+            MaxValue: 41
+            Chance: 2500
+          - Option: CLASS_DAMAGE_BOSS_TARGET
+            MinValue: 7
+            MaxValue: 41
+            Chance: 2500
+          - Option: CLASS_MDAMAGE_NORMAL
+            MinValue: 7
+            MaxValue: 41
+            Chance: 2500
+          - Option: CLASS_MDAMAGE_BOSS
+            MinValue: 7
+            MaxValue: 41
+            Chance: 2500
+          - Option: CLASS_IGNORE_DEF_PERCENT_NORMAL
+            MinValue: 7
+            MaxValue: 27
+            Chance: 2500
+          - Option: CLASS_IGNORE_DEF_PERCENT_BOSS
+            MinValue: 7
+            MaxValue: 27
+            Chance: 2500
+          - Option: CLASS_IGNORE_MDEF_PERCENT_NORMAL
+            MinValue: 7
+            MaxValue: 27
+            Chance: 2500
+          - Option: CLASS_IGNORE_MDEF_PERCENT_BOSS
+            MinValue: 7
+            MaxValue: 27
+            Chance: 2500
+          - Option: RANGE_ATTACK_DAMAGE_TARGET
+            MinValue: 7
+            MaxValue: 31
+            Chance: 1500
+          - Option: DAMAGE_CRI_TARGET
+            MinValue: 7
+            MaxValue: 31
+            Chance: 1500
+          - Option: MELEE_ATTACK_DAMAGE_TARGET
+            MinValue: 7
+            MaxValue: 31
+            Chance: 1500
+          - Option: CLASS_MDAMAGE_ALL
+            MinValue: 7
+            MaxValue: 31
+            Chance: 1500
+          - Option: HIT_PHYSICAL_DAMAGE
+            MinValue: 7
+            MaxValue: 31
+            Chance: 1500
+          - Option: ASPD_CAP_UNLOCK
+            MinValue: 1
+            MaxValue: 2
+            Chance: 500
+          - Option: VAR_ALLSTATS
+            MinValue: 2
+            MaxValue: 8
+            Chance: 1000
+          - Option: VAR_ALLSTATS_RATE
+            MinValue: 2
+            MaxValue: 8
+            Chance: 1000
+      - Slot: 3
+        Options:
+          - Option: VAR_STRRATE
+            MinValue: 3
+            MaxValue: 11
+            Chance: 1500
+          - Option: VAR_AGIRATE
+            MinValue: 3
+            MaxValue: 11
+            Chance: 1500
+          - Option: VAR_VITRATE
+            MinValue: 3
+            MaxValue: 11
+            Chance: 1500
+          - Option: VAR_INTRATE
+            MinValue: 3
+            MaxValue: 11
+            Chance: 1500
+          - Option: VAR_DEXRATE
+            MinValue: 3
+            MaxValue: 11
+            Chance: 1500
+          - Option: VAR_LUKRATE
+            MinValue: 3
+            MaxValue: 11
+            Chance: 2500
+          - Option: VAR_STRAMOUNT
+            MinValue: 3
+            MaxValue: 14
+            Chance: 5000
+          - Option: VAR_AGIAMOUNT
+            MinValue: 3
+            MaxValue: 14
+            Chance: 5000
+          - Option: VAR_VITAMOUNT
+            MinValue: 3
+            MaxValue: 14
+            Chance: 5000
+          - Option: VAR_INTAMOUNT
+            MinValue: 3
+            MaxValue: 14
+            Chance: 5000
+          - Option: VAR_DEXAMOUNT
+            MinValue: 3
+            MaxValue: 14
+            Chance: 5000
+          - Option: VAR_LUKAMOUNT
+            MinValue: 3
+            MaxValue: 14
+            Chance: 5000
+          - Option: VAR_MAXHPPERCENT
+            MinValue: 3
+            MaxValue: 14
+            Chance: 2500
+          - Option: VAR_MAXSPPERCENT
+            MinValue: 3
+            MaxValue: 14
+            Chance: 2500
+          - Option: VAR_MAXHPAMOUNT
+            MinValue: 200
+            MaxValue: 3500
+            Chance: 7000
+          - Option: VAR_MAXSPAMOUNT
+            MinValue: 3
+            MaxValue: 80
+            Chance: 7000
+          - Option: VAR_ATTPOWER
+            MinValue: 40
+            MaxValue: 550
+            Chance: 7000
+          - Option: VAR_ATTMPOWER
+            MinValue: 40
+            MaxValue: 550
+            Chance: 7000
+          - Option: VAR_HITSUCCESSVALUE
+            MinValue: 40
+            MaxValue: 280
+            Chance: 2500
+          - Option: VAR_CRITICALSUCCESSVALUE
+            MinValue: 4
+            MaxValue: 19
+            Chance: 2500
+          - Option: VAR_PLUSASPDPERCENT
+            MinValue: 3
+            MaxValue: 20
+            Chance: 2500
+          - Option: VAR_ATKPERCENT
+            MinValue: 5
+            MaxValue: 22
+            Chance: 2500
+          - Option: VAR_MAGICATKPERCENT
+            MinValue: 5
+            MaxValue: 22
+            Chance: 2500
+          - Option: CLASS_DAMAGE_NORMAL_TARGET
+            MinValue: 7
+            MaxValue: 41
+            Chance: 2500
+          - Option: CLASS_DAMAGE_BOSS_TARGET
+            MinValue: 7
+            MaxValue: 41
+            Chance: 2500
+          - Option: CLASS_MDAMAGE_NORMAL
+            MinValue: 7
+            MaxValue: 41
+            Chance: 2500
+          - Option: CLASS_MDAMAGE_BOSS
+            MinValue: 7
+            MaxValue: 41
+            Chance: 2500
+          - Option: CLASS_IGNORE_DEF_PERCENT_NORMAL
+            MinValue: 7
+            MaxValue: 27
+            Chance: 2500
+          - Option: CLASS_IGNORE_DEF_PERCENT_BOSS
+            MinValue: 7
+            MaxValue: 27
+            Chance: 2500
+          - Option: CLASS_IGNORE_MDEF_PERCENT_NORMAL
+            MinValue: 7
+            MaxValue: 27
+            Chance: 2500
+          - Option: CLASS_IGNORE_MDEF_PERCENT_BOSS
+            MinValue: 7
+            MaxValue: 27
+            Chance: 2500
+          - Option: RANGE_ATTACK_DAMAGE_TARGET
+            MinValue: 7
+            MaxValue: 31
+            Chance: 1500
+          - Option: DAMAGE_CRI_TARGET
+            MinValue: 7
+            MaxValue: 31
+            Chance: 1500
+          - Option: MELEE_ATTACK_DAMAGE_TARGET
+            MinValue: 7
+            MaxValue: 31
+            Chance: 1500
+          - Option: CLASS_MDAMAGE_ALL
+            MinValue: 7
+            MaxValue: 31
+            Chance: 1500
+          - Option: HIT_PHYSICAL_DAMAGE
+            MinValue: 7
+            MaxValue: 31
+            Chance: 1500
+          - Option: ASPD_CAP_UNLOCK
+            MinValue: 1
+            MaxValue: 2
+            Chance: 500
+          - Option: VAR_ALLSTATS
+            MinValue: 2
+            MaxValue: 8
+            Chance: 1000
+          - Option: VAR_ALLSTATS_RATE
+            MinValue: 2
+            MaxValue: 8
+            Chance: 1000

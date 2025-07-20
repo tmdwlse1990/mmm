@@ -3961,6 +3961,15 @@ void pc_bonus(map_session_data *sd,int32 type,int32 val)
 			if (sd->state.lr_flag != LR_FLAG_ARROW)
 				sd->indexed_bonus.param_bonus[type-SP_STR]+=val;
 			break;
+		case SP_STRRATE:
+		case SP_AGIRATE:
+		case SP_VITRATE:
+		case SP_INTRATE:
+		case SP_DEXRATE:
+		case SP_LUKRATE:
+			if (sd->state.lr_flag != LR_FLAG_ARROW)
+				sd->indexed_bonus.param_bonus_rate[type - SP_STRRATE]+=val;
+			break;
 		case SP_POW:
 		case SP_STA:
 		case SP_WIS:
@@ -3969,6 +3978,35 @@ void pc_bonus(map_session_data *sd,int32 type,int32 val)
 		case SP_CRT:
 			if (sd->state.lr_flag != LR_FLAG_ARROW)
 				sd->indexed_bonus.param_bonus[type - SP_POW + PARAM_POW] += val;
+			break;
+		case SP_POWRATE:
+		case SP_STARATE:
+		case SP_WISRATE:
+		case SP_SPLRATE:
+		case SP_CONRATE:
+		case SP_CRTRATE:
+			if (sd->state.lr_flag != LR_FLAG_ARROW)
+				sd->indexed_bonus.param_bonus_rate[type - SP_POWRATE + PARAM_POW] += val;
+			break;
+		case SP_ALL_STATS_RATE:	// [Valaris]
+			if (sd->state.lr_flag != LR_FLAG_ARROW) {
+				sd->indexed_bonus.param_bonus_rate[SP_STR-SP_STR]+=val;
+				sd->indexed_bonus.param_bonus_rate[SP_AGI-SP_STR]+=val;
+				sd->indexed_bonus.param_bonus_rate[SP_VIT-SP_STR]+=val;
+				sd->indexed_bonus.param_bonus_rate[SP_INT-SP_STR]+=val;
+				sd->indexed_bonus.param_bonus_rate[SP_DEX-SP_STR]+=val;
+				sd->indexed_bonus.param_bonus_rate[SP_LUK-SP_STR]+=val;
+			}
+			break;
+		case SP_ALL_TRAIT_STATS_RATE:
+			if (sd->state.lr_flag != LR_FLAG_ARROW) {
+				sd->indexed_bonus.param_bonus_rate[PARAM_POW] += val;
+				sd->indexed_bonus.param_bonus_rate[PARAM_STA] += val;
+				sd->indexed_bonus.param_bonus_rate[PARAM_WIS] += val;
+				sd->indexed_bonus.param_bonus_rate[PARAM_SPL] += val;
+				sd->indexed_bonus.param_bonus_rate[PARAM_CON] += val;
+				sd->indexed_bonus.param_bonus_rate[PARAM_CRT] += val;
+			}
 			break;
 		case SP_ATK1:
 			if (sd->state.lr_flag == LR_FLAG_NONE) {
