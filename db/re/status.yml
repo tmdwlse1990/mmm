@@ -4145,6 +4145,7 @@ Body:
       BlEffect: true
       DisplayPc: true
       StopAttacking: true
+      RemoveOnDamaged: true
     MinDuration: 10000
     EndOnStart:
       Deepsleep: true
