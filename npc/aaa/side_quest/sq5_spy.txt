@@ -119,6 +119,8 @@ icecastle,43,164,5	script	สายลับตาบอดBB	888,{ //ตัวเปิดเควสMain Phase 2
 			mes "[นกตาบอด Blind Bird]";	
 			mes "เร็วซี่ ข้ารออยู่!!";
 			mes "";
+			mes "หรือหากลืมไปแล้ว ลองไปถามหนอนดูสิ";
+			navigateto("icecastle",228,159);
 			mes "^FF0000Side Quest 5";
 		}
 	} else if(.@rightnum == 1) {

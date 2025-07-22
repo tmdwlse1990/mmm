@@ -690,6 +690,7 @@ public:
 	// here start arrays to be globally zeroed at the beginning of status_calc_pc()
 	struct s_indexed_bonus {
 		int32 param_bonus[PARAM_MAX], param_equip[PARAM_MAX]; //Stores card/equipment bonuses.
+		int32 param_bonus_rate[PARAM_MAX];
 		int32 subele[ELE_MAX];
 		int32 subele_script[ELE_MAX];
 		int32 subdefele[ELE_MAX];

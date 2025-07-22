@@ -64889,8 +64889,8 @@ Body:
     Weight: 10
     Flags:
       Container: true
-    Script: |
-      getgroupitem(IG_CELEBRATE_EGG);
+#    Script: |
+#      getgroupitem(IG_CELEBRATE_EGG);
   - Id: 23725
     AegisName: E_Main_Dish_C
     Name: "[Event] Main Dish Course"

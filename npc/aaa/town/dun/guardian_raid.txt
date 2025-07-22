@@ -211,7 +211,7 @@ OnInstanceInit:
 			default:
 				break;
 		}
-		if(rand(100) < 51 ) makeitem .@goldid[.@set],1,.@mapname$,.@mapx + rand(-2,2),.@mapy  + rand(-2,2),true;
+		if(rand(100) < 71 ) makeitem .@goldid[.@set],1,.@mapname$,.@mapx + rand(-2,2),.@mapy  + rand(-2,2),true;
 		sleep2 500;
 	}
 	end;

@@ -1555,7 +1555,8 @@ int32 status_damage(struct block_list *src,struct block_list *target,int64 dhp, 
 		ap = status->ap;
 	}
 
-	if (!hp && !sp && !ap)
+	// If no damage is dealt and the damage was passive
+	if (hp == 0 && sp == 0 && ap == 0 && (flag&1))
 		return 0;
 
 	if( !status->hp )
@@ -1565,12 +1566,19 @@ int32 status_damage(struct block_list *src,struct block_list *target,int64 dhp, 
 	if (hp && battle_config.invincible_nodamage && src && sc && sc->getSCE(SC_INVINCIBLE))
 		hp = 1;
 
-	if( hp && !(flag&1) ) {
+	// If the damage is not passive
+	if (!(flag&1)) {
 		if( sc ) {
 			struct status_change_entry *sce;
 
 			for (const auto &it : status_db) {
 				sc_type type = static_cast<sc_type>(it.first);
+
+				// For non-players, Wink Charm, Voice of Siren and Deep Sleep end only when damage was dealt (e.g. Wink Charm does not end itself)
+				// For players, these status changes end even if no damage was dealt (e.g. Provoke ends them on players but not on monsters)
+				// Other status changes end even on 0 damage (e.g. Wink Charm ends Freeze)
+				if ((type == SC_WINKCHARM || type == SC_VOICEOFSIREN || type == SC_DEEPSLEEP) && target->type != BL_PC && hp == 0)
+					continue;
 
 				if (sc->getSCE(type) && it.second->flag[SCF_REMOVEONDAMAGED]) {
 					// A status change that gets broken by damage should still be considered when calculating if a status change can be applied or not (for the same attack).
@@ -4408,28 +4416,40 @@ int32 status_calc_pc_sub(map_session_data* sd, uint8 opt)
 
 	// Bonuses from cards and equipment as well as base stat, remember to avoid overflows.
 	i = base_status->str + sd->status.str + sd->indexed_bonus.param_bonus[PARAM_STR] + sd->indexed_bonus.param_equip[PARAM_STR];
+	i = i + (i * sd->indexed_bonus.param_bonus_rate[PARAM_STR] / 100);
 	base_status->str = cap_value(i,0,USHRT_MAX);
 	i = base_status->agi + sd->status.agi + sd->indexed_bonus.param_bonus[PARAM_AGI] + sd->indexed_bonus.param_equip[PARAM_AGI];
+	i = i + (i * sd->indexed_bonus.param_bonus_rate[PARAM_AGI] / 100);
 	base_status->agi = cap_value(i,0,USHRT_MAX);
 	i = base_status->vit + sd->status.vit + sd->indexed_bonus.param_bonus[PARAM_VIT] + sd->indexed_bonus.param_equip[PARAM_VIT];
+	i = i + (i * sd->indexed_bonus.param_bonus_rate[PARAM_VIT] / 100);
 	base_status->vit = cap_value(i,0,USHRT_MAX);
 	i = base_status->int_+ sd->status.int_+ sd->indexed_bonus.param_bonus[PARAM_INT] + sd->indexed_bonus.param_equip[PARAM_INT];
+	i = i + (i * sd->indexed_bonus.param_bonus_rate[PARAM_INT] / 100);
 	base_status->int_ = cap_value(i,0,USHRT_MAX);
 	i = base_status->dex + sd->status.dex + sd->indexed_bonus.param_bonus[PARAM_DEX] + sd->indexed_bonus.param_equip[PARAM_DEX];
+	i = i + (i * sd->indexed_bonus.param_bonus_rate[PARAM_DEX] / 100);
 	base_status->dex = cap_value(i,0,USHRT_MAX);
 	i = base_status->luk + sd->status.luk + sd->indexed_bonus.param_bonus[PARAM_LUK] + sd->indexed_bonus.param_equip[PARAM_LUK];
+	i = i + (i * sd->indexed_bonus.param_bonus_rate[PARAM_LUK] / 100);
 	base_status->luk = cap_value(i,0,USHRT_MAX);
 	i = base_status->pow + sd->status.pow + sd->indexed_bonus.param_bonus[PARAM_POW] + sd->indexed_bonus.param_equip[PARAM_POW];
+	i = i + (i * sd->indexed_bonus.param_bonus_rate[PARAM_POW] / 100);
 	base_status->pow = cap_value(i, 0, USHRT_MAX);
 	i = base_status->sta + sd->status.sta + sd->indexed_bonus.param_bonus[PARAM_STA] + sd->indexed_bonus.param_equip[PARAM_STA];
+	i = i + (i * sd->indexed_bonus.param_bonus_rate[PARAM_STA] / 100);
 	base_status->sta = cap_value(i, 0, USHRT_MAX);
 	i = base_status->wis + sd->status.wis + sd->indexed_bonus.param_bonus[PARAM_WIS] + sd->indexed_bonus.param_equip[PARAM_WIS];
+	i = i + (i * sd->indexed_bonus.param_bonus_rate[PARAM_WIS] / 100);
 	base_status->wis = cap_value(i, 0, USHRT_MAX);
 	i = base_status->spl + sd->status.spl + sd->indexed_bonus.param_bonus[PARAM_SPL] + sd->indexed_bonus.param_equip[PARAM_SPL];
+	i = i + (i * sd->indexed_bonus.param_bonus_rate[PARAM_SPL] / 100);
 	base_status->spl = cap_value(i, 0, USHRT_MAX);
 	i = base_status->con + sd->status.con + sd->indexed_bonus.param_bonus[PARAM_CON] + sd->indexed_bonus.param_equip[PARAM_CON];
+	i = i + (i * sd->indexed_bonus.param_bonus_rate[PARAM_CON] / 100);
 	base_status->con = cap_value(i, 0, USHRT_MAX);
 	i = base_status->crt + sd->status.crt + sd->indexed_bonus.param_bonus[PARAM_CRT] + sd->indexed_bonus.param_equip[PARAM_CRT];
+	i = i + (i * sd->indexed_bonus.param_bonus_rate[PARAM_CRT] / 100);
 	base_status->crt = cap_value(i, 0, USHRT_MAX);
 
 	if (sd->special_state.no_walk_delay) {

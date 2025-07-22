@@ -7340,17 +7340,25 @@ void clif_use_card(map_session_data *sd,int32 idx)
 				continue;
 		}
 		else {
-			if ( (sd->inventory_data[i]->type != IT_WEAPON) && (sd->inventory_data[i]->type != IT_ARMOR) && (sd->inventory_data[i]->type != IT_SHADOWGEAR))
+			if (
+				(sd->inventory_data[i]->type != IT_WEAPON) && (sd->inventory_data[i]->type != IT_ARMOR) && (sd->inventory_data[i]->type != IT_SHADOWGEAR)
+				)
 				continue;
 		}
-		if (isEnchantment && ( sd->inventory_data[i]->flag.trade_restriction.trade == 1	) )
-			continue;
-
-		if (isEnchantment && ( (sd->inventory_data[i]->equip == EQP_COSTUME_HEAD_TOP) ||
-							   (sd->inventory_data[i]->equip == EQP_COSTUME_HEAD_MID) ||
-							   (sd->inventory_data[i]->equip == EQP_COSTUME_HEAD_LOW) ||
-							   (sd->inventory_data[i]->equip == EQP_COSTUME_GARMENT)
-							)
+		if (isEnchantment &&
+				(
+				(sd->inventory_data[i]->equip == EQP_COSTUME_HEAD_TOP) ||
+				(sd->inventory_data[i]->equip == EQP_COSTUME_HEAD_MID) ||
+				(sd->inventory_data[i]->equip == EQP_COSTUME_HEAD_LOW) ||
+				(sd->inventory_data[i]->equip == EQP_ALL_HEAD) ||
+				(sd->inventory_data[i]->equip == EQP_COS_HM) ||
+				(sd->inventory_data[i]->equip == EQP_COS_HL) ||
+				(sd->inventory_data[i]->equip == EQP_COS_ML) ||
+				(sd->inventory_data[i]->equip == EQP_SHADOW_ACC_R) ||
+				(sd->inventory_data[i]->equip == EQP_SHADOW_ACC_L) ||
+				(sd->inventory_data[i]->equip == EQP_SHADOW_ACC_RL) ||
+				(sd->inventory_data[i]->equip == EQP_COSTUME_GARMENT)
+				)
 			)
 			continue;
 

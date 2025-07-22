@@ -251,7 +251,6 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -264,7 +263,6 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -277,7 +275,6 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -290,7 +287,6 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -303,7 +299,6 @@ Body:
       NoDrop: true
       NoTrade: true
       NoCart: true
-      NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -395,6 +390,22 @@ Body:
     AegisName: Gacha_Ex_Ticket_Pass
     Name: Gacha Ex Ticket
     Type: Etc
+  - Id: 2000015
+    AegisName: PURE_MAGIC_TOPAZ_ORE
+    Name: Pure Topaz Ore
+    Type: Etc
+    Weight: 30
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+  - Id: 2000016
+    AegisName: PURE_MAGIC_SAPPHIRE_ORE
+    Name: Pure Sapphire Ore
+    Type: Etc
+    Weight: 30
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
 #   [Side Quest Item]
   - Id: 2005001
     AegisName: Golden_Egg
@@ -491,6 +502,38 @@ Body:
       getitem 2001951,1;
       getitem 2001005,1;
       getitem 2001101,1;
+  - Id: 2001007
+    AegisName: Store_ADCard_Store 
+    Name: Store Adventure Card Store
+    Type: DelayConsume
+    Flags:
+      BuyingStore: true
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoSell: true
+      NoCart: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Script: |
+      callfunc "F_StoreADCard",1;
+  - Id: 2001008
+    AegisName: Release_ADCard_Store 
+    Name: Release Adventure Card Store
+    Type: DelayConsume
+    Flags:
+      BuyingStore: true
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoSell: true
+      NoCart: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Script: |
+      callfunc "F_StoreADCard",2;
   - Id: 2001101
     AegisName: Yee_Bubble_Gum
     Name: Yee Gum
@@ -920,6 +963,62 @@ Body:
     Weight: 1
     Script: |
       zeny += 10000000;
+  - Id: 2002015
+    AegisName: Stronghold_Box
+    Name: Stronghold Cube
+    Type: DelayConsume
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Trade:
+      NoDrop: true
+    NoUse:
+      Sitting: true
+    Weight: 10
+    Script: |
+      callfunc "F_MapleCube",1;
+  - Id: 2002016
+    AegisName: Silvergrade_Box
+    Name: Silvergrade Cube
+    Type: DelayConsume
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Trade:
+      NoDrop: true
+    NoUse:
+      Sitting: true
+    Weight: 10
+    Script: |
+      callfunc "F_MapleCube",2;
+  - Id: 2002017
+    AegisName: Catora_Box
+    Name: Catora Cube
+    Type: DelayConsume
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Trade:
+      NoDrop: true
+    NoUse:
+      Sitting: true
+    Weight: 10
+    Script: |
+      callfunc "F_MapleCube",3;
+  - Id: 2002018
+    AegisName: Sharkora_Box
+    Name: Sharkora Cube
+    Type: DelayConsume
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Trade:
+      NoDrop: true
+    NoUse:
+      Sitting: true
+    Weight: 10
+    Script: |
+      callfunc "F_MapleCube",4;
 #   [Enchant Item]
   - Id: 2099001
     AegisName: All_STATS1_NT

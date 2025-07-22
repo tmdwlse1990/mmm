@@ -67,6 +67,8 @@ Body:
         Price: 630
       - Item: Premium_Box_10d
         Price: 800
+      - Item: Store_ADCard_Stone
+        Price: 2990
   - Tab: Limited
     Items:
       - Item: Elunium_Box
@@ -117,6 +119,8 @@ Body:
         Price: 300
       - Item: Kafra_Card_Box
         Price: 100
+      - Item: Sharkora_Box
+        Price: 109
   - Tab: Consumables
     Items:
       - Item: Grape_Box

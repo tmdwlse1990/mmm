@@ -10,6 +10,12 @@
 
 -	script	Collection	-1,{
 Main:
+	disable_items;
+	if (!checkweight(1201,5)) {
+		mes "กรุณาทำช่องว่างให้มีอย่างน้อย 5 ช่อง";
+		mes "หรือน้ำหนักของท่านมากเกินไป";
+		end;
+	}
 	setdialogsize(250,400);
 	mes "[Personal Manager]";
 	mes "Chaos Dungeon :"+( ( (checkquest(11,PLAYTIME) == -1) || (checkquest(11,PLAYTIME) == 2) ) ? "^33fc4c พร้อมลง":"^ff0000 ลงแล้ว" )+"^000000";
@@ -23,9 +29,9 @@ GOODS:
 	"• เปิดคลัง Collection",-,
 	"• ออก.",-;
 	.@menu = @menu;
+	next;
 	switch(.@menu) {
 		case 2:
-			clear;
 			mes "[Personal Manager]";
 			mes "Kraken Raid :"+( ( (checkquest(51,PLAYTIME) == -1) || (checkquest(51,PLAYTIME) == 2) ) ? "^33fc4c พร้อมลง":"^ff0000 ลงแล้ว" )+"^000000";
 			mes "Orcs Memories :"+( ( (checkquest(12059,PLAYTIME) == -1) || (checkquest(12059,PLAYTIME) == 2) ) ? "^33fc4c พร้อมลง":"^ff0000 ลงแล้ว" )+"^000000";
@@ -35,6 +41,9 @@ GOODS:
 			warp "icecastle",24,120;
 			break;
 		case 3:
+			doevent "#stats_combine::OnMenu";
+			end;
+		case 4:
 			openstorage2 1,STOR_MODE_GET|STOR_MODE_PUT;
 			break;
 		default:
@@ -44,18 +53,150 @@ GOODS:
 
 }
 
+-	shop	#stats_show	-1,512:-1
+
 -	script	#stats_combine	-1,{
 	
-			menu 
-			"ย่อยเม็ด Stats ที่ไม่ใช้",-,
-			"เปิดร้านค้ากล่อง Stats",-,
-			"Main Menu",GOODS,
-			.@menu2 = @menu;
+OnMenu:
+	disable_items;
+	mes "[Stats Stone Manager]";
+	mes "การย่อยและซื้อหินสเตตัส";
+	mes "^i[4700] ภาพตัวอย่าง";
+	
+	menu
+	"• แลกหินสเตตัส",-,
+	"• ย่อยหินสเตตัส",-,
+	"• อัพเกรดผง",-,
+	"• รายระเอียด",-,
+	"• กลับเมนูหลัก",-;
+	.@menu = @menu;
+	next;
+	
+	switch(.@menu) {
+		case 1:
+			close2;
+			callshop "Stats_Box",1;
 			end;
-OnBuyItem:
+		case 2:
+			callshop "#stats_show",2;
+			npcshopattach "#stats_show";
+			end;
+		
+		case 3:
+			close2;
+			callshop "Stats_Powder";
+			end;
+		case 4:
+			setdialogsize(400,400);
+			mes "[Stats Stone Manager]";
+			mes "โดยการย่อยจะได้รับเศษตามนี้";
+			mes "Stats +1 -> ย่อยได้ 1 เศษเล็ก";
+			mes "Stats +2 -> ย่อยได้ 2 เศษเล็ก";
+			mes "Stats +3 -> ย่อยได้ 4 เศษเล็ก";
+			mes "Stats +4 -> ย่อยได้ 8 เศษเล็ก";
+			mes "Stats +5 -> ย่อยได้ 1 เศษกลาง";
+			mes "Stats +6 -> ย่อยได้ 2 เศษกลาง";
+			mes "Stats +7 -> ย่อยได้ 4 เศษกลาง";
+			mes "Stats +8 -> ย่อยได้ 8 เศษกลาง";
+			mes "Stats +9 -> ย่อยได้ 1 เศษใหญ่";
+			mes "Stats +10 -> ย่อยได้ 2 เศษใหญ่";
+			mes "----------------------";
+			mes "การแลกหินจะเป็นการสุ่ม";
+			mes "Stats +1 -> ใช้ 2 เศษเล็ก";
+			mes "Stats +2 -> ใช้ 4 เศษเล็ก";
+			mes "Stats +3 -> ใช้ 8 เศษเล็ก";
+			mes "Stats +4 -> ใช้ 16 เศษเล็ก";
+			mes "Stats +5 -> ใช้ 2 เศษกลาง";
+			mes "Stats +6 -> ใช้ 4 เศษกลาง";
+			mes "Stats +7 -> ใช้ 8 เศษกลาง";
+			mes "Stats +8 -> ใช้ 16 เศษกลาง";
+			mes "Stats +9 -> ใช้ 2 เศษใหญ่";
+			mes "โดยจะเป็นหัวข้อให้เลือก ซึ่งหากเลือกแล้วจะเป็นการสุ่ม";
+			mes "ว่าจะได้ Stats ระดับที่เลือก หรือได้ ระดับที่สูงขั้น 1 ขั้น";
+			mes "เช่น หากเลือกแลก Stats +5 ก็ลุ้นว่าจะได้ Stats +5 หรือ Stats +6 นั่นเอง";
+			goto OnMenu;
+		default:
+			doevent "Collection::Main";
+			end;
+	}
 	end;
 OnSellItem:
+	copyarray .@soldid[0],@sold_nameid[0],getarraysize(@sold_nameid);
+	copyarray .@soldnumber[0],@sold_quantity[0],getarraysize(@sold_quantity);
+	mes "List :";
+	for(.@i=0; .@i < getarraysize(.@soldid); .@i++) {
+		set .@namestone$, ""+.@stoneid[.@i];
+		if( inarray(.lowstone[1],.@soldid[.@i]) >= 0 ) {
+			.@stoneid[getarraysize(.@stoneid)] = .@soldid[.@i];
+			.@stonenum[getarraysize(.@stonenum)] = .@soldnumber[.@i];
+			set .@namestone$, ""+.@soldid[.@i];
+			set .@namespot$, charat(.@namestone$,3);
+			set .@multiple , atoi(.@namespot$);
+			.@calculatepower = .@soldnumber[.@i] * .multipow[.@multiple];
+			mes "^FF0000"+getitemname(.@soldid[.@i])+" ^000000 : ^61e70b "+.@soldnumber[.@i]+"^000000 ea. = " +.@calculatepower+" ^i[2239002]  "+getitemname(2239002)+"^000000 ea.","";
+			.@totals_powder_low += .@calculatepower;
+		}
+		else if( inarray(.midstone[1],.@soldid[.@i]) >= 0 ) {
+			.@stoneid[getarraysize(.@stoneid)] = .@soldid[.@i];
+			.@stonenum[getarraysize(.@stonenum)] = .@soldnumber[.@i];
+			set .@namestone$, ""+.@soldid[.@i];
+			set .@namespot$, charat(.@namestone$,3);
+			set .@multiple , atoi(.@namespot$) - 4;
+			.@calculatepower = .@soldnumber[.@i] * .multipow[.@multiple];
+			mes "^FF0000"+getitemname(.@soldid[.@i])+" ^000000 : ^61e70b "+.@soldnumber[.@i]+"^000000 ea. = " +.@calculatepower+" ^i[2239003]  "+getitemname(2239003)+"^000000 ea.","";
+			.@totals_powder_mid += .@calculatepower;
+		}
+		else if( inarray(.histone[1],.@soldid[.@i]) >= 0 ) {
+			.@stoneid[getarraysize(.@stoneid)] = .@soldid[.@i];
+			.@stonenum[getarraysize(.@stonenum)] = .@soldnumber[.@i];
+			set .@namestone$, ""+.@soldid[.@i];
+			set .@namespot$, charat(.@namestone$,3);
+			set .@multiple , atoi(.@namespot$) - 8;
+			.@calculatepower = .@soldnumber[.@i] * .multipow[.@multiple];
+			mes "^FF0000"+getitemname(.@soldid[.@i])+" ^000000 : ^61e70b "+.@soldnumber[.@i]+"^000000 ea. = " +.@calculatepower+" ^i[2239004]  "+getitemname(2239004)+"^000000 ea.","";
+			.@totals_powder_hi += .@calculatepower;
+		}
+		//.@namestone$ = "";
+		//.@namespot$ = "";
+		//.@multiple = 0;
+		//.@calculatepower = 0;
+	}
+	if( !.@totals_powder_hi && !.@totals_powder_mid && !.@totals_powder_low){
+		mes "ไม่มีอะไรที่ให้มาย่อยได้";
+		end;
+	}
+	mes "---------------------------";
+	mes "จะได้รับทั้งหมด :";
+	mes .@totals_powder_low+"x ^i[2239002] "+getitemname(2239002)+" ea.";
+	mes .@totals_powder_mid+"x ^i[2239003] "+getitemname(2239003)+" ea.";
+	mes .@totals_powder_hi+"x ^i[2239004] "+getitemname(2239004)+" ea.";
+	mes "ยอมรับไหม ??";
+	setdialogsize(500,600);
+	if(select("• ยอมรับ:• ไม่ยอมรับ") == 2 ) end;
+	for(.@a=0; .@a < getarraysize(.@stoneid); .@a++)
+		delitem .@stoneid[.@a],.@stonenum[.@a];
+	if (.@totals_powder_low) getitem 2239002,.@totals_powder_low;
+	if (.@totals_powder_mid) getitem 2239003,.@totals_powder_mid;
+	if (.@totals_powder_hi) getitem 2239004,.@totals_powder_hi;
 	end;
 Oninit:
+	setarray .multipow,1,2,4,8;
+	
+	setarray .lowstone
+	,4700,4710,4720,4730,4740,4750
+	,4701,4711,4721,4731,4741,4751
+	,4702,4712,4722,4732,4742,4752
+	,4703,4713,4723,4733,4743,4753
+	;
+	setarray .midstone
+	,4704,4714,4724,4734,4744,4754
+	,4705,4715,4725,4735,4745,4755
+	,4706,4716,4726,4736,4746,4756
+	,4707,4717,4727,4737,4747,4757
+	;
+	setarray .histone
+	,4708,4718,4728,4738,4748,4758
+	,4709,4719,4729,4739,4749,4759
+	;
 	end;
 }
