@@ -2923,8 +2923,8 @@ Body:
       if( BaseClass == Job_Swordman) {
         if(getskilllv("KN_TWOHANDQUICKEN") >= 10) {
           skill "KN_ONEHAND",1;
-          autobonus3 "{ bonus bCritical,50; bonus bDoubleRate,50; }",1000,300000,"KN_ONEHAND";
-          autobonus3 "{ bonus bCritical,50; bonus bDoubleRate,50; }",1000,300000,"KN_TWOHANDQUICKEN";
+          bonus bCritical,50; 
+          bonus bDoubleRate,50;
         }
       }
   - Id: 2236017
