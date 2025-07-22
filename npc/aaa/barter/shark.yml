@@ -158,6 +158,14 @@ Body:
             Item: Encyclopedia  
             Amount: 1
             Refine: 13
+      - Index: 12
+        Item: Union_Pike
+        Zeny: 4000000
+        RequiredItems:
+          - Index: 0
+            Item: Pole_Axe  
+            Amount: 1
+            Refine: 13
   - Name: Stats_Box
     Items:
       - Index: 0

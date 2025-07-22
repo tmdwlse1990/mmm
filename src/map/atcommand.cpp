@@ -2288,7 +2288,7 @@ ACMD_FUNC(monster)
 	int32 count;
 	int32 i, range;
 	int16 mx, my;
-	int16 rank = 0;
+	int16 rank = -1;
 	uint32 size;
 	nullpo_retr(-1, sd);
 
@@ -8074,6 +8074,7 @@ ACMD_FUNC(mobinfo)
 		sprintf(atcmd_output, msg_txt(sd, 827), mob->status.res, mob->status.mres);//  MDEF:%d  RES:%d  MRES:%d
 		clif_displaymessage(fd, atcmd_output);
 #endif
+		/*
 		// drops
 		clif_displaymessage(fd, msg_txt(sd,1245)); //  Drops:
 		strcpy(atcmd_output, " ");
@@ -8112,11 +8113,12 @@ ACMD_FUNC(mobinfo)
 				clif_displaymessage(fd, atcmd_output);
 			}
 		}
-
+		*/
 		// mvp
 		if( mob->get_bosstype() == BOSSTYPE_MVP ){
 			sprintf(atcmd_output, msg_txt(sd,1247), mob->mexp); //  MVP Bonus EXP:%llu
 			clif_displaymessage(fd, atcmd_output);
+			/*
 			clif_displaymessage(fd, msg_txt(sd,1248)); //  MVP drops:
 			strcpy(atcmd_output, " ");
 
@@ -8154,6 +8156,7 @@ ACMD_FUNC(mobinfo)
 					clif_displaymessage(fd, atcmd_output);
 				}
 			}
+			*/
 		}
 	}
 	return 0;

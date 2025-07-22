@@ -395,6 +395,7 @@ Body:
     Name: Pure Topaz Ore
     Type: Etc
     Weight: 30
+    Buy: 250000
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -403,6 +404,7 @@ Body:
     Name: Pure Sapphire Ore
     Type: Etc
     Weight: 30
+    Buy: 150000
     Flags:
       BuyingStore: true
       DropEffect: CLIENT

@@ -762,6 +762,9 @@ function	script	F_MapleCube	{
 	if(select(" - แน่ใจ: - ไม่แน่ใจ") == 2 ) end;
 	//dispbottom "Tier:"+.@tier+" get Option:"+.@optgroup;
 Again:
+	deletearray .@opt_id;
+	deletearray .@opt_value;
+	deletearray .@opt_param;
 	if(!countitem(.@cubeid)) {
 		clear2;
 		mes "^ff0000ขออภัยกล่องของท่านหมดแล้ว^000000";

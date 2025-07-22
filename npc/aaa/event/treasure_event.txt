@@ -51,15 +51,15 @@ jor_twig,85,82,5	script	Digging Spot#1	557,{
 	.@roll = rand(1, 100);
 
 	if (.@roll <= 5) {
-		getitem 1001248, 1;
+		getitem 2000015, 1;
 		specialeffect EF_BEGINSPELL6;
-		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(1001248) + " ] จากการขุด!", bc_all;
+		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(2000015) + " ] จากการขุด!", bc_all;
 		close;
 	}
 	else if (.@roll <= 15) {
-		getitem 1001030, 1;
+		getitem 2000016, 1;
 		specialeffect EF_BEGINSPELL6;
-		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(1001030) + " ] จากการขุด!", bc_all;
+		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(2000016) + " ] จากการขุด!", bc_all;
 		close;
 	}
 	else if (.@roll <= 35) {
@@ -150,15 +150,15 @@ jor_twig,86,82,5	script	Digging Spot#2	557,{
 	.@roll = rand(1, 100);
 
 	if (.@roll <= 5) {
-		getitem 1001248, 1;
+		getitem 2000015, 1;
 		specialeffect EF_BEGINSPELL6;
-		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(1001248) + " ] จากการขุด!", bc_all;
+		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(2000015) + " ] จากการขุด!", bc_all;
 		close;
 	}
 	else if (.@roll <= 15) {
-		getitem 1001030, 1;
+		getitem 2000016, 1;
 		specialeffect EF_BEGINSPELL6;
-		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(1001030) + " ] จากการขุด!", bc_all;
+		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(2000016) + " ] จากการขุด!", bc_all;
 		close;
 	}
 	else if (.@roll <= 35) {
@@ -248,15 +248,15 @@ jor_twig,87,82,5	script	Digging Spot#3	557,{
 	.@roll = rand(1, 100);
 
 	if (.@roll <= 5) {
-		getitem 1001248, 1;
+		getitem 2000015, 1;
 		specialeffect EF_BEGINSPELL6;
-		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(1001248) + " ] จากการขุด!", bc_all;
+		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(2000015) + " ] จากการขุด!", bc_all;
 		close;
 	}
 	else if (.@roll <= 15) {
-		getitem 1001030, 1;
+		getitem 2000016, 1;
 		specialeffect EF_BEGINSPELL6;
-		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(1001030) + " ] จากการขุด!", bc_all;
+		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(2000016) + " ] จากการขุด!", bc_all;
 		close;
 	}
 	else if (.@roll <= 35) {
@@ -347,15 +347,15 @@ jor_twig,88,82,5	script	Digging Spot#4	557,{
 	.@roll = rand(1, 100);
 
 	if (.@roll <= 5) {
-		getitem 1001248, 1;
+		getitem 2000015, 1;
 		specialeffect EF_BEGINSPELL6;
-		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(1001248) + " ] จากการขุด!", bc_all;
+		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(2000015) + " ] จากการขุด!", bc_all;
 		close;
 	}
 	else if (.@roll <= 15) {
-		getitem 1001030, 1;
+		getitem 2000016, 1;
 		specialeffect EF_BEGINSPELL6;
-		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(1001030) + " ] จากการขุด!", bc_all;
+		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(2000016) + " ] จากการขุด!", bc_all;
 		close;
 	}
 	else if (.@roll <= 35) {
@@ -446,15 +446,15 @@ jor_twig,89,82,5	script	Digging Spot#5	557,{
 	.@roll = rand(1, 100);
 
 	if (.@roll <= 5) {
-		getitem 1001248, 1;
+		getitem 2000015, 1;
 		specialeffect EF_BEGINSPELL6;
-		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(1001248) + " ] จากการขุด!", bc_all;
+		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(2000015) + " ] จากการขุด!", bc_all;
 		close;
 	}
 	else if (.@roll <= 15) {
-		getitem 1001030, 1;
+		getitem 2000016, 1;
 		specialeffect EF_BEGINSPELL6;
-		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(1001030) + " ] จากการขุด!", bc_all;
+		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(2000016) + " ] จากการขุด!", bc_all;
 		close;
 	}
 	else if (.@roll <= 35) {
@@ -545,15 +545,15 @@ jor_twig,90,82,5	script	Digging Spot#6	557,{
 	.@roll = rand(1, 100);
 
 	if (.@roll <= 5) {
-		getitem 1001248, 1;
+		getitem 2000015, 1;
 		specialeffect EF_BEGINSPELL6;
-		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(1001248) + " ] จากการขุด!", bc_all;
+		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(2000015) + " ] จากการขุด!", bc_all;
 		close;
 	}
 	else if (.@roll <= 15) {
-		getitem 1001030, 1;
+		getitem 2000016, 1;
 		specialeffect EF_BEGINSPELL6;
-		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(1001030) + " ] จากการขุด!", bc_all;
+		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(2000016) + " ] จากการขุด!", bc_all;
 		close;
 	}
 	else if (.@roll <= 35) {
@@ -643,15 +643,15 @@ jor_twig,91,82,5	script	Digging Spot#7	557,{
 	.@roll = rand(1, 100);
 
 	if (.@roll <= 5) {
-		getitem 1001248, 1;
+		getitem 2000015, 1;
 		specialeffect EF_BEGINSPELL6;
-		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(1001248) + " ] จากการขุด!", bc_all;
+		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(2000015) + " ] จากการขุด!", bc_all;
 		close;
 	}
 	else if (.@roll <= 15) {
-		getitem 1001030, 1;
+		getitem 2000016, 1;
 		specialeffect EF_BEGINSPELL6;
-		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(1001030) + " ] จากการขุด!", bc_all;
+		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(2000016) + " ] จากการขุด!", bc_all;
 		close;
 	}
 	else if (.@roll <= 35) {
@@ -741,15 +741,15 @@ jor_twig,92,82,5	script	Digging Spot#8	557,{
 	.@roll = rand(1, 100);
 
 	if (.@roll <= 5) {
-		getitem 1001248, 1;
+		getitem 2000015, 1;
 		specialeffect EF_BEGINSPELL6;
-		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(1001248) + " ] จากการขุด!", bc_all;
+		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(2000015) + " ] จากการขุด!", bc_all;
 		close;
 	}
 	else if (.@roll <= 15) {
-		getitem 1001030, 1;
+		getitem 2000016, 1;
 		specialeffect EF_BEGINSPELL6;
-		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(1001030) + " ] จากการขุด!", bc_all;
+		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(2000016) + " ] จากการขุด!", bc_all;
 		close;
 	}
 	else if (.@roll <= 35) {
@@ -820,19 +820,19 @@ icecastle,177,229,5	script	นักผจญภัยหูยาว	515,{
 	mes "[Misa]";
 	mes "เจ้ามีของหายากมาให้ข้าดูใช่ไหม!! ไหนเอามาดูซิ!?!";
 	next;
-	switch(select("^FFA500Neutralized Stone^000000 :^FF0000Pure Stone^000000:ยกเลิก")) {
+	switch(select("^FFA500Pure Sapphire Ore^000000 :^FF0000Pure Topaz ore^000000:ยกเลิก")) {
 		case 1:	// กลุ่ม A
 			if (#rare_a_used >= 6) {
 				mes "[Misa]";
 				mes "ข้าได้ครบที่ต้องการแล้ว เจ้าเก็บไว้เถอะนะ";
 				close;
 			}
-			if (countitem(1001030) < 1) {
+			if (countitem(2000016) < 1) {
 				mes "[Misa]";
 				mes "เจ้าหลอกข้าหรอ ไม่เห็นมีอะไรเลย!";
 				close;
 			}
-			delitem 1001030, 1;
+			delitem 2000016, 1;
 			set #rare_a_used, #rare_a_used + 1;
 			set SkillPoint, SkillPoint + 1;
 			mes "[Misa]";
@@ -846,12 +846,12 @@ icecastle,177,229,5	script	นักผจญภัยหูยาว	515,{
 				mes "ข้าได้ครบที่ต้องการแล้ว เจ้าเก็บไว้เถอะนะ";
 				close;
 			}
-			if (countitem(1001248) < 1) {
+			if (countitem(2000015) < 1) {
 				mes "[Misa]";
 				mes "เจ้าหลอกข้าหรอ ไม่เห็นมีอะไรเลย!";
 				close;
 			}
-			delitem 1001248, 1;
+			delitem 2000015, 1;
 			set #rare_b_used, #rare_b_used + 1;
 			set SkillPoint, SkillPoint + 3;
 			mes "[Misa]";

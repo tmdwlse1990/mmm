@@ -129,7 +129,7 @@ Body:
             Chance: 2500
           - Option: VAR_ALLSTATS
             MinValue: 1
-            MaxValue: 2
+            MaxValue: 1
             Chance: 1000
           - Option: VAR_ALLSTATS_RATE
             MinValue: 1
@@ -215,7 +215,7 @@ Body:
             Chance: 2500
           - Option: VAR_ALLSTATS
             MinValue: 1
-            MaxValue: 2
+            MaxValue: 1
             Chance: 1000
           - Option: VAR_ALLSTATS_RATE
             MinValue: 1
@@ -352,7 +352,7 @@ Body:
             Chance: 2500
           - Option: VAR_ALLSTATS
             MinValue: 1
-            MaxValue: 2
+            MaxValue: 1
             Chance: 1000
           - Option: VAR_ALLSTATS_RATE
             MinValue: 1
@@ -486,7 +486,7 @@ Body:
             Chance: 2500
           - Option: VAR_ALLSTATS
             MinValue: 1
-            MaxValue: 2
+            MaxValue: 1
             Chance: 1000
           - Option: VAR_ALLSTATS_RATE
             MinValue: 1
@@ -623,7 +623,7 @@ Body:
             Chance: 2500
           - Option: VAR_ALLSTATS
             MinValue: 1
-            MaxValue: 3
+            MaxValue: 2
             Chance: 1000
           - Option: VAR_ALLSTATS_RATE
             MinValue: 1
@@ -757,7 +757,7 @@ Body:
             Chance: 2500
           - Option: VAR_ALLSTATS
             MinValue: 1
-            MaxValue: 3
+            MaxValue: 2
             Chance: 1000
           - Option: VAR_ALLSTATS_RATE
             MinValue: 1
@@ -854,7 +854,7 @@ Body:
             Chance: 500
           - Option: VAR_ALLSTATS
             MinValue: 1
-            MaxValue: 3
+            MaxValue: 2
             Chance: 1000
           - Option: VAR_ALLSTATS_RATE
             MinValue: 1
@@ -948,7 +948,7 @@ Body:
             Chance: 500
           - Option: VAR_ALLSTATS
             MinValue: 1
-            MaxValue: 3
+            MaxValue: 2
             Chance: 1000
           - Option: VAR_ALLSTATS_RATE
             MinValue: 1
@@ -1042,7 +1042,7 @@ Body:
             Chance: 500
           - Option: VAR_ALLSTATS
             MinValue: 1
-            MaxValue: 3
+            MaxValue: 2
             Chance: 1000
           - Option: VAR_ALLSTATS_RATE
             MinValue: 1
@@ -1195,11 +1195,11 @@ Body:
             Chance: 1500
           - Option: HIT_PHYSICAL_DAMAGE
             MinValue: 1
-            MaxValue: 15
+            MaxValue: 25
             Chance: 1500
           - Option: VAR_ALLSTATS
             MinValue: 1
-            MaxValue: 3
+            MaxValue: 2
             Chance: 1000
           - Option: VAR_ALLSTATS_RATE
             MinValue: 1
@@ -1349,11 +1349,11 @@ Body:
             Chance: 1500
           - Option: HIT_PHYSICAL_DAMAGE
             MinValue: 1
-            MaxValue: 15
+            MaxValue: 25
             Chance: 1500
           - Option: VAR_ALLSTATS
             MinValue: 1
-            MaxValue: 3
+            MaxValue: 2
             Chance: 1000
           - Option: VAR_ALLSTATS_RATE
             MinValue: 1
@@ -1503,11 +1503,11 @@ Body:
             Chance: 1500
           - Option: HIT_PHYSICAL_DAMAGE
             MinValue: 1
-            MaxValue: 15
+            MaxValue: 25
             Chance: 1500
           - Option: VAR_ALLSTATS
             MinValue: 1
-            MaxValue: 3
+            MaxValue: 2
             Chance: 1000
           - Option: VAR_ALLSTATS_RATE
             MinValue: 1
@@ -1652,11 +1652,11 @@ Body:
             Chance: 1500
           - Option: HIT_PHYSICAL_DAMAGE
             MinValue: 1
-            MaxValue: 15
+            MaxValue: 25
             Chance: 1500
           - Option: VAR_ALLSTATS
             MinValue: 1
-            MaxValue: 4
+            MaxValue: 2
             Chance: 1000
           - Option: VAR_ALLSTATS_RATE
             MinValue: 1
@@ -1798,11 +1798,11 @@ Body:
             Chance: 1500
           - Option: HIT_PHYSICAL_DAMAGE
             MinValue: 1
-            MaxValue: 15
+            MaxValue: 25
             Chance: 1500
           - Option: VAR_ALLSTATS
             MinValue: 1
-            MaxValue: 4
+            MaxValue: 2
             Chance: 1000
           - Option: VAR_ALLSTATS_RATE
             MinValue: 1
@@ -1944,11 +1944,11 @@ Body:
             Chance: 1500
           - Option: HIT_PHYSICAL_DAMAGE
             MinValue: 1
-            MaxValue: 15
+            MaxValue: 25
             Chance: 1500
           - Option: VAR_ALLSTATS
             MinValue: 1
-            MaxValue: 4
+            MaxValue: 2
             Chance: 1000
           - Option: VAR_ALLSTATS_RATE
             MinValue: 1
@@ -2045,12 +2045,12 @@ Body:
             Chance: 500
           - Option: VAR_ALLSTATS
             MinValue: 2
-            MaxValue: 6
-            Chance: 1000
+            MaxValue: 3
+            Chance: 500
           - Option: VAR_ALLSTATS_RATE
             MinValue: 2
             MaxValue: 6
-            Chance: 1000
+            Chance: 500
       - Slot: 2
         Options:
           - Option: VAR_STRRATE
@@ -2139,12 +2139,12 @@ Body:
             Chance: 500
           - Option: VAR_ALLSTATS
             MinValue: 2
-            MaxValue: 6
-            Chance: 1000
+            MaxValue: 3
+            Chance: 500
           - Option: VAR_ALLSTATS_RATE
             MinValue: 2
             MaxValue: 6
-            Chance: 1000
+            Chance: 500
       - Slot: 3
         Options:
           - Option: VAR_STRRATE
@@ -2233,12 +2233,12 @@ Body:
             Chance: 500
           - Option: VAR_ALLSTATS
             MinValue: 2
-            MaxValue: 6
-            Chance: 1000
+            MaxValue: 3
+            Chance: 500
           - Option: VAR_ALLSTATS_RATE
             MinValue: 2
             MaxValue: 6
-            Chance: 1000
+            Chance: 500
   - Id: 408
     Group: GLOWING_CUBE_Weapon
     Slots:
@@ -2386,7 +2386,7 @@ Body:
             Chance: 1500
           - Option: HIT_PHYSICAL_DAMAGE
             MinValue: 7
-            MaxValue: 25
+            MaxValue: 45
             Chance: 1500
           - Option: ASPD_CAP_UNLOCK
             MinValue: 1
@@ -2394,12 +2394,12 @@ Body:
             Chance: 500
           - Option: VAR_ALLSTATS
             MinValue: 2
-            MaxValue: 6
-            Chance: 1000
+            MaxValue: 3
+            Chance: 500
           - Option: VAR_ALLSTATS_RATE
             MinValue: 2
             MaxValue: 6
-            Chance: 1000
+            Chance: 500
       - Slot: 2
         Options:
           - Option: VAR_STRRATE
@@ -2544,7 +2544,7 @@ Body:
             Chance: 1500
           - Option: HIT_PHYSICAL_DAMAGE
             MinValue: 7
-            MaxValue: 25
+            MaxValue: 45
             Chance: 1500
           - Option: ASPD_CAP_UNLOCK
             MinValue: 1
@@ -2552,12 +2552,12 @@ Body:
             Chance: 500
           - Option: VAR_ALLSTATS
             MinValue: 2
-            MaxValue: 6
-            Chance: 1000
+            MaxValue: 3
+            Chance: 500
           - Option: VAR_ALLSTATS_RATE
             MinValue: 2
             MaxValue: 6
-            Chance: 1000
+            Chance: 500
       - Slot: 3
         Options:
           - Option: VAR_STRRATE
@@ -2702,7 +2702,7 @@ Body:
             Chance: 1500
           - Option: HIT_PHYSICAL_DAMAGE
             MinValue: 7
-            MaxValue: 25
+            MaxValue: 45
             Chance: 1500
           - Option: ASPD_CAP_UNLOCK
             MinValue: 1
@@ -2710,12 +2710,12 @@ Body:
             Chance: 500
           - Option: VAR_ALLSTATS
             MinValue: 2
-            MaxValue: 6
-            Chance: 1000
+            MaxValue: 3
+            Chance: 500
           - Option: VAR_ALLSTATS_RATE
             MinValue: 2
             MaxValue: 6
-            Chance: 1000
+            Chance: 500
   - Id: 409
     Group: GLOWING_CUBE_Weapon_2H
     Slots:
@@ -2863,7 +2863,7 @@ Body:
             Chance: 1500
           - Option: HIT_PHYSICAL_DAMAGE
             MinValue: 7
-            MaxValue: 31
+            MaxValue: 52
             Chance: 1500
           - Option: ASPD_CAP_UNLOCK
             MinValue: 1
@@ -2871,12 +2871,12 @@ Body:
             Chance: 500
           - Option: VAR_ALLSTATS
             MinValue: 2
-            MaxValue: 8
-            Chance: 1000
+            MaxValue: 4
+            Chance: 500
           - Option: VAR_ALLSTATS_RATE
             MinValue: 2
             MaxValue: 8
-            Chance: 1000
+            Chance: 500
       - Slot: 2
         Options:
           - Option: VAR_STRRATE
@@ -3021,7 +3021,7 @@ Body:
             Chance: 1500
           - Option: HIT_PHYSICAL_DAMAGE
             MinValue: 7
-            MaxValue: 31
+            MaxValue: 52
             Chance: 1500
           - Option: ASPD_CAP_UNLOCK
             MinValue: 1
@@ -3029,12 +3029,12 @@ Body:
             Chance: 500
           - Option: VAR_ALLSTATS
             MinValue: 2
-            MaxValue: 8
-            Chance: 1000
+            MaxValue: 4
+            Chance: 500
           - Option: VAR_ALLSTATS_RATE
             MinValue: 2
             MaxValue: 8
-            Chance: 1000
+            Chance: 500
       - Slot: 3
         Options:
           - Option: VAR_STRRATE
@@ -3179,7 +3179,7 @@ Body:
             Chance: 1500
           - Option: HIT_PHYSICAL_DAMAGE
             MinValue: 7
-            MaxValue: 31
+            MaxValue: 52
             Chance: 1500
           - Option: ASPD_CAP_UNLOCK
             MinValue: 1
@@ -3187,9 +3187,9 @@ Body:
             Chance: 500
           - Option: VAR_ALLSTATS
             MinValue: 2
-            MaxValue: 8
-            Chance: 1000
+            MaxValue: 4
+            Chance: 500
           - Option: VAR_ALLSTATS_RATE
             MinValue: 2
             MaxValue: 8
-            Chance: 1000
+            Chance: 500

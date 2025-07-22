@@ -67,7 +67,7 @@ Body:
         Price: 630
       - Item: Premium_Box_10d
         Price: 800
-      - Item: Store_ADCard_Stone
+      - Item: Store_ADCard_Store
         Price: 2990
   - Tab: Limited
     Items:

@@ -206,6 +206,37 @@ Body:
     Class: Boss
     Modes:
       Mvp: true
+      
+  - Id: 3337
+    AegisName: Amethyst_Core
+    Name: Topaz
+    Level: 100
+    Hp: 30000000
+    Attack: 3734
+    Attack2: 1891
+    Defense: 140
+    MagicDefense: 140
+    Str: 100
+    Agi: 100
+    Vit: 100
+    Int: 100
+    Dex: 100
+    Luk: 100
+    AttackRange: 4
+    SkillRange: 13
+    ChaseRange: 15
+    Size: Small
+    Race: Angel
+    Element: Dark
+    ElementLevel: 1
+    WalkSpeed: 150
+    AttackDelay: 450
+    AttackMotion: 200
+    DamageMotion: 100
+    Ai: 26
+    Class: Boss
+    Modes:
+      Mvp: true
 # [Boss Add Drop from Main]
   - Id: 30001
     AegisName: MD_Error
@@ -1160,6 +1191,73 @@ Body:
         Rate: 1
       - Item: Cold_Ice
         Rate: 1
+  - Id: 28003
+    AegisName: KRAKEN_Ex
+    Name: Grill Kraken
+    Title: "<Grill Lord>"
+    Level: 100
+    Hp: 3502800
+    Sp: 0
+    BaseExp: 0
+    JobExp: 0
+    MvpExp: 0
+    Attack: 1411
+    Attack2: 744
+    Defense: 55
+    MagicDefense: 229
+    Str: 196
+    Agi: 99
+    Vit: 61
+    Int: 44
+    Dex: 162
+    Luk: 99
+    AttackRange: 4
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Fish
+    Element: Water
+    ElementLevel: 4
+    WalkSpeed: 130
+    AttackDelay: 432
+    AttackMotion: 864
+    ClientAttackMotion: 480
+    DamageMotion: 360
+    Ai: 21
+    Class: Boss
+    Modes:
+      Mvp: true
+  - Id: 28004
+    AegisName: KRAKEN_LEG_Ex
+    Name: Grill Kraken Leg
+    Title: "<Grill Tentacle>"
+    Level: 100
+    Hp: 339190
+    Sp: 0
+    Attack: 441
+    Attack2: 372
+    Defense: 127
+    MagicDefense: 158
+    Str: 130
+    Agi: 92
+    Vit: 0
+    Int: 0
+    Dex: 389
+    Luk: 54
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Fish
+    Element: Water
+    ElementLevel: 3
+    WalkSpeed: 300
+    AttackDelay: 576
+    AttackMotion: 864
+    ClientAttackMotion: 288
+    DamageMotion: 240
+    Ai: 21
+    Class: Boss
 # New
   - Id: 23000
     AegisName: DARK_ILLUSION2
