@@ -4,8 +4,8 @@
 -	script	Digging Spot Controller#1	-1,{
 	OnInit:
 		// พิกัดจุดที่ Digging Spot จะสุ่มไป
-		setarray .dig_x[0], 112, 185, 139, 74, 48, 102, 141, 170, 195, 224, 191, 221, 210, 212, 174;
-		setarray .dig_y[0], 145, 136, 74, 111, 170, 201, 231, 190, 165, 187, 215, 169, 136, 109, 109;
+		setarray .dig_x[0], 201, 164, 168, 127, 67, 162, 135, 134, 181, 96, 80, 178, 145, 56, 138;
+		setarray .dig_y[0], 186, 214, 135, 223, 177, 200, 61, 147, 117, 197, 204, 138, 161, 171, 168;
 		//setarray .dig_x[0], 141, 152, 152, 137; //for test
 		//setarray .dig_y[0], 222, 223, 209, 210; // for test
 		.dig_map$ = "jor_twig";
@@ -54,37 +54,43 @@ jor_twig,85,82,5	script	Digging Spot#1	557,{
 		getitem 2000015, 1;
 		specialeffect EF_BEGINSPELL6;
 		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(2000015) + " ] จากการขุด!", bc_all;
-		close;
+		end;
 	}
 	else if (.@roll <= 15) {
 		getitem 2000016, 1;
 		specialeffect EF_BEGINSPELL6;
 		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(2000016) + " ] จากการขุด!", bc_all;
-		close;
+		end;
 	}
 	else if (.@roll <= 35) {
+		.@cube_roll = rand(1,100);
+		if (.@cube_roll <= 1){
+			getitem 2002017,1;
+			specialeffect EF_HEAL;
+		}
+		else
 		setarray .@stat_stone[0], 2002015, 2002016;
 		getitem .@stat_stone[rand(2)], 1;
 		specialeffect EF_HEAL;
-		close;
+		end;
 	}
 	else if (.@roll <= 60) {
 		.@refine_roll = rand(1,100);
 		if (.@refine_roll <= 10)
-			setarray .@item_pool[0], 517, 518;
+			setarray .@item_pool[0], 6223, 6224;
 		else if (.@refine_roll <= 40)
-			setarray .@item_pool[0], 519, 520;
-		else
 			setarray .@item_pool[0], 985, 984;
+		else
+			setarray .@item_pool[0], 756, 757;
 
 		getitem .@item_pool[rand(2)], 1;
 		specialeffect EF_REFINEOK;
-		close;
+		end;
 	}
 	else {
 		getitem 7959, 1;
 		specialeffect EF_GOLDNAGE;
-		close;
+		end;
 	}
 
 	close2;
@@ -153,37 +159,43 @@ jor_twig,86,82,5	script	Digging Spot#2	557,{
 		getitem 2000015, 1;
 		specialeffect EF_BEGINSPELL6;
 		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(2000015) + " ] จากการขุด!", bc_all;
-		close;
+		end;
 	}
 	else if (.@roll <= 15) {
 		getitem 2000016, 1;
 		specialeffect EF_BEGINSPELL6;
 		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(2000016) + " ] จากการขุด!", bc_all;
-		close;
+		end;
 	}
 	else if (.@roll <= 35) {
+		.@cube_roll = rand(1,100);
+		if (.@cube_roll <= 1){
+			getitem 2002017,1;
+			specialeffect EF_HEAL;
+		}
+		else
 		setarray .@stat_stone[0], 2002015, 2002016;
 		getitem .@stat_stone[rand(2)], 1;
 		specialeffect EF_HEAL;
-		close;
+		end;
 	}
 	else if (.@roll <= 60) {
 		.@refine_roll = rand(1,100);
 		if (.@refine_roll <= 10)
-			setarray .@item_pool[0], 517, 518;
+			setarray .@item_pool[0], 6223, 6224;
 		else if (.@refine_roll <= 40)
-			setarray .@item_pool[0], 519, 520;
-		else
 			setarray .@item_pool[0], 985, 984;
+		else
+			setarray .@item_pool[0], 756, 757;
 
 		getitem .@item_pool[rand(2)], 1;
 		specialeffect EF_REFINEOK;
-		close;
+		end;
 	}
 	else {
 		getitem 7959, 1;
 		specialeffect EF_GOLDNAGE;
-		close;
+		end;
 	}
 
 	close2;
@@ -201,8 +213,8 @@ OnDisable:
 -	script	Digging Spot Controller#3	-1,{
 	OnInit:
 		// พิกัดจุดที่ Digging Spot จะสุ่มไป
-		setarray .dig_x[0], 111, 184, 138, 73, 47, 101, 140, 169, 194, 223, 190, 220, 209, 211, 78;
-		setarray .dig_y[0], 144, 135, 73, 110, 169, 200, 230, 189, 164, 186, 214, 168, 135, 108, 199;
+		setarray .dig_x[0], 182, 142, 49, 171, 128, 163, 75, 67, 179, 218, 175, 115, 134, 163, 136;
+		setarray .dig_y[0], 179, 161, 126, 104, 69, 135, 91, 173, 139, 198, 113, 69, 163, 81, 231;
 		//setarray .dig_x[0], 141, 152, 152, 137; //for test
 		//setarray .dig_y[0], 222, 223, 209, 210; // for test
 		.dig_map$ = "jor_twig";
@@ -251,37 +263,43 @@ jor_twig,87,82,5	script	Digging Spot#3	557,{
 		getitem 2000015, 1;
 		specialeffect EF_BEGINSPELL6;
 		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(2000015) + " ] จากการขุด!", bc_all;
-		close;
+		end;
 	}
 	else if (.@roll <= 15) {
 		getitem 2000016, 1;
 		specialeffect EF_BEGINSPELL6;
 		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(2000016) + " ] จากการขุด!", bc_all;
-		close;
+		end;
 	}
 	else if (.@roll <= 35) {
+		.@cube_roll = rand(1,100);
+		if (.@cube_roll <= 1){
+			getitem 2002017,1;
+			specialeffect EF_HEAL;
+		}
+		else
 		setarray .@stat_stone[0], 2002015, 2002016;
 		getitem .@stat_stone[rand(2)], 1;
 		specialeffect EF_HEAL;
-		close;
+		end;
 	}
 	else if (.@roll <= 60) {
 		.@refine_roll = rand(1,100);
 		if (.@refine_roll <= 10)
-			setarray .@item_pool[0], 517, 518;
+			setarray .@item_pool[0], 6223, 6224;
 		else if (.@refine_roll <= 40)
-			setarray .@item_pool[0], 519, 520;
-		else
 			setarray .@item_pool[0], 985, 984;
+		else
+			setarray .@item_pool[0], 756, 757;
 
 		getitem .@item_pool[rand(2)], 1;
 		specialeffect EF_REFINEOK;
-		close;
+		end;
 	}
 	else {
 		getitem 7959, 1;
 		specialeffect EF_GOLDNAGE;
-		close;
+		end;
 	}
 
 	close2;
@@ -350,37 +368,43 @@ jor_twig,88,82,5	script	Digging Spot#4	557,{
 		getitem 2000015, 1;
 		specialeffect EF_BEGINSPELL6;
 		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(2000015) + " ] จากการขุด!", bc_all;
-		close;
+		end;
 	}
 	else if (.@roll <= 15) {
 		getitem 2000016, 1;
 		specialeffect EF_BEGINSPELL6;
 		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(2000016) + " ] จากการขุด!", bc_all;
-		close;
+		end;
 	}
 	else if (.@roll <= 35) {
+		.@cube_roll = rand(1,100);
+		if (.@cube_roll <= 1){
+			getitem 2002017,1;
+			specialeffect EF_HEAL;
+		}
+		else
 		setarray .@stat_stone[0], 2002015, 2002016;
 		getitem .@stat_stone[rand(2)], 1;
 		specialeffect EF_HEAL;
-		close;
+		end;
 	}
 	else if (.@roll <= 60) {
 		.@refine_roll = rand(1,100);
 		if (.@refine_roll <= 10)
-			setarray .@item_pool[0], 517, 518;
+			setarray .@item_pool[0], 6223, 6224;
 		else if (.@refine_roll <= 40)
-			setarray .@item_pool[0], 519, 520;
-		else
 			setarray .@item_pool[0], 985, 984;
+		else
+			setarray .@item_pool[0], 756, 757;
 
 		getitem .@item_pool[rand(2)], 1;
 		specialeffect EF_REFINEOK;
-		close;
+		end;
 	}
 	else {
 		getitem 7959, 1;
 		specialeffect EF_GOLDNAGE;
-		close;
+		end;
 	}
 
 	close2;
@@ -399,8 +423,8 @@ OnDisable:
 -	script	Digging Spot Controller#5	-1,{
 	OnInit:
 		// พิกัดจุดที่ Digging Spot จะสุ่มไป
-		setarray .dig_x[0], 112, 185, 139, 74, 48, 102, 141, 170, 195, 224, 191, 221, 210, 212, 114;
-		setarray .dig_y[0], 144, 135, 73, 110, 169, 200, 230, 189, 164, 186, 214, 168, 135, 108, 168;
+		setarray .dig_x[0], 136, 126, 218, 80, 152, 113, 59, 127, 162, 198, 219, 152, 75, 186, 81;
+		setarray .dig_y[0], 228, 168, 150, 101, 84, 71, 163, 158, 73, 207, 149, 226, 84, 110, 102;
 		//setarray .dig_x[0], 141, 152, 152, 137; //for test
 		//setarray .dig_y[0], 222, 223, 209, 210; // for test
 		.dig_map$ = "jor_twig";
@@ -449,37 +473,43 @@ jor_twig,89,82,5	script	Digging Spot#5	557,{
 		getitem 2000015, 1;
 		specialeffect EF_BEGINSPELL6;
 		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(2000015) + " ] จากการขุด!", bc_all;
-		close;
+		end;
 	}
 	else if (.@roll <= 15) {
 		getitem 2000016, 1;
 		specialeffect EF_BEGINSPELL6;
 		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(2000016) + " ] จากการขุด!", bc_all;
-		close;
+		end;
 	}
 	else if (.@roll <= 35) {
+		.@cube_roll = rand(1,100);
+		if (.@cube_roll <= 1){
+			getitem 2002017,1;
+			specialeffect EF_HEAL;
+		}
+		else
 		setarray .@stat_stone[0], 2002015, 2002016;
 		getitem .@stat_stone[rand(2)], 1;
 		specialeffect EF_HEAL;
-		close;
+		end;
 	}
 	else if (.@roll <= 60) {
 		.@refine_roll = rand(1,100);
 		if (.@refine_roll <= 10)
-			setarray .@item_pool[0], 517, 518;
+			setarray .@item_pool[0], 6223, 6224;
 		else if (.@refine_roll <= 40)
-			setarray .@item_pool[0], 519, 520;
-		else
 			setarray .@item_pool[0], 985, 984;
+		else
+			setarray .@item_pool[0], 756, 757;
 
 		getitem .@item_pool[rand(2)], 1;
 		specialeffect EF_REFINEOK;
-		close;
+		end;
 	}
 	else {
 		getitem 7959, 1;
 		specialeffect EF_GOLDNAGE;
-		close;
+		end;
 	}
 
 	close2;
@@ -548,37 +578,43 @@ jor_twig,90,82,5	script	Digging Spot#6	557,{
 		getitem 2000015, 1;
 		specialeffect EF_BEGINSPELL6;
 		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(2000015) + " ] จากการขุด!", bc_all;
-		close;
+		end;
 	}
 	else if (.@roll <= 15) {
 		getitem 2000016, 1;
 		specialeffect EF_BEGINSPELL6;
 		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(2000016) + " ] จากการขุด!", bc_all;
-		close;
+		end;
 	}
 	else if (.@roll <= 35) {
+		.@cube_roll = rand(1,100);
+		if (.@cube_roll <= 1){
+			getitem 2002017,1;
+			specialeffect EF_HEAL;
+		}
+		else
 		setarray .@stat_stone[0], 2002015, 2002016;
 		getitem .@stat_stone[rand(2)], 1;
 		specialeffect EF_HEAL;
-		close;
+		end;
 	}
 	else if (.@roll <= 60) {
 		.@refine_roll = rand(1,100);
 		if (.@refine_roll <= 10)
-			setarray .@item_pool[0], 517, 518;
+			setarray .@item_pool[0], 6223, 6224;
 		else if (.@refine_roll <= 40)
-			setarray .@item_pool[0], 519, 520;
-		else
 			setarray .@item_pool[0], 985, 984;
+		else
+			setarray .@item_pool[0], 756, 757;
 
 		getitem .@item_pool[rand(2)], 1;
 		specialeffect EF_REFINEOK;
-		close;
+		end;
 	}
 	else {
 		getitem 7959, 1;
 		specialeffect EF_GOLDNAGE;
-		close;
+		end;
 	}
 
 	close2;
@@ -596,8 +632,8 @@ OnDisable:
 -	script	Digging Spot Controller#7	-1,{
 	OnInit:
 		// พิกัดจุดที่ Digging Spot จะสุ่มไป
-		setarray .dig_x[0], 115, 188, 142, 77, 51, 105, 144, 173, 198, 227, 194, 224, 213, 215, 138;
-		setarray .dig_y[0], 146, 137, 75, 112, 171, 202, 232, 191, 166, 188, 216, 170, 137, 110, 158;
+		setarray .dig_x[0], 65, 220, 85, 49, 116, 213, 120, 193, 129, 67, 119, 59, 132, 144, 174;
+		setarray .dig_y[0], 104, 147, 94, 154, 215, 140, 225, 165, 164, 193, 228, 126, 166, 213, 189;
 		//setarray .dig_x[0], 141, 152, 152, 137; //for test
 		//setarray .dig_y[0], 222, 223, 209, 210; // for test
 		.dig_map$ = "jor_twig";
@@ -646,37 +682,43 @@ jor_twig,91,82,5	script	Digging Spot#7	557,{
 		getitem 2000015, 1;
 		specialeffect EF_BEGINSPELL6;
 		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(2000015) + " ] จากการขุด!", bc_all;
-		close;
+		end;
 	}
 	else if (.@roll <= 15) {
 		getitem 2000016, 1;
 		specialeffect EF_BEGINSPELL6;
 		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(2000016) + " ] จากการขุด!", bc_all;
-		close;
+		end;
 	}
 	else if (.@roll <= 35) {
-		setarray .@stat_stone[0], 2002015, 2002016;
-		getitem .@stat_stone[rand(2)], 1;
-		specialeffect EF_HEAL;
-		close;
+		.@cube_roll = rand(1,100);
+		if (.@cube_roll <= 1){
+			getitem 2002017,1;
+			specialeffect EF_HEAL;
+		}
+		else
+			setarray .@stat_stone[0], 2002015, 2002016;
+			getitem .@stat_stone[rand(2)], 1;
+			specialeffect EF_HEAL;
+			end;
 	}
 	else if (.@roll <= 60) {
 		.@refine_roll = rand(1,100);
 		if (.@refine_roll <= 10)
-			setarray .@item_pool[0], 517, 518;
+			setarray .@item_pool[0], 6223, 6224;
 		else if (.@refine_roll <= 40)
-			setarray .@item_pool[0], 519, 520;
-		else
 			setarray .@item_pool[0], 985, 984;
+		else
+			setarray .@item_pool[0], 756, 757;
 
 		getitem .@item_pool[rand(2)], 1;
 		specialeffect EF_REFINEOK;
-		close;
+		end;
 	}
 	else {
 		getitem 7959, 1;
 		specialeffect EF_GOLDNAGE;
-		close;
+		end;
 	}
 
 	close2;
@@ -744,37 +786,43 @@ jor_twig,92,82,5	script	Digging Spot#8	557,{
 		getitem 2000015, 1;
 		specialeffect EF_BEGINSPELL6;
 		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(2000015) + " ] จากการขุด!", bc_all;
-		close;
+		end;
 	}
 	else if (.@roll <= 15) {
 		getitem 2000016, 1;
 		specialeffect EF_BEGINSPELL6;
 		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(2000016) + " ] จากการขุด!", bc_all;
-		close;
+		end;
 	}
 	else if (.@roll <= 35) {
+		.@cube_roll = rand(1,100);
+		if (.@cube_roll <= 1){
+			getitem 2002017,1;
+			specialeffect EF_HEAL;
+		}
+		else
 		setarray .@stat_stone[0], 2002015, 2002016;
 		getitem .@stat_stone[rand(2)], 1;
 		specialeffect EF_HEAL;
-		close;
+		end;
 	}
 	else if (.@roll <= 60) {
 		.@refine_roll = rand(1,100);
 		if (.@refine_roll <= 10)
-			setarray .@item_pool[0], 517, 518;
+			setarray .@item_pool[0], 6223, 6224;
 		else if (.@refine_roll <= 40)
-			setarray .@item_pool[0], 519, 520;
-		else
 			setarray .@item_pool[0], 985, 984;
+		else
+			setarray .@item_pool[0], 756, 757;
 
 		getitem .@item_pool[rand(2)], 1;
 		specialeffect EF_REFINEOK;
-		close;
+		end;
 	}
 	else {
 		getitem 7959, 1;
 		specialeffect EF_GOLDNAGE;
-		close;
+		end;
 	}
 
 	close2;
@@ -801,7 +849,7 @@ icecastle,177,229,5	script	นักผจญภัยหูยาว	515,{
 		mes "[Misa]";
 		mes "แต่เจ้าดูขาดประสบการณ์นะ ไปฝึกมามากกว่านี้!!";
 		mes "^FF0000ต้องการ LV 99/50 และ Rank E ขึ้นไป^000000";
-		close;
+		end;
 	}
 	mes "[Misa]";
 	mes "เจ้าพร้อมจะไปหาสมบัติแล้วใช่ไหม!!";
@@ -814,7 +862,7 @@ icecastle,177,229,5	script	นักผจญภัยหูยาว	515,{
 		case 2:
 			break;
 		case 3:
-			close;
+			end;
 	}
 
 	mes "[Misa]";
@@ -825,12 +873,12 @@ icecastle,177,229,5	script	นักผจญภัยหูยาว	515,{
 			if (#rare_a_used >= 6) {
 				mes "[Misa]";
 				mes "ข้าได้ครบที่ต้องการแล้ว เจ้าเก็บไว้เถอะนะ";
-				close;
+				end;
 			}
 			if (countitem(2000016) < 1) {
 				mes "[Misa]";
 				mes "เจ้าหลอกข้าหรอ ไม่เห็นมีอะไรเลย!";
-				close;
+				end;
 			}
 			delitem 2000016, 1;
 			set #rare_a_used, #rare_a_used + 1;
@@ -838,18 +886,18 @@ icecastle,177,229,5	script	นักผจญภัยหูยาว	515,{
 			mes "[Misa]";
 			mes "ขอบใจ! ข้าให้นี่ตอบแทนเจ้าละกัน";
 			mes "ได้รับ ^00FF00 Skill Point เพิ่มขึ้น 1 แต้ม^000000 แล้ว.";
-			close;
+			end;
 
 		case 2:	// กลุ่ม B
 			if (#rare_b_used >= 3) {
 				mes "[Misa]";
 				mes "ข้าได้ครบที่ต้องการแล้ว เจ้าเก็บไว้เถอะนะ";
-				close;
+				end;
 			}
 			if (countitem(2000015) < 1) {
 				mes "[Misa]";
 				mes "เจ้าหลอกข้าหรอ ไม่เห็นมีอะไรเลย!";
-				close;
+				end;
 			}
 			delitem 2000015, 1;
 			set #rare_b_used, #rare_b_used + 1;
@@ -857,10 +905,13 @@ icecastle,177,229,5	script	นักผจญภัยหูยาว	515,{
 			mes "[Misa]";
 			mes "ยอดเยี่ยม! ของดีแบบนี้หาไม่ได้อีกแล้ว!! เอารางวัลไป!!";
 			mes "ได้รับ ^00FF00 Skill Point เพิ่มขึ้น 3 แต้ม^000000 แล้ว.";
-			close;
+			end;
 
 		case 3:
 			mes "ไว้เจอกันใหม่.";
-			close;
+			end;
 	}
+Oninit:
+	waitingroom "จุดขุดแร่",0;
+	end;
 }
