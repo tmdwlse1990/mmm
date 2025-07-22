@@ -772,10 +772,10 @@ Again:
 	}
 	delitem .@cubeid,1;
 	randomoptgroup(.@optgroup);
-	if(.@selectable) {
+	if(.@selectable && getequiprandomoption(.@part,0,ROA_ID)) {
 		clear2;
 		mes "^228B22 ปัจจุบัน ^000000";
-		for(.@i=0;.@i <= getarraysize(.@opid); .@i++) {
+		for(.@i=0;.@i < getarraysize(.@opid); .@i++) {
 			if(.@opid[.@i]) {
 				.@roa_id = getequiprandomoption(.@part,.@i,ROA_ID);
 				.@roa_value = getequiprandomoption(.@part,.@i,ROA_VALUE);
@@ -784,7 +784,7 @@ Again:
 		}
 		mes "^006400-------------------------------^000000";
 		mes "^32CD32ออฟชั้นใหม่ ^000000";
-		for(.@i=0;.@i <= getarraysize(.@opt_id); .@i++) {
+		for(.@i=0;.@i < getarraysize(.@opt_id); .@i++) {
 			if(.@opt_id[.@i]) {
 				mes "^0000ff- "+callfunc("F_GetRDMOPT_Name",.@opt_id[.@i])+" "+callfunc("F_GetRDMOPT_Value",.@opt_id[.@i],.@opt_value[.@i])+"^000000";
 			}
