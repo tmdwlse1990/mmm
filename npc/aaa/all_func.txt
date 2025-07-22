@@ -772,6 +772,7 @@ Again:
 	}
 	delitem .@cubeid,1;
 	randomoptgroup(.@optgroup);
+	freeloop(1);
 	if(.@selectable && getequiprandomoption(.@part,0,ROA_ID)) {
 		clear2;
 		mes "^228B22 ปัจจุบัน ^000000";
@@ -814,6 +815,7 @@ Again:
 		mes "^FFA500-------------------------------^000000";
 		setdialogsize(400,200);
 	}
+	freeloop(0);
 	delequip .@part;
 	getitem4 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],.@card[3],.@grade,.@opt_id,.@opt_value,.@opt_param;
 	equip .@equip_id;
