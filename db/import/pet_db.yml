@@ -752,7 +752,7 @@ Body:
     Script: >
       bonus bVit,10;
       bonus bHPrecovRate,100;
-      bonus bItemHealRate,20;
+      bonus bAddItemHealRate,20;
       bonus2 bSubEle,Ele_Neatral,15;
     SupportScript: >
       .@i = getpetinfo(PETINFO_INTIMATE);

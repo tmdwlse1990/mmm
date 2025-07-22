@@ -121,6 +121,8 @@ Body:
         Price: 100
       - Item: Sharkora_Box
         Price: 109
+      - Item: Catora_Box
+        Price: 50
   - Tab: Consumables
     Items:
       - Item: Grape_Box
