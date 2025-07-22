@@ -1,0 +1,33 @@
+icecastle,72,232,5	script	Mama Dog	10553,{
+	if (countitem(2239001) >= 1) {
+		mes "[Mama Dog]";
+		mes "หืมม ข้าได้กลิ่นที่คุ้นเคยจากตัวเจ้า?";
+		next;
+		
+		if (countitem(2239001) >= 20) { // เช็คตุ๊กตา
+			mes "ข้าขอตุ๊กตาพวกนั้นมาหน่อยสิ.....";
+			next;
+			mes "[Mama Dog]";
+			delitem 2239001, 20; // ลบชุดไก่
+			progressbar_NPC "FF0000", 3;
+			mes "เรียบร้อย!! รับไปสิ";
+			getitem 2120001, 1; // ได้ชุดไก่ WingZap
+			
+			announce strcharinfo(0)+" ได้สร้างไอเทมจาก World Boss สำเร็จ!", bc_all, "0xFF8000"; // ประกาศสีส้ม
+			
+			end;
+		} else {
+			mes "[Mama Dog]";
+			mes "ข้าอยากได้ ^i[2239001] จำนวน 20 ชิ้น เพื่อเตรียมการบางอย่าง....";
+			end;
+			mes "";
+			mes "^FF0000Side Quest 7";
+		}
+	} else {
+		mes "[Mama Dog]";
+		mes "........";
+		mes "";
+		mes "^FF0000Side Quest 7";
+		end;
+	}
+}

@@ -1,0 +1,866 @@
+//====== จุด 1========== //
+
+// พิกัดพื้นที่ขุดสำรวจ (ระบุไว้ก่อน)
+-	script	Digging Spot Controller#1	-1,{
+	OnInit:
+		// พิกัดจุดที่ Digging Spot จะสุ่มไป
+		setarray .dig_x[0], 112, 185, 139, 74, 48, 102, 141, 170, 195, 224, 191, 221, 210, 212, 174;
+		setarray .dig_y[0], 145, 136, 74, 111, 170, 201, 231, 190, 165, 187, 215, 169, 136, 109, 109;
+		//setarray .dig_x[0], 141, 152, 152, 137; //for test
+		//setarray .dig_y[0], 222, 223, 209, 210; // for test
+		.dig_map$ = "jor_twig";
+		.npc_name$ = "Digging Spot#1";
+
+		// สุ่มจุดเริ่มต้น
+		callsub S_SpawnRandomSpot;
+		end;
+
+	S_SpawnRandomSpot:
+		// ลบ NPC ตัวเดิมก่อน
+		donpcevent .npc_name$ + "::OnDisable";
+
+		// สุ่มจุดใหม่
+		.@i = rand(getarraysize(.dig_x));
+		.@x = .dig_x[.@i];
+		.@y = .dig_y[.@i];
+
+		// เรียก NPC ขึ้นใหม่
+		movenpc .npc_name$, .@x, .@y;
+		enablenpc .npc_name$;
+		return;
+	
+	OnSpotUsed:
+		// เรียกตอนผู้เล่นขุดจบ จะย้าย NPC ไปที่ใหม่
+		callsub S_SpawnRandomSpot;
+		end;
+}
+
+// ตัว Digging Spot จริง
+jor_twig,85,82,5	script	Digging Spot#1	557,{
+	dispbottom "คุณเริ่มขุดลงไป...";
+	progressbar "0x996600", 20;
+
+	if (rand(100) < 70) {
+		mes "[จุดขุดสำรวจ]";
+		mes "คุณขุดลงไป... แต่ไม่พบอะไรเลย.";
+		close2;
+		donpcevent "Digging Spot Controller#1::OnSpotUsed";
+		end;
+	}
+
+	.@roll = rand(1, 100);
+
+	if (.@roll <= 5) {
+		getitem 1001248, 1;
+		specialeffect EF_BEGINSPELL6;
+		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(1001248) + " ] จากการขุด!", bc_all;
+		close;
+	}
+	else if (.@roll <= 15) {
+		getitem 1001030, 1;
+		specialeffect EF_BEGINSPELL6;
+		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(1001030) + " ] จากการขุด!", bc_all;
+		close;
+	}
+	else if (.@roll <= 35) {
+		setarray .@stat_stone[0], 2002015, 2002016;
+		getitem .@stat_stone[rand(2)], 1;
+		specialeffect EF_HEAL;
+		close;
+	}
+	else if (.@roll <= 60) {
+		.@refine_roll = rand(1,100);
+		if (.@refine_roll <= 10)
+			setarray .@item_pool[0], 517, 518;
+		else if (.@refine_roll <= 40)
+			setarray .@item_pool[0], 519, 520;
+		else
+			setarray .@item_pool[0], 985, 984;
+
+		getitem .@item_pool[rand(2)], 1;
+		specialeffect EF_REFINEOK;
+		close;
+	}
+	else {
+		getitem 7959, 1;
+		specialeffect EF_GOLDNAGE;
+		close;
+	}
+
+	close2;
+	donpcevent "Digging Spot Controller#1::OnSpotUsed";
+	end;
+
+OnDisable:
+	hideonnpc;
+	end;
+}
+
+
+//====== จุด 2========== //
+
+// พิกัดพื้นที่ขุดสำรวจ (ระบุไว้ก่อน)
+-	script	Digging Spot Controller#2	-1,{
+	OnInit:
+		// พิกัดจุดที่ Digging Spot จะสุ่มไป
+		setarray .dig_x[0], 113, 186, 140, 75, 49, 103, 142, 171, 196, 225, 192, 222, 211, 213, 87;
+		setarray .dig_y[0], 146, 137, 75, 112, 171, 202, 232, 191, 166, 188, 216, 170, 137, 110, 75;
+		//setarray .dig_x[0], 141, 152, 152, 137; //for test
+		//setarray .dig_y[0], 222, 223, 209, 210; // for test
+		.dig_map$ = "jor_twig";
+		.npc_name$ = "Digging Spot#2";
+
+		// สุ่มจุดเริ่มต้น
+		callsub S_SpawnRandomSpot;
+		end;
+
+	S_SpawnRandomSpot:
+		// ลบ NPC ตัวเดิมก่อน
+		donpcevent .npc_name$ + "::OnDisable";
+
+		// สุ่มจุดใหม่
+		.@i = rand(getarraysize(.dig_x));
+		.@x = .dig_x[.@i];
+		.@y = .dig_y[.@i];
+
+		// เรียก NPC ขึ้นใหม่
+		movenpc .npc_name$, .@x, .@y;
+		enablenpc .npc_name$;
+		return;
+	
+	OnSpotUsed:
+		// เรียกตอนผู้เล่นขุดจบ จะย้าย NPC ไปที่ใหม่
+		callsub S_SpawnRandomSpot;
+		end;
+}
+
+// ตัว Digging Spot จริง
+jor_twig,86,82,5	script	Digging Spot#2	557,{
+	dispbottom "คุณเริ่มขุดลงไป...";
+	progressbar "0x996600", 20;
+
+	if (rand(100) < 70) {
+		mes "[จุดขุดสำรวจ]";
+		mes "คุณขุดลงไป... แต่ไม่พบอะไรเลย.";
+		close2;
+		donpcevent "Digging Spot Controller#2::OnSpotUsed";
+		end;
+	}
+
+	.@roll = rand(1, 100);
+
+	if (.@roll <= 5) {
+		getitem 1001248, 1;
+		specialeffect EF_BEGINSPELL6;
+		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(1001248) + " ] จากการขุด!", bc_all;
+		close;
+	}
+	else if (.@roll <= 15) {
+		getitem 1001030, 1;
+		specialeffect EF_BEGINSPELL6;
+		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(1001030) + " ] จากการขุด!", bc_all;
+		close;
+	}
+	else if (.@roll <= 35) {
+		setarray .@stat_stone[0], 2002015, 2002016;
+		getitem .@stat_stone[rand(2)], 1;
+		specialeffect EF_HEAL;
+		close;
+	}
+	else if (.@roll <= 60) {
+		.@refine_roll = rand(1,100);
+		if (.@refine_roll <= 10)
+			setarray .@item_pool[0], 517, 518;
+		else if (.@refine_roll <= 40)
+			setarray .@item_pool[0], 519, 520;
+		else
+			setarray .@item_pool[0], 985, 984;
+
+		getitem .@item_pool[rand(2)], 1;
+		specialeffect EF_REFINEOK;
+		close;
+	}
+	else {
+		getitem 7959, 1;
+		specialeffect EF_GOLDNAGE;
+		close;
+	}
+
+	close2;
+	donpcevent "Digging Spot Controller#2::OnSpotUsed";
+	end;
+
+OnDisable:
+	hideonnpc;
+	end;
+}
+
+//====== จุด 3========== //
+
+// พิกัดพื้นที่ขุดสำรวจ (ระบุไว้ก่อน)
+-	script	Digging Spot Controller#3	-1,{
+	OnInit:
+		// พิกัดจุดที่ Digging Spot จะสุ่มไป
+		setarray .dig_x[0], 111, 184, 138, 73, 47, 101, 140, 169, 194, 223, 190, 220, 209, 211, 78;
+		setarray .dig_y[0], 144, 135, 73, 110, 169, 200, 230, 189, 164, 186, 214, 168, 135, 108, 199;
+		//setarray .dig_x[0], 141, 152, 152, 137; //for test
+		//setarray .dig_y[0], 222, 223, 209, 210; // for test
+		.dig_map$ = "jor_twig";
+		.npc_name$ = "Digging Spot#3";
+
+		// สุ่มจุดเริ่มต้น
+		callsub S_SpawnRandomSpot;
+		end;
+
+	S_SpawnRandomSpot:
+		// ลบ NPC ตัวเดิมก่อน
+		donpcevent .npc_name$ + "::OnDisable";
+
+		// สุ่มจุดใหม่
+		.@i = rand(getarraysize(.dig_x));
+		.@x = .dig_x[.@i];
+		.@y = .dig_y[.@i];
+
+		// เรียก NPC ขึ้นใหม่
+		movenpc .npc_name$, .@x, .@y;
+		enablenpc .npc_name$;
+		return;
+	
+	OnSpotUsed:
+		// เรียกตอนผู้เล่นขุดจบ จะย้าย NPC ไปที่ใหม่
+		callsub S_SpawnRandomSpot;
+		end;
+}
+
+// ตัว Digging Spot จริง
+jor_twig,87,82,5	script	Digging Spot#3	557,{
+	dispbottom "คุณเริ่มขุดลงไป...";
+	progressbar "0x996600", 20;
+
+	if (rand(100) < 70) {
+		mes "[จุดขุดสำรวจ]";
+		mes "คุณขุดลงไป... แต่ไม่พบอะไรเลย.";
+		close2;
+		donpcevent "Digging Spot Controller#3::OnSpotUsed";
+		end;
+	}
+
+	.@roll = rand(1, 100);
+
+	if (.@roll <= 5) {
+		getitem 1001248, 1;
+		specialeffect EF_BEGINSPELL6;
+		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(1001248) + " ] จากการขุด!", bc_all;
+		close;
+	}
+	else if (.@roll <= 15) {
+		getitem 1001030, 1;
+		specialeffect EF_BEGINSPELL6;
+		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(1001030) + " ] จากการขุด!", bc_all;
+		close;
+	}
+	else if (.@roll <= 35) {
+		setarray .@stat_stone[0], 2002015, 2002016;
+		getitem .@stat_stone[rand(2)], 1;
+		specialeffect EF_HEAL;
+		close;
+	}
+	else if (.@roll <= 60) {
+		.@refine_roll = rand(1,100);
+		if (.@refine_roll <= 10)
+			setarray .@item_pool[0], 517, 518;
+		else if (.@refine_roll <= 40)
+			setarray .@item_pool[0], 519, 520;
+		else
+			setarray .@item_pool[0], 985, 984;
+
+		getitem .@item_pool[rand(2)], 1;
+		specialeffect EF_REFINEOK;
+		close;
+	}
+	else {
+		getitem 7959, 1;
+		specialeffect EF_GOLDNAGE;
+		close;
+	}
+
+	close2;
+	donpcevent "Digging Spot Controller#3::OnSpotUsed";
+	end;
+
+OnDisable:
+	hideonnpc;
+	end;
+}
+
+
+//====== จุด 4========== //
+
+// พิกัดพื้นที่ขุดสำรวจ (ระบุไว้ก่อน)
+-	script	Digging Spot Controller#4	-1,{
+	OnInit:
+		// พิกัดจุดที่ Digging Spot จะสุ่มไป
+		setarray .dig_x[0], 111, 184, 138, 73, 47, 101, 140, 169, 194, 223, 190, 220, 209, 211, 166;
+		setarray .dig_y[0], 145, 136, 74, 111, 170, 201, 231, 190, 165, 187, 215, 169, 136, 109, 211;
+		//setarray .dig_x[0], 141, 152, 152, 137; //for test
+		//setarray .dig_y[0], 222, 223, 209, 210; // for test
+		.dig_map$ = "jor_twig";
+		.npc_name$ = "Digging Spot#4";
+
+		// สุ่มจุดเริ่มต้น
+		callsub S_SpawnRandomSpot;
+		end;
+
+	S_SpawnRandomSpot:
+		// ลบ NPC ตัวเดิมก่อน
+		donpcevent .npc_name$ + "::OnDisable";
+
+		// สุ่มจุดใหม่
+		.@i = rand(getarraysize(.dig_x));
+		.@x = .dig_x[.@i];
+		.@y = .dig_y[.@i];
+
+		// เรียก NPC ขึ้นใหม่
+		movenpc .npc_name$, .@x, .@y;
+		enablenpc .npc_name$;
+		return;
+	
+	OnSpotUsed:
+		// เรียกตอนผู้เล่นขุดจบ จะย้าย NPC ไปที่ใหม่
+		callsub S_SpawnRandomSpot;
+		end;
+}
+
+// ตัว Digging Spot จริง
+jor_twig,88,82,5	script	Digging Spot#4	557,{
+	dispbottom "คุณเริ่มขุดลงไป...";
+	progressbar "0x996600", 20;
+
+	if (rand(100) < 70) {
+		mes "[จุดขุดสำรวจ]";
+		mes "คุณขุดลงไป... แต่ไม่พบอะไรเลย.";
+		close2;
+		donpcevent "Digging Spot Controller#4::OnSpotUsed";
+		end;
+	}
+
+	.@roll = rand(1, 100);
+
+	if (.@roll <= 5) {
+		getitem 1001248, 1;
+		specialeffect EF_BEGINSPELL6;
+		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(1001248) + " ] จากการขุด!", bc_all;
+		close;
+	}
+	else if (.@roll <= 15) {
+		getitem 1001030, 1;
+		specialeffect EF_BEGINSPELL6;
+		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(1001030) + " ] จากการขุด!", bc_all;
+		close;
+	}
+	else if (.@roll <= 35) {
+		setarray .@stat_stone[0], 2002015, 2002016;
+		getitem .@stat_stone[rand(2)], 1;
+		specialeffect EF_HEAL;
+		close;
+	}
+	else if (.@roll <= 60) {
+		.@refine_roll = rand(1,100);
+		if (.@refine_roll <= 10)
+			setarray .@item_pool[0], 517, 518;
+		else if (.@refine_roll <= 40)
+			setarray .@item_pool[0], 519, 520;
+		else
+			setarray .@item_pool[0], 985, 984;
+
+		getitem .@item_pool[rand(2)], 1;
+		specialeffect EF_REFINEOK;
+		close;
+	}
+	else {
+		getitem 7959, 1;
+		specialeffect EF_GOLDNAGE;
+		close;
+	}
+
+	close2;
+	donpcevent "Digging Spot Controller#4::OnSpotUsed";
+	end;
+
+OnDisable:
+	hideonnpc;
+	end;
+}
+
+
+//====== จุด 5========== //
+
+// พิกัดพื้นที่ขุดสำรวจ (ระบุไว้ก่อน)
+-	script	Digging Spot Controller#5	-1,{
+	OnInit:
+		// พิกัดจุดที่ Digging Spot จะสุ่มไป
+		setarray .dig_x[0], 112, 185, 139, 74, 48, 102, 141, 170, 195, 224, 191, 221, 210, 212, 114;
+		setarray .dig_y[0], 144, 135, 73, 110, 169, 200, 230, 189, 164, 186, 214, 168, 135, 108, 168;
+		//setarray .dig_x[0], 141, 152, 152, 137; //for test
+		//setarray .dig_y[0], 222, 223, 209, 210; // for test
+		.dig_map$ = "jor_twig";
+		.npc_name$ = "Digging Spot#5";
+
+		// สุ่มจุดเริ่มต้น
+		callsub S_SpawnRandomSpot;
+		end;
+
+	S_SpawnRandomSpot:
+		// ลบ NPC ตัวเดิมก่อน
+		donpcevent .npc_name$ + "::OnDisable";
+
+		// สุ่มจุดใหม่
+		.@i = rand(getarraysize(.dig_x));
+		.@x = .dig_x[.@i];
+		.@y = .dig_y[.@i];
+
+		// เรียก NPC ขึ้นใหม่
+		movenpc .npc_name$, .@x, .@y;
+		enablenpc .npc_name$;
+		return;
+	
+	OnSpotUsed:
+		// เรียกตอนผู้เล่นขุดจบ จะย้าย NPC ไปที่ใหม่
+		callsub S_SpawnRandomSpot;
+		end;
+}
+
+// ตัว Digging Spot จริง
+jor_twig,89,82,5	script	Digging Spot#5	557,{
+	dispbottom "คุณเริ่มขุดลงไป...";
+	progressbar "0x996600", 20;
+
+	if (rand(100) < 70) {
+		mes "[จุดขุดสำรวจ]";
+		mes "คุณขุดลงไป... แต่ไม่พบอะไรเลย.";
+		close2;
+		donpcevent "Digging Spot Controller#5::OnSpotUsed";
+		end;
+	}
+
+	.@roll = rand(1, 100);
+
+	if (.@roll <= 5) {
+		getitem 1001248, 1;
+		specialeffect EF_BEGINSPELL6;
+		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(1001248) + " ] จากการขุด!", bc_all;
+		close;
+	}
+	else if (.@roll <= 15) {
+		getitem 1001030, 1;
+		specialeffect EF_BEGINSPELL6;
+		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(1001030) + " ] จากการขุด!", bc_all;
+		close;
+	}
+	else if (.@roll <= 35) {
+		setarray .@stat_stone[0], 2002015, 2002016;
+		getitem .@stat_stone[rand(2)], 1;
+		specialeffect EF_HEAL;
+		close;
+	}
+	else if (.@roll <= 60) {
+		.@refine_roll = rand(1,100);
+		if (.@refine_roll <= 10)
+			setarray .@item_pool[0], 517, 518;
+		else if (.@refine_roll <= 40)
+			setarray .@item_pool[0], 519, 520;
+		else
+			setarray .@item_pool[0], 985, 984;
+
+		getitem .@item_pool[rand(2)], 1;
+		specialeffect EF_REFINEOK;
+		close;
+	}
+	else {
+		getitem 7959, 1;
+		specialeffect EF_GOLDNAGE;
+		close;
+	}
+
+	close2;
+	donpcevent "Digging Spot Controller#5::OnSpotUsed";
+	end;
+
+OnDisable:
+	hideonnpc;
+	end;
+}
+
+
+//====== จุด 6========== //
+
+// พิกัดพื้นที่ขุดสำรวจ (ระบุไว้ก่อน)
+-	script	Digging Spot Controller#6	-1,{
+	OnInit:
+		// พิกัดจุดที่ Digging Spot จะสุ่มไป
+		setarray .dig_x[0], 113, 186, 140, 75, 49, 103, 142, 171, 196, 225, 192, 222, 211, 213, 136;
+		setarray .dig_y[0], 144, 135, 73, 110, 169, 200, 230, 189, 164, 186, 214, 168, 135, 108, 156;
+		//setarray .dig_x[0], 141, 152, 152, 137; //for test
+		//setarray .dig_y[0], 222, 223, 209, 210; // for test
+		.dig_map$ = "jor_twig";
+		.npc_name$ = "Digging Spot#6";
+
+		// สุ่มจุดเริ่มต้น
+		callsub S_SpawnRandomSpot;
+		end;
+
+	S_SpawnRandomSpot:
+		// ลบ NPC ตัวเดิมก่อน
+		donpcevent .npc_name$ + "::OnDisable";
+
+		// สุ่มจุดใหม่
+		.@i = rand(getarraysize(.dig_x));
+		.@x = .dig_x[.@i];
+		.@y = .dig_y[.@i];
+
+		// เรียก NPC ขึ้นใหม่
+		movenpc .npc_name$, .@x, .@y;
+		enablenpc .npc_name$;
+		return;
+	
+	OnSpotUsed:
+		// เรียกตอนผู้เล่นขุดจบ จะย้าย NPC ไปที่ใหม่
+		callsub S_SpawnRandomSpot;
+		end;
+}
+
+// ตัว Digging Spot จริง
+jor_twig,90,82,5	script	Digging Spot#6	557,{
+	dispbottom "คุณเริ่มขุดลงไป...";
+	progressbar "0x996600", 20;
+
+	if (rand(100) < 70) {
+		mes "[จุดขุดสำรวจ]";
+		mes "คุณขุดลงไป... แต่ไม่พบอะไรเลย.";
+		close2;
+		donpcevent "Digging Spot Controller#6::OnSpotUsed";
+		end;
+	}
+
+	.@roll = rand(1, 100);
+
+	if (.@roll <= 5) {
+		getitem 1001248, 1;
+		specialeffect EF_BEGINSPELL6;
+		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(1001248) + " ] จากการขุด!", bc_all;
+		close;
+	}
+	else if (.@roll <= 15) {
+		getitem 1001030, 1;
+		specialeffect EF_BEGINSPELL6;
+		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(1001030) + " ] จากการขุด!", bc_all;
+		close;
+	}
+	else if (.@roll <= 35) {
+		setarray .@stat_stone[0], 2002015, 2002016;
+		getitem .@stat_stone[rand(2)], 1;
+		specialeffect EF_HEAL;
+		close;
+	}
+	else if (.@roll <= 60) {
+		.@refine_roll = rand(1,100);
+		if (.@refine_roll <= 10)
+			setarray .@item_pool[0], 517, 518;
+		else if (.@refine_roll <= 40)
+			setarray .@item_pool[0], 519, 520;
+		else
+			setarray .@item_pool[0], 985, 984;
+
+		getitem .@item_pool[rand(2)], 1;
+		specialeffect EF_REFINEOK;
+		close;
+	}
+	else {
+		getitem 7959, 1;
+		specialeffect EF_GOLDNAGE;
+		close;
+	}
+
+	close2;
+	donpcevent "Digging Spot Controller#6::OnSpotUsed";
+	end;
+
+OnDisable:
+	hideonnpc;
+	end;
+}
+
+//====== จุด 7========== //
+
+// พิกัดพื้นที่ขุดสำรวจ (ระบุไว้ก่อน)
+-	script	Digging Spot Controller#7	-1,{
+	OnInit:
+		// พิกัดจุดที่ Digging Spot จะสุ่มไป
+		setarray .dig_x[0], 115, 188, 142, 77, 51, 105, 144, 173, 198, 227, 194, 224, 213, 215, 138;
+		setarray .dig_y[0], 146, 137, 75, 112, 171, 202, 232, 191, 166, 188, 216, 170, 137, 110, 158;
+		//setarray .dig_x[0], 141, 152, 152, 137; //for test
+		//setarray .dig_y[0], 222, 223, 209, 210; // for test
+		.dig_map$ = "jor_twig";
+		.npc_name$ = "Digging Spot#7";
+
+		// สุ่มจุดเริ่มต้น
+		callsub S_SpawnRandomSpot;
+		end;
+
+	S_SpawnRandomSpot:
+		// ลบ NPC ตัวเดิมก่อน
+		donpcevent .npc_name$ + "::OnDisable";
+
+		// สุ่มจุดใหม่
+		.@i = rand(getarraysize(.dig_x));
+		.@x = .dig_x[.@i];
+		.@y = .dig_y[.@i];
+
+		// เรียก NPC ขึ้นใหม่
+		movenpc .npc_name$, .@x, .@y;
+		enablenpc .npc_name$;
+		return;
+	
+	OnSpotUsed:
+		// เรียกตอนผู้เล่นขุดจบ จะย้าย NPC ไปที่ใหม่
+		callsub S_SpawnRandomSpot;
+		end;
+}
+
+// ตัว Digging Spot จริง
+jor_twig,91,82,5	script	Digging Spot#7	557,{
+	dispbottom "คุณเริ่มขุดลงไป...";
+	progressbar "0x996600", 20;
+
+	if (rand(100) < 70) {
+		mes "[จุดขุดสำรวจ]";
+		mes "คุณขุดลงไป... แต่ไม่พบอะไรเลย.";
+		close2;
+		donpcevent "Digging Spot Controller#7::OnSpotUsed";
+		end;
+	}
+
+	.@roll = rand(1, 100);
+
+	if (.@roll <= 5) {
+		getitem 1001248, 1;
+		specialeffect EF_BEGINSPELL6;
+		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(1001248) + " ] จากการขุด!", bc_all;
+		close;
+	}
+	else if (.@roll <= 15) {
+		getitem 1001030, 1;
+		specialeffect EF_BEGINSPELL6;
+		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(1001030) + " ] จากการขุด!", bc_all;
+		close;
+	}
+	else if (.@roll <= 35) {
+		setarray .@stat_stone[0], 2002015, 2002016;
+		getitem .@stat_stone[rand(2)], 1;
+		specialeffect EF_HEAL;
+		close;
+	}
+	else if (.@roll <= 60) {
+		.@refine_roll = rand(1,100);
+		if (.@refine_roll <= 10)
+			setarray .@item_pool[0], 517, 518;
+		else if (.@refine_roll <= 40)
+			setarray .@item_pool[0], 519, 520;
+		else
+			setarray .@item_pool[0], 985, 984;
+
+		getitem .@item_pool[rand(2)], 1;
+		specialeffect EF_REFINEOK;
+		close;
+	}
+	else {
+		getitem 7959, 1;
+		specialeffect EF_GOLDNAGE;
+		close;
+	}
+
+	close2;
+	donpcevent "Digging Spot Controller#7::OnSpotUsed";
+	end;
+
+OnDisable:
+	hideonnpc;
+	end;
+}
+
+//====== จุด 8========== //
+
+// พิกัดพื้นที่ขุดสำรวจ (ระบุไว้ก่อน)
+-	script	Digging Spot Controller#8	-1,{
+	OnInit:
+		// พิกัดจุดที่ Digging Spot จะสุ่มไป
+		setarray .dig_x[0], 116, 189, 143, 78, 52, 106, 145, 174, 199, 228, 195, 225, 214, 216, 139;
+		setarray .dig_y[0], 146, 137, 75, 112, 171, 202, 232, 191, 166, 188, 216, 170, 137, 110, 158;
+		//setarray .dig_x[0], 141, 152, 152, 137; //for test
+		//setarray .dig_y[0], 222, 223, 209, 210; // for test
+		.dig_map$ = "jor_twig";
+		.npc_name$ = "Digging Spot#8";
+
+		// สุ่มจุดเริ่มต้น
+		callsub S_SpawnRandomSpot;
+		end;
+
+	S_SpawnRandomSpot:
+		// ลบ NPC ตัวเดิมก่อน
+		donpcevent .npc_name$ + "::OnDisable";
+
+		// สุ่มจุดใหม่
+		.@i = rand(getarraysize(.dig_x));
+		.@x = .dig_x[.@i];
+		.@y = .dig_y[.@i];
+
+		// เรียก NPC ขึ้นใหม่
+		movenpc .npc_name$, .@x, .@y;
+		enablenpc .npc_name$;
+		return;
+	
+	OnSpotUsed:
+		// เรียกตอนผู้เล่นขุดจบ จะย้าย NPC ไปที่ใหม่
+		callsub S_SpawnRandomSpot;
+		end;
+}
+
+// ตัว Digging Spot จริง
+jor_twig,92,82,5	script	Digging Spot#8	557,{
+	dispbottom "คุณเริ่มขุดลงไป...";
+	progressbar "0x996600", 20;
+
+	if (rand(100) < 70) {
+		mes "[จุดขุดสำรวจ]";
+		mes "คุณขุดลงไป... แต่ไม่พบอะไรเลย.";
+		close2;
+		donpcevent "Digging Spot Controller#8::OnSpotUsed";
+		end;
+	}
+
+	.@roll = rand(1, 100);
+
+	if (.@roll <= 5) {
+		getitem 1001248, 1;
+		specialeffect EF_BEGINSPELL6;
+		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(1001248) + " ] จากการขุด!", bc_all;
+		close;
+	}
+	else if (.@roll <= 15) {
+		getitem 1001030, 1;
+		specialeffect EF_BEGINSPELL6;
+		announce "^FFA500" + strcharinfo(0) + " ได้รับไอเทมหายาก [ " + getitemname(1001030) + " ] จากการขุด!", bc_all;
+		close;
+	}
+	else if (.@roll <= 35) {
+		setarray .@stat_stone[0], 2002015, 2002016;
+		getitem .@stat_stone[rand(2)], 1;
+		specialeffect EF_HEAL;
+		close;
+	}
+	else if (.@roll <= 60) {
+		.@refine_roll = rand(1,100);
+		if (.@refine_roll <= 10)
+			setarray .@item_pool[0], 517, 518;
+		else if (.@refine_roll <= 40)
+			setarray .@item_pool[0], 519, 520;
+		else
+			setarray .@item_pool[0], 985, 984;
+
+		getitem .@item_pool[rand(2)], 1;
+		specialeffect EF_REFINEOK;
+		close;
+	}
+	else {
+		getitem 7959, 1;
+		specialeffect EF_GOLDNAGE;
+		close;
+	}
+
+	close2;
+	donpcevent "Digging Spot Controller#8::OnSpotUsed";
+	end;
+
+OnDisable:
+	hideonnpc;
+	end;
+}
+
+icecastle,177,229,5	script	นักผจญภัยหูยาว	515,{
+//icecastle,94,271,5	script	นักผจญภัยหูยาว	515,{
+	mes "[Misa]";
+	mes "นักผจญภัย!! เจ้าต้องไม่เชื่อแน่!!";
+	next;
+	mes "[Misa]";
+	mes "ข้าเจอแหล่งขุมทรัพย์มาจากลายแทงของโจรสลัดด้วยหละ!!";
+	next;
+	mes "[Misa]";
+	mes "แถวนี้มันต้องมีสมบัติแน่ๆ!!";
+	next;
+	if (BaseLevel < 99 || JobLevel < 50 || adv_clas < 1) {
+		mes "[Misa]";
+		mes "แต่เจ้าดูขาดประสบการณ์นะ ไปฝึกมามากกว่านี้!!";
+		mes "^FF0000ต้องการ LV 99/50 และ Rank E ขึ้นไป^000000";
+		close;
+	}
+	mes "[Misa]";
+	mes "เจ้าพร้อมจะไปหาสมบัติแล้วใช่ไหม!!";
+	next;
+	switch(select("แน่นอน!!:ข้าเจออะไรบางอย่างมาด้วย!!:ยกเลิก")) {
+		case 1:
+			close2;
+			warp "jor_twig", 134, 156;
+			end;
+		case 2:
+			break;
+		case 3:
+			close;
+	}
+
+	mes "[Misa]";
+	mes "เจ้ามีของหายากมาให้ข้าดูใช่ไหม!! ไหนเอามาดูซิ!?!";
+	next;
+	switch(select("^FFA500Neutralized Stone^000000 :^FF0000Pure Stone^000000:ยกเลิก")) {
+		case 1:	// กลุ่ม A
+			if (#rare_a_used >= 6) {
+				mes "[Misa]";
+				mes "ข้าได้ครบที่ต้องการแล้ว เจ้าเก็บไว้เถอะนะ";
+				close;
+			}
+			if (countitem(1001030) < 1) {
+				mes "[Misa]";
+				mes "เจ้าหลอกข้าหรอ ไม่เห็นมีอะไรเลย!";
+				close;
+			}
+			delitem 1001030, 1;
+			set #rare_a_used, #rare_a_used + 1;
+			set SkillPoint, SkillPoint + 1;
+			mes "[Misa]";
+			mes "ขอบใจ! ข้าให้นี่ตอบแทนเจ้าละกัน";
+			mes "ได้รับ ^00FF00 Skill Point เพิ่มขึ้น 1 แต้ม^000000 แล้ว.";
+			close;
+
+		case 2:	// กลุ่ม B
+			if (#rare_b_used >= 3) {
+				mes "[Misa]";
+				mes "ข้าได้ครบที่ต้องการแล้ว เจ้าเก็บไว้เถอะนะ";
+				close;
+			}
+			if (countitem(1001248) < 1) {
+				mes "[Misa]";
+				mes "เจ้าหลอกข้าหรอ ไม่เห็นมีอะไรเลย!";
+				close;
+			}
+			delitem 1001248, 1;
+			set #rare_b_used, #rare_b_used + 1;
+			set SkillPoint, SkillPoint + 3;
+			mes "[Misa]";
+			mes "ยอดเยี่ยม! ของดีแบบนี้หาไม่ได้อีกแล้ว!! เอารางวัลไป!!";
+			mes "ได้รับ ^00FF00 Skill Point เพิ่มขึ้น 3 แต้ม^000000 แล้ว.";
+			close;
+
+		case 3:
+			mes "ไว้เจอกันใหม่.";
+			close;
+	}
+}

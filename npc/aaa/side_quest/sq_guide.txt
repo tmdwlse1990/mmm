@@ -62,7 +62,7 @@ icecastle,228,159,4	script	Quest Guide	627,{
 		case 7:
 			next;
 			mes "[Quest Guide]";
-			mes "อันนี้ยังไม่อัพเดทหนะ รอข้าเขียนแปป.....";
+			mes "นำไอเทม 20 ชิ้นไปให้แม่หมาคราฟ....";
 			close;
 
 		default:

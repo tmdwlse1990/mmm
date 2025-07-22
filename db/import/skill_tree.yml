@@ -1781,7 +1781,7 @@ Body:
         MaxLevel: 15
         Requires:
           - Name: GS_SINGLEACTION
-            Level: 15
+            Level: 5
       - Name: GS_DISARM
         MaxLevel: 5
         Requires:

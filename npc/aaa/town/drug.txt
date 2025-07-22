@@ -1,9 +1,14 @@
 icecastle,83,222,0	script	Drug Dealer	4_ED_ORB,{
-	if(select("- ซื้อยาโดป:- ซื้อยาโดป(ไม่ใช้เหรียญ):- ผสมยาโดป") == 1 ) 
-		callshop "PowerupItem";
-	else if(select("- ซื้อยาโดป:- ซื้อยาโดป(ไม่ใช้เหรียญ):- ผสมยาโดป") == 2 )
-		callshop "PowerupItemNoCoin";
-	else
-		callshop "PowerupItemCombine";
+	switch(select("- ซื้อยาโดป:- ซื้อยาโดป(ไม่ใช้เหรียญ):- ผสมยาโดป") ) {
+		case 1:
+			callshop "PowerupItem";
+			break;
+		case 2:
+			callshop "PowerupItemNoCoin";
+			break;
+		case 3:
+			callshop "PowerupItemCombine";
+			break;
+	}
 	end;
 }
