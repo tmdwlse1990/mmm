@@ -16900,6 +16900,162 @@ Body:
     AfterCastActDelay: 20000
     Requires:
       SpCost: 1
+  - Id: 700
+    Name: NPC_WIDEHEALTHFEAR
+    Description: Wide Area Fear
+    MaxLevel: 5
+    TargetType: Self
+    DamageFlags:
+      NoDamage: true
+      Splash: true
+    Flags:
+      IsNpc: true
+      ShowScale: true
+    Hit: Single
+    HitCount: 1
+    SplashArea:
+      - Level: 1
+        Area: 2
+      - Level: 2
+        Area: 5
+      - Level: 3
+        Area: 8
+      - Level: 4
+        Area: 11
+      - Level: 5
+        Area: 14
+    Duration2: 4500
+    Status: Fear
+  - Id: 701
+    Name: NPC_WIDEBODYBURNNING
+    Description: Wide Area Burnning
+    MaxLevel: 5
+    TargetType: Self
+    DamageFlags:
+      NoDamage: true
+      Splash: true
+    Flags:
+      IsNpc: true
+      ShowScale: true
+    Hit: Single
+    HitCount: 1
+    SplashArea:
+      - Level: 1
+        Area: 2
+      - Level: 2
+        Area: 5
+      - Level: 3
+        Area: 8
+      - Level: 4
+        Area: 11
+      - Level: 5
+        Area: 14
+    Duration2: 4500
+    Status: Burning
+  - Id: 702
+    Name: NPC_WIDEFROSTMISTY
+    Description: Wide Area Frost Misty
+    MaxLevel: 5
+    TargetType: Self
+    DamageFlags:
+      NoDamage: true
+      Splash: true
+    Flags:
+      IsNpc: true
+      ShowScale: true
+    Hit: Single
+    HitCount: 1
+    SplashArea:
+      - Level: 1
+        Area: 2
+      - Level: 2
+        Area: 5
+      - Level: 3
+        Area: 8
+      - Level: 4
+        Area: 11
+      - Level: 5
+        Area: 14
+    Duration2: 4500
+    Status: Freezing
+  - Id: 703
+    Name: NPC_WIDECOLD
+    Description: Wide Area Feeze
+    MaxLevel: 5
+    TargetType: Self
+    DamageFlags:
+      NoDamage: true
+      Splash: true
+    Flags:
+      IsNpc: true
+      ShowScale: true
+    Hit: Single
+    HitCount: 1
+    SplashArea:
+      - Level: 1
+        Area: 2
+      - Level: 2
+        Area: 5
+      - Level: 3
+        Area: 8
+      - Level: 4
+        Area: 11
+      - Level: 5
+        Area: 14
+    Duration2: 4500
+    Status: Crystalize
+  - Id: 704
+    Name: NPC_WIDE_DEEP_SLEEP
+    Description: Wide Area Deep Sleep
+    MaxLevel: 5
+    TargetType: Self
+    DamageFlags:
+      NoDamage: true
+      Splash: true
+    Flags:
+      IsNpc: true
+      ShowScale: true
+    Hit: Single
+    HitCount: 1
+    SplashArea:
+      - Level: 1
+        Area: 2
+      - Level: 2
+        Area: 5
+      - Level: 3
+        Area: 8
+      - Level: 4
+        Area: 11
+      - Level: 5
+        Area: 14
+    Duration2: 4500
+    Status: DeepSleep
+  - Id: 705
+    Name: NPC_WIDESIREN
+    Description: Wide Area Fascination
+    MaxLevel: 5
+    TargetType: Self
+    DamageFlags:
+      NoDamage: true
+      Splash: true
+    Flags:
+      IsNpc: true
+      ShowScale: true
+    Hit: Single
+    HitCount: 1
+    SplashArea:
+      - Level: 1
+        Area: 2
+      - Level: 2
+        Area: 5
+      - Level: 3
+        Area: 8
+      - Level: 4
+        Area: 11
+      - Level: 5
+        Area: 14
+    Duration2: 4500
+    Status: VoiceOfSiren
   - Id: 706
     Name: NPC_VENOMFOG
     Description: Venom Fog
@@ -17910,6 +18066,73 @@ Body:
         Area: 2
     Element: Weapon
     Duration2: 30000
+  - Id: 750
+    Name: NPC_EARTHQUAKE_K
+    Description: Earthquake K
+    MaxLevel: 10
+    Type: Magic
+    TargetType: Self
+    DamageFlags:
+      Splash: true
+      SplashSplit: true
+      IgnoreDefense: true
+    Flags:
+      IsNpc: true
+      TargetTrap: true
+      IgnoreLandProtector: true
+      ShowScale: true
+    Hit: Multi_Hit
+    HitCount: 1
+    SplashArea:
+      - Level: 1
+        Area: 5
+      - Level: 2
+        Area: 7
+      - Level: 3
+        Area: 9
+      - Level: 4
+        Area: 11
+      - Level: 5
+        Area: 13
+      - Level: 6
+        Area: 5
+      - Level: 7
+        Area: 7
+      - Level: 8
+        Area: 9
+      - Level: 9
+        Area: 11
+      - Level: 10
+        Area: 13
+    Duration1: 910
+    FixedCastTime: -1
+    Unit:
+      Id: Earthquake
+      Range:
+        - Level: 1
+          Size: 5
+        - Level: 2
+          Size: 7
+        - Level: 3
+          Size: 9
+        - Level: 4
+          Size: 11
+        - Level: 5
+          Size: 13
+        - Level: 6
+          Size: 5
+        - Level: 7
+          Size: 7
+        - Level: 8
+          Size: 9
+        - Level: 9
+          Size: 11
+        - Level: 10
+          Size: 13
+      Interval: 300
+      Target: Enemy
+      Flag:
+        PathCheck: true
   - Id: 751
     Name: NPC_ALL_STAT_DOWN
     Description: Decrease All Stats
@@ -18338,6 +18561,56 @@ Body:
     HitCount: 1
     Duration1: 60000
     Status: Relieve_off
+  - Id: 773
+    Name: NPC_LOCKON_LASER
+    Description: Lock on Laser
+    MaxLevel: 10
+    Type: Weapon
+    TargetType: Attack
+    DamageFlags:
+      NoDamage: true
+    Range: 9
+    Hit: Single
+    HitCount: 1
+    CastCancel: true
+    Duration1: 20000
+    Status: Lockon_Laser
+  - Id: 774
+    Name: NPC_LOCKON_LASER_ATK
+    Description: Lock on Laser Attack
+    MaxLevel: 4
+    Type: Weapon
+    TargetType: Ground
+    DamageFlags:
+      Splash: true
+      IgnoreAtkCard: true
+      IgnoreElement: true
+      IgnoreDefense: true
+      IgnoreFlee: true
+      IgnoreDefCard: true
+    Flags:
+      IgnoreLandProtector: true
+    Range: 13
+    Hit: Multi_Hit
+    HitCount:
+      - Level: 1
+        Count: 1
+      - Level: 2
+        Count: 1
+      - Level: 3
+        Count: 4
+      - Level: 4
+        Count: 2
+    SplashArea:
+      - Level: 1
+        Area: 3
+      - Level: 2
+        Area: 3
+      - Level: 3
+        Area: 4
+      - Level: 4
+        Area: -1
+    CastCancel: true
   - Id: 776
     Name: NPC_DEADLYCURSE
     Description: Deadly Curse

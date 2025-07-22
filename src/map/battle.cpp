@@ -1650,7 +1650,10 @@ bool battle_status_block_damage(struct block_list *src, struct block_list *targe
 		return false;
 	}
 
-	if (sc->getSCE(SC_DODGE) && (flag&BF_LONG || sc->getSCE(SC_SPURT)) && (skill_id != NPC_EARTHQUAKE || (skill_id == NPC_EARTHQUAKE && flag & NPC_EARTHQUAKE_FLAG)) && rnd() % 100 < 20) {
+	if (sc->getSCE(SC_DODGE) && (flag & BF_LONG || sc->getSCE(SC_SPURT)) &&
+		(skill_id != NPC_EARTHQUAKE || skill_id != NPC_EARTHQUAKE_K ||
+		(skill_id == NPC_EARTHQUAKE || skill_id == NPC_EARTHQUAKE_K &&
+		flag & NPC_EARTHQUAKE_FLAG)) && rnd() % 100 < 20) {
 		map_session_data *sd = map_id2sd(target->id);
 
 		if (sd && pc_issit(sd))
@@ -1660,7 +1663,10 @@ bool battle_status_block_damage(struct block_list *src, struct block_list *targe
 		return false;
 	}
 
-	if ((sce = sc->getSCE(SC_KAUPE)) && (skill_id != NPC_EARTHQUAKE || (skill_id == NPC_EARTHQUAKE && flag & NPC_EARTHQUAKE_FLAG)) && rnd() % 100 < sce->val2) { //Kaupe blocks damage (skill or otherwise) from players, mobs, homuns, mercenaries.
+	if ((sce = sc->getSCE(SC_KAUPE)) && 
+		(skill_id != NPC_EARTHQUAKE && skill_id != NPC_EARTHQUAKE_K || 
+		(skill_id == NPC_EARTHQUAKE || skill_id == NPC_EARTHQUAKE_K && flag & NPC_EARTHQUAKE_FLAG)) && 
+		rnd() % 100 < sce->val2) {  //Kaupe blocks damage (skill or otherwise) from players, mobs, homuns, mercenaries.
 		clif_specialeffect(target, EF_STORMKICK4, AREA);
 		//Shouldn't end until Breaker's non-weapon part connects.
 #ifndef RENEWAL
@@ -3446,6 +3452,9 @@ static bool is_attack_hitting(struct Damage* wd, struct block_list *src, struct 
 	if(skill_id) {
 		switch(skill_id) { //Hit skill modifiers
 			//It is proven that bonus is applied on final hitrate, not hit.
+			case NPC_EARTHQUAKE_K:
+				hitrate = 100;
+				break;
 			case SM_BASH:
 			case MS_BASH:
 				hitrate += hitrate * 5 * skill_lv / 100;
@@ -3823,6 +3832,9 @@ int32 battle_get_magic_element(struct block_list* src, struct block_list* target
 		element = rnd()%ELE_ALL;
 
 	switch(skill_id) {
+		case NPC_EARTHQUAKE_K:
+			element = ELE_RANDOM;
+			break;
 		case NPC_EARTHQUAKE:
 			element = ELE_NEUTRAL;
 			break;
@@ -8327,6 +8339,13 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src, struct bl
 
 #ifdef RENEWAL
 	switch (skill_id) {
+       case NPC_LOCKON_LASER_ATK:
+            wd.damage = 30000;
+			if (skill_lv == 3)
+                wd.damage = 60000;
+			else if (skill_lv == 4)
+				wd.damage = 150000;
+            break;
 		case NJ_ISSEN:
 		case GN_FIRE_EXPANSION_ACID:
 			return wd; //These skills will do a GVG fix later

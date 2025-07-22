@@ -3683,7 +3683,7 @@ int64 skill_attack (int32 attack_type, struct block_list* src, struct block_list
 		}
 	}
 
-	if( dmg.flag&BF_MAGIC && ( skill_id != NPC_EARTHQUAKE || (battle_config.eq_single_target_reflectable && (flag&0xFFF) == 1) ) )
+	if( dmg.flag&BF_MAGIC && ( skill_id != NPC_EARTHQUAKE || skill_id != NPC_EARTHQUAKE_K || (battle_config.eq_single_target_reflectable && (flag&0xFFF) == 1) ) )
 	{ // Earthquake on multiple targets is not counted as a target skill. [Inkfish]
 		if( (dmg.damage || dmg.damage2) && (type = skill_magic_reflect(src, bl, src==dsrc)) )
 		{	//Magic reflection, switch caster/target
@@ -3925,6 +3925,7 @@ int64 skill_attack (int32 attack_type, struct block_list* src, struct block_list
 			clif_skill_damage( *dsrc, *bl, tick, status_get_amotion(src), dmg.dmotion, damage, dmg.div_, skill_id, -1, DMG_SINGLE );
 			break;
 		case NPC_EARTHQUAKE:
+		case NPC_EARTHQUAKE_K:
 			clif_skill_damage( *src, *bl, tick, status_get_amotion(src), dmg.dmotion, damage, dmg.div_, skill_id, -1, DMG_SPLASH );
 			break;
 		case NPC_DARKPIERCING:
@@ -7579,6 +7580,9 @@ int32 skill_castend_damage_id (struct block_list* src, struct block_list *bl, ui
 			clif_skill_nodamage( src, *src, skill_id, sp );
 		}
 		break;
+	case NPC_LOCKON_LASER_ATK:
+		skill_attack(skill_get_type(skill_id), src, src, bl, skill_id, skill_lv, tick, flag);
+		break;
 
 	default:
 		ShowWarning("skill_castend_damage_id: Unknown skill used:%d\n",skill_id);
@@ -8468,6 +8472,7 @@ int32 skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, 
 	case HN_RULEBREAK:
 	case SH_TEMPORARY_COMMUNION:
 	case SKE_ENCHANTING_SKY:
+	case NPC_LOCKON_LASER:
 		clif_skill_nodamage(src,*bl,skill_id,skill_lv,
 			sc_start(src,bl,type,100,skill_lv,skill_get_time(skill_id,skill_lv)));
 		break;
@@ -13850,6 +13855,7 @@ int32 skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, 
 			map_foreachinrange(skill_area_sub, bl, skill_get_splash(skill_id, skill_lv), BL_CHAR, src, skill_id, skill_lv, tick, flag|BCT_ENEMY|1, skill_castend_nodamage_id);
 		}
 		break;
+
 	default: {
 		std::shared_ptr<s_skill_db> skill = skill_db.find(skill_id);
 		ShowWarning("skill_castend_nodamage_id: missing code case for skill %s(%d)\n", skill ? skill->name : "UNKNOWN", skill_id);
@@ -14920,6 +14926,7 @@ int32 skill_castend_pos2(struct block_list* src, int32 x, int32 y, uint16 skill_
 		flag|=1;
 		break;
 	case NPC_EARTHQUAKE:
+	case NPC_EARTHQUAKE_K:
 		clif_skill_damage( *src, *src, tick, status_get_amotion(src), 0, DMGVAL_IGNORE, 1, skill_id, -1, DMG_SINGLE );
 		skill_unitsetting(src, skill_id, skill_lv, x, y, 0);
 		break;
@@ -15253,6 +15260,11 @@ int32 skill_castend_pos2(struct block_list* src, int32 x, int32 y, uint16 skill_
 		if(sd && sd->special_state.skillup3)
 			i += pc_skillaoe_bonus(sd, skill_id);
 		map_foreachinarea(skill_area_sub,src->m,x-i,y-i,x+i,y+i,BL_CHAR|BL_SKILL,src,skill_id,skill_lv,tick,flag|BCT_ENEMY|1,skill_castend_damage_id);
+		break;
+
+	case NPC_LOCKON_LASER_ATK:
+		i = skill_get_splash(skill_id, skill_lv);
+		map_foreachinarea(skill_area_sub, src->m, x - i, y - i, x + i, y + i, splash_target(src), src, skill_id, skill_lv, tick, flag | BCT_ENEMY | SD_ANIMATION | 1, skill_castend_damage_id);
 		break;
 
 	case SO_ARRULLO:

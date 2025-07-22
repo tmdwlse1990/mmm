@@ -10993,7 +10993,8 @@
 	export_constant(SC_MEMBER8);
 	export_constant(SC_MEMBER9);
 	export_constant(SC_MEMBER10);
-
+	export_constant(SC_LOCKON_LASER);
+	
 	/* auto attack info enum */
 	export_constant(GET_INFO_HEAL);
 	export_constant(GET_INFO_POTION);
