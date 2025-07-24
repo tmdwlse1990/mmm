@@ -9693,6 +9693,8 @@ Body:
         Time: 20000
       - Level: 5
         Time: 25000
+      - Level: 6
+        Time: 600000
     Status: Powerup
   - Id: 350
     Name: NPC_AGIUP
@@ -9725,6 +9727,8 @@ Body:
         Time: 90000
       - Level: 10
         Time: 100000
+      - Level: 11
+        Time: 600000
     Status: Agiup
   - Id: 351
     Name: NPC_SIEGEMODE

@@ -1,0 +1,422 @@
+1@cash2	mapflag	nosave
+1@cash2	mapflag	nomemo
+1@cash2	mapflag	noautoattack
+1@cash2	mapflag	noteleport
+1@cash2	mapflag	monster_noteleport
+
+1@cash2,199,192,4	script	Grill Kraken	28003,{
+	
+
+	donpcevent instance_npcname("Grill Kraken#showspr")+"::OnStart";
+	enablenpc instance_npcname("Grill Kraken#showspr");
+	disablenpc;
+	end;
+
+OnCount:	
+	monster 'mapname$,199,192,"Grill Kraken",28003,1,-1,instance_npcname(strnpcinfo(0))+"::OnMonsterShow1";
+	'bossid = $@mobid;
+	donpcevent instance_npcname("#kraken_ex_shield")+"::OnShield";
+	initnpctimer;
+	end;
+	
+OnTimer3000:
+	getunitdata 'bossid,.@array;
+	.@now = .@array[UMOB_HP];
+	.@max = .@array[UMOB_MAXHP];
+	.@left = 100 * .@now / .@max;
+	initnpctimer;
+	if(.@left < 50) {
+		'hp = .@now;
+		unitskilluseid 'bossid, 135, 10;	// AS_CLOAKING
+		stopnpctimer;
+		killmonster 'mapname$, instance_npcname(strnpcinfo(0))+"::OnMonsterShow1";
+		'bossid = 0;
+		
+		donpcevent instance_npcname("#kraken_ex_timeshield")+"::OnEnd";
+		donpcevent instance_npcname("#kraken_ex_shield")+"::OnEnd";
+		
+		// Start part 2 (npctalk and boss re-spawn)
+		donpcevent instance_npcname("#kraken_ex_part_2") + "::OnStart";
+		
+		mapannounce 'mapname$, "Kraken : ถือว่าแน่มากนี่", bc_map, 0xFFFF00;
+		sleep 1000;
+		mapannounce 'mapname$, "Kraken : ถ้าเก่งมากก็ลองหลบสิ่งนี้ดู", bc_map, 0xFFFF00;
+		mapannounce 'mapname$, "SYSTEM : หาพื้นที่ปลอดภัยก่อนที่หมึกจะลงมือกับพวกท่าน", bc_map, 0xFFFF00;
+		donpcevent instance_npcname("#kraken_ex_LR_dodge")+"::OnStart";
+	}
+	end;
+
+OnMonsterShow1:
+	announce "เจ้า...ทำได้...ยังไง!!",bc_all;
+	donpcevent instance_npcname("#kraken_ex_timeshield")+"::OnEnd";
+	donpcevent instance_npcname("#kraken_ex_shield")+"::OnEnd";
+	donpcevent instance_npcname("#kraken_ex_controller")+"::OnWinboss";
+	stopnpctimer;
+	end;
+}
+
+1@cash2,199,192,4	script(DISABLED)	Grill Kraken#showspr	28003,{
+	end;
+OnStart:
+	initnpctimer;
+	npctalk "Kraken: ใครมันมารบกวนการดูดพลังของข้ากัน.";
+	end;
+OnTimer3000:
+	npctalk "Kraken: สงสัยมันไม่อยากตายอย่างสงบๆ..";
+	end;
+OnTimer7000:
+	npctalk "Kraken: เตรียมรับมือ...";
+	end;
+OnTimer10000:
+	disablenpc;
+	donpcevent instance_npcname("Grill Kraken")+"::OnCount";
+	stopnpctimer;
+	end;
+}
+// Spawn the boss again
+1@cash2,1,1,4	script	#kraken_ex_part_2	-1,{
+	end;
+OnStart:
+	instance_warpall 'mapname$,199,186,instance_id();
+	//mapwarp "1@cash2","1@cash2",199,186;
+	setnpcdisplay( instance_npcname("#kraken_ex_con"), 28003 );	// MD_PRI_RIGEL
+	enablenpc instance_npcname("#kraken_ex_con");
+	//initnpctimer;
+	end;
+OnCount:
+	initnpctimer;
+	end;
+OnTimer1000:
+	npctalk "ยังอุส่ารอดมาได้ขนาดนี้ งั้นข้าจะปิดฉากเอง!!", instance_npcname("#kraken_ex_con");
+	// unknown if there is more text
+	end;
+OnTimer4000:
+	npctalk "หนวดของข้า ได้เวลาลุกขึ้นมายืดเส้นยืดสายแล้ว.", instance_npcname("#kraken_ex_con");
+	// unknown if there is more text
+	end;
+OnTimer9000:
+	stopnpctimer;
+	disablenpc instance_npcname("#kraken_ex_con");
+	setnpcdisplay( instance_npcname("#kraken_ex_con"), 844 );	// CLEAR_NPC
+	donpcevent instance_npcname("#kraken_ex_main_part_2") + "::OnStart";
+	donpcevent instance_npcname("#kraken_ex_leg_spawn") + "::OnStart";
+	end;
+}
+
+1@cash2,1,1,0	script	#kraken_ex_leg_spawn	-1,{
+
+OnStart:
+	setarray .x_leg,198,188,182,177,184,191,199,208,215,221,213,206;
+	setarray .y_leg,210,204,197,188,180,174,170,176,183,190,198,206;
+	for(.@i=0;.@i < getarraysize(.x_leg); .@i++) {
+		monster 'mapname$,.x_leg[.@i],.y_leg[.@i],"Kraken Lazy Leg",28004,1,-1,instance_npcname("#kraken_ex_leg_spawn")+"::OnLegKilled";
+		'legaroundmapid[.@i] = $@mobid;
+	}
+	mapannounce 'mapname$, "Kraken : จงลิ้มรสหนวดของข้า!!!", bc_map, 0xFFFF00;
+	end;
+OnEnd:
+	stopnpctimer;
+	killmonster 'mapname$, instance_npcname("#kraken_ex_leg_spawn_mid")+"::OnLegKilled";
+	end;
+OnRespawn:
+	for(.@i=0;.@i < getarraysize('legaroundmapid); .@i++) {
+		if (unitexists('legaroundmapid[.@i]) == false) {
+			monster 'mapname$,.x_leg[.@i],.y_leg[.@i],"Kraken Lazy Leg",28004,1,-1,instance_npcname("#kraken_ex_leg_spawn")+"::OnLegKilled";
+			'legaroundmapid[.@i] = $@mobid;
+		}
+	}
+	mapannounce 'mapname$, "Kraken : หนวดของข้ามันงอกใหม่ได้นะไอ้หนู ฮ่า ฮ่า!!", bc_map, 0xFFFF00;
+	end;
+OnLegKilled:
+	if(!getnpctimer(1)) initnpctimer;
+	end;
+OnTimer45000:
+	stopnpctimer;
+	detachnpctimer;
+	donpcevent instance_npcname("#kraken_ex_leg_spawn") + "::OnRespawn";
+	end;
+}
+
+1@cash2,1,1,0	script	#kraken_ex_leg_spawn_mid	-1,{
+
+OnStart:
+	areamonster 'mapname$,190,183,210,198,"Kraken Angry Leg",28004,3,-1,instance_npcname("#kraken_ex_leg_spawn_mid")+"::OnLegKilled";
+	initnpctimer;
+	end;
+OnEnd:
+	stopnpctimer;
+	killmonster 'mapname$, instance_npcname("#kraken_ex_leg_spawn_mid")+"::OnLegKilled";
+OnLegKilled:
+	end;
+OnTimer20000:
+	initnpctimer;
+	donpcevent instance_npcname("#kraken_ex_leg_spawn_mid") + "::OnStart";
+	end;
+}
+
+1@cash2,1,1,0	script	#kraken_ex_main_part_2	-1,{
+	
+OnStart:
+	.hp20 = 0;
+	.hp10 = 0;
+	monster 'mapname$,200,183,"Angry Grill Kraken",28003,1,-1,instance_npcname("#kraken_ex_main_part_2")+"::OnMonsterShow1";
+	'bossid = $@mobid;
+	setunitdata 'bossid,UMOB_HP,'hp;
+	initnpctimer;
+	donpcevent instance_npcname("#kraken_ex_shield")+"::OnShield";
+	end;
+
+OnTimer3000:
+	getunitdata 'bossid,.@array;
+	.@now = .@array[UMOB_HP];
+	.@max = .@array[UMOB_MAXHP];
+	.@left = 100 * .@now / .@max;
+	initnpctimer;
+	if(.@left < 20 && !.hp20) {
+		.hp20 = 1;
+		//donpcevent "#kraken_ex_angra::OnStart";
+		unitskilluseid 'bossid, 349, 6;	// NPC_POWERUP
+		unitskilluseid 'bossid, 350, 11;	// NPC_AGIUP
+		donpcevent instance_npcname("#kraken_ex_leg_spawn_mid")+"::OnStart";
+		mapannounce 'mapname$, "Kraken : ROARRRRRRRRRR!!!??!??", bc_map, 0xFFFF00;
+		mapannounce 'mapname$, "Kraken : ข้าจะฆ่าพวกเจ้าให้หมดทุกคน!!", bc_map, 0xFFFF00;
+		donpcevent instance_npcname("#kraken_ex_timeshield")+"::OnEnd";
+		donpcevent instance_npcname("#kraken_ex_shield")+"::OnEnd";
+	}
+	if(.@left < 10 && !.hp10) {
+		.hp10 = 1;
+		//donpcevent "#kraken_ex_angra::OnStart";
+		unitskilluseid 'bossid, 349, 6;	// NPC_POWERUP
+		unitskilluseid 'bossid, 350, 11;	// NPC_AGIUP
+		donpcevent instance_npcname("#kraken_ex_LR_dodge2")+"::OnStart";
+		mapannounce 'mapname$, "Kraken : จงตายด้วยพลังทั้งหมดของข้า!!!", bc_map, 0xFFFF00;
+	}
+	end;
+
+OnMonsterShow1:
+	mapannounce 'mapname$, "Kraken : ไม่นะ ของๆข้า. .  .", bc_map, 0xFFFF00;
+	donpcevent instance_npcname("#kraken_ex_controller")+"::OnWinboss";
+	donpcevent instance_npcname("#kraken_ex_timeshield")+"::OnEnd";
+	donpcevent instance_npcname("#kraken_ex_shield")+"::OnEnd";
+	donpcevent instance_npcname("#kraken_ex_leg_spawn")+"::OnEnd";
+	donpcevent instance_npcname("#kraken_ex_leg_spawn_mid")+"::OnEnd";
+	stopnpctimer;
+	end;
+}
+
+1@cash2,1,1,0	script	#kraken_ex_timeshield	-1,{
+	
+OnStart:
+	initnpctimer;
+	end;
+OnEnd:
+	stopnpctimer;
+	end;
+
+OnTimer90000:
+	donpcevent instance_npcname("#kraken_ex_shield")+"::OnShield";
+	stopnpctimer;
+	end;
+}
+
+1@cash2,1,1,0	script	#kraken_ex_shield	-1,{
+	
+OnEnd:
+	stopnpctimer;
+	end;
+
+OnShield:
+	.@event$ = instance_npcname("#kraken_ex_shield")+"::OnBreakShield";
+	killmonster 'mapname$, .@event$;
+	getunitdata 'bossid,.@array;
+	
+	//for ( .@i = 0; .@i < 8; .@i += 2 )
+	areamonster 'mapname$,185,178,214,198,"Kraken Relic",20679,1,-1, .@event$;
+	.@relicid = $@mobid;
+	setunitdata .@relicid,UMOB_MAXHP,125;
+	//unitskilluseid $@bossid,"NPC_RELIEVE_OFF",1;
+	//unitskilluseid $@bossid,"NPC_RELIEVE_ON",100;
+	setunitdata 'bossid, UMOB_DAMAGE_REDUCTION, (MOBDATA_DAMAGE_REDUCTION_100 | MOBDATA_DAMAGE_REDUCTION_1000 | MOBDATA_DAMAGE_REDUCTION_10000);
+	mapannounce 'mapname$, "SYSTEM : พลังงานจากวัตถุโบราณกำลังให้พลังแก่เจ้าหมึกนั่น..ต้องรีบทำลายทิ้งก่อนที่หมึกนั่นจะจัดการเรา", bc_map, 0xFFFF00;
+	mapannounce 'mapname$, "SYSTEM : ท่านมีเวลา 1 นาทีในการทำลายก่อนที่พลังจะซึมซับเข้าสู่บอส", bc_map, 0xFFFF00;
+	initnpctimer;
+	end;
+OnTimer60000:
+	stopnpctimer;
+	killmonster 'mapname$, instance_npcname("#kraken_ex_shield")+"::OnBreakShield";
+	mapannounce 'mapname$, "SYSTEM : ไม่นะเจ้าหมึกนั่นซึมซับพลังของวัตถุโบราณเข้าไปแล้ว", bc_map, 0xFFFF00;
+	mapannounce 'mapname$, "SYSTEM : พลังของวัตถุโบราณจะมีผลจนกว่าวัตถุโบราณอันถัดไปจะถูกทำลาย", bc_map, 0xFFFF00;
+	donpcevent instance_npcname("#kraken_ex_timeshield")+"::OnStart";
+	end;
+
+OnBreakShield:
+	switch( mobcount('mapname$, instance_npcname("#kraken_ex_shield")+"::OnBreakShield") ) {
+	case 0:
+		stopnpctimer;
+		setunitdata 'bossid, UMOB_DAMAGE_REDUCTION, 0;
+		mapannounce 'mapname$, "SYSTEM : วัตถุโบราณถูกทำลายแล้ว", bc_map, 0xFFFF00;
+		mapannounce 'mapname$, "SYSTEM : เจ้าหมึกนั่นกำลังโดนวัตถุโบราณย้อนกลับนี่คือช่วงเวลาสำคัญ", bc_map, 0xFFFF00;
+		.@time = rand(6000,9000);
+		sc_start SC_GROGGY, .@time,1,10000, SCSTART_NOTICKDEF | SCSTART_NOAVOID | SCSTART_NORATEDEF, 'bossid;
+		donpcevent instance_npcname("#kraken_ex_timeshield")+"::OnStart";
+		end;
+	default:
+		break;
+	}
+	stopnpctimer;
+	mapannounce 'mapname$, "SYSTEM : มันดูดซับพลังอันมหาศาลของวัตถุโบราณแล้ว", bc_map, 0xFFFF00;
+	mapannounce 'mapname$, "SYSTEM : พลังของวัตถุโบราณจะมีผลจนกว่าวัตถุโบราณอันถัดไปจะถูกทำลาย", bc_map, 0xFFFF00;
+	donpcevent instance_npcname("#kraken_ex_timeshield")+"::OnStart";
+	end;
+}
+
+1@cash2,1,1,0	script	#kraken_ex_LR_dodge	-1,{
+
+OnStart:
+	.x = rand(182,216);
+	.y = rand(179,197);
+	donpcevent instance_npcname("#kraken_ex_LR_dodge")+"::OnBearrieActive";
+	end;
+OnBearrieActive:
+	// Spawn monsters around the boss.
+	// unknown mob spawn (placeholder)
+	monster 'mapname$,.x,.y," ",22181,1,-1,instance_npcname("#kraken_ex_LR_dodge")+"::OnMobDead"; // MD_COMMON_P
+	.barries = $@mobid[0];
+	setunitdata .barries, UMOB_DMGIMMUNE, true;
+	unitskilluseid .barries, 135, 1;	// AS_CLOAKING
+	// Hack to not show the dead monster to the player (unknown mob ID on official, unknown what they do)
+	setunitdata .barries, UMOB_CLASS, 20582;	// MD_MANHOLE4
+	sc_start SC_SHOW_EFFECT1, 7999, 374, 10000, SCSTART_NOTICKDEF | SCSTART_NOAVOID | SCSTART_NORATEDEF, .barries;
+	initnpctimer;
+	end;
+
+OnTimer1000:
+OnTimer2000:
+OnTimer3000:
+OnTimer4000:
+OnTimer5000:
+OnTimer6000:
+/*
+	for ( .@i = 0; .@i < 6; ++.@i ) {
+		if (unitexists(.barries) == false)
+			continue;
+		sc_start SC_SHOW_EFFECT2, 999,374,10000, SCSTART_NOTICKDEF | SCSTART_NOAVOID | SCSTART_NORATEDEF, .barries;
+	}
+*/
+	if (unitexists(.barries) == true)
+		sc_start SC_SHOW_EFFECT2, 999,374,10000, SCSTART_NOTICKDEF | SCSTART_NOAVOID | SCSTART_NORATEDEF, .barries;
+	end;
+OnTimer7000:
+	for ( .@i = 0; .@i < 6; ++.@i ) {
+		if (unitexists(.barries) == false)
+			continue;
+		sc_start SC_SHOW_EFFECT2, 999,374,10000, SCSTART_NOTICKDEF | SCSTART_NOAVOID | SCSTART_NORATEDEF, .barries;
+	}
+	end;
+OnTimer8000:
+	killmonster 'mapname$, instance_npcname("#kraken_ex_LR_dodge")+"::OnMobDead";
+	getareaunits(BL_PC,'mapname$,.x+2,.y+2,.x-2,.y-2,.@array[0]);
+	getmapunits(BL_PC,'mapname$,.@allplayer[0]);
+	freeloop(1);	// for if the list was too big.
+	for(.@i=0;.@i<getarraysize(.@allplayer);.@i++)
+		if(inarray(.@array,.@allplayer[.@i]) == -1 )
+			unitskilluseid .@allplayer[.@i],175,10;		// NPC_SUICIDE
+	freeloop(0);
+	stopnpctimer;
+	donpcevent instance_npcname("#kraken_ex_part_2")+"::OnCount";
+	end;
+	
+}
+
+1@cash2,1,1,0	script	#kraken_ex_LR_dodge2	-1,{
+
+OnStart:
+	.x = rand(182,216);
+	.y = rand(179,197);
+	donpcevent instance_npcname("#kraken_ex_LR_dodge2")+"::OnBearrieActive";
+	end;
+OnBearrieActive:
+	// Spawn monsters around the boss.
+	// unknown mob spawn (placeholder)
+	monster 'mapname$,.x,.y," ",22181,1,-1,instance_npcname("#kraken_ex_LR_dodge2")+"::OnMobDead"; // MD_COMMON_P
+	.barries = $@mobid[0];
+	setunitdata .barries, UMOB_DMGIMMUNE, true;
+	unitskilluseid .barries, 135, 1;	// AS_CLOAKING
+	// Hack to not show the dead monster to the player (unknown mob ID on official, unknown what they do)
+	setunitdata .barries, UMOB_CLASS, 20582;	// MD_MANHOLE4
+	sc_start SC_SHOW_EFFECT1, 7999, 374, 10000, SCSTART_NOTICKDEF | SCSTART_NOAVOID | SCSTART_NORATEDEF, .barries;
+	initnpctimer;
+	end;
+
+OnTimer1000:
+OnTimer2000:
+OnTimer3000:
+OnTimer4000:
+OnTimer5000:
+OnTimer6000:
+/*
+	for ( .@i = 0; .@i < 6; ++.@i ) {
+		if (unitexists(.barries) == false)
+			continue;
+		sc_start SC_SHOW_EFFECT2, 999,374,10000, SCSTART_NOTICKDEF | SCSTART_NOAVOID | SCSTART_NORATEDEF, .barries;
+	}
+*/
+	if (unitexists(.barries) == true)
+		sc_start SC_SHOW_EFFECT2, 999,374,10000, SCSTART_NOTICKDEF | SCSTART_NOAVOID | SCSTART_NORATEDEF, .barries;
+	end;
+OnTimer7000:
+	for ( .@i = 0; .@i < 6; ++.@i ) {
+		if (unitexists(.barries) == false)
+			continue;
+		sc_start SC_SHOW_EFFECT2, 999,374,10000, SCSTART_NOTICKDEF | SCSTART_NOAVOID | SCSTART_NORATEDEF, .barries;
+	}
+	end;
+OnTimer8000:
+	killmonster 'mapname$, instance_npcname("#kraken_ex_LR_dodge2")+"::OnMobDead";
+	getareaunits(BL_PC,'mapname$,.x+2,.y+2,.x-2,.y-2,.@array[0]);
+	getmapunits(BL_PC,'mapname$,.@allplayer[0]);
+	freeloop(1);	// for if the list was too big.
+	for(.@i=0;.@i<getarraysize(.@allplayer);.@i++)
+		if(inarray(.@array,.@allplayer[.@i]) == -1 )
+			unitskilluseid .@allplayer[.@i],175,10;		// NPC_SUICIDE
+	freeloop(0);
+	stopnpctimer;
+	end;
+}
+
+
+
+1@cash2,198,194,4	script(DISABLED)	#kraken_ex_con	28003,{
+	F_CheckLeader();	// unknown text
+	end;
+OnLoseFight:
+	killmonster 'mapname$, "เรียกมอน::OnMonsterShow1";
+	killmonster 'mapname$, "kraken_ex_main_part_2::OnMonsterShow1";
+	mapannounce 'mapname$, "SYSTEM : Kraken ได้รับพลังทั้งหมดของวัตถุโบราณในที่แห่งนี้แล้ว", bc_map, 0xFFFF00;
+	mapannounce 'mapname$, "SYSTEM : ท่านขัดขวาง Kraken ล้มเหลว พื้นที่พังทลาย", bc_map, 0xFFFF00;
+	//instance_warpall 'map_bago$,54,49,instance_id();
+	donpcevent instance_npcname("#kraken_ex_timeshield")+"::OnEnd";
+	donpcevent instance_npcname("#kraken_ex_shield")+"::OnEnd";
+	donpcevent instance_npcname("#kraken_ex_leg_spawn")+"::OnEnd";
+	donpcevent instance_npcname("#kraken_ex_leg_spawn_mid")+"::OnEnd";
+	sleep 5000;
+	instance_destroy(instance_id());
+	mapwarp 'mapname$,"icecastle",185,211;
+	end;
+}
+
+
+1@cash2,1,1,0	script	#kraken_ex_controller	-1,{
+OninstanceInit:
+	'mapname$ = instance_mapname("1@cash2");
+	enablenpc instance_npcname("Grill Kraken");
+	initnpctimer;
+	end;
+OnWinboss:
+	stopnpctimer;
+	end;
+OnTimer900000:
+	donpcevent "#kraken_ex_con::OnLoseFight";
+	stopnpctimer;
+	end;
+}

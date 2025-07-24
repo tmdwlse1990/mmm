@@ -55,6 +55,13 @@ Body:
       Map: valkyrie
       X: 48
       Y: 9
+  - Id: 402
+    Name: Extream Kraken
+    Enter:
+      Map: 1@cash2
+      X: 200
+      Y: 172
+
   - Id: 451
     Name: Kraken Raid
     Enter:

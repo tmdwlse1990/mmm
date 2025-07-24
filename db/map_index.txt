@@ -1298,7 +1298,8 @@ ygg_roots
 // - Other/Extra maps -
 //======================================================================================
 1@cash1
-
+1@cash2
+// - Other/Extra maps -
 thinkter
 fgt_san
 fgt_san_gl

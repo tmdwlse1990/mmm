@@ -1,4 +1,4 @@
-firstcity,229,87,4	script	Salvage NPC	856,{
+prontera,229,87,4	script	Salvage NPC	856,{
     mes "[Salvage NPC]";
     mes "Hello! I can salvage your old weapons and armor.";
     mes "In return, I'll give you a special item based on the weapon's level.";
@@ -15,46 +15,6 @@ firstcity,229,87,4	script	Salvage NPC	856,{
             close;
     }
     close;
-    
-    // Handle item sale
-    OnSellItem:
-        // Rewards based on weapon level
-        setarray .@reward_common, 501, 502; // Example common loot item IDs
-        setarray .@reward_rare, 503, 504;   // Example rare loot item IDs
-        setarray .@reward_unique, 505, 506; // Example unique loot item IDs
-        setarray .@reward_legendary, 507, 508; // Example legendary loot item IDs
-        setarray .@reward_ancient, 509, 510; // Example ancient loot item IDs
-
-        set .@item_id, @sold_nameid;
-        set .@weapon_level, getiteminfo(.@item_id, ITEMINFO_WEAPONLEVEL);
-
-        switch (.@weapon_level) {
-            case 1:
-                // Reward common item/points
-                getitem .@reward_common[rand(getarraysize(.@reward_common))], 1;
-                break;
-            case 2:
-                // Reward rare item/points
-                getitem .@reward_rare[rand(getarraysize(.@reward_rare))], 1;
-                break;
-            case 3:
-                // Reward unique item/points
-                getitem .@reward_unique[rand(getarraysize(.@reward_unique))], 1;
-                break;
-            case 4:
-                // Reward legendary item/points
-                getitem .@reward_legendary[rand(getarraysize(.@reward_legendary))], 1;
-                break;
-            case 5:
-                // Reward ancient item/points
-                getitem .@reward_ancient[rand(getarraysize(.@reward_ancient))], 1;
-                break;
-            default:
-                dispbottom "This item cannot be salvaged.";
-        }
-
-        dispbottom "Thank you! Here is your reward.";
-        end;
 }
 
 function	script	salvage_item	{
@@ -68,8 +28,8 @@ function	script	salvage_item	{
     // Collect all weapons and armor in the player's inventory
     set .@item_count, 0;
     for (.@i = 0; .@i < @inventorylist_count; .@i++) {
-        set .@type, getiteminfo(@inventorylist_id[.@i], 2);
-        if ((.@type == 4 || .@type == 5) && @inventorylist_equip[.@i] == 0) { // Type 4 = Weapon, Type 5 = Armor, and not equipped
+        set .@type, getiteminfo(@inventorylist_id[.@i], ITEMINFO_TYPE);
+        if ((.@type == IT_WEAPON || .@type == IT_ARMOR) && @inventorylist_equip[.@i] == 0) { // Type 4 = Weapon, Type 5 = Armor, and not equipped
             set .@salvageable_items[.@item_count], @inventorylist_id[.@i];
             set .@salvageable_items_qty[.@item_count], @inventorylist_amount[.@i];
             set .@item_count, .@item_count + 1;
@@ -96,10 +56,49 @@ function	script	salvage_item	{
     }
 
     // Call the shop
-    callshop "salvage_shop", 2;
+    callshop "salvage_shop", 1;
     npcshopattach "salvage_shop";
     close;
 }
 
-// Shop definition
--	shop	salvage_shop	-1,501:-1
+// Shop definition with placeholder items (you need to fill this with the actual items you want to allow for salvage)
+-	shop	salvage_shop	-1,501:10000,502:10000,503:10000,504:10000,505:10000,506:10000,507:10000,508:10000,509:10000,510:10000
+
+OnSellItem:
+    // Rewards based on weapon level
+    setarray .@reward_common, 501, 502; // Example common loot item IDs
+    setarray .@reward_rare, 503, 504;   // Example rare loot item IDs
+    setarray .@reward_unique, 505, 506; // Example unique loot item IDs
+    setarray .@reward_legendary, 507, 508; // Example legendary loot item IDs
+    setarray .@reward_ancient, 509, 510; // Example ancient loot item IDs
+
+    set .@item_id, @sold_nameid;
+    set .@weapon_level, getiteminfo(.@item_id, ITEMINFO_WEAPONLV);
+
+    switch (.@weapon_level) {
+        case 1:
+            // Reward common item/points
+            getitem .@reward_common[rand(getarraysize(.@reward_common))], 1;
+            break;
+        case 2:
+            // Reward rare item/points
+            getitem .@reward_rare[rand(getarraysize(.@reward_rare))], 1;
+            break;
+        case 3:
+            // Reward unique item/points
+            getitem .@reward_unique[rand(getarraysize(.@reward_unique))], 1;
+            break;
+        case 4:
+            // Reward legendary item/points
+            getitem .@reward_legendary[rand(getarraysize(.@reward_legendary))], 1;
+            break;
+        case 5:
+            // Reward ancient item/points
+            getitem .@reward_ancient[rand(getarraysize(.@reward_ancient))], 1;
+            break;
+        default:
+            dispbottom "This item cannot be salvaged.";
+    }
+
+    dispbottom "Thank you! Here is your reward.";
+    end;

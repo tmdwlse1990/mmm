@@ -1,14 +1,16 @@
 
 // t_garden,158,235,2	script(CLOAKED)	Dimension Prison#1	GATE_SKYBLUE,2,2,{	// unknown OnTouch effect
 icecastle,21,128,2	script	Dimension Prison#icecastle	GATE_SKYBLUE,{
-	if (checkweight(1201,1) == 0) {	// unknown ID
-		mes "^ff0000It seems that you are overweight. Please organize your inventory.^000000";
+	if(getgmlevel() < 99) end;
+	if (checkweight(1201,5) == 0) {	// unknown ID
+		mes "^ff0000It ของในตัวมากเกินไป ทำน้ำหนัก กับช่องเก็บของวางอีกหน่อย.^000000";
 		close;
 	}
 	if (getcharid(1) < 1) {
-		mes "^0000ffPlease form a party of at least one person and continue.^000000";
+		mes "^0000ffอย่างน้อยๆก็ต้องมีปาตี้ถึงจะเข้าได้นะ.^000000";
 		close;
 	}
+	/*
 	switch( checkquest(12611,PLAYTIME) ) {
 	case -1:
 		break;
@@ -20,32 +22,34 @@ icecastle,21,128,2	script	Dimension Prison#icecastle	GATE_SKYBLUE,{
 		erasequest 12611;
 		break;
 	}
-	.@md_name$ = "Lake of fire";
+	*/
+	.@md_name$ = "Extream Kraken";
 	.@current_instance_name$ = instance_live_info(ILI_NAME, instance_id(IM_PARTY));
 
 	if (.@current_instance_name$ == .@md_name$)
 		.@md_name_ready$ = .@md_name$;
 	else if (is_party_leader() == true) {
-		if (select( "Cancel", "Create access permission for " + .@md_name$ + "" ) == 1)
+		if (select( "ยกเลิก", "สร้างทางเข้าสำหรับ " + .@md_name$ + "" ) == 1)
 			end;
 		instance_create(.@md_name$);
 		end;
 	}
 
 	if (.@md_name_ready$ != "")
-		.@menu$ = "Enter " + .@md_name_ready$ + "";
+		.@menu$ = "เข้าสู่ " + .@md_name_ready$ + "";
 
-	if (select( "Cancel", .@menu$ ) == 1)
+	if (select( "ยกเลิก", .@menu$ ) == 1)
 		end;
 
 	switch( instance_enter(.@md_name_ready$) ) {
 	case IE_OTHER:
-		mes "^ff0000An unknown error occurred.^000000";
+		mes "^ff0000Error โปรดแจ้งจีฉลามด้วย.^000000";
 		close;
 	case IE_NOINSTANCE:
 	case IE_NOMEMBER:
 		end;
 	case IE_OK:
+		/*
 		if (isbegin_quest(12613) > 0)
 			erasequest 12613;
 		if (isbegin_quest(12614) > 0)
@@ -55,9 +59,13 @@ icecastle,21,128,2	script	Dimension Prison#icecastle	GATE_SKYBLUE,{
 		if (isbegin_quest(12616) > 0)
 			erasequest 12616;
 		setquest 12611;
-		mapannounce "icecastle", "Adventurer " + strcharinfo(0) + " enters " + .@md_name_ready$ + ".", bc_map, 0xFFAA;
+		*/
+		mapannounce "icecastle", "นักพจญภัย " + strcharinfo(0) + " มุ่งเข้าสู่ " + .@md_name_ready$ + ".", bc_map, 0xFFAA;
 		// warp "1@f_lake",23,192;
 		end;
 	}
+	end;
+Oninit:
+	waitingroom "Extream Raid",0;
 	end;
 }

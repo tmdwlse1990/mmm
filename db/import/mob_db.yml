@@ -1195,34 +1195,35 @@ Body:
     AegisName: KRAKEN_Ex
     Name: Grill Kraken
     Title: "<Grill Lord>"
-    Level: 100
-    Hp: 3502800
+    Level: 150
+    Hp: 193619250
     Sp: 0
     BaseExp: 0
     JobExp: 0
     MvpExp: 0
-    Attack: 1411
-    Attack2: 744
-    Defense: 55
-    MagicDefense: 229
+    Attack: 4412
+    Attack2: 3635
+    Defense: 217
+    MagicDefense: 412
     Str: 196
     Agi: 99
     Vit: 61
     Int: 44
-    Dex: 162
+    Dex: 362
     Luk: 99
-    AttackRange: 4
+    AttackRange: 2
     SkillRange: 10
     ChaseRange: 12
     Size: Large
     Race: Fish
-    Element: Water
-    ElementLevel: 4
+    Element: Fire
+    ElementLevel: 2
     WalkSpeed: 130
     AttackDelay: 432
     AttackMotion: 864
     ClientAttackMotion: 480
     DamageMotion: 360
+    DamageTaken: 10
     Ai: 21
     Class: Boss
     Modes:
@@ -1231,32 +1232,36 @@ Body:
     AegisName: KRAKEN_LEG_Ex
     Name: Grill Kraken Leg
     Title: "<Grill Tentacle>"
-    Level: 100
-    Hp: 339190
+    Level: 150
+    Hp: 619250
     Sp: 0
-    Attack: 441
-    Attack2: 372
-    Defense: 127
-    MagicDefense: 158
-    Str: 130
-    Agi: 92
-    Vit: 0
-    Int: 0
-    Dex: 389
-    Luk: 54
-    AttackRange: 1
+    BaseExp: 0
+    JobExp: 0
+    MvpExp: 0
+    Attack: 2412
+    Attack2: 1635
+    Defense: 217
+    MagicDefense: 412
+    Str: 96
+    Agi: 99
+    Vit: 61
+    Int: 44
+    Dex: 262
+    Luk: 99
+    AttackRange: 4
     SkillRange: 10
     ChaseRange: 12
-    Size: Large
+    Size: Medium
     Race: Fish
-    Element: Water
-    ElementLevel: 3
-    WalkSpeed: 300
-    AttackDelay: 576
+    Element: Fire
+    ElementLevel: 2
+    WalkSpeed: 130
+    AttackDelay: 432
     AttackMotion: 864
-    ClientAttackMotion: 288
-    DamageMotion: 240
-    Ai: 21
+    ClientAttackMotion: 480
+    DamageMotion: 360
+    DamageTaken: 10
+    Ai: 10
     Class: Boss
 # New
   - Id: 23000
