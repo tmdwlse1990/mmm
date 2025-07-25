@@ -337,13 +337,15 @@ S_Idle:
 	if('wave == 'max_wave)'mob_escaped = 5;
 	if ('mob_escaped <= 5)
 		mapannounce 'map_def01$, "" + 'mob_escaped + " " + ('mob_escaped == 1 ? "monster has" : "monsters have") + " escaped.", bc_map;
-	if ('mob_escaped == 5)
+	if ('mob_escaped == 5) {
+		'losedun = 1;
 		donpcevent instance_npcname("#chaos_dun_out") + "::OnFail";
+	}
 	end;
 	
 OnLastWave:
 	//if(!mobcount('map_def01$,instance_npcname("#chaos_dun_spawn") + "::OnLastWave") ) {
-	if(!mobcount('map_def01$,"all") ) {
+	if(!mobcount('map_def01$,"all") && !'losedun ) {
 		mapannounce 'map_def01$, "<Chaos Dungeon> จบลงแล้ว คุณชนะ ยินดีด้วย", bc_map;
 		donpcevent instance_npcname("#chaos_dun_system") + "::OnStop";
 		enablenpc instance_npcname("Reward Box#chaos_reward");
