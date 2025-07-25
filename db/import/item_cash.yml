@@ -67,6 +67,8 @@ Body:
         Price: 630
       - Item: Premium_Box_10d
         Price: 800
+      - Item: Change_Name_Card
+        Price: 990
       - Item: Store_ADCard_Store
         Price: 2990
   - Tab: Limited

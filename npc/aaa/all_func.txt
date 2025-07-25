@@ -730,6 +730,10 @@ function	script	F_MapleCube	{
 		mes "กรุณาใช้ผ่านกล่อง Cube เท่านั้น";
 		end;
 	}
+	if(countitem(.@equip_id) > 1 ) {
+		mes "กรุณาอย่ามีของซ้ำกับที่จะออฟภายในตัว";
+		end;
+	}
 	switch(.@tier){
 		case 1:
 			if(.@twohand) .@optgroup = 403;
