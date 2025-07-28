@@ -1152,7 +1152,7 @@ Body:
         Rate: 50
       - Item: Mistic_Frozen
         Rate: 250
-      - Item: Kraken_Card
+      - Item: Ice_Kraken_Card
         Rate: 1
         StealProtected: true
   - Id: 28002
@@ -1195,14 +1195,14 @@ Body:
     AegisName: KRAKEN_Ex
     Name: Grill Kraken
     Title: "<Grill Lord>"
-    Level: 150
-    Hp: 193619250
+    Level: 120
+    Hp: 933333240
     Sp: 0
     BaseExp: 0
     JobExp: 0
     MvpExp: 0
-    Attack: 4412
-    Attack2: 3635
+    Attack: 6412
+    Attack2: 4635
     Defense: 217
     MagicDefense: 412
     Str: 196
@@ -1223,17 +1223,43 @@ Body:
     AttackMotion: 864
     ClientAttackMotion: 480
     DamageMotion: 360
-    DamageTaken: 10
     Ai: 21
     Class: Boss
     Modes:
       Mvp: true
+    MvpDrops:
+      - Item: MVP_Option_Box_T2
+        Rate: 5000
+      - Item: Extreme_Kraken_leg
+        Rate: 5000
+    Drops:
+      - Item: Ex_Str_Glove
+        Rate: 1
+        StealProtected: true
+      - Item: Ex_Agi_Glove
+        Rate: 1
+        StealProtected: true
+      - Item: Ex_Vit_Glove
+        Rate: 1
+        StealProtected: true
+      - Item: Ex_Int_Glove
+        Rate: 1
+        StealProtected: true
+      - Item: Ex_Dex_Glove
+        Rate: 1
+        StealProtected: true
+      - Item: Ex_Luk_Glove
+        Rate: 1
+        StealProtected: true
+      - Item: Ex_Kraken_Card
+        Rate: 1
+        StealProtected: true
   - Id: 28004
     AegisName: KRAKEN_LEG_Ex
     Name: Grill Kraken Leg
     Title: "<Grill Tentacle>"
-    Level: 150
-    Hp: 619250
+    Level: 120
+    Hp: 9333332
     Sp: 0
     BaseExp: 0
     JobExp: 0
@@ -1260,7 +1286,6 @@ Body:
     AttackMotion: 864
     ClientAttackMotion: 480
     DamageMotion: 360
-    DamageTaken: 10
     Ai: 10
     Class: Boss
 # New

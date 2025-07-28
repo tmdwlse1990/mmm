@@ -87,6 +87,12 @@ Body: #ให้ใช้ ID ไม่เกิน 1000
   - Id: 51
     Title: Kraken Raid
     TimeLimit: 1h
+  - Id: 52
+    Title: Extreme Kraken
+    TimeLimit: Tuesday 12h
+    Targets:
+      - Mob: KRAKEN_Ex
+        Count: 1
   - Id: 81
     Title: Rank E Condition
     Targets: 

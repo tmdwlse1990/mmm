@@ -847,11 +847,11 @@ Body:
           - Option: CLASS_DAMAGE_NORMAL_USER
             MinValue: 1
             MaxValue: 1
-            Chance: 500
+            Chance: 1000
           - Option: CLASS_DAMAGE_BOSS_USER
             MinValue: 1
             MaxValue: 1
-            Chance: 500
+            Chance: 1000
           - Option: VAR_ALLSTATS
             MinValue: 1
             MaxValue: 2
@@ -941,11 +941,11 @@ Body:
           - Option: CLASS_DAMAGE_NORMAL_USER
             MinValue: 1
             MaxValue: 1
-            Chance: 500
+            Chance: 1000
           - Option: CLASS_DAMAGE_BOSS_USER
             MinValue: 1
             MaxValue: 1
-            Chance: 500
+            Chance: 1000
           - Option: VAR_ALLSTATS
             MinValue: 1
             MaxValue: 2
@@ -1035,11 +1035,11 @@ Body:
           - Option: CLASS_DAMAGE_NORMAL_USER
             MinValue: 1
             MaxValue: 1
-            Chance: 500
+            Chance: 1000
           - Option: CLASS_DAMAGE_BOSS_USER
             MinValue: 1
             MaxValue: 1
-            Chance: 500
+            Chance: 1000
           - Option: VAR_ALLSTATS
             MinValue: 1
             MaxValue: 2
@@ -1185,6 +1185,14 @@ Body:
             MinValue: 1
             MaxValue: 15
             Chance: 1500
+          - Option: CRIT_MAGICAL_DAMAGE
+            MinValue: 7
+            MaxValue: 25
+            Chance: 1500
+          - Option: CRIT_PHYSICAL_DAMAGE
+            MinValue: 7
+            MaxValue: 25
+            Chance: 1500
           - Option: MELEE_ATTACK_DAMAGE_TARGET
             MinValue: 1
             MaxValue: 15
@@ -1194,6 +1202,10 @@ Body:
             MaxValue: 15
             Chance: 1500
           - Option: HIT_PHYSICAL_DAMAGE
+            MinValue: 1
+            MaxValue: 25
+            Chance: 1500
+          - Option: HIT_MAGICAL_DAMAGE
             MinValue: 1
             MaxValue: 25
             Chance: 1500
@@ -1339,6 +1351,14 @@ Body:
             MinValue: 1
             MaxValue: 15
             Chance: 1500
+          - Option: CRIT_MAGICAL_DAMAGE
+            MinValue: 7
+            MaxValue: 25
+            Chance: 1500
+          - Option: CRIT_PHYSICAL_DAMAGE
+            MinValue: 7
+            MaxValue: 25
+            Chance: 1500
           - Option: MELEE_ATTACK_DAMAGE_TARGET
             MinValue: 1
             MaxValue: 15
@@ -1348,6 +1368,10 @@ Body:
             MaxValue: 15
             Chance: 1500
           - Option: HIT_PHYSICAL_DAMAGE
+            MinValue: 1
+            MaxValue: 25
+            Chance: 1500
+          - Option: HIT_MAGICAL_DAMAGE
             MinValue: 1
             MaxValue: 25
             Chance: 1500
@@ -1493,6 +1517,14 @@ Body:
             MinValue: 1
             MaxValue: 15
             Chance: 1500
+          - Option: CRIT_MAGICAL_DAMAGE
+            MinValue: 7
+            MaxValue: 25
+            Chance: 1500
+          - Option: CRIT_PHYSICAL_DAMAGE
+            MinValue: 7
+            MaxValue: 25
+            Chance: 1500
           - Option: MELEE_ATTACK_DAMAGE_TARGET
             MinValue: 1
             MaxValue: 15
@@ -1502,6 +1534,10 @@ Body:
             MaxValue: 15
             Chance: 1500
           - Option: HIT_PHYSICAL_DAMAGE
+            MinValue: 1
+            MaxValue: 25
+            Chance: 1500
+          - Option: HIT_MAGICAL_DAMAGE
             MinValue: 1
             MaxValue: 25
             Chance: 1500
@@ -1642,6 +1678,14 @@ Body:
             MinValue: 1
             MaxValue: 15
             Chance: 1500
+          - Option: CRIT_MAGICAL_DAMAGE
+            MinValue: 7
+            MaxValue: 25
+            Chance: 1500
+          - Option: CRIT_PHYSICAL_DAMAGE
+            MinValue: 7
+            MaxValue: 25
+            Chance: 1500
           - Option: MELEE_ATTACK_DAMAGE_TARGET
             MinValue: 1
             MaxValue: 15
@@ -1651,6 +1695,10 @@ Body:
             MaxValue: 15
             Chance: 1500
           - Option: HIT_PHYSICAL_DAMAGE
+            MinValue: 1
+            MaxValue: 25
+            Chance: 1500
+          - Option: HIT_MAGICAL_DAMAGE
             MinValue: 1
             MaxValue: 25
             Chance: 1500
@@ -1788,6 +1836,14 @@ Body:
             MinValue: 1
             MaxValue: 15
             Chance: 1500
+          - Option: CRIT_MAGICAL_DAMAGE
+            MinValue: 7
+            MaxValue: 25
+            Chance: 1500
+          - Option: CRIT_PHYSICAL_DAMAGE
+            MinValue: 7
+            MaxValue: 25
+            Chance: 1500
           - Option: MELEE_ATTACK_DAMAGE_TARGET
             MinValue: 1
             MaxValue: 15
@@ -1797,6 +1853,10 @@ Body:
             MaxValue: 15
             Chance: 1500
           - Option: HIT_PHYSICAL_DAMAGE
+            MinValue: 1
+            MaxValue: 25
+            Chance: 1500
+          - Option: HIT_MAGICAL_DAMAGE
             MinValue: 1
             MaxValue: 25
             Chance: 1500
@@ -1934,6 +1994,14 @@ Body:
             MinValue: 1
             MaxValue: 15
             Chance: 1500
+          - Option: CRIT_MAGICAL_DAMAGE
+            MinValue: 7
+            MaxValue: 25
+            Chance: 1500
+          - Option: CRIT_PHYSICAL_DAMAGE
+            MinValue: 7
+            MaxValue: 25
+            Chance: 1500
           - Option: MELEE_ATTACK_DAMAGE_TARGET
             MinValue: 1
             MaxValue: 15
@@ -1943,6 +2011,10 @@ Body:
             MaxValue: 15
             Chance: 1500
           - Option: HIT_PHYSICAL_DAMAGE
+            MinValue: 1
+            MaxValue: 25
+            Chance: 1500
+          - Option: HIT_MAGICAL_DAMAGE
             MinValue: 1
             MaxValue: 25
             Chance: 1500
@@ -2038,19 +2110,19 @@ Body:
           - Option: CLASS_DAMAGE_NORMAL_USER
             MinValue: 1
             MaxValue: 2
-            Chance: 500
+            Chance: 1000
           - Option: CLASS_DAMAGE_BOSS_USER
             MinValue: 1
             MaxValue: 2
-            Chance: 500
+            Chance: 1000
           - Option: VAR_ALLSTATS
             MinValue: 2
             MaxValue: 3
-            Chance: 500
+            Chance: 1000
           - Option: VAR_ALLSTATS_RATE
             MinValue: 2
             MaxValue: 6
-            Chance: 500
+            Chance: 1000
       - Slot: 2
         Options:
           - Option: VAR_STRRATE
@@ -2132,19 +2204,19 @@ Body:
           - Option: CLASS_DAMAGE_NORMAL_USER
             MinValue: 1
             MaxValue: 2
-            Chance: 500
+            Chance: 1000
           - Option: CLASS_DAMAGE_BOSS_USER
             MinValue: 1
             MaxValue: 2
-            Chance: 500
+            Chance: 1000
           - Option: VAR_ALLSTATS
             MinValue: 2
             MaxValue: 3
-            Chance: 500
+            Chance: 1000
           - Option: VAR_ALLSTATS_RATE
             MinValue: 2
             MaxValue: 6
-            Chance: 500
+            Chance: 1000
       - Slot: 3
         Options:
           - Option: VAR_STRRATE
@@ -2226,19 +2298,19 @@ Body:
           - Option: CLASS_DAMAGE_NORMAL_USER
             MinValue: 1
             MaxValue: 2
-            Chance: 500
+            Chance: 1000
           - Option: CLASS_DAMAGE_BOSS_USER
             MinValue: 1
             MaxValue: 2
-            Chance: 500
+            Chance: 1000
           - Option: VAR_ALLSTATS
             MinValue: 2
             MaxValue: 3
-            Chance: 500
+            Chance: 1000
           - Option: VAR_ALLSTATS_RATE
             MinValue: 2
             MaxValue: 6
-            Chance: 500
+            Chance: 1000
   - Id: 408
     Group: GLOWING_CUBE_Weapon
     Slots:
@@ -2376,6 +2448,14 @@ Body:
             MinValue: 7
             MaxValue: 25
             Chance: 1500
+          - Option: CRIT_MAGICAL_DAMAGE
+            MinValue: 7
+            MaxValue: 35
+            Chance: 1500
+          - Option: CRIT_PHYSICAL_DAMAGE
+            MinValue: 7
+            MaxValue: 35
+            Chance: 1500
           - Option: MELEE_ATTACK_DAMAGE_TARGET
             MinValue: 7
             MaxValue: 25
@@ -2384,6 +2464,10 @@ Body:
             MinValue: 7
             MaxValue: 25
             Chance: 1500
+          - Option: HIT_MAGICAL_DAMAGE
+            MinValue: 7
+            MaxValue: 45
+            Chance: 1500
           - Option: HIT_PHYSICAL_DAMAGE
             MinValue: 7
             MaxValue: 45
@@ -2391,15 +2475,15 @@ Body:
           - Option: ASPD_CAP_UNLOCK
             MinValue: 1
             MaxValue: 2
-            Chance: 500
+            Chance: 1000
           - Option: VAR_ALLSTATS
             MinValue: 2
             MaxValue: 3
-            Chance: 500
+            Chance: 1000
           - Option: VAR_ALLSTATS_RATE
             MinValue: 2
             MaxValue: 6
-            Chance: 500
+            Chance: 1000
       - Slot: 2
         Options:
           - Option: VAR_STRRATE
@@ -2534,6 +2618,14 @@ Body:
             MinValue: 7
             MaxValue: 25
             Chance: 1500
+          - Option: CRIT_MAGICAL_DAMAGE
+            MinValue: 7
+            MaxValue: 35
+            Chance: 1500
+          - Option: CRIT_PHYSICAL_DAMAGE
+            MinValue: 7
+            MaxValue: 35
+            Chance: 1500
           - Option: MELEE_ATTACK_DAMAGE_TARGET
             MinValue: 7
             MaxValue: 25
@@ -2542,6 +2634,10 @@ Body:
             MinValue: 7
             MaxValue: 25
             Chance: 1500
+          - Option: HIT_MAGICAL_DAMAGE
+            MinValue: 7
+            MaxValue: 45
+            Chance: 1500
           - Option: HIT_PHYSICAL_DAMAGE
             MinValue: 7
             MaxValue: 45
@@ -2549,15 +2645,15 @@ Body:
           - Option: ASPD_CAP_UNLOCK
             MinValue: 1
             MaxValue: 2
-            Chance: 500
+            Chance: 1000
           - Option: VAR_ALLSTATS
             MinValue: 2
             MaxValue: 3
-            Chance: 500
+            Chance: 1000
           - Option: VAR_ALLSTATS_RATE
             MinValue: 2
             MaxValue: 6
-            Chance: 500
+            Chance: 1000
       - Slot: 3
         Options:
           - Option: VAR_STRRATE
@@ -2692,6 +2788,14 @@ Body:
             MinValue: 7
             MaxValue: 25
             Chance: 1500
+          - Option: CRIT_MAGICAL_DAMAGE
+            MinValue: 7
+            MaxValue: 35
+            Chance: 1500
+          - Option: CRIT_PHYSICAL_DAMAGE
+            MinValue: 7
+            MaxValue: 35
+            Chance: 1500
           - Option: MELEE_ATTACK_DAMAGE_TARGET
             MinValue: 7
             MaxValue: 25
@@ -2700,6 +2804,10 @@ Body:
             MinValue: 7
             MaxValue: 25
             Chance: 1500
+          - Option: HIT_MAGICAL_DAMAGE
+            MinValue: 7
+            MaxValue: 45
+            Chance: 1500
           - Option: HIT_PHYSICAL_DAMAGE
             MinValue: 7
             MaxValue: 45
@@ -2707,15 +2815,15 @@ Body:
           - Option: ASPD_CAP_UNLOCK
             MinValue: 1
             MaxValue: 2
-            Chance: 500
+            Chance: 1000
           - Option: VAR_ALLSTATS
             MinValue: 2
             MaxValue: 3
-            Chance: 500
+            Chance: 1000
           - Option: VAR_ALLSTATS_RATE
             MinValue: 2
             MaxValue: 6
-            Chance: 500
+            Chance: 1000
   - Id: 409
     Group: GLOWING_CUBE_Weapon_2H
     Slots:
@@ -2853,6 +2961,14 @@ Body:
             MinValue: 7
             MaxValue: 31
             Chance: 1500
+          - Option: CRIT_MAGICAL_DAMAGE
+            MinValue: 7
+            MaxValue: 50
+            Chance: 1500
+          - Option: CRIT_PHYSICAL_DAMAGE
+            MinValue: 7
+            MaxValue: 50
+            Chance: 1500
           - Option: MELEE_ATTACK_DAMAGE_TARGET
             MinValue: 7
             MaxValue: 31
@@ -2861,6 +2977,10 @@ Body:
             MinValue: 7
             MaxValue: 31
             Chance: 1500
+          - Option: HIT_MAGICAL_DAMAGE
+            MinValue: 7
+            MaxValue: 52
+            Chance: 1500
           - Option: HIT_PHYSICAL_DAMAGE
             MinValue: 7
             MaxValue: 52
@@ -2868,15 +2988,15 @@ Body:
           - Option: ASPD_CAP_UNLOCK
             MinValue: 1
             MaxValue: 2
-            Chance: 500
+            Chance: 1000
           - Option: VAR_ALLSTATS
             MinValue: 2
             MaxValue: 4
-            Chance: 500
+            Chance: 1000
           - Option: VAR_ALLSTATS_RATE
             MinValue: 2
             MaxValue: 8
-            Chance: 500
+            Chance: 1000
       - Slot: 2
         Options:
           - Option: VAR_STRRATE
@@ -3011,6 +3131,14 @@ Body:
             MinValue: 7
             MaxValue: 31
             Chance: 1500
+          - Option: CRIT_MAGICAL_DAMAGE
+            MinValue: 7
+            MaxValue: 50
+            Chance: 1500
+          - Option: CRIT_PHYSICAL_DAMAGE
+            MinValue: 7
+            MaxValue: 50
+            Chance: 1500
           - Option: MELEE_ATTACK_DAMAGE_TARGET
             MinValue: 7
             MaxValue: 31
@@ -3019,6 +3147,10 @@ Body:
             MinValue: 7
             MaxValue: 31
             Chance: 1500
+          - Option: HIT_MAGICAL_DAMAGE
+            MinValue: 7
+            MaxValue: 52
+            Chance: 1500
           - Option: HIT_PHYSICAL_DAMAGE
             MinValue: 7
             MaxValue: 52
@@ -3026,15 +3158,15 @@ Body:
           - Option: ASPD_CAP_UNLOCK
             MinValue: 1
             MaxValue: 2
-            Chance: 500
+            Chance: 1000
           - Option: VAR_ALLSTATS
             MinValue: 2
             MaxValue: 4
-            Chance: 500
+            Chance: 1000
           - Option: VAR_ALLSTATS_RATE
             MinValue: 2
             MaxValue: 8
-            Chance: 500
+            Chance: 1000
       - Slot: 3
         Options:
           - Option: VAR_STRRATE
@@ -3169,6 +3301,14 @@ Body:
             MinValue: 7
             MaxValue: 31
             Chance: 1500
+          - Option: CRIT_MAGICAL_DAMAGE
+            MinValue: 7
+            MaxValue: 50
+            Chance: 1500
+          - Option: CRIT_PHYSICAL_DAMAGE
+            MinValue: 7
+            MaxValue: 50
+            Chance: 1500
           - Option: MELEE_ATTACK_DAMAGE_TARGET
             MinValue: 7
             MaxValue: 31
@@ -3177,6 +3317,10 @@ Body:
             MinValue: 7
             MaxValue: 31
             Chance: 1500
+          - Option: HIT_MAGICAL_DAMAGE
+            MinValue: 7
+            MaxValue: 52
+            Chance: 1500
           - Option: HIT_PHYSICAL_DAMAGE
             MinValue: 7
             MaxValue: 52
@@ -3184,12 +3328,12 @@ Body:
           - Option: ASPD_CAP_UNLOCK
             MinValue: 1
             MaxValue: 2
-            Chance: 500
+            Chance: 1000
           - Option: VAR_ALLSTATS
             MinValue: 2
             MaxValue: 4
-            Chance: 500
+            Chance: 1000
           - Option: VAR_ALLSTATS_RATE
             MinValue: 2
             MaxValue: 8
-            Chance: 500
+            Chance: 1000

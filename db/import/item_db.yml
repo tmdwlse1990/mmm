@@ -1053,6 +1053,17 @@ Body:
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
+#   [Boss Stone Special]
+  - Id: 2233101
+    AegisName: Kraken_Extreme_Stone
+    Name: Kraken Extreme Stone
+    Type: etc
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
   - Id: 2233501
     AegisName: Guardian_Armor_Level_1-1
     Name: Guardian Armor (Tier 1)
@@ -3206,6 +3217,38 @@ Body:
     Script: |
       bonus bStr,2;
       bonus bBaseAtk,20;
+  - Id: 2230003
+    AegisName: Ice_Kraken_Card
+    Name: Ice Kraken Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Armor: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus2 bAddEle,Ele_Fire,20;
+      bonus2 bMagicAddEle,Ele_Fire,20;
+      bonus2 bSubEle,Ele_Water,20;
+      bonus2 bSubEle,Ele_Wind,-20;
+  - Id: 2230004
+    AegisName: Ex_Kraken_Card
+    Name: Ex Kraken Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Armor: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus2 bAddEle,Ele_Earth,20;
+      bonus2 bMagicAddEle,Ele_Earth,20;
+      bonus2 bSubEle,Ele_Fire,20;
+      bonus2 bSubEle,Ele_Water,-20;
 #   [Etc Item]
   - Id: 2239001
     AegisName: Fei-Chai_doll
@@ -3225,6 +3268,11 @@ Body:
     AegisName: High_Stats_Powder
     Name: High Stats Powder
     Type: etc
+  - Id: 2239005
+    AegisName: Extreme_Kraken_leg
+    Name: Extreme Kraken leg
+    Type: etc
+    Weight: 10
 
 # THQ Quest Items
 #=============================================================

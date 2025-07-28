@@ -76,3 +76,15 @@ Body:
     Option: VAR_ALLSTATS_RATE
     Script: |
       bonus bAllstatsRate,getrandomoptinfo(ROA_VALUE);
+  - Id: 412
+    Option: HIT_MAGICAL_DAMAGE
+    Script: |
+      bonus bHitMAtk,getrandomoptinfo(ROA_VALUE);
+  - Id: 413
+    Option: CRIT_MAGICAL_DAMAGE
+    Script: |
+      bonus bCritMAtk,getrandomoptinfo(ROA_VALUE);
+  - Id: 414
+    Option: CRIT_PHYSICAL_DAMAGE
+    Script: |
+      bonus bCritAtk,getrandomoptinfo(ROA_VALUE);
