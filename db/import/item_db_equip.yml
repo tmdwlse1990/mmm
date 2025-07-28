@@ -546,7 +546,7 @@ Body:
       if(.@g >= ENCHANTGRADE_C) { bonus2 bAddSize,Size_All,10; bonus2 bMagicAddSize,Size_All,10; }
       if(.@g >= ENCHANTGRADE_B) { bonus2 bAddRace,Race_All,10; bonus2 bMagicAddRace,Race_All,10; }
       if(.@g >= ENCHANTGRADE_A) { bonus2 bAddEle,Ele_All,10; bonus2 bMagicAddEle,Ele_All,10; }
-      if(.@g >= ENCHANTGRADE_R) { bonus bMeleeAtkRate,10; bonus2 bMagicAddClass,Class_All,10; }
+      if(.@g >= ENCHANTGRADE_R) { bonus bShortAtkRate,10; bonus2 bMagicAddClass,Class_All,10; }
   - Id: 2140001
     AegisName: Union_Pike
     Name: Union Pike
