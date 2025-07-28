@@ -659,6 +659,7 @@ Body:
       Shoes: true
     ArmorLevel: 1
     Slots: 1
+    Refineable: true
     Trade:
       NoDrop: true
       NoTrade: true
@@ -667,3 +668,100 @@ Body:
     Script: |
       bonus2 bSubEle,Ele_Water,5;
       bonus2 bResEff,Eff_Freeze,10000;
+#  [Accesseru R]
+  - Id: 2180001
+    AegisName: Ex_Str_Glove
+    Name: Extreme Str Glove
+    Type: Armor
+    Buy: 75000
+    Weight: 100
+    Locations:
+      Right_Accessory: true
+    ArmorLevel: 1
+    EquipLevelMin: 1
+    Slots: 1
+    Script: |
+      bonus bStr,10;
+      bonus bBaseAtk,min(readparam(bStr),99) * 5;
+      if (readparam(bStr)>=90)
+         bonus2 bAddClass,Class_All,20;
+  - Id: 2180002
+    AegisName: Ex_Agi_Glove
+    Name: Extreme Agi Glove
+    Type: Armor
+    Buy: 75000
+    Weight: 100
+    Locations:
+      Right_Accessory: true
+    ArmorLevel: 1
+    EquipLevelMin: 1
+    Slots: 1
+    Script: |
+      bonus bAgi,10;
+      bonus bAspdRate,min(20,(readparam(bAgi)/5));
+      if (readparam(bAgi)>=90)
+         bonus bASPD,2;
+  - Id: 2180003
+    AegisName: Ex_Vit_Glove
+    Name: Extreme Vit Glove
+    Type: Armor
+    Buy: 75000
+    Weight: 100
+    Locations:
+      Right_Accessory: true
+    ArmorLevel: 1
+    EquipLevelMin: 1
+    Slots: 1
+    Script: |
+      bonus bVit,10;
+      bonus bMaxHP,100*min(readparam(bVit),99);
+      if (readparam(bVit)>=90)
+         bonus bMaxHpRate,10;
+  - Id: 2180004
+    AegisName: Ex_Int_Glove
+    Name: Extreme Int Glove
+    Type: Armor
+    Buy: 75000
+    Weight: 100
+    Locations:
+      Right_Accessory: true
+    ArmorLevel: 1
+    EquipLevelMin: 1
+    Slots: 1
+    Script: |
+      bonus bInt,10;
+      bonus bMatk,(readparam(bInt) * 5);
+      if (readparam(bInt)>=90)
+         bonus2 bMagicAddClass,Class_All,20;
+  - Id: 2180005
+    AegisName: Ex_Dex_Glove
+    Name: Extreme Dex Glove
+    Type: Armor
+    Buy: 75000
+    Weight: 100
+    Locations:
+      Right_Accessory: true
+    ArmorLevel: 1
+    EquipLevelMin: 1
+    Slots: 1
+    Script: |
+      bonus bDex,10;
+      bonus bHit,min(readparam(bDex),99);
+      if (readparam(bDex)>=90)
+         bonus bHitAtk,20;
+  - Id: 2180006
+    AegisName: Ex_Luk_Glove
+    Name: Extreme Luk Glove
+    Type: Armor
+    Buy: 75000
+    Weight: 100
+    Locations:
+      Right_Accessory: true
+    ArmorLevel: 1
+    EquipLevelMin: 1
+    Slots: 1
+    Script: |
+      bonus bLuk,10;
+      bonus bCritical,min(99,readparam(bLuk))/10;
+      if (readparam(bLuk)>=90)
+         bonus bCritAtkRate,20;

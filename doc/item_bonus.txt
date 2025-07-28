@@ -97,6 +97,9 @@ bonus bIgnoreDef,n;						Decrease N Def From enermy
 bonus bIgnoreMDef,n;					Decrease N MDef From enermy
 bonus bNormalRatio,n;					Increase Normal Attack n%
 bonus bHitPhysicalDamageRate,n;			Increase Damage n% for non critical hit (only Physical)
+bonus bHitMagicalDamageRate,n;			Increase Damage n% for non critical hit (only Magical)
+bonus bHitAtk,n;						Increase Damage n% for non critical hit (only Physical)
+bonus bHitMAtk,n;						Increase Damage n% for non critical hit (only Magical)
 
 bonus bStrRate,n;      			STR + n%
 bonus bAgiRate,n;      			AGI + n%
