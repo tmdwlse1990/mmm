@@ -225,6 +225,7 @@ Body:
     EquipLevelMin: 1
     Refineable: false
     Script: |
+      skill "WZ_ESTIMATION",1;
       bonus bBaseAtk,adv_atk*10;
       bonus bMatk,adv_matk*10;
       bonus bDef,adv_def*3;
