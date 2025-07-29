@@ -423,8 +423,8 @@ function	script	F_GetRDMOPT_Name	{
 		case 410: return "All Stats ";
 		case 411: return "All Stats ";
 		case 412: return "เพิ่มความเสียหายเวทมนตร์ที่ไม่คริ ";
-		case 413: return "เพิ่มความเสียหายการภาพคริติคอล ";
-		case 414: return "เพิ่มความเสียหายเวทมนตร์คริติคอล ";
+		case 413: return "เพิ่มความเสียหายเวทมนตร์คริติคอล ";
+		case 414: return "เพิ่มความเสียหายกายภาพคริติคอล ";
 		default: return "Unknow Random Option";
 	}
 }
