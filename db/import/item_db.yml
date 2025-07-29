@@ -3273,6 +3273,7 @@ Body:
     AegisName: Extreme_Kraken_leg
     Name: Extreme Kraken leg
     Type: etc
+    Buy: 20
     Weight: 10
 
 # THQ Quest Items

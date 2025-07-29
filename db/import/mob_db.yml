@@ -1196,13 +1196,13 @@ Body:
     Name: Grill Kraken
     Title: "<Grill Lord>"
     Level: 120
-    Hp: 933333240
+    Hp: 833333240
     Sp: 0
     BaseExp: 0
     JobExp: 0
     MvpExp: 0
-    Attack: 6412
-    Attack2: 4635
+    Attack: 4112
+    Attack2: 2935
     Defense: 217
     MagicDefense: 412
     Str: 196

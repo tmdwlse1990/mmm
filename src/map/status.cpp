@@ -2392,13 +2392,13 @@ int32 status_base_amotion_pc(map_session_data* sd, struct status_data* status)
 
 	int32 x = status->agi + status->dex;
 
-	if (x <= 120) {
+	if (x <= 140) {
 		float raw = (x * x / 2.0f) + (x * x * 0.5f);
 		temp_aspd = sqrtf(raw) * 0.25f + 196.0f;
 	}
 	else {
-		// base aspd ที่ x = 150
-		float base_raw = (120 * 120 / 2.0f) + (120 * 120 * 0.5f);
+		// base aspd ที่ x = 140
+		float base_raw = (140 * 140 / 2.0f) + (140 * 140 * 0.5f);
 		float base_aspd = sqrtf(base_raw) * 0.25f + 196.0f;
 
 		// aspd ที่ x = ปัจจุบัน
@@ -2406,8 +2406,8 @@ int32 status_base_amotion_pc(map_session_data* sd, struct status_data* status)
 		float full_aspd = sqrtf(full_raw) * 0.25f + 196.0f;
 
 		// ส่วนที่เกินมาหลัง 120 หาร 2 แล้วค่อยบวกกลับ
-		temp_aspd = base_aspd + (full_aspd - base_aspd) / 2.5f;
-	}
+		temp_aspd = base_aspd + (full_aspd - base_aspd) / 2.0f;
+	} 
 		/*
 	switch(sd->status.weapon) {
 		case W_BOW:

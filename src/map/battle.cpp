@@ -3288,8 +3288,7 @@ static bool is_attack_critical(struct Damage* wd, struct block_list *src, struct
 
 				break;
 			case AC_DOUBLE:
-				if(sd == nullptr || !sd->special_state.skillup2)
-					return false;
+				if(sd == nullptr && sd->special_state.skillup2)
 				cri += 333;
 				break;
 			case MO_EXTREMITYFIST:
@@ -8232,9 +8231,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src, struct bl
 	}
 	else {
 		if(sd) {
-				wd.damage = (int64)floor((float)((wd.damage * (1.0f + (0.002f * sstatus->dex) + (0.1f * sd->bonus.hit_physical_damage_rate)))));
+				wd.damage = (int64)floor((float)((wd.damage * (1.0f + (0.002f * sstatus->dex) + (0.01f * sd->bonus.hit_physical_damage_rate)))));
 			if (is_attack_left_handed(src, skill_id))
-				wd.damage2 = (int64)floor((float)((wd.damage2 * (1.0f + (0.002f * sstatus->dex) + (0.1f * sd->bonus.hit_physical_damage_rate)))));
+				wd.damage2 = (int64)floor((float)((wd.damage2 * (1.0f + (0.002f * sstatus->dex) + (0.01f * sd->bonus.hit_physical_damage_rate)))));
 		}
 	}
 #endif

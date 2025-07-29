@@ -727,6 +727,8 @@ function	script	F_MapleCube	{
 		.@twohand = 1;
 	else if (.@location & EQP_HAND_R)
 		.@weapon = 1;
+	else if (.@location & EQP_ACC_R || .@location & EQP_ACC_L )
+		.@acc = 1;
 	else
 		.@armor = 1;
 	
@@ -743,22 +745,22 @@ function	script	F_MapleCube	{
 	switch(.@tier){
 		case 1:
 			if(.@twohand) .@optgroup = 403;
-			if(.@weapon) .@optgroup = 402;
+			if(.@weapon || .@acc) .@optgroup = 402;
 			if(.@armor) .@optgroup = 401;
 		break;
 		case 2:
 			if(.@twohand) .@optgroup = 406;
-			if(.@weapon) .@optgroup = 405;
+			if(.@weapon || .@acc) .@optgroup = 405;
 			if(.@armor) .@optgroup = 404;
 		break;
 		case 3:
 			if(.@twohand) .@optgroup = 409;
-			if(.@weapon) .@optgroup = 408;
+			if(.@weapon || .@acc) .@optgroup = 408;
 			if(.@armor) .@optgroup = 407;
 		break;
 		case 4:
 			if(.@twohand) .@optgroup = 409;
-			if(.@weapon) .@optgroup = 408;
+			if(.@weapon || .@acc) .@optgroup = 408;
 			if(.@armor) .@optgroup = 407;
 			.@selectable = 1;
 		break;
