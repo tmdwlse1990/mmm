@@ -25,6 +25,7 @@ GOODS:
 	menu 	
 	"• วาปไปหน้าดันเจี้ยนเซิฟเวอร์",-,
 	"• เช็คเวลา Instance",-,
+	"• เช็ค Raid รายสัปดาห์",-,
 	"• ผสมหินออฟชั่น Stats",-,
 	"• โทรหา Collector",-,
 	"• เปิดคลัง Collection",-,
@@ -33,7 +34,7 @@ GOODS:
 	next;
 	switch(.@menu) {
 		case 2:
-			mes "[Personal Manager]";
+			mes "[Daily Instance]";
 			mes "Kraken Raid :"+( ( (checkquest(51,PLAYTIME) == -1) || (checkquest(51,PLAYTIME) == 2) ) ? "^33fc4c พร้อมลง":"^ff0000 ลงแล้ว" )+"^000000";
 			mes "Orcs Memories :"+( ( (checkquest(12059,PLAYTIME) == -1) || (checkquest(12059,PLAYTIME) == 2) ) ? "^33fc4c พร้อมลง":"^ff0000 ลงแล้ว" )+"^000000";
 			goto GOODS;
@@ -42,12 +43,17 @@ GOODS:
 			warp "icecastle",24,120;
 			break;
 		case 3:
+			mes "[Weekly Instance]";
+			mes "Extreme Kraken:"+( (checkquest(51) != 2)? "^33fc4c พร้อมลง":"^ff0000 ลงแล้ว" )+"^000000";
+			goto GOODS;
+			break;
+		case 4:
 			doevent "#stats_combine::OnMenu";
 			end;
-		case 4:
+		case 5:
 			doevent "#ex_collector::OnStart";
 			end;
-		case 5:
+		case 6:
 			openstorage2 1,STOR_MODE_GET|STOR_MODE_PUT;
 			break;
 		default:

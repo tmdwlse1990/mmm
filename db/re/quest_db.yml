@@ -8446,7 +8446,7 @@ Body:
     TimeLimit: 7d 4h
   - Id: 12059
     Title: Orc's Memory Time Limit
-    TimeLimit: +2h
+    TimeLimit: 1h
   - Id: 12060
     Title: Today's Fishing Closed
     TimeLimit: 4h
