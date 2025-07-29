@@ -1,9 +1,20 @@
 icecastle,67,222,5	script	ตัวคราฟสารพัดประโยชน์#icecastle	4_EP20_LASGAND,{
 menu
 	"Cube",Cube_store,
-	"Union Weapon",Union_store;
+	"Union Weapon",Union_store,
+	"Raid Exchange",Raid_List;
 	end;
-	
+
+Raid_List:
+	menu
+		"Extreme Kraken",ex_kraken,
+		"cancle",-;
+	end;
+
+ex_kraken:
+	callshop "Extreme_Kraken";
+	end;
+
 Cube_store:
 	callshop "Cube_seller";
 	end;

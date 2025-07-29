@@ -163,6 +163,7 @@ OnTimer10000:
 	stopnpctimer;
 	end;
 }
+
 // Spawn the boss again
 1@cash2,1,1,4	script	#kraken_ex_part_2	-1,{
 	end;
@@ -220,7 +221,7 @@ OnRespawn:
 OnLegKilled:
 	if(!getnpctimer(1)) initnpctimer;
 	end;
-OnTimer45000:
+OnTimer90000:
 	stopnpctimer;
 	detachnpctimer;
 	donpcevent instance_npcname("#kraken_ex_leg_spawn") + "::OnRespawn";
@@ -230,7 +231,7 @@ OnTimer45000:
 1@cash2,1,1,0	script	#kraken_ex_leg_spawn_mid	-1,{
 
 OnStart:
-	areamonster 'mapname$,190,183,210,198,"Kraken Angry Leg",28004,3,-1,instance_npcname("#kraken_ex_leg_spawn_mid")+"::OnLegKilled";
+	areamonster 'mapname$,190,183,210,198,"Kraken Angry Leg",28004,1,-1,instance_npcname("#kraken_ex_leg_spawn_mid")+"::OnLegKilled";
 	initnpctimer;
 	end;
 OnEnd:
@@ -238,7 +239,7 @@ OnEnd:
 	killmonster 'mapname$, instance_npcname("#kraken_ex_leg_spawn_mid")+"::OnLegKilled";
 OnLegKilled:
 	end;
-OnTimer20000:
+OnTimer90000:
 	initnpctimer;
 	donpcevent instance_npcname("#kraken_ex_leg_spawn_mid") + "::OnStart";
 	end;
@@ -255,6 +256,7 @@ OnStart:
 	setunitdata 'bossid,UMOB_HP,'hp;
 	initnpctimer;
 	donpcevent instance_npcname("#kraken_ex_shield")+"::OnShield";
+	donpcevent instance_npcname("#kraken_ex_dont_die")+"::OnStart";
 	end;
 
 OnTimer3000:
@@ -281,6 +283,7 @@ OnTimer3000:
 		unitskilluseid 'bossid, 350, 11;	// NPC_AGIUP
 		donpcevent instance_npcname("#kraken_ex_LR_dodge2")+"::OnStart";
 		mapannounce 'mapname$, "Kraken : จงตายด้วยพลังทั้งหมดของข้า!!!", bc_map, 0xC40000;
+		mapannounce 'mapname$, "SYSTEM : เจ้าหมึกจะระเบิดพืนที่ทิ้ง รีบหาที่ปลอดภัยเร็ว", bc_map, 0xC40000;
 	}
 	end;
 

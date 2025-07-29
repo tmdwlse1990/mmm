@@ -46,6 +46,50 @@ Header:
   Version: 2
 
 Body:
+  - Name: Extreme_Kraken
+    Items:
+      - Index: 0
+        Item: Ex_Str_Glove
+        Zeny: 31000000
+        RequiredItems:
+          - Index: 0
+            Item: Extreme_Kraken_leg
+            Amount: 3
+      - Index: 1
+        Item: Ex_Agi_Glove
+        Zeny: 31000000
+        RequiredItems:
+          - Index: 0
+            Item: Extreme_Kraken_leg
+            Amount: 3
+      - Index: 2
+        Item: Ex_Vit_Glove
+        Zeny: 31000000
+        RequiredItems:
+          - Index: 0
+            Item: Extreme_Kraken_leg
+            Amount: 3
+      - Index: 3
+        Item: Ex_Int_Glove
+        Zeny: 31000000
+        RequiredItems:
+          - Index: 0
+            Item: Extreme_Kraken_leg
+            Amount: 3
+      - Index: 4
+        Item: Ex_Dex_Glove
+        Zeny: 31000000
+        RequiredItems:
+          - Index: 0
+            Item: Extreme_Kraken_leg
+            Amount: 3
+      - Index: 5
+        Item: Ex_Luk_Glove
+        Zeny: 31000000
+        RequiredItems:
+          - Index: 0
+            Item: Extreme_Kraken_leg
+            Amount: 3
   - Name: Cube_seller
     Items:
       - Index: 0

@@ -418,10 +418,13 @@ function	script	F_GetRDMOPT_Name	{
 		case 405: return "Dex";
 		case 406: return "Luk";
 		case 407: return "เพิ่มความเสียหายทางเวทมนตร์แก่ศัตรู ";
-		case 408: return "เพิ่มความเสียหายการภาพที่ไม่คริ ";
+		case 408: return "เพิ่มความเสียหายกายภาพที่ไม่คริ ";
 		case 409: return "ปลดล็อคขีดจำกัด Aspd ";
 		case 410: return "All Stats ";
 		case 411: return "All Stats ";
+		case 412: return "เพิ่มความเสียหายเวทมนตร์ที่ไม่คริ ";
+		case 413: return "เพิ่มความเสียหายการภาพคริติคอล ";
+		case 414: return "เพิ่มความเสียหายเวทมนตร์คริติคอล ";
 		default: return "Unknow Random Option";
 	}
 }
@@ -690,6 +693,9 @@ function	script	F_GetRDMOPT_Value	{
 		case 409: return " +"+getarg(1);
 		case 410: return " +"+getarg(1);
 		case 411: return " "+getarg(1)+"%";
+		case 412: return " "+getarg(1)+"%";
+		case 413: return " "+getarg(1)+"%";
+		case 414: return " "+getarg(1)+"%";
 		default: return "Unknow Value";
 	}
 }
@@ -956,6 +962,37 @@ function	script	F_StoreADCard	{
 	}
 	close;
 }
+
+function	script	F_Nexttime	{
+	// รับ argument: วันในสัปดาห์ และชั่วโมง
+	// 0=อาทิตย์, 1=จันทร์, ..., 6=เสาร์
+	.@target_dow = getarg(0, 1);  // default = จันทร์
+	.@target_hour = getarg(1, 0); // default = เที่ยงคืน
+
+	// เวลาปัจจุบัน
+	.@dow = gettime(DT_DAYOFWEEK);
+	.@hour = gettime(DT_HOUR);
+	.@min = gettime(DT_MINUTE);
+	.@sec = gettime(DT_SECOND);
+
+	// หาจำนวนวันจนถึงวันเป้าหมาย
+	.@daysToAdd = (.@target_dow - .@dow + 7) % 7;
+	if (.@daysToAdd == 0 && .@hour >= .@target_hour) {
+		.@daysToAdd = 7; // วันนี้แต่เลยเวลาแล้ว  รออาทิตย์หน้า
+	}
+
+	// เวลาของวันนี้เป็นวินาที
+	.@current_time_sec = .@hour * 3600 + .@min * 60 + .@sec;
+
+	// เวลาเป้าหมายของวันเป็นวินาที
+	.@target_time_sec = .@target_hour * 3600;
+
+	// คำนวณระยะเวลาที่เหลือ
+	.@remain_sec = (.@daysToAdd * 86400) - .@current_time_sec + .@target_time_sec;
+
+	return .@remain_sec;
+}
+
 -	script	#viptimer	-1,{
 OnPCLoginEvent:
 	callfunc "F_VIPbufficon";

@@ -769,7 +769,8 @@ public:
 		int32 ignoredef_point,ignoremdef_point;
 		int32 aspd_cap, drop_up;
 		int32 normal_ratio;
-		int32 hit_physical_damage_rate; // Increases hit physical damage rate
+		int32 hit_physical_damage_rate, hit_magical_damage_rate; // Increases hit physical damage rate
+		int32 crit_atk_dmg, crit_matk_dmg;	// Increase Critical Type Damage
 		// [Custom Bonus]
 		int32 hp, sp, ap;
 		int32 atk_rate;

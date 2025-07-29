@@ -2390,6 +2390,25 @@ int32 status_base_amotion_pc(map_session_data* sd, struct status_data* status)
 	else if (sd->weapontype2 != W_FIST && sd->equip_index[EQI_HAND_R] != sd->equip_index[EQI_HAND_L])
 		aspd += job->aspd_base[sd->weapontype2] / 4; // Dual-wield
 
+	int32 x = status->agi + status->dex;
+
+	if (x <= 120) {
+		float raw = (x * x / 2.0f) + (x * x * 0.5f);
+		temp_aspd = sqrtf(raw) * 0.25f + 196.0f;
+	}
+	else {
+		// base aspd ที่ x = 150
+		float base_raw = (120 * 120 / 2.0f) + (120 * 120 * 0.5f);
+		float base_aspd = sqrtf(base_raw) * 0.25f + 196.0f;
+
+		// aspd ที่ x = ปัจจุบัน
+		float full_raw = (x * x / 2.0f) + (x * x * 0.5f);
+		float full_aspd = sqrtf(full_raw) * 0.25f + 196.0f;
+
+		// ส่วนที่เกินมาหลัง 120 หาร 2 แล้วค่อยบวกกลับ
+		temp_aspd = base_aspd + (full_aspd - base_aspd) / 2.5f;
+	}
+		/*
 	switch(sd->status.weapon) {
 		case W_BOW:
 		case W_MUSICAL:
@@ -2401,11 +2420,13 @@ int32 status_base_amotion_pc(map_session_data* sd, struct status_data* status)
 		case W_GRENADE:
 			temp_aspd = (status->agi + status->dex) * (status->agi + status->dex) / 4.0f + ( (status->agi + status->dex) * (status->agi + status->dex) * 0.5f );
 			break;
-		default:
-			temp_aspd = (status->agi + status->dex) * (status->agi + status->dex) / 2.0f + ( (status->agi + status->dex) * (status->agi + status->dex) * 0.5f );
+		default: 
+			temp_aspd = (status->agi + status->dex) * (status->agi + status->dex) / 3.0f + ( (status->agi + status->dex) * (status->agi + status->dex) * 0.5f );
+			
 			break;
 	}
 	temp_aspd = (float)(sqrt(temp_aspd) * 0.25f) + 196;
+	*/
 	if ((skill_lv = pc_checkskill(sd,SA_ADVANCEDBOOK)) > 0 && sd->status.weapon == W_BOOK)
 		val += (skill_lv - 1) / 2 + 1;
 	if ((skill_lv = pc_checkskill(sd, SG_DEVIL)) > 0 && ((sd->class_&MAPID_THIRDMASK) == MAPID_STAR_EMPEROR || pc_is_maxjoblv(sd)))
@@ -2786,6 +2807,7 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int32 l
 #ifdef RENEWAL
 		stat += (level / 5); // (every 10 BaseLevel = +0.1 critical)
 		//stat += 10 + (status->luk*3); // (every 1 luk = +0.3 critical)
+		stat += min(status->luk * 2,500);
 #else
 		stat += 10 + (status->luk*10/3); // (every 1 luk = +0.3 critical)
 #endif
@@ -4201,6 +4223,7 @@ int32 status_calc_pc_sub(map_session_data* sd, uint8 opt)
 	memset(sd->indexed_bonus.param_bonus, 0, sizeof(sd->indexed_bonus.param_bonus));
 
 	base_status->def += (refinedef+50)/100;
+	base_status->mdef += (refinedef+50)/200;
 
 	// Parse Cards
 	for (i = 0; i < EQI_MAX; i++) {
@@ -7873,7 +7896,7 @@ static int16 status_calc_flee(struct block_list *bl, status_change *sc, int32 fl
 	if(sc->getSCE(SC_INCFLEERATE))
 		flee += flee * sc->getSCE(SC_INCFLEERATE)->val1/100;
 	if (sc->getSCE(SC_AGIUP))
-		flee += flee * sc->getSCE(SC_AGIUP)->val2 / 100;
+		flee += flee * 10 / 100;
 	if(sc->getSCE(SC_SPIDERWEB) || sc->getSCE(SC_WIDEWEB))
 		flee -= flee * 50/100;
 	if(sc->getSCE(SC_BERSERK))

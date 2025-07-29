@@ -26,6 +26,7 @@ GOODS:
 	"• วาปไปหน้าดันเจี้ยนเซิฟเวอร์",-,
 	"• เช็คเวลา Instance",-,
 	"• ผสมหินออฟชั่น Stats",-,
+	"• โทรหา Collector",-,
 	"• เปิดคลัง Collection",-,
 	"• ออก.",-;
 	.@menu = @menu;
@@ -44,6 +45,9 @@ GOODS:
 			doevent "#stats_combine::OnMenu";
 			end;
 		case 4:
+			doevent "#ex_collector::OnStart";
+			end;
+		case 5:
 			openstorage2 1,STOR_MODE_GET|STOR_MODE_PUT;
 			break;
 		default:
@@ -51,6 +55,55 @@ GOODS:
 	}
 	end;
 
+}
+
+-	script	#ex_collector	-1,{
+OnStart:
+	mes "[The Collector]";
+	mes "อยากจะมาส่งมอบหินบอสงั้นหรอ";
+OnMenu:
+	next;
+	switch(select("- ส่งมอบหินบอส:- ตรวจสอบราคาหินบอส:- ออก") ) {
+		case 1:
+			mes "[The Collector]";
+			mes "=========หินที่เจ้ามีคือ===========";
+			getinventorylist;
+			freeloop(1);
+			for(.@i=0;.@i < @inventorylist_count; .@i++)
+				if(inarray(.collect_price,@inventorylist_id[.@i]) >= 0) {
+					mes "[^i["+.collect_price[inarray(.collect_price,@inventorylist_id[.@i])]+"]]  "+getitemname(.collect_price[inarray(.collect_price,@inventorylist_id[.@i])])+":","^ff0000"+F_InsertComma(.collect_price[(inarray(.collect_price,@inventorylist_id[.@i]))+1])+"^000000 zeny";
+					.@itemid[getarraysize(.@itemid)] = @inventorylist_idx[.@i];
+					.@sum_zeny += .collect_price[(inarray(.collect_price,@inventorylist_id[.@i]))+1];
+				}
+			freeloop(0);
+			mes "============================";
+			mes "รวมเป็นเงิน :"+F_InsertComma(.@sum_zeny)+" zeny";
+			if(!.@sum_zeny) {
+				mes "เหมือนจะไม่มีหินมาส่งนะ";
+				end;
+			}
+			if(select("ส่งเลย:ยกเลิก") == 2 ) end;
+			for(.@i=0; .@i < getarraysize(.@itemid); .@i++)
+				delitemidx .@itemid[.@i];
+			dispbottom "Collector: ท่านได้รับ "+F_InsertComma(.@sum_zeny)+" Zeny";
+			zeny += .@sum_zeny;
+			end;
+		case 2:
+			setdialogsize(300,400);
+			mes "[The Collector]";
+			mes "====================";
+			for(.@i=0;.@i < getarraysize(.collect_price); .@i+=2)
+				mes "[^i["+.collect_price[.@i]+"]]  "+getitemname(.collect_price[.@i])+":","^ff0000"+F_InsertComma(.collect_price[.@i+1])+"^000000 zeny";
+			goto OnMenu;
+			end;
+		default:
+			end;
+	}
+	end;
+Oninit:
+	setarray .collect_price,
+	2233101, 31000000;
+	end;
 }
 
 -	shop	#stats_show	-1,512:-1

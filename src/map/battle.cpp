@@ -3165,9 +3165,11 @@ static bool is_attack_critical(struct Damage* wd, struct block_list *src, struct
 	if (skill_id == NPC_CRITICALSLASH || skill_id == LG_PINPOINTATTACK) //Always critical skills
 		return true;
 
+	/*
 	if( skill_id && !skill_get_nk(skill_id,NK_CRITICAL) )
 		return false;
-
+	*/
+	
 	status_data* sstatus = status_get_status_data(*src);
 
 	if( sstatus->cri )
@@ -3397,8 +3399,10 @@ static bool is_attack_hitting(struct Damage* wd, struct block_list *src, struct 
 
 	if (!first_call)
 		return (wd->dmg_lv != ATK_FLEE);
+	/*
 	if (is_attack_critical(wd, src, target, skill_id, skill_lv, false))
 		return true;
+	*/
 	else if(sd && sd->bonus.perfect_hit > 0 && rnd()%100 < sd->bonus.perfect_hit)
 		return true;
 	else if (sc && sc->getSCE(SC_FUSION))
@@ -8102,7 +8106,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src, struct bl
 			if( is_attack_left_handed( src, skill_id ) ){
 				wd.damage2 += wd.masteryAtk2;
 			}
-
+			/*
 			// CritAtkRate modifier
 			if (wd.type == DMG_CRITICAL || wd.type == DMG_MULTI_HIT_CRITICAL) {
 				if (skill_id > 0) {
@@ -8121,7 +8125,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src, struct bl
 				if (is_attack_left_handed(src, skill_id))
 					wd.damage2 += (int64)floor((float)(wd.damage2 * sd->bonus.hit_physical_damage_rate / 100));
 			}
-
+			*/
 			if (wd.flag & BF_SHORT)
 				ATK_ADDRATE(wd.damage, wd.damage2, sd->bonus.short_attack_atk_rate);
 			if(wd.flag&BF_LONG && (skill_id != RA_WUGBITE && skill_id != RA_WUGSTRIKE)) //Long damage rate addition doesn't use weapon + equip attack
@@ -8208,19 +8212,30 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src, struct bl
 	battle_calc_element_damage(&wd, src, target, skill_id, skill_lv);
 
 #ifdef RENEWAL
+	bool iscritical = false;
 	if (is_attack_critical(&wd, src, target, skill_id, skill_lv, false)) {
 		if (sd) { //Check for player so we don't crash out, monsters don't have bonus crit rates [helvetica]
+			int32 sum_crit_atk = sd->bonus.crit_atk_rate + sd->bonus.crit_atk_dmg;
 			if(skill_id)
-				wd.damage = (int64)floor((float)((wd.damage * (1.5f + (0.05f * sstatus->crate)))));
+				wd.damage = (int64)floor((float)((wd.damage * (1.5f + (0.01f * sum_crit_atk) + (0.002f * sstatus->luk) + (0.05f * sstatus->crate)))));
 			else
-				wd.damage = (int64)floor((float)((wd.damage * (2.0f + (0.1f * sstatus->crate)))));
+				wd.damage = (int64)floor((float)((wd.damage * (2.0f + (0.01f * sum_crit_atk) + (0.002f * sstatus->luk) + (0.1f * sstatus->crate)))));
 			if (is_attack_left_handed(src, skill_id))
-				wd.damage2 = (int64)floor((float)((wd.damage2 * (1.5f + (0.05f * sstatus->crate)))));
+				wd.damage2 = (int64)floor((float)((wd.damage2 * (1.5f + (0.01f * sum_crit_atk) + (0.002f * sstatus->luk) + (0.05f * sstatus->crate)))));
 		} else
 			wd.damage = (int64)floor((float)(wd.damage * 1.2f));
 
 		if (tsd && tsd->bonus.crit_def_rate != 0)
 			ATK_ADDRATE(wd.damage, wd.damage2, -tsd->bonus.crit_def_rate);
+		iscritical = true;
+		
+	}
+	else {
+		if(sd) {
+				wd.damage = (int64)floor((float)((wd.damage * (1.0f + (0.002f * sstatus->dex) + (0.1f * sd->bonus.hit_physical_damage_rate)))));
+			if (is_attack_left_handed(src, skill_id))
+				wd.damage2 = (int64)floor((float)((wd.damage2 * (1.0f + (0.002f * sstatus->dex) + (0.1f * sd->bonus.hit_physical_damage_rate)))));
+		}
 	}
 #endif
 
@@ -8362,7 +8377,11 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src, struct bl
 	battle_absorb_damage(target, &wd);
 
 	battle_do_reflect(BF_WEAPON,&wd, src, target, skill_id, skill_lv); //WIP [lighta]
-
+	
+	if(iscritical) {
+		if(skill_id || wd.div_ > 1)
+			clif_skill_damage(*target, *target, gettick(), wd.amotion, wd.dmotion, wd.damage, wd.div_, TK_STORMKICK, -1, DMG_MULTI_HIT_CRITICAL);
+	}
 	return wd;
 }
 
@@ -9907,6 +9926,44 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 
 	} //Hint: Against plants damage will still be 1 at this point
 
+	// crit check is next since crits always hit on official [helvetica]
+	if (is_attack_critical(&ad, src, target, skill_id, skill_lv, true)) {
+#if PACKETVER >= 20161207
+		if (ad.type&DMG_MULTI_HIT)
+			ad.type = DMG_MULTI_HIT_CRITICAL;
+		else
+			ad.type = DMG_CRITICAL;
+#else
+		ad.type = DMG_CRITICAL;
+#endif
+	}
+#ifdef RENEWAL
+	bool iscritical = false;
+	if (is_attack_critical(&ad, src, target, skill_id, skill_lv, false)) {
+		if (sd) { //Check for player so we don't crash out, monsters don't have bonus crit rates [helvetica]
+			int32 sum_crit_atk = sd->bonus.crit_atk_rate + sd->bonus.crit_matk_dmg;
+			if(skill_id)
+				ad.damage = (int64)floor((float)((ad.damage * (1.5f + (0.01f * sum_crit_atk) + (0.002f * sstatus->luk) + (0.05f * sstatus->crate)))));
+			else
+				ad.damage = (int64)floor((float)((ad.damage * (2.0f + (0.01f * sum_crit_atk) + (0.002f * sstatus->luk) + (0.1f * sstatus->crate)))));
+			if (is_attack_left_handed(src, skill_id))
+				ad.damage2 = (int64)floor((float)((ad.damage2 * (1.5f + (0.01f * sum_crit_atk) + (0.002f * sstatus->luk) + (0.05f * sstatus->crate)))));
+		} else
+			ad.damage = (int64)floor((float)(ad.damage * 1.2f));
+
+		if (tsd && tsd->bonus.crit_def_rate != 0)
+			ATK_ADDRATE(ad.damage, ad.damage2, -tsd->bonus.crit_def_rate);
+		iscritical = true;
+	}
+	else {
+		if(sd) {
+			ad.damage = (int64)floor((float)((ad.damage * (1.0f + (0.01f * sd->bonus.hit_magical_damage_rate)))));
+			if (is_attack_left_handed(src, skill_id))
+				ad.damage2 = (int64)floor((float)((ad.damage2 * (1.0f + (0.01f * sd->bonus.hit_magical_damage_rate)))));
+		}
+	}
+#endif
+
 	//Apply DAMAGE_DIV_FIX and check for min damage
 	battle_apply_div_fix(&ad, skill_id);
 
@@ -9924,6 +9981,8 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 
 	battle_absorb_damage(target, &ad);
 
+	if(iscritical)
+		clif_skill_damage( *target, *target, gettick(), ad.amotion, ad.dmotion, ad.damage, ad.div_, TK_STORMKICK, -1, DMG_MULTI_HIT_CRITICAL);
 	//battle_do_reflect(BF_MAGIC,&ad, src, target, skill_id, skill_lv); //WIP [lighta] Magic skill has own handler at skill_attack
 	return ad;
 }
