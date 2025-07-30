@@ -268,8 +268,8 @@ OnTimer3000:
 	if(.@left < 20 && !.hp20) {
 		.hp20 = 1;
 		//donpcevent "#kraken_ex_angra::OnStart";
-		unitskilluseid 'bossid, 349, 6;	// NPC_POWERUP
-		unitskilluseid 'bossid, 350, 11;	// NPC_AGIUP
+		unitskilluseid 'bossid, 349, 2;	// NPC_POWERUP
+		unitskilluseid 'bossid, 350, 2;	// NPC_AGIUP
 		donpcevent instance_npcname("#kraken_ex_leg_spawn_mid")+"::OnStart";
 		mapannounce 'mapname$, "Kraken : ROARRRRRRRRRR!!!??!??", bc_map, 0xC40000;
 		mapannounce 'mapname$, "Kraken : ข้าจะฆ่าพวกเจ้าให้หมดทุกคน!!", bc_map, 0xC40000;
@@ -279,8 +279,8 @@ OnTimer3000:
 	if(.@left < 10 && !.hp10) {
 		.hp10 = 1;
 		//donpcevent "#kraken_ex_angra::OnStart";
-		unitskilluseid 'bossid, 349, 6;	// NPC_POWERUP
-		unitskilluseid 'bossid, 350, 11;	// NPC_AGIUP
+		unitskilluseid 'bossid, 349, 2;	// NPC_POWERUP
+		unitskilluseid 'bossid, 350, 2;	// NPC_AGIUP
 		donpcevent instance_npcname("#kraken_ex_LR_dodge2")+"::OnStart";
 		mapannounce 'mapname$, "Kraken : จงตายด้วยพลังทั้งหมดของข้า!!!", bc_map, 0xC40000;
 		mapannounce 'mapname$, "SYSTEM : เจ้าหมึกจะระเบิดพืนที่ทิ้ง รีบหาที่ปลอดภัยเร็ว", bc_map, 0xC40000;

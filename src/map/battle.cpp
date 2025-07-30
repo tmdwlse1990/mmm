@@ -1015,6 +1015,7 @@ int32 battle_calc_cardfix(int32 attack_type, struct block_list *src, struct bloc
 							cardfix = cardfix * (100 + sd->right_weapon.addrace2[raceit]) / 100;
 						cardfix = cardfix * (100 + sd->right_weapon.addclass[tstatus->class_] + sd->right_weapon.addclass[CLASS_ALL]) / 100;
 
+						sum_atk_val += sd->right_weapon.addrace[tstatus->race] + sd->right_weapon.addrace[RC_ALL];
 						if( left&1 ) { // Left-handed weapon
 							//cardfix_ = cardfix_ * (100 + sd->left_weapon.addrace[tstatus->race] + sd->left_weapon.addrace[RC_ALL]) / 100;
 							sum_atk_val_ += sd->left_weapon.addrace[tstatus->race] + sd->left_weapon.addrace[RC_ALL];
@@ -1073,15 +1074,16 @@ int32 battle_calc_cardfix(int32 attack_type, struct block_list *src, struct bloc
 						//	sd->right_weapon.addrace[RC_ALL] + sd->left_weapon.addrace[RC_ALL]) / 100;
 						//cardfix = cardfix * (100 + sd->right_weapon.addsize[tstatus->size] + sd->left_weapon.addsize[tstatus->size] +
 						//	sd->right_weapon.addsize[SZ_ALL] + sd->left_weapon.addsize[SZ_ALL]) / 100;
-							
-							sum_atk_val += sd->right_weapon.addrace[tstatus->race] + sd->left_weapon.addrace[tstatus->race] + sd->right_weapon.addrace[RC_ALL] + sd->left_weapon.addrace[RC_ALL] 
-										 + sd->right_weapon.addsize[tstatus->size] + sd->left_weapon.addsize[tstatus->size] + sd->right_weapon.addsize[SZ_ALL] + sd->left_weapon.addsize[SZ_ALL] ;
-						for (const auto &raceit : t_race2)
+							sum_atk_val += sd->right_weapon.addrace[tstatus->race] + sd->left_weapon.addrace[tstatus->race] + sd->right_weapon.addrace[RC_ALL] + sd->left_weapon.addrace[RC_ALL];
+							sum_atk_val += sd->right_weapon.addsize[tstatus->size] + sd->left_weapon.addsize[tstatus->size] + sd->right_weapon.addsize[SZ_ALL] + sd->left_weapon.addsize[SZ_ALL];
+							int32 racefix = 0;
+							for (const auto &raceit : t_race2)
+								racefix = sd->right_weapon.addrace2[raceit] + sd->left_weapon.addrace2[raceit];
 						//	cardfix = cardfix * (100 + sd->right_weapon.addrace2[raceit] + sd->left_weapon.addrace2[raceit]) / 100;
 						//cardfix = cardfix * (100 + sd->right_weapon.addclass[tstatus->class_] + sd->left_weapon.addclass[tstatus->class_] +
 						//	sd->right_weapon.addclass[CLASS_ALL] + sd->left_weapon.addclass[CLASS_ALL]) / 100;
-						
-						sum_atk_val += sd->right_weapon.addrace2[raceit] + sd->left_weapon.addrace2[raceit] + sd->right_weapon.addclass[tstatus->class_] + sd->left_weapon.addclass[tstatus->class_] +sd->right_weapon.addclass[CLASS_ALL] + sd->left_weapon.addclass[CLASS_ALL];
+							sum_atk_val += racefix;
+							sum_atk_val += sd->right_weapon.addclass[tstatus->class_] + sd->left_weapon.addclass[tstatus->class_] + sd->right_weapon.addclass[CLASS_ALL] + sd->left_weapon.addclass[CLASS_ALL];
 					}
 #ifndef RENEWAL
 					if( sd->status.weapon == W_KATAR && (skill = pc_checkskill(sd,ASC_KATAR)) > 0 ) // Adv. Katar Mastery functions similar to a +%ATK card on official [helvetica]
