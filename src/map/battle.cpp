@@ -1014,8 +1014,6 @@ int32 battle_calc_cardfix(int32 attack_type, struct block_list *src, struct bloc
 						for (const auto &raceit : t_race2)
 							cardfix = cardfix * (100 + sd->right_weapon.addrace2[raceit]) / 100;
 						cardfix = cardfix * (100 + sd->right_weapon.addclass[tstatus->class_] + sd->right_weapon.addclass[CLASS_ALL]) / 100;
-
-						sum_atk_val += sd->right_weapon.addrace[tstatus->race] + sd->right_weapon.addrace[RC_ALL];
 						if( left&1 ) { // Left-handed weapon
 							//cardfix_ = cardfix_ * (100 + sd->left_weapon.addrace[tstatus->race] + sd->left_weapon.addrace[RC_ALL]) / 100;
 							sum_atk_val_ += sd->left_weapon.addrace[tstatus->race] + sd->left_weapon.addrace[RC_ALL];
