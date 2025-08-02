@@ -52,6 +52,7 @@
 #include "quest.hpp"
 #include "storage.hpp"
 #include "trade.hpp"
+#include "rune.hpp"
 
 using namespace rathena;
 using namespace rathena::server_map;
@@ -5125,6 +5126,7 @@ void MapServer::finalize(){
 	do_final_buyingstore();
 	do_final_path();
 	do_final_emotions();
+	do_final_rune();
 
 	map_db->destroy(map_db, map_db_final);
 
@@ -5515,6 +5517,7 @@ bool MapServer::initialize( int32 argc, char *argv[] ){
 	do_init_vending();
 	do_init_buyingstore();
 	do_init_emotions();
+	do_init_rune();
 
 // (^~_~^) Color Nicks Start
 

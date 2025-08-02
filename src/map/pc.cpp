@@ -63,6 +63,7 @@
 #include "storage.hpp"
 #include "unit.hpp" // unit_stop_attack(), unit_stop_walking()
 #include "vending.hpp" // struct s_vending
+#include "rune.hpp"
 
 using namespace rathena;
 
@@ -2717,6 +2718,8 @@ void pc_reg_received(map_session_data *sd)
 	}
 
 	channel_autojoin(sd);
+
+	intif_rune_load(sd);
 }
 
 static int32 pc_calc_skillpoint(map_session_data* sd)

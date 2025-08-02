@@ -29284,7 +29284,40 @@ BUILDIN_FUNC(getpetegg)
 	return SCRIPT_CMD_SUCCESS;
 }
 
+BUILDIN_FUNC(runeui) {
+#if PACKETVER_MAIN_NUM >= 20230802
+	map_session_data* sd;
 
+	if( !script_rid2sd(sd) )
+		return SCRIPT_CMD_FAILURE;
+
+	clif_rune_ui_open(sd);
+
+	return SCRIPT_CMD_SUCCESS;
+#else
+	ShowError("buildin_runeui: This command requires PACKETVER 2023-08-02 or newer.\n");
+	return SCRIPT_CMD_FAILURE;
+#endif
+}
+
+BUILDIN_FUNC(getupgrade_rune) {
+#if PACKETVER_MAIN_NUM >= 20230802
+	map_session_data* sd;
+
+	if( !script_rid2sd(sd) )
+		return SCRIPT_CMD_FAILURE;
+
+	if( sd->runeActive.tagID )
+		script_pushint(st, sd->runeActive.upgrade);
+	else
+		script_pushint(st, 0);
+
+	return SCRIPT_CMD_SUCCESS;
+#else
+	ShowError("buildin_getupgrade_rune: This command requires PACKETVER 2023-08-02 or newer.\n");
+	return SCRIPT_CMD_FAILURE;
+#endif
+}
 #include <custom/script.inc>
 
 // declarations that were supposed to be exported from npc_chat.cpp
@@ -30166,6 +30199,9 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(skillinfocheck,"ii"),
 
 #include <custom/script_def.inc>
+
+	BUILDIN_DEF(runeui, ""),
+	BUILDIN_DEF(getupgrade_rune, ""),
 
 	{nullptr,nullptr,nullptr},
 };

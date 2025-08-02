@@ -4545,6 +4545,14 @@ ACMD_FUNC(reloadlogconf){
 	return 0;
 }
 
+ACMD_FUNC(runedb){
+	nullpo_retr(-1, sd);
+
+	rune_db_reload();
+	clif_displaymessage(fd, "Rune database has been reloaded.");
+
+	return 0;
+}
 /*==========================================
  * @partysharelvl <share_range> [Akinari]
  * Updates char server party share level range in runtime
@@ -11981,6 +11989,7 @@ void atcommand_basecommands(void) {
 		ACMD_DEF(reloadbarterdb),
 		ACMD_DEF(reloadlogconf),
 		ACMD_DEF(partysharelvl),
+		ACMD_DEF(runedb),
 		ACMD_DEF(mapinfo),
 		ACMD_DEF(dye),
 		ACMD_DEF(hair_style),

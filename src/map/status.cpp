@@ -4346,6 +4346,8 @@ int32 status_calc_pc_sub(map_session_data* sd, uint8 opt)
 
 	// init
 	sd->state.pet_index = -1;
+	rune_active_bonus(sd);
+	
 
 	if( sd->pd ) { // Pet Bonus
 		struct pet_data *pd = sd->pd;

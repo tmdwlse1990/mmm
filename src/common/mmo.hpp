@@ -121,6 +121,10 @@ typedef uint32 t_itemid;
 	#define WEB_AUTH_TOKEN_LENGTH 16+1
 #endif
 
+#define MAX_RUNESLOT 5
+#define MAX_REWARDSLOT 7
+#define MAX_RUNEDECOMPOSITION 8
+
 enum e_enchantgrade : uint16{
 	ENCHANTGRADE_NONE = 0,
 	ENCHANTGRADE_D,

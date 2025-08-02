@@ -438,6 +438,7 @@ int32 chrif_save(map_session_data *sd, int32 flag) {
 		intif_achievement_save(sd);
 
 	chrif_aa_save(sd);
+	intif_rune_save(sd);
 
 	return 0;
 }
