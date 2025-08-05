@@ -583,6 +583,7 @@ Body:
       Right_Hand: true
     WeaponLevel: 3
     EquipLevelMin: 48
+    Slots: 1
     Refineable: true
     Trade:
       NoDrop: true
@@ -702,7 +703,7 @@ Body:
     Script: |
       bonus bStr,10;
       bonus bBaseAtk,min(readparam(bStr),99) * 5;
-      if (readparam(bStr)>=90)
+      if(readparam(bStr) >=90 )
          bonus2 bAddClass,Class_All,20;
   - Id: 2180002
     AegisName: Ex_Agi_Glove
