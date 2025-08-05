@@ -228,7 +228,7 @@ function	Job_Options	{
 				// First job change
 				Job_Options(.@job_opt,Job_Swordman,
 					Job_Mage, Job_Archer, Job_Acolyte, Job_Merchant, Job_Thief,
-					Job_Super_Novice, Job_Gunslinger, Job_Ninja); //  , Job_Taekwon
+					Job_Super_Novice, Job_Gunslinger, Job_Ninja, Job_Taekwon); //
 				if( .BabyNovice )
 					Job_Options(.@job_opt, Job_Baby);
 				break;
