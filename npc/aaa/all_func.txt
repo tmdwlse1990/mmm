@@ -443,7 +443,7 @@ function	script	F_GetRDMOPT_Value	{
 		case 10: return "+"+getarg(1)+"%";
 		case 11: return "+"+getarg(1)+"%";
 		case 12: return "+"+getarg(1)+"%";
-		case 13: return "+"+getarg(1);
+		case 13: return "+"+getarg(1)+"%";
 		case 14: return "+"+getarg(1);
 		case 15: return "+"+getarg(1);
 		case 16: return "+"+getarg(1)+"%";

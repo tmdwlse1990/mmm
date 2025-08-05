@@ -4690,6 +4690,8 @@ int32 status_calc_pc_sub(map_session_data* sd, uint8 opt)
 // ----- CRITICAL CALCULATION -----
 
 #ifdef RENEWAL
+	if ((skill = pc_checkskill(sd, BS_WEAPONRESEARCH)) > 0)
+		base_status->cri += skill * 10;
 	if ((skill = pc_checkskill(sd, DC_DANCINGLESSON)) > 0)
 		base_status->cri += skill * 10;
 	if ((skill = pc_checkskill(sd, PR_MACEMASTERY)) > 0 && (sd->status.weapon == W_MACE || sd->status.weapon == W_2HMACE))
@@ -7755,6 +7757,8 @@ static int16 status_calc_critical(struct block_list *bl, status_change *sc, int3
 		critical += sc->getSCE(SC_BEYONDOFWARCRY)->val3;
 	if (sc->getSCE(SC_INTENSIVE_AIM))
 		critical += 300;
+	if (sc->getSCE(SC_ADRENALINE))
+		critical += 100;
 
 	return (int16)cap_value(critical,10,SHRT_MAX);
 }

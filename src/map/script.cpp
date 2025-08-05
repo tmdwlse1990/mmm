@@ -17112,19 +17112,31 @@ BUILDIN_FUNC(getrefine)
  *-------------------------------------------------------*/
 BUILDIN_FUNC(getcharmrefine)
 {
-	TBL_PC *sd;
+	TBL_PC* sd;
 	int i, refine = 0;
-	if (script_rid2sd(sd)){
-		for (i = 0; i < MAX_INVENTORY; i++)
-		{
-			if (sd->inventory_data[i] && sd->inventory_data[i]->type == IT_CHARM)
+	int item_id;
+
+	// รับพารามิเตอร์ item ID จากสคริปต์
+	if (!script_getnum(st, 2)) {
+		script_pushint(st, 0);
+		return SCRIPT_CMD_FAILURE;
+	}
+	item_id = script_getnum(st, 2);
+
+	if (script_rid2sd(sd)) {
+		for (i = 0; i < MAX_INVENTORY; i++) {
+			if (sd->inventory_data[i] &&
+				sd->inventory_data[i]->type == IT_CHARM &&
+				sd->inventory.u.items_inventory[i].nameid == item_id)
 			{
+				// หากมีหลายชิ้น ให้เก็บ refine ล่าสุดที่พบ (หรือจะ sum ก็ได้)
 				refine = sd->inventory.u.items_inventory[i].refine;
 			}
 		}
 		script_pushint(st, refine);
 		return SCRIPT_CMD_SUCCESS;
-	}else{
+	}
+	else {
 		script_pushint(st, 0);
 		return SCRIPT_CMD_FAILURE;
 	}
@@ -29774,7 +29786,7 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(isequippedcnt,"i*"), // check how many items/cards are being equipped [Celest]
 	BUILDIN_DEF(cardscnt,"i*"), // check how many items/cards are being equipped in the same arm [Lupus]
 	BUILDIN_DEF(getrefine,""), // returns the refined number of the current item, or an item with index specified [celest]
-	BUILDIN_DEF(getcharmrefine,""), // returns the refined number of charm items in the inventory [null]getcharmenchantgrade
+	BUILDIN_DEF(getcharmrefine,"i"), // returns the refined number of charm items in the inventory [null]getcharmenchantgrade
 	BUILDIN_DEF(getcharmenchantgrade,""), // returns the enchantgrade number of charm items in the inventory [null]
 	BUILDIN_DEF(night,""), // sets the server to night time
 	BUILDIN_DEF(day,""), // sets the server to day time

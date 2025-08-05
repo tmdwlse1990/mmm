@@ -1230,7 +1230,7 @@ int32 skill_additional_effect( struct block_list* src, struct block_list *bl, ui
 	status_change* tsc = status_get_sc( bl );
 	status_data* sstatus = status_get_status_data(*src);
 	status_data* tstatus = status_get_status_data(*bl);
-
+	/*
 	// Taekwon combos activate on traps, so we need to check them even for targets that don't have status
 	if (sd && skill_id == 0 && !(attack_type&BF_SKILL) && sc) {
 		// Chance to trigger Taekwon kicks
@@ -1261,7 +1261,7 @@ int32 skill_additional_effect( struct block_list* src, struct block_list *bl, ui
 				; //Stance triggered
 		}
 	}
-
+	*/
 	if (!tsc) //skill additional effect is about adding effects to the target...
 		//So if the target can't be inflicted with statuses, this is pointless.
 		return 0;
@@ -1352,6 +1352,22 @@ int32 skill_additional_effect( struct block_list* src, struct block_list *bl, ui
 
 					// Automatic trigger of Blitz Beat
 					//if (pc_isfalcon(sd) && sd->status.weapon == W_BOW && (skill = pc_checkskill(sd, HT_BLITZBEAT)) > 0 && rnd() % 1000 <= sstatus->luk * 10 / 3 + 1) {
+					if ((skill = pc_checkskill(sd, TK_STORMKICK)) > 0 && sc->getSCE(SC_READYSTORM) && rnd() % 1000 <= (100 + (skill * 10) ) ) {
+
+						skill_castend_damage_id(src, bl, TK_STORMKICK, skill, tick, SD_LEVEL);
+					}
+					if ((skill = pc_checkskill(sd, TK_DOWNKICK)) > 0 && sc->getSCE(SC_READYDOWN) && rnd() % 1000 <= (100 + (skill * 10) ) ) {
+
+						skill_castend_damage_id(src, bl, TK_DOWNKICK, skill, tick, SD_LEVEL);
+					}
+					if ((skill = pc_checkskill(sd, TK_TURNKICK)) > 0 && sc->getSCE(SC_READYTURN) && rnd() % 1000 <= (100 + (skill * 10) ) ) {
+
+						skill_castend_damage_id(src, bl, TK_TURNKICK, skill, tick, SD_LEVEL);
+					}
+					if ((skill = pc_checkskill(sd, TK_COUNTER)) > 0 && sc->getSCE(SC_READYCOUNTER) && rnd() % 1000 <= (100 + (skill * 10) ) ) {
+
+						skill_castend_damage_id(src, bl, TK_COUNTER, skill, tick, SD_LEVEL);
+					}
 					if (pc_isfalcon(sd) && sd->status.weapon == W_BOW && (skill = pc_checkskill(sd, HT_BLITZBEAT)) > 0 && rnd() % 1000 <= 330 + (sd->special_state.skillup3 ? 90 : 0) + 1) {
 
 						skill_castend_damage_id(src, bl, HT_BLITZBEAT, skill, tick, SD_LEVEL);
@@ -3308,6 +3324,7 @@ void skill_combo(struct block_list* src,struct block_list *dsrc, struct block_li
 	//End previous combo state after skill is invoked
 	if ((sce = sc->getSCE(SC_COMBO)) != nullptr) {
 		switch (skill_id) {
+			/*
 		case TK_TURNKICK:
 		case TK_STORMKICK:
 		case TK_DOWNKICK:
@@ -3322,6 +3339,7 @@ void skill_combo(struct block_list* src,struct block_list *dsrc, struct block_li
 			}
 			unit_cancel_combo(src); // Cancel combo wait
 			break;
+			*/
 		default:
 			if( src == dsrc ) // Ground skills are exceptions. [Inkfish]
 				status_change_end(src, SC_COMBO);
@@ -3338,7 +3356,7 @@ void skill_combo(struct block_list* src,struct block_list *dsrc, struct block_li
 			}
 			break;
 		case MO_CHAINCOMBO:
-			if (pc_checkskill(sd, MO_COMBOFINISH) > 0 && sd->spiritball >= 1) {
+			if (pc_checkskill(sd, MO_COMBOFINISH) > 0 && ( (sc && sc->getSCE(SC_SPIRIT) && sc->getSCE(SC_SPIRIT)->val2 == SL_MONK) || sd->spiritball >= 1) ) {
 				duration = 1;
 				target_id = 0; // Will target current auto-target instead
 			}
@@ -3418,7 +3436,7 @@ void skill_combo(struct block_list* src,struct block_list *dsrc, struct block_li
 	if (duration) { //Possible to chain
 		if(sd && duration==1) duration = DIFF_TICK(sd->ud.canact_tick, tick); //Auto calc duration
 		duration = i64max(status_get_amotion(src),duration); //Never less than aMotion
-		sc_start4(src,src,SC_COMBO,100,skill_id,target_id,nodelay,0,duration);
+		sc_start4(src,src,SC_COMBO,1000,skill_id,target_id,nodelay,0,duration);
 		clif_combo_delay( *src, duration );
 	}
 }
@@ -3825,7 +3843,7 @@ int64 skill_attack (int32 attack_type, struct block_list* src, struct block_list
 	}
 
 	switch( skill_id ) {
-		//case CR_GRANDCROSS:
+		case CR_GRANDCROSS:
 		case NPC_GRANDDARKNESS:
 			if( battle_config.gx_disptype)
 				dsrc = src;
@@ -5374,7 +5392,7 @@ int32 skill_castend_damage_id (struct block_list* src, struct block_list *bl, ui
 	case WS_CARTTERMINATION:	// Cart Termination
 	case AS_VENOMKNIFE:
 	case HT_PHANTASMIC:
-	case TK_DOWNKICK:
+//	case TK_DOWNKICK:
 	case TK_COUNTER:
 	case GS_CHAINACTION:
 	case GS_TRIPLEACTION:
@@ -5527,6 +5545,7 @@ int32 skill_castend_damage_id (struct block_list* src, struct block_list *bl, ui
 		break;
 
 	case MO_COMBOFINISH:
+	/*
 		if (!(flag&1) && sc && sc->getSCE(SC_SPIRIT) && sc->getSCE(SC_SPIRIT)->val2 == SL_MONK)
 		{	//Becomes a splash attack when Soul Linked.
 			map_foreachinshootrange(skill_area_sub, bl,
@@ -5535,9 +5554,14 @@ int32 skill_castend_damage_id (struct block_list* src, struct block_list *bl, ui
 				skill_castend_damage_id);
 		} else
 			skill_attack(BF_WEAPON,src,src,bl,skill_id,skill_lv,tick,flag);
+	*/
+		map_foreachinshootrange(skill_attack_area, src,
+			skill_get_splash(skill_id, skill_lv), BL_CHAR|BL_SKILL,
+			BF_WEAPON, src, src, skill_id, skill_lv, tick, flag, BCT_ENEMY);
 		break;
 
 	case TK_STORMKICK: // Taekwon kicks [Dralnu]
+	case TK_DOWNKICK: // Taekwon kicks [Dralnu]
 		clif_skill_nodamage(src,*bl,skill_id,skill_lv);
 		skill_area_temp[1] = 0;
 		map_foreachinshootrange(skill_attack_area, src,
@@ -6664,10 +6688,13 @@ int32 skill_castend_damage_id (struct block_list* src, struct block_list *bl, ui
 
 		skill_attack(BF_MISC, src, src, bl, skill_id, skill_lv, tick, flag);
 		break;
-
+		
+		/*
 	case SL_SMA:
 		status_change_end(src, SC_SMA);
 		[[fallthrough]];
+		*/
+	case SL_SMA:
 	case SL_STIN:
 	case SL_STUN:
 	case SP_SPA:
@@ -17309,7 +17336,7 @@ int32 skill_unit_onplace_timer(struct skill_unit *unit, struct block_list *bl, t
 						}
 					}
 					break;
-				//case CR_GRANDCROSS:
+				case CR_GRANDCROSS:
 				case NPC_GRANDDARKNESS:
 					if(!battle_config.gx_allhit)
 						unit->val1--;
@@ -17392,6 +17419,8 @@ int32 skill_unit_onplace_timer(struct skill_unit *unit, struct block_list *bl, t
 				break;
 #endif
 			skill_attack(BF_MAGIC,ss,unit,bl,sg->skill_id,sg->skill_lv,tick,0); 
+			if(sc && sc->getSCE(SC_SPIRIT) && sc->getSCE(SC_SPIRIT)->val2 == SL_PRIEST)
+				skill_attack(BF_MAGIC,ss,unit,bl,AL_HOLYLIGHT,1,tick,0); 
 			break;
 
 		case UNT_FIREPILLAR_WAITING:
@@ -18969,10 +18998,12 @@ bool skill_check_condition_castbegin( map_session_data& sd, uint16 skill_id, uin
 				return false;
 			}
 			break;
+			
 		case SL_SMA:
 			if(!sc || !(sc->getSCE(SC_SMA) || sc->getSCE(SC_USE_SKILL_SP_SHA)))
 				return false;
 			break;
+			
 		case HT_POWER:
 			if(!(sc && sc->getSCE(SC_COMBO) && sc->getSCE(SC_COMBO)->val1 == AC_DOUBLE))
 				return false;
@@ -20769,9 +20800,12 @@ int32 skill_vfcastfix(struct block_list *bl, double time, uint16 skill_id, uint1
 	if (!(flag&1))
 		time = time * (1 - sqrt(((float)(status_get_dex(bl) * 2 + status_get_int(bl)) / battle_config.vcast_stat_scale)));
 	fixed = 0; //[No fix cast]
+	
+	if (sd->bonus.add_fixcast != 0)
+		fixed += sd->bonus.add_fixcast; // bonus bFixedCast
+	
 	time = time * (1 - (float)min(reduce_cast_rate, 100) / 100);
 	time = max((int32)time, 0) + (1 - (float)min(fixcast_r, 100) / 100) * max(fixed, 0); //Underflow checking/capping
-	
 	if(sd && sd->special_state.skillup4 && sd->class_ == MAPID_WIZARD)
 		time = max(time,1500);
 	return (int32)time;
