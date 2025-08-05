@@ -329,6 +329,25 @@ Body:
     AegisName: CLB_SS_Egg02
     Name: Tai-Zi Egg
     Type: PetEgg
+#  [Event Item]
+  - Id: 61801
+    AegisName: Master Of Luck Accessery
+    Name: Master Of Luck Accessery
+    Type: Armor
+    Weight: 100
+    Locations:
+      Left_Accessory: true
+    ArmorLevel: 1
+    EquipLevelMin: 1
+    Slots: 1
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoCart: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+      NoStorage: true
 #  [Costume]
   - Id: 2121001
     AegisName: Costume_Drooping_Toothless
@@ -766,3 +785,193 @@ Body:
       bonus bCritical,min(99,readparam(bLuk))/10;
       if (readparam(bLuk)>=90)
          bonus bCritAtkRate,20;
+#  [Accesseru R]
+  - Id: 2190001
+    AegisName: Piece_of_Str_Impression
+    Name: Piece of Str Impression
+    Type: Armor
+    Buy: 75000
+    Weight: 100
+    Locations:
+      Left_Accessory: true
+    ArmorLevel: 1
+    EquipLevelMin: 1
+    Slots: 1
+    Script: |
+      .@r = getrefine();
+      if(readparam(bStr) > 60) {
+        bonus bAtkRate,5;
+        if(.@r > 10) {
+          bonus bAtkRate,1*(10 - .@r);
+          bonus bHitAtk,1*(10 - .@r);
+        }
+      }
+  - Id: 2190002
+    AegisName: Piece_of_Agi_Impression
+    Name: Piece of Agi Impression
+    Type: Armor
+    Buy: 75000
+    Weight: 100
+    Locations:
+      Left_Accessory: true
+    ArmorLevel: 1
+    EquipLevelMin: 1
+    Slots: 1
+    Script: |
+      .@r = getrefine();
+      if(readparam(bAgi) > 60) {
+        bonus bFlee,20;
+        bonus bAspdRate,10;
+        if(.@r > 10) {
+          bonus bFlee,2*(10 - .@r);
+          bonus bAspdRate,1*(10 - .@r);
+          bonus2 bIgnoreDefClassRate,Class_Boss,1*(10 - .@r);
+        }
+      }
+  - Id: 2190003
+    AegisName: Piece_of_Vit_Impression
+    Name: Piece of Vit Impression
+    Type: Armor
+    Buy: 75000
+    Weight: 100
+    Locations:
+      Left_Accessory: true
+    ArmorLevel: 1
+    EquipLevelMin: 1
+    Slots: 1
+    Script: |
+      .@r = getrefine();
+      if(readparam(bVit) > 60) {
+        bonus bMaxHpRate,10;
+        bonus bDef,50;
+        if(.@r > 10) {
+          bonus bMaxHpRate,1*(10 - .@r);
+          bonus bDef,5*(10 - .@r);
+          bonus2 bSubClass,Class_Boss,1*(10 - .@r);
+        }
+      }
+  - Id: 2190004
+    AegisName: Piece_of_Int_Impression
+    Name: Piece of Int Impression
+    Type: Armor
+    Buy: 75000
+    Weight: 100
+    Locations:
+      Left_Accessory: true
+    ArmorLevel: 1
+    EquipLevelMin: 1
+    Slots: 1
+    Script: |
+      .@r = getrefine();
+      if(readparam(bInt) > 60) {
+        bonus bMAtkRate,5;
+        if(.@r > 10) {
+          bonus bMAtkRate,1+(10-.@r);
+          bonus bHitMAtk,1+(10 - .@r);
+        }
+      }
+  - Id: 2190005
+    AegisName: Piece_of_DEX_Impression
+    Name: Piece of Dex Impression
+    Type: Armor
+    Buy: 75000
+    Weight: 100
+    Locations:
+      Left_Accessory: true
+    ArmorLevel: 1
+    EquipLevelMin: 1
+    Slots: 1
+    Script: |
+      .@r = getrefine();
+      if(readparam(bDex) > 60) {
+        bonus bHit,20;
+        bonus bPerfectHitAddRate,10;
+        if(.@r > 10) {
+          bonus bHit,2*(10 - .@r);
+          bonus bPerfectHitAddRate,1*(10 - .@r);
+        }
+      }
+  - Id: 2190006
+    AegisName: Piece_of_Luk_Impression
+    Name: Piece of Luk Impression
+    Type: Armor
+    Buy: 75000
+    Weight: 100
+    Locations:
+      Left_Accessory: true
+    ArmorLevel: 1
+    EquipLevelMin: 1
+    Slots: 1
+    Script: |
+      .@r = getrefine();
+      if(readparam(bLuk) > 60) {
+        bonus bCritical,20;
+        bonus bFlee2,10;
+        if(.@r > 10) {
+          bonus bCritical,2*(10 - .@r);
+          bonus bFlee2,1*(10 - .@r);
+          bonus bCritAtkRate,1*(10 - .@r);
+        }
+      }
+  - Id: 2190007
+    AegisName: Pieceful_Anomaly_Crystal
+    Name: Pieceful Anomaly Crystal
+    Type: Armor
+    Buy: 75000
+    Weight: 100
+    Locations:
+      Left_Accessory: true
+    ArmorLevel: 1
+    EquipLevelMin: 1
+    Slots: 1
+    Script: |
+      .@r = getrefine();
+      if(readparam(bLuk) > 60) {
+        bonus bCritical,20;
+        bonus bFlee2,10;
+        if(.@r > 10) {
+          bonus bCritical,2*(10 - .@r);
+          bonus bFlee2,1*(10 - .@r);
+          bonus bCritAtkRate,1*(10 - .@r);
+        }
+      }
+      if(readparam(bStr) > 60) {
+        bonus bAtkRate,5;
+        if(.@r > 10) {
+          bonus bAtkRate,1*(10 - .@r);
+          bonus bHitAtk,1*(10 - .@r);
+        }
+      }
+      if(readparam(bAgi) > 60) {
+        bonus bFlee,20;
+        bonus bAspdRate,10;
+        if(.@r > 10) {
+          bonus bFlee,2*(10 - .@r);
+          bonus bAspdRate,1*(10 - .@r);
+          bonus2 bIgnoreDefClassRate,Class_Boss,1*(10 - .@r);
+        }
+      }
+      if(readparam(bVit) > 60) {
+        bonus bMaxHpRate,10;
+        bonus bDef,50;
+        if(.@r > 10) {
+          bonus bMaxHpRate,1*(10 - .@r);
+          bonus bDef,5*(10 - .@r);
+          bonus2 bSubClass,Class_Boss,1*(10 - .@r);
+        }
+      }
+      if(readparam(bInt) > 60) {
+        bonus bMAtkRate,5;
+        if(.@r > 10) {
+          bonus bMAtkRate,1+(10-.@r);
+          bonus bHitMAtk,1+(10 - .@r);
+        }
+      }
+      if(readparam(bDex) > 60) {
+        bonus bHit,20;
+        bonus bPerfectHitAddRate,10;
+        if(.@r > 10) {
+          bonus bHit,2*(10 - .@r);
+          bonus bPerfectHitAddRate,1*(10 - .@r);
+        }
+      }

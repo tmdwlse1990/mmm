@@ -105,3 +105,63 @@ Body:
       bonus bAspd,-999;
       bonus bAtkrate,-99;
       bonus bMatkrate,-99;
+  - Id: 1999902
+    AegisName: Icecastle_Symbol
+    Name: Ice Castle Symbol
+    Type: Charm
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+    Script: |
+      .@r = getcharmrefine(1999902);
+      setarray .@stats,readparam(bStr),readparam(bAgi),readparam(bInt),readparam(bVit),readparam(bDex),readparam(bLuk);
+      switch(inarray(.@stats,max(.@stats))){
+        case 0:
+          bonus bStr,.@r*2;
+          break;
+        case 1:
+          bonus bAgi,.@r*2;
+          break;
+        case 2:
+          bonus bInt,.@r*2;
+          break;
+        case 3:
+          bonus bVit,.@r*2;
+          break;
+        case 4:
+          bonus bDex,.@r*2;
+          break;
+        case 5:
+          bonus bLuk,.@r*2;
+          break;
+        default:
+          break;
+      }
+  - Id: 1999941
+    AegisName: Master_of_Luck_Collection1
+    Name: Master of Luck Collection 1
+    Type: Charm
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoCart: true
+      NoGuildStorage: true
+      NoMail: true
+    CollectionScript: |
+      bonus2 bDropAddClass,Class_All,5;
+  - Id: 1999942
+    AegisName: Master_of_Luck_Collection2
+    Name: Master of Luck Collection 2
+    Type: Charm
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoCart: true
+      NoGuildStorage: true
+      NoMail: true
+    CollectionScript: |
+      bonus2 bDropAddClass,Class_All,10;

@@ -2966,28 +2966,28 @@ Body:
           - Name: TK_STORMKICK
             Level: 1
       - Name: TK_STORMKICK
-        MaxLevel: 7
+        MaxLevel: 15
       - Name: TK_READYDOWN
         MaxLevel: 1
         Requires:
           - Name: TK_DOWNKICK
             Level: 1
       - Name: TK_DOWNKICK
-        MaxLevel: 7
+        MaxLevel: 15
       - Name: TK_READYTURN
         MaxLevel: 1
         Requires:
           - Name: TK_TURNKICK
             Level: 1
       - Name: TK_TURNKICK
-        MaxLevel: 7
+        MaxLevel: 15
       - Name: TK_READYCOUNTER
         MaxLevel: 1
         Requires:
           - Name: TK_COUNTER
             Level: 1
       - Name: TK_COUNTER
-        MaxLevel: 7
+        MaxLevel: 15
       - Name: TK_DODGE
         MaxLevel: 1
         Requires:
@@ -3012,11 +3012,6 @@ Body:
             Level: 5
       - Name: TK_HIGHJUMP
         MaxLevel: 5
-      - Name: TK_MISSION
-        MaxLevel: 1
-        Requires:
-          - Name: TK_POWER
-            Level: 5
   - Job: Star_Gladiator
     Inherit:
       Novice: true

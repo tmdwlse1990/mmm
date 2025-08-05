@@ -46,6 +46,29 @@ Header:
   Version: 4
 
 Body:
+  - Status: Adrenaline
+    CalcFlags:
+      Cri: true
+  - Status: Readystorm
+    EndOnStart:
+      Readyturn: true
+      Readydown: true
+      Readycounter: true
+  - Status: Readydown
+    EndOnStart:
+      Readyturn: true
+      Readycounter: true
+      Readystorm: true
+  - Status: Readyturn
+    EndOnStart:
+      Readycounter: true
+      Readydown: true
+      Readystorm: true
+  - Status: Readycounter
+    EndOnStart:
+      Readyturn: true
+      Readydown: true
+      Readystorm: true
   - Status: Cp_Weapon
     CalcFlags:
       Watk: true

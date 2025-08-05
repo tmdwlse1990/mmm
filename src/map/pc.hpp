@@ -26,6 +26,7 @@
 #include "status.hpp" // unit_data
 #include "unit.hpp" // unit_data
 #include "vending.hpp" // struct s_vending
+#include "rune.hpp"
 
 enum AtCommandType : uint8;
 enum e_instance_mode : uint8;
@@ -490,6 +491,29 @@ struct s_autoattack {
 	std::vector<uint16> flee_mobs;
 };
 
+struct s_runebook_data {
+	uint16 tagId;
+	uint32 bookId;
+};
+
+struct s_runeset_data {
+	uint16 tagId;
+	uint32 setId;
+	uint8 selected;
+	uint16 upgrade;
+	uint16 failcount;
+	uint8 reward;
+};
+
+struct s_runeactivated_data {
+	uint16 tagID;
+	uint32 runesetid;
+	uint16 upgrade;
+	uint8 bookNumber;
+	uint16 failcount;
+	bool loaded;
+};
+
 class map_session_data : public block_list {
 public:
 	struct unit_data ud;
@@ -579,6 +603,7 @@ public:
 		uint64 item_enchant_index;
 		int16 pet_index;
 		unsigned int collection_flag : 5;
+		bool runeui_open;
 	} state;
 	struct {
 		unsigned char no_weapon_damage, no_magic_damage, no_misc_damage;
@@ -980,6 +1005,10 @@ public:
 	// Battlegrounds queue system [MasterOfMuppets]
 	int32 bg_id, bg_queue_id;
 	int32 tid_queue_active; ///< Timer ID associated with players joining an active BG
+
+	std::vector<s_runeset_data> runeSets;
+	std::vector<s_runebook_data> runeBooks;
+	struct s_runeactivated_data runeActive;
 
 #ifdef SECURE_NPCTIMEOUT
 	/**

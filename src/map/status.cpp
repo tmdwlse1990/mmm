@@ -4346,6 +4346,8 @@ int32 status_calc_pc_sub(map_session_data* sd, uint8 opt)
 
 	// init
 	sd->state.pet_index = -1;
+	rune_active_bonus(sd);
+	
 
 	if( sd->pd ) { // Pet Bonus
 		struct pet_data *pd = sd->pd;
@@ -4688,6 +4690,8 @@ int32 status_calc_pc_sub(map_session_data* sd, uint8 opt)
 // ----- CRITICAL CALCULATION -----
 
 #ifdef RENEWAL
+	if ((skill = pc_checkskill(sd, BS_WEAPONRESEARCH)) > 0)
+		base_status->cri += skill * 10;
 	if ((skill = pc_checkskill(sd, DC_DANCINGLESSON)) > 0)
 		base_status->cri += skill * 10;
 	if ((skill = pc_checkskill(sd, PR_MACEMASTERY)) > 0 && (sd->status.weapon == W_MACE || sd->status.weapon == W_2HMACE))
@@ -7753,6 +7757,8 @@ static int16 status_calc_critical(struct block_list *bl, status_change *sc, int3
 		critical += sc->getSCE(SC_BEYONDOFWARCRY)->val3;
 	if (sc->getSCE(SC_INTENSIVE_AIM))
 		critical += 300;
+	if (sc->getSCE(SC_ADRENALINE))
+		critical += 100;
 
 	return (int16)cap_value(critical,10,SHRT_MAX);
 }
@@ -11151,11 +11157,9 @@ static bool status_change_start_post_delay(block_list* src, block_list* bl, sc_t
 			}
 			break;
 		case SC_MAGICPOWER:
-#ifdef RENEWAL
 			val3 = 5 * val1; // Matk% increase
-#else
+#ifndef RENEWAL
 			val2 = 1; // Lasts 1 invocation
-			val3 = 10 * val1; // Matk% increase
 			val4 = 0; // 0 = ready to be used, 1 = activated and running
 #endif
 			break;
@@ -11892,8 +11896,14 @@ static bool status_change_start_post_delay(block_list* src, block_list* bl, sc_t
 			val3 = 5*val1; // Def2 reduction
 			break;
 		case SC_PROVOKE:
-			val2 = 2+3*val1; // Atk increase
-			val3 = 5+5*val1; // Def reduction.
+			if (src->type != BL_PC && val1 == 10) {
+				val2 = 0; // 0% Atk increase
+				val3 = 100; // 100% Def reduction
+			}
+			else {
+				val2 = 2 + 3 * val1; // Atk increase
+				val3 = 5 + 5 * val1; // Def reduction
+			}
 			// val4 signals autoprovoke.
 			break;
 		case SC_AVOID:

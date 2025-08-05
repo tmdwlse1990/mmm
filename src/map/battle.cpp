@@ -1014,8 +1014,6 @@ int32 battle_calc_cardfix(int32 attack_type, struct block_list *src, struct bloc
 						for (const auto &raceit : t_race2)
 							cardfix = cardfix * (100 + sd->right_weapon.addrace2[raceit]) / 100;
 						cardfix = cardfix * (100 + sd->right_weapon.addclass[tstatus->class_] + sd->right_weapon.addclass[CLASS_ALL]) / 100;
-
-						sum_atk_val += sd->right_weapon.addrace[tstatus->race] + sd->right_weapon.addrace[RC_ALL];
 						if( left&1 ) { // Left-handed weapon
 							//cardfix_ = cardfix_ * (100 + sd->left_weapon.addrace[tstatus->race] + sd->left_weapon.addrace[RC_ALL]) / 100;
 							sum_atk_val_ += sd->left_weapon.addrace[tstatus->race] + sd->left_weapon.addrace[RC_ALL];
@@ -1991,6 +1989,8 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 		// Renewal: steel body reduces all incoming damage to 1/10 [helvetica]
 		if( tsc->getSCE(SC_STEELBODY) )
 			damage = damage > 10 ? damage / 10 : 1;
+		if( tsc->getSCE(SC_READYCOUNTER) )
+			damage = damage > 10 ? damage - (damage / 7) : 1;
 #endif
 
 		//Finally added to remove the status of immobile when Aimed Bolt is used. [Jobbie]
@@ -2417,7 +2417,7 @@ int64 battle_addmastery(map_session_data *sd,struct block_list *target,int64 dmg
 	if((skill = pc_checkskill(sd,AL_DEMONBANE)) > 0 &&
 		target->type == BL_MOB && //This bonus doesn't work against players.
 		(battle_check_undead(status->race,status->def_ele) || status->race == RC_DEMON) )
-		damage += (skill*(int32)(3+(sd->status.base_level+1)*0.05));	// submitted by orn
+		damage += static_cast<decltype(damage)>(skill * (sd->status.base_level / 20.0 + 3.0));
 	if( (skill = pc_checkskill(sd, RA_RANGERMAIN)) > 0 && (status->race == RC_BRUTE || status->race == RC_PLAYER_DORAM || status->race == RC_PLANT || status->race == RC_FISH) )
 		damage += (skill * 5);
 	if( (skill = pc_checkskill(sd,NC_RESEARCHFE)) > 0 && (status->def_ele == ELE_FIRE || status->def_ele == ELE_EARTH) )
@@ -3305,7 +3305,10 @@ static bool is_attack_critical(struct Damage* wd, struct block_list *src, struct
 					cri += 500;
 				break;
 			case NJ_ISSEN:
+			case TK_STORMKICK:
 				return true;
+			case TK_TURNKICK:
+				return false; 
 		}
 		if(tsd && tsd->bonus.critical_def)
 			cri = cri * ( 100 - tsd->bonus.critical_def ) / 100;
@@ -4407,7 +4410,7 @@ static void battle_calc_skill_base_damage(struct Damage* wd, struct block_list *
 			}
 #else
 		case NJ_ISSEN:
-			wd->damage = 40 * sstatus->str + sstatus->hp * 9 * skill_lv / 10;
+			wd->damage = 40 * sstatus->str + sstatus->hp * 15 * skill_lv / 10;
 			wd->damage2 = 0;
 			break;
 		case LK_SPIRALPIERCE:
@@ -5288,6 +5291,7 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 			else if (!sd)
 				skillratio += 80000 / i - 100;
 			break;
+		/*
 		case TK_DOWNKICK:
 		case TK_STORMKICK:
 			skillratio += 60 + 20 * skill_lv;
@@ -5295,6 +5299,18 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 		case TK_TURNKICK:
 		case TK_COUNTER:
 			skillratio += 90 + 30 * skill_lv;
+			break;
+		*/
+		case TK_STORMKICK:
+			skillratio += 60 + 20 * skill_lv;
+			break;
+		case TK_DOWNKICK:
+			skillratio += 60 + 30 * skill_lv;
+			break;
+		case TK_TURNKICK:
+			skillratio += 40 + 20 * skill_lv;
+		case TK_COUNTER:
+			skillratio += 60 + 20 * skill_lv;
 			break;
 		case TK_JUMPKICK:
 			//Different damage formulas depending on damage trigger
@@ -8381,7 +8397,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src, struct bl
 	
 	if(iscritical) {
 		if(skill_id || wd.div_ > 1)
-			clif_skill_damage(*target, *target, gettick(), wd.amotion, wd.dmotion, wd.damage, wd.div_, TK_STORMKICK, -1, DMG_MULTI_HIT_CRITICAL);
+			clif_skill_damage(*target, *target, gettick(), wd.amotion, wd.dmotion, wd.damage, 1, TK_STORMKICK, -1, DMG_MULTI_HIT);
 	}
 	return wd;
 }
@@ -8647,6 +8663,9 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 					case AL_CRUCIS:
 						skillratio += -60 + 10 * skill_lv;
 						break;
+					case CR_GRANDCROSS:
+						skillratio += 40 * skill_lv;
+						break;
 					case MG_NAPALMBEAT:
 						skillratio += 70 + 10 * skill_lv;
 						break;
@@ -8779,7 +8798,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 							skillratio += 20 * sd->spiritcharm;
 						break;
 					case NJ_HYOUSYOURAKU:
-						skillratio += 150 * skill_lv;
+						skillratio += 300 * skill_lv;
 						if(sd && sd->spiritcharm_type == CHARM_TYPE_WATER && sd->spiritcharm > 0)
 							skillratio += 100 * sd->spiritcharm;
 						break;
@@ -9983,7 +10002,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 	battle_absorb_damage(target, &ad);
 
 	if(iscritical)
-		clif_skill_damage( *target, *target, gettick(), ad.amotion, ad.dmotion, ad.damage, ad.div_, TK_STORMKICK, -1, DMG_MULTI_HIT_CRITICAL);
+		clif_skill_damage( *target, *target, gettick(), ad.amotion, ad.dmotion, ad.damage, 1, TK_STORMKICK, -1, DMG_MULTI_HIT);
 	//battle_do_reflect(BF_MAGIC,&ad, src, target, skill_id, skill_lv); //WIP [lighta] Magic skill has own handler at skill_attack
 	return ad;
 }
@@ -10060,9 +10079,9 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 		case HT_CLAYMORETRAP:
 			if (sd) {
 				//md.damage = (int64)(skill_lv * sstatus->dex * (3.0 + (float)status_get_lv(src) / 100.0) * (1.0 + (float)sstatus->int_ / 35.0));
-				md.damage = (int64)((skill_lv * (10.0 + (float)status_get_lv(src) / 20.0) * (1.0 + (float)sstatus->int_ * 19)));
+				md.damage = (int64)((skill_lv * (10.0 + (float)status_get_lv(src) / 20.0) * (2.0 + (float)sstatus->int_ * 19)));
 				md.damage += md.damage * (rnd() % 20 - 10) / 100;
-				md.damage += (sd ? pc_checkskill(sd, RA_RESEARCHTRAP) * 100 : 0); 
+				md.damage += (sd ? pc_checkskill(sd, RA_RESEARCHTRAP) * 200 : 0); 
 			}
 			else {
 				md.damage = (int64)(skill_lv * sstatus->dex * (3.0 + (float)status_get_lv(src) / 100.0) * (1.0 + (float)sstatus->int_ / 35.0));

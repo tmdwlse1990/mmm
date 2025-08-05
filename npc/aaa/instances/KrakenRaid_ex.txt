@@ -15,7 +15,10 @@ icecastle,21,128,2	script	Dimension Prison#icecastle	GATE_SKYBLUE,{
 		mes "^0000ffอย่างน้อยๆก็ต้องมีปาตี้ถึงจะเข้าได้นะ.^000000";
 		close;
 	}
-	
+	if( BaseLevel < 99 ) {
+		mes "Need Level ^99000099^000000 Or More";
+		end;
+	}
 	switch(checkquest(52,PLAYTIME) ) {
 		case -1:
 			break;
@@ -428,8 +431,9 @@ OnTimer8000:
 	getmapunits(BL_PC,'mapname$,.@allplayer[0]);
 	freeloop(1);	// for if the list was too big.
 	for(.@i=0;.@i<getarraysize(.@allplayer);.@i++)
-		if(inarray(.@array,.@allplayer[.@i]) == -1 )
-			unitskilluseid .@allplayer[.@i],175,10;		// NPC_SUICIDE
+		if(inarray(.@array,.@allplayer[.@i]) == -1 ) {
+			unitkill .@allplayer[.@i];			// NPC_SUICIDE
+		}
 	freeloop(0);
 	stopnpctimer;
 	donpcevent instance_npcname("#kraken_ex_part_2")+"::OnCount";
@@ -487,7 +491,7 @@ OnTimer8000:
 	freeloop(1);	// for if the list was too big.
 	for(.@i=0;.@i<getarraysize(.@allplayer);.@i++)
 		if(inarray(.@array,.@allplayer[.@i]) == -1 )
-			unitskilluseid .@allplayer[.@i],175,10;		// NPC_SUICIDE
+			unitkill .@allplayer[.@i];		// NPC_SUICIDE
 	freeloop(0);
 	stopnpctimer;
 	end;

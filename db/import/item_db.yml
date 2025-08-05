@@ -409,6 +409,86 @@ Body:
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
+  - Id: 2000017
+    AegisName: Seasonal_Stone
+    Name: Seasonal Stone
+    Type: Etc
+    Weight: 10
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+  - Id: 2000018
+    AegisName: Rainbow_Seasonal_Stone
+    Name: Rainbow Seasonal Stone
+    Type: Etc
+    Weight: 10
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+  - Id: 2000019
+    AegisName: Heart_of_Seasonal_Stone
+    Name: Heart of Seasonal Stone
+    Type: Etc
+    Weight: 10
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+  - Id: 2000020
+    AegisName: Simple_Catalyst
+    Name: Simple Catalyst
+    Type: Etc
+    Weight: 10
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Flags:
+      DropEffect: CLIENT
+  - Id: 2000021
+    AegisName: Potent_Catalyst
+    Name: Potent Catalyst
+    Type: Etc
+    Weight: 10
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Flags:
+      DropEffect: CLIENT
+  - Id: 2000022
+    AegisName: Stable_Catalyst
+    Name: Stable Catalyst
+    Type: Etc
+    Weight: 10
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Flags:
+      DropEffect: CLIENT
+  - Id: 2000023
+    AegisName: Unstable_Left_DD
+    Name: Unstable Left Dagger
+    Type: Etc
+    Weight: 10
+    Flags:
+      DropEffect: CLIENT
+  - Id: 2000024
+    AegisName: Unstable_Right_DD
+    Name: Unstable Right Dagger
+    Type: Etc
+    Weight: 10
+    Flags:
+      DropEffect: CLIENT
 #   [Side Quest Item]
   - Id: 2005001
     AegisName: Golden_Egg

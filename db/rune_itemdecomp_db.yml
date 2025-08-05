@@ -1,0 +1,5346 @@
+###########################################################################
+# Rune Item Decomposition Database
+###########################################################################
+#
+###########################################################################
+
+Header:
+  Type: RUNE_ITEMDECOMP_DB
+  Version: 1
+
+Body:
+  - AegisName: Poring_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Fabre_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Pupa_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Drops_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Poring__Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Lunatic_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Pecopeco_Egg_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Picky_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Chonchon_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Wilow_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Picky__Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Thief_Bug_Egg_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Andre_Egg_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Roda_Frog_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Condor_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Thief_Bug_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Savage_Babe_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Andre_Larva_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Hornet_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Farmiliar_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Rocker_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Spore_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Desert_Wolf_Babe_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Plankton_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Skeleton_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Thief_Bug_Female_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Kukre_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Tarou_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Wolf_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Mandragora_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Pecopeco_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Ambernite_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Poporing_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Worm_Tail_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Hydra_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Muka_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Snake_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Zombie_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Stainer_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Creamy_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Coco_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Steel_Chonchon_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Andre_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Smokie_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Horn_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Martin_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Ghostring_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Poison_Spore_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Vadon_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Thief_Bug_Male_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Yoyo_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Elder_Wilow_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Vitata_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Angeling_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Marina_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Dustiness_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Metaller_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Thara_Frog_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Soldier_Andre_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Goblin_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Cornutus_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Anacondaq_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Caramel_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Zerom_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Kaho_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Orc_Warrior_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Megalodon_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Scorpion_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Drainliar_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Eggyra_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Orc_Zombie_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Golem_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Pirate_Skel_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: BigFoot_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Argos_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Magnolia_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Phen_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Savage_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Mantis_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Flora_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Hode_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Desert_Wolf_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Rafflesia_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Marine_Sphere_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Orc_Skeleton_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Soldier_Skeleton_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Giearth_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Frilldora_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Sword_Fish_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Munak_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Kobold_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Skel_Worker_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Obeaune_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Archer_Skeleton_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Marse_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Zenorc_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Matyr_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Dokebi_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Pasana_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Sohee_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Sand_Man_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Whisper_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Horong_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Requiem_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Marc_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Mummy_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Verit_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Myst_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Jakk_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Ghoul_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Strouf_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Marduk_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Marionette_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Argiope_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Hunter_Fly_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Isis_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Side_Winder_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Petit_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Bathory_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Petit__Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Phreeoni_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Deviruchi_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Eddga_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Medusa_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Deviace_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Minorous_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Nightmare_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Golden_Bug_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Baphomet__Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Scorpion_King_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Moonlight_Flower_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Mistress_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Daydric_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Dracula_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Orc_Load_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Khalitzburg_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Drake_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Anubis_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Joker_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Knight_Of_Abyss_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Evil_Druid_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Doppelganger_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Orc_Hero_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Osiris_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Berzebub_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Maya_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Baphomet_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Pharaoh_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Gargoyle_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Goat_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Gajomart_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Galapago_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Crab_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Rice_Cake_Boy_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Goblin_Leader_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Steam_Goblin_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Goblin_Archer_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Flying_Deleter_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Nine_Tail_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Antique_Firelock_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Grand_Peco_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Grizzly_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Gryphon_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Gullinbursti_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Gig_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Nightmare_Terror_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Neraid_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Dark_Lord_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Dark_Illusion_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Dark_Frame_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Dark_Priest_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: The_Paper_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Demon_Pungus_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Deviling_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Poison_Toad_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Dullahan_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Dryad_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Dragon_Tail_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Dragon_Fly_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Driller_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Disguise_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Diabolic_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Vagabond_Wolf_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Lava_Golem_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Rideword_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Raggler_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Raydric_Archer_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Leib_Olmai_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Wraith_Dead_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Wraith_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Loli_Ruri_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Rotar_Zairo_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Lude_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Rybio_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Leaf_Cat_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Marin_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Mastering_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Maya_Puple_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Merman_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Megalith_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Majoruros_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Civil_Servant_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Mutant_Dragon_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Mini_Demon_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Mimic_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Mystcase_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Mysteltainn_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Miyabi_Ningyo_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Violy_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Wander_Man_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Vocal_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Bon_Gun_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Brilight_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Bloody_Murderer_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Blazzer_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Sasquatch_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Live_Peach_Tree_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Succubus_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Sageworm_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Solider_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Skeleton_General_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Skel_Prisoner_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Stalactic_Golem_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Stem_Worm_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Stone_Shooter_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Sting_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Spring_Rabbit_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Sleeper_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: C_Tower_Manager_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Shinobi_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Increase_Soil_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Wild_Ginseng_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Baby_Leopard_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Anolian_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Cookie_XMAS_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Amon_Ra_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Owl_Duke_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Owl_Baron_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Iron_Fist_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Arclouse_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Archangeling_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Apocalips_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Antonio_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Alarm_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Am_Mut_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Assulter_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Aster_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Ancient_Mummy_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Ancient_Worm_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Executioner_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Elder_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Alligator_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Alice_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Tirfing_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Orc_Lady_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Orc_Archer_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Wild_Rose_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Wicked_Nymph_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Wooden_Golem_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Wootan_Shooter_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Wootan_Fighter_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Evil_Cloud_Hermit_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Incant_Samurai_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Wind_Ghost_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Li_Me_Mang_Ryang_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Eclipse_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Explosion_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Injustice_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Incubus_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Giant_Spider_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Giant_Honet_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Dancing_Dragon_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Shellfish_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Zombie_Master_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Zombie_Prisoner_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Lord_Of_Death_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Zherlthsh_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Gibbet_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Deleter_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Geographer_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Zipper_Bear_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Tengu_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Greatest_General_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Chepet_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Choco_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Karakasa_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Kapha_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Carat_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Caterpillar_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Cat_O_Nine_Tail_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Kobold_Leader_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Kobold_Archer_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Cookie_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Quve_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Kraben_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Cramp_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Cruiser_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Cremy_Fear_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Clock_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Chimera_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Killer_Mantis_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Tao_Gunka_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Whisper_Boss_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Tamruan_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Turtle_General_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Toad_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Kind_Of_Beetle_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Tri_Joint_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Parasite_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Panzer_Goblin_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Permeter_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Fur_Seal_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Punk_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Penomena_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Pest_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Fake_Angel_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Mobster_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Knight_Windstorm_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Freezer_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Bloody_Knight_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Hylozoist_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: High_Orc_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Garm_Baby_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Garm_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Harpy_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: See_Otter_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Blood_Butterfly_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Hyegun_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Phendark_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Dark_Snake_Lord_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Heater_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Waste_Stove_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Venomous_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Noxious_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Pitman_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Ungoliant_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Porcellio_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Obsidian_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Mineral_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Teddy_Bear_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Metaling_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Rsx_0806_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Mole_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Anopheles_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Hill_Wind_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Ygnizem_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Armaia_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Whikebain_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Erend_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Rawrel_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Kavac_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: B_Ygnizem_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Removal_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Gemini_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Gremlin_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Beholder_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: B_Seyren_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Seyren_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: B_Eremes_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Eremes_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: B_Harword_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Harword_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: B_Magaleta_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Magaleta_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: B_Katrinn_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Katrinn_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: B_Shecil_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Shecil_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Venatu_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Dimik_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Archdam_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Bacsojin_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Chung_E_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Apocalips_H_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Orc_Baby_Card_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Lady_Tanee_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Green_Iguana_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Acidus_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Acidus__Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Ferus_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Ferus__Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Novus__Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Novus_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Hydro_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Dragon_Egg_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Detale_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Ancient_Mimic_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Deathword_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Plasma_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Breeze_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Retribution_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Observation_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Shelter_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Solace_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Tha_Maero_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Tha_Odium_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Tha_Despero_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Tha_Dolor_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Thanatos_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Aliza_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Alicel_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Aliot_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Kiel_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Skogul_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Frus_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Skeggiold_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Randgris_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Gloom_Under_Night_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Agav_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Echio_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Vanberk_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Isilla_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Hodremlin_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Seeker_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Snowier_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Siroma_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Ice_Titan_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Gazeti_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Ktullanux_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Muscipular_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Drosera_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Roween_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Galion_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Stapo_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Atroce_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Byorgue_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Sword_Guardian_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Bow_Guardian_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Salamander_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Ifrit_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Kasa_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Magmaring_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Imp_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Knocker_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Zombie_Slaughter_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Ragged_Zombie_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Hell_Poodle_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Banshee_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Flame_Skull_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Necromancer_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Fallen_Bishop_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Tatacho_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Aqua_Elemental_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Draco_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Luciola_Vespa_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: P_Skeleton_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Centipede_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Cornus_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Dark_Shadow_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Banshee_Master_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+      Type1: 3
+  - AegisName: Centipede_Larva_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Hilsrion_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Nidhogg_Shadow_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Nahtzigger_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Duneirre_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Lata_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Ringco_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Pillar_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Hardrock_Mommos_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Tendrilion_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Aunoe_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Panat_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Beholder_Master_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Heavy_Metaling_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Pinguicula_Dark_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Naga_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Nepenthes_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Egg_Of_Draco_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Bradium_Goram_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Ancient_Tree_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Jakudam_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Cobalt_Mineral_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Pinguicula_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Hell_Apocalips_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Scaraba_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Dolomedes_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Q_Scaraba_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Gold_Scaraba_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Gold_Q_Scaraba_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Miming_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Little_Fatum_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Parus_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Angra_Mantis_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Pom_Spider_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Alnoldi_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Comodo_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Cendrawasih_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Banaspaty_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Butoijo_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Leak_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Sedora_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Sropho_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Pot_Dofle_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: King_Dramoh_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Kraken_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Odd_Coelacanth_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Black_Coelacanth_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Mutant_Coelacanth_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Cruel_Coelacanth_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Siorava_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Red_Eruma_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Wild_Rider_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Mini_Octopus_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Giant_Octopus_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Novice_Poring_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Upd_Necromancer_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Fenrir_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Fenrir_Card_
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: M_Morocc_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Clown_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Professor_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Champion_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Creator_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Stalker_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Paladin_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Gypsy_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Alphoccio_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Ceila_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Chen_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Flamel_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Gertie_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Randel_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Trentini_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Daehyon_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Soheon_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Gioia_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Elvira_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Pyuriel_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Lora_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Kades_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Rudo_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Bungisngis_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Engkanto_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Manananggal_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Mangkukulam_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Tikbalang_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Tiyanak_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Wakwak_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Jejeling_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Bangungot_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Bakonawa_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Buwaya_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Menblatt_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Petal_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Cenere_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: AntiqueBook_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: LichternB_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: LichternY_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: LichternR_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: LichternG_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Amdarais_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: AmdaraisH_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: CorruptionRoot_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: CorruptionRootH_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: UndeadKnightM_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: UndeadKnightF_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: FaithfulManager_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: White_Knightage_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Khaliz_Knightage_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Sarah_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Timeholder_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Big_Ben_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Big_Bell_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Neo_Punk_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Arc_Elder_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Time_Keeper_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Owl_Viscount_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Owl_Marquees_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: P_Archer_Skeleton_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: P_Soldier_Skeleton_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: P_Amdarais_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Bijou_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Immotal_Corps_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Watcher_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Tappy_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Frozenwolf_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Zombie_Guard_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: IFN_Toad_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: IFN_V_Wolf_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: IFN_Vocal_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: IFN_Eclipse_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: IFN_Chimera_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: IFN_Osiris_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: IFN_Eddga_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: IFN_Phreeoni_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: IFN_OrcHero_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: IFN_Tao_Gunka_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Grave_Amon_Ra_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Grave_Arclouse_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Grave_Mimic_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Grave_Minorous_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Grave_Mummy_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Grave_A_Mummy_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Grave_Verit_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Eggring_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Basilisk1_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Basilisk2_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Big_Eggring_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Leaf_Lunatic_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Grass_Fabre_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Wild_Honet_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Sw_Roda_Frog_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Hunter_Wolf_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Trance_Spore_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Ju_Mandragora_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Fru_Pom_Spider_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Sorcerer_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Sura_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Minstrel_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: GuillotineCross_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Archbishop_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Ranger_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Mechanic_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Warlock_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: RuneKnight_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: RoyalGuard_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Genetic_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: ShadowChaser_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Wanderer_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Real_Eremes_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Real_Magaleta_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Real_Katrinn_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Real_Shecil_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Real_Harword_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Real_Seyren_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Real_Randel_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Real_Flamel_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Real_Ceila_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Real_Chen_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Real_Gertie_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Real_Trentini_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Real_Alphoccio_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Charleston_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Step_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Rock_Step_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Kick_Step_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: KickAndKick_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: GreenCenere_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: RepairRobot_T_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: ExplorationRover_T_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Scr_MT_Robots_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: GC109_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: DR815_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: T_W_O_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: AngerMoonlight_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: AngerNineTail_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: BitterBonGun_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: BitterSohee_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: BitterMunak_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: BitterArcherSk_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: WizardOfVeritas_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: FuryHero_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: SweetNightM_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: MattDrainliar_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: LivingDead_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Ill_Dracula_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Bomi_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Grand_Pere_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: PlayingPere_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: SingingPere_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: JitterbugCard
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: AngerGazeti_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: AngerSnowier_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: AngerIceTitan_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: AwakenKtullanux_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: OminousSolider_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: OminousPermeter_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: OminousHeater_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: OminousAssulter_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: OminousFreezer_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: OminousTurtleG_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Iara_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Piranha_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Curupira_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Toucan_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Jaguar_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Headless_Mule_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Boitata_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Human_Kimera_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Matter_Kimera_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Heart_Hunter_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Venom_Kimera_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Evil_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Cutie_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Wood_Goblin_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Les_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Uzhas_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Vavayaga_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Mavka_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Gopinich_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Faceworm_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Faceworm_Q_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Faceworm_D_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Faceworm_Egg_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Faceworm_L_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Irene_Elder_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Payon_Soldier_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Cowraiders1_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Cowraiders2_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Cowraiders3_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: E_Cowraiders1_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: E_Cowraiders2_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: E_Cowraiders3_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Rr_Cramp_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Rr_Arclouse_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Gaster_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Coyote_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Mechaspider_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: AirShip_Raid_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Felock_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Gigantes_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Knight_Sakray_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: S_Nihil_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: S_Agnes_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: S_Jurgen_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: S_Spica_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Archi_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Dio_Anemos_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Geffen_Gang_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Geffen_Thug_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Geffen_Thief_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Pa_Monk_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Ordre_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Blut_Hase_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Kuro_Akuma_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Hyper_Death_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Rechenier_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Odorico_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Jew_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Dy_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Fei_Kanabian_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Evil_Shadow_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Evil_Fanatics_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Colorful_T_Bear_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Shining_T_Bear_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Pitman_Worker_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Fragment_Of_Soul_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Sinister_Obsidian_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Ancient_Trijoint_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Ancient_Sta_Golem_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Ancient_Megalith_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Ancient_Tao_Gunka_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Ancient_S_Shooter_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Ancient_W_Shooter_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Ancient_W_Fighter_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Ancient_W_Deffend_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: E_EA2S_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: EL_A17T_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Bellare_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: High_Bellare_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Sanare_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: High_Sanare_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Plaga_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Mutant_Plaga_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Dolor_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Mt_Dolor_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Venenum_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Mt_Venenum_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Caput_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Mt_Caput_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Miguel_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: R48_85_Bestia_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: E_EA1L_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: DespairGodMorocc_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Ahat_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Shnaim_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Brinaranea_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Muspellskoll_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: MinionOfMorocc_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: ReaperAnkou_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: LivingDeath_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Schmidt_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: S_Kronecker_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: S_Skia_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Chaos_Baphomet_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Chaos_Ba_Jr_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Chaos_S_Winder_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Chaos_H_Fly_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Chaos_Mantis_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Chaos_Goring_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Chaos_K_Mantis_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Chaos_Poporing_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Chaos_Stem_W_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Chaos_Acolyte_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Firm_Muspell_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Firm_Kaho_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Firm_Lava_G_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Firm_Explosion_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Firm_Deleter1_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Firm_Deleter2_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Firm_Nightmare_T_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Firm_Blazzer_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Polluted_Raydric_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Polluted_Ray_A_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Frozen_Gargoyle_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Polluted_Sting_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Prison_Breaker_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Ice_Ghost_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Flame_Ghost_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Polluted_W_Man_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Polluted_Spi_Q_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Polluted_Dark_L_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: C_Himel_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: C_CorruptionRoot_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: C_Amdarais_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: C_White_Knight_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: C_Khaliz_Knight_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: C_Raydric_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: C_Raydric_Archer_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: C_Cursed_Butler
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: S_Kathryn_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: S_Issac_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: XM_Tree_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: XM_Cookie_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: XM_Mystcase_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: XM_Lude_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: XM_Hylozoist_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: XM_Marionette_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: XM_Teddy_Bear_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: XM_Celine_Kimi_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: As_Bdy_Knight_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: As_Wind_Ghost_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: As_Ragged_Golem_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Poisonous_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Toxious_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Porcellio_W_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Neo_Mineral_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Abyss_Man_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Jeweliant_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Jungoliant_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Angelgolt_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Plasma_Spt_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Plasma_Arch_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Holy_Frus_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Holy_Skogul_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Reginleif_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Ingrid_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Ferus_P_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Treasure_Mimic_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Acidus_B_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Acidus_S_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Bone_Ferus_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Bone_Acidus_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Bone_Detale_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Beta_Guards_Ng_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: O_Cleaner_Ng_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Sweety_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Redpepper_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Redpepper_H_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Assistant_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Assistant_H_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Dry_Rafflesia_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Dry_Rafflesia_H_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Alnoldi_Ex_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Alnoldi_Ex_H_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Beta_Scissore_Ng_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: B_Scissore_Ng_H_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Verporta_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Verporte_H_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Papila_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Papila_H_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Papila_Ruba_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Papila_Ruba_H_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Papila_Cae_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Papila_Cae_H_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Aries_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Aries_H_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Silva_Papilia_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Gran_Papilia_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Beta_Cleaner_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Beta_Baths_A_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Bath_Mermaid_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Bookworm_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Roaming_Splbook_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Pitaya_R_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Pitaya_Boss_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Venenum3_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: EP17_2_Cramp_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Waterfall_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Bellare3_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Dolor3_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Plasma_Y_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Plaga3_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Sanare3_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Plasma_R_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Plasma_R2_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: EP17_2_Phen_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: EP17_2_Sword_Fish_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: EP17_2_Piranha_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: EP17_2_Marc_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Pitaya_Y_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Pitaya_V_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Pitaya_B_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Pitaya_G_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: S_Wolf_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: S_Poe_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: ILL_Sropho_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: ILL_Obeaune_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: ILL_Deviace_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: ILL_Marse_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: ILL_Merman_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: ILL_Abysmal_Witch_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: ILL_Sedora_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: ILL_Sword_Fish_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: ILL_Strouf_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: ILL_Phen_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: ILL_King_Dramoh_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: ILL_Kraken_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: MD_Airboat_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: MD_Airboat_Card2
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: MD_Airboat_Card3
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: MD_Airboat_Card4
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: MD_Airboat_Card5
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: MD_Airboat_Card6
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: MD_Airboat_Card7
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: MD_Geffen_Archi_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: MD_Geffen_Dio_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: MD_Geffen_Thief_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: MD_Geffen_Gang_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: MD_Geffen_Thug_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: MD_Geffen_Monk_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: MD_Geffen_Ordre_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: MD_Geffen_Blut_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: MD_Geffen_Akuma_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: MD_Geffen_Hyper_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: MD_Geffen_Odorico_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: MD_Geffen_Reche_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: MD_Geffen_Jew_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: MD_Geffen_Fei_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: MD_Geffen_Dy_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Sakray_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Tiara_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: EP18_Ash_Toad_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: EP18_Rakehand_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: EP18_Spark_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: EP18_Hot_Molar_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: EP18_Volcaring_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: EP18_Lava_Toad_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: EP18_Burning_Fang_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: EP18_Ashhopper_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: EP18_Ashring_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: EP18_Grey_Wolf_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: EP18_Tumble_Ring_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: EP18_Firewind_Kite_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: EP18_Phantom_Wolf_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: EP18_Schulang_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: EP18_Demi_Freyja_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: ILL_Andre_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: ILL_Andre_soldier_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: ILL_Andre_larva_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: ILL_Deniro_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: ILL_Piere_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: ILL_Ant_egg_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: ILL_Giearth_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: ILL_Farmiliar_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: ILL_Vitata_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: ILL_Maya_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Gan_Ceann_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Brutal_Murderer_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Ghost_Cube_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Lude_Gal_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Disguiser_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Bluemoon_Loli_Ruri_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Grote_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Pierrotzoist_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Death_Witch_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Giant_Caput_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Dolorian_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Plagarion_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Deadre_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Venedi_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Amitera_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Litus_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Fillia_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Vanilaqus_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Lava_Eater_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Fulgor_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Napeo_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Galensis_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: The_One_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Reken_Guard_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Reken_H_Guard_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Regen_Scientist_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Unknown_Swordman_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Crow_Baron_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Crow_Duke_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Eldest_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Empathizer_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Happy_Giver_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Pray_Giver_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Smile_Giver_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Tha_Anger_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Tha_Horror_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Tha_Regret_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Tha_Resent_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Void_Mimic_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Book_Of_Death_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Broken_Thanatos_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: R001_Bestia_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Extra_Joker_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Erzsebet_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Jeniffer_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: General_Orc_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Sieglouse_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Goblin_King_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: S_Meyer_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: S_Helmut_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Ice_Gangu_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Shining_Seaweed_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Ice_Straw_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Unfrost_Flower_card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Limacina_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Calmaring_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Primitive_Rgan_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Lowest_Rgan_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Junior_Rgan_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Middle_G_Rgan_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Discarded_P_R_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Discarded_L_R_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Cave_Calmaring_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Cave_Un_Flower_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: B_Hallucigenia_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Hallucigenia_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: One_E_Dollocaris_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Eyes_Dollocaris_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Ultra_Limacina_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Simulation_Juncea_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: R_Superior_Rgan_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: E_Inter_Rgan_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Heart_Hunter_AT_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Aquila_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: aegis_300422
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: aegis_300424
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: aegis_300426
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Burning_Knight_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Dedsera_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Hardrock_Titan_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Deadween_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Gaia_Pol_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: Punch_Bug_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Aferde_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Dispol_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Timbers_Card
+    Decomposition:
+      Type1: 1
+      Type2: 2
+
+  - AegisName: Renire_Card
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: aegis_300455
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: aegis_300456
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Grey_Icewind_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: Icewind_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: aegis_300459
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: aegis_300460
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: aegis_300461
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: aegis_300462
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: aegis_300463
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: aegis_300464
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: aegis_300465
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: aegis_300466
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: aegis_300467
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: aegis_300468
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: aegis_300469
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: aegis_300470
+    Decomposition:
+      Type1: 5
+      Type2: 6
+
+  - AegisName: aegis_300471
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: aegis_300472
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: aegis_300473
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: aegis_300474
+    Decomposition:
+      Type1: 3
+      Type2: 4
+
+  - AegisName: R_Sealed_Rune
+    Decomposition:
+      Type1: 11
+      Type2: 12
+
+  - AegisName: R_Core_Rune
+    Decomposition:
+      Type1: 13
+      Type2: 14
+
+  - AegisName: R_Recycle_Card
+    Decomposition:
+      Type1: 5
+      Type2: 6
