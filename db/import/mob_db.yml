@@ -273,7 +273,7 @@ Body:
     
   - Id: 30002
     AegisName: GLITCH_CAT_W
-    Name: Glitch White Cat
+    Name: Glitch-WC
     Level: 100
     Hp: 100
     Attack: 1
@@ -292,7 +292,7 @@ Body:
     AttackMotion: 1
     ClientAttackMotion: 0
     DamageMotion: 1
-    Ai: 06
+    Ai: 25
     Modes:
       IgnoreMagic: true
       IgnoreMelee: true
@@ -300,24 +300,18 @@ Body:
       IgnoreRanged: true
       KnockBackImmune: true
     Drops:
-      - Item: Pieceful_Anomaly_Crystal
-        Rate: 1
-        StealProtected: true
       - Item: Unstable_Left_DD
-        Rate: 500
-        StealProtected: true
-      - Item: Unstable_Right_DD
-        Rate: 500
+        Rate: 5
         StealProtected: true
       - Item: Simple_Catalyst
-        Rate: 100
+        Rate: 400
         StealProtected: true
       - Item: Potent_Catalyst
-        Rate: 5
+        Rate: 50
         StealProtected: true
   - Id: 30003
     AegisName: GLITCH_CAT_B
-    Name: Glitch Black Cat
+    Name: Glitch-BC
     Level: 100
     Hp: 100
     Attack: 1
@@ -336,7 +330,7 @@ Body:
     AttackMotion: 1
     ClientAttackMotion: 0
     DamageMotion: 1
-    Ai: 06
+    Ai: 25
     Modes:
       IgnoreMagic: true
       IgnoreMelee: true
@@ -344,20 +338,15 @@ Body:
       IgnoreRanged: true
       KnockBackImmune: true
     Drops:
-      - Item: Pieceful_Anomaly_Crystal
-        Rate: 1
-        StealProtected: true
-      - Item: Unstable_Left_DD
-        Rate: 500
         StealProtected: true
       - Item: Unstable_Right_DD
-        Rate: 500
+        Rate: 5
         StealProtected: true
       - Item: Simple_Catalyst
-        Rate: 100
+        Rate: 400
         StealProtected: true
       - Item: Potent_Catalyst
-        Rate: 5
+        Rate: 50
         StealProtected: true
 
   - Id: 20582

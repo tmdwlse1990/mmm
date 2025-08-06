@@ -924,6 +924,14 @@ Body:
     ArmorLevel: 1
     EquipLevelMin: 1
     Slots: 1
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoCart: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+      NoStorage: true
     Script: |
       .@r = getrefine();
       if(readparam(bLuk) > 60) {

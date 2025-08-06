@@ -485,6 +485,7 @@ function	Get_Job_Equip	{
 			case Job_Thief:
 			case Job_Gunslinger:
 			case Job_Ninja:
+			default:
 				getitem 13200,500;
 				getitem 1750,500;
 				getitem 2001001,1;	// Paradise Weapon
