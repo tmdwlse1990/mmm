@@ -331,7 +331,7 @@ Body:
     Type: PetEgg
 #  [Event Item]
   - Id: 61801
-    AegisName: Master Of Luck Accessery
+    AegisName: Master_Of_Luck_Accessery
     Name: Master Of Luck Accessery
     Type: Armor
     Weight: 100

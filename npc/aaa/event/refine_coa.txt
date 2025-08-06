@@ -1,0 +1,73 @@
+//-	marketshop	#refine_coa_event	-1,2001101:11:5,2001104:12:1,2001105:13:1,6635:14:10,1999941:15:1,2002017:16:20,1999942:17:1,2002018:18:20,2001955:19:10,9183:20:1
+icecastle,183,210,5	script	COA Refine Event	800,{
+	if(getgmlevel() < 99) end;		// เอาออกถ้าจะเปิดใช้ ย้ายพิกัด ชื่อ NPC sprite NPC จัดตั้งให้ครบสวยๆก่อนค่อยลบบรรทัดนี้ทิ้ง
+	// แก้คำสวยๆทุกๆ Mes ให้สมเหตุสมผล อ่านง่าย เข้าใจง่ายด้วย
+	// แก้คำสวยๆทุกๆ Mes ให้สมเหตุสมผล อ่านง่าย เข้าใจง่ายด้วย
+	// แก้คำสวยๆทุกๆ Mes ให้สมเหตุสมผล อ่านง่าย เข้าใจง่ายด้วย
+	.@npcname$ = "[ชื่อ NPC สวยๆ]";
+	setarray .@itemid[11],2001101,2001104,2001105,6635,1999941,2002017,1999942,2002018,2001955,9183;
+	setarray .@itemamt[11],5,1,1,10,1,20,1,20,10,1;
+	mes .@npcname$;
+	mes "สวัสดี เราคือผู้จัดการ Event";
+	mes "ท่านต้องการให้เราช่วยอะไรกัน";
+Main_Menu:
+	next;
+	menu
+		"รายละเอียด",Descrip,
+		"รับประดับกิจกรรม",Item_event,
+		"แลกของรางวัล",Exchange_Acc,
+		"ออก",-;
+	end;
+
+Item_event:
+	if(countitem(61801)) {
+		mes "ท่านมีไอเท็ม Event อยู่แล้ว";
+		end;
+	}
+	.@zenycost = 100000; // ราคาแหวน event อยากให้ฟรีใส่ 0
+	if(.@zenycost) {
+		mes "มีค่าใช้จ่ายนะ ราคา "+F_InsertComma(.@zenycost);
+		mes "พร้อมจ่ายไหม";
+		if(select("• พร้อม:• ยกเลิก") == 2 ) end;
+		if(zeny < .@zenycost) {
+			mes "เงินไม่พอนะ";
+			end;
+		}
+		zeny -= .@zenycost;
+	}
+	getitem 61801,1;
+	end;
+Descrip:	
+	setdialogsize(300,400);
+	mes .@npcname$;
+	mes "นี่คือกิจกรรมตีบวกแลกของ";
+	mes "โดยรางวัลจะเป็นดังนี้";
+	mes "---------------";
+	for(.@i = 11; .@i < 20; .@i++)
+		mes "ประดับ +"+.@i+"-> [^i["+.@itemid[.@i]+"]] x "+.@itemamt[.@i]+(getd("#refine_coa_+"+.@i) > 0 ? "^ff0000(แลกแล้ว)^000000":"");
+	mes "---------------";
+	goto Main_Menu;
+	end;
+Exchange_Acc:
+	disable_items;
+	if(getequipid(EQI_ACC_L) != 61801) {
+		mes "กรุณาสวมใส่ Item Event";
+		end;
+	}
+	.@refine = getequiprefinerycnt(EQI_ACC_L);
+	
+	mes "[^i["+.@itemid[.@refine]+"]] x "+.@itemamt[.@refine]+" ea";
+	mes "ของรางวัลสำหรับ +"+.@refine+"^i[61801]";
+	mes "ของรางวัลแต่ละระดับสามารถแลกได้แค่ 1 รอบต่อไอดีเท่านั้น.";
+	if(getd("#refine_coa_+"+.@refine) ) {
+		mes "^FF0000ปัจจุบันท่านแลกของชิ้นนี้ไปแล้ว^000000";
+		end;
+	}
+	mes "^FF0000ท่านอยากแลกรางวัลนี้เลยไหม?^000000";
+	if(select("• แลกเลย:• ยกเลิก") == 2 ) end;
+	setd("#refine_coa_+"+.@refine),1;
+	delequip EQI_ACC_L;
+	announce "ท่าน, " + strcharinfo(0) + " แลกรับ "+itemlink(.@itemid[.@refine])+"x"+.@itemamt[.@refine]+" จาก Event",bc_blue|bc_all;
+	getitem .@itemid[.@refine],.@itemamt[.@refine];
+	end;
+}	
