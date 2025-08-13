@@ -7390,7 +7390,8 @@ void clif_use_card(map_session_data *sd,int32 idx)
 		}
 		//ARR_FIND(0, sd->inventory_data[i]->slots, j, sd->inventory.u.items_inventory[i].card[j] == 0);
 		j = isEnchantment ? sd->inventory_data[i]->slots : j; // [Start's] Enchantment will start at max card slot index
-		ARR_FIND(isEnchantment ? (sd->inventory_data[i]->slots) : 0, isEnchantment ? cap_value(sd->inventory_data[i]->slots + battle_config.config_enchantment_maximum, 0, 4) : sd->inventory_data[i]->slots, j, sd->inventory.u.items_inventory[i].card[j] == 0); // [Start's] Modify a bit for Enchantment
+		//ARR_FIND(isEnchantment ? (sd->inventory_data[i]->slots) : 0, isEnchantment ? cap_value(sd->inventory_data[i]->slots + battle_config.config_enchantment_maximum, 0, 4) : sd->inventory_data[i]->slots, j, sd->inventory.u.items_inventory[i].card[j] == 0); // [Start's] Modify a bit for Enchantment
+		ARR_FIND(isEnchantment ? (sd->inventory_data[i]->slots) : 0, isEnchantment ? cap_value(sd->inventory_data[i]->slots + battle_config.config_enchantment_maximum, 0, 4) : sd->inventory_data[i]->slots, j, isEnchantment ? true : sd->inventory.u.items_inventory[i].card[j] == 0); // [Start's] Modify a bit for Enchantment
 		if (j == (isEnchantment ? cap_value(sd->inventory_data[i]->slots + battle_config.config_enchantment_maximum, 0, 4) : sd->inventory_data[i]->slots)) // No room + [Start's] Modify a bit for Enchantment
 			continue;
 

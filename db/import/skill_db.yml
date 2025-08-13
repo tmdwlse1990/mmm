@@ -15654,7 +15654,7 @@ Body:
     TargetType: Ground
     Range: 9
     Hit: Single
-    HitCount: 3
+    HitCount: -3
     Element: Wind
     CopyFlags:
       Skill:

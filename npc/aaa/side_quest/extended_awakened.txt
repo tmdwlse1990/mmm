@@ -1,0 +1,228 @@
+icecastle,178,175,4	script	การตื่นของคราสพิเศษ 1	4_EP21_M_WORKER_A,{
+	mes "กำลังเช็คว่าเจ้าอยู่คราสอะไร";
+	setdialogsize(350,450);
+	sleep2 1000;
+	for(.@i=0; .@i <=3; .@i++) {
+		mes ".";
+		sleep2 1000;
+	}
+	mes "อ่าหะ เจ้าคือ "+Jobname(Class);
+	if(BaseLevel < 90) {
+		sleep2 500;
+		mes "แต่เลเวลของเจ้ายังไม่ถึง 90 เลยนะ";
+		mes "หมั่นเพียร";
+		sleep2 1000;
+		mes "ฝึกฝน";
+		sleep2 1000;
+		mes "อดทน";
+		sleep2 1000;
+		mes "แข็งแรง";
+		sleep2 1000;
+		mes "ฮูย่า";
+		close;
+	}
+	
+	switch(BaseClass) {
+		case 0:		// Novice
+			.@x = 133;
+			.@y = 167;
+			break;
+		case 24:		// Gunslinger
+			.@x = 77;
+			.@y = 106;
+			break;
+		case 25:		// Ninja
+			.@x = 67;
+			.@y = 80;
+			break;
+		case 4046:		// Taekwondo
+			.@x = 122;
+			.@y = 216;
+			break;
+		default:
+			mes "เจ้าตื่นรู้ด้วยตัวเองได้อยู่แล้ว";
+			end;
+	}
+	mes "ไปที่พิกัดนี้นะ ไปพอเจอรุ่นพี่ของเจ้า";
+	navigateto("icecastle",.@x,.@y);
+	end;
+}
+
+/* Super Novice
+ * Awaken Quest line
+ */
+ icecastle,133,167,4	script	Big Kid#nv_awake	4_M_NOV_RUMIN,{
+	 
+	if (BaseClass == 0) {
+		mes "[เด็กโข่ง]";
+		mes "ไงเจ้ารุ่นน้อง";
+		mes "รู้ป่าวเด็กๆอย่างเรา สามารถตื่นรู้ได้จากสภาวะเด็กธรรมดา";
+		mes "สู้สภาวะเด็กโข่ง";
+		next;
+		mes "ข้าจะสอนทางลัดให้เจ้าง่ายๆ";
+		mes "ไปที่ถ้ำหลังน้ำตก";
+		mes "ในส่วนที่ลึกที่สุดของถ้ำนั้น";
+		next;
+		mes "เจ้าจะเจอวิธีที่จะทำให้เจ้าได้รับรู้ว่า";
+		mes "พลังของเด็กโข่งเป็นยังไง..";
+		next;
+		mes "อย่าลืมหละ ส่วนที่ลึกที่สุด ของถ้ำ หลังน้ำตก";
+		#waterfall_nv = 1;
+		end;
+	}
+ }
+ 
+ bra_dun02,23,22,0	script(CLOAKED)	#nv_stone	HEROS_IN_ORB_1,{
+	 if(!#waterfall_nv || #waterfall_nv == 2) end;
+	 if (@waitabit < gettimetick(2) ) {
+		 #waterfall_nv = 2;
+		 getitem 2235041,1;
+		 end;
+	 }
+	 else if(@waitabit >= gettimetick(2)) {
+		 mes "ยังไม่ถึง 1 ชั่วโมงเลย";
+		 .@ramain = @waitabit - gettimetick(2);
+		 .@h = .@ramain/60;
+		 .@min = (.@ramain % 3600) / 60;
+		 mes "ยังขาดอีก : ^ff0000"+.@h+" ชั่วโมง "+.@min+" นาที^000000";
+		 mes "รอไปอีกชั่วโมงมาใหม่นะ อย่าลัดเวลาอีกหละ";
+		 mes "เดี๋ยวพลังงานที่รวบรวทมไว้มันเสียหาย";
+		 @waitabit = gettimetick(2) + 3600;
+		 end;
+	 }
+	 else if(#waterfall_nv != 2) {
+		 mes "กำลังรวบรวมพลัง";
+		 mes "อีก 1 ชั่วโมงกลับมาใหม่นะ";
+		 mes "อย่างน้อยๆ คือ 1 ชั่วโมงนะ อย่าลืมๆ";
+		 @waitabit = gettimetick(2) + 3600;
+	 }
+	 end;
+ }
+ 
+ bra_dun02,23,22,0	script	#show_nv_stone	-1,2,2,{
+	OnTouch:
+		if(#waterfall_nv)
+			cloakoffnpcself "#nv_stone";
+	end;
+ }
+ 
+ 
+/* Gunslinger
+ * Awaken Quest line
+ */
+ icecastle,77,106,4	script	Bad Guy#gl_awake	4_M_NOV_RUMIN,{
+	.@npcname$ = "[มือปืนโลกไหน?]";
+	if(BaseClass != 24) end;
+	if(#docigar == 2 ) {
+		mes .@npcname$;
+		sleep2 1000;
+		mes "ซู๊ดดดด.....";
+		sleep2 1000;
+		mes "ฟู่ววว";
+		sleep2 1000;
+		message strcharinfo(0),strcharinfo(0)+": เป็นปอดอักเสพตายเหอะสูดขนาดนี้";
+		close;
+	}
+	if(#docigar) {
+		mes .@npcname$;
+		if(getequipid(EQI_HEAD_LOW) != 2267) {
+			mes "ไม่อยากสูบบุหรี่กับข้ารึไง";
+			end;
+		}
+		mes "ต้องงี้สิไอ้หนู";
+		sleep2 1000;
+		mes "ซู๊ดดดด.....";
+		sleep2 1000;
+		mes "ฟู่ววว";
+		next;
+		mes "มันไม่มีเคล็กลับอะไรหรอก";
+		mes "มีแต่หินวิเศษ";
+		next;
+		mes "เอาไปเหอะ ไม่ได้ใช้แล้ว";
+		getitem 2235039,1;
+		#docigar = 2;
+		end;
+	}
+	mes "[มือปืนโลกไหน?]";
+	mes "ข้า";
+		sleep2 1000;
+	mes "ซู๊ดดดด.....";
+		sleep2 1000;
+	mes "ฟู่ววว";
+	next;
+	mes .@npcname$;
+	mes "เจ้าคงอยากจะ";
+		sleep2 1000;
+	mes "ซู๊ดดดด.....";
+		sleep2 1000;
+	mes "ฟู่ววว";
+	next;
+	mes .@npcname$;
+	mes "เคล็ดลับของมือปืน";
+		sleep2 1000;
+	mes "ซู๊ดดดด.....";
+		sleep2 1000;
+	mes "ฟู่ววว";
+	next;
+	mes .@npcname$;
+	mes "เลยมาหาข้าสินะ";
+	next;
+	if(select("ไม่ละ เหม็นบุหรี่:ได้โปรดบอกข้าที") == 1 ) {
+		mes .@npcname$;
+		mes "ตามใจ";
+		close;
+	}
+	
+		sleep2 1000;
+	mes "ซู๊ดดดด.....";
+		sleep2 1000;
+	mes "ฟู่ววว";
+	next;
+	mes .@npcname$;
+	mes "ไปหาบุหรี่มาสูบด้วยกันสิ เดี๋ยวเล่าให้ฟัง";
+	#docigar = 1;
+	end;
+ }
+/* Ninja
+ * Awaken Quest line
+ */
+ icecastle,67,80,4	script	Hatori Sashimi#nj_awake	4_M_NOV_RUMIN,{
+	.@npcname$ = "[นินจาซาซิมิ]";
+	
+	if(BaseClass != 25) end;
+	
+	if(#sashimidone) {
+		mes "เป็นมีดที่ดี";
+		end;
+	}
+	if(countitem(1229)) {
+		mes .@npcname$;
+		mes "ดีมาก มาแลกกัน";
+		delitem 1229,1;
+		#sashimidone = 1;
+		getitem 2235040,1;
+		end;
+	}
+	mes .@npcname$;
+	mes "เก่งมากที่หาเจอ";
+	mes "ของง่ายๆ ไปหามีดครัวมา";
+	mes "ข้าจะถ่้ายทอดวิชาให้เจ้า";
+	mes "^i[1229]";
+	mes "พอดีอันเก่ามันพังหนะ";
+	mes "ได้มาแล้วเอามาละกัน";
+	end;
+ }
+/* Taekwondo
+ * Awaken Quest line
+ */
+ icecastle,122,216,4	script	raidbow belt#tk_awake	4_M_NOV_RUMIN,{
+	.@npcname$ = "[น้ำนิ่งไหลลึก]";
+	if(BaseClass != 4046) end;
+	if(#innerpee) end;
+	mes "น้ำนิ่งไหลลึก";
+	mes "จิตปล่อยวาง";
+	sleep 90000;
+	#innerpee = 1;
+	getitem 2235042,1;
+	end;
+ }

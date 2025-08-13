@@ -5955,7 +5955,8 @@ int32 pc_insert_card(map_session_data* sd, int32 idx_card, int32 idx_equip)
 
 	//ARR_FIND(0, item_eq->slots, i, sd->inventory.u.items_inventory[idx_equip].card[i] == 0);
 	i = isEnchantment ? item_eq->slots : i; // [Start's] Enchantment will start at max card slot index
-	ARR_FIND(isEnchantment ? item_eq->slots : 0, isEnchantment ? cap_value(item_eq->slots + battle_config.config_enchantment_maximum, 0, 4) : item_eq->slots, i, sd->inventory.u.items_inventory[idx_equip].card[i] == 0); // [Start's] Modify a bit for Enchantment
+	//ARR_FIND(isEnchantment ? item_eq->slots : 0, isEnchantment ? cap_value(item_eq->slots + battle_config.config_enchantment_maximum, 0, 4) : item_eq->slots, i, sd->inventory.u.items_inventory[idx_equip].card[i] == 0); // [Start's] Modify a bit for Enchantment
+	ARR_FIND(isEnchantment ? item_eq->slots : 0, isEnchantment ? cap_value(item_eq->slots + battle_config.config_enchantment_maximum, 0, 4) : item_eq->slots, i, isEnchantment ? true : sd->inventory.u.items_inventory[idx_equip].card[i] == 0); // [Start's] Modify a bit for Enchantment
 	if (i == (isEnchantment ? cap_value(item_eq->slots + battle_config.config_enchantment_maximum, 0, 4) : item_eq->slots)) // No room + [Start's] Modify a bit for Enchantment
 		return 0;
 		
@@ -5974,7 +5975,7 @@ int32 pc_insert_card(map_session_data* sd, int32 idx_card, int32 idx_equip)
 		clif_insert_card( *sd, idx_equip, idx_card, false );
 		
 		if (isEnchantment) // [Start's] Force @refresh for show Enchantment at correct slot
-			clif_refresh(sd);
+			clif_inventorylist(sd);
 	}
 
 	return 0;

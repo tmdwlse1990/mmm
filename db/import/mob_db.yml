@@ -338,7 +338,6 @@ Body:
       IgnoreRanged: true
       KnockBackImmune: true
     Drops:
-        StealProtected: true
       - Item: Unstable_Right_DD
         Rate: 5
         StealProtected: true
@@ -1129,6 +1128,121 @@ Body:
       - Item: Broken_Poring_Card
         Rate: 100
         StealProtected: true
+  - Id: 27005
+    AegisName: Immortal_Corps_1
+    Name: Immortal Corps
+    Level: 99
+    Hp: 550000
+    Attack: 1114
+    Attack2: 1114
+    Defense: 47
+    MagicDefense: 38
+    Str: 151
+    Agi: 43
+    Vit: 31
+    Int: 65
+    Dex: 39
+    Luk: 2
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Plant
+    Element: Water
+    ElementLevel: 2
+    WalkSpeed: 160
+    AttackDelay: 460
+    AttackMotion: 580
+    ClientAttackMotion: 530
+    DamageMotion: 400
+    DamageTaken: 10
+    Ai: 20
+  - Id: 27006
+    AegisName: Immortal_Corps_2
+    Name: Immortal Corps
+    Level: 99
+    Hp: 550000
+    Attack: 1114
+    Attack2: 1114
+    Defense: 47
+    MagicDefense: 38
+    Str: 151
+    Agi: 43
+    Vit: 31
+    Int: 65
+    Dex: 39
+    Luk: 2
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Plant
+    Element: Water
+    ElementLevel: 2
+    WalkSpeed: 160
+    AttackDelay: 460
+    AttackMotion: 580
+    ClientAttackMotion: 530
+    DamageMotion: 400
+    DamageTaken: 10
+    Ai: 20
+  - Id: 27007
+    AegisName: Immortal_Corps_3
+    Name: Immortal Corps
+    Level: 99
+    Hp: 550000
+    Attack: 1114
+    Attack2: 1114
+    Defense: 47
+    MagicDefense: 38
+    Str: 151
+    Agi: 43
+    Vit: 31
+    Int: 65
+    Dex: 39
+    Luk: 2
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Plant
+    Element: Water
+    ElementLevel: 2
+    WalkSpeed: 160
+    AttackDelay: 460
+    AttackMotion: 580
+    ClientAttackMotion: 530
+    DamageMotion: 400
+    DamageTaken: 10
+  - Id: 27008
+    AegisName: CODE_X_DUPPER
+    Name: CODE X
+    Level: 99
+    Hp: 550000
+    Attack: 1114
+    Attack2: 1114
+    Defense: 47
+    MagicDefense: 38
+    Str: 151
+    Agi: 43
+    Vit: 31
+    Int: 65
+    Dex: 39
+    Luk: 2
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Plant
+    Element: Water
+    ElementLevel: 2
+    WalkSpeed: 160
+    AttackDelay: 460
+    AttackMotion: 580
+    ClientAttackMotion: 530
+    DamageMotion: 400
+    DamageTaken: 10
+    Ai: 20
   - Id: 22381
     AegisName: CLB_SS_FC
     Name: Fei-Chai

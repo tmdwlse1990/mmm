@@ -20266,6 +20266,8 @@ struct s_skill_condition skill_get_requirement(map_session_data* sd, uint16 skil
 
 	req.mhp = skill->require.mhp[skill_lv-1];
 	req.weapon = skill->require.weapon;
+	if(sd && sd->special_state.skillup3 && (sd->class_ == MAPID_GUNSLINGER || sd->class_ == MAPID_REBELLION))
+		req.weapon = 0;
 	req.ammo_qty = skill->require.ammo_qty[skill_lv-1];
 	if (skill_id == NW_MAGAZINE_FOR_ONE && sd->weapontype1 == W_GATLING)
 		req.ammo_qty += 4;
@@ -20801,6 +20803,13 @@ int32 skill_vfcastfix(struct block_list *bl, double time, uint16 skill_id, uint1
 		time = time * (1 - sqrt(((float)(status_get_dex(bl) * 2 + status_get_int(bl)) / battle_config.vcast_stat_scale)));
 	fixed = 0; //[No fix cast]
 	
+	for (const auto &it : sd->skillfixcast) {
+			if (it.id == skill_id) { // bonus2 bSkillFixedCast
+				fixed += it.val;
+				break;
+			}
+		}
+		
 	if (sd->bonus.add_fixcast != 0)
 		fixed += sd->bonus.add_fixcast; // bonus bFixedCast
 	

@@ -2857,6 +2857,26 @@ Body:
     Name: Musician Upgrade Skill 2
     Type: etc
     Weight: 100
+  - Id: 2235039
+    AegisName: GL_UP_Skill_1
+    Name: Gunslinger Awakened
+    Type: etc
+    Weight: 100
+  - Id: 2235040
+    AegisName: NJ_UP_Skill_1
+    Name: Ninja Awakened
+    Type: etc
+    Weight: 100
+  - Id: 2235041
+    AegisName: NV_UP_Skill_3
+    Name: Novice Awakened
+    Type: etc
+    Weight: 100
+  - Id: 2235042
+    AegisName: TK_UP_Skill_1
+    Name: Taekwondo Awakened
+    Type: etc
+    Weight: 100
 #   [Enchant Result]
   - Id: 2236001
     AegisName: SM_Up_Skill_Ston_1
@@ -3269,6 +3289,52 @@ Body:
     Script: |
       if( BaseClass == Job_Archer) {
         skill "WM_FRIGG_SONG",5;
+      }
+  - Id: 2236039
+    AegisName: GL_Up_Skill_Ston_
+    Name: Gunslinger Awakened
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == JOB_GUNSLINGER) {
+        bonus bSkillUpgrade3;
+        bonus bDelayrate,-30;
+        bonus bUseSPrate,-30;
+      }
+  - Id: 2236040
+    AegisName: NJ_Up_Skill_Ston_
+    Name: Ninja Awakened
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == JOB_NINJA) {
+        bonus bDelayrate,-35;
+        bonus bVariableCastrate,-80;
+        bonus bUseSPrate,-30;
+      }
+  - Id: 2236041
+    AegisName: SNV_Up_Skill_Ston_
+    Name: Ninja Awakened
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == JOB_NOVICE) {
+        bonus bMaxHP,15000;
+        bonus bAllStats,10;
+        bonus bAtkRange,4;
+        bonus3 bAutospell,"ASC_BREAKER",1,1000;
+      }
+  - Id: 2236042
+    AegisName: TK_Up_Skill_Ston_
+    Name: Ninja Awakened
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == JOB_TAEKWON) {
+        bonus2 bSkillAtk,"TK_JUMPKICK",555;
+        bonus4 bAutoSpellOnSkill,"TK_JUMPKICK","NPC_EARTHQUAKE",1,1000;
+        bonus2 bSkillAtk,"NPC_EARTHQUAKE",-50;
+        bonus2 bSkillUseSP,"TK_JUMPKICK",-111;
       }
 #   [Card Item]
   - Id: 2230001
