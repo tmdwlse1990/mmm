@@ -1751,7 +1751,7 @@ int32 chmapif_parse_macro_user_report(int32 fd)
 		Sql_ShowDebug(sql_handle);
 	}
 
-	StringBuf_Destroy(&Buffer);
+
 	RFIFOSKIP(fd, 268);
 
 	return 1;
