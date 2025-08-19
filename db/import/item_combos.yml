@@ -32,3 +32,156 @@
 Header:
   Type: COMBO_DB
   Version: 1
+
+Body:
+  - Combos:
+      - Combo:
+          - FaceWorm_Skin    # 20717
+          - Temporal_Str_Boots    # 22000
+      - Combo:
+          - FaceWorm_Skin    # 20717
+          - Temporal_Int_Boots    # 22001
+      - Combo:
+          - FaceWorm_Skin    # 20717
+          - Temporal_Agi_Boots    # 22002
+      - Combo:
+          - FaceWorm_Skin    # 20717
+          - Temporal_Vit_Boots    # 22003
+      - Combo:
+          - FaceWorm_Skin    # 20717
+          - Temporal_Dex_Boots    # 22004
+      - Combo:
+          - FaceWorm_Skin    # 20717
+          - Temporal_Luk_Boots    # 22005
+      - Combo:
+          - FaceWorm_Skin    # 20717
+          - Temporal_Str_Boots_    # 22006
+      - Combo:
+          - FaceWorm_Skin    # 20717
+          - Temporal_Vit_Boots_    # 22007
+      - Combo:
+          - FaceWorm_Skin    # 20717
+          - Temporal_Dex_Boots_    # 22008
+      - Combo:
+          - FaceWorm_Skin    # 20717
+          - Temporal_Int_Boots_    # 22009
+      - Combo:
+          - FaceWorm_Skin    # 20717
+          - Temporal_Agi_Boots_    # 22010
+      - Combo:
+          - FaceWorm_Skin    # 20717
+          - Temporal_Luk_Boots_    # 22011
+      - Combo:
+          - FaceWorm_Skin_    # 20718
+          - Temporal_Str_Boots    # 22000
+      - Combo:
+          - FaceWorm_Skin_    # 20718
+          - Temporal_Int_Boots    # 22001
+      - Combo:
+          - FaceWorm_Skin_    # 20718
+          - Temporal_Agi_Boots    # 22002
+      - Combo:
+          - FaceWorm_Skin_    # 20718
+          - Temporal_Vit_Boots    # 22003
+      - Combo:
+          - FaceWorm_Skin_    # 20718
+          - Temporal_Dex_Boots    # 22004
+      - Combo:
+          - FaceWorm_Skin_    # 20718
+          - Temporal_Luk_Boots    # 22005
+      - Combo:
+          - FaceWorm_Skin_    # 20718
+          - Temporal_Str_Boots_    # 22006
+      - Combo:
+          - FaceWorm_Skin_    # 20718
+          - Temporal_Vit_Boots_    # 22007
+      - Combo:
+          - FaceWorm_Skin_    # 20718
+          - Temporal_Dex_Boots_    # 22008
+      - Combo:
+          - FaceWorm_Skin_    # 20718
+          - Temporal_Int_Boots_    # 22009
+      - Combo:
+          - FaceWorm_Skin_    # 20718
+          - Temporal_Agi_Boots_    # 22010
+      - Combo:
+          - FaceWorm_Skin_    # 20718
+          - Temporal_Luk_Boots_    # 22011
+      - Combo:
+          - FaceWorm_Skin    # 20717
+          - Modify_Str_Boots    # 22107
+      - Combo:
+          - FaceWorm_Skin    # 20717
+          - Modify_Int_Boots    # 22108
+      - Combo:
+          - FaceWorm_Skin    # 20717
+          - Modify_Agi_Boots    # 22109
+      - Combo:
+          - FaceWorm_Skin    # 20717
+          - Modify_Vit_Boots    # 22110
+      - Combo:
+          - FaceWorm_Skin    # 20717
+          - Modify_Dex_Boots    # 22111
+      - Combo:
+          - FaceWorm_Skin    # 20717
+          - Modify_Luk_Boots    # 22112
+      - Combo:
+          - FaceWorm_Skin    # 20717
+          - Modify_Str_Boots_    # 22113
+      - Combo:
+          - FaceWorm_Skin    # 20717
+          - Modify_Int_Boots_    # 22114
+      - Combo:
+          - FaceWorm_Skin    # 20717
+          - Modify_Agi_Boots_    # 22115
+      - Combo:
+          - FaceWorm_Skin    # 20717
+          - Modify_Vit_Boots_    # 22116
+      - Combo:
+          - FaceWorm_Skin    # 20717
+          - Modify_Dex_Boots_    # 22117
+      - Combo:
+          - FaceWorm_Skin    # 20717
+          - Modify_Luk_Boots_    # 22118
+      - Combo:
+          - FaceWorm_Skin_    # 20718
+          - Modify_Str_Boots    # 22107
+      - Combo:
+          - FaceWorm_Skin_    # 20718
+          - Modify_Int_Boots    # 22108
+      - Combo:
+          - FaceWorm_Skin_    # 20718
+          - Modify_Agi_Boots    # 22109
+      - Combo:
+          - FaceWorm_Skin_    # 20718
+          - Modify_Vit_Boots    # 22110
+      - Combo:
+          - FaceWorm_Skin_    # 20718
+          - Modify_Dex_Boots    # 22111
+      - Combo:
+          - FaceWorm_Skin_    # 20718
+          - Modify_Luk_Boots    # 22112
+      - Combo:
+          - FaceWorm_Skin_    # 20718
+          - Modify_Str_Boots_    # 22113
+      - Combo:
+          - FaceWorm_Skin_    # 20718
+          - Modify_Int_Boots_    # 22114
+      - Combo:
+          - FaceWorm_Skin_    # 20718
+          - Modify_Agi_Boots_    # 22115
+      - Combo:
+          - FaceWorm_Skin_    # 20718
+          - Modify_Vit_Boots_    # 22116
+      - Combo:
+          - FaceWorm_Skin_    # 20718
+          - Modify_Dex_Boots_    # 22117
+      - Combo:
+          - FaceWorm_Skin_    # 20718
+          - Modify_Luk_Boots_    # 22118
+    Script: |
+      .@g = getenchantgrade(EQI_GARMENT);
+      if(.@g >= 3) { bonus bDefRate,5; bonus bMDefRate,5;};
+      if(.@g >= 4) { bonus bDefRate,5; bonus bMDefRate,5;};
+      if(.@g >= 5) { bonus bDefRate,5; bonus bMDefRate,5;};
+      if(.@g >= 6) { bonus2 bSubSize,Size_All,15;};

@@ -102,6 +102,7 @@ bonus bHitAtk,n;						Increase Damage n% for non critical hit (only Physical)
 bonus bHitMAtk,n;						Increase Damage n% for non critical hit (only Magical)
 bonus bCritAtk,n;						Increase Critical Damage n% for Critical Physical/weapon Hit
 bonus bCritMAtk,n;						Increase Critical Damage n% for Critical Magical Hit
+bonus bCooldownRate,n;					Increase Cooldown Skill n%
 
 bonus bStrRate,n;      			STR + n%
 bonus bAgiRate,n;      			AGI + n%

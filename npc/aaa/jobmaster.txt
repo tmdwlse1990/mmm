@@ -161,7 +161,7 @@ function	Job_Options	{
 	if( .@rebirth_possible ) {
 		// Rebirth option (displayed on the top of the menu)
 		Require_Level(.Req_Rebirth[0], .Req_Rebirth[1]);
-		Job_Options(.@job_opt, Job_Novice_High);
+		Job_Options(.@job_opt, Class + Job_Novice_High);
 	}
 	if( .@third_possible ) {
 		// Third Job change (displayed below rebirth)
@@ -267,10 +267,11 @@ function	Job_Options	{
 		.@class1 = roclass(.@eac|EAJL_2_1); // 2-1
 		.@class2 = roclass(.@eac|EAJL_2_2); // 2-2
 		// dispbottom "Debug: Classes: class1 ("+.@class1+"), class2 ("+.@class2+")";
-		if(.LastJob && lastJob && (.@eac&EAJL_UPPER)) {
+		//if(.LastJob && lastJob && (.@eac&EAJL_UPPER)) {
+		if(.LastJob && (.@eac&EAJL_UPPER)) {
 			// Player is rebirth Cls and linear class changes are enforced
 			Require_Level(.Req_Second[0], .Req_Second[1]);
-			Job_Options(.@job_opt, lastJob + Job_Novice_High);
+			Job_Options(.@job_opt, Class + Job_Novice_High);
 		} else {
 			// Class is not enforced, player can decide.
 			if( .@class1 > 0 ) { // 2-1
@@ -434,10 +435,13 @@ function	Get_Job_Equip	{
 				getitem 5750,1; 		//	Shadow Handicraft [1]
 				getitem 6121,1;			//	Makeover Brush
 				getitem 6122,1;	break;	//	Paint Brush
+			case Job_Super_Novice:
+				getitembound4 1208,1,1,15,0,0,0,0,0,Bound_Char,7,.@OptID,.@OptVal,.@OptParam;	break;	//	Main Gauche [1]
+				break;
 		}
 	} else if (.@eac&EAJL_2) {
 		// Second Class (And not Third Class)
-		switch(BaseJob) {
+		switch(Class) {
 			// Second Class
 			case Job_Knight:
 				getitem2 1163,1,1,7,0,0,0,0,0;	break;	//	Claymore [0]
@@ -471,11 +475,37 @@ function	Get_Job_Equip	{
 				getitem2 1550,1,1,7,0,0,0,0,0;	break;	//	Book [3]
 			case Job_Soul_Linker:
 				getitem2 1617,1,1,7,0,0,0,0,0;	break;	//	Survivor's Rod [0]
+			case JOB_LORD_KNIGHT:
+				getitembound4 1163,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Claymore [0]
+			case JOB_HIGH_PRIEST:
+				getitembound4 1522,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Stunner [0]
+			case JOB_HIGH_WIZARD:
+				getitembound4 1617,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Survivor's Rod [0]
+			case JOB_WHITESMITH:
+				getitembound4 1360,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Two-Handed-Axe [1]
+			case JOB_SNIPER:
+				getitembound4 1718,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Hunter Bow [0]
+			case JOB_ASSASSIN_CROSS:
+				getitembound4 1254,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Jamadhar [0]
+			case JOB_PALADIN:
+				getitembound4 1410,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Lance [0]
+			case JOB_CHAMPION:
+				getitembound4 1807,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Fist [0]
+			case JOB_PROFESSOR:
+				getitembound4 1550,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Book [3]
+			case JOB_STALKER:
+				getitembound4 1222,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Damascus [1]
+			case JOB_CREATOR:
+				getitembound4 1126,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Saber [2]
+			case JOB_CLOWN:
+				getitembound4 1907,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Guitar [0]
+			case JOB_GYPSY:
+				getitembound4 1960,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Whip [1]
 		}
 	} else {
 		// Neither Second or Third Cls
 		// => First Cls or not covered by the switch
-		switch(BaseClass) {
+		switch(Class) {
 			// First Class
 			case Job_Archer:
 			case Job_Swordman:
@@ -485,13 +515,13 @@ function	Get_Job_Equip	{
 			case Job_Thief:
 			case Job_Gunslinger:
 			case Job_Ninja:
-			default:
+			case Job_Taekwon:
 				getitem 13200,500;
 				getitem 1750,500;
 				getitem 2001001,1;	// Paradise Weapon
 				getitem 2001002,1;	// Paradise Armor
 				break;
-		}
+		}	
 	}
 	return;
 }
@@ -504,8 +534,8 @@ OnInit:
 	.FourthClass = false;				// Enable fourth classes?
 	.FourthExpanded = false;				// Enable new expanded fourth classes: Ex. Hyper Novice, Rebellion, Shinkiro/Shiranui?
 	.ThirdClass = false;					// Enable third classes?
-	.RebirthClass = false;				// Enable rebirth classes?
-	.SecondExpanded = false;				// Enable new expanded second classes: Ex. Super Novice, Kagerou/Oboro, Rebellion?
+	.RebirthClass = true;				// Enable rebirth classes?
+	.SecondExpanded = true;				// Enable new expanded second classes: Ex. Super Novice, Kagerou/Oboro, Rebellion?
 	.BabyNovice = false;					// Enable Baby novice classes? Disable it if you like player must have parent to get job baby.
 	.BabyClass = false;					// Enable Baby classes?
 	.BabyThird = false;					// Enable Baby third classes?
@@ -522,7 +552,7 @@ OnInit:
 	setarray .Req_Rebirth[0],99,50;		// Minimum base level, job level to rebirth
 	setarray .Req_Third[0],99,50;		// Minimum base level, job level to change to third class
 	setarray .Req_Fourth[0],200,70;		// Minimum base level, job level to change to fourth class
-	setarray .Req_Exp_NJ_GS[0],99,70; 	// Minimum base level, job level to turn into Expanded Ninja and Gunslinger
+	setarray .Req_Exp_NJ_GS[0],99,75; 	// Minimum base level, job level to turn into Expanded Ninja and Gunslinger
 	setarray .Req_Exp_SNOVI[0],99,99; 	// Minimum base level, job level to turn into Expanded Super Novice
 	setarray .Req_SHandler[0],200,60;	// Minimum base level, job level to turn into Spirit Handler
 	.SNovice = 45;						// Minimum base level to turn into Super Novice

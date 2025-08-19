@@ -10915,6 +10915,8 @@ Body:
     Range: 9
     Hit: Multi_Hit
     HitCount: -9
+    SplashArea: 1
+    ActiveInstance: 11
     Element: Weapon
     CastTime:
       - Level: 1
@@ -10937,9 +10939,9 @@ Body:
         Time: 2880
       - Level: 10
         Time: 1500
-    AfterCastActDelay: 500
-    AfterCastWalkDelay: 2000
-    Cooldown: 1500
+    AfterCastActDelay: 1000
+#    AfterCastWalkDelay: 2000
+    Cooldown: 350
     FixedCastTime:
       - Level: 1
         Time: 400
@@ -13635,7 +13637,7 @@ Body:
     Description: Tarot Card of Fate
     MaxLevel: 5
     Type: Misc
-    TargetType: Attack
+    TargetType: Self
     DamageFlags:
       NoDamage: true
       IgnoreFlee: true
@@ -13644,10 +13646,11 @@ Body:
     HitCount: 1
     CastTime: 500
     AfterCastActDelay: 3000
-    Duration2: 30000
+    Duration2: 50000
     FixedCastTime: 500
+    Cooldown: 60000
     Requires:
-      SpCost: 40
+      SpCost: 250
     Status: TarotCard
   - Id: 490
     Name: CR_ACIDDEMONSTRATION
@@ -19440,29 +19443,9 @@ Body:
       Splash: true
     Range: 7
     Hit: Multi_Hit
-    HitCount: -5
+    HitCount: 5
     Element: Weapon
-    SplashArea:
-      - Level: 1
-        Area: 1
-      - Level: 2
-        Area: 1
-      - Level: 3
-        Area: 1
-      - Level: 4
-        Area: 1
-      - Level: 5
-        Area: 2
-      - Level: 6
-        Area: 2
-      - Level: 7
-        Area: 2
-      - Level: 8
-        Area: 2
-      - Level: 9
-        Area: 3
-      - Level: 10
-        Area: 3
+    SplashArea: 3
     CastTime:
       - Level: 1
         Time: 1000
@@ -19484,7 +19467,7 @@ Body:
         Time: 200
       - Level: 10
         Time: 100
-    AfterCastActDelay: 500
+    AfterCastActDelay: 3000
     Cooldown: 3000
     Requires:
       SpCost: 60
@@ -19495,7 +19478,7 @@ Body:
   - Id: 2005
     Name: RK_WINDCUTTER
     Description: Wind Cutter
-    MaxLevel: 5
+    MaxLevel: 10
     Type: Weapon
     TargetType: Self
     DamageFlags:
@@ -19503,17 +19486,7 @@ Body:
     Hit: Single
     HitCount: 1
     Element: Weapon
-    SplashArea:
-      - Level: 1
-        Area: 1
-      - Level: 2
-        Area: 1
-      - Level: 3
-        Area: 2
-      - Level: 4
-        Area: 2
-      - Level: 5
-        Area: 3
+    SplashArea: 3
     CopyFlags:
       Skill:
         Reproduce: true
@@ -19665,7 +19638,7 @@ Body:
           Amount: 70
         - Level: 10
           Amount: 75
-      State: Ridingdragon
+      State: Riding
     Status: Burning
     CastCancel: false
   - Id: 2009
@@ -20043,7 +20016,7 @@ Body:
       Splash: true
     Range: 11
     Hit: Multi_Hit
-    HitCount: -5
+    HitCount: 5
     Element: Water
     SplashArea:
       - Level: 1
@@ -21018,14 +20991,14 @@ Body:
   - Id: 2022
     Name: GC_CROSSIMPACT
     Description: Cross Impact
-    MaxLevel: 5
+    MaxLevel: 10
     Type: Weapon
     TargetType: Attack
     DamageFlags:
       Critical: true
     Range: 7
     Hit: Multi_Hit
-    HitCount: -7
+    HitCount: 3
     Element: Weapon
     CopyFlags:
       Skill:
@@ -21041,22 +21014,14 @@ Body:
         Time: 1000
       - Level: 5
         Time: 500
-    Cooldown: # !TODO: Confirm cooldown
-      - Level: 1
-        Time: 150
-      - Level: 1
-        Time: 200
-      - Level: 1
-        Time: 250
-      - Level: 1
-        Time: 300
-      - Level: 1
-        Time: 350
+    Cooldown: 1000
     CastDelayFlags:
       IgnoreStatus: true
     Requires:
       SpCost: 40
       State: Move_Enable
+      Weapon:
+        Katar: true
   - Id: 2023
     Name: GC_DARKILLUSION
     Description: Dark Illusion
@@ -21216,6 +21181,7 @@ Body:
         Area: 2
     AfterCastActDelay: 2000
     Requires:
+      HpRateCost: -7
       SpCost:
         - Level: 1
           Amount: 5
@@ -21237,8 +21203,6 @@ Body:
           Amount: 25
         - Level: 10
           Amount: 27
-      Status:
-        Weaponblock_On: true
   - Id: 2030
     Name: GC_WEAPONCRUSH
     Description: Weapon Crush
@@ -21531,7 +21495,7 @@ Body:
       Splash: true
     Range: 11
     Hit: Multi_Hit
-    HitCount: -10
+    HitCount: 5
     Element: Holy
     SplashArea:
       - Level: 1
@@ -22268,34 +22232,14 @@ Body:
       AlterRangeVulture: true
     Range: 9
     Hit: Multi_Hit
-    HitCount: -3
+    HitCount: 3
     Element: Weapon
-    SplashArea:
-      - Level: 1
-        Area: 2
-      - Level: 2
-        Area: 2
-      - Level: 3
-        Area: 2
-      - Level: 4
-        Area: 2
-      - Level: 5
-        Area: 2
-      - Level: 6
-        Area: 3
-      - Level: 7
-        Area: 3
-      - Level: 8
-        Area: 3
-      - Level: 9
-        Area: 3
-      - Level: 10
-        Area: 4
+    SplashArea: 4
     CopyFlags:
       Skill:
         Reproduce: true
     CastTime: 2000
-    Cooldown: 3200
+    Cooldown: 2000
     FixedCastTime: 300
     Requires:
       SpCost:
@@ -22459,7 +22403,7 @@ Body:
   - Id: 2239
     Name: RA_CLUSTERBOMB
     Description: Cluster Bomb
-    MaxLevel: 5
+    MaxLevel: 10
     Type: Misc
     TargetType: Ground
     DamageFlags:
@@ -22490,7 +22434,7 @@ Body:
       Target: Enemy
       Flag:
         NoReiteration: true
-        NoFootSet: true
+#        NoFootSet: true
         RemovedByFireRain: true
   - Id: 2240
     Name: RA_WUGMASTERY
@@ -22541,7 +22485,7 @@ Body:
   - Id: 2243
     Name: RA_WUGSTRIKE
     Description: Warg Strike
-    MaxLevel: 5
+    MaxLevel: 10
     Type: Weapon
     TargetType: Attack
     DamageFlags:
@@ -23093,7 +23037,7 @@ Body:
   - Id: 2261
     Name: NC_ARMSCANNON
     Description: Arm Cannon
-    MaxLevel: 5
+    MaxLevel: 10
     Type: Weapon
     TargetType: Attack
     DamageFlags:
@@ -23106,17 +23050,7 @@ Body:
     Hit: Multi_Hit
     HitCount: 1
     Element: Weapon
-    SplashArea:
-      - Level: 1
-        Area: 1
-      - Level: 2
-        Area: 1
-      - Level: 3
-        Area: 2
-      - Level: 4
-        Area: 2
-      - Level: 5
-        Area: 3
+    SplashArea: 3
     CastTime:
       - Level: 1
         Time: 1000
@@ -23163,10 +23097,20 @@ Body:
           Amount: 55
         - Level: 5
           Amount: 60
+        - Level: 6
+          Amount: 65
+        - Level: 7
+          Amount: 70
+        - Level: 8
+          Amount: 75
+        - Level: 9
+          Amount: 80
+        - Level: 10
+          Amount: 85
       Ammo:
         Cannonball: true
       AmmoAmount: 1
-      State: Mado
+#      State: Mado
       ItemCost:
         - Item: Magic_Gear_Fuel
           Amount: 1
@@ -23228,7 +23172,7 @@ Body:
   - Id: 2264
     Name: NC_F_SIDESLIDE
     Description: Front-Side Slide
-    MaxLevel: 1
+    MaxLevel: 10
     TargetType: Self
     DamageFlags:
       NoDamage: true
@@ -23236,18 +23180,38 @@ Body:
       AllowOnMado: true
     Hit: Single
     HitCount: 1
-    Knockback: 7
+    Knockback:
+      - Level: 1
+        Amount: 1
+      - Level: 2
+        Amount: 2
+      - Level: 3
+        Amount: 3
+      - Level: 4
+        Amount: 4
+      - Level: 5
+        Amount: 5
+      - Level: 6
+        Amount: 6
+      - Level: 7
+        Amount: 7
+      - Level: 8
+        Amount: 8
+      - Level: 9
+        Amount: 9
+      - Level: 10
+        Amount: 10
     AfterCastActDelay: 500
     Requires:
       SpCost: 5
-      State: Mado
+#      State: Mado
       ItemCost:
         - Item: Magic_Gear_Fuel
           Amount: 1
   - Id: 2265
     Name: NC_B_SIDESLIDE
     Description: Back-Side Slide
-    MaxLevel: 1
+    MaxLevel: 10
     TargetType: Self
     DamageFlags:
       NoDamage: true
@@ -23255,11 +23219,31 @@ Body:
       AllowOnMado: true
     Hit: Single
     HitCount: 1
-    Knockback: 7
+    Knockback: 
+      - Level: 1
+        Amount: 1
+      - Level: 2
+        Amount: 2
+      - Level: 3
+        Amount: 3
+      - Level: 4
+        Amount: 4
+      - Level: 5
+        Amount: 5
+      - Level: 6
+        Amount: 6
+      - Level: 7
+        Amount: 7
+      - Level: 8
+        Amount: 8
+      - Level: 9
+        Amount: 9
+      - Level: 10
+        Amount: 10
     AfterCastActDelay: 500
     Requires:
       SpCost: 5
-      State: Mado
+#      State: Mado
       ItemCost:
         - Item: Magic_Gear_Fuel
           Amount: 1
@@ -23741,7 +23725,7 @@ Body:
   - Id: 2280
     Name: NC_AXETORNADO
     Description: Axe Tornado
-    MaxLevel: 5
+    MaxLevel: 10
     Type: Weapon
     TargetType: Self
     DamageFlags:
@@ -23750,7 +23734,7 @@ Body:
       TargetTrap: true
       AllowOnMado: true
     Hit: Multi_Hit
-    HitCount: -6
+    HitCount: 6
     Element: Weapon
     SplashArea:
       - Level: 1
@@ -24869,7 +24853,7 @@ Body:
       - Level: 5
         Area: 3
     ActiveInstance: 11
-    Cooldown: 1700
+    Cooldown: 250
     Requires:
       SpCost:
         - Level: 1
@@ -25118,6 +25102,7 @@ Body:
     Element: Weapon
     SplashArea: 3
     AfterCastActDelay: 2000
+    Cooldown: 200
     Requires:
       SpCost:
         - Level: 1
@@ -25304,7 +25289,6 @@ Body:
         Time: 5500
     AfterCastActDelay: 2000
     Duration1: 10000
-    Cooldown: 2000
     FixedCastTime: 500
     Requires:
       SpCost:
@@ -25862,7 +25846,7 @@ Body:
   - Id: 2332
     Name: SR_RAMPAGEBLASTER
     Description: Rampage Blaster
-    MaxLevel: 5
+    MaxLevel: 10
     Type: Weapon
     TargetType: Self
     DamageFlags:
@@ -26535,17 +26519,7 @@ Body:
     Hit: Single
     HitCount: 1
     Element: Weapon
-    SplashArea:
-      - Level: 1
-        Area: 1
-      - Level: 2
-        Area: 1
-      - Level: 3
-        Area: 2
-      - Level: 4
-        Area: 2
-      - Level: 5
-        Area: 3
+    SplashArea: 3
     CopyFlags:
       Skill:
         Reproduce: true
@@ -26560,7 +26534,6 @@ Body:
         Time: 800
       - Level: 5
         Time: 1000
-    Cooldown: 500
     Requires:
       SpCost:
         - Level: 1
@@ -27981,7 +27954,7 @@ Body:
       TargetHidden: true
     Range: 9
     Hit: Single
-    HitCount: -3
+    HitCount: 3
     Element: Earth
     CopyFlags:
       Skill:
@@ -28324,7 +28297,7 @@ Body:
     Unit:
       Id: Cloud_Kill
       Range: 3
-      Interval: 500
+      Interval: 300
       Target: Enemy
       Flag:
         PathCheck: true
@@ -29166,7 +29139,7 @@ Body:
   - Id: 2477
     Name: GN_CARTCANNON
     Description: Cart Cannon
-    MaxLevel: 5
+    MaxLevel: 10
     Type: Weapon
     TargetType: Attack
     DamageFlags:
@@ -29515,7 +29488,7 @@ Body:
       - Level: 10
         Time: 7500
     AfterCastActDelay: 500
-    Cooldown: 5000
+    Cooldown: 4000
     Requires:
       SpCost:
         - Level: 1

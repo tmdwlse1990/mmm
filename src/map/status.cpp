@@ -12283,7 +12283,7 @@ static bool status_change_start_post_delay(block_list* src, block_list* bl, sc_t
 			break;
 		case SC_MOONLITSERENADE: // MATK Increase
 		case SC_RUSHWINDMILL: // ATK Increase
-			val3 = 4 + val1 * 3 + val2 + (sd?sd->status.job_level:50) / 5;
+			val3 = val1 * 70 + val2 + (sd?sd->status.job_level:50) / 5;
 			break;
 		case SC_ECHOSONG:
 			val3 = 6 * val1 + val2 + (sd?sd->status.job_level:50) / 4; // DEF Increase

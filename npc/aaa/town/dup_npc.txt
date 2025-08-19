@@ -22,7 +22,7 @@ icecastle,189,171,5	duplicate(Dietrich#ns_prt)	Ore Derler#2	1_M_SMITH
 icecastle,60,214,5	duplicate(#over_arrow)	Arrow Merchant#ice	4_M_ARCHER
 icecastle,60,211,5	duplicate(#over_bullet)	Ammunition Merchant#ice	4_F_GUNSLINGER
 icecastle,60,208,5	duplicate(#over_kunai)	Ninja Tool Merchant#ice	4_M_NINJA_RED
-//icecastle,73,99,3	duplicate(#over_madogear)	Mado Gear Merchant#ice	4_TOWER_17
+icecastle,58,210,3	duplicate(#over_madogear)	Mado Gear Merchant#ice	4_TOWER_17
 //icecastle,72,106,3	duplicate(#over_talisman)	Talisman Merchant#ice	4_M_POORSCHOLAR
 
 -	shop	#paradise_wep	-1,630014:1000,600020:1000,500033:1000,530017:1000,520011:1000,620011:1000,590026:1000,500034:1000,610024:1000,610025:1000,510036:1000,700037:1000,550034:1000,550035:1000,540027:1000,540028:1000,590027:1000,550036:1000,560022:1000,560023:1000,700038:1000,700039:1000,700040:1000,570021:1000,580021:1000,650011:1000,650010:1000,810003:1000,800005:1000,540029:1000,540030:1000,510037:1000,550037:1000

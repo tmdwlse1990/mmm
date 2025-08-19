@@ -882,6 +882,7 @@
 	export_constant2("bSplRate",SP_SPLRATE);
 	export_constant2("bConRate",SP_CONRATE);
 	export_constant2("bCrtRate",SP_CRTRATE);
+	export_constant2("bCooldownrate",SP_COOLDOWNRATE);
 	export_constant2("bAllStatsRate",SP_ALL_STATS_RATE);
 	export_constant2("bAllTraitStatsRatr",SP_ALL_TRAIT_STATS_RATE);
 
@@ -10999,6 +11000,20 @@
 	export_constant(SC_MEMBER9);
 	export_constant(SC_MEMBER10);
 	export_constant(SC_LOCKON_LASER);
+	export_constant(SC_FOOLCARD);
+	export_constant(SC_MAGICCARD);
+	export_constant(SC_HIGHCARD);
+	export_constant(SC_CHARIOTCARD);
+	export_constant(SC_STRENGHTCARD);
+	export_constant(SC_LOVERCARD);
+	export_constant(SC_WHEELFORTUNECARD);
+	export_constant(SC_HANGEDCARD);
+	export_constant(SC_TEMPERANCECARD);
+	export_constant(SC_DEVILCARD);
+	export_constant(SC_DEATHCARD);
+	export_constant(SC_TOWERCARD);
+	export_constant(SC_STARCARD);
+	export_constant(SC_SUNCARD);
 	
 	/* auto attack info enum */
 	export_constant(GET_INFO_HEAL);

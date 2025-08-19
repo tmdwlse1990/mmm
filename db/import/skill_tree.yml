@@ -2030,7 +2030,6 @@ Body:
             Level: 3
       - Name: LK_BERSERK   # Job Level 50 requirement
         MaxLevel: 1
-        JobLevel: 50
       - Name: LK_SPIRALPIERCE
         MaxLevel: 5
         Requires:

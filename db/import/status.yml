@@ -366,3 +366,129 @@ Body:
       NoClearance: true
       RemoveOnMapWarp: true
       NoClearbuff: true
+  - Status: FOOLCARD
+    Icon: EFST_TAROTCARD
+    CalcFlags:
+      All: true
+    Flags:
+      NoDispell: true
+      NoClearance: true
+      RemoveOnMapWarp: true
+      NoSave: true
+  - Status: MAGICCARD
+    Icon: EFST_TAROTCARD
+    CalcFlags:
+      All: true
+    Flags:
+      NoDispell: true
+      NoClearance: true
+      RemoveOnMapWarp: true
+      NoSave: true
+  - Status: HIGHCARD
+    Icon: EFST_TAROTCARD
+    CalcFlags:
+      All: true
+    Flags:
+      NoDispell: true
+      NoClearance: true
+      RemoveOnMapWarp: true
+      NoSave: true
+  - Status: CHARIOTCARD
+    Icon: EFST_TAROTCARD
+    CalcFlags:
+      All: true
+    Flags:
+      NoDispell: true
+      NoClearance: true
+      RemoveOnMapWarp: true
+      NoSave: true
+  - Status: STRENGHTCARD
+    Icon: EFST_TAROTCARD
+    CalcFlags:
+      All: true
+    Flags:
+      NoDispell: true
+      NoClearance: true
+      RemoveOnMapWarp: true
+      NoSave: true
+  - Status: LOVERCARD
+    Icon: EFST_TAROTCARD
+    CalcFlags:
+      All: true
+    Flags:
+      NoDispell: true
+      NoClearance: true
+      RemoveOnMapWarp: true
+      NoSave: true
+  - Status: WHEELFORTUNECARD
+    Icon: EFST_TAROTCARD
+    CalcFlags:
+      All: true
+    Flags:
+      NoDispell: true
+      NoClearance: true
+      RemoveOnMapWarp: true
+      NoSave: true
+  - Status: HANGEDCARD
+    Icon: EFST_TAROTCARD
+    CalcFlags:
+      All: true
+    Flags:
+      NoDispell: true
+      NoClearance: true
+      RemoveOnMapWarp: true
+      NoSave: true
+  - Status: TEMPERANCECARD
+    Icon: EFST_TAROTCARD
+    CalcFlags:
+      All: true
+    Flags:
+      NoDispell: true
+      NoClearance: true
+      RemoveOnMapWarp: true
+      NoSave: true
+  - Status: DEVILCARD
+    Icon: EFST_TAROTCARD
+    CalcFlags:
+      All: true
+    Flags:
+      NoDispell: true
+      NoClearance: true
+      RemoveOnMapWarp: true
+      NoSave: true
+  - Status: DEATHCARD
+    Icon: EFST_TAROTCARD
+    CalcFlags:
+      All: true
+    Flags:
+      NoDispell: true
+      NoClearance: true
+      RemoveOnMapWarp: true
+      NoSave: true
+  - Status: TOWERCARD
+    Icon: EFST_TAROTCARD
+    CalcFlags:
+      All: true
+    Flags:
+      NoDispell: true
+      NoClearance: true
+      RemoveOnMapWarp: true
+      NoSave: true
+  - Status: STARCARD
+    Icon: EFST_TAROTCARD
+    CalcFlags:
+      All: true
+    Flags:
+      NoDispell: true
+      NoClearance: true
+      RemoveOnMapWarp: true
+      NoSave: true
+  - Status: SUNCARD
+    Icon: EFST_TAROTCARD
+    CalcFlags:
+      All: true
+    Flags:
+      NoDispell: true
+      NoClearance: true
+      RemoveOnMapWarp: true
+      NoSave: true
