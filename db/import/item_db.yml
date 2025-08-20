@@ -1097,6 +1097,139 @@ Body:
     Weight: 10
     Script: |
       callfunc "F_MapleCube",4;
+  - Id: 2002019
+    AegisName: Grade_D_BOUND
+    Name: D grade bound char
+    Type: DelayConsume
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoCart: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    NoUse:
+      Sitting: true
+    Weight: 10
+    Script: |
+      callfunc "F_boundgrade",1;
+  - Id: 2002020
+    AegisName: Grade_C_BOUND
+    Name: C grade bound char
+    Type: DelayConsume
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoCart: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    NoUse:
+      Sitting: true
+    Weight: 10
+    Script: |
+      callfunc "F_boundgrade",2;
+  - Id: 2002021
+    AegisName: Grade_B_BOUND
+    Name: B grade bound char
+    Type: DelayConsume
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoCart: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    NoUse:
+      Sitting: true
+    Weight: 10
+    Script: |
+      callfunc "F_boundgrade",3;
+  - Id: 2002022
+    AegisName: Grade_A_BOUND
+    Name: A grade bound char
+    Type: DelayConsume
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoCart: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    NoUse:
+      Sitting: true
+    Weight: 10
+    Script: |
+      callfunc "F_boundgrade",4;
+  - Id: 2002023
+    AegisName: Grade_R_BOUND
+    Name: R grade bound char
+    Type: DelayConsume
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoCart: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    NoUse:
+      Sitting: true
+    Weight: 10
+    Script: |
+      callfunc "F_boundgrade",5;
+  - Id: 2002024
+    AegisName: Grade_MEOW_BOUND
+    Name: Meow grade bound char
+    Type: DelayConsume
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoCart: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    NoUse:
+      Sitting: true
+    Weight: 10
+    Script: |
+      callfunc "F_boundgrade",6;
+  - Id: 2002025
+    AegisName: Grade_Shark_BOUND
+    Name: Shark grade bound char
+    Type: DelayConsume
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoCart: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    NoUse:
+      Sitting: true
+    Weight: 10
+    Script: |
+      callfunc "F_boundgrade",7;
 #   [Enchant Item]
   - Id: 2099001
     AegisName: All_STATS1_NT

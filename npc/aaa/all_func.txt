@@ -844,6 +844,65 @@ Again:
 }
 
 
+function	script	F_boundgrade	{
+	disable_items;
+	.@tier = getarg(0);
+	mes "โปรดเลือก Item (เฉพาะที่สวมใส่อยู่้เท่านั้น)";
+	.@menu$ = "";
+	for(.@i=0; .@i <= 9; .@i++) {
+		if(getequipid(.@i))
+			.@menu$ += getequipname(.@i) + ":";
+	}
+	.@part = select(.@menu$) - 1;
+	.@equip_id = getequipid(.@part);
+	.@refine = getequiprefinerycnt(.@part);
+	.@grade = getenchantgrade(.@part);
+	setarray .@card[0],getequipcardid(.@part,0),getequipcardid(.@part,1),getequipcardid(.@part,2),getequipcardid(.@part,3);
+	for(.@i=0; .@i <= 3; .@i++) {
+		.@opid[.@i] = getequiprandomoption(.@part,.@i,ROA_ID);
+		.@opval[.@i] = getequiprandomoption(.@part,.@i,ROA_VALUE);
+		.@opparam[.@i] = getequiprandomoption(.@part,.@i,ROA_PARAM);
+	}
+	
+	setarray .@ticketlist[1],2002019,2002020,2002021,2002022,2002023,2002024,2002025;
+	.@cubeid = .@ticketlist[.@tier];
+	if(!.@tier) {
+		mes "กรุณาใช้ผ่าน Ticket เท่านั้น";
+		end;
+	}
+	if(countitem(.@equip_id) > 1 ) {
+		mes "กรุณาอย่ามีของซ้ำกับที่จะเกรดภายในตัว";
+		end;
+	}
+	mes "ท่านเลือกที่จะเสริม เกรด คือ";
+	mes "^FF0000<^i["+.@equip_id+"]>   "+getitemname(.@equip_id)+"^000000";
+	mes "<B>^ff0000ทุกอย่างของไอเท็มจะคงอยู่เหมือนเดิมแค่เพิ่มเกรด^000000</B>";
+	mes "<B>^ff0000เมื่อเกรดแล้วไอเท็มจะเป็นแบบผูกติดตัวละครนี้^000000</B>";
+	mes "ท่านแน่ใจใช่หรือไม่";
+	setdialogsize(400,250);
+	if(select(" - แน่ใจ: - ไม่แน่ใจ") == 2 ) end;
+	if(!countitem(.@cubeid)) {
+		clear2;
+		mes "^ff0000กรุณาถือ Ticket ไว้กับตัว^000000";
+		end;
+	}
+	if(.@grade >= .@tier) {
+		clear2;
+		mes "^ff0000ไอเท็มของท่านเกรดเท่ากันหรือสูงกว่าใบการันตีแล้ว^000000";
+		end;
+	}
+	if(!getequipisenableref(.@part)) {
+		clear2;
+		mes "^ff0000ไอเท็มนี้เกรดไม่ได้.^000000";
+		end;
+	}
+	delitem .@cubeid,1;
+	delequip .@part;
+	getitembound4 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],.@card[3],Bound_Char,.@tier,.@opid,.@opval,.@opparam;
+	equip .@equip_id;
+	close;
+}
+
 function	script	F_StoreADCard	{
 	
 	disable_items;
