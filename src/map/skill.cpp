@@ -20848,15 +20848,17 @@ int32 skill_vfcastfix(struct block_list *bl, double time, uint16 skill_id, uint1
 	if (!(flag&1))
 		time = time * (1 - sqrt(((float)(status_get_dex(bl) * 2 + status_get_int(bl)) / battle_config.vcast_stat_scale)));
 	fixed = 0; //[No fix cast]
-	
-	for (const auto &it : sd->skillfixcast) {
+
+	if (sd && !(flag & 4)) {
+		for (const auto& it : sd->skillfixcast) {
 			if (it.id == skill_id) { // bonus2 bSkillFixedCast
 				fixed += it.val;
 				break;
 			}
 		}
+	}
 		
-	if (sd->bonus.add_fixcast != 0)
+	if (sd && sd->bonus.add_fixcast != 0)
 		fixed += sd->bonus.add_fixcast; // bonus bFixedCast
 	
 	time = time * (1 - (float)min(reduce_cast_rate, 100) / 100);

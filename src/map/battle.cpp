@@ -1749,22 +1749,23 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 		&& skill_get_casttype(skill_id) == CAST_GROUND )
 		return 0;
 
-	if (bl->type == BL_PC) {
-		sd=(map_session_data *)bl;
-		//Special no damage states
-		if(flag&BF_WEAPON && sd->special_state.no_weapon_damage)
-			damage -= damage * sd->special_state.no_weapon_damage / 100;
+	if(skill_id != NPC_EARTHQUAKE_K) {
+		if (bl->type == BL_PC) {
+			sd=(map_session_data *)bl;
+			//Special no damage states
+			if(flag&BF_WEAPON && sd->special_state.no_weapon_damage)
+				damage -= damage * sd->special_state.no_weapon_damage / 100;
 
-		if(flag&BF_MAGIC && sd->special_state.no_magic_damage)
-			damage -= damage * sd->special_state.no_magic_damage / 100;
+			if(flag&BF_MAGIC && sd->special_state.no_magic_damage)
+				damage -= damage * sd->special_state.no_magic_damage / 100;
 
-		if(flag&BF_MISC && sd->special_state.no_misc_damage)
-			damage -= damage * sd->special_state.no_misc_damage / 100;
+			if(flag&BF_MISC && sd->special_state.no_misc_damage)
+				damage -= damage * sd->special_state.no_misc_damage / 100;
 
-		if(!damage)
-			return 0;
+			if(!damage)
+				return 0;
+		}
 	}
-
 	switch (skill_id) {
 #ifndef RENEWAL
 		case PA_PRESSURE:
@@ -8636,6 +8637,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 				ad.damage = status_get_lv(src) * 10 + sstatus->int_;
 				break;
 			case NPC_EARTHQUAKE:
+			//case NPC_EARTHQUAKE_K:
 				if (mflag & NPC_EARTHQUAKE_FLAG) {
 					ad.flag |= NPC_EARTHQUAKE_FLAG; // Pass flag to battle_calc_damage
 					mflag &= ~NPC_EARTHQUAKE_FLAG; // Remove before NK_SPLASHSPLIT check

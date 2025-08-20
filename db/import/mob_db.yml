@@ -81,6 +81,46 @@ Header:
   Version: 5
 
 Body:
+# [Faceworm Mod]
+  - Id: 2528
+    Attack: 4500
+    Str: 200
+    Dex: 200
+  - Id: 2529
+    Attack: 9012
+    Str: 300
+    Dex: 300
+    DamageTaken: 10
+  - Id: 2530
+    Attack: 5000
+    Str: 250
+    Dex: 250
+    DamageTaken: 10
+  - Id: 2532
+    Attack: 20000
+    Str: 1000
+    Dex: 500
+    DamageTaken: 10
+  - Id: 2533
+    Attack: 10000
+    Resistance: 500
+    Vit: 1000
+    Dex: 500
+    DamageTaken: 10
+  - Id: 2534
+    Attack: 10000
+    Attack2: 20000
+    MagicResistance: 500
+    Int: 1000
+    Dex: 500
+    DamageTaken: 10
+  - Id: 2535
+    Agi: 1000
+    Dex: 500
+    DamageTaken: 10
+  - Id: 2541
+    Dex: 450
+    DamageTaken: 10
 # [Boss Add Drop from Main]
 
   - Id: 3333
@@ -1546,3 +1586,2630 @@ Body:
     ChaseRange: 12
     WalkSpeed: 80
     Ai: 04
+
+  - Id: 30006
+    AegisName: SHC_EREMES
+    Name: Eremes Guille
+    Level: 265
+    Hp: 23800000
+    BaseExp: 10564584
+    JobExp: 7358234
+    Attack: 15999
+    Attack2: 3999
+    Defense: 360
+    MagicDefense: 200
+    Str: 300
+    Agi: 380
+    Vit: 120
+    Int: 140
+    Dex: 400
+    Luk: 160
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 1136
+    MagicResistance: 1248
+    Size: Medium
+    Race: Demon
+    Element: Poison
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+    Modes:
+      Detector: true
+    Drops:
+      - Item: Shadowdecon
+        Rate: 15
+      - Item: Etel_Dust
+        Rate: 550
+      - Item: Zelunium
+        Rate: 15
+      - Item: Eremes_Guille_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 30007
+    AegisName: CD_MAGALETA
+    Name: Margaretha Sorin
+    Level: 263
+    Hp: 24480000
+    BaseExp: 10564584
+    JobExp: 7358234
+    Attack: 5001
+    Attack2: 14001
+    Defense: 320
+    MagicDefense: 800
+    Str: 260
+    Agi: 160
+    Vit: 240
+    Int: 320
+    Dex: 300
+    Luk: 140
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 1118
+    MagicResistance: 1574
+    Size: Medium
+    Race: Demihuman
+    Element: Holy
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+    Drops:
+      - Item: Zelunium
+        Rate: 15
+      - Item: Shadowdecon
+        Rate: 15
+      - Item: Etel_Dust
+        Rate: 550
+      - Item: Margaretha_Sorin_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 30008
+    AegisName: AG_KATRINN
+    Name: Kathryne Keyron
+    Level: 263
+    Hp: 20400000
+    BaseExp: 10564584
+    JobExp: 7358234
+    Attack: 3999
+    Attack2: 12000
+    Defense: 220
+    MagicDefense: 800
+    Str: 220
+    Agi: 160
+    Vit: 120
+    Int: 400
+    Dex: 420
+    Luk: 100
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 1034
+    MagicResistance: 1574
+    Size: Medium
+    Race: Demihuman
+    Element: Ghost
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+    Drops:
+      - Item: Zelunium
+        Rate: 15
+      - Item: Shadowdecon
+        Rate: 15
+      - Item: Etel_Dust
+        Rate: 550
+      - Item: Kathryne_Keyron_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 30009
+    AegisName: WH_SHECIL
+    Name: Cecil Damon
+    Level: 265
+    Hp: 21420000
+    BaseExp: 10564584
+    JobExp: 7358234
+    Attack: 14001
+    Attack2: 3999
+    Defense: 200
+    MagicDefense: 200
+    Str: 260
+    Agi: 260
+    Vit: 140
+    Int: 160
+    Dex: 600
+    Luk: 100
+    AttackRange: 14
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 1000
+    MagicResistance: 1000
+    Size: Medium
+    Race: Demihuman
+    Element: Wind
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+    Drops:
+      - Item: Zelunium
+        Rate: 15
+      - Item: Shadowdecon
+        Rate: 15
+      - Item: Etel_Dust
+        Rate: 550
+      - Item: Cecil_Damon_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 30010
+    AegisName: MT_HARWORD
+    Name: Howard Alt-Eisen
+    Level: 263
+    Hp: 27200000
+    BaseExp: 10564584
+    JobExp: 7358234
+    Attack: 9999
+    Attack2: 6000
+    Defense: 400
+    MagicDefense: 200
+    Str: 320
+    Agi: 160
+    Vit: 400
+    Int: 120
+    Dex: 260
+    Luk: 100
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 1348
+    MagicResistance: 1255
+    Size: Medium
+    Race: Demihuman
+    Element: Water
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+    Drops:
+      - Item: Etel_Dust
+        Rate: 550
+      - Item: Shadowdecon
+        Rate: 15
+      - Item: Zelunium
+        Rate: 15
+      - Item: Howard_Eisen_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 30011
+    AegisName: DK_SEYREN
+    Name: Seyren Windsor
+    Level: 265
+    Hp: 24480000
+    BaseExp: 10564584
+    JobExp: 7358234
+    Attack: 18000
+    Attack2: 8001
+    Defense: 800
+    MagicDefense: 400
+    Str: 340
+    Agi: 200
+    Vit: 400
+    Int: 100
+    Dex: 400
+    Luk: 120
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 1789
+    MagicResistance: 1645
+    Size: Medium
+    Race: Demon
+    Element: Fire
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+    Modes:
+      Detector: true
+    Drops:
+      - Item: Etel_Dust
+        Rate: 550
+      - Item: Shadowdecon
+        Rate: 15
+      - Item: Zelunium
+        Rate: 15
+      - Item: Seyren_Windsor_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 30012
+    AegisName: SHC_G_EREMES
+    Name: Shadow Cross Eremes
+    Level: 275
+    Hp: 31500000
+    Attack: 24000
+    Attack2: 6000
+    Defense: 720
+    MagicDefense: 400
+    Str: 450
+    Agi: 570
+    Vit: 180
+    Int: 210
+    Dex: 600
+    Luk: 240
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 2272
+    MagicResistance: 2496
+    Size: Medium
+    Race: Demon
+    Element: Poison
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+    Modes:
+      Detector: true
+  - Id: 30013
+    AegisName: CD_G_MAGALETA
+    Name: Cardinal Margaretha
+    Level: 273
+    Hp: 36000000
+    Attack: 7500
+    Attack2: 21000
+    Defense: 640
+    MagicDefense: 1600
+    Str: 390
+    Agi: 240
+    Vit: 360
+    Int: 480
+    Dex: 450
+    Luk: 210
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 2236
+    MagicResistance: 3148
+    Size: Medium
+    Race: Demihuman
+    Element: Holy
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+  - Id: 30014
+    AegisName: AG_G_KATRINN
+    Name: Arch Mage Kathryne
+    Level: 273
+    Hp: 27000000
+    Attack: 6000
+    Attack2: 18000
+    Defense: 440
+    MagicDefense: 1600
+    Str: 330
+    Agi: 240
+    Vit: 180
+    Int: 600
+    Dex: 600
+    Luk: 150
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 2068
+    MagicResistance: 3148
+    Size: Medium
+    Race: Demihuman
+    Element: Ghost
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+  - Id: 30015
+    AegisName: WH_G_SHECIL
+    Name: Windhawk Cecil
+    Level: 275
+    Hp: 31500000
+    Attack: 21000
+    Attack2: 6000
+    Defense: 400
+    MagicDefense: 400
+    Str: 390
+    Agi: 390
+    Vit: 210
+    Int: 240
+    Dex: 900
+    Luk: 150
+    AttackRange: 14
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 2000
+    MagicResistance: 2000
+    Size: Medium
+    Race: Demihuman
+    Element: Wind
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+  - Id: 30016
+    AegisName: MT_G_HARWORD
+    Name: Meister Howard
+    Level: 273
+    Hp: 45000000
+    Attack: 15000
+    Attack2: 9000
+    Defense: 800
+    MagicDefense: 400
+    Str: 480
+    Agi: 240
+    Vit: 600
+    Int: 180
+    Dex: 390
+    Luk: 150
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 2696
+    MagicResistance: 2510
+    Size: Medium
+    Race: Demihuman
+    Element: Water
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+  - Id: 30017
+    AegisName: DK_G_SEYREN
+    Name: Dragon Knight Seyren
+    Level: 275
+    Hp: 36000000
+    Attack: 27000
+    Attack2: 12000
+    Defense: 1600
+    MagicDefense: 800
+    Str: 510
+    Agi: 300
+    Vit: 600
+    Int: 150
+    Dex: 600
+    Luk: 180
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 3578
+    MagicResistance: 3290
+    Size: Medium
+    Race: Demon
+    Element: Fire
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+    Modes:
+      Detector: true
+  - Id: 30018
+    AegisName: SHC_B_EREMES
+    Name: Shadow Cross Eremes
+    Level: 275
+    Hp: 126000000
+    BaseExp: 50235845
+    JobExp: 3115268
+    MvpExp: 29082838
+    Attack: 24000
+    Attack2: 6000
+    Defense: 720
+    MagicDefense: 400
+    Str: 450
+    Agi: 570
+    Vit: 180
+    Int: 210
+    Dex: 600
+    Luk: 240
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 2272
+    MagicResistance: 2496
+    Size: Medium
+    Race: Demihuman
+    Element: Poison
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 1
+    Ai: 21
+    Class: Boss
+    Modes:
+      KnockBackImmune: true
+      Mvp: true
+    MvpDrops:
+      - Item: Old_Card_Album
+        Rate: 3000
+      - Item: Yggdrasilberry
+        Rate: 2500
+      - Item: Bs_Making_S
+        Rate: 2000
+    Drops:
+      - Item: ShadowCross_Card
+        Rate: 1
+        StealProtected: true
+      - Item: Zelunium
+        Rate: 2500
+      - Item: Yggdrasilberry
+        Rate: 5000
+      - Item: Shadowdecon
+        Rate: 2500
+      - Item: Etel_Dust
+        Rate: 5000
+  - Id: 30019
+    AegisName: CD_B_MAGALETA
+    Name: Cardinal Margaretha
+    Level: 273
+    Hp: 144000000
+    BaseExp: 50235845
+    JobExp: 3115268
+    MvpExp: 29082838
+    Attack: 7500
+    Attack2: 21000
+    Defense: 640
+    MagicDefense: 1600
+    Str: 390
+    Agi: 240
+    Vit: 360
+    Int: 480
+    Dex: 450
+    Luk: 210
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 2236
+    MagicResistance: 3148
+    Size: Medium
+    Race: Demihuman
+    Element: Holy
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 1
+    Ai: 21
+    Class: Boss
+    Modes:
+      KnockBackImmune: true
+      Mvp: true
+    MvpDrops:
+      - Item: Old_Card_Album
+        Rate: 3000
+      - Item: Yggdrasilberry
+        Rate: 2500
+      - Item: Bs_Making_S
+        Rate: 2000
+    Drops:
+      - Item: Zelunium
+        Rate: 2500
+      - Item: Yggdrasilberry
+        Rate: 5000
+      - Item: Shadowdecon
+        Rate: 2500
+      - Item: Cardinal_Card
+        Rate: 1
+        StealProtected: true
+      - Item: Etel_Dust
+        Rate: 5000
+  - Id: 30020
+    AegisName: AG_B_KATRINN
+    Name: Arch Mage Kathryne
+    Level: 273
+    Hp: 108000000
+    BaseExp: 50235845
+    JobExp: 3115268
+    MvpExp: 29082838
+    Attack: 6000
+    Attack2: 18000
+    Defense: 440
+    MagicDefense: 1600
+    Str: 330
+    Agi: 240
+    Vit: 180
+    Int: 600
+    Dex: 600
+    Luk: 150
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 2068
+    MagicResistance: 3148
+    Size: Medium
+    Race: Demihuman
+    Element: Ghost
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 1
+    Ai: 21
+    Class: Boss
+    Modes:
+      KnockBackImmune: true
+      Mvp: true
+    MvpDrops:
+      - Item: Old_Card_Album
+        Rate: 3000
+      - Item: Yggdrasilberry
+        Rate: 2500
+      - Item: Bs_Making_S
+        Rate: 2000
+    Drops:
+      - Item: Zelunium
+        Rate: 2500
+      - Item: Yggdrasilberry
+        Rate: 5000
+      - Item: Shadowdecon
+        Rate: 2500
+      - Item: ArchMage_Card
+        Rate: 1
+        StealProtected: true
+      - Item: Etel_Dust
+        Rate: 5000
+  - Id: 30021
+    AegisName: WH_B_SHECIL
+    Name: Windhawk Cecil
+    Level: 275
+    Hp: 126000000
+    BaseExp: 50235845
+    JobExp: 3115268
+    MvpExp: 29082838
+    Attack: 21000
+    Attack2: 6000
+    Defense: 400
+    MagicDefense: 400
+    Str: 390
+    Agi: 390
+    Vit: 210
+    Int: 240
+    Dex: 900
+    Luk: 150
+    AttackRange: 14
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 2000
+    MagicResistance: 2000
+    Size: Medium
+    Race: Demihuman
+    Element: Wind
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 1
+    Ai: 21
+    Class: Boss
+    Modes:
+      KnockBackImmune: true
+      Mvp: true
+    MvpDrops:
+      - Item: Old_Card_Album
+        Rate: 3000
+      - Item: Yggdrasilberry
+        Rate: 2500
+      - Item: Bs_Making_S
+        Rate: 2000
+    Drops:
+      - Item: Zelunium
+        Rate: 2500
+      - Item: Yggdrasilberry
+        Rate: 5000
+      - Item: Shadowdecon
+        Rate: 2500
+      - Item: Windhawk_Card
+        Rate: 1
+        StealProtected: true
+      - Item: Etel_Dust
+        Rate: 5000
+  - Id: 30022
+    AegisName: MT_B_HARWORD
+    Name: Meister Howard
+    Level: 273
+    Hp: 180000000
+    BaseExp: 50235845
+    JobExp: 3115268
+    MvpExp: 29082838
+    Attack: 15000
+    Attack2: 9000
+    Defense: 800
+    MagicDefense: 400
+    Str: 480
+    Agi: 240
+    Vit: 600
+    Int: 180
+    Dex: 390
+    Luk: 150
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 2696
+    MagicResistance: 2510
+    Size: Medium
+    Race: Demihuman
+    Element: Water
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 1
+    Ai: 21
+    Class: Boss
+    Modes:
+      KnockBackImmune: true
+      Mvp: true
+    MvpDrops:
+      - Item: Old_Card_Album
+        Rate: 3000
+      - Item: Yggdrasilberry
+        Rate: 2500
+      - Item: Bs_Making_S
+        Rate: 2000
+    Drops:
+      - Item: Zelunium
+        Rate: 2500
+      - Item: Yggdrasilberry
+        Rate: 5000
+      - Item: Shadowdecon
+        Rate: 2500
+      - Item: Meister_Card
+        Rate: 1
+        StealProtected: true
+      - Item: Etel_Dust
+        Rate: 5000
+  - Id: 30023
+    AegisName: DK_B_SEYREN
+    Name: Dragon Knight Seyren
+    Level: 275
+    Hp: 144000000
+    BaseExp: 50235845
+    JobExp: 3115268
+    MvpExp: 29082838
+    Attack: 27000
+    Attack2: 12000
+    Defense: 1600
+    MagicDefense: 800
+    Str: 510
+    Agi: 300
+    Vit: 600
+    Int: 150
+    Dex: 600
+    Luk: 180
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 3578
+    MagicResistance: 3290
+    Size: Medium
+    Race: Demihuman
+    Element: Fire
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 1
+    Ai: 21
+    Class: Boss
+    Modes:
+      KnockBackImmune: true
+      Mvp: true
+    MvpDrops:
+      - Item: Old_Card_Album
+        Rate: 3000
+      - Item: Yggdrasilberry
+        Rate: 2500
+      - Item: Bs_Making_S
+        Rate: 2000
+    Drops:
+      - Item: Yggdrasilberry
+        Rate: 5000
+      - Item: Shadowdecon
+        Rate: 2500
+      - Item: Zelunium
+        Rate: 2500
+      - Item: Etel_Dust
+        Rate: 5000
+      - Item: DragonKnight_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 30024
+    AegisName: IG_RANDEL
+    Name: Randel Lawrence
+    Level: 264
+    Hp: 25500000
+    BaseExp: 10564584
+    JobExp: 7358234
+    Attack: 12000
+    Attack2: 3999
+    Defense: 600
+    MagicDefense: 400
+    Str: 400
+    Agi: 160
+    Vit: 400
+    Int: 100
+    Dex: 380
+    Luk: 140
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 1952
+    MagicResistance: 1844
+    Size: Medium
+    Race: Demihuman
+    Element: Holy
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+    Drops:
+      - Item: Zelunium
+        Rate: 15
+      - Item: Shadowdecon
+        Rate: 15
+      - Item: Etel_Dust
+        Rate: 550
+      - Item: Randel_Lawrence_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 30025
+    AegisName: BO_FLAMEL
+    Name: Flamel Emule
+    Level: 262
+    Hp: 23120000
+    BaseExp: 10564584
+    JobExp: 7358234
+    Attack: 9999
+    Attack2: 9999
+    Defense: 260
+    MagicDefense: 200
+    Str: 280
+    Agi: 160
+    Vit: 140
+    Int: 300
+    Dex: 400
+    Luk: 100
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 1344
+    MagicResistance: 1286
+    Size: Medium
+    Race: Demihuman
+    Element: Fire
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+    Drops:
+      - Item: Zelunium
+        Rate: 15
+      - Item: Shadowdecon
+        Rate: 15
+      - Item: Etel_Dust
+        Rate: 550
+      - Item: Flamel_Emule_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 30026
+    AegisName: EM_CELIA
+    Name: Celia Alde
+    Level: 264
+    Hp: 22950000
+    BaseExp: 10564584
+    JobExp: 7358234
+    Attack: 6000
+    Attack2: 9999
+    Defense: 220
+    MagicDefense: 1600
+    Str: 280
+    Agi: 200
+    Vit: 120
+    Int: 300
+    Dex: 240
+    Luk: 100
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 1179
+    MagicResistance: 2146
+    Size: Medium
+    Race: Demihuman
+    Element: Ghost
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+    Drops:
+      - Item: Shadowdecon
+        Rate: 15
+      - Item: Zelunium
+        Rate: 15
+      - Item: Etel_Dust
+        Rate: 550
+      - Item: Celia_Alde_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 30027
+    AegisName: IQ_CHEN
+    Name: Chen Liu
+    Level: 264
+    Hp: 22610000
+    BaseExp: 10564584
+    JobExp: 7358234
+    Attack: 15999
+    Attack2: 6000
+    Defense: 360
+    MagicDefense: 200
+    Str: 300
+    Agi: 160
+    Vit: 180
+    Int: 260
+    Dex: 400
+    Luk: 120
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 1553
+    MagicResistance: 1347
+    Size: Medium
+    Race: Demon
+    Element: Water
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+    Modes:
+      Detector: true
+    Drops:
+      - Item: Etel_Dust
+        Rate: 550
+      - Item: Shadowdecon
+        Rate: 15
+      - Item: Zelunium
+        Rate: 15
+      - Item: Chen_Liu_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 30028
+    AegisName: ABC_GERTIE
+    Name: Gertie Wie
+    Level: 264
+    Hp: 20400000
+    BaseExp: 10564584
+    JobExp: 7358234
+    Attack: 14001
+    Attack2: 5001
+    Defense: 320
+    MagicDefense: 200
+    Str: 360
+    Agi: 260
+    Vit: 120
+    Int: 100
+    Dex: 420
+    Luk: 100
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 1411
+    MagicResistance: 1204
+    Size: Medium
+    Race: Demon
+    Element: Poison
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+    Modes:
+      Detector: true
+    Drops:
+      - Item: Shadowdecon
+        Rate: 15
+      - Item: Zelunium
+        Rate: 15
+      - Item: Etel_Dust
+        Rate: 550
+      - Item: Gertie_Wie_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 30029
+    AegisName: TR_ALPHOCCIO
+    Name: Alphoccio Basil
+    Level: 262
+    Hp: 20400000
+    BaseExp: 10564584
+    JobExp: 7358234
+    Attack: 8001
+    Attack2: 12000
+    Defense: 240
+    MagicDefense: 200
+    Str: 240
+    Agi: 300
+    Vit: 140
+    Int: 400
+    Dex: 300
+    Luk: 180
+    AttackRange: 7
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 1258
+    MagicResistance: 1019
+    Size: Medium
+    Race: Demihuman
+    Element: Wind
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+    Drops:
+      - Item: Etel_Dust
+        Rate: 550
+      - Item: Shadowdecon
+        Rate: 15
+      - Item: Zelunium
+        Rate: 15
+      - Item: Alphoccio_Basil_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 30030
+    AegisName: TR_TRENTINI
+    Name: Trentini
+    Level: 262
+    Hp: 20400000
+    BaseExp: 10564584
+    JobExp: 7358234
+    Attack: 8001
+    Attack2: 12000
+    Defense: 200
+    MagicDefense: 200
+    Str: 220
+    Agi: 300
+    Vit: 140
+    Int: 400
+    Dex: 300
+    Luk: 160
+    AttackRange: 7
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 1000
+    MagicResistance: 1000
+    Size: Medium
+    Race: Demihuman
+    Element: Wind
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+    Drops:
+      - Item: Etel_Dust
+        Rate: 550
+      - Item: Shadowdecon
+        Rate: 15
+      - Item: Zelunium
+        Rate: 15
+      - Item: Fallen_Trentini_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 30031
+    AegisName: IG_G_RANDEL
+    Name: Imperial Guard Randel
+    Level: 274
+    Hp: 45000000
+    Attack: 18000
+    Attack2: 6000
+    Defense: 1200
+    MagicDefense: 800
+    Str: 600
+    Agi: 240
+    Vit: 600
+    Int: 150
+    Dex: 570
+    Luk: 210
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 3904
+    MagicResistance: 3688
+    Size: Medium
+    Race: Demihuman
+    Element: Holy
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+  - Id: 30032
+    AegisName: BO_G_FLAMEL
+    Name: Biolo Emule
+    JapaneseName: Biolo Flamel
+    Level: 272
+    Hp: 36000000
+    Attack: 15000
+    Attack2: 15000
+    Defense: 520
+    MagicDefense: 400
+    Str: 420
+    Agi: 240
+    Vit: 210
+    Int: 450
+    Dex: 600
+    Luk: 150
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 2688
+    MagicResistance: 2572
+    Size: Medium
+    Race: Demihuman
+    Element: Fire
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+  - Id: 30033
+    AegisName: EM_G_CELIA
+    Name: Elemental Master Celia
+    Level: 274
+    Hp: 40500000
+    Attack: 9000
+    Attack2: 15000
+    Defense: 440
+    MagicDefense: 1600
+    Str: 420
+    Agi: 300
+    Vit: 180
+    Int: 450
+    Dex: 360
+    Luk: 150
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 2358
+    MagicResistance: 4292
+    Size: Medium
+    Race: Demihuman
+    Element: Ghost
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+  - Id: 30034
+    AegisName: IQ_G_CHEN
+    Name: Inquisitor Chen
+    Level: 274
+    Hp: 31500000
+    Attack: 24000
+    Attack2: 9000
+    Defense: 720
+    MagicDefense: 400
+    Str: 450
+    Agi: 240
+    Vit: 270
+    Int: 240
+    Dex: 600
+    Luk: 180
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 3106
+    MagicResistance: 2694
+    Size: Medium
+    Race: Demon
+    Element: Water
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+    Modes:
+      Detector: true
+  - Id: 30035
+    AegisName: ABC_G_GERTIE
+    Name: Abyss Chaser Gertie
+    Level: 274
+    Hp: 36000000
+    Attack: 21000
+    Attack2: 7500
+    Defense: 640
+    MagicDefense: 400
+    Str: 540
+    Agi: 390
+    Vit: 180
+    Int: 150
+    Dex: 630
+    Luk: 150
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 2822
+    MagicResistance: 2408
+    Size: Medium
+    Race: Demon
+    Element: Poison
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+    Modes:
+      Detector: true
+  - Id: 30036
+    AegisName: TR_G_ALPHOCCIO
+    Name: Troubadour Alphoccio
+    Level: 272
+    Hp: 36000000
+    Attack: 12000
+    Attack2: 18000
+    Defense: 480
+    MagicDefense: 400
+    Str: 360
+    Agi: 450
+    Vit: 210
+    Int: 600
+    Dex: 450
+    Luk: 270
+    AttackRange: 7
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 2516
+    MagicResistance: 2038
+    Size: Medium
+    Race: Demihuman
+    Element: Wind
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+  - Id: 30037
+    AegisName: TR_G_TRENTINI
+    Name: Trouvere Trentini
+    Level: 272
+    Hp: 36000000
+    Attack: 12000
+    Attack2: 18000
+    Defense: 400
+    MagicDefense: 400
+    Str: 330
+    Agi: 450
+    Vit: 210
+    Int: 600
+    Dex: 450
+    Luk: 240
+    AttackRange: 7
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 2000
+    MagicResistance: 2000
+    Size: Medium
+    Race: Demihuman
+    Element: Wind
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+  - Id: 30038
+    AegisName: IG_B_RANDEL
+    Name: Imperial Guard Randel
+    Level: 274
+    Hp: 180000000
+    BaseExp: 50235845
+    JobExp: 3115268
+    MvpExp: 29082838
+    Attack: 18000
+    Attack2: 6000
+    Defense: 1200
+    MagicDefense: 800
+    Str: 600
+    Agi: 240
+    Vit: 600
+    Int: 150
+    Dex: 570
+    Luk: 210
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 3904
+    MagicResistance: 3688
+    Size: Medium
+    Race: Demihuman
+    Element: Holy
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 1
+    Ai: 21
+    Class: Boss
+    Modes:
+      KnockBackImmune: true
+      Mvp: true
+    MvpDrops:
+      - Item: Old_Card_Album
+        Rate: 3000
+      - Item: Yggdrasilberry
+        Rate: 2500
+      - Item: Bs_Making_S
+        Rate: 2000
+    Drops:
+      - Item: ImperialGuard_Card
+        Rate: 1
+        StealProtected: true
+      - Item: Yggdrasilberry
+        Rate: 5000
+      - Item: Shadowdecon
+        Rate: 2500
+      - Item: Zelunium
+        Rate: 2500
+      - Item: Etel_Dust
+        Rate: 5000
+  - Id: 30039
+    AegisName: BO_B_FLAMEL
+    Name: Biolo Emule
+    JapaneseName: Biolo Flamel
+    Level: 272
+    Hp: 144000000
+    BaseExp: 50235845
+    JobExp: 3115268
+    MvpExp: 29082838
+    Attack: 15000
+    Attack2: 15000
+    Defense: 520
+    MagicDefense: 400
+    Str: 420
+    Agi: 240
+    Vit: 210
+    Int: 450
+    Dex: 600
+    Luk: 150
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 2688
+    MagicResistance: 2572
+    Size: Medium
+    Race: Demihuman
+    Element: Fire
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 1
+    Ai: 21
+    Class: Boss
+    Modes:
+      KnockBackImmune: true
+      Mvp: true
+    MvpDrops:
+      - Item: Old_Card_Album
+        Rate: 3000
+      - Item: Yggdrasilberry
+        Rate: 2500
+      - Item: Bs_Making_S
+        Rate: 2000
+    Drops:
+      - Item: Biolo_Card
+        Rate: 1
+        StealProtected: true
+      - Item: Yggdrasilberry
+        Rate: 5000
+      - Item: Shadowdecon
+        Rate: 2500
+      - Item: Zelunium
+        Rate: 2500
+      - Item: Etel_Dust
+        Rate: 5000
+  - Id: 30040
+    AegisName: EM_B_CELIA
+    Name: Elemental Master Celia
+    Level: 274
+    Hp: 162000000
+    BaseExp: 50235845
+    JobExp: 3115268
+    MvpExp: 29082838
+    Attack: 9000
+    Attack2: 15000
+    Defense: 440
+    MagicDefense: 1600
+    Str: 420
+    Agi: 300
+    Vit: 180
+    Int: 450
+    Dex: 360
+    Luk: 150
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 2358
+    MagicResistance: 4292
+    Size: Medium
+    Race: Demihuman
+    Element: Ghost
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 1
+    Ai: 21
+    Class: Boss
+    Modes:
+      KnockBackImmune: true
+      Mvp: true
+    MvpDrops:
+      - Item: Old_Card_Album
+        Rate: 3000
+      - Item: Yggdrasilberry
+        Rate: 2500
+      - Item: Bs_Making_S
+        Rate: 2000
+    Drops:
+      - Item: ElementalMaster_Card
+        Rate: 1
+        StealProtected: true
+      - Item: Yggdrasilberry
+        Rate: 5000
+      - Item: Shadowdecon
+        Rate: 2500
+      - Item: Zelunium
+        Rate: 2500
+      - Item: Etel_Dust
+        Rate: 5000
+  - Id: 30041
+    AegisName: IQ_B_CHEN
+    Name: Inquisitor Chen
+    Level: 274
+    Hp: 126000000
+    BaseExp: 50235845
+    JobExp: 3115268
+    MvpExp: 29082838
+    Attack: 24000
+    Attack2: 9000
+    Defense: 720
+    MagicDefense: 400
+    Str: 450
+    Agi: 240
+    Vit: 270
+    Int: 240
+    Dex: 600
+    Luk: 180
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 3106
+    MagicResistance: 2694
+    Size: Medium
+    Race: Demihuman
+    Element: Water
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 1
+    Ai: 21
+    Class: Boss
+    Modes:
+      KnockBackImmune: true
+      Mvp: true
+    MvpDrops:
+      - Item: Old_Card_Album
+        Rate: 3000
+      - Item: Yggdrasilberry
+        Rate: 2500
+      - Item: Bs_Making_S
+        Rate: 2000
+    Drops:
+      - Item: Etel_Dust
+        Rate: 5000
+      - Item: Yggdrasilberry
+        Rate: 5000
+      - Item: Shadowdecon
+        Rate: 2500
+      - Item: Zelunium
+        Rate: 2500
+      - Item: Inquisitor_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 30042
+    AegisName: ABC_B_GERTIE
+    Name: Abyss Chaser Gertie
+    Level: 274
+    Hp: 144000000
+    BaseExp: 50235845
+    JobExp: 3115268
+    MvpExp: 29082838
+    Attack: 21000
+    Attack2: 7500
+    Defense: 640
+    MagicDefense: 400
+    Str: 540
+    Agi: 390
+    Vit: 180
+    Int: 150
+    Dex: 630
+    Luk: 150
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 2822
+    MagicResistance: 2408
+    Size: Medium
+    Race: Demihuman
+    Element: Poison
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 1
+    Ai: 21
+    Class: Boss
+    Modes:
+      KnockBackImmune: true
+      Mvp: true
+    MvpDrops:
+      - Item: Old_Card_Album
+        Rate: 3000
+      - Item: Yggdrasilberry
+        Rate: 2500
+      - Item: Bs_Making_S
+        Rate: 2000
+    Drops:
+      - Item: AbyssChaser_Card
+        Rate: 1
+        StealProtected: true
+      - Item: Yggdrasilberry
+        Rate: 5000
+      - Item: Shadowdecon
+        Rate: 2500
+      - Item: Zelunium
+        Rate: 2500
+      - Item: Etel_Dust
+        Rate: 5000
+  - Id: 30043
+    AegisName: TR_B_ALPHOCCIO
+    Name: Troubadour Alphoccio
+    Level: 272
+    Hp: 36000000
+    BaseExp: 50235845
+    JobExp: 3115268
+    MvpExp: 29082838
+    Attack: 12000
+    Attack2: 18000
+    Defense: 480
+    MagicDefense: 400
+    Str: 360
+    Agi: 450
+    Vit: 210
+    Int: 600
+    Dex: 450
+    Luk: 270
+    AttackRange: 7
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 2516
+    MagicResistance: 2038
+    Size: Medium
+    Race: Demihuman
+    Element: Wind
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+    Modes:
+      KnockBackImmune: true
+      Mvp: true
+    MvpDrops:
+      - Item: Old_Card_Album
+        Rate: 3000
+      - Item: Yggdrasilberry
+        Rate: 2500
+      - Item: Bs_Making_S
+        Rate: 2000
+    Drops:
+      - Item: Etel_Dust
+        Rate: 5000
+      - Item: Yggdrasilberry
+        Rate: 5000
+      - Item: Shadowdecon
+        Rate: 2500
+      - Item: Zelunium
+        Rate: 2500
+      - Item: Troubadour_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 30044
+    AegisName: TR_B_TRENTINI
+    Name: Trouvere Trentini
+    Level: 272
+    Hp: 36000000
+    BaseExp: 50235845
+    JobExp: 3115268
+    MvpExp: 29082838
+    Attack: 12000
+    Attack2: 18000
+    Defense: 400
+    MagicDefense: 400
+    Str: 330
+    Agi: 450
+    Vit: 210
+    Int: 600
+    Dex: 450
+    Luk: 240
+    AttackRange: 7
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 2000
+    MagicResistance: 2000
+    Size: Medium
+    Race: Demihuman
+    Element: Wind
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+    Modes:
+      KnockBackImmune: true
+      Mvp: true
+    MvpDrops:
+      - Item: Old_Card_Album
+        Rate: 3000
+      - Item: Yggdrasilberry
+        Rate: 2500
+      - Item: Bs_Making_S
+        Rate: 2000
+    Drops:
+      - Item: Zelunium
+        Rate: 2500
+      - Item: Yggdrasilberry
+        Rate: 5000
+      - Item: Shadowdecon
+        Rate: 2500
+      - Item: Trouvere_Card
+        Rate: 1
+        StealProtected: true
+      - Item: Etel_Dust
+        Rate: 5000
+  - Id: 30045
+    AegisName: SS_SAKURA
+    Name: Miyamoto Sakura
+    Level: 263
+    Hp: 20400000
+    BaseExp: 10564584
+    JobExp: 7358234
+    Attack: 3999
+    Attack2: 12000
+    Defense: 220
+    MagicDefense: 800
+    Str: 220
+    Agi: 160
+    Vit: 120
+    Int: 400
+    Dex: 420
+    Luk: 100
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 1148
+    MagicResistance: 1505
+    Size: Medium
+    Race: Demihuman
+    Element: Dark
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+    Drops:
+      - Item: Etel_Dust
+        Rate: 550
+      - Item: Shadowdecon
+        Rate: 15
+      - Item: Zelunium
+        Rate: 15
+      - Item: Miyamoto_Sakura_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 30046
+    AegisName: SS_RYUUGA
+    Name: Ishikawa Ryuuga
+    Level: 265
+    Hp: 23800000
+    BaseExp: 10564584
+    JobExp: 7358234
+    Attack: 15999
+    Attack2: 3999
+    Defense: 400
+    MagicDefense: 240
+    Str: 300
+    Agi: 380
+    Vit: 120
+    Int: 140
+    Dex: 400
+    Luk: 160
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 1742
+    MagicResistance: 1367
+    Size: Medium
+    Race: Demon
+    Element: Dark
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+    Modes:
+      Detector: true
+    Drops:
+      - Item: Etel_Dust
+        Rate: 550
+      - Item: Shadowdecon
+        Rate: 15
+      - Item: Zelunium
+        Rate: 15
+      - Item: Ishikawa_Ryuuga_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 30047
+    AegisName: SKE_CHAEYOUNG
+    Name: Han Chaeyoung
+    Level: 264
+    Hp: 22610000
+    BaseExp: 10564584
+    JobExp: 7358234
+    Attack: 15999
+    Attack2: 6000
+    Defense: 380
+    MagicDefense: 240
+    Str: 300
+    Agi: 160
+    Vit: 180
+    Int: 260
+    Dex: 400
+    Luk: 120
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 1538
+    MagicResistance: 1137
+    Size: Medium
+    Race: Demon
+    Element: Neutral
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+    Modes:
+      Detector: true
+    Drops:
+      - Item: Etel_Dust
+        Rate: 550
+      - Item: Shadowdecon
+        Rate: 15
+      - Item: Zelunium
+        Rate: 15
+      - Item: Han_Chaeyoung_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 30048
+    AegisName: SOA_HYUNGMIN
+    Name: Pak Hyungmin
+    Level: 264
+    Hp: 22950000
+    BaseExp: 10564584
+    JobExp: 7358234
+    Attack: 6000
+    Attack2: 9999
+    Defense: 220
+    MagicDefense: 2000
+    Str: 280
+    Agi: 200
+    Vit: 120
+    Int: 300
+    Dex: 240
+    Luk: 100
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 1179
+    MagicResistance: 2584
+    Size: Medium
+    Race: Demihuman
+    Element: Ghost
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+    Drops:
+      - Item: Shadowdecon
+        Rate: 15
+      - Item: Zelunium
+        Rate: 15
+      - Item: Etel_Dust
+        Rate: 550
+      - Item: Pak_Hyungmin_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 30049
+    AegisName: HN_MARIE
+    Name: Marie Agnes
+    Level: 263
+    Hp: 24480000
+    BaseExp: 10564584
+    JobExp: 7358234
+    Attack: 5001
+    Attack2: 14001
+    Defense: 320
+    MagicDefense: 1600
+    Str: 260
+    Agi: 160
+    Vit: 240
+    Int: 320
+    Dex: 300
+    Luk: 140
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 1118
+    MagicResistance: 1833
+    Size: Medium
+    Race: Demihuman
+    Element: Holy
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+    Drops:
+      - Item: Zelunium
+        Rate: 15
+      - Item: Shadowdecon
+        Rate: 15
+      - Item: Etel_Dust
+        Rate: 550
+      - Item: Marie_Agnes_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 30050
+    AegisName: HN_FLINT
+    Name: Flint Manfred
+    Level: 265
+    Hp: 24480000
+    BaseExp: 10564584
+    JobExp: 7358234
+    Attack: 18000
+    Attack2: 8001
+    Defense: 800
+    MagicDefense: 400
+    Str: 340
+    Agi: 200
+    Vit: 400
+    Int: 100
+    Dex: 400
+    Luk: 120
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 1789
+    MagicResistance: 1645
+    Size: Medium
+    Race: Demihuman
+    Element: Fire
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+    Drops:
+      - Item: Zelunium
+        Rate: 15
+      - Item: Shadowdecon
+        Rate: 15
+      - Item: Etel_Dust
+        Rate: 550
+      - Item: Flint_Manfred_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 30051
+    AegisName: NW_VINCENT
+    Name: Vincent Walter
+    Level: 265
+    Hp: 21420000
+    BaseExp: 10564584
+    JobExp: 7358234
+    Attack: 14001
+    Attack2: 3999
+    Defense: 300
+    MagicDefense: 300
+    Str: 260
+    Agi: 260
+    Vit: 140
+    Int: 160
+    Dex: 600
+    Luk: 100
+    AttackRange: 14
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 1300
+    MagicResistance: 1300
+    Size: Medium
+    Race: Demihuman
+    Element: Wind
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+    Drops:
+      - Item: Etel_Dust
+        Rate: 550
+      - Item: Shadowdecon
+        Rate: 15
+      - Item: Zelunium
+        Rate: 15
+      - Item: Vincent_Walter_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 30052
+    AegisName: SS_G_SAKURA
+    Name: Shiranui Sakura
+    Level: 273
+    Hp: 27000000
+    Attack: 6000
+    Attack2: 18000
+    Defense: 440
+    MagicDefense: 1600
+    Str: 330
+    Agi: 240
+    Vit: 180
+    Int: 600
+    Dex: 630
+    Luk: 150
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 2296
+    MagicResistance: 3010
+    Size: Medium
+    Race: Demihuman
+    Element: Dark
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+  - Id: 30053
+    AegisName: SS_G_RYUUGA
+    Name: Shinkiro Ryuuga
+    Level: 275
+    Hp: 31500000
+    Attack: 24000
+    Attack2: 6000
+    Defense: 800
+    MagicDefense: 480
+    Str: 450
+    Agi: 570
+    Vit: 180
+    Int: 210
+    Dex: 600
+    Luk: 240
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 3484
+    MagicResistance: 2734
+    Size: Medium
+    Race: Demon
+    Element: Dark
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+    Modes:
+      Detector: true
+  - Id: 30054
+    AegisName: SKE_G_CHAEYOUNG
+    Name: Sky Emperor Chaeyoung
+    Level: 274
+    Hp: 31500000
+    Attack: 24000
+    Attack2: 9000
+    Defense: 760
+    MagicDefense: 480
+    Str: 450
+    Agi: 240
+    Vit: 270
+    Int: 390
+    Dex: 600
+    Luk: 180
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 3076
+    MagicResistance: 2274
+    Size: Medium
+    Race: Demon
+    Element: Neutral
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+    Modes:
+      Detector: true
+  - Id: 30055
+    AegisName: SOA_G_HYUNGMIN
+    Name: Soul Ascetic Hyungmin
+    Level: 274
+    Hp: 40500000
+    Attack: 9000
+    Attack2: 15000
+    Defense: 440
+    MagicDefense: 4000
+    Str: 420
+    Agi: 300
+    Vit: 180
+    Int: 450
+    Dex: 360
+    Luk: 150
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 2358
+    MagicResistance: 5168
+    Size: Medium
+    Race: Demihuman
+    Element: Ghost
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+  - Id: 30056
+    AegisName: HN_G_MARIE
+    Name: Hyper Novice Marie
+    Level: 273
+    Hp: 36000000
+    Attack: 7500
+    Attack2: 21000
+    Defense: 640
+    MagicDefense: 3200
+    Str: 390
+    Agi: 240
+    Vit: 360
+    Int: 480
+    Dex: 450
+    Luk: 210
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 2236
+    MagicResistance: 3666
+    Size: Medium
+    Race: Demihuman
+    Element: Holy
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+  - Id: 30057
+    AegisName: HN_G_FLINT
+    Name: Hyper Novice Flint
+    Level: 275
+    Hp: 36000000
+    Attack: 27000
+    Attack2: 12000
+    Defense: 1600
+    MagicDefense: 800
+    Str: 510
+    Agi: 300
+    Vit: 600
+    Int: 150
+    Dex: 600
+    Luk: 180
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 3578
+    MagicResistance: 3290
+    Size: Medium
+    Race: Demihuman
+    Element: Fire
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+  - Id: 30058
+    AegisName: NW_G_VINCENT
+    Name: Night Watch Vincent
+    Level: 275
+    Hp: 31500000
+    Attack: 21000
+    Attack2: 600
+    Defense: 600
+    MagicDefense: 600
+    Str: 390
+    Agi: 390
+    Vit: 210
+    Int: 240
+    Dex: 900
+    Luk: 150
+    AttackRange: 14
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 2600
+    MagicResistance: 2600
+    Size: Medium
+    Race: Demihuman
+    Element: Wind
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Class: Boss
+  - Id: 30059
+    AegisName: SS_B_SAKURA
+    Name: Shiranui Sakura
+    Level: 273
+    Hp: 108000000
+    BaseExp: 50235845
+    JobExp: 3115268
+    MvpExp: 29082838
+    Attack: 6000
+    Attack2: 18000
+    Defense: 440
+    MagicDefense: 1600
+    Str: 330
+    Agi: 240
+    Vit: 180
+    Int: 600
+    Dex: 630
+    Luk: 150
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 2296
+    MagicResistance: 3010
+    Size: Medium
+    Race: Demihuman
+    Element: Dark
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 1
+    Ai: 21
+    Class: Boss
+    Modes:
+      KnockBackImmune: true
+      Mvp: true
+    MvpDrops:
+      - Item: Old_Card_Album
+        Rate: 3000
+      - Item: Yggdrasilberry
+        Rate: 2500
+      - Item: Bs_Making_S
+        Rate: 2000
+    Drops:
+      - Item: Shiranui_Card
+        Rate: 1
+        StealProtected: true
+      - Item: Yggdrasilberry
+        Rate: 5000
+      - Item: Shadowdecon
+        Rate: 2500
+      - Item: Zelunium
+        Rate: 2500
+      - Item: Etel_Dust
+        Rate: 5000
+  - Id: 30060
+    AegisName: SS_B_RYUUGA
+    Name: Shinkiro Ryuuga
+    Level: 275
+    Hp: 126000000
+    BaseExp: 50235845
+    JobExp: 3115268
+    MvpExp: 29082838
+    Attack: 24000
+    Attack2: 6000
+    Defense: 800
+    MagicDefense: 480
+    Str: 450
+    Agi: 570
+    Vit: 180
+    Int: 210
+    Dex: 600
+    Luk: 240
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 3484
+    MagicResistance: 2734
+    Size: Medium
+    Race: Demihuman
+    Element: Dark
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 1
+    Ai: 21
+    Class: Boss
+    Modes:
+      KnockBackImmune: true
+      Mvp: true
+    MvpDrops:
+      - Item: Old_Card_Album
+        Rate: 3000
+      - Item: Yggdrasilberry
+        Rate: 2500
+      - Item: Bs_Making_S
+        Rate: 2000
+    Drops:
+      - Item: Shinkiro_Card
+        Rate: 1
+        StealProtected: true
+      - Item: Yggdrasilberry
+        Rate: 5000
+      - Item: Shadowdecon
+        Rate: 2500
+      - Item: Zelunium
+        Rate: 2500
+      - Item: Etel_Dust
+        Rate: 5000
+  - Id: 30061
+    AegisName: SKE_B_CHAEYOUNG
+    Name: Sky Emperor Chaeyoung
+    Level: 274
+    Hp: 126000000
+    BaseExp: 50235845
+    JobExp: 3115268
+    MvpExp: 29082838
+    Attack: 24000
+    Attack2: 9000
+    Defense: 760
+    MagicDefense: 480
+    Str: 450
+    Agi: 240
+    Vit: 270
+    Int: 390
+    Dex: 600
+    Luk: 180
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 3076
+    MagicResistance: 2274
+    Size: Medium
+    Race: Demihuman
+    Element: Neutral
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 1
+    Ai: 21
+    Class: Boss
+    Modes:
+      KnockBackImmune: true
+      Mvp: true
+    MvpDrops:
+      - Item: Old_Card_Album
+        Rate: 3000
+      - Item: Yggdrasilberry
+        Rate: 2500
+      - Item: Bs_Making_S
+        Rate: 2000
+    Drops:
+      - Item: Zelunium
+        Rate: 2500
+      - Item: Yggdrasilberry
+        Rate: 5000
+      - Item: Shadowdecon
+        Rate: 2500
+      - Item: SkyEmperor_Card
+        Rate: 1
+        StealProtected: true
+      - Item: Etel_Dust
+        Rate: 5000
+  - Id: 30062
+    AegisName: SOA_B_HYUNGMIN
+    Name: Soul Ascetic Hyungmin
+    Level: 274
+    Hp: 162000000
+    BaseExp: 50235845
+    JobExp: 3115268
+    MvpExp: 29082838
+    Attack: 9000
+    Attack2: 15000
+    Defense: 440
+    MagicDefense: 4000
+    Str: 420
+    Agi: 300
+    Vit: 180
+    Int: 450
+    Dex: 360
+    Luk: 150
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 2358
+    MagicResistance: 5168
+    Size: Medium
+    Race: Demihuman
+    Element: Ghost
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 1
+    Ai: 21
+    Class: Boss
+    Modes:
+      KnockBackImmune: true
+      Mvp: true
+    MvpDrops:
+      - Item: Old_Card_Album
+        Rate: 3000
+      - Item: Yggdrasilberry
+        Rate: 2500
+      - Item: Bs_Making_S
+        Rate: 2000
+    Drops:
+      - Item: Etel_Dust
+        Rate: 5000
+      - Item: Yggdrasilberry
+        Rate: 5000
+      - Item: Shadowdecon
+        Rate: 2500
+      - Item: Zelunium
+        Rate: 2500
+      - Item: SoulAscetic_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 30063
+    AegisName: HN_B_MARIE
+    Name: Hyper Novice Marie
+    Level: 273
+    Hp: 144000000
+    BaseExp: 50235845
+    JobExp: 3115268
+    MvpExp: 29082838
+    Attack: 7500
+    Attack2: 21000
+    Defense: 640
+    MagicDefense: 3200
+    Str: 390
+    Agi: 240
+    Vit: 360
+    Int: 480
+    Dex: 450
+    Luk: 210
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 2236
+    MagicResistance: 3666
+    Size: Medium
+    Race: Demihuman
+    Element: Holy
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 1
+    Ai: 21
+    Class: Boss
+    Modes:
+      KnockBackImmune: true
+      Mvp: true
+    MvpDrops:
+      - Item: Old_Card_Album
+        Rate: 3000
+      - Item: Yggdrasilberry
+        Rate: 2500
+      - Item: Bs_Making_S
+        Rate: 2000
+    Drops:
+      - Item: Zelunium
+        Rate: 2500
+      - Item: Yggdrasilberry
+        Rate: 5000
+      - Item: Shadowdecon
+        Rate: 2500
+      - Item: HyperNovice_Card_1
+        Rate: 1
+        StealProtected: true
+      - Item: Etel_Dust
+        Rate: 5000
+  - Id: 30064
+    AegisName: HN_B_FLINT
+    Name: Hyper Novice Flint
+    Level: 275
+    Hp: 144000000
+    BaseExp: 50235845
+    JobExp: 3115268
+    MvpExp: 29082838
+    Attack: 27000
+    Attack2: 12000
+    Defense: 1600
+    MagicDefense: 800
+    Str: 510
+    Agi: 300
+    Vit: 600
+    Int: 150
+    Dex: 600
+    Luk: 180
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 3578
+    MagicResistance: 3290
+    Size: Medium
+    Race: Demihuman
+    Element: Fire
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 1
+    Ai: 21
+    Class: Boss
+    Modes:
+      KnockBackImmune: true
+      Mvp: true
+    MvpDrops:
+      - Item: Old_Card_Album
+        Rate: 3000
+      - Item: Yggdrasilberry
+        Rate: 2500
+      - Item: Bs_Making_S
+        Rate: 2000
+    Drops:
+      - Item: Zelunium
+        Rate: 2500
+      - Item: Yggdrasilberry
+        Rate: 5000
+      - Item: Shadowdecon
+        Rate: 2500
+      - Item: HyperNovice_Card_2
+        Rate: 1
+        StealProtected: true
+      - Item: Etel_Dust
+        Rate: 5000
+  - Id: 30065
+    AegisName: NW_B_VINCENT
+    Name: Night Watch Vincent
+    Level: 275
+    Hp: 126000000
+    BaseExp: 50235845
+    JobExp: 3115268
+    MvpExp: 29082838
+    Attack: 21000
+    Attack2: 600
+    Defense: 600
+    MagicDefense: 600
+    Str: 390
+    Agi: 390
+    Vit: 210
+    Int: 240
+    Dex: 900
+    Luk: 150
+    AttackRange: 14
+    SkillRange: 10
+    ChaseRange: 12
+    Resistance: 2600
+    MagicResistance: 2600
+    Size: Medium
+    Race: Demihuman
+    Element: Wind
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    DamageTaken: 1
+    Ai: 21
+    Class: Boss
+    Modes:
+      KnockBackImmune: true
+      Mvp: true
+    MvpDrops:
+      - Item: Old_Card_Album
+        Rate: 3000
+      - Item: Yggdrasilberry
+        Rate: 2500
+      - Item: Bs_Making_S
+        Rate: 2000
+    Drops:
+      - Item: NightWatch_Card
+        Rate: 1
+        StealProtected: true
+      - Item: Yggdrasilberry
+        Rate: 5000
+      - Item: Shadowdecon
+        Rate: 2500
+      - Item: Zelunium
+        Rate: 2500
+      - Item: Etel_Dust
+        Rate: 5000
