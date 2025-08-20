@@ -45,14 +45,56 @@ Header:
   Type: BARTER_DB
   Version: 2
 
-Footer:
-  Imports:
-  - Path: npc/aaa/barter/event_shark.yml
-  - Path: npc/aaa/barter/shark.yml
-  - Path: npc/aaa/barter/powerupitem.yml
-  - Path: npc/aaa/barter/hat_quest.yml
-  - Path: npc/aaa/barter/ticket_seller.yml
-# Event
-  - Path: npc/aaa/barter/event_drug.yml
-#  - Path: npc/aaa/barter/event_ore_refi.yml
-#  - Path: npc/aaa/barter/event_pet.yml
+Body:
+  - Name: Coa_Ore
+    Items:
+      - Index: 0
+        Item: Stable_Catalyst
+        Zeny: 10000
+        RequiredItems:
+          - Index: 0
+            Item: Simple_Catalyst
+            Amount: 2
+      - Index: 1
+        Item: Seasonal_Stone
+        Zeny: 1000
+        RequiredItems:
+          - Index: 0
+            Item: Elunium
+            Amount: 1
+      - Index: 2
+        Item: Seasonal_Stone
+        Zeny: 1000
+        RequiredItems:
+          - Index: 0
+            Item: Oridecon
+            Amount: 1
+      - Index: 3
+        Item: Rainbow_Seasonal_Stone
+        Zeny: 20000
+        RequiredItems:
+          - Index: 0
+            Item: Seasonal_Stone
+            Amount: 20
+      - Index: 4
+        Item: Rainbow_Seasonal_Stone
+        Zeny: 40000
+        RequiredItems:
+          - Index: 0
+            Item: Elunium
+            Amount: 20
+      - Index: 5
+        Item: Rainbow_Seasonal_Stone
+        Zeny: 40000
+        RequiredItems:
+          - Index: 0
+            Item: Oridecon
+            Amount: 20
+      - Index: 6
+        Item: Heart_of_Seasonal_Stone
+        Zeny: 100000
+        RequiredItems:
+          - Index: 0
+            Item: Rainbow_Seasonal_Stone
+            Amount: 10
+      

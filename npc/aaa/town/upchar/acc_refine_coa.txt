@@ -1,0 +1,304 @@
+//cmd_in02,77,89,5	script	Troyadee	637,{
+icecastle,185,167,5	script	Troyadee	637,{
+	mes "[Troyadee]";
+	mes "ข้า!! คือ Troyadee แม้แต่ลุงโฮยังเรียกพรี่!!";
+	mes "เจ้าอยากให้ข้าเสริมพลังอะไรหละ!!";
+	next;
+	set .@has_knife, countitem(61801);
+	set .@has_pdm, countitem(2190007);
+
+	// ไม่มีของทั้งสองชิ้น
+	if (!.@has_knife && !.@has_pdm) {
+		mes "คุณไม่มีไอเท็มที่รองรับการตีบวกอยู่ในตัวเลย.";
+		close;
+	}
+
+	// สร้างเมนูตัวเลือกแบบไดนามิก
+	set .@menu$, "";
+	if (.@has_knife) set .@menu$, .@menu$ + "^FF0000Master Of Luck Accessery (61801)^000000";
+	if (.@has_knife && .@has_pdm) set .@menu$, .@menu$ + ":";
+	if (.@has_pdm) set .@menu$, .@menu$ + "^0099FFPieceful Anomaly Crystal (2190007)^000000";
+
+	// เลือกไอเท็ม
+	mes "=||=เลือกอุปกรณ์ที่ต้องการตีบวก=||=";
+	next;
+	switch(select(.@menu$)) {
+		// ต้องจับเคสตามลำดับที่เมนูสร้างไว้
+		case 1:
+			if (.@has_knife) {
+				set .@item_id, 61801;
+				set .@slot, EQI_ACC_L;
+			} else {
+				set .@item_id, 2190007;
+				set .@slot, EQI_ACC_L;
+			}
+			break;
+
+		case 2:
+			set .@item_id, 2190007;
+			set .@slot, EQI_ACC_L;
+			break;
+	}
+
+	if (!countitem(.@item_id)) {
+		mes "คุณไม่มี "+getitemname(.@item_id)+" ในตัว.";
+		close;
+	}
+	
+	set .@ref, getequiprefinerycnt(.@slot); //เช็คค่าตีบวกของที่ใส่
+		
+	if (.@ref >= 20) {
+		mes "อุปกรณ์ของคุณเป็น +20 แล้ว ไม่สามารถตีบวกเพิ่มเติมได้.";
+		close;
+	}
+	if (getequipid(.@slot) != .@item_id) {
+		mes "กรุณาสวมใส่ "+getitemname(.@item_id)+" ให้ถูกต้องก่อน.";
+		close;
+	}
+	
+	mes "=||=เลือกสารกระตุ้นทางเคมี=||=";
+	next;
+	switch(select(" ไม่ใช้ของเพิ่มอัตรา "," Simple Catalyst (+7%)", " Stable Catalyst (+7% Safe)", " Potent Catalyst (+10%)")) {
+		case 1:
+		set .@stone_id, 0; // no use
+		set .@rate_bonus, 0;
+		set .@use_catalyst, 0;
+		set .@safe, 0;
+		break;
+	case 2:
+		set .@stone_id, 2000020; // Simple Catalyst
+		set .@rate_bonus, 7;
+		set .@use_catalyst, 1;
+		set .@safe, 0;
+		break;
+	case 3:
+		set .@stone_id, 2000022; // Stable Catalyst (Safe)
+		set .@rate_bonus, 7;
+		set .@use_catalyst, 1;
+		set .@safe, 1;
+		break;
+	case 4:
+		set .@stone_id, 2000021; // Potent Catalyst
+		set .@rate_bonus, 10;
+		set .@use_catalyst, 1;
+		set .@safe, 0;
+		break;
+	}
+	if (.@use_catalyst){
+		if ( !countitem(.@stone_id)) {
+			mes "คุณไม่มีหินตีบวกชนิดนี้.";
+			close;
+		}
+	}
+	// กำหนดไอเท็มวัตถุดิบตามช่วง ref (ขั้นตีบวก)
+	if (.@ref == 0) {
+		set .@material_id, 2000017; // Seasonal Stone
+		set .@material_count, 1; // 1-5 ชิ้น (เพิ่ม 1 ทุก 2 ขั้น)
+		set .@zeny_cost, 5000 * .@ref; // 10k ถึง 100k
+	}else if (.@ref >= 1 && .@ref <= 10) {
+		set .@material_id, 2000017; // Seasonal Stone
+		set .@material_count, (.@ref + 1) / 2; // 1-5 ชิ้น (เพิ่ม 1 ทุก 2 ขั้น)
+		set .@zeny_cost, 5000 * .@ref; // 10k ถึง 100k
+	} else if (.@ref >= 11 && .@ref <= 15) {
+		set .@material_id, 2000018; // Rainbow Seasonal Stone
+		set .@material_count, .@ref - 10; // 1-5 ชิ้น (เพิ่ม 1 ตามขั้น 11-15)
+		set .@zeny_cost, 100000; // 200k
+	} else if (.@ref >= 16 && .@ref <= 20) {
+		set .@material_id, 2000019; // Heart of Seasonal Stone
+		set .@material_count, .@ref - 15; // 1-5 ชิ้น (เพิ่ม 1 ตามขั้น 16-20)
+		set .@zeny_cost, 150000; // 300k
+	} else {
+		// ขั้น 0 หรือนอกช่วง ใช้ 0 ไอเท็มและ 0 zeny
+		set .@material_id, 0;
+		set .@material_count, 0;
+		set .@zeny_cost, 0;
+	}
+
+	// เช็คของและเงินก่อนตีบวก
+	if (.@material_id != 0) {
+		if (countitem(.@material_id) < .@material_count) {
+			mes "คุณไม่มีไอเท็มวัตถุดิบเพียงพอ ";
+			mes "(ต้องใช้ ^FF0000"+ getitemname(.@material_id)+"^000000 จำนวน " + .@material_count + " ชิ้น)";
+			close;
+		}
+	}
+
+	if (zeny < .@zeny_cost) {
+		mes "คุณมีเงินไม่เพียงพอ (ต้องใช้ " + .@zeny_cost + " zeny)";
+		close;
+	}
+
+Again:
+	// ตารางอัตราสำเร็จตีขึ้นขั้น
+	setarray .@tier_rate[0],100,100,100,100,60,60,60,50,40,25,20,20,15,15,10,7,7,7,5;
+	setarray .@up_fail_target[0],2,3,4,5,6,7; // +15 ถึง +20
+	set .@base_rate, .@tier_rate[.@ref];
+
+// Chain Section เริ่มที่ +15 ถึง +19
+	if (.@ref >= 15 && .@ref < 20) {
+		set .@chain_var$, "refine_chain_" + .@item_id + "_" + getcharid(0);
+		set .@chain, getd(.@chain_var$);
+
+// ดึง fail stack แยกแต่ละ chain point (0/1/2)
+		for (set .@i, 0; .@i < 3; set .@i, .@i + 1)
+			set .@fs[.@i], getd("refine_stack_" + .@item_id + "_" + .@i + "_" + getcharid(0));
+
+// แสดง UI
+		for (set .@i, 0; .@i < 3; set .@i, .@i + 1) {
+			set .@c$[.@i], (.@i < .@chain) ? "o" : "x";
+			set .@f$[.@i], "("+.@fs[.@i]+"/6)";
+		}
+
+// refine up stack สำหรับการันตี +15 ถึง 20
+		set .@up_stack_var$, "refine_up_stack_" + .@item_id + "_" + getcharid(0);
+		set .@up_fail_stack, getd(.@up_stack_var$);
+		set .@up_limit, .@up_fail_target[.@ref - 15];
+
+if (.@chain != 3) {
+		mes "=======================";
+		mes "เจ้าต้องใช้ ^FF0000" + getitemname(.@material_id) +"^000000 จำนวน "+ .@material_count +" ชิ้น";;
+		mes "และ Zeny จำนวน "+ .@zeny_cost + " Zeny ในการตีบวก";
+		mes "=======================";
+		next;
+		mes "=======================";
+		mes "Chain: [ "+.@c$[0]+" "+.@c$[1]+" "+.@c$[2]+" ]";
+		mes "Fail:  "+.@f$[0]+" "+.@f$[1]+" "+.@f$[2];
+		}
+		mes "อัพขั้นล้มเหลว(ครั้ง) : ("+.@up_fail_stack+")";
+		mes "=======================";
+	
+	// หาก chain ครบ 3  ตีขึ้นขั้น
+		if (.@chain == 3) {
+			mes "=======================";
+			mes "เจ้าต้องใช้ ^FF0000" + getitemname(.@material_id) +"^000000 จำนวน "+ .@material_count +" ชิ้น";;
+			mes "และ Zeny จำนวน "+ .@zeny_cost + " Zeny ในการตีบวก";
+			mes "=======================";
+			next;
+			mes "=======================";
+			mes "Chain Stack Complete";
+			mes "นี่คือการตีบวกสำหรับขึ้น +"+(.@ref+1);
+			mes "อัตราความสำเร็จ: "+(.@base_rate + .@rate_bonus)+"%";
+			mes "=======================";
+			if (select("ใช่","ไม่ใช่")==2) close;
+			progressbar "ffffff", 1;
+			if (.@use_catalyst){
+			delitem .@stone_id,1;
+			}
+			if (.@material_id != 0) {
+				delitem .@material_id, .@material_count;
+			}
+			if (.@zeny_cost > 0) {
+				set Zeny, Zeny - .@zeny_cost;
+			}
+			if (.@up_fail_stack >= .@up_limit) {
+				// การันตีตีติด
+				successrefitem .@slot,1;
+				specialeffect2 EF_REFINEOK;
+				mes "^00FF00Up Fail Stack ครบ "+.@up_limit+" ตีติด 100%!^000000";
+				mes "ตีบวกเป็น +"+(.@ref+1)+" สำเร็จ!";
+				
+				// Reset ทั้งหมด
+				setd .@up_stack_var$, 0;
+				setd .@chain_var$, 0;
+				for (set .@i, 0; .@i < 3; set .@i, .@i + 1)
+					setd "refine_stack_" + .@item_id + "_" + .@i + "_" + getcharid(0), 0;
+
+				close;
+			}
+
+			else if (rand(100) < (.@base_rate + .@rate_bonus)) {
+				successrefitem .@slot,1;
+				specialeffect2 EF_REFINEOK;
+				mes "^00FF00ตีบวกเป็น +"+(.@ref+1)+" สำเร็จ!^000000";
+				setd .@up_stack_var$, 0;
+			} else {
+				specialeffect EF_REFINEFAIL;
+				mes "^FF0000การตีบวกล้มเหลว! Up Fail Stack +1^000000";
+				if (.@up_fail_stack < .@up_limit)
+					setd .@up_stack_var$, .@up_fail_stack + 1;
+			}
+			setd .@chain_var$, 0;
+			for (set .@i, 0; .@i < 3; set .@i, .@i + 1)
+				setd "refine_stack_" + .@item_id + "_" + .@i + "_" + getcharid(0), 0;
+			close;
+		}
+
+		set .@point, .@chain;
+		set .@stack_var$, "refine_stack_" + .@item_id + "_" + .@point + "_" + getcharid(0);
+		set .@fs_now, getd(.@stack_var$);
+		set .@chance, (.@fs_now >= 6) ? 100 : 20 + .@rate_bonus;
+		if (.@chance > 100) set .@chance, 100;
+
+		mes "อัตราความสำเร็จ: "+.@chance+"%";
+		if (select("ใช่","ไม่ใช่")==2) close;
+		progressbar "ffffff", 1;
+		
+		if (.@use_catalyst){
+		delitem .@stone_id,1;
+		}
+		if (.@material_id != 0) {
+				delitem .@material_id, .@material_count;
+			}
+		if (.@zeny_cost > 0) {
+				set Zeny, Zeny - .@zeny_cost;
+		}
+		if (rand(100) < .@chance) {
+			setd .@chain_var$, .@point + 1;
+			setd .@stack_var$, 0;
+			specialeffect2 EF_REFINEOK;
+			mes "^00FF00ตีสำเร็จ! Chain เพิ่มขึ้น ("+(.@point+1)+"/3)^000000";
+		} else {
+			setd .@chain_var$, 0;
+			setd .@stack_var$, .@fs_now + 1;
+			specialeffect EF_REFINEFAIL;
+			mes "^FF0000ล้มเหลว! Chain ถูกรีเซ็ต. Fail Stack: "+(.@fs_now+1)+"/6^000000";
+		}
+		next;
+		goto Again;
+		close;
+	}
+
+	// ตีปกติ +0 ถึง +14
+	set .@success_rate, .@base_rate + .@rate_bonus;
+	if (.@success_rate > 100) set .@success_rate, 100;
+	mes "=======================";
+	mes "เจ้าต้องใช้ ^FF0000" + getitemname(.@material_id) +"^000000 จำนวน "+ .@material_count +" ชิ้น";;
+	mes "และ Zeny จำนวน "+ .@zeny_cost + " Zeny ในการตีบวก";
+	mes "=======================";
+	mes "อัตราความสำเร็จ: "+.@success_rate+"%";
+	if(select("ใช่ ตีเลย!","ไม่ดีกว่า")==2) close;
+
+	progressbar "ffffff", 1;
+	if (.@use_catalyst){
+		delitem .@stone_id,1;
+		}
+	if (.@material_id != 0) {
+				delitem .@material_id, .@material_count;
+		}
+	if (.@zeny_cost > 0) {
+			set Zeny, Zeny - .@zeny_cost;
+	}
+	if (rand(100) < .@success_rate) {
+		successrefitem .@slot,1;
+		specialeffect2 EF_REFINEOK;
+		mes "^00FF00ตีบวกสำเร็จ!^000000";
+	} else {
+		if(.@stone_id != 2000022){
+			if (.@ref > 10 && .@ref < 16) {
+				downrefitem .@slot;
+			}
+		}
+		specialeffect EF_REFINEFAIL;
+		if ( .@ref < 11) {
+				mes "^FF0000ตีบวกล้มเหลว^000000";
+				close;
+			}
+		if(.@stone_id == 2000022){
+			mes "^FF0000ตีบวกล้มเหลว^000000 ^00FF00แต่อุปกรณ์ไม่เสียหาย!!^000000";
+		}
+		if(.@stone_id != 2000022){
+		mes "^FF0000ตีบวกล้มเหลว อุปกรณ์พัง!^000000";
+		}
+	}
+	close;
+}

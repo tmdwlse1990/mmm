@@ -1,0 +1,106 @@
+
+//icecastle,188,210,4	script	Daily Event Quest#COA	46,{
+amatsu,221,101,4	script	Daily Event Quest#COA	46,{
+
+	mes "[Cat Hunter]";
+	mes "สวัสดี! วันนี้คุณต้องการล่าแมวตัวไหนหละ?";
+	next;
+
+	switch(select("1. ล่าแมวสีขาว:2. ล่าแมวสีดำ:3. ตรวจสอบเควสที่มี")) {
+
+	// ------------------- เควสล่าแมวขาว -------------------
+	case 1:
+	if (checkquest(512,HUNTING) == 2) {
+		// ถ้าทำเควสเสร็จแล้ว  ให้รางวัล + ตั้ง cooldown
+		mes "[Cat Hunter]";
+		mes "ยินดีด้วย! คุณล่าแมวขาวเสร็จแล้ว!";
+		erasequest 512;
+		set #cd_catwhite, gettimetick(2) + (60 * 60 * 20); // Cooldown 20 ชม.
+		getitem 2000020, 2;
+		mes "คุณจะสามารถรับเควสแมวขาวใหม่ได้อีกครั้งใน 20 ชั่วโมง.";
+	}
+	else if (isbegin_quest(512) == 1) {
+		mes "[Cat Hunter]";
+		mes "คุณรับเควสล่าแมวขาวอยู่แล้ว!";
+	}
+	else if (#cd_catwhite > gettimetick(2)) {
+		// ถ้ายังไม่ครบเวลา cooldown
+		.@cd = #cd_catwhite - gettimetick(2);
+		.@h = .@cd / 3600;
+		.@m = (.@cd % 3600) / 60;
+		mes "[Cat Hunter]";
+		mes "คุณเพิ่งทำเควสนี้ไป รออีก " + .@h + " ชม. " + .@m + " นาที ก่อนรับใหม่ได้.";
+	}
+	else {
+		// รับเควสใหม่
+		mes "[Cat Hunter]";
+		mes "ออกไปล่าแมวขาวให้ได้ แล้วกลับมาหาฉัน!";
+		setquest 512;
+	}
+	close;
+
+	// ------------------- เควสล่าแมวดำ -------------------
+case 2:
+		if (checkquest(513,HUNTING) == 2) {
+			mes "[Cat Hunter]";
+			mes "ยินดีด้วย! คุณล่าแมวดำเสร็จแล้ว!";
+			erasequest 513;
+			set #cd_catblack, gettimetick(2) + (60 * 60 * 20); // Cooldown 20 ชม.
+			getitem 2000020, 2;
+			mes "คุณจะสามารถรับเควสแมวดำใหม่ได้อีกครั้งใน 20 ชั่วโมง.";
+		}
+		else if (isbegin_quest(513) == 1) {
+			mes "[Cat Hunter]";
+			mes "คุณรับเควสล่าแมวดำอยู่แล้ว!";
+		}
+		else if (#cd_catblack > gettimetick(2)) {
+			.@cd = #cd_catblack - gettimetick(2);
+			.@h = .@cd / 3600;
+			.@m = (.@cd % 3600) / 60;
+			mes "[Cat Hunter]";
+			mes "คุณเพิ่งทำเควสนี้ไป รออีก " + .@h + " ชม. " + .@m + " นาที ก่อนรับใหม่ได้.";
+		}
+		else {
+			mes "[Cat Hunter]";
+			mes "ออกไปล่าแมวดำให้ได้ แล้วกลับมาหาฉัน!";
+			setquest 513;
+		}
+		close;
+
+	// ----------- ตรวจสอบสถานะเควส -----------
+	case 3:
+		mes "[Cat Hunter]";
+		mes "สถานะเควสของคุณวันนี้:";
+
+		// แมวขาว
+		if (isbegin_quest(512))
+			mes " - คุณกำลังล่าแมวขาวอยู่.";
+		else if (checkquest(512,HUNTING) == 2)
+			mes " - คุณล่าแมวขาวสำเร็จแล้ว! มารับรางวัล!";
+		else if (#cd_catwhite > gettimetick(2)) {
+			.@cd = #cd_catwhite - gettimetick(2);
+			.@h = .@cd / 3600;
+			.@m = (.@cd % 3600) / 60;
+			mes " - แมวขาว: รออีก " + .@h + " ชม. " + .@m + " นาที.";
+		}
+		else
+			mes " - คุณยังไม่ได้รับเควสแมวขาววันนี้.";
+
+		// แมวดำ
+		if (isbegin_quest(513))
+			mes " - คุณกำลังล่าแมวดำอยู่.";
+		else if (checkquest(513,HUNTING) == 2)
+			mes " - คุณล่าแมวดำสำเร็จแล้ว! มารับรางวัล!";
+		else if (#cd_catblack > gettimetick(2)) {
+			.@cd2 = #cd_catblack - gettimetick(2);
+			.@h2 = .@cd2 / 3600;
+			.@m2 = (.@cd2 % 3600) / 60;
+			mes " - แมวดำ: รออีก " + .@h2 + " ชม. " + .@m2 + " นาที.";
+		}
+		else
+			mes " - คุณยังไม่ได้รับเควสแมวดำวันนี้.";
+		close;
+	}
+}
+
+icecastle,188,210,4	duplicate(Daily Event Quest#COA)	Daily Event Quest#COA2	46,{

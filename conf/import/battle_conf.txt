@@ -68,12 +68,12 @@ config_monster_rank_defense_mode: 1
 // Rank ของ Monster จะเพิ่ม % EXP แบบใด
 // 0 = % ถ้า Rank 1 ก็เพิ่ม EXP 1%
 // 1 = คูณ ถ้า Rank 1 ก็ EXP คูณ 2
-config_monster_rank_exp_bonus_mode: 0
+config_monster_rank_exp_bonus_mode: 1
 
 // Rank ของ Monster จะเพิ่ม % Drop แบบใด
 // 0 = % ถ้า Rank 1 ก็เพิ่ม Drop 1%
 // 1 = คูณ ถ้า Rank 1 ก็ Drop คูณ 2
-config_monster_rank_drop_bonus_mode: 0
+config_monster_rank_drop_bonus_mode: 1
 
 // Autoattack settings
 // สกิลฮิว
@@ -143,7 +143,7 @@ autoattack_reduce_droprate: 25
 autoattack_reduce_mode: 63
 
 // กำหนด จำนวนสูงสุดในการกำหนดเป้าหมาย , ไม่ควรเกิน 20, ต้องลองปรับ เพราะมันจะมีการบัคชื่อไม่ขึ้น
-autoattack_max_moblist: 15
+autoattack_max_moblist: 10
 
 // กำหนด จำนวนสูงสุดในการกำหนดไอเทมบัฟ
 autoattack_max_itemlist: 15

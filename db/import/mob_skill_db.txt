@@ -337,21 +337,15 @@
 22180,MD_PRI_DRAGON_4@NPC_WIDESOULDRAIN,chase,680,8,2000,800,10000,no,self,always,0,,,,,,,
 
 
-30002,Antonio@AL_TELEPORT,attack,26,1,1000,0,5000,yes,self,always,0,,,,,,29,
-30002,Antonio@AL_TELEPORT,idle,26,1,1000,0,5000,yes,self,always,0,,,,,,29,
-30002,Antonio@AL_TELEPORT,chase,26,1,1000,0,5000,yes,self,always,0,,,,,,29,
-30002,Antonio@NPC_RUN,attack,354,1,10000,0,0,yes,self,always,0,,,,,,26,
-30002,Antonio@NPC_RUN,chase,354,1,10000,0,0,yes,self,always,0,,,,,,26,
-30002,ILL_ASSULTER@TF_BACKSLIDING,attack,150,1,10000,0,5000,no,self,always,0,,,,,,,
-30002,MD_KING_PORING@AL_DECAGI,idle,30,10,10000,1000,10000,yes,target,always,0,,,,,,,65
+30002,Antonio@AL_TELEPORT,any,26,1,1000,0,30000,yes,self,always,0,,,,,,29,
+30002,Antonio@NPC_RUN,any,354,1,10000,0,0,yes,self,always,0,,,,,,26,
+30002,ILL_ASSULTER@TF_BACKSLIDING,any,150,1,10000,0,5000,no,self,always,0,,,,,,,
+30002,MD_KING_PORING@AL_DECAGI,any,30,10,10000,1000,10000,yes,target,always,0,,,,,,,65
 
-30003,Antonio@AL_TELEPORT,attack,26,1,1000,0,5000,yes,self,always,0,,,,,,29,
-30003,Antonio@AL_TELEPORT,idle,26,1,1000,0,5000,yes,self,always,0,,,,,,29,
-30003,Antonio@AL_TELEPORT,chase,26,1,1000,0,5000,yes,self,always,0,,,,,,29,
-30003,Antonio@NPC_RUN,attack,354,1,10000,0,0,yes,self,always,0,,,,,,26,
-30003,Antonio@NPC_RUN,chase,354,1,10000,0,0,yes,self,always,0,,,,,,26,
-30003,ILL_ASSULTER@TF_BACKSLIDING,attack,150,1,10000,0,5000,no,self,always,0,,,,,,,
-30003,MD_KING_PORING@AL_DECAGI,idle,30,10,10000,1000,10000,yes,target,always,0,,,,,,,65
+30003,Antonio@AL_TELEPORT,any,26,1,1000,0,30000,yes,self,always,0,,,,,,29,
+30003,Antonio@NPC_RUN,any,354,1,10000,0,0,yes,self,always,0,,,,,,26,
+30003,ILL_ASSULTER@TF_BACKSLIDING,any,150,1,10000,0,5000,no,self,always,0,,,,,,,
+30003,MD_KING_PORING@AL_DECAGI,any,30,10,10000,1000,10000,yes,target,always,0,,,,,,,65
 
 // rAthena Dev Team
 //1900,Valaris@AL_TELEPORT,idle,26,1,10000,0,0,yes,self,rudeattacked,,,,,,,,

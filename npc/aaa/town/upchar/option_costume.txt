@@ -329,7 +329,10 @@ GarmentOP:
 			2235036, 2236036,	//	alche skill 2
 			2235037, 2236037,	//	bd skill 1
 			2235038, 2236038,	//	bd skill 2
-			2235039, 2236039;	//	S-Novice skill 1
+			2235039, 2236039,	//	Gunslinger 1
+			2235040, 2236040,	//	Ninja 1
+			2235041, 2236041,	//	S-Novice skill 1
+			2235042, 2236042;	//	Taekwon 1
 
 	.@size = getarraysize(.@stone_id);
 	.@max_menu_size = 2047;	// temporary fix the menu length until new data

@@ -221,7 +221,7 @@ icecastle,178,175,4	script	การตื่นของคราสพิเศษ 1	4_EP21_M_WORKER_A,{
 	if(#innerpee) end;
 	mes "น้ำนิ่งไหลลึก";
 	mes "จิตปล่อยวาง";
-	sleep 90000;
+	sleep2 90000;
 	#innerpee = 1;
 	getitem 2235042,1;
 	end;

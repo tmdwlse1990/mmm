@@ -441,7 +441,6 @@ Body:
     Trade:
       NoDrop: true
       NoTrade: true
-      NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -455,7 +454,6 @@ Body:
     Trade:
       NoDrop: true
       NoTrade: true
-      NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
@@ -469,7 +467,6 @@ Body:
     Trade:
       NoDrop: true
       NoTrade: true
-      NoStorage: true
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
