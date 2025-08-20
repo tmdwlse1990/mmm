@@ -1,0 +1,131 @@
+//===== rAthena Script =======================================
+//= Nightmare Biolabs
+//===== Description: =========================================
+//= Nightmare Biolabs Monster Spawn Script.
+//===== Additional Comments: =================================
+//= 1.0 First version. Boss and slaves spawn are assumptions
+//		based on lhz_dun.txt monsters spawn. [Capuche]
+//= 1.1 Changed MvP spawn based on the amount of
+//		monsters killed. [Capuche]
+//============================================================
+
+lhz_dun_n01,0,0	monster	Eremes Guille	30006,10,5000,0,"lhz_dun_n01::OnRegularDead30006"
+lhz_dun_n01,0,0	monster	Margaretha Sorin	30007,10,5000,0,"lhz_dun_n01::OnRegularDead30007"
+lhz_dun_n01,0,0	monster	Kathryne Keyron	30008,10,5000,0,"lhz_dun_n01::OnRegularDead30008"
+lhz_dun_n01,0,0	monster	Cecil Damon	30009,10,5000,0,"lhz_dun_n01::OnRegularDead30009"
+lhz_dun_n01,0,0	monster	Howard Alt-Eisen	30010,10,5000,0,"lhz_dun_n01::OnRegularDead30010"
+lhz_dun_n01,0,0	monster	Seyren Windsor	30011,10,5000,0,"lhz_dun_n01::OnRegularDead30011"
+
+lhz_dun_n01,0,0	monster	Randel Lawrence	30024,10,5000,0,"lhz_dun_n01::OnRegularDead30024"
+lhz_dun_n01,0,0	monster	Flamel Emule	30025,10,5000,0,"lhz_dun_n01::OnRegularDead30025"
+lhz_dun_n01,0,0	monster	Celia Alde	30026,10,5000,0,"lhz_dun_n01::OnRegularDead30026"
+lhz_dun_n01,0,0	monster	Chen Liu	30027,10,5000,0,"lhz_dun_n01::OnRegularDead30027"
+lhz_dun_n01,0,0	monster	Gertie Wie	30028,10,5000,0,"lhz_dun_n01::OnRegularDead30028"
+lhz_dun_n01,0,0	monster	Alphoccio Basil	30029,10,5000,0,"lhz_dun_n01::OnRegularDead30029"
+lhz_dun_n01,0,0	monster	Trentini	30030,10,5000,0,"lhz_dun_n01::OnRegularDead30030"
+
+lhz_dun_n01,0,0	monster	Miyamoto Sakura	30045,10,5000,0,"lhz_dun_n01::OnRegularDead30045"
+lhz_dun_n01,0,0	monster	Ishikawa Ryuuga	30046,10,5000,0,"lhz_dun_n01::OnRegularDead30046"
+lhz_dun_n01,0,0	monster	Han Chaeyoung	30047,10,5000,0,"lhz_dun_n01::OnRegularDead30047"
+lhz_dun_n01,0,0	monster	Pak Hyungmin	30048,10,5000,0,"lhz_dun_n01::OnRegularDead30048"
+lhz_dun_n01,0,0	monster	Marie Agnes	30049,10,5000,0,"lhz_dun_n01::OnRegularDead30049"
+lhz_dun_n01,0,0	monster	Flint Manfred	30050,10,5000,0,"lhz_dun_n01::OnRegularDead30050"
+lhz_dun_n01,0,0	monster	Vincent Walter	30051,10,5000,0,"lhz_dun_n01::OnRegularDead30051"
+
+lhz_dun_n01,0,0,0	script	lhz_dun_n01	-1,{
+	end;
+OnRegularDead30006: callsub( S_Regular, 30006 );
+OnRegularDead30007: callsub( S_Regular, 30007 );
+OnRegularDead30008: callsub( S_Regular, 30008 );
+OnRegularDead30009: callsub( S_Regular, 30009 );
+OnRegularDead30010: callsub( S_Regular, 30010 );
+OnRegularDead30011: callsub( S_Regular, 30011 );
+
+OnRegularDead30024: callsub( S_Regular, 30024 );
+OnRegularDead30025: callsub( S_Regular, 30025 );
+OnRegularDead30026: callsub( S_Regular, 30026 );
+OnRegularDead30027: callsub( S_Regular, 30027 );
+OnRegularDead30028: callsub( S_Regular, 30028 );
+OnRegularDead30029: callsub( S_Regular, 30029 );
+OnRegularDead30030: callsub( S_Regular, 30030 );
+
+OnRegularDead30045: callsub( S_Regular, 30045 );
+OnRegularDead30046: callsub( S_Regular, 30046 );
+OnRegularDead30047: callsub( S_Regular, 30047 );
+OnRegularDead30048: callsub( S_Regular, 30048 );
+OnRegularDead30049: callsub( S_Regular, 30049 );
+OnRegularDead30050: callsub( S_Regular, 30050 );
+OnRegularDead30051: callsub( S_Regular, 30051 );
+
+S_Regular:
+	.@mob_id = getarg(0);
+	if (.lhz_dun_n01[.@mob_id] < 110 && .lhz_dun_n01_boss == 0) {
+		.lhz_dun_n01[.@mob_id]++;
+		if (.lhz_dun_n01[.@mob_id] == 110) {
+			.@mini_boss = .@mob_id + 6 + (.@mob_id > 30017);	// mini boss version ID: regular ID +6 for non-transcendent, +7 for others
+			monster "lhz_dun_n01",0,0,"--en--",.@mini_boss,1, "lhz_dun_n01::OnMiniDead" + .@mini_boss;
+		}
+	}
+	end;
+
+OnMiniDead30012: callsub( S_Mini, 30012 );
+OnMiniDead30013: callsub( S_Mini, 30013 );
+OnMiniDead30014: callsub( S_Mini, 30014 );
+OnMiniDead30015: callsub( S_Mini, 30015 );
+OnMiniDead30016: callsub( S_Mini, 30016 );
+OnMiniDead30017: callsub( S_Mini, 30017 );
+
+OnMiniDead30031: callsub( S_Mini, 30031 );
+OnMiniDead30032: callsub( S_Mini, 30032 );
+OnMiniDead30033: callsub( S_Mini, 30033 );
+OnMiniDead30034: callsub( S_Mini, 30034 );
+OnMiniDead30035: callsub( S_Mini, 30035 );
+OnMiniDead30036: callsub( S_Mini, 30036 );
+OnMiniDead30037: callsub( S_Mini, 30037 );
+
+OnMiniDead30052: callsub( S_Mini, 30052 );
+OnMiniDead30053: callsub( S_Mini, 30053 );
+OnMiniDead30054: callsub( S_Mini, 30054 );
+OnMiniDead30055: callsub( S_Mini, 30055 );
+OnMiniDead30056: callsub( S_Mini, 30056 );
+OnMiniDead30057: callsub( S_Mini, 30057 );
+OnMiniDead30058: callsub( S_Mini, 30058 );
+
+S_Mini:
+	.@mob_id = getarg(0);
+	if (.lhz_dun_n01[.@mob_id] < 4 && .lhz_dun_n01_boss == 0) {
+		.lhz_dun_n01[.@mob_id]++;
+		.@regular = .@mob_id - 6 - (.@mob_id > 30017);
+		if (.lhz_dun_n01[.@mob_id] < 4)
+			.lhz_dun_n01[.@regular] = 0;	// note: mini boss version can re-spawn when the count of mini boss dead is reached? (currently they don't)
+		else {
+			setarray .@mini_boss_list[0], 30012,30013,30014,30015,30016,30017,30031,30032,30033,30034,30035,30036,30037,30052,30053,30054,30055,30056,30057,30058;
+			for ( .@i = 0; .@i < 13; ++.@i ) {	
+				if (.lhz_dun_n01[.@mini_boss_list[.@i]] < 4)
+					end;
+			}
+			// MvP monster seems to only spawn at 12 o'clock
+			monster "lhz_dun_n01",148,223,"--en--", F_Rand(30018,30019,30020,30021,30022,30023,30038,30039,30040,30041,30042,30043,30044,30059,30060,30061,30062,30063,30064,30065),1, "lhz_dun_n01::OnMyMVPDead";
+			mapannounce "lhz_dun_n01", "เสียงจากที่ไหนสักแห่ง : เวลามันผ่านไปนานแค่ไหนแล้วนะ...", bc_map;	// unknown message
+			.lhz_dun_n01_boss = 1;
+			deletearray .lhz_dun_n01;
+		}
+	}
+	end;
+OnMyMVPDead:
+	initnpctimer;
+	.lhz_dun_n01_delay = 0;
+	killmonster "lhz_dun_n01", "lhz_dun_n01::OnMyMVPDead";
+	mapannounce "lhz_dun_n01", "เสียงจากที่ไหนสักแห่ง : แล้วพบกันใหม่นะ.. สหาย...", bc_map, "0x00FF00";
+	end;
+OnTimer60000:
+	.lhz_dun_n01_delay++;
+	if (.lhz_dun_n01_delay < 100) // unknown delay (currently 100 mins)
+		initnpctimer;
+	else {
+		stopnpctimer;
+		.lhz_dun_n01_delay = 0;
+		.lhz_dun_n01_boss = 0;
+	}
+	end;
+}

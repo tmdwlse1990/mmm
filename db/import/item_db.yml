@@ -175,6 +175,8 @@ Body:
     AegisName: CASH_COIN_1
     Name: Cash Coin 1 Points
     Type: Usable
+    Flags:
+      BuyingStore: true
     Script: |
       .@i = 60001; dispbottom "[System] : You got "+ callfunc("F_InsertComma",(countitem(.@i)+1)) +" Cash Points";
       #CASHPOINTS += (countitem(.@i) + 1);
@@ -184,6 +186,8 @@ Body:
     AegisName: CASH_COIN_10
     Name: Cash Coin 10 Points
     Type: Usable
+    Flags:
+      BuyingStore: true
     Script: |
       .@i = 60002; dispbottom "[System] : You got "+ callfunc("F_InsertComma",(countitem(.@i)+1)*10) +" Cash Points";
       #CASHPOINTS += (countitem(.@i) + 1)*10;
@@ -193,6 +197,8 @@ Body:
     AegisName: CASH_COIN_100
     Name: Cash Coin 100 Points
     Type: Usable
+    Flags:
+      BuyingStore: true
     Script: |
       .@i = 60003; dispbottom "[System] : You got "+ callfunc("F_InsertComma",(countitem(.@i)+1)*100) +" Cash Points";
       #CASHPOINTS += (countitem(.@i) + 1)*100;
@@ -202,6 +208,8 @@ Body:
     AegisName: CASH_COIN_1000
     Name: Cash Coin 1000 Points
     Type: Usable
+    Flags:
+      BuyingStore: true
     Script: |
       .@i = 60004; dispbottom "[System] : You got "+ callfunc("F_InsertComma",(countitem(.@i)+1)*1000) +" Cash Points";
       #CASHPOINTS += (countitem(.@i) + 1)*1000;
@@ -847,7 +855,6 @@ Body:
     NoUse:
       Sitting: true
     Buy: 1000
-    Weight: 200
     Script: |
       callfunc("F_MVPReward",1);
   - Id: 2002002
@@ -862,7 +869,6 @@ Body:
     NoUse:
       Sitting: true
     Buy: 1000
-    Weight: 200
     Script: |
       callfunc("F_MVPReward",2);
   - Id: 2002003
@@ -877,7 +883,6 @@ Body:
     NoUse:
       Sitting: true
     Buy: 1000
-    Weight: 200
     Script: |
       callfunc("F_MVPReward",3);
   - Id: 2002004
@@ -892,7 +897,6 @@ Body:
     NoUse:
       Sitting: true
     Buy: 1000
-    Weight: 200
     Script: |
       callfunc("F_MVPReward",4);
   - Id: 2002005
@@ -907,7 +911,6 @@ Body:
     NoUse:
       Sitting: true
     Buy: 1000
-    Weight: 200
     Script: |
       callfunc("F_MVPReward",5);
   - Id: 2002006
@@ -922,7 +925,6 @@ Body:
     NoUse:
       Sitting: true
     Buy: 1000
-    Weight: 200
     Script: |
       callfunc("F_MVPReward",6);
   - Id: 2002007
@@ -937,7 +939,6 @@ Body:
     NoUse:
       Sitting: true
     Buy: 1000
-    Weight: 200
     Script: |
       callfunc("F_MVPReward",7);
   - Id: 2002008
@@ -952,7 +953,6 @@ Body:
     NoUse:
       Sitting: true
     Buy: 1000
-    Weight: 200
     Script: |
       callfunc("F_MVPReward",8);
   - Id: 2002009
@@ -967,7 +967,6 @@ Body:
     NoUse:
       Sitting: true
     Buy: 1000
-    Weight: 200
     Script: |
       callfunc("F_MVPReward",9);
   - Id: 2002010
@@ -982,7 +981,6 @@ Body:
     NoUse:
       Sitting: true
     Buy: 1000
-    Weight: 200
     Script: |
       callfunc("F_MVPReward",10);
   - Id: 2002011
@@ -3419,6 +3417,711 @@ Body:
     Buy: 20
     Weight: 10
 
+  - Id: 80000
+    AegisName: Eremes_Guille_Card
+    Name: Fallen Eremes Guille Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (getrefine() > 9) .@b += 20;
+      if (getequipweaponlv() == 5) .@b += 20;
+      bonus2 bSkillAtk,"SHC_SAVAGE_IMPACT",20+.@b;
+      bonus2 bSkillAtk,"SHC_IMPACT_CRATER",20+.@b;
+      bonus2 bSkillAtk,"SHC_CROSS_SLASH",20+.@b;
+  - Id: 80001
+    AegisName: Margaretha_Sorin_Card
+    Name: Fallen Margaretha Sorin Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (getrefine() > 9) .@b += 20;
+      if (getequipweaponlv() == 5) .@b += 20;
+      bonus2 bSkillAtk,"CD_PETITIO",20+.@b;
+      bonus2 bSkillAtk,"CD_ARBITRIUM",20+.@b;
+      bonus2 bSkillAtk,"CD_ARBITRIUM_ATK",20+.@b;
+      bonus2 bSkillAtk,"CD_DIVINUS_FLOS",20+.@b;
+  - Id: 80002
+    AegisName: Kathryne_Keyron_Card
+    Name: Fallen Kathryne Keyron Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (getrefine() > 9) .@b += 20;
+      if (getequipweaponlv() == 5) .@b += 20;
+      bonus2 bSkillAtk,"AG_SOUL_VC_STRIKE",20+.@b;
+      bonus2 bSkillAtk,"AG_MYSTERY_ILLUSION",20+.@b;
+      bonus2 bSkillAtk,"AG_STORM_CANNON",20+.@b;
+  - Id: 80003
+    AegisName: Cecil_Damon_Card
+    Name: Fallen Cecil Damon Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (getrefine() > 9) .@b += 20;
+      if (getequipweaponlv() == 5) .@b += 20;
+      bonus2 bSkillAtk,"WH_HAWKRUSH",20+.@b;
+      bonus2 bSkillAtk,"WH_HAWKBOOMERANG",20+.@b;
+      bonus2 bSkillAtk,"WH_GALESTORM",20+.@b;
+  - Id: 80004
+    AegisName: Howard_Eisen_Card
+    Name: Fallen Howard Alt-Eisen Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (getrefine() > 9) .@b += 20;
+      if (getequipweaponlv() == 5) .@b += 20;
+      bonus2 bSkillAtk,"MT_RUSH_STRIKE",20+.@b;
+      bonus2 bSkillAtk,"MT_POWERFUL_SWING",20+.@b;
+      bonus2 bSkillAtk,"MT_ENERGY_CANNONADE",20+.@b;
+  - Id: 80005
+    AegisName: Seyren_Windsor_Card
+    Name: Fallen Seyren Windsor Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (getrefine() > 9) .@b += 20;
+      if (getequipweaponlv() == 5) .@b += 20;
+      bonus2 bSkillAtk,"DK_MADNESS_CRUSHER",20+.@b;
+      bonus2 bSkillAtk,"DK_DRAGONIC_BREATH",20+.@b;
+      bonus2 bSkillAtk,"DK_DRAGONIC_PIERCE",20+.@b;
+  - Id: 80006
+    AegisName: Randel_Lawrence_Card
+    Name: Fallen Randel Lawrence Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (getrefine() > 9) .@b += 20;
+      if (getequipweaponlv() == 5) .@b += 20;
+      bonus2 bSkillAtk,"IG_RADIANT_SPEAR",20+.@b;
+      bonus2 bSkillAtk,"IG_IMPERIAL_CROSS",20+.@b;
+      bonus2 bSkillAtk,"IG_IMPERIAL_PRESSURE",20+.@b;
+  - Id: 80007
+    AegisName: Flamel_Emule_Card
+    Name: Fallen Flamel Emule Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (getrefine() > 9) .@b += 20;
+      if (getequipweaponlv() == 5) .@b += 20;
+      bonus2 bSkillAtk,"BO_EXPLOSIVE_POWDER",20+.@b;
+      bonus2 bSkillAtk,"BO_MAYHEMIC_THORNS",20+.@b;
+      bonus2 bSkillAtk,"BO_DUST_EXPLOSION",20+.@b;
+  - Id: 80008
+    AegisName: Celia_Alde_Card
+    Name: Fallen Celia Alde Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (getrefine() > 9) .@b += 20;
+      if (getequipweaponlv() == 5) .@b += 20;
+      bonus2 bSkillAtk,"EM_VENOM_SWAMP",20+.@b;
+      bonus2 bSkillAtk,"EM_TERRA_DRIVE",20+.@b;
+      bonus2 bSkillAtk,"EM_PSYCHIC_STREAM",20+.@b;
+  - Id: 80009
+    AegisName: Chen_Liu_Card
+    Name: Fallen Chen Liu Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (getrefine() > 9) .@b += 20;
+      if (getequipweaponlv() == 5) .@b += 20;
+      bonus2 bSkillAtk,"IQ_THIRD_CONSECRATION",20+.@b;
+      bonus2 bSkillAtk,"IQ_THIRD_FLAME_BOMB",20+.@b;
+      bonus2 bSkillAtk,"IQ_BLAZING_FLAME_BLAST",20+.@b;
+  - Id: 80010
+    AegisName: Gertie_Wie_Card
+    Name: Fallen Gertie Wie Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (getrefine() > 9) .@b += 20;
+      if (getequipweaponlv() == 5) .@b += 20;
+      bonus2 bSkillAtk,"ABC_CHASING_BREAK",20+.@b;
+      bonus2 bSkillAtk,"ABC_CHASING_SHOT",20+.@b;
+      bonus2 bSkillAtk,"ABC_ABYSS_FLAME",20+.@b;
+      bonus2 bSkillAtk,"ABC_ABYSS_FLAME_ATK",20+.@b;
+  - Id: 80011
+    AegisName: Alphoccio_Basil_Card
+    Name: Fallen Alphoccio Basil Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (getrefine() > 9) .@b += 20;
+      if (getequipweaponlv() == 5) .@b += 20;
+      bonus2 bSkillAtk,"TR_SOUNDBLEND",20+.@b;
+      bonus2 bSkillAtk,"TR_METALIC_FURY",20+.@b;
+      bonus2 bSkillAtk,"TR_RHYTHMICAL_WAVE",20+.@b;
+  - Id: 80012
+    AegisName: Fallen_Trentini_Card
+    Name: Fallen Trentini Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (getrefine() > 9) .@b += 20;
+      if (getequipweaponlv() == 5) .@b += 20;
+      bonus2 bSkillAtk,"WM_SEVERE_RAINSTORM_MELEE",20+.@b;
+      bonus2 bSkillAtk,"TR_ROSEBLOSSOM",20+.@b;
+      bonus2 bSkillAtk,"TR_ROSEBLOSSOM_ATK",20+.@b;
+      bonus2 bSkillAtk,"TR_RHYTHMSHOOTING",20+.@b;
+  - Id: 80013
+    AegisName: Miyamoto_Sakura_Card
+    Name: Fallen Miyamoto Sakura Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (getrefine() > 9) .@b += 20;
+      if (getequipweaponlv() == 5) .@b += 20;
+      bonus2 bSkillAtk,"SS_SEKIENHOU",20+.@b;
+      bonus2 bSkillAtk,"SS_RAIDENPOU",20+.@b;
+      bonus2 bSkillAtk,"SS_ANTENPOU",20+.@b;
+  - Id: 80014
+    AegisName: Ishikawa_Ryuuga_Card
+    Name: Fallen Ishikawa Ryuuga Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (getrefine() > 9) .@b += 20;
+      if (getequipweaponlv() == 5) .@b += 20;
+      bonus2 bSkillAtk,"SS_KUNAIKUSSETSU",20+.@b;
+      bonus2 bSkillAtk,"SS_FUUMAKOUCHIKU",20+.@b;
+      bonus2 bSkillAtk,"SS_FUUMAKOUCHIKU_BLASTING",20+.@b;
+      bonus2 bSkillAtk,"SS_KAGEGISSEN",20+.@b;
+  - Id: 80015
+    AegisName: Han_Chaeyoung_Card
+    Name: Fallen Han Chaeyoung Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (getrefine() > 9) .@b += 20;
+      if (getequipweaponlv() == 5) .@b += 20;
+      bonus2 bSkillAtk,"SKE_SKY_SUN",20+.@b;
+      bonus2 bSkillAtk,"SKE_SKY_MOON",20+.@b;
+      bonus2 bSkillAtk,"SKE_STAR_LIGHT_KICK",20+.@b;
+  - Id: 80016
+    AegisName: Pak_Hyungmin_Card
+    Name: Fallen Pak Hyungmin Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (getrefine() > 9) .@b += 20;
+      if (getequipweaponlv() == 5) .@b += 20;
+      bonus2 bSkillAtk,"SOA_TALISMAN_OF_WHITE_TIGER",20+.@b;
+      bonus2 bSkillAtk,"SOA_TALISMAN_OF_BLACK_TORTOISE",20+.@b;
+      bonus2 bSkillAtk,"SOA_TALISMAN_OF_FOUR_BEARING_GOD",20+.@b;
+  - Id: 80017
+    AegisName: Marie_Agnes_Card
+    Name: Fallen Marie Agnes Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (getrefine() > 9) .@b += 20;
+      if (getequipweaponlv() == 5) .@b += 20;
+      bonus2 bSkillAtk,"HN_METEOR_STORM_BUSTER",20+.@b;
+      bonus2 bSkillAtk,"HN_GROUND_GRAVITATION",20+.@b;
+      bonus2 bSkillAtk,"HN_NAPALM_VULCAN_STRIKE",20+.@b;
+  - Id: 80018
+    AegisName: Flint_Manfred_Card
+    Name: Fallen Flint Manfred Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (getrefine() > 9) .@b += 20;
+      if (getequipweaponlv() == 5) .@b += 20;
+      bonus2 bSkillAtk,"HN_MEGA_SONIC_BLOW",20+.@b;
+      bonus2 bSkillAtk,"HN_SHIELD_CHAIN_RUSH",20+.@b;
+      bonus2 bSkillAtk,"HN_SPIRAL_PIERCE_MAX",20+.@b;
+  - Id: 80019
+    AegisName: Vincent_Walter_Card
+    Name: Fallen Vincent Walter Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (getrefine() > 9) .@b += 20;
+      if (getequipweaponlv() == 5) .@b += 20;
+      bonus2 bSkillAtk,"NW_MISSION_BOMBARD",20+.@b;
+      bonus2 bSkillAtk,"NW_WILD_SHOT",20+.@b;
+      bonus2 bSkillAtk,"NW_MIDNIGHT_FALLEN",20+.@b;
+  - Id: 80020
+    AegisName: ShadowCross_Card
+    Name: Shadow Cross Eremes Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Garment: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (eaclass()&EAJL_FOURTH && BaseJob == Job_Assassin) {
+        bonus bCRate,10;
+        bonus2 bAddRace,RC_All,15;
+      }
+      if (BaseLevel>260) bonus bAllTraitStats,10;
+      if (getrefine()>9) bonus bAllTraitStats,10;
+  - Id: 80021
+    AegisName: Cardinal_Card
+    Name: Cardinal Margaretha Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Garment: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (eaclass()&EAJL_FOURTH && BaseJob == Job_Priest) {
+        bonus bHPlus,10;
+        bonus2 bMagicAddRace,RC_All,15;
+      }
+      if (BaseLevel>260) bonus bAllTraitStats,10;
+      if (getrefine()>9) bonus bAllTraitStats,10;
+  - Id: 80022
+    AegisName: ArchMage_Card
+    Name: Arch Mage Kathryne Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Garment: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (eaclass()&EAJL_FOURTH && BaseJob == Job_Wizard) {
+        bonus bMRes,80;
+        bonus bMatkRate,15;
+      }
+      if (BaseLevel>260) bonus bAllTraitStats,10;
+      if (getrefine()>9) bonus bAllTraitStats,10;
+  - Id: 80023
+    AegisName: Windhawk_Card
+    Name: Windhawk Cecil Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Garment: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (eaclass()&EAJL_FOURTH && BaseJob == Job_Hunter) {
+        bonus bCRate,10;
+        bonus2 bWeaponDamageRate,W_BOW,15;
+      }
+      if (BaseLevel>260) bonus bAllTraitStats,10;
+      if (getrefine()>9) bonus bAllTraitStats,10;
+  - Id: 80024
+    AegisName: Meister_Card
+    Name: Meister Howard Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Garment: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (eaclass()&EAJL_FOURTH && BaseJob == Job_Blacksmith) {
+        bonus bPAtk,10;
+        bonus2 bAddRace,RC_All,15;
+      }
+      if (BaseLevel>260) bonus bAllTraitStats,10;
+      if (getrefine()>9) bonus bAllTraitStats,10;
+  - Id: 80025
+    AegisName: DragonKnight_Card
+    Name: Dragon Knight Seyren Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Garment: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (eaclass()&EAJL_FOURTH && BaseJob == Job_Knight) {
+        bonus bPAtk,10;
+        bonus2 bAddRace,RC_All,15;
+      }
+      if (BaseLevel>260) bonus bAllTraitStats,10;
+      if (getrefine()>9) bonus bAllTraitStats,10;
+  - Id: 80026
+    AegisName: ImperialGuard_Card
+    Name: Imperial Guard Randel Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Garment: true
+    Refineable: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (eaclass()&EAJL_FOURTH && BaseJob == Job_Crusader) {
+        bonus bRes,350;
+        bonus2 bAddRace,RC_All,15;
+      }
+      if (BaseLevel>260) bonus bAllTraitStats,10;
+      if (getrefine()>9) bonus bAllTraitStats,10;
+  - Id: 80027
+    AegisName: Biolo_Card
+    Name: Biolo Flamel Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Garment: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (eaclass()&EAJL_FOURTH && BaseJob == Job_Alchemist) {
+        bonus bPAtk,10;
+        bonus2 bAddRace,RC_All,15;
+      }
+      if (BaseLevel>260) bonus bAllTraitStats,10;
+      if (getrefine()>9) bonus bAllTraitStats,10;
+  - Id: 80028
+    AegisName: ElementalMaster_Card
+    Name: Elemental Master Celia Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Garment: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (eaclass()&EAJL_FOURTH && BaseJob == Job_Sage) {
+        bonus bSMatk,10;
+        bonus bMatkRate,15;
+      }
+      if (BaseLevel>260) bonus bAllTraitStats,10;
+      if (getrefine()>9) bonus bAllTraitStats,10;
+  - Id: 80029
+    AegisName: Inquisitor_Card
+    Name: Inquisitor Chen Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Garment: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (eaclass()&EAJL_FOURTH && BaseJob == Job_Monk) {
+        bonus bPAtk,10;
+        bonus2 bAddRace,RC_All,15;
+      }
+      if (BaseLevel>260) bonus bAllTraitStats,10;
+      if (getrefine()>9) bonus bAllTraitStats,10;
+  - Id: 80030
+    AegisName: AbyssChaser_Card
+    Name: Abyss Chaser Gertie Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Garment: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (eaclass()&EAJL_FOURTH && BaseJob == Job_Rogue) {
+        bonus bSMatk,10;
+        bonus2 bMagicAddRace,RC_All,15;
+      }
+      if (BaseLevel>260) bonus bAllTraitStats,10;
+      if (getrefine()>9) bonus bAllTraitStats,10;
+  - Id: 80031
+    AegisName: Troubadour_Card
+    Name: Troubadour Alphoccio Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Garment: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (eaclass()&EAJL_FOURTH && BaseJob == Job_Bard) {
+        bonus bSMatk,10;
+        bonus bMatkRate,15;
+      }
+      if (BaseLevel>260) bonus bAllTraitStats,10;
+      if (getrefine()>9) bonus bAllTraitStats,10;
+  - Id: 80032
+    AegisName: Trouvere_Card
+    Name: Trouvere Trentini Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Garment: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (eaclass()&EAJL_FOURTH && BaseJob == Job_Dancer) {
+        bonus bPAtk,10;
+        bonus bAtkRate,15;
+      }
+      if (BaseLevel>260) bonus bAllTraitStats,10;
+      if (getrefine()>9) bonus bAllTraitStats,10;
+  - Id: 80033
+    AegisName: Shiranui_Card
+    Name: Shiranui Sakura Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Garment: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (eaclass()&EAJL_FOURTH && BaseJob == Job_Oboro) {
+        bonus bSMatk,10;
+        bonus bMatkRate,15;
+      }
+      if (BaseLevel>260) bonus bAllTraitStats,10;
+      if (getrefine()>9) bonus bAllTraitStats,10;
+  - Id: 80034
+    AegisName: Shinkiro_Card
+    Name: Shinkiro Ryuuga Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Garment: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (eaclass()&EAJL_FOURTH && BaseJob == Job_Kagerou) {
+        bonus bPAtk,10;
+        bonus bAtkRate,15;
+      }
+      if (BaseLevel>260) bonus bAllTraitStats,10;
+      if (getrefine()>9) bonus bAllTraitStats,10;
+  - Id: 80035
+    AegisName: SkyEmperor_Card
+    Name: Sky Emperor Chaeyoung Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Garment: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (eaclass()&EAJL_FOURTH && BaseJob == JOB_STAR_EMPEROR || BaseJob == JOB_STAR_EMPEROR2) {
+        bonus bPAtk,10;
+        bonus2 bAddRace,RC_All,15;
+      }
+      if (BaseLevel>260) bonus bAllTraitStats,10;
+      if (getrefine()>9) bonus bAllTraitStats,10;
+  - Id: 80036
+    AegisName: SoulAscetic_Card
+    Name: Soul Ascetic Hyungmin Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Garment: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (eaclass()&EAJL_FOURTH && BaseJob == JOB_SOUL_REAPER) {
+        bonus bSMatk,10;
+        bonus2 bMagicAddRace,RC_All,15;
+      }
+      if (BaseLevel>260) bonus bAllTraitStats,10;
+      if (getrefine()>9) bonus bAllTraitStats,10;
+  - Id: 80037
+    AegisName: HyperNovice_Card_1
+    Name: Hyper Novice Marie
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Garment: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (eaclass()&EAJL_FOURTH && BaseJob == Job_Super_Novice_E) {
+        bonus bSMatk,10;
+        bonus2 bMagicAddRace,RC_All,15;
+      }
+      if (BaseLevel>260) bonus bAllTraitStats,10;
+      if (getrefine()>9) bonus bAllTraitStats,10;
+  - Id: 80038
+    AegisName: HyperNovice_Card_2
+    Name: Hyper Novice Flint
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Garment: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (eaclass()&EAJL_FOURTH && BaseJob == Job_Super_Novice_E) {
+        bonus bPAtk,10;
+        bonus2 bAddRace,RC_All,15;
+      }
+      if (BaseLevel>260) bonus bAllTraitStats,10;
+      if (getrefine()>9) bonus bAllTraitStats,10;
+  - Id: 80039
+    AegisName: NightWatch_Card
+    Name: Night Watch Vincent
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Garment: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      if (eaclass()&EAJL_FOURTH && BaseJob == JOB_REBELLION) {
+        bonus bCRate,10;
+        bonus2 bAddRace,RC_All,15;
+      }
+      if (BaseLevel>260) bonus bAllTraitStats,10;
+      if (getrefine()>9) bonus bAllTraitStats,10;
 # THQ Quest Items
 #=============================================================
 #  - Id: 1998

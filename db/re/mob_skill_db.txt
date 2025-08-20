@@ -8881,7 +8881,7 @@
 2528,Faceworm@NPC_POISON,attack,176,4,10000,0,0,yes,target,always,,,,,,,,
 2528,Faceworm@NPC_POISONATTACK,attack,188,2,10000,0,0,yes,target,always,,,,,,,,
 2529,Faceworm Queen@AS_VENOMDUST,idle,140,5,10000,1000,5000,no,target,always,,,,,,,,
-2529,Faceworm Queen@NPC_EARTHQUAKE,attack,653,1,10000,5000,10000,no,self,always,,,,,,,,
+2529,Faceworm Queen@NPC_EARTHQUAKE,attack,653,5,10000,5000,10000,no,self,always,,,,,,,,
 2529,Faceworm Queen@RG_CLOSECONFINE,chase,1005,1,10000,1000,10000,no,target,always,,,,,,,9,
 2529,Faceworm Queen@NPC_DRAGONFEAR,attack,659,5,10000,1000,5000,no,self,always,,,,,,,9,
 2529,Faceworm Queen@NPC_DRAGONFEAR,chase,659,5,10000,1000,5000,no,self,always,,,,,,,9,

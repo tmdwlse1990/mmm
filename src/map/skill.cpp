@@ -5110,12 +5110,16 @@ static int32 skill_tarotcard(struct block_list* src, struct block_list *target, 
 	switch (card) {
 	case 1: // THE FOOL - heals SP to 0
 	{
+		sc_start(src, target, SC_FOOLCARD, 100, 1, skill_get_time2(skill_id, skill_lv));
+		/*
 		status_percent_damage(src, target, 0, 100, false);
+		*/
 		break;
 	}
 	case 2: // THE MAGICIAN - matk halved
 	{
-		sc_start(src, target, SC_INCMATKRATE, 100, -50, skill_get_time2(skill_id, skill_lv));
+		sc_start(src, target, SC_MAGICCARD, 100, 1, skill_get_time2(skill_id, skill_lv));
+		sc_start(src, target, SC_INCMATKRATE, 100, 50, skill_get_time2(skill_id, skill_lv));
 		break;
 	}
 	case 3: // THE HIGH PRIESTESS - all buffs removed
@@ -5125,6 +5129,7 @@ static int32 skill_tarotcard(struct block_list* src, struct block_list *target, 
 	}
 	case 4: // THE CHARIOT - 1000 damage, random armor destroyed
 	{
+		/*
 		battle_fix_damage(src, target, 1000, 0, skill_id);
 		clif_damage(*src, *target, tick, 0, 0, 1000, 0, DMG_NORMAL, 0, false);
 		if (!status_isdead(*target))
@@ -5132,18 +5137,26 @@ static int32 skill_tarotcard(struct block_list* src, struct block_list *target, 
 			uint16 where[] = { EQP_ARMOR, EQP_SHIELD, EQP_HELM };
 			skill_break_equip(src, target, where[rnd() % 3], 10000, BCT_ENEMY);
 		}
+		*/
+		sc_start(src, target, SC_CHARIOTCARD, 100, 1, skill_get_time2(skill_id, skill_lv));
+		sc_start(src, target, SC_GN_CARTBOOST, 100, 3, skill_get_time2(skill_id, skill_lv));
 		break;
 	}
 	case 5: // STRENGTH - atk halved
 	{
-		sc_start(src, target, SC_INCATKRATE, 100, -50, skill_get_time2(skill_id, skill_lv));
+		sc_start(src, target, SC_STRENGHTCARD, 100, 1, skill_get_time2(skill_id, skill_lv));
+		sc_start(src, target, SC_INCATKRATE, 100, 50, skill_get_time2(skill_id, skill_lv));
 		break;
 	}
 	case 6: // THE LOVERS - 2000HP heal, random teleported
 	{
+		/*
 		status_heal(target, 2000, 0, 0);
 		if (!map_flag_vs(target->m))
 			unit_warp(target, -1, -1, -1, CLR_TELEPORT);
+		*/
+		sc_start(src, target, SC_LOVERCARD, 100, 1, skill_get_time2(skill_id, skill_lv));
+		sc_start(src, target, SC_MEDIALE, 100, 1, skill_get_time2(skill_id, skill_lv));
 		break;
 	}
 	case 7: // WHEEL OF FORTUNE - random 2 other effects
@@ -5155,6 +5168,7 @@ static int32 skill_tarotcard(struct block_list* src, struct block_list *target, 
 	}
 	case 8: // THE HANGED MAN - ankle, freeze or stoned
 	{
+		/*
 		enum sc_type sc[] = { SC_ANKLE, SC_FREEZE, SC_STONEWAIT };
 		uint8 rand_eff = rnd() % 3;
 		int32 time = ((rand_eff == 0) ? skill_get_time2(skill_id, skill_lv) : skill_get_time2(status_db.getSkill(sc[rand_eff]), 1));
@@ -5163,44 +5177,65 @@ static int32 skill_tarotcard(struct block_list* src, struct block_list *target, 
 			sc_start2(src, target, SC_STONEWAIT, 100, skill_lv, src->id, time, skill_get_time(status_db.getSkill(SC_STONEWAIT), 1));
 		else
 			sc_start(src, target, sc[rand_eff], 100, skill_lv, time);
+		*/
+		sc_start(src, target, SC_HANGEDCARD, 100, 1, skill_get_time2(skill_id, skill_lv));
+		sc_start(src, target, SC_ANGELUS, 100, 44, skill_get_time2(skill_id, skill_lv));
 		break;
 	}
 	case 9: // DEATH - curse, coma and poison
 	{
+		/*
 		status_change_start(src, target, SC_COMA, 10000, skill_lv, 0, src->id, 0, 0, SCSTART_NONE);
 		sc_start(src, target, SC_CURSE, 100, skill_lv, skill_get_time2(status_db.getSkill(SC_CURSE), 1));
 		sc_start2(src, target, SC_POISON, 100, skill_lv, src->id, skill_get_time2(status_db.getSkill(SC_POISON), 1));
+		*/
+		sc_start(src, target, SC_DEATHCARD, 100, 1, skill_get_time2(skill_id, skill_lv));
 		break;
 	}
 	case 10: // TEMPERANCE - confusion
 	{
+		/*
 		sc_start(src, target, SC_CONFUSION, 100, skill_lv, skill_get_time2(skill_id, skill_lv));
+		*/
+		sc_start(src, target, SC_TEMPERANCECARD, 100, 1, skill_get_time2(skill_id, skill_lv));
 		break;
 	}
 	case 11: // THE DEVIL - 6666 damage, atk and matk halved, cursed
 	{
+		/*
 		battle_fix_damage(src, target, 6666, 0, skill_id);
 		clif_damage(*src, *target, tick, 0, 0, 6666, 0, DMG_NORMAL, 0, false);
 		sc_start(src, target, SC_INCATKRATE, 100, -50, skill_get_time2(skill_id, skill_lv));
 		sc_start(src, target, SC_INCMATKRATE, 100, -50, skill_get_time2(skill_id, skill_lv));
 		sc_start(src, target, SC_CURSE, skill_lv, 100, skill_get_time2(status_db.getSkill(SC_CURSE), 1));
+		*/
+		sc_start(src, target, SC_DEVILCARD, 100, 1, skill_get_time2(skill_id, skill_lv));
+		sc_start(src, target, SC_INCATKRATE, 100, -20, skill_get_time2(skill_id, skill_lv));
+		sc_start(src, target, SC_INCMATKRATE, 100, -20, skill_get_time2(skill_id, skill_lv));
 		break;
 	}
 	case 12: // THE TOWER - 4444 damage
 	{
+		/*
 		battle_fix_damage(src, target, 4444, 0, skill_id);
 		clif_damage(*src, *target, tick, 0, 0, 4444, 0, DMG_NORMAL, 0, false);
+		*/
+		
+		sc_start(src, target, SC_TOWERCARD, 100, 1, skill_get_time2(skill_id, skill_lv));
+		sc_start(src, target, SC_ADD_ATK_DAMAGE, 100, 20, skill_get_time2(skill_id, skill_lv));
+		sc_start(src, target, SC_ADD_MATK_DAMAGE, 100, 20, skill_get_time2(skill_id, skill_lv));
 		break;
 	}
 	case 13: // THE STAR - stun
 	{
-		sc_start(src, target, SC_STUN, 100, skill_lv, skill_get_time2(status_db.getSkill(SC_STUN), 1));
+		sc_start(src, target, SC_STARCARD, 100, 1, skill_get_time2(skill_id, skill_lv));
 		break;
 	}
 	default: // THE SUN - atk, matk, hit, flee and def reduced, immune to more tarot card effects
 	{
 #ifdef RENEWAL
 		//In renewal, this card gives the SC_TAROTCARD status change which makes you immune to other cards
+		sc_start(src, target, SC_SUNCARD, 100, 1, skill_get_time2(skill_id, skill_lv));
 		sc_start(src, target, SC_TAROTCARD, 100, skill_lv, skill_get_time2(skill_id, skill_lv));
 #endif
 		sc_start(src, target, SC_INCATKRATE, 100, -20, skill_get_time2(skill_id, skill_lv));
@@ -5382,7 +5417,7 @@ int32 skill_castend_damage_id (struct block_list* src, struct block_list *bl, ui
 	case LK_AURABLADE:
 	case LK_SPIRALPIERCE:
 	case ML_SPIRALPIERCE:
-	case CG_ARROWVULCAN:
+//	case CG_ARROWVULCAN:
 	case HW_MAGICCRASHER:
 	case ITM_TOMAHAWK:
 	case CH_CHAINCRUSH:
@@ -5621,6 +5656,7 @@ int32 skill_castend_damage_id (struct block_list* src, struct block_list *bl, ui
 		flag |= 2; // Flag for specific mob damage formula
 		[[fallthrough]];
 #endif
+	case CG_ARROWVULCAN:
 	case MA_SHARPSHOOTING:
 	case NJ_KAMAITACHI:
 	case NPC_DARKPIERCING:
@@ -5641,7 +5677,7 @@ int32 skill_castend_damage_id (struct block_list* src, struct block_list *bl, ui
 			   skill_get_splash(skill_id, skill_lv), skill_get_maxcount(skill_id, skill_lv), 0, splash_target(src),
 			   skill_get_type(skill_id), src, src, skill_id, skill_lv, tick, flag, BCT_ENEMY))) {
 #ifndef RENEWAL
-			   	if (skill_id == SN_SHARPSHOOTING)
+			   	if (skill_id == SN_SHARPSHOOTING || skill_id == CG_ARROWVULCAN)
 			   		flag &= ~2; // Only targets in the splash area are affected
 #endif
 
@@ -10464,7 +10500,7 @@ int32 skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, 
 			// This skill creates fake casting state where a monster moves while showing a cast bar
 			int32 tricktime = MOB_SKILL_INTERVAL * 3;
 			md->trickcasting = tick + tricktime;
-			clif_skillcasting(src, src->id, src->id, 0, 0, skill_id, skill_lv, ELE_FIRE, tricktime + MOB_SKILL_INTERVAL / 2);
+			clif_skillcasting(*src, src, 0, 0, skill_id, skill_lv, ELE_FIRE, tricktime + MOB_SKILL_INTERVAL / 2);
 			// Monster cannot be stopped while moving
 			md->state.can_escape = 1;
 			// Move up to 8 cells
@@ -10810,8 +10846,11 @@ int32 skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, 
 		break;
 	case BD_ENCORE:
 		clif_skill_nodamage(src,*bl,skill_id,skill_lv);
-		if(sd)
+		if (sd != nullptr) {
 			unit_skilluse_id(src,src->id,sd->skill_id_dance,sd->skill_lv_dance);
+			// Need to remove remembered skill to prevent permanent halving of SP cost
+			sd->skill_id_old = 0;
+		}
 		break;
 
 	case TR_RETROSPECTION:
@@ -10981,7 +11020,7 @@ int32 skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, 
 				map_freeblock_unlock();
 				return 0;
 			}
-			if( rnd() % 100 > skill_lv * 8 ||
+			if( rnd() % 100 > pow((skill_lv*2),2) ||
 #ifndef RENEWAL
 			(tsc && tsc->getSCE(SC_BASILICA)) ||
 #endif
@@ -18493,13 +18532,16 @@ int32 skill_check_pc_partner(map_session_data *sd, uint16 skill_id, uint16 *skil
 				if( is_chorus )
 					break;//Chorus skills are not to be parsed as ensembles
 				if (skill_get_inf2(skill_id, INF2_ISENSEMBLE)) {
-					if (c > 0 && sd->sc.getSCE(SC_DANCING) && (tsd = map_id2sd(p_sd[0])) != nullptr) {
-						sd->sc.getSCE(SC_DANCING)->val4 = tsd->id;
-						sc_start4(sd,tsd,SC_DANCING,100,skill_id,sd->sc.getSCE(SC_DANCING)->val2,*skill_lv,sd->id,skill_get_time(skill_id,*skill_lv)+1000);
-						clif_skill_nodamage(tsd, *sd, skill_id, *skill_lv);
-						tsd->skill_id_dance = skill_id;
-						tsd->skill_lv_dance = *skill_lv;
-#ifdef RENEWAL
+					if (c > 0 && (tsd = map_id2sd(p_sd[0])) != nullptr) {
+#ifndef RENEWAL
+						if (sd->sc.hasSCE(SC_DANCING)) {
+							sd->sc.getSCE(SC_DANCING)->val4 = tsd->id;
+							sc_start4(sd, tsd, SC_DANCING, 100, skill_id, sd->sc.getSCE(SC_DANCING)->val2, *skill_lv, sd->id, skill_get_time(skill_id, *skill_lv) + 1000);
+							clif_skill_nodamage(tsd, *sd, skill_id, *skill_lv);
+							tsd->skill_id_dance = skill_id;
+							tsd->skill_lv_dance = *skill_lv;
+						}
+#else
 						sc_start(sd, sd, SC_ENSEMBLEFATIGUE, 100, 1, skill_get_time(CG_SPECIALSINGER, *skill_lv));
 						sc_start(sd, tsd, SC_ENSEMBLEFATIGUE, 100, 1, skill_get_time(CG_SPECIALSINGER, *skill_lv));
 #endif
@@ -18796,7 +18838,7 @@ bool skill_check_condition_castbegin( map_session_data& sd, uint16 skill_id, uin
 
 	// perform skill-group checks
 	if(skill_id != WM_GREAT_ECHO && inf2[INF2_ISCHORUS]) {
-		if (skill_check_pc_partner(&sd, skill_id, &skill_lv, AREA_SIZE, 0) < 1) {
+		if (skill_check_pc_partner(&sd, skill_id, &skill_lv, AREA_SIZE, 0) < 1 && !(sc != nullptr && sc->hasSCE(SC_KVASIR_SONATA))) {
 			clif_skill_fail( sd, skill_id );
 			return false;
 		}
@@ -20040,6 +20082,8 @@ void skill_consume_requirement(map_session_data *sd, uint16 skill_id, uint16 ski
 		switch( skill_id ) {
 			case CG_TAROTCARD: // TarotCard will consume sp in skill_cast_nodamage_id [Inkfish]
 			case MC_IDENTIFY:
+			case BD_ADAPTATION:
+			case BD_ENCORE:
 				require.sp = 0;
 				break;
 			case AL_HOLYLIGHT:
@@ -20243,6 +20287,8 @@ struct s_skill_condition skill_get_requirement(map_session_data* sd, uint16 skil
 			req.sp += req.sp * (skill_lv * 10) / 100;
 		if (sc->getSCE(SC_CRESCIVEBOLT))
 			req.sp += req.sp * (20 * sc->getSCE(SC_CRESCIVEBOLT)->val1) / 100;
+		if (sc->getSCE(SC_FOOLCARD))
+			req.sp = 0;
 	}
 
 	req.ap = skill->require.ap[skill_lv - 1];
@@ -20802,15 +20848,17 @@ int32 skill_vfcastfix(struct block_list *bl, double time, uint16 skill_id, uint1
 	if (!(flag&1))
 		time = time * (1 - sqrt(((float)(status_get_dex(bl) * 2 + status_get_int(bl)) / battle_config.vcast_stat_scale)));
 	fixed = 0; //[No fix cast]
-	
-	for (const auto &it : sd->skillfixcast) {
+
+	if (sd && !(flag & 4)) {
+		for (const auto& it : sd->skillfixcast) {
 			if (it.id == skill_id) { // bonus2 bSkillFixedCast
 				fixed += it.val;
 				break;
 			}
 		}
+	}
 		
-	if (sd->bonus.add_fixcast != 0)
+	if (sd && sd->bonus.add_fixcast != 0)
 		fixed += sd->bonus.add_fixcast; // bonus bFixedCast
 	
 	time = time * (1 - (float)min(reduce_cast_rate, 100) / 100);
@@ -20923,7 +20971,8 @@ int32 skill_delayfix(struct block_list *bl, uint16 skill_id, uint16 skill_lv)
 			}
 		}
 	}
-
+	if (sc != nullptr && sc->getSCE(SC_DEATHCARD))
+		time = 0;
 	if (delay != 0)
 		time = time * (1 - (float)min(delay, 100) / 100);
 

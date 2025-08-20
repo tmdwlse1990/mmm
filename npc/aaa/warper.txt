@@ -563,6 +563,7 @@ G8: Restrict("RE");
 	Instances:
 // --------------------------------------------------
 menu
+	"Faceworms Nest",I7,
 	"Octopus Cave",I14,
 	"Orc's Memory",I16,
 	"Kraken Raid",I31

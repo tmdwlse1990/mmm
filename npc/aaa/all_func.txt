@@ -993,6 +993,9 @@ function	script	F_Nexttime	{
 	.@remain_sec = (.@daysToAdd * 86400) - .@current_time_sec + .@target_time_sec;
 
 	return .@remain_sec;
+	
+	// Ex วิธีใช้
+	// F_Nexttime(3,9); = ส่งคืน tick วินาทีที่เหลือจนถึง วัน 3(พุธ) เวลา 09.00 น. ที่จะถึง
 }
 
 -	script	#viptimer	-1,{

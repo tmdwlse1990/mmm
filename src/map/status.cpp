@@ -2756,19 +2756,19 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int32 l
 
 	// MOB
 	if (bl->type == BL_MOB) {
-		status->str += level;
-		status->vit += level;
-		status->int_ += level;
-		status->luk += level;
-		status->agi += (level >= 120 ? level : level / 5 );
-		status->dex += (level >= 120 ? level : level / 5 );
+		status->str += level + (level >= 200 ? status->str : 0);
+		status->vit += level + (level >= 200 ? status->vit : 0);
+		status->int_ += level + (level >= 200 ? status->int_ : 0);
+		status->luk += level + (level >= 200 ? status->luk : 0);
+		status->agi += (level >= 120 ? level : level / 5 ) + (level >= 200 ? status->agi / 4 : 0);
+		status->dex += (level >= 120 ? level : level / 5 ) + (level >= 200 ? status->luk / 4 : 0);
 		
 		//status->rhw.atk += status->rhw.atk * (100 + level / 100);
-		status->rhw.atk = status->rhw.atk + (status->rhw.atk * (level/2) / 100);
+		status->rhw.atk = status->rhw.atk + (status->rhw.atk * (level/2) / 100) + (level >= 200 ? status->rhw.atk : 0);
 		//status->rhw.atk2 += status->rhw.atk2 * (100 + level / 100);
-		status->rhw.atk2 = status->rhw.atk2 + (status->rhw.atk2 * (level/3) / 100);
-		status->def += level / 2;
-		status->mdef += level / 4;
+		status->rhw.atk2 = status->rhw.atk2 + (status->rhw.atk2 * (level/3) / 100) + (level >= 200 ? status->rhw.atk2 : 0);
+		status->def += level / 2 + (level >= 200 ? status->def : 0);
+		status->mdef += level / 4 + (level >= 200 ? status->def : 0);;
 	}
 	// ATK
 	if (bl->type != BL_PC) {
@@ -8526,7 +8526,7 @@ static int16 status_calc_aspd(struct block_list *bl, status_change *sc, bool fix
 			bonus -= sc->getSCE(SC_DONTFORGETME)->val2 / 10;
 #ifdef RENEWAL
 		if (sc->getSCE(SC_ENSEMBLEFATIGUE))
-			bonus -= sc->getSCE(SC_ENSEMBLEFATIGUE)->val2 / 10;
+			bonus -= sc->getSCE(SC_ENSEMBLEFATIGUE)->val2;
 #else
 		if (sc->getSCE(SC_LONGING))
 			bonus -= sc->getSCE(SC_LONGING)->val2 / 10;
@@ -9776,17 +9776,6 @@ status_change *status_get_sc(struct block_list *bl)
 		case BL_ELEM: return &((TBL_ELEM*)bl)->sc;
 	}
 	return nullptr;
-}
-
-/**
- * Initiate (memset) the status change data of an object
- * @param bl: Object whose sc data to memset [PC|MOB|HOM|MER|ELEM|NPC]
- */
-void status_change_init(struct block_list *bl)
-{
-	status_change *sc = status_get_sc(bl);
-	nullpo_retv(sc);
-	new (sc) status_change();
 }
 
 /*========================================== [Playtester]
@@ -11811,7 +11800,9 @@ static bool status_change_start_post_delay(block_list* src, block_list* bl, sc_t
 			tick = INFINITE_TICK;
 			break;
 		case SC_CONCENTRATE:
-			val2 = 2 + val1 + ( sd->special_state.skillup1 && (val1 >= 10) ? 38 : 0);
+			val2 = 2 + val1;
+			if (sd && sd->special_state.skillup1 && (val1 >= 10))
+				val2 += 38;
 			if (sd) { // Store the card-bonus data that should not count in the %
 				val3 = sd->indexed_bonus.param_bonus[1]; // Agi
 				val4 = sd->indexed_bonus.param_bonus[4]; // Dex
@@ -12294,7 +12285,7 @@ static bool status_change_start_post_delay(block_list* src, block_list* bl, sc_t
 			break;
 		case SC_MOONLITSERENADE: // MATK Increase
 		case SC_RUSHWINDMILL: // ATK Increase
-			val3 = 4 + val1 * 3 + val2 + (sd?sd->status.job_level:50) / 5;
+			val3 = val1 * 70 + val2 + (sd?sd->status.job_level:50) / 5;
 			break;
 		case SC_ECHOSONG:
 			val3 = 6 * val1 + val2 + (sd?sd->status.job_level:50) / 4; // DEF Increase
@@ -15110,6 +15101,10 @@ TIMER_FUNC(status_change_timer){
 					sp*= 3;
 #endif
 				if (!status_charge(bl, 0, sp))
+					break;
+
+				// If no more SP left, the effect ends immediately
+				if (status->sp == 0)
 					break;
 			}
 			sc_timer_next(1000+tick);

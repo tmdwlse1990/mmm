@@ -1465,6 +1465,20 @@ enum sc_type : int16 {
 	SC_MEMBER9,
 	SC_MEMBER10,
 	SC_LOCKON_LASER,
+	SC_FOOLCARD,
+	SC_MAGICCARD,
+	SC_HIGHCARD,
+	SC_CHARIOTCARD,
+	SC_STRENGHTCARD,
+	SC_LOVERCARD,
+	SC_WHEELFORTUNECARD,
+	SC_HANGEDCARD,
+	SC_TEMPERANCECARD,
+	SC_DEVILCARD,
+	SC_DEATHCARD,
+	SC_TOWERCARD,
+	SC_STARCARD,
+	SC_SUNCARD,
 	SC_MAX, //Automatically updated max, used in for's to check we are within bounds.
 };
 
@@ -3674,7 +3688,6 @@ std::vector<e_race2> status_get_race2(struct block_list *bl);
 
 struct view_data *status_get_viewdata(struct block_list *bl);
 void status_set_viewdata(struct block_list *bl, int32 class_);
-void status_change_init(struct block_list *bl);
 status_change *status_get_sc(struct block_list *bl);
 
 bool status_isdead(block_list &bl);

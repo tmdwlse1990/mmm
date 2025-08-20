@@ -2176,8 +2176,6 @@ bool pc_authok(map_session_data *sd, uint32 login_id2, time_t expiration_time, i
 		sd->status.option &= ~OPTION_INVISIBLE;
 	}
 
-	status_change_init(sd);
-
 	sd->sc.option = sd->status.option; //This is the actual option used in battle.
 
 	unit_dataset(sd);
@@ -4754,6 +4752,11 @@ void pc_bonus(map_session_data *sd,int32 type,int32 val)
 		case SP_DROP_UP:	//Raw increase
 			if (sd->state.lr_flag != LR_FLAG_ARROW)
 				sd->bonus.drop_up += val;
+			break;
+		case SP_COOLDOWNRATE:
+			if (sd->state.lr_flag != LR_FLAG_ARROW)
+				sd->bonus.cooldown_rate += val;
+			break;
 		case SP_UPSKILL1:
 			if (sd->state.lr_flag != LR_FLAG_ARROW)
 				sd->special_state.skillup1 = 1;
@@ -7663,7 +7666,8 @@ int32 pc_get_skillcooldown(map_session_data *sd, uint16 skill_id, uint16 skill_l
 			break;
 		}
 	}
-
+	//ShowDebug("pc: Cooldown(%d) is invalid!\n", sd->bonus.cooldown_rate);
+	cooldown += cooldown * sd->bonus.cooldown_rate / 100; 
 	return max(0, cooldown);
 }
 
@@ -10629,6 +10633,7 @@ int64 pc_readparam(map_session_data* sd,int64 type)
 		case SP_HIT_MAGICAL_DAMAGE_RATE:     val = sd->bonus.hit_magical_damage_rate; break;
 		case SP_CRIT_ATK_DMG:     val = sd->bonus.crit_atk_dmg; break;
 		case SP_CRIT_MATK_DMG:     val = sd->bonus.crit_matk_dmg; break;
+		case SP_COOLDOWNRATE:	val = sd->bonus.cooldown_rate; break;
 		// [Custom Bonus]
 		case SP_SKILLPOINT:      val = sd->status.skill_point; break;
 		case SP_STATUSPOINT:     val = sd->status.status_point; break;
@@ -16347,7 +16352,7 @@ void pc_set_costume_view(map_session_data *sd) {
 		sd->status.robe = id->look;
 
 	// Costumes check
-	if (!map_getmapflag(sd->m, MF_NOCOSTUME) && sd->status.show_costume == false) {
+	if (!map_getmapflag(sd->m, MF_NOCOSTUME) && !sd->status.disable_showcostumes) {
 		if ((i = sd->equip_index[EQI_COSTUME_HEAD_LOW]) != -1 && (id = sd->inventory_data[i])) {
 			if (!(id->equip&(EQP_COSTUME_HEAD_MID|EQP_COSTUME_HEAD_TOP)))
 				sd->status.head_bottom = id->look;
