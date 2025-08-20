@@ -359,6 +359,8 @@ function	Job_Change	{
 		resetskill;
 		set SkillPoint,0;
 	}
+	if( eaclass()&EAJL_UPPER )
+		resetstatus;
 	specialeffect2 EF_ANGEL2;
 	specialeffect2 EF_ELECTRIC;
 	if (.@previous_class != Class) {
