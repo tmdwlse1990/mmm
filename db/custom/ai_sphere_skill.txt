@@ -7,3 +7,4 @@
 //= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 MO_CALLSPIRITS,5
 GS_GLITTERING,1
+CH_SOULCOLLECT,5
