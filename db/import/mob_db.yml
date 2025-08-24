@@ -83,39 +83,39 @@ Header:
 Body:
 # [Faceworm Mod]
   - Id: 2528
-    Attack: 4500
+#    Attack: 4500
     Str: 200
     Dex: 200
   - Id: 2529
-    Attack: 9012
-    Str: 300
+#    Attack: 9012
+#    Str: 300
     Dex: 300
     DamageTaken: 10
   - Id: 2530
-    Attack: 5000
-    Str: 250
+#    Attack: 5000
+#    Str: 250
     Dex: 250
     DamageTaken: 10
   - Id: 2532
-    Attack: 20000
-    Str: 1000
+#    Attack: 20000
+#    Str: 1000
     Dex: 500
     DamageTaken: 10
   - Id: 2533
-    Attack: 10000
+#    Attack: 10000
     Resistance: 500
-    Vit: 1000
+#    Vit: 1000
     Dex: 500
     DamageTaken: 10
   - Id: 2534
-    Attack: 10000
-    Attack2: 20000
+#    Attack: 10000
+#    Attack2: 20000
     MagicResistance: 500
-    Int: 1000
+#    Int: 1000
     Dex: 500
     DamageTaken: 10
   - Id: 2535
-    Agi: 1000
+#    Agi: 1000
     Dex: 500
     DamageTaken: 10
   - Id: 2541
