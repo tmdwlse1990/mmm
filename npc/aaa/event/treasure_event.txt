@@ -845,7 +845,7 @@ icecastle,177,229,5	script	นักผจญภัยหูยาว	515,{
 	mes "[Misa]";
 	mes "แถวนี้มันต้องมีสมบัติแน่ๆ!!";
 	next;
-	if (BaseLevel < 99 || JobLevel < 50 || adv_clas < 1) {
+	if (BaseLevel < 99 || adv_clas < 1) {
 		mes "[Misa]";
 		mes "แต่เจ้าดูขาดประสบการณ์นะ ไปฝึกมามากกว่านี้!!";
 		mes "^FF0000ต้องการ LV 99/50 และ Rank E ขึ้นไป^000000";

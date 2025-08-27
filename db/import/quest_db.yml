@@ -150,7 +150,20 @@ Body: #ให้ใช้ ID ไม่เกิน 1000
       - Mob: MD_GIANT_OCTOPUS
         Count: 1
         Location: 1@cash
-
+  - Id: 105
+    Title: Sample Material
+    Targets: 
+      - Mob: GLITCH_CAT_B
+        Count: 2
+      - Mob: GLITCH_CAT_W
+        Count: 2
+        
+  - Id: 106
+    Title: Lost Sample
+    Targets: 
+      - Mob: CODE_X_DUPPER
+        Count: 1
+      
 # // Side Quest ให้ใช้ตั้งแต่ 500 ขึ้นไป จะได้จัดระเบียบถูก มีดรอปของพิเศษเฉพาะตอนมีเควสด้วย ดูด้านบนเอา
   - Id: 501
     Title: Golden Egg
@@ -158,3 +171,80 @@ Body: #ให้ใช้ ID ไม่เกิน 1000
       - Mob: GOLDPICKY
         Item: Golden_Egg
         Rate: 3000
+
+# Daily Quest 10 เควส    
+  - Id: 502
+    Title: Snake In The Boots
+    Targets: 
+      - Mob: NAGA
+        Count: 1000
+        
+  - Id: 503
+    Title: I AM ROBOT 
+    Targets: 
+      - Mob: ARCHDAM
+        Count: 1000
+        
+  - Id: 504
+    Title: Did You See My Head.. 
+    Targets: 
+      - Mob: HEADLESS_MULE
+        Count: 1000
+        
+  - Id: 505
+    Title: Veggie Veggie
+    Targets: 
+      - Mob: NEPENTHES
+        Count: 1000
+        
+  - Id: 506
+    Title: I Am BATMAN 
+    Targets: 
+      - Mob: WAKWAK
+        Count: 1000
+        
+  - Id: 507
+    Title: Jurassic World 
+    Targets:  
+      - Mob: NOVUS
+        Count: 1000
+        
+  - Id: 508
+    Title: Teenage Turtle Ninja
+    Targets: 
+      - Mob: ASSULTER
+        Count: 1000
+        
+  - Id: 509
+    Title: Break The Ice
+    Targets: 
+      - Mob: ICEICLE
+        Count: 1000
+        
+  - Id: 510
+    Title: Look In My Eye
+    Targets: 
+      - Mob: BEHOLDER_MASTER
+        Count: 1000
+        
+  - Id: 511
+    Title: Flimsy Armor
+    Targets: 
+      - Mob: DULLAHAN
+        Count: 1000
+        
+        
+# Daily Quest 2 เควส สำหรับ event ตีบวก 
+  - Id: 512
+    Title: GLITCH CAT
+    Targets: 
+      - Mob: GLITCH_CAT_W
+        Count: 50
+        
+  - Id: 513
+    Title: GLITCH CAT V2
+    Targets: 
+      - Mob: GLITCH_CAT_B
+        Count: 50
+        
+        

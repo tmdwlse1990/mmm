@@ -1,0 +1,309 @@
+//--------------------------------------------------
+// NPC: Ksa - Icecastle (เริ่มเควส)
+//--------------------------------------------------
+
+//icecastle,141,216,5	script	Ksa#Ice	10001,{
+	lighthalzen,155,257,5	script	Ksa#Ice	10001,{
+	if (step == 1){
+		switch (isbegin_quest(105)){
+			case 0: 
+				mes "[Ksa]";
+				mes "มันไม่น่าจะเกิดขึ้นได้นะ ฉันลืมให้เควสเจ้าหรอ....";
+				setquest 105;
+				end;
+				
+			case 1:
+				switch (checkquest(105,HUNTING)){
+					case 0: break;
+					case 1: //เควสยังไม่เสร็จ
+						mes "[Ksa]";
+						mes "โอย มันต้องหนีไปอยู่แถวๆรอบๆเมืองแน่เลย....";
+						break;
+					case 2: //เควสเสร็จ ไปหา Lived
+						mes "[Ksa]";
+						mes "สุดยอดมาก! เจ้าจัดการสัตว์ทดลองได้เรียบร้อยแล้ว!";
+						completequest 105;
+						set step,2;
+						next;
+						mes "[Ksa]";
+						mes "เจ้ามีฝีมือจริงๆ น่าจะช่วยงานวิจัยที่ Lived ได้!";
+						next;
+						mes "[Ksa]";
+						mes "ไปพบหัวหน้า Lived ที่ 1@lhz เขาจะมอบภารกิจต่อให้!";
+						break;
+					default:
+						mes "Error Please contract Admin";
+						end;
+				}
+			case 2: break;
+		}
+	}
+	if (step==0) {
+		mes "[Ksa]";
+		mes "โอ้พระเจ้า! ตัวทดลองของข้าหลุดออกมาแล้ว!";
+		mes "ถ้าไม่จัดการ พวกมันจะสร้างความเสียหายใหญ่!";
+		next;
+		mes "[Ksa]";
+		mes "ช่วยข้าจัดการพวกมันทีได้ไหม?";
+		if(select("ได้เลย:ไม่สนใจ")==2) {
+			mes "[Ksa]";
+			mes "หึ... งั้นข้าต้องหาคนอื่นช่วยแล้วล่ะ...";
+			close;
+		}
+		mes "[Ksa]";
+		mes "เยี่ยม! รีบไปฆ่าพวกมันแล้วกลับมาหาข้า!";
+		setquest 105;
+		set step,1;
+		close;
+	}
+
+	
+	end;
+}
+
+
+//--------------------------------------------------
+// NPC: Warp เข้า 1@lhz
+//--------------------------------------------------
+lighthalzen,162,252,0	warp	To_Lived	1,1,1@lhz,151,30
+1@lhz,151,27,0	warp	Back_Lived	1,1,lighthalzen,159,252
+
+//--------------------------------------------------
+// NPC: Lived - Research Leader (เริ่มเควสวัตถุดิบ)
+//--------------------------------------------------
+1@lhz,152,63,3	script	Lived Leader	10003,{
+	if (step==2) {
+		mes "[Lived]";
+		mes "ข้าดีใจที่เจ้ามาถึงศูนย์วิจัยของเรา!";
+		next;
+		mes "[Lived]";
+		mes "ขออธิบายการทดลองสักหน่อย...";
+		mes "เรากำลังศึกษาการสร้างสิ่งมีชีวิตทดลอง แต่บางครั้งมันก็อันตรายเกินคาด";
+		next;
+		mes "[Lived]";
+		mes "ข้าต้องการวัตถุดิบจากเจ้า 3 อย่าง:";
+		mes "1. Yggdrasil Berry 5 ea";
+		mes "2. Temporal Crystal 1 ea";
+		mes "3. Broken Horn 1 ea";
+		next;
+		mes "[Lived]";
+		mes "ไปคุยกับ Ksa ที่นี่เพื่อเตรียมของให้พร้อมก่อนเริ่มทดลอง!";
+		set progress1,0;
+		set progress2,0;
+		set progress3,0;
+		set step,3; // ไป Ksa Lab
+		close;
+	}
+	if (step==4) {
+		mes "[Lived]";
+		mes "ไม่นะ! การทดลองล้มเหลว!! ตัวทดลองบางส่วนหลุดออกมา!!";
+		set step,5; // mob หลุด
+			monster "1@lhz",143,42,"Chief Impostor",27005,1,0,"exsam_fight::OnKill";
+			monster "1@lhz",159,48,"Chief Impostor",27006,1,0,"exsam_fight::OnKill";
+			monster "1@lhz",148,55,"Chief Impostor",27007,1,0,"exsam_fight::OnKill";
+			monster "1@lhz",152,49,"Chief Impostor",27005,1,0,"exsam_fight::OnKill";
+			monster "1@lhz",154,38,"Chief Impostor",27006,1,0,"exsam_fight::OnKill";
+			set @exsam_spawned, 1;
+		close;
+	}
+	if (step==6) {
+		mes "[Lived]";
+		mes "เสร็จแล้ว... แต่ตัวต้นแบบยังหนีไป!";
+		mes "เจ้าไปตามจัดการมันที่ 1@rgsr ได้เลย!";
+		setquest 106; // Prototype escape
+		set step,7;
+		close;
+	}
+	if (step == 7){
+		switch (isbegin_quest(106)){
+			case 0: 
+				mes "[Lived]";
+				mes "มันไม่น่าจะเกิดขึ้นได้นะ ฉันลืมให้เควสเจ้าหรอ....";
+				setquest 106;
+				end;
+				
+			case 1:
+				switch (checkquest(106,HUNTING)){
+					case 0: break;
+					case 1: //เควสยังไม่เสร็จ
+						mes "[Lived]";
+						mes "มันต้องหลบอยู่ในแลปวิจัยข้างใต้นี่แหละ....";
+						break;
+					case 2: //เควสเสร็จ ไปหา Lived
+						mes "[Lived]";
+						mes "เจ้าทำได้ยอดเยี่ยม! แต่เรื่องนี้ยังไม่จบ...";
+						mes "ขอบคุณสำหรับความช่วยเหลือ!";
+						completequest 106;
+						set step,9;
+						
+						break;
+					default:
+						mes "Error Please contract Admin";
+						end;
+				}
+			case 2: break;
+		}
+	}
+	end;
+}
+
+-	script	exsam_fight	-1,{
+	OnKill:
+		if ((killedrid == 27005 || killedrid == 27006 || killedrid == 27007) && step == 5) {
+			set #exsam_kill, #exsam_kill + 1;
+			if (#exsam_kill >= 5) {
+				set step,6;
+				set #exsam_kill, 0;
+				set @exsam_spawned, 0;
+			}
+		}
+	end;
+}
+
+//--------------------------------------------------
+// NPC: Ksa - 1@lhz (เตรียมวัตถุดิบ)
+//--------------------------------------------------
+1@lhz,143,54,5	script	Ksa#Lab	10002,{
+	if (step == 3) {
+		// Step 1: Yggdrasil Berry
+		if (progress1 == 0) {
+			mes "[Ksa]";
+			mes "ขั้นแรก ต้องใช้ Yggdrasil Berry 5 ea หรือจ่าย 5,000,000 Zeny";
+			next;
+			switch(select("ส่งวัตถุดิบ","จ่ายเงิน","ยกเลิก")) {
+				case 1:
+					if (countitem(607) >= 5) {
+						progressbar "0xFF0000",3;
+						if (rand(100) < 5) {
+							delitem 607,5;
+							mes "[Ksa]";
+							mes "ขั้นแรกสำเร็จ!";
+							set progress1,1;
+						} else {
+							mes "[Ksa]";
+							mes "ไม่สำเร็จ ลองอีกครั้ง!";
+						}
+					} else {
+						mes "[Ksa]";
+						mes "ของยังไม่ครบ!";
+					}
+					close;
+				case 2:
+					if (Zeny >= 5000000) {
+						progressbar "0xFF0000",3;
+						Zeny -= 5000000;
+						mes "[Ksa]";
+						mes "ลงทุนผ่านขั้นแรกแล้ว!";
+						set progress1,1;
+					} else {
+						mes "[Ksa]";
+						mes "เงินไม่พอ!";
+					}
+					close;
+				case 3:
+					close;
+			}
+		}
+
+		// Step 2: Temporal Crystal
+		if (progress2 == 0 && progress1 == 1) {
+			mes "[Ksa]";
+			mes "ขั้นต่อมา ต้องใช้ Temporal Crystal 1 ea หรือจ่าย 15,000,000 Zeny";
+			next;
+			switch(select("ส่งวัตถุดิบ","จ่ายเงิน","ยกเลิก")) {
+				case 1:
+					if (countitem(6607) >= 1) {
+						progressbar "0xFF0000",3;
+						if (rand(100) < 5) {
+							delitem 6607,1;
+							mes "[Ksa]";
+							mes "ขั้นสองสำเร็จ!";
+							set progress2,1;
+						} else {
+							mes "[Ksa]";
+							mes "ไม่สำเร็จ ลองอีกครั้ง!";
+						}
+					} else {
+						mes "[Ksa]";
+						mes "ของยังไม่ครบ!";
+					}
+					close;
+				case 2:
+					if (Zeny >= 15000000) {
+						progressbar "0xFF0000",3;
+						Zeny -= 15000000;
+						mes "[Ksa]";
+						mes "ลงทุนผ่านขั้นสองแล้ว!";
+						set progress2,1;
+					} else {
+						mes "[Ksa]";
+						mes "เงินไม่พอ!";
+					}
+					close;
+				case 3:
+					close;
+			}
+		}
+
+		// Step 3: Broken Horn
+		if (progress3 == 0 && progress2 == 1) {
+			mes "[Ksa]";
+			mes "ขั้นสุดท้าย ต้องใช้ Broken Horn 1 ea หรือจ่าย 30,000,000 Zeny";
+			next;
+			switch(select("ส่งวัตถุดิบ","จ่ายเงิน","ยกเลิก")) {
+				case 1:
+					if (countitem(6649) >= 1) {
+						progressbar "0xFF0000",3;
+						if (rand(100) < 5) {
+							delitem 6649,1;
+							mes "[Ksa]";
+							mes "ขั้นสุดท้ายสำเร็จ!";
+							set progress3,1;
+						} else {
+							mes "[Ksa]";
+							mes "ไม่สำเร็จ ลองอีกครั้ง!";
+						}
+					} else {
+						mes "[Ksa]";
+						mes "ของยังไม่ครบ!";
+					}
+					close;
+				case 2:
+					if (Zeny >= 30000000) {
+						progressbar "0xFF0000",3;
+						Zeny -= 30000000;
+						mes "[Ksa]";
+						mes "ลงทุนผ่านขั้นสุดท้ายแล้ว!";
+						set progress3,1;
+					} else {
+						mes "[Ksa]";
+						mes "เงินไม่พอ!";
+					}
+					close;
+				case 3:
+					close;
+			}
+		}
+
+		// เคลียร์ครบทุกขั้น
+		if (progress1 == 1 && progress2 == 1 && progress3 == 1) {
+			mes "[Ksa]";
+			mes "เรียบร้อย! กลับไปแจ้ง Lived เพื่อเริ่มการทดลอง!";
+			set step,4;
+			close;
+		}
+	}
+	else {
+		mes "[Ksa]";
+		mes "มาช่วยเตรียมวัตถุดิบกันเถอะ!";
+		close;
+	}
+	end;
+}
+
+
+//--------------------------------------------------
+// Warp ไป Prototype (1@rgsr)
+//--------------------------------------------------
+1@lhz,153,60,0	warp	To_Prototype	1,1,1@rgsr,126,35
+

@@ -1,0 +1,145 @@
+icecastle,69,233,5	script	Unknown Scientist	982,{
+    mes "[Loukou]";
+    mes "สวัสดี! เจ้าต้องการแลกของใช่หรือไม่?";
+    next;
+    mes "ข้ามีของให้แลก 2 แบบ:";
+    mes "1. ใช้ ^i[2000023] + ^i[2000024] อย่างละ 1 ชิ้น  แลก ^i[2190007] 1 ชิ้น";
+    mes "2. ใช้ ^i[2000023] หรือ ^i[2000024] อย่างใดอย่างหนึ่ง 1 ชิ้น แลก ^i[2000021] 1 ชิ้น";
+    next;
+
+    switch(select("แลกแบบที่ 1:แลกแบบที่ 2:ยกเลิก")) {
+        case 1:
+            if (countitem(2000023) < 1 || countitem(2000024) < 1) {
+                mes "[Loukou]";
+                mes "เจ้ามีไอเทมไม่ครบ!";
+                close;
+            }
+            mes "[Loukou]";
+            mes "เจ้าต้องการใช้ ^i[2000023] 1 ชิ้น และ ^i[2000024] 1 ชิ้น";
+            mes "เพื่อแลกเป็น ^i[2190007] ใช่หรือไม่?";
+            next;
+            if(select("ใช่, ทำการแลก:ไม่, ยกเลิก") == 2) {
+                mes "[Loukou]";
+                mes "ไว้โอกาสหน้าแล้วกัน";
+                close;
+            }
+            progressbar "0xFF0000",3;
+            specialeffect EF_REFINEOK;
+            delitem 2000023,1;
+            delitem 2000024,1;
+            getitem 2190007,1;
+            mes "[Loukou]";
+            mes "ขอบใจ! นี่คือ ^i[2190007] ของเจ้า";
+            close;
+
+        case 2:
+            mes "[Loukou]";
+            mes "เจ้าจะใช้ไอเทมใดในการแลกเป็น ^i[2000021] ?";
+            next;
+            switch(select("Unstable Left Dagger :Unstable Right Dagger :ยกเลิก")) {
+                case 1:
+                    if (countitem(2000023) < 1) {
+                        mes "[Loukou]";
+                        mes "เจ้าไม่มี ^i[2000023]!";
+                        close;
+                    }
+                    mes "[Loukou]";
+                    mes "เจ้าต้องการแลกแบบใด?";
+                    next;
+                    switch(select("แลก 1 ชิ้น:แลกระบุจำนวน:แลกทั้งหมด")) {
+                        case 1: // แลก 1 ชิ้น
+                            progressbar "0xFF0000",3;
+                            specialeffect EF_PHARMACY_OK;
+                            delitem 2000023,1;
+                            getitem 2000021,1;
+                            mes "[Loukou]";
+                            mes "เรียบร้อย! เจ้าได้รับ ^i[2000021]";
+                            close;
+
+                        case 2: // ระบุจำนวน
+                            mes "[Loukou]";
+                            mes "เจ้ามี ^i[2000023] " + countitem(2000023) + " ชิ้น";
+                            mes "ต้องการแลกกี่ชิ้น?";
+                            input .@amt;
+                            if (.@amt < 1 || .@amt > countitem(2000023)) {
+                                mes "จำนวนไม่ถูกต้อง!";
+                                close;
+                            }
+                            progressbar "0xFF0000",3;
+                            specialeffect EF_PHARMACY_OK;
+                            delitem 2000023,.@amt;
+                            getitem 2000021,.@amt;
+                            mes "[Loukou]";
+                            mes "เรียบร้อย! เจ้าได้รับ ^i[2000021] จำนวน " + .@amt + " ชิ้น";
+                            close;
+
+                        case 3: // แลกทั้งหมด
+                            .@cnt = countitem(2000023);
+                            progressbar "0xFF0000",3;
+                            specialeffect EF_PHARMACY_OK;
+                            delitem 2000023,.@cnt;
+                            getitem 2000021,.@cnt;
+                            mes "[Loukou]";
+                            mes "เรียบร้อย! เจ้าได้รับ ^i[2000021] จำนวน " + .@cnt + " ชิ้น";
+                            close;
+                    }
+
+                case 2:
+                    if (countitem(2000024) < 1) {
+                        mes "[Loukou]";
+                        mes "เจ้าไม่มี ^i[2000024]!";
+                        close;
+                    }
+                    mes "[Loukou]";
+                    mes "เจ้าต้องการแลกแบบใด?";
+                    next;
+                    switch(select("แลก 1 ชิ้น:แลกระบุจำนวน:แลกทั้งหมด")) {
+                        case 1: // แลก 1 ชิ้น
+                            progressbar "0xFF0000",3;
+                            specialeffect EF_PHARMACY_OK;
+                            delitem 2000024,1;
+                            getitem 2000021,1;
+                            mes "[Loukou]";
+                            mes "เรียบร้อย! เจ้าได้รับ ^i[2000021]";
+                            close;
+
+                        case 2: // ระบุจำนวน
+                            mes "[Loukou]";
+                            mes "เจ้ามี ^i[2000024] " + countitem(2000024) + " ชิ้น";
+                            mes "ต้องการแลกกี่ชิ้น?";
+                            input .@amt;
+                            if (.@amt < 1 || .@amt > countitem(2000024)) {
+                                mes "จำนวนไม่ถูกต้อง!";
+                                close;
+                            }
+                            progressbar "0xFF0000",3;
+                            specialeffect EF_PHARMACY_OK;
+                            delitem 2000024,.@amt;
+                            getitem 2000021,.@amt;
+                            mes "[Loukou]";
+                            mes "เรียบร้อย! เจ้าได้รับ ^i[2000021] จำนวน " + .@amt + " ชิ้น";
+                            close;
+
+                        case 3: // แลกทั้งหมด
+                            .@cnt = countitem(2000024);
+                            progressbar "0xFF0000",3;
+                            specialeffect EF_PHARMACY_OK;
+                            delitem 2000024,.@cnt;
+                            getitem 2000021,.@cnt;
+                            mes "[Loukou]";
+                            mes "เรียบร้อย! เจ้าได้รับ ^i[2000021] จำนวน " + .@cnt + " ชิ้น";
+                            close;
+                    }
+
+                case 3:
+                    mes "[Loukou]";
+                    mes "ไว้โอกาสหน้าแล้วกัน";
+                    close;
+            }
+
+        case 3:
+            mes "[Loukou]";
+            mes "ไว้โอกาสหน้าแล้วกัน";
+            close;
+    }
+}
