@@ -1,4 +1,17 @@
 icecastle,67,222,5	script	ตัวคราฟสารพัดประโยชน์#icecastle	4_EP20_LASGAND,{
+	if(#newbietutorial == 6) {
+		mes "ไง นี่คือโซนสำหรับซื้อของใช้";
+		mes "หรือจะเป็นโซนกาชาต่างๆก็จะอยู่แถวนี้นี่ละ เดินสำรวจดูได้เลยนะ";
+		mes "ยังไงก็ลองไปสุ่มกาชาคอสตูมเล่นดูละกันนะ ถือว่าของขวัญ";
+		next;
+		mes "ตัวสุ่มคอสตูมจะเป็น ไก่ ใช้ดวงดีๆหละ";
+		mes "ทีนี้ไปที่จุดลงดันเจี้ยนดูสิ";
+		mes "ไปแล้วคุยกับชุดคนขาวๆนะ";
+		#newbietutorial = 7;
+		getitem 2000007,3;
+		navigateto("icecastle",22,119);
+		end;
+	}
 menu
 	"Cube",Cube_store,
 	"Union Weapon",Union_store,

@@ -215,7 +215,7 @@ function	Job_Options	{
 			// .BabyClass & .BabyExpanded must be enabled if the is a baby
 			Require_Level(.Req_Exp_NJ_GS[0], .Req_Exp_NJ_GS[1]);
 			// Kagerou, Oboro, Rebellion are considered as a 2-1 class
-			Job_Options(.@job_opt, roclass(.@eac|EAJL_2_1));
+			Job_Options(.@job_opt, roclass(.@eac|EAJL_UPPER));
 		}
 	}
 	
@@ -554,7 +554,7 @@ OnInit:
 	setarray .Req_Rebirth[0],99,50;		// Minimum base level, job level to rebirth
 	setarray .Req_Third[0],99,50;		// Minimum base level, job level to change to third class
 	setarray .Req_Fourth[0],200,70;		// Minimum base level, job level to change to fourth class
-	setarray .Req_Exp_NJ_GS[0],99,75; 	// Minimum base level, job level to turn into Expanded Ninja and Gunslinger
+	setarray .Req_Exp_NJ_GS[0],99,70; 	// Minimum base level, job level to turn into Expanded Ninja and Gunslinger
 	setarray .Req_Exp_SNOVI[0],99,99; 	// Minimum base level, job level to turn into Expanded Super Novice
 	setarray .Req_SHandler[0],200,60;	// Minimum base level, job level to turn into Spirit Handler
 	.SNovice = 45;						// Minimum base level to turn into Super Novice

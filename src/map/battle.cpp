@@ -3546,11 +3546,9 @@ static bool is_attack_hitting(struct Damage* wd, struct block_list *src, struct 
 				hitrate += 10 + 4 * skill_lv;
 				break;
 			case SC_FATALMENACE:
-				if (skill_lv < 6)
-					hitrate -= 35 - 5 * skill_lv;
-				else if (skill_lv > 6)
-					hitrate += 5 * skill_lv - 30;
+					hitrate += 10 * skill_lv;
 				break;
+				/*
 			case RL_SLUGSHOT:
 				{
 					int8 dist = distance_bl(src, target);
@@ -3562,6 +3560,7 @@ static bool is_attack_hitting(struct Damage* wd, struct block_list *src, struct 
 					}
 				}
 				break;
+				*/
 		}
 	} else if (sd && wd->type&DMG_MULTI_HIT && wd->div_ == 2) // +1 hit per level of Double Attack on a successful double attack (making sure other multi attack skills do not trigger this) [helvetica]
 		//hitrate += pc_checkskill(sd,TF_DOUBLE);
@@ -4524,7 +4523,7 @@ static void battle_calc_skill_base_damage(struct Damage* wd, struct block_list *
 					2 *
 #endif
 					sstatus->batk + sstatus->rhw.atk + (index >= 0 && sd->inventory_data[index] ?
-						sd->inventory_data[index]->atk : 0)) * (skill_lv + 5) / 5;
+						sd->inventory_data[index]->atk : 0)) * (skill_lv + 5);
 				if (sc && sc->getSCE(SC_KAGEMUSYA))
 					damagevalue += damagevalue * sc->getSCE(SC_KAGEMUSYA)->val2 / 100;
 				ATK_ADD(wd->damage, wd->damage2, damagevalue);
@@ -4740,7 +4739,7 @@ static void battle_calc_multi_attack(struct Damage* wd, struct block_list *src,s
 			wd->div_ = skill_get_num(GS_CHAINACTION,skill_lv);
 			wd->type = DMG_MULTI_HIT;
 
-			sc_start(src,src,SC_QD_SHOT_READY,500,target->id,skill_get_time(RL_QD_SHOT,1));
+			sc_start(src,src,SC_QD_SHOT_READY,2000,target->id,skill_get_time(RL_QD_SHOT,1));
 		}
 	}
 
@@ -4757,11 +4756,11 @@ static void battle_calc_multi_attack(struct Damage* wd, struct block_list *src,s
 			wd->div_ = (sd ? max(1, skill_lv) : 1);
 			break;
 		case RL_QD_SHOT:
-			wd->div_ = 1 + (sd ? sd->status.job_level : 1) / 20;
+			wd->div_ = 3 + (sd ? sd->status.job_level : 1) / 10;
 			break;
 		case KO_JYUMONJIKIRI:
 			if( tsc && tsc->getSCE(SC_JYUMONJIKIRI) )
-				wd->div_ = wd->div_ * -1;// needs more info
+				wd->div_ += wd->div_;// needs more info
 			break;
 		case MH_BLAZING_AND_FURIOUS: {
 			struct homun_data *hd = BL_CAST(BL_HOM, src);
@@ -4787,6 +4786,10 @@ static void battle_calc_multi_attack(struct Damage* wd, struct block_list *src,s
 		case NW_THE_VIGILANTE_AT_NIGHT:
 			if (sd && sd->weapontype1 == W_GATLING)
 				wd->div_ += 3;
+			break;
+		case KO_KAIHOU:
+			if(sd && sd->spiritcharm_type != CHARM_TYPE_NONE && sd->spiritcharm > 0)
+				wd->div_ = sd->spiritcharm;
 			break;
 	}
 }
@@ -5248,6 +5251,7 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 		case CG_ARROWVULCAN:
 #ifdef RENEWAL
 			skillratio += -100 + 300 * skill_lv;
+			skillratio += 6 * sstatus->str;
 			RE_LVL_DMOD(100);
 #else
 			skillratio += 100 + 100 * skill_lv;
@@ -5550,8 +5554,8 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 			skillratio += 100 * (skill_lv - 1);
 			break;
 		case AB_DUPLELIGHT_MELEE:
-			skillratio += 50 + 15 * skill_lv;
-			break;
+			skillratio += 300 + 40 * skill_lv;
+			break; 
 		case NPC_ARROWSTORM:
 			if (skill_lv > 4)
 				skillratio += 1900;
@@ -5646,7 +5650,7 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 			RE_LVL_DMOD(100);
 			break;
 		case SC_FATALMENACE:
-			skillratio += 120 * skill_lv + sstatus->agi * 6; // !TODO: What's the AGI bonus?
+			skillratio += 120 * skill_lv + sstatus->agi * 7; // !TODO: What's the AGI bonus?
 
 			if( sc != nullptr && sc->getSCE( SC_ABYSS_DAGGER ) ){
 				skillratio += 30 * skill_lv;
@@ -5842,7 +5846,7 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 		case WM_SEVERE_RAINSTORM_MELEE:
 			//ATK [{(Caster DEX / 300 + AGI / 200)} x Caster Base Level / 100] %
 			//skillratio += -100 + 100 * skill_lv + (sstatus->dex / 30 + sstatus->agi / 20);
-			skillratio += -100 + 100 * (skill_lv + (sstatus->dex / 15 + sstatus->agi / 15));
+			skillratio += -100 + 100 * (skill_lv + (sstatus->dex / 30 + sstatus->agi / 20));
 			if (wd->miscflag&4) // Whip/Instrument equipped
 				skillratio += 20 * skill_lv;
 			RE_LVL_DMOD(100);
@@ -5954,10 +5958,10 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 			skillratio += -100 + 150 * skill_lv + sstatus->str + (sd ? pc_checkskill(sd,NJ_HUUMA) * 100 : 0);
 			RE_LVL_DMOD(100);
 			if (sc && sc->getSCE(SC_KAGEMUSYA))
-				skillratio += skillratio * sc->getSCE(SC_KAGEMUSYA)->val2 / 100;
+				skillratio += skillratio * sc->getSCE(SC_KAGEMUSYA)->val2 / 200;
 			break;
 		case KO_SETSUDAN:
-			skillratio += 100 * (skill_lv - 1);
+			skillratio += (100 + sstatus->str) * (skill_lv);
 			RE_LVL_DMOD(100);
 			if (tsc) {
 				struct status_change_entry *sce;
@@ -6019,8 +6023,8 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 			skillratio += -100 + 200 * skill_lv;
 			break;
 		case RL_FIREDANCE:
-			skillratio += 100 + 100 * skill_lv;
-			skillratio += (sd ? pc_checkskill(sd, GS_DESPERADO) * 20 : 0);
+			skillratio += 100 + 200 * skill_lv;
+			skillratio += (sd ? pc_checkskill(sd, GS_DESPERADO) * 100 : 0);
 			RE_LVL_DMOD(100);
 			break;
 		case RL_BANISHING_BUSTER:
@@ -6030,12 +6034,14 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 		case RL_S_STORM:
 			skillratio += -100 + 1700 + 200 * skill_lv;
 			break;
-		case RL_SLUGSHOT:
-			if (target->type == BL_MOB)
-				skillratio += -100 + 1200 * skill_lv;
-			else
+		case RL_SLUGSHOT: {
 				skillratio += -100 + 2000 * skill_lv;
-			skillratio *= 2 + tstatus->size;
+				skillratio *= 2 + tstatus->size;
+				int8 dist = distance_bl(src, target);
+				if (dist < 3) {
+					skillratio *= 2;
+				}
+			}
 			break;
 		case RL_D_TAIL:
 			skillratio += -100 + 500 + 200 * skill_lv;
@@ -6057,18 +6063,18 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 				skillratio += -100 + 200 + 200 * skill_lv;
 			break;
 		case RL_HAMMER_OF_GOD:
-			skillratio += -100 + 100 * skill_lv;
+			skillratio += -100 + 10 * skill_lv;
 			if (sd) {
 				if (wd->miscflag & 8)
-					skillratio += 400 * sd->spiritball_old;
+					skillratio += 1250 * sd->spiritball_old;
 				else
-					skillratio += 150 * sd->spiritball_old;
+					skillratio += 850 * sd->spiritball_old;
 			}
 			RE_LVL_DMOD(100);
 			break;
 		case RL_FIRE_RAIN:
 		case RL_AM_BLAST:
-			skillratio += -100 + 3500 + 300 * skill_lv;
+			skillratio += -100 + 1500 + 1200 * skill_lv;
 			break;
 		case SU_BITE:
 			skillratio += 100;
@@ -8421,6 +8427,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src, struct bl
 	if(iscritical) {
 		if(skill_id || wd.div_ > 1)
 			clif_skill_damage(*target, *target, gettick(), wd.amotion, wd.dmotion, wd.damage, 1, TK_STORMKICK, -1, DMG_MULTI_HIT);
+			//clif_damage(*target, *target, gettick(), wd.amotion, wd.dmotion, wd.damage, wd.div_, wd.type, wd.damage2, wd.isspdamage);
 	}
 	return wd;
 }
@@ -8801,30 +8808,30 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 					case NJ_KOUENKA:
 						skillratio += 5 * skill_lv;
 						if(sd && sd->spiritcharm_type == CHARM_TYPE_FIRE && sd->spiritcharm > 0)
-							skillratio += 10 * sd->spiritcharm;
+							skillratio += skillratio * sd->spiritcharm / 5;
 						break;
 					case NJ_KAENSIN:
 						if(sd && sd->spiritcharm_type == CHARM_TYPE_FIRE && sd->spiritcharm > 0)
-							skillratio += 20 * sd->spiritcharm;
+							skillratio += skillratio * sd->spiritcharm / 5;
 						break;
 					case NJ_BAKUENRYU:
 						skillratio += 50 + 300 * skill_lv;
 						if(sd && sd->spiritcharm_type == CHARM_TYPE_FIRE && sd->spiritcharm > 0)
-							skillratio += 100 * sd->spiritcharm;
+							skillratio += skillratio * sd->spiritcharm / 5;
 						break;
 					case NJ_HYOUSENSOU:
 #ifdef RENEWAL
-						skillratio += 2 * skill_lv;
+						skillratio += 4 * skill_lv;
 						if (sc && sc->getSCE(SC_SUITON))
 							skillratio += 2 * skill_lv;
 #endif
 						if(sd && sd->spiritcharm_type == CHARM_TYPE_WATER && sd->spiritcharm > 0)
-							skillratio += 20 * sd->spiritcharm;
+							skillratio += 80 * sd->spiritcharm;
 						break;
 					case NJ_HYOUSYOURAKU:
-						skillratio += 300 * skill_lv;
+						skillratio += 600 * skill_lv;
 						if(sd && sd->spiritcharm_type == CHARM_TYPE_WATER && sd->spiritcharm > 0)
-							skillratio += 100 * sd->spiritcharm;
+							skillratio += skillratio * sd->spiritcharm;
 						break;
 					case NJ_RAIGEKISAI:
 #ifdef RENEWAL
@@ -8838,7 +8845,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 					case NJ_KAMAITACHI:
 						skillratio += 250 * skill_lv;
 						if(sd && sd->spiritcharm_type == CHARM_TYPE_WIND && sd->spiritcharm > 0)
-							skillratio += 100 * sd->spiritcharm;
+							skillratio += skillratio * sd->spiritcharm / 5;
 						break;
 					case NJ_HUUJIN:
 #ifdef RENEWAL
@@ -8927,10 +8934,10 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						}
 						break;
 					case WL_JACKFROST:
-						if (tsc && tsc->getSCE(SC_MISTY_FROST))
+						//if (tsc && tsc->getSCE(SC_MISTY_FROST))
 							skillratio += -100 + 1200 + 600 * skill_lv;
-						else
-							skillratio += -100 + 1000 + 300 * skill_lv;
+						//else
+						//	skillratio += -100 + 1000 + 300 * skill_lv;
 						RE_LVL_DMOD(100);
 						break;
 					case WL_DRAINLIFE:
@@ -8938,7 +8945,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						RE_LVL_DMOD(100);
 						break;
 					case WL_CRIMSONROCK:
-						skillratio += -100 + 700 + 600 * skill_lv;
+						skillratio += -100 + 1200 + 600 * skill_lv;
 						RE_LVL_DMOD(100);
 						break;
 					case WL_HELLINFERNO:
@@ -9080,7 +9087,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						break;
 					case KO_KAIHOU:
 						if(sd && sd->spiritcharm_type != CHARM_TYPE_NONE && sd->spiritcharm > 0) {
-							skillratio += -100 + 200 * sd->spiritcharm;
+							skillratio += -100 + 500 * sd->spiritcharm;
 							RE_LVL_DMOD(100);
 							pc_delspiritcharm(sd, sd->spiritcharm, sd->spiritcharm_type);
 						}
@@ -11151,7 +11158,7 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 	if( damage > 0 && src != target )
 	{
 		if (sc && sc->getSCE(SC_DUPLELIGHT) && (wd.flag & BF_SHORT)) { // Activates only from regular melee damage. Success chance is seperate for both duple light attacks.
-			uint16 duple_rate = 10 + 2 * sc->getSCE(SC_DUPLELIGHT)->val1;
+			uint16 duple_rate = 10 + 6 * sc->getSCE(SC_DUPLELIGHT)->val1;
 
 			if (rand() % 100 < duple_rate)
 				skill_castend_damage_id(src, target, AB_DUPLELIGHT_MELEE, sc->getSCE(SC_DUPLELIGHT)->val1, tick, flag | SD_LEVEL);
@@ -11163,9 +11170,9 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 
 	clif_damage(*src, *target, tick, wd.amotion, wd.dmotion, wd.damage, wd.div_, wd.type, wd.damage2, wd.isspdamage);
 
+
 	if (sd && sd->bonus.splash_range > 0 && damage > 0)
 		skill_castend_damage_id(src, target, 0, 1, tick, 0);
-
 	bool is_norm_attacked = false;
 
 	if ( target->type == BL_SKILL && damage > 0 ) {

@@ -453,7 +453,7 @@ Body:
           - Name: PA_SACRIFICE
             Level: 5
       - Name: LG_RAYOFGENESIS
-        MaxLevel: 5
+        MaxLevel: 10
         Requires:
           - Name: CR_GRANDCROSS
             Level: 10
