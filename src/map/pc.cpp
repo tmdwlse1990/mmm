@@ -1470,7 +1470,7 @@ int32 pc_equippoint_sub(map_session_data *sd,struct item_data* id){
 
 	ep = id->equip;
 	if(id->subtype == W_DAGGER	|| id->subtype == W_1HSWORD || id->subtype == W_1HAXE) {
-		if(pc_checkskill(sd,AS_LEFT) > 0 || (sd->class_&MAPID_UPPERMASK) == MAPID_ASSASSIN || (sd->class_&MAPID_UPPERMASK) == MAPID_KAGEROUOBORO) { //Kagerou and Oboro can dual wield daggers. [Rytech]
+		if(pc_checkskill(sd,AS_LEFT) > 0 || (sd->class_&MAPID_UPPERMASK) == MAPID_ASSASSIN || (sd->class_& MAPID_FOURTHMASK) == MAPID_KAGEROUOBORO) { //Kagerou and Oboro can dual wield daggers. [Rytech]
 			if (ep == EQP_WEAPON)
 				return EQP_ARMS;
 			if (ep == EQP_SHADOW_WEAPON)
@@ -7767,13 +7767,15 @@ uint8 pc_checkskill_imperial_guard(map_session_data *sd, int16 flag)
 	nullpo_retr(0, sd);
 
 	uint8 count = 0;
+	if (sd) {
+		if (flag & 1 && sd->status.shield > 0)
+			count += pc_checkskill(sd, IG_SHIELD_MASTERY);
 
-	if (flag&1 && sd->status.shield > 0)
-		count += pc_checkskill(sd, IG_SHIELD_MASTERY);
-
-	if (flag&2 && (sd->status.weapon == W_1HSWORD || sd->status.weapon == W_1HSPEAR || sd->status.weapon == W_2HSPEAR))
-		count += pc_checkskill(sd, IG_SPEAR_SWORD_M);
-
+		if (flag & 2 && (sd->status.weapon == W_1HSWORD || sd->status.weapon == W_1HSPEAR || sd->status.weapon == W_2HSPEAR))
+			count += pc_checkskill(sd, IG_SPEAR_SWORD_M);
+	}
+	else
+		count += 1;
 	return count;
 }
 

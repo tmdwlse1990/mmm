@@ -46,6 +46,9 @@ Header:
   Version: 4
 
 Body:
+  - Status: H_Mine
+    Flags:
+      BlEffect: true
   - Status: Adrenaline
     CalcFlags:
       Cri: true

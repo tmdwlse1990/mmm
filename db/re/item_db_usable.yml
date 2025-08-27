@@ -1099,12 +1099,11 @@ Body:
     Name: Old Blue Box
     Type: Usable
     Buy: 10000
+    Sell: 10
     Weight: 200
     Flags:
       BuyingStore: true
       Container: true
-    Trade:
-      NoSell: true
     Script: |
       getgroupitem(IG_BlueBox);
   - Id: 604
@@ -1250,12 +1249,11 @@ Body:
     Name: Old Purple Box
     Type: Usable
     Buy: 10000
+    Sell: 10
     Weight: 200
     Flags:
       BuyingStore: true
       Container: true
-    Trade:
-      NoSell: true
     Script: |
       getgroupitem(IG_VioletBox);
   - Id: 618
@@ -62485,7 +62483,7 @@ Body:
   - Id: 23267
     AegisName: 1LVUP
     Name: Level Up Box (1)
-    Type: Usable
+    Type: Delayconsume
     Flags:
       Container: true
     Trade:
@@ -62498,7 +62496,7 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      getgroupitem(IG_1LVUP);
+      callfunc "F_NewbieTutorial";
   - Id: 23268
     AegisName: 10LVUP
     Name: Level Up Box (10)

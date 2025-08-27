@@ -22111,6 +22111,9 @@ Body:
     MaxLevel: 10
     Type: Weapon
     TargetType: Attack
+    DamageFlags:
+      Splash: true
+    SplashArea: 2
     Range: -1
     Hit: Single
     HitCount: 1
@@ -22126,6 +22129,9 @@ Body:
     MaxLevel: 10
     Type: Magic
     TargetType: Attack
+    DamageFlags:
+      Splash: true
+    SplashArea: 2
     Range: -1
     Hit: Single
     HitCount: 1
@@ -23920,23 +23926,23 @@ Body:
       - Level: 1
         Area: 1
       - Level: 2
-        Area: 1
+        Area: 2
       - Level: 3
-        Area: 1
+        Area: 2
       - Level: 4
-        Area: 1
+        Area: 3
       - Level: 5
-        Area: 1
+        Area: 3
       - Level: 6
-        Area: 2
+        Area: 4
       - Level: 7
-        Area: 2
+        Area: 4
       - Level: 8
-        Area: 2
+        Area: 5
       - Level: 9
-        Area: 2
+        Area: 5
       - Level: 10
-        Area: 2
+        Area: 5
     CopyFlags:
       Skill:
         Reproduce: true
@@ -30424,7 +30430,7 @@ Body:
     Hit: Single
     HitCount: 1
     Element: Weapon
-    SplashArea: 3
+    SplashArea: 5
     AfterCastActDelay: 500
     Requires:
       SpCost:
@@ -30726,7 +30732,7 @@ Body:
     SplashArea: 1
     AfterCastActDelay: 1000
     Duration1: 100
-    Cooldown: 5000
+    Cooldown: 1000
     Requires:
       SpCost: 70
       Weapon:
@@ -30833,7 +30839,7 @@ Body:
         Time: 9000
     AfterCastActDelay: 1000
     Duration2: 1500
-    Cooldown: 5000
+    Cooldown: 3000
     FixedCastTime: 1000
     Requires:
       SpCost:
@@ -30886,7 +30892,7 @@ Body:
       - Level: 10
         Area: 3
     AfterCastActDelay: 500
-    Cooldown: 20000
+    Cooldown: 2000
     Requires:
       SpCost:
         - Level: 1
@@ -32199,30 +32205,10 @@ Body:
       - Level: 10
         Size: 7
     Hit: Multi_Hit
-    HitCount: -2
+    HitCount: 2
     Element: Weapon
     Duration1: 3000
-    Cooldown:
-      - Level: 1
-        Time: 4000
-      - Level: 2
-        Time: 3900
-      - Level: 3
-        Time: 3800
-      - Level: 4
-        Time: 3700
-      - Level: 5
-        Time: 3600
-      - Level: 6
-        Time: 3500
-      - Level: 7
-        Time: 3400
-      - Level: 8
-        Time: 3300
-      - Level: 9
-        Time: 3200
-      - Level: 10
-        Time: 3100
+    Cooldown: 500
     Requires:
       SpCost:
         - Level: 1
@@ -32256,7 +32242,7 @@ Body:
     Hit: Single
     HitCount: 1
     Element: Weapon
-    Cooldown: 3000
+    Cooldown: 200
     Requires:
       SpCost:
         - Level: 1
@@ -32306,7 +32292,7 @@ Body:
         Time: 2600
     AfterCastActDelay: 1000
     Duration1: 100
-    Cooldown: 3000
+    Cooldown: 500
     Requires:
       SpCost:
         - Level: 1
@@ -32342,17 +32328,7 @@ Body:
     Hit: Single
     HitCount: 1
     Element: Weapon
-    SplashArea:
-      - Level: 1
-        Area: 4
-      - Level: 2
-        Area: 4
-      - Level: 3
-        Area: 4
-      - Level: 4
-        Area: 4
-      - Level: 5
-        Area: 5
+    SplashArea: 5
     AfterCastActDelay: 500
     Requires:
       SpCost:
@@ -32471,7 +32447,7 @@ Body:
       Splash: true
     Range: 11
     Hit: Multi_Hit
-    HitCount: -5
+    HitCount: 5
     Element: Weapon
     SplashArea: 3
     CastTime: 1500
@@ -45216,6 +45192,103 @@ Body:
           Amount: 82
       ApCost: 50
     Status: Overcoming_Crisis
+  - Id: 5506
+    Name: SH_CHUL_HO_BATTERING
+    Description: Chulho Battering
+    MaxLevel: 7
+    Type: Weapon
+    TargetType: Attack
+    DamageFlags:
+      Critical: true
+    Range: 7
+    Hit: Multi_Hit
+    HitCount: 5
+    GiveAp: 1
+    Element: Weapon
+    SplashArea:
+      - Level: 1
+        Area: 2
+      - Level: 2
+        Area: 2
+      - Level: 3
+        Area: 2
+      - Level: 4
+        Area: 2
+      - Level: 5
+        Area: 3
+      - Level: 6
+        Area: 3
+      - Level: 7
+        Area: 3
+    CastCancel: true
+    AfterCastActDelay: 1000
+    Cooldown: 700
+    FixedCastTime: 1000
+    Requires:
+      SpCost:
+        - Level: 1
+          Amount: 64
+        - Level: 2
+          Amount: 66
+        - Level: 3
+          Amount: 68
+        - Level: 4
+          Amount: 70
+        - Level: 5
+          Amount: 72
+        - Level: 6
+          Amount: 74
+        - Level: 7
+          Amount: 76
+  - Id: 5507
+    Name: SH_HYUN_ROK_SPIRIT_POWER
+    Description: Hyunrok Spirit Power
+    MaxLevel: 7
+    Type: Magic
+    TargetType: Attack
+    DamageFlags:
+      Splash: true
+    Range: 9
+    GiveAp: 1
+    Hit: Multi_Hit
+    HitCount: 7
+    Element: Neutral
+    SplashArea:
+      - Level: 1
+        Area: 2
+      - Level: 2
+        Area: 2
+      - Level: 3
+        Area: 2
+      - Level: 4
+        Area: 3
+      - Level: 5
+        Area: 3
+      - Level: 6
+        Area: 3
+      - Level: 7
+        Area: 4
+    CastCancel: true
+    CastTime: 2000
+    AfterCastActDelay: 700
+    Cooldown: 1000
+    FixedCastTime: 1500
+    Requires:
+      SpCost:
+        - Level: 1
+          Amount: 70
+        - Level: 2
+          Amount: 73
+        - Level: 3
+          Amount: 76
+        - Level: 4
+          Amount: 79
+        - Level: 5
+          Amount: 82
+        - Level: 6
+          Amount: 85
+        - Level: 7
+          Amount: 88
   - Id: 6001
     Name: DK_DRAGONIC_BREATH
     Description: Dragonic Breath
@@ -45539,6 +45612,38 @@ Body:
           Amount: 84
         - Level: 10
           Amount: 86
+  - Id: 6502
+    Name: DK_DRAGONIC_PIERCE
+    Description: Dragonic Pierce
+    MaxLevel: 5
+    Type: Weapon
+    TargetType: Attack
+    DamageFlags:
+      Critical: true
+    Range: 7
+    Hit: Multi_Hit
+    HitCount: 5
+    Element: Weapon
+    GiveAp: 2
+    CastCancel: true
+    CastTime: 500
+    AfterCastActDelay: 700
+    Cooldown: 500
+    FixedCastTime: 500
+    Requires:
+      SpCost:
+        - Level: 1
+          Amount: 45
+        - Level: 2
+          Amount: 50
+        - Level: 3
+          Amount: 55
+        - Level: 4
+          Amount: 60
+        - Level: 5
+          Amount: 65
+      Weapon:
+        2hSpear: true
   - Id: 6503
     Name: IG_RADIANT_SPEAR
     Description: Radiant Spear
@@ -45631,6 +45736,46 @@ Body:
           Amount: 65
       Status:
         Attack_Stance: true
+  - Id: 6505
+    Name: IG_IMPERIAL_PRESSURE
+    Description: Imperial Pressure
+    MaxLevel: 5
+    Type: Magic
+    TargetType: Attack
+    DamageFlags:
+      Splash: true
+    Range: 9
+    Hit: Multi_Hit
+    HitCount: -7
+    GiveAp: 2
+    SplashArea:
+      - Level: 1
+        Area: 2
+      - Level: 2
+        Area: 2
+      - Level: 3
+        Area: 3
+      - Level: 4
+        Area: 3
+      - Level: 5
+        Area: 4
+    CastCancel: true
+    CastTime: 2000
+    AfterCastActDelay: 1000
+    Cooldown: 450
+    FixedCastTime: 1500
+    Requires:
+      SpCost:
+        - Level: 1
+          Amount: 89
+        - Level: 2
+          Amount: 93
+        - Level: 3
+          Amount: 97
+        - Level: 4
+          Amount: 101
+        - Level: 5
+          Amount: 105
   - Id: 6506
     Name: MT_RUSH_STRIKE
     Description: Rush Strike

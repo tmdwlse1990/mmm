@@ -21438,6 +21438,9 @@ Body:
     MaxLevel: 10
     Type: Weapon
     TargetType: Attack
+    DamageFlags:
+      Splash: true
+    SplashArea: 2
     Range: -1
     Hit: Single
     HitCount: 1
@@ -21453,6 +21456,9 @@ Body:
     MaxLevel: 10
     Type: Magic
     TargetType: Attack
+    DamageFlags:
+      Splash: true
+    SplashArea: 2
     Range: -1
     Hit: Single
     HitCount: 1

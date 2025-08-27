@@ -1300,6 +1300,9 @@ ygg_roots
 1@cash1
 1@cash2
 // - Other/Extra maps -
+1@lab_d1
+1@lhz_d1
+1@rgsr_d1
 thinkter
 fgt_san
 fgt_san_gl

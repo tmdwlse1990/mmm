@@ -12575,7 +12575,7 @@ static bool status_change_start_post_delay(block_list* src, block_list* bl, sc_t
 			clif_status_change(bl,EFST_ACTIVE_MONSTER_TRANSFORM,1,0,1002,0,0);
 			break;
 		case SC_KAGEMUSYA:
-			val2 = 20; // Damage increase bonus
+			val2 = 100; // Damage increase bonus
 			val3 = val1 * 2;
 			tick_time = 1000;
 			val4 = tick / tick_time;
