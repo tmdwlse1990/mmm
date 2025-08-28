@@ -1,4 +1,38 @@
 icecastle,14,116,5	script	Chaos Dungeon#main	4_EP19_LUNCH,{
+	if(#newbietutorial == 8 && (getequipcardid(EQI_SHADOW_ACC_L,0)) ) {
+		mes "ดีมากๆ ถือว่าทำได้ดีเลย";
+		mes "โหมดฝึกสอนของเซิฟเราก็จบแต่เพียงเท่านี้แล";
+		mes "ที่เหลือก็พยายามเข้าน้า คุยกับกล่อง Newbie อีกรอบจะมีรางวัลเริ่มต้นให้นะ";
+		mes "สู้ๆ จุ๊ฟๆ";
+		#newbietutorial = 9;
+		end;
+	}
+	if(#newbietutorial == 7) {
+		mes "โย่ เจ้าเด็กใหม่";
+		mes "นี่จะเป็นวิธีการเรียนรู้ถึงดันเจี้ยนรายวันประจำเซิฟเวอร์ของเรา";
+		mes "สิ่งนี้แหละที่จะทำให้นายเก่งขึ้นทุกๆวันแน่นอน";
+		next;
+		mes "ดันนี้เรียกว่า Chaos Dungeon จะ reset ทุกๆตี 1 ของทุกวัน";
+		mes "และมีดันข้างๆคือ Guardian ที่จะเป็นการตีบอสตัวนึงไว้แลกของ";
+		next;
+		mes "แต่จะโฟกัสที่ Chaos Dungeon ก่อน";
+		mes "ดันเจี้ยนจะออกมาในรูปแบบของการกัน Wave 10 Wave";
+		mes "เล่นง่ายๆสบายๆ อย่าให้มอน วิ่งไปที่อีกฝั่งสะพานได้ก็พอ";
+		next;
+		mes "แนะนำให้ลงให้ได้นะ แต่เราจะไม่เปิดให้ลง แต่เราจะให้ดูว่ามันได้อะไรแทน";
+		mes "พร้อมยัง";
+		next;
+		if(select("พร้อมแล้ว:ยังไม่พร้อม") == 2 ) end;
+		#newbietutorial = 8;
+		getitem 2234001,1;
+		getitem 2234002,1;
+		getitem 2234003,1;
+		getitem 2234004,1;
+		mes "นายคุยกับเราตัวอีกรอบแล้วเลือกหัวข้อ";
+		mes "^ff0000เสริมพลีงบัตรนักพจญภัย^000000";
+		mes "นะ เราให้ตัวอย่างของรางวัลไปแล้ว";
+		end;
+	}
 	mes "เป็นรูปแบบการ Clear Monster Wave";
 	mes "มอนจะมาแบบ Wave";
 	mes "สามารถเพิ่มระดับได้ ถ้าหาก Rank นักพจญภัยเพิ่มขึ้น";
@@ -13,7 +47,7 @@ icecastle,14,116,5	script	Chaos Dungeon#main	4_EP19_LUNCH,{
 	set .@online_members_count, $@partymembercount;	
 	set .@md_name$,"Chaos Dungeon";
 	
-	if(select("เข้าดันเจี้ยน:เสริมพลังบตรนักพจญภัย") == 2 ) goto EnchantCard;
+	if(select("เข้าดันเจี้ยน:เสริมพลังบัตรนักพจญภัย") == 2 ) goto EnchantCard;
 	if(rentalcountitem(2001103)) {
 		goto Bypassevent;
 	}
@@ -102,6 +136,17 @@ L_Enter:
 	}
 	end;
 EnchantCard:
+	if(#newbietutorial == 8) {
+		mes "ไงนี่คือวิธีการเสริมพลังของบัตรนักพจญภัยทั้ง 4 ช่อง";
+		mes "นี่คือวิธีโดยละเอียด: <URL>Enchant Adventure Card<INFO>https://discord.com/channels/1173163103505109052/1390295701023494224/1390572818445631599</INFO></URL>";
+		mes "หรือบอกง่ายๆ ให้ถอด^i[2000001] ออกก่อนแล้วเข้าหัวข้อนี้";
+		mes "เลือก Item ที่จะออกชั่น";
+		mes "กดที่คำว่า Confirm สีเหลือง";
+		mes "เลือกออฟที่ต้องการจะใช้ ";
+		mes "แล้วกด Enchant ได้เลย";
+		mes "นายลองทำให้ครบ 4 ช่องดูนะ เราให้ของเทสไปแล้วหละ";
+		mes "เมื่อออฟครบ 4 ช่องแล้วใส่บัตรแล้วคุยกับเราอีกรอบนะ";
+	}
 	close2;
 	item_enchant(290);
 	end;

@@ -104,27 +104,27 @@ Body:
       - Slot: 0
         PerfectEnchants:
           - Item: Chaos_Speed_Gamma_Level_1
-            Price: 100000
+            Price: 0
             Materials:
               - Material: Chaos_stone_4
                 Amount: 1
           - Item: Chaos_Def1_Gamma_Level_1
-            Price: 100000
+            Price: 0
             Materials:
               - Material: Chaos_stone_4
                 Amount: 1
           - Item: Chaos_MDef1_Gamma_Level_1
-            Price: 100000
+            Price: 0
             Materials:
               - Material: Chaos_stone_4
                 Amount: 1
           - Item: Chaos_Def21_Gamma_Level_1
-            Price: 100000
+            Price: 0
             Materials:
               - Material: Chaos_stone_4
                 Amount: 1
           - Item: Chaos_MDef21_Gamma_Level_1
-            Price: 100000
+            Price: 0
             Materials:
               - Material: Chaos_stone_4
                 Amount: 1
@@ -1098,32 +1098,32 @@ Body:
       - Slot: 1
         PerfectEnchants:
           - Item: Chaos_Str_Delta_Level_1
-            Price: 100000
+            Price: 0
             Materials:
               - Material: Chaos_stone_3
                 Amount: 1
           - Item: Chaos_Agi_Delta_Level_1
-            Price: 100000
+            Price: 0
             Materials:
               - Material: Chaos_stone_3
                 Amount: 1
           - Item: Chaos_Luk_Delta_Level_1
-            Price: 100000
+            Price: 0
             Materials:
               - Material: Chaos_stone_3
                 Amount: 1
           - Item: Chaos_Vit_Delta_Level_1
-            Price: 100000
+            Price: 0
             Materials:
               - Material: Chaos_stone_3
                 Amount: 1
           - Item: Chaos_Int_Delta_Level_1
-            Price: 100000
+            Price: 0
             Materials:
               - Material: Chaos_stone_3
                 Amount: 1
           - Item: Chaos_Dex_Delta_Level_1
-            Price: 100000
+            Price: 0
             Materials:
               - Material: Chaos_stone_3
                 Amount: 1
@@ -2360,22 +2360,22 @@ Body:
       - Slot: 2
         PerfectEnchants:
           - Item: Chaos_PSkill_Beta_Level_1
-            Price: 100000
+            Price: 0
             Materials:
               - Material: Chaos_stone_2
                 Amount: 1
           - Item: Chaos_MSkill_Beta_Level_1
-            Price: 100000
+            Price: 0
             Materials:
               - Material: Chaos_stone_2
                 Amount: 1
           - Item: Chaos_OSkill_Beta_Level_1
-            Price: 100000
+            Price: 0
             Materials:
               - Material: Chaos_stone_2
                 Amount: 1
           - Item: Chaos_NSkill_Beta_Level_1
-            Price: 100000
+            Price: 0
             Materials:
               - Material: Chaos_stone_2
                 Amount: 1
@@ -3069,27 +3069,27 @@ Body:
       - Slot: 3
         PerfectEnchants:
           - Item: Chaos_Atk_Alpla_Level_1
-            Price: 100000
+            Price: 0
             Materials:
               - Material: Chaos_stone_1
                 Amount: 1
           - Item: Chaos_MAtk_Alpla_Level_1
-            Price: 100000
+            Price: 0
             Materials:
               - Material: Chaos_stone_1
                 Amount: 1
           - Item: Chaos_FAtk_Alpla_Level_1
-            Price: 100000
+            Price: 0
             Materials:
               - Material: Chaos_stone_1
                 Amount: 1
           - Item: Chaos_FMAtk_Alpla_Level_1
-            Price: 100000
+            Price: 0
             Materials:
               - Material: Chaos_stone_1
                 Amount: 1
           - Item: Chaos_SkillRatio_Alpla_Level_1
-            Price: 100000
+            Price: 0
             Materials:
               - Material: Chaos_stone_1
                 Amount: 1

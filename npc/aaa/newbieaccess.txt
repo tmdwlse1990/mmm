@@ -40,8 +40,11 @@ function	script	F_NewbieTutorial	{
 			end;
 		case 7:
 			mes "เราจะต้องลง Chaos Dungeon กันแล้วนะ";
-			mes "โปรดติดตามอัพเดทเซิฟเวอร์เพิ่มเติม";
-			mes "กำลังจัดทำอยู่ฮัพ";
+			navigateto("icecastle",12,115);
+			end;
+		case 8:
+			mes "เราต้องอัพเกรดบัตรนักพจญภัยแล้วนะ";
+			navigateto("icecastle",12,115);
 			end;
 		default:
 			mes "ของรางวัลตัวละครใหม่ของท่านครับ";
