@@ -983,3 +983,282 @@ Body:
           bonus bPerfectHitAddRate,1*(10 - .@r);
         }
       }
+#cosweapon
+  - Id: 2191001
+    AegisName: S_Weapon_Swordman
+    Name: Swordman Shadow Weapon
+    Type: Shadowgear
+    Locations:
+      Shadow_Weapon: true
+    Jobs:
+      Swordman: true
+      Knight: true
+      Crusader: true
+    EquipLevelMin: 99
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      .@val = 35;
+      if(.@r >= 14) {
+        .@val += 15;
+      }
+      bonus2 bIgnoreDefClassRate,Class_All,.@val;
+      bonus2 bIgnoreMDefClassRate,Class_All,.@val;
+      bonus2 bSubClass,Class_All,min(10,.@r);
+  - Id: 2191002
+    AegisName: S_Weapon_Archer
+    Name: Archer Shadow Weapon
+    Type: Shadowgear
+    Locations:
+      Shadow_Weapon: true
+    Jobs:
+      Archer: true
+      Hunter: true
+      BardDancer: true
+    EquipLevelMin: 99
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      .@val = 35;
+      if(.@r >= 14) {
+        .@val += 15;
+      }
+      bonus2 bIgnoreDefClassRate,Class_All,.@val;
+      bonus2 bIgnoreMDefClassRate,Class_All,.@val;
+      bonus2 bSubClass,Class_All,min(10,.@r);
+  - Id: 2191003
+    AegisName: S_Weapon_Acolyte
+    Name: Acolyte Shadow Weapon
+    Type: Shadowgear
+    Locations:
+      Shadow_Weapon: true
+    Jobs:
+      Acolyte: true
+      Priest: true
+      Monk: true
+    EquipLevelMin: 99
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      .@val = 35;
+      if(.@r >= 14) {
+        .@val += 15;
+      }
+      bonus2 bIgnoreDefClassRate,Class_All,.@val;
+      bonus2 bIgnoreMDefClassRate,Class_All,.@val;
+      bonus2 bSubClass,Class_All,min(10,.@r);
+  - Id: 2191004
+    AegisName: S_Weapon_Magician
+    Name: Magician Shadow Weapon
+    Type: Shadowgear
+    Locations:
+      Shadow_Weapon: true
+    Jobs:
+      Mage: true
+      Sage: true
+      Wizard: true
+    EquipLevelMin: 99
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      .@val = 35;
+      if(.@r >= 14) {
+        .@val += 15;
+      }
+      bonus2 bIgnoreDefClassRate,Class_All,.@val;
+      bonus2 bIgnoreMDefClassRate,Class_All,.@val;
+      bonus2 bSubClass,Class_All,min(10,.@r);
+  - Id: 2191005
+    AegisName: S_Weapon_Thief
+    Name: Thief Shadow Weapon
+    Type: Shadowgear
+    Locations:
+      Shadow_Weapon: true
+    Jobs:
+      Thief: true
+      Rogue: true
+      Assassin: true
+    EquipLevelMin: 99
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      .@val = 35;
+      if(.@r >= 14) {
+        .@val += 15;
+      }
+      bonus2 bIgnoreDefClassRate,Class_All,.@val;
+      bonus2 bIgnoreMDefClassRate,Class_All,.@val;
+      bonus2 bSubClass,Class_All,min(10,.@r);
+  - Id: 2191006
+    AegisName: S_Weapon_Merchant
+    Name: Merchant Shadow Weapon
+    Type: Shadowgear
+    Locations:
+      Shadow_Weapon: true
+    Jobs:
+      Merchant: true
+      Alchemist: true
+      Blacksmith: true
+    EquipLevelMin: 99
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      .@val = 35;
+      if(.@r >= 14) {
+        .@val += 15;
+      }
+      bonus2 bIgnoreDefClassRate,Class_All,.@val;
+      bonus2 bIgnoreMDefClassRate,Class_All,.@val;
+      bonus2 bSubClass,Class_All,min(10,.@r);
+  - Id: 2191007
+    AegisName: S_Weapon_Extra
+    Name: Extra Shadow Weapon
+    Type: Shadowgear
+    Locations:
+      Shadow_Weapon: true
+    Jobs:
+      Ninja: true
+      KagerouOboro: true
+      Taekwon: true
+      SoulLinker: true
+      StarGladiator: true
+      Gunslinger: true
+      Rebellion: true
+      SuperNovice: true
+      Summoner: true
+    EquipLevelMin: 99
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      .@val = 35;
+      if(.@r >= 14) {
+        .@val += 15;
+      }
+      bonus2 bIgnoreDefClassRate,Class_All,.@val;
+      bonus2 bIgnoreMDefClassRate,Class_All,.@val;
+      bonus2 bSubClass,Class_All,min(10,.@r);
+  - Id: 2191008
+    AegisName: S_Weapon_Swordman_Defective
+    Name: Swordman Defective Shadow Weapon
+    Type: Shadowgear
+    Locations:
+      Shadow_Weapon: true
+    Jobs:
+      Swordman: true
+      Knight: true
+      Crusader: true
+    EquipLevelMin: 50
+    Refineable: true
+    Script: |
+      .@r = getrefine()/2;
+      .@val = 30;
+      bonus2 bIgnoreDefClassRate,Class_All,.@val + .@r;
+      bonus2 bIgnoreMDefClassRate,Class_All,.@val + .@r;
+  - Id: 2191009
+    AegisName: S_Weapon_Archer_Defective
+    Name: Archer Defective Shadow Weapon
+    Type: Shadowgear
+    Locations:
+      Shadow_Weapon: true
+    Jobs:
+      Archer: true
+      Hunter: true
+      BardDancer: true
+    EquipLevelMin: 50
+    Refineable: true
+    Script: |
+      .@r = getrefine()/2;
+      .@val = 30;
+      bonus2 bIgnoreDefClassRate,Class_All,.@val + .@r;
+      bonus2 bIgnoreMDefClassRate,Class_All,.@val + .@r;
+  - Id: 2191010
+    AegisName: S_Weapon_Acolyte_Defective
+    Name: Acolyte Defective Shadow Weapon
+    Type: Shadowgear
+    Locations:
+      Shadow_Weapon: true
+    Jobs:
+      Acolyte: true
+      Priest: true
+      Monk: true
+    EquipLevelMin: 50
+    Refineable: true
+    Script: |
+      .@r = getrefine()/2;
+      .@val = 30;
+      bonus2 bIgnoreDefClassRate,Class_All,.@val + .@r;
+      bonus2 bIgnoreMDefClassRate,Class_All,.@val + .@r;
+  - Id: 2191011
+    AegisName: S_Weapon_Mage_Defective
+    Name: Mage Defective Shadow Weapon
+    Type: Shadowgear
+    Locations:
+      Shadow_Weapon: true
+    Jobs:
+      Mage: true
+      Sage: true
+      Wizard: true
+    EquipLevelMin: 50
+    Refineable: true
+    Script: |
+      .@r = getrefine()/2;
+      .@val = 30;
+      bonus2 bIgnoreDefClassRate,Class_All,.@val + .@r;
+      bonus2 bIgnoreMDefClassRate,Class_All,.@val + .@r;
+  - Id: 2191012
+    AegisName: S_Weapon_Thief_Defective
+    Name: Thief Defective Shadow Weapon
+    Type: Shadowgear
+    Locations:
+      Shadow_Weapon: true
+    Jobs:
+      Thief: true
+      Rogue: true
+      Assassin: true
+    EquipLevelMin: 50
+    Refineable: true
+    Script: |
+      .@r = getrefine()/2;
+      .@val = 30;
+      bonus2 bIgnoreDefClassRate,Class_All,.@val + .@r;
+      bonus2 bIgnoreMDefClassRate,Class_All,.@val + .@r;
+  - Id: 2191013
+    AegisName: S_Weapon_Merchant_Defective
+    Name: Merchant Defective Shadow Weapon
+    Type: Shadowgear
+    Locations:
+      Shadow_Weapon: true
+    Jobs:
+      Merchant: true
+      Alchemist: true
+      Blacksmith: true
+    EquipLevelMin: 50
+    Refineable: true
+    Script: |
+      .@r = getrefine()/2;
+      .@val = 30;
+      bonus2 bIgnoreDefClassRate,Class_All,.@val + .@r;
+      bonus2 bIgnoreMDefClassRate,Class_All,.@val + .@r;
+  - Id: 2191014
+    AegisName: S_Weapon_Extra_Defective
+    Name: Extra Defective Shadow Weapon
+    Type: Shadowgear
+    Locations:
+      Shadow_Weapon: true
+    Jobs:
+      Ninja: true
+      KagerouOboro: true
+      Taekwon: true
+      SoulLinker: true
+      StarGladiator: true
+      Gunslinger: true
+      Rebellion: true
+      SuperNovice: true
+      Summoner: true
+    EquipLevelMin: 50
+    Refineable: true
+    Script: |
+      .@r = getrefine()/2;
+      .@val = 30;
+      bonus2 bIgnoreDefClassRate,Class_All,.@val + .@r;
+      bonus2 bIgnoreMDefClassRate,Class_All,.@val + .@r;
