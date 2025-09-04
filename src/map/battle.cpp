@@ -3578,6 +3578,10 @@ static bool is_attack_hitting(struct Damage* wd, struct block_list *src, struct 
 			hitrate += 3 * skill;
 	}
 
+	mob_data* md = BL_CAST(BL_MOB, src);
+	if (md && md->mob_id >= 30086) //Imitate hit 100%
+		return true;
+
 	hitrate = cap_value(hitrate, battle_config.min_hitrate, battle_config.max_hitrate);
 
 	if(skill_id == PA_SHIELDCHAIN)

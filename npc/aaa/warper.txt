@@ -24,6 +24,7 @@ function Go; function Disp; function Pick; function Restrict;
 // --------------------------------------------------
 
 menu	"Last Warp ^777777["+lastwarp$+"]^000000",-,
+    	" ~ Abnormal Dungeon",ABDungeons,
     	" ~ Towns",Towns,
     	" ~ Fields",Fields,
     	" ~ Dungeons",Dungeons,
@@ -313,6 +314,15 @@ F32: Restrict("Pre-RE",5);
 	 setarray @c[2],186,175,196,370,222,45,51,250,202,324,150,223,149,307;
 	 Disp("Veins Field",1,7); Pick("ve_fild");
 
+// --------------------------------------------------
+	ABDungeons:
+// --------------------------------------------------
+@d = true;
+menu	"Imitate Base",AD1;
+
+AD1: Restrict("RE");
+	setarray @c[2],0,0;
+	Disp("Whispering Abyss"); Pick("","fgt_san_gl");
 // --------------------------------------------------
 	Dungeons:
 // --------------------------------------------------

@@ -3524,6 +3524,181 @@ Body:
       bonus2 bMagicAddEle,Ele_Earth,20;
       bonus2 bSubEle,Ele_Fire,20;
       bonus2 bSubEle,Ele_Water,-20;
+  - Id: 2231001
+    AegisName: IMT_Swordman_Card
+    Name: Imitate Swordman Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      .@r = getrefine();
+      .@c = isequippedcnt(2231001);
+      if(BaseClass == Job_Swordman) {
+        if (getrefine() >= 10) .@b += 10;
+        if (getrefine() >= 14) .@b += 10;
+        .@g = getenchantgrade();
+      }
+      .@val1 = (10 + .@b)/.@c;
+      .@val2 = (10 * .@g)/.@c;
+      bonus bPAtk,.@val1;
+      bonus bSMatk,.@val1;
+      bonus2 bAddClass,Class_All,.@val2;
+      bonus2 bMagicAddClass,Class_All,.@val2;
+  - Id: 2231002
+    AegisName: IMT_Archer_Card
+    Name: Imitate Archer Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      .@r = getrefine();
+      .@c = isequippedcnt(2231002);
+      if(BaseClass == Job_Archer) {
+        if (getrefine() >= 10) .@b += 10;
+        if (getrefine() >= 14) .@b += 10;
+        .@g = getenchantgrade();
+      }
+      .@val1 = (10 + .@b)/.@c;
+      .@val2 = (10 * .@g)/.@c;
+      bonus bPAtk,.@val1;
+      bonus bSMatk,.@val1;
+      bonus2 bAddClass,Class_All,.@val2;
+      bonus2 bMagicAddClass,Class_All,.@val2;
+  - Id: 2231003
+    AegisName: IMT_Acolyte_Card
+    Name: Imitate Acolyte Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      .@r = getrefine();
+      .@c = isequippedcnt(2231003);
+      if(BaseClass == Job_Acolyte) {
+        if (getrefine() >= 10) .@b += 10;
+        if (getrefine() >= 14) .@b += 10;
+        .@g = getenchantgrade();
+      }
+      .@val1 = (10 + .@b)/.@c;
+      .@val2 = (10 * .@g)/.@c;
+      bonus bPAtk,.@val1;
+      bonus bSMatk,.@val1;
+      bonus2 bAddClass,Class_All,.@val2;
+      bonus2 bMagicAddClass,Class_All,.@val2;
+  - Id: 2231004
+    AegisName: IMT_Mage_Card
+    Name: Imitate Mage Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      .@r = getrefine();
+      .@c = isequippedcnt(2231004);
+      if(BaseClass == Job_Mage) {
+        if (getrefine() >= 10) .@b += 10;
+        if (getrefine() >= 14) .@b += 10;
+        .@g = getenchantgrade();
+      }
+      .@val1 = (10 + .@b)/.@c;
+      .@val2 = (10 * .@g)/.@c;
+      bonus bPAtk,.@val1;
+      bonus bSMatk,.@val1;
+      bonus2 bAddClass,Class_All,.@val2;
+      bonus2 bMagicAddClass,Class_All,.@val2;
+  - Id: 2231005
+    AegisName: IMT_Thief_Card
+    Name: Imitate Thief Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      .@r = getrefine();
+      .@c = isequippedcnt(2231005);
+      if(BaseClass == Job_Thief) {
+        if (getrefine() >= 10) .@b += 10;
+        if (getrefine() >= 14) .@b += 10;
+        .@g = getenchantgrade();
+      }
+      .@val1 = (10 + .@b)/.@c;
+      .@val2 = (10 * .@g)/.@c;
+      bonus bPAtk,.@val1;
+      bonus bSMatk,.@val1;
+      bonus2 bAddClass,Class_All,.@val2;
+      bonus2 bMagicAddClass,Class_All,.@val2;
+  - Id: 2231006
+    AegisName: IMT_Merchant_Card
+    Name: Imitate Merchant Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      .@r = getrefine();
+      .@c = isequippedcnt(2231006);
+      if(BaseClass == Job_Merchant) {
+        if (getrefine() >= 10) .@b += 10;
+        if (getrefine() >= 14) .@b += 10;
+        .@g = getenchantgrade();
+      }
+      .@val1 = (10 + .@b)/.@c;
+      .@val2 = (10 * .@g)/.@c;
+      bonus bPAtk,.@val1;
+      bonus bSMatk,.@val1;
+      bonus2 bAddClass,Class_All,.@val2;
+      bonus2 bMagicAddClass,Class_All,.@val2;
+  - Id: 2231007
+    AegisName: IMT_Extra_Card
+    Name: Imitate Extra Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      .@r = getrefine();
+      .@c = isequippedcnt(2231007);
+      if(BaseClass == JOB_GUNSLINGER ||BaseClass == JOB_TAEKWON ||BaseClass == JOB_GUNSLINGER ||BaseClass == JOB_NOVICE||BaseClass == JOB_SUMMONER ) {
+        if (getrefine() >= 10) .@b += 10;
+        if (getrefine() >= 14) .@b += 10;
+        .@g = getenchantgrade();
+      }
+      .@val1 = (10 + .@b)/.@c;
+      .@val2 = (10 * .@g)/.@c;
+      bonus bPAtk,.@val1;
+      bonus bSMatk,.@val1;
+      bonus2 bAddClass,Class_All,.@val2;
+      bonus2 bMagicAddClass,Class_All,.@val2;
 #   [Etc Item]
   - Id: 2239001
     AegisName: Fei-Chai_doll

@@ -4213,3 +4213,332 @@ Body:
         Rate: 2500
       - Item: Etel_Dust
         Rate: 5000
+  - Id: 30086
+    AegisName: IMT_Swordman
+    Name: Swordman
+    Level: 125
+    Hp: 12500000
+    BaseExp: 322876
+    JobExp: 175423
+    Attack: 7411
+    Attack2: 600
+    Defense: 200
+    MagicDefense: 200
+    Str: 100
+    Agi: 100
+    Vit: 100
+    Int: 100
+    Dex: 100
+    Luk: 100
+    AttackRange: 3
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Fire
+    ElementLevel: 2
+    WalkSpeed: 100
+    AttackDelay: 176
+    AttackMotion: 484
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Modes:
+      KnockBackImmune: true
+    Drops:
+      - Item: IMT_Swordman_Card
+        Rate: 1
+        StealProtected: true
+      - Item: S_Weapon_Swordman
+        Rate: 1
+        StealProtected: true
+      - Item: Seed_Of_Yggdrasil
+        Rate: 1500
+      - Item: Carnium
+        Rate: 10
+      - Item: Goast_Chill
+        Rate: 400
+      - Item: Will_Of_Warrior
+        Rate: 1000
+  - Id: 30087
+    AegisName: IMT_Archer
+    Name: Archer
+    Level: 125
+    Hp: 12500000
+    BaseExp: 322876
+    JobExp: 175423
+    Attack: 7411
+    Attack2: 600
+    Defense: 200
+    MagicDefense: 200
+    Str: 100
+    Agi: 100
+    Vit: 100
+    Int: 100
+    Dex: 100
+    Luk: 100
+    AttackRange: 10
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Wind
+    ElementLevel: 2
+    WalkSpeed: 100
+    AttackDelay: 176
+    AttackMotion: 484
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Modes:
+      KnockBackImmune: true
+    Drops:
+      - Item: IMT_Archer_Card
+        Rate: 1
+        StealProtected: true
+      - Item: S_Weapon_Archer
+        Rate: 1
+        StealProtected: true
+      - Item: Seed_Of_Yggdrasil
+        Rate: 1500
+      - Item: Bradium
+        Rate: 10
+      - Item: Goast_Chill
+        Rate: 400
+      - Item: Will_Of_Warrior
+        Rate: 1000
+  - Id: 30088
+    AegisName: IMT_Acolyte
+    Name: Acolyte
+    Level: 125
+    Hp: 12500000
+    BaseExp: 322876
+    JobExp: 175423
+    Attack: 3411
+    Attack2: 2600
+    Defense: 200
+    MagicDefense: 200
+    Str: 100
+    Agi: 100
+    Vit: 100
+    Int: 100
+    Dex: 100
+    Luk: 100
+    AttackRange: 3
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Holy
+    ElementLevel: 2
+    WalkSpeed: 100
+    AttackDelay: 176
+    AttackMotion: 484
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Modes:
+      KnockBackImmune: true
+    Drops:
+      - Item: IMT_Acolyte_Card
+        Rate: 1
+        StealProtected: true
+      - Item: S_Weapon_Acolyte
+        Rate: 1
+        StealProtected: true
+      - Item: Seed_Of_Yggdrasil
+        Rate: 1500
+      - Item: Bradium
+        Rate: 10
+      - Item: Goast_Chill
+        Rate: 400
+      - Item: Will_Of_Warrior
+        Rate: 1000
+  - Id: 30089
+    AegisName: IMT_Magician
+    Name: Magician
+    Level: 125
+    Hp: 12500000
+    BaseExp: 322876
+    JobExp: 175423
+    Attack: 2411
+    Attack2: 4600
+    Defense: 200
+    MagicDefense: 200
+    Str: 100
+    Agi: 100
+    Vit: 100
+    Int: 100
+    Dex: 100
+    Luk: 100
+    AttackRange: 7
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Ghost
+    ElementLevel: 2
+    WalkSpeed: 100
+    AttackDelay: 176
+    AttackMotion: 484
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Modes:
+      KnockBackImmune: true
+    Drops:
+      - Item: IMT_Mage_Card
+        Rate: 1
+        StealProtected: true
+      - Item: S_Weapon_Magician
+        Rate: 1
+        StealProtected: true
+      - Item: Seed_Of_Yggdrasil
+        Rate: 1500
+      - Item: Bradium
+        Rate: 10
+      - Item: Goast_Chill
+        Rate: 400
+      - Item: Will_Of_Warrior
+        Rate: 1000
+  - Id: 30090
+    AegisName: IMT_Thief
+    Name: Thief
+    Level: 125
+    Hp: 12500000
+    BaseExp: 322876
+    JobExp: 175423
+    Attack: 7411
+    Attack2: 600
+    Defense: 200
+    MagicDefense: 200
+    Str: 100
+    Agi: 100
+    Vit: 100
+    Int: 100
+    Dex: 100
+    Luk: 100
+    AttackRange: 3
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Poison
+    ElementLevel: 2
+    WalkSpeed: 100
+    AttackDelay: 176
+    AttackMotion: 484
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Modes:
+      KnockBackImmune: true
+    Drops:
+      - Item: IMT_Thief_Card
+        Rate: 1
+        StealProtected: true
+      - Item: S_Weapon_Thief
+        Rate: 1
+        StealProtected: true
+      - Item: Seed_Of_Yggdrasil
+        Rate: 1500
+      - Item: Bradium
+        Rate: 10
+      - Item: Goast_Chill
+        Rate: 400
+      - Item: Will_Of_Warrior
+        Rate: 1000
+  - Id: 30091
+    AegisName: IMT_Merchant
+    Name: Merchant
+    Level: 125
+    Hp: 12500000
+    BaseExp: 322876
+    JobExp: 175423
+    Attack: 7411
+    Attack2: 600
+    Defense: 200
+    MagicDefense: 200
+    Str: 100
+    Agi: 100
+    Vit: 100
+    Int: 100
+    Dex: 100
+    Luk: 100
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Water
+    ElementLevel: 2
+    WalkSpeed: 100
+    AttackDelay: 176
+    AttackMotion: 484
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Modes:
+      KnockBackImmune: true
+    Drops:
+      - Item: IMT_Merchant_Card
+        Rate: 1
+        StealProtected: true
+      - Item: S_Weapon_Merchant
+        Rate: 1
+        StealProtected: true
+      - Item: Seed_Of_Yggdrasil
+        Rate: 1500
+      - Item: Bradium
+        Rate: 10
+      - Item: Goast_Chill
+        Rate: 400
+      - Item: Will_Of_Warrior
+        Rate: 1000
+  - Id: 30092
+    AegisName: IMT_Extra
+    Name: Extra
+    Level: 125
+    Hp: 12500000
+    BaseExp: 322876
+    JobExp: 175423
+    Attack: 7411
+    Attack2: 600
+    Defense: 200
+    MagicDefense: 200
+    Str: 100
+    Agi: 100
+    Vit: 100
+    Int: 100
+    Dex: 100
+    Luk: 100
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Water
+    ElementLevel: 2
+    WalkSpeed: 100
+    AttackDelay: 176
+    AttackMotion: 484
+    DamageMotion: 288
+    DamageTaken: 10
+    Ai: 21
+    Modes:
+      KnockBackImmune: true
+    Drops:
+      - Item: IMT_Extra_Card
+        Rate: 1
+        StealProtected: true
+      - Item: S_Weapon_Extra
+        Rate: 1
+        StealProtected: true
+      - Item: Seed_Of_Yggdrasil
+        Rate: 1500
+      - Item: Bradium
+        Rate: 10
+      - Item: Goast_Chill
+        Rate: 400
+      - Item: Will_Of_Warrior
+        Rate: 1000

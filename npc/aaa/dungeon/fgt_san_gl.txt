@@ -1,0 +1,22 @@
+//Mapflag
+fgt_san_gl	mapflag	nosave
+fgt_san_gl	mapflag	nomemo
+fgt_san_gl	mapflag	noteleport
+fgt_san_gl	mapflag	monster_noteleport
+
+//Monster
+fgt_san_gl,0,0	monster	--ja--	30086,25,5000,0,"fgt_san_gl::OnRegularDead"
+fgt_san_gl,0,0	monster	--ja--	30087,25,5000,0,"fgt_san_gl::OnRegularDead"
+fgt_san_gl,0,0	monster	--ja--	30088,25,5000,0,"fgt_san_gl::OnRegularDead"
+fgt_san_gl,0,0	monster	--ja--	30089,25,5000,0,"fgt_san_gl::OnRegularDead"
+fgt_san_gl,0,0	monster	--ja--	30090,25,5000,0,"fgt_san_gl::OnRegularDead"
+fgt_san_gl,0,0	monster	--ja--	30091,25,5000,0,"fgt_san_gl::OnRegularDead"
+fgt_san_gl,0,0	monster	--ja--	30092,25,5000,0,"fgt_san_gl::OnRegularDead"
+
+//Script
+fgt_san_gl,0,0,0	script	fgt_san_gl	-1,{
+	end;
+OnRegularDead:
+	$@countdeadimic1++;
+	end;
+}

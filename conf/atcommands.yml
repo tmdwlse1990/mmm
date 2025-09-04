@@ -33,6 +33,12 @@ Header:
   Version: 1
 
 Body:
+  - Command: mobinfo2
+    Aliases:
+      - mi2
+    Help: |
+      Params: <monster name|ID>
+      Shows monster info (stats, exp, drops etc).
   - Command: accept
     Help: |
       Accepts an invitation to a duel.

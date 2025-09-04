@@ -104,6 +104,99 @@ Body:
       - Index: 3
         Item: Sharkora_Box
         Zeny: 22000000
+  - Name: Defective_S_Weapon_C1
+    Items:
+      - Index: 0
+        Item: S_Weapon_Swordman_Defective
+        Zeny: 10000000
+        RequiredItems:
+          - Index: 0
+            Item: Particles_Of_Energy1
+            Amount: 2000
+          - Index: 1
+            Item: Particles_Of_Energy2
+            Amount: 500
+          - Index: 2
+            Item: Ygnizem_Card
+            Amount: 10
+      - Index: 1
+        Item: S_Weapon_Archer_Defective
+        Zeny: 10000000
+        RequiredItems:
+          - Index: 0
+            Item: Particles_Of_Energy1
+            Amount: 2000
+          - Index: 1
+            Item: Particles_Of_Energy2
+            Amount: 500
+          - Index: 2
+            Item: Kavac_Card
+            Amount: 10
+      - Index: 2
+        Item: S_Weapon_Acolyte_Defective
+        Zeny: 10000000
+        RequiredItems:
+          - Index: 0
+            Item: Particles_Of_Energy1
+            Amount: 2000
+          - Index: 1
+            Item: Particles_Of_Energy2
+            Amount: 500
+          - Index: 2
+            Item: Erend_Card
+            Amount: 10
+      - Index: 3
+        Item: S_Weapon_Mage_Defective
+        Zeny: 10000000
+        RequiredItems:
+          - Index: 0
+            Item: Particles_Of_Energy1
+            Amount: 2000
+          - Index: 1
+            Item: Particles_Of_Energy2
+            Amount: 500
+          - Index: 2
+            Item: Rawrel_Card
+            Amount: 10
+      - Index: 4
+        Item: S_Weapon_Thief_Defective
+        Zeny: 10000000
+        RequiredItems:
+          - Index: 0
+            Item: Particles_Of_Energy1
+            Amount: 2000
+          - Index: 1
+            Item: Particles_Of_Energy2
+            Amount: 500
+          - Index: 2
+            Item: Whikebain_Card
+            Amount: 10
+      - Index: 5
+        Item: S_Weapon_Merchant_Defective
+        Zeny: 10000000
+        RequiredItems:
+          - Index: 0
+            Item: Particles_Of_Energy1
+            Amount: 2000
+          - Index: 1
+            Item: Particles_Of_Energy2
+            Amount: 500
+          - Index: 2
+            Item: Armaia_Card
+            Amount: 10
+      - Index: 6
+        Item: S_Weapon_Extra_Defective
+        Zeny: 10000000
+        RequiredItems:
+          - Index: 0
+            Item: Particles_Of_Energy1
+            Amount: 2000
+          - Index: 1
+            Item: Particles_Of_Energy2
+            Amount: 500
+          - Index: 2
+            Item: Gemini_Card
+            Amount: 1
   - Name: Union_Wep
     Items:
       - Index: 0
