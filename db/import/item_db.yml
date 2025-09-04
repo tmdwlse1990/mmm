@@ -215,6 +215,22 @@ Body:
       #CASHPOINTS += (countitem(.@i) + 1)*1000;
       delitem .@i,countitem(.@i);
       dispbottom  "[System] : You have "+ callfunc("F_InsertComma",#CASHPOINTS) +" Cash Points";
+  - Id: 60005
+    AegisName: HD_Shadowdecon
+    Name: HD Shadowdecon
+    Type: Etc
+    Weight: 20
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+  - Id: 60006
+    AegisName: HD_Zelunium
+    Name: HD Zelunium
+    Type: Etc
+    Weight: 20
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
   - Id: 2000001
     AegisName: Adventure_Card
     Name: Adventure Card

@@ -273,3 +273,15 @@ Body:
           - Index: 0
             Item: Zelunium_Ore
             Amount: 20
+      - Index: 2
+        Item: HD_Shadowdecon
+        RequiredItems:
+          - Index: 0
+            Item: Shadowdecon
+            Amount: 20
+      - Index: 3
+        Item: HD_Zelunium
+        RequiredItems:
+          - Index: 0
+            Item: Zelunium
+            Amount: 20

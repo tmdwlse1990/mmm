@@ -122,7 +122,10 @@ Body:
     Dex: 450
     DamageTaken: 10
 # [Boss Add Drop from Main]
-
+  - Id: 1001
+    Drops:
+      - Item: Flour
+        Rate: 2668
   - Id: 3333
     AegisName: RUBY_CORE
     Name: Ruby
