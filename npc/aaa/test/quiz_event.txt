@@ -1,0 +1,62 @@
+icecastle,223,133,5	script	Quiz Master	800,{
+    // ====== เมนูหลัก ======
+    if (getgmlevel() >= 99) {
+        mes "[Quiz Master]";
+        mes "คุณต้องการเริ่มกิจกรรม Quiz หรือไม่?";
+        if (select("เริ่มกิจกรรม","ยกเลิก") == 1) {
+            close2;
+            // เรียกอีเวนต์ภายใน NPC เดียวกัน
+            donpcevent strnpcinfo(3)+"::OnStartEvent";
+            end;
+        }
+        close;
+    }
+    mes "[Quiz Master]";
+    mes "กิจกรรมจะถูกเริ่มโดย GM เท่านั้น";
+    close;
+
+    // ====== อีเวนต์เริ่มรอบ ======
+    OnStartEvent:
+        set .question_count, 5; // จำนวนคำถามต่อรอบ
+        set .q, 0;
+        set .answered, 0;
+        announce "[Quiz Master]: กิจกรรมตอบคำถามจะเริ่มแล้ว! เทสระบบเฉยๆ", bc_all;
+		
+        donpcevent strnpcinfo(3)+"::OnNextQuestion";
+    end;
+
+    // ====== อีเวนต์ไปคำถามถัดไป ======
+    OnNextQuestion:
+        if (.q >= .question_count) {
+            announce "[Quiz Master]: กิจกรรมสิ้นสุดแล้ว ขอบคุณที่เข้าร่วม!", bc_all;
+            end;
+        }
+        set .q, .q + 1;
+        switch (.q) {
+            case 1: set .answer$, "19"; announce "ข้อที่ 1: 12 + 7 = ?", bc_all; break;
+            case 2: set .answer$, "25"; announce "ข้อที่ 2: 50 - 25 = ?", bc_all; break;
+            case 3: set .answer$, "16"; announce "ข้อที่ 3: 4 x 4 = ?", bc_all; break;
+            case 4: set .answer$, "5";  announce "ข้อที่ 4: 10 / 2 = ?", bc_all; break;
+            case 5: set .answer$, "8";  announce "ข้อที่ 5: 2^3 = ?", bc_all; break;
+        }
+        set .answered, 0; // เปิดรับคำตอบใหม่
+    end;
+
+    // ====== ดักข้อความ map chat ======
+    // NOTE:
+    // - ต้องใช้ Hercules (มี OnPCChatEvent) หรือ rAthena ที่เปิด/ลงปลั๊กอิน event นี้ไว้
+    // - จำกัดให้ตอบได้เฉพาะผู้เล่นที่อยู่ "แมพเดียวกับ NPC"
+    OnPCChatEvent:
+        if (.answered) end; // มีคนตอบไปแล้ว ให้ข้าม
+        if (strcharinfo(3) != strnpcinfo(4)) end; // ไม่ใช่แมพเดียวกัน ไม่รับ
+
+        // เพราะโจทย์เป็นตัวเลข ใช้เทียบแบบตัวเลขจะชัวร์สุด
+        if (atoi(@chatmsg$) == atoi(.answer$)) {
+            set .answered, 1;
+            announce "[Quiz Master]: ผู้เล่น "+strcharinfo(0)+" ตอบถูก!", bc_all;
+            getitem 501, 1; // ของรางวัล
+            donpcevent strnpcinfo(3)+"::OnNextQuestion";
+        }
+    end;
+
+}

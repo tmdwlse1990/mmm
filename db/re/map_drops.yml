@@ -1925,7 +1925,7 @@ Body:
         Drops:
           - Index: 0
             Item: Excalibur_IL
-            Rate: 10
+            Rate: 25
             RandomOptionGroup: ILL_MAGIC_NORMAL
           - Index: 1
             Item: IllusionStone
@@ -1934,7 +1934,7 @@ Body:
         Drops:
           - Index: 0
             Item: Doom_Slayer_IL
-            Rate: 10
+            Rate: 25
             RandomOptionGroup: ILL_PHYSIC_NORMAL
           - Index: 1
             Item: IllusionStone
@@ -1949,7 +1949,7 @@ Body:
             Rate: 5
           - Index: 1
             Item: Sprint_Glove_IL
-            Rate: 5
+            Rate: 25
           - Index: 2
             Item: IllusionStone
             Rate: 10
@@ -1957,7 +1957,7 @@ Body:
         Drops:
           - Index: 0
             Item: Sprint_Mail_IL
-            Rate: 10
+            Rate: 25
           - Index: 1
             Item: IllusionStone
             Rate: 10
@@ -1965,7 +1965,7 @@ Body:
         Drops:
           - Index: 0
             Item: Gelerdria_IL
-            Rate: 10
+            Rate: 25
             RandomOptionGroup: ILL_PHYSIC_NORMAL
           - Index: 1
             Item: IllusionStone
@@ -1974,10 +1974,10 @@ Body:
         Drops:
           - Index: 0
             Item: Siver_Guard_IL
-            Rate: 5
+            Rate: 25
           - Index: 1
             Item: Sprint_Shoes_IL
-            Rate: 5
+            Rate: 25
           - Index: 2
             Item: IllusionStone
             Rate: 10
@@ -1988,7 +1988,7 @@ Body:
             Rate: 10
           - Index: 1
             Item: Thorn_Staff_IL
-            Rate: 10
+            Rate: 25
             RandomOptionGroup: ILL_MAGIC_NORMAL
           - Index: 2
             Item: Twins_Box_IL
@@ -1997,7 +1997,7 @@ Body:
         Drops:
           - Index: 0
             Item: Ancient_Dagger_IL
-            Rate: 10
+            Rate: 25
             RandomOptionGroup: ILL_MAGIC_NORMAL
           - Index: 1
             Item: IllusionStone
@@ -2006,7 +2006,7 @@ Body:
         Drops:
           - Index: 0
             Item: Sprint_Ring_IL
-            Rate: 10
+            Rate: 25
           - Index: 1
             Item: IllusionStone
             Rate: 10

@@ -16,9 +16,15 @@ OnAtcommand:
 			end;
 		}
 		// *getcharid(0,.@atcmd_parameters$[1])
+		if(atoi(.@atcmd_parameters$[0]) == 9 ) {
+			input .@charname$;
+		}
+		else {
+			.@charname$ = .@atcmd_parameters$[0];
+		}
 		mes "-- จะส่งจดหมายดังนี้ --";
-		mes "ผู้รับ :^0000ff"+.@atcmd_parameters$[0]+"^000000";
-		if(!getcharid(0,.@atcmd_parameters$[0])) {
+		mes "ผู้รับ :^0000ff"+.@charname$+"^000000";
+		if(!getcharid(0,.@charname$)) {
 			mes "ชื่อผู้รับผิดพลาด";
 			end;
 		}
@@ -57,12 +63,20 @@ OnAtcommand:
 			end;
 		}
 		// *getcharid(0,.@atcmd_parameters$[1])
-		if(!getcharid(0,.@atcmd_parameters$[0])) {
+		
+		if(atoi(.@atcmd_parameters$[0]) == 9 ) {
+			input .@charname$;
+		}
+		else {
+			.@charname$ = .@atcmd_parameters$[0];
+		}
+		
+		if(!getcharid(0,.@charname$)) {
 			mes "ชื่อผู้รับผิดพลาด";
 			end;
 		}
 		mes "-- เติมเงินดังนี้ --";
-		mes "ผู้รับ :^0000ff"+.@atcmd_parameters$[0]+"^000000";
+		mes "ผู้รับ :^0000ff"+.@charname$+"^000000";
 		mes "จำนวนเงิน :^0000ff"+.@atcmd_parameters$[1]+"^000000";
 		mes "^ff0000---ส่งเลยไหม---^000000";
 		switch(.@atcmd_parameters$[1]) {
@@ -111,9 +125,9 @@ OnAtcommand:
 				close;
 		}
 		if(select("ไม่ส่ง:ส่ง") == 1 ) end;
-		debugmes "Add Hand Donate :"+.@atcmd_parameters$[1]+" to Account ID: "+getcharid(3,.@atcmd_parameters$[0]);
-		query_sql ("INSERT INTO web_cash_send (payment_id,account_id,userid,amount,create_date,`status`) VALUES ('Hand',"+getcharid(3,.@atcmd_parameters$[0])+",'Hand',"+.@cashamount+", NOW(),0)");
-		query_sql ("INSERT INTO web_payment (payment_id,package_id,account_id,pay_amount,total_amount,create_date) VALUES ('hand',99,"+getcharid(3,.@atcmd_parameters$[0])+","+.@atcmd_parameters$[1]+","+.@atcmd_parameters$[1]+", NOW())");
-		query_sql ("INSERT INTO web_item_send (payment_id,account_id,userid,char_id,item1_id,item1_amount,item2_id,item2_amount,item3_id,item3_amount,item4_id,item4_amount,item5_id,item5_amount,create_date,`status`) VALUES (1,"+getcharid(3,.@atcmd_parameters$[0])+",'Hand',"+getcharid(0,.@atcmd_parameters$[0])+","+.@mailitem[0]+","+.@mailamount[0]+","+.@mailitem[1]+","+.@mailamount[1]+","+.@mailitem[2]+","+.@mailamount[2]+","+.@mailitem[3]+","+.@mailamount[3]+","+.@mailitem[4]+","+.@mailamount[4]+",Now(),0)");
+		debugmes "Add Hand Donate :"+.@atcmd_parameters$[1]+" to Account ID: "+getcharid(3,.@charname$);
+		query_sql ("INSERT INTO web_cash_send (payment_id,account_id,userid,amount,create_date,`status`) VALUES ('Hand',"+getcharid(3,.@charname$)+",'Hand',"+.@cashamount+", NOW(),0)");
+		query_sql ("INSERT INTO web_payment (payment_id,package_id,account_id,pay_amount,total_amount,create_date) VALUES ('hand',99,"+getcharid(3,.@charname$)+","+.@atcmd_parameters$[1]+","+.@atcmd_parameters$[1]+", NOW())");
+		query_sql ("INSERT INTO web_item_send (payment_id,account_id,userid,char_id,item1_id,item1_amount,item2_id,item2_amount,item3_id,item3_amount,item4_id,item4_amount,item5_id,item5_amount,create_date,`status`) VALUES (1,"+getcharid(3,.@charname$)+",'Hand',"+getcharid(0,.@charname$)+","+.@mailitem[0]+","+.@mailamount[0]+","+.@mailitem[1]+","+.@mailamount[1]+","+.@mailitem[2]+","+.@mailamount[2]+","+.@mailitem[3]+","+.@mailamount[3]+","+.@mailitem[4]+","+.@mailamount[4]+",Now(),0)");
 		end;
 }

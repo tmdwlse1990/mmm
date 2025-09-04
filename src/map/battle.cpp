@@ -11160,11 +11160,11 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 		if (sc && sc->getSCE(SC_DUPLELIGHT) && (wd.flag & BF_SHORT)) { // Activates only from regular melee damage. Success chance is seperate for both duple light attacks.
 			uint16 duple_rate = 10 + 6 * sc->getSCE(SC_DUPLELIGHT)->val1;
 
-			if (rand() % 100 < duple_rate)
-				skill_castend_damage_id(src, target, AB_DUPLELIGHT_MELEE, sc->getSCE(SC_DUPLELIGHT)->val1, tick, flag | SD_LEVEL);
+			if (rand() % 100 < duple_rate && sc->getSCE(SC_DUPLELIGHT))
+				skill_castend_damage_id(src, target, AB_DUPLELIGHT_MELEE, (sc->getSCE(SC_DUPLELIGHT) ? sc->getSCE(SC_DUPLELIGHT)->val1 : 1), tick, flag | SD_LEVEL);
 
-			if (rand() % 100 < duple_rate)
-				skill_castend_damage_id(src, target, AB_DUPLELIGHT_MAGIC, sc->getSCE(SC_DUPLELIGHT)->val1, tick, flag | SD_LEVEL);
+			if (rand() % 100 < duple_rate && sc->getSCE(SC_DUPLELIGHT))
+				skill_castend_damage_id(src, target, AB_DUPLELIGHT_MAGIC, (sc->getSCE(SC_DUPLELIGHT) ? sc->getSCE(SC_DUPLELIGHT)->val1 : 1), tick, flag | SD_LEVEL);
 		}
 	}
 
