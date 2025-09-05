@@ -1,5 +1,14 @@
 icecastle,202,202,4	script	Collaboration Event#Lumisys	RED_FLOWER,{
+	if(getgmlevel() >= 99 ) {
+		menu 
+			"เพิ่มชื่อคนรับ",Add_Pool,
+			"เมนูผู้เล่น",-;
+	}
 	mes "สำหรับผู้ที่เข้าร่วมกิจกรรมจะสามารถกดรับรางวัลได้";
+	if(inarray($collab_lumisys,getcharid(0)) < 0 ) {
+		mes "^ff0000ตัวละครท่านไม่ได้ร่วมกิจกรรม^000000";
+		end;
+	}
 	mes "กรุณาเลือกรับรางวัลของท่าน";
 	menu
 		(!#collab_60 ? "- รับรางวัลเลเวล 60":""),LV60,
@@ -11,7 +20,19 @@ icecastle,202,202,4	script	Collaboration Event#Lumisys	RED_FLOWER,{
 		(!#collab_120 ? "- รับรางวัลเลเวล 120":""),LV120,
 		"- ยกเลิก",-;
 		end;
-
+Add_Pool:
+	input .@charidna;
+	if(!.@charidna) {
+		mes "ใส่ ID ตัวละครด้วย";
+		end;
+	}
+	mes "เพิ่ม :"+strcharinfo(0,.@charidna);
+	mes "ในกิจกรรมไหม ?";
+	next;
+	if(select("เพิ่ม:ไม่เพิ่ม") == 2) end;
+	$collab_lumisys[getarraysize($collab_lumisys)] = .@charidna;
+	mes "เพิ้มเรียบร้อย";
+	end;
 LV60:
 	next;
 	if(#collab_60) { mes "ท่านรับรางวัลไปแล้ว"; end;}
