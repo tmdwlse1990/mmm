@@ -185,7 +185,7 @@ Secret:
 	for(.@i=2000002; .@i <= 2000006; .@i++) {
 		if(countitem(.@i)) .@have++;
 	}
-	if(.@have >= 2 || #SHARK_COMBINE) {
+	if(.@have < 2 && !#SHARK_COMBINE) {
 		mes "ท่านต้องผ่านเควสลับอย่างน้อย 2 เควสก่อนนะ";
 		end;
 	}
@@ -194,7 +194,7 @@ Secret:
 	#collab_Secret++;
 	.@reward$ = "รางวัลผ่านเควสลับ 2 เควส";
 	.@mailitem = 2002002;
-	.@mailamount = 1;
+	.@mailamount = 20;
 	goto TakeMail;
 	
 	

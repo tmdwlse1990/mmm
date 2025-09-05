@@ -98,3 +98,17 @@ Body:
     ArmorLevel: 1
     EquipLevelMin: 1
     View: 3001
+  - Id: 1810002
+    AegisName: C_Collabo_Lotus
+    Name: Costume Lotus Lumisys
+    Type: Armor
+    Locations:
+      Costume_Head_Low: true
+    ArmorLevel: 1
+    EquipLevelMin: 1
+    View: 3001
+    Script: |
+      bonus2 bExpAddRace,RC_All,100;
+  - Id: 31143
+    Script: |
+      bonus2 bExpAddRace,RC_All,100;

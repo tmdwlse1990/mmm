@@ -4411,7 +4411,7 @@ Body:
     Hp: 12500000
     BaseExp: 322876
     JobExp: 175423
-    Attack: 7411
+    Attack: 5011
     Attack2: 600
     Defense: 200
     MagicDefense: 200
@@ -4505,8 +4505,8 @@ Body:
     Hp: 12500000
     BaseExp: 322876
     JobExp: 175423
-    Attack: 7411
-    Attack2: 600
+    Attack: 5111
+    Attack2: 1234
     Defense: 200
     MagicDefense: 200
     Str: 100

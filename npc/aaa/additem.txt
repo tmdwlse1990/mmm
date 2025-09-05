@@ -34,7 +34,7 @@ OnAtcommand:
 				mes "Item : ^i["+atoi(.@atcmd_parameters$[.@i])+"] x "+atoi(.@atcmd_parameters$[.@i+1])+" ea";
 		mes "^ff0000---ส่งเลยไหม---^000000";
 		if(select("ไม่ส่ง:ส่ง") == 1 ) end;
-		.@charid = getcharid(0,.@atcmd_parameters$[0]);
+		.@charid = getcharid(0,.@charname$);
 		.@sender$ = "GM Meow";
 		.@title$ = "Exclusive for you";
 		.@body$ = "เหมียวๆให้ item งับๆ";
