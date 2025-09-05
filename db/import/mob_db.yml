@@ -4263,6 +4263,10 @@ Body:
         Rate: 400
       - Item: Will_Of_Warrior
         Rate: 1000
+      - Item: Crystal_Jewel__
+        Rate: 650
+      - Item: Shadowdecon
+        Rate: 15
   - Id: 30087
     AegisName: IMT_Archer
     Name: Archer
@@ -4310,6 +4314,10 @@ Body:
         Rate: 400
       - Item: Will_Of_Warrior
         Rate: 1000
+      - Item: Crystal_Jewel__
+        Rate: 650
+      - Item: Shadowdecon
+        Rate: 15
   - Id: 30088
     AegisName: IMT_Acolyte
     Name: Acolyte
@@ -4357,6 +4365,10 @@ Body:
         Rate: 400
       - Item: Will_Of_Warrior
         Rate: 1000
+      - Item: Crystal_Jewel__
+        Rate: 650
+      - Item: Shadowdecon
+        Rate: 15
   - Id: 30089
     AegisName: IMT_Magician
     Name: Magician
@@ -4404,6 +4416,10 @@ Body:
         Rate: 400
       - Item: Will_Of_Warrior
         Rate: 1000
+      - Item: Crystal_Jewel__
+        Rate: 650
+      - Item: Shadowdecon
+        Rate: 15
   - Id: 30090
     AegisName: IMT_Thief
     Name: Thief
@@ -4451,6 +4467,10 @@ Body:
         Rate: 400
       - Item: Will_Of_Warrior
         Rate: 1000
+      - Item: Crystal_Jewel__
+        Rate: 650
+      - Item: Shadowdecon
+        Rate: 15
   - Id: 30091
     AegisName: IMT_Merchant
     Name: Merchant
@@ -4498,6 +4518,10 @@ Body:
         Rate: 400
       - Item: Will_Of_Warrior
         Rate: 1000
+      - Item: Crystal_Jewel__
+        Rate: 650
+      - Item: Shadowdecon
+        Rate: 15
   - Id: 30092
     AegisName: IMT_Extra
     Name: Extra
@@ -4545,3 +4569,7 @@ Body:
         Rate: 400
       - Item: Will_Of_Warrior
         Rate: 1000
+      - Item: Crystal_Jewel__
+        Rate: 650
+      - Item: Shadowdecon
+        Rate: 15
