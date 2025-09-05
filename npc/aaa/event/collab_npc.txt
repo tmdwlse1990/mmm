@@ -1,0 +1,192 @@
+icecastle,202,202,4	script	Collaboration Event#Lumisys	RED_FLOWER,{
+	mes "สำหรับผู้ที่เข้าร่วมกิจกรรมจะสามารถกดรับรางวัลได้";
+	mes "กรุณาเลือกรับรางวัลของท่าน";
+	menu
+		(!#collab_60 ? "- รับรางวัลเลเวล 60":""),LV60,
+		(!#collab_orcmem ? "- รับรางวัลผ่าน Orcmemory":""),Orcmem,
+		(!#collab_99 ? "- รับรางวัลเลเวล 99":""),LV99,
+		(!#collab_Kraken ? "- รับรางวัลผ่าน Kraken":""),Kraken,
+		(!#collab_115 ? "- รับรางวัลเลเวล 115":""),LV115,
+		(!#collab_Secret ? "- รับรางวัลเก็บ Secret":""),Secret,
+		(!#collab_120 ? "- รับรางวัลเลเวล 120":""),LV120,
+		"- ยกเลิก",-;
+		end;
+
+LV60:
+	next;
+	if(#collab_60) { mes "ท่านรับรางวัลไปแล้ว"; end;}
+	if(BaseLevel < 60) {
+		mes "ท่านยังไม่ผ่านเงื่อนไขเลยนะ";
+		end;
+	}
+	mes "ยอดเยี่ยมสำหรับภารกิจเก็บเลเวลถึงเลเวล 60";
+	mes "รับรางวัลทางจดหมายได้เลย";
+	#collab_60++;
+	.@reward$ = "รางวัลผ่านเควสเลเวล 60";
+	setarray .@mailitem,2000008,2000014;
+	setarray .@mailamount,10,10;
+	goto TakeMail;
+	
+LV99:
+	next;
+	if(#collab_99) { mes "ท่านรับรางวัลไปแล้ว"; end;}
+	if(BaseLevel < 99) {
+		mes "ท่านยังไม่ผ่านเงื่อนไขเลยนะ";
+		end;
+	}
+	mes "ยอดเยี่ยมสำหรับภารกิจเก็บเลเวลถึงเลเวล 99";
+	mes "รับรางวัลทางจดหมายได้เลย";
+	#collab_99++;
+	.@reward$ = "รางวัลผ่านเควสเลเวล 99";
+	setarray .@mailitem,2002022;
+	setarray .@mailamount,1;
+	goto TakeMail;
+
+LV115:
+	next;
+	if(#collab_115) { mes "ท่านรับรางวัลไปแล้ว"; end;}
+	if(BaseLevel < 115) {
+		mes "ท่านยังไม่ผ่านเงื่อนไขเลยนะ";
+		end;
+	}
+	mes "ยอดเยี่ยมสำหรับภารกิจเก็บเลเวลถึงเลเวล 115";
+	mes "รับรางวัลทางจดหมายได้เลย";
+	#collab_115++;
+	.@reward$ = "รางวัลผ่านเควสเลเวล 115";
+	setarray .@mailitem,2002017;
+	setarray .@mailamount,30;
+	goto TakeMail;
+
+LV120:
+	next;
+	if(#collab_120) { mes "ท่านรับรางวัลไปแล้ว"; end;}
+	if(BaseLevel < 120) {
+		mes "ท่านยังไม่ผ่านเงื่อนไขเลยนะ";
+		end;
+	}
+	mes "ยอดเยี่ยมสำหรับภารกิจเก็บเลเวลถึงเลเวล 120";
+	mes "รับรางวัลทางจดหมายได้เลย";
+	#collab_120++;
+	.@reward$ = "รางวัลผ่านเควสเลเวล 120";
+	setarray .@mailitem,2002023;
+	setarray .@mailamount,1;
+	goto TakeMail;
+
+
+
+Orcmem:
+	next;
+	if(#collab_orcmem) { mes "ท่านรับรางวัลไปแล้ว"; end;}
+	if(!#ORCS_EASY && !#ORCS_VETERAN) {
+		mes "ท่านต้องผ่าน Instance Orc Memory ก่อนนะ";
+		end;
+	}
+	mes "ยอดเยี่ยมสำหรับภารกิจที่ผ่านดันเจี้ยน Orc memory";
+	mes "อยากได้ของอาชีพไหนหละ ??";
+	switch(select("Swordman:Archer:Acolyte:Thief:Merchant:Mage:Novice")) {
+		case 1:
+			setarray .@itemid,2235001,2235002;
+			mes "มี 2 เม็ดให้เลือก";
+			mes "1.) [^i["+.@itemid[0]+"]]";
+			mes "1.) [^i["+.@itemid[1]+"]]";
+			.@stone = select("เม็ดที่ 1:เม็ดที่ 2") - 1;
+			break;
+		case 2:
+			setarray .@itemid,2235003,2235004;
+			mes "มี 2 เม็ดให้เลือก";
+			mes "1.) [^i["+.@itemid[0]+"]]";
+			mes "1.) [^i["+.@itemid[1]+"]]";
+			.@stone = select("เม็ดที่ 1:เม็ดที่ 2") - 1;
+			break;
+		case 3:
+			setarray .@itemid,2235005,2235006;
+			mes "มี 2 เม็ดให้เลือก";
+			mes "1.) [^i["+.@itemid[0]+"]]";
+			mes "1.) [^i["+.@itemid[1]+"]]";
+			.@stone = select("เม็ดที่ 1:เม็ดที่ 2") - 1;
+			break;
+		case 4:
+			setarray .@itemid,2235007,2235008;
+			mes "มี 2 เม็ดให้เลือก";
+			mes "1.) [^i["+.@itemid[0]+"]]";
+			mes "1.) [^i["+.@itemid[1]+"]]";
+			.@stone = select("เม็ดที่ 1:เม็ดที่ 2") - 1;
+			break;
+		case 5:
+			setarray .@itemid,2235009,2235010;
+			mes "มี 2 เม็ดให้เลือก";
+			mes "1.) [^i["+.@itemid[0]+"]]";
+			mes "1.) [^i["+.@itemid[1]+"]]";
+			.@stone = select("เม็ดที่ 1:เม็ดที่ 2") - 1;
+			break;
+		case 6:
+			setarray .@itemid,2235011,2235012;
+			mes "มี 2 เม็ดให้เลือก";
+			mes "1.) [^i["+.@itemid[0]+"]]";
+			mes "1.) [^i["+.@itemid[1]+"]]";
+			.@stone = select("เม็ดที่ 1:เม็ดที่ 2") - 1;
+			break;
+		case 7:
+			setarray .@itemid,2235013,2235014;
+			mes "มี 2 เม็ดให้เลือก";
+			mes "1.) [^i["+.@itemid[0]+"]]";
+			mes "1.) [^i["+.@itemid[1]+"]]";
+			.@stone = select("เม็ดที่ 1:เม็ดที่ 2") - 1;
+			break;
+	}
+	next;
+	#collab_orcmem++;
+	.@reward$ = "รางวัลผ่านInstance Orc memory";
+	.@mailitem = .@itemid[.@stone];
+	.@mailamount = 1;
+	goto TakeMail;
+	
+Kraken:
+	next;
+	if(#collab_Kraken) { mes "ท่านรับรางวัลไปแล้ว"; end;}
+	if(!#OCTO_POINT) {
+		mes "ท่านต้องผ่าน Instance Kraken Raid ก่อนนะ";
+		end;
+	}
+	next;
+	mes "ยอดเยี่ยมสำหรับภารกิจที่ผ่านดันเจี้ยน Kraken Raid";
+	mes "อยากได้ของอาชีพไหนหละ ??";
+	mes "เดี๋ยวพาวาปไปนะ เลือกซื้อได้เลย..";
+	next;
+	#collab_Kraken++;
+	#OCTO_POINT += 70;
+	warp "mal_dun01",219,229;
+	end;
+	
+Secret:
+	next;
+	if(#collab_Secret) { mes "ท่านรับรางวัลไปแล้ว"; end;}
+	for(.@i=2000002; .@i <= 2000006; .@i++) {
+		if(countitem(.@i)) .@have++;
+	}
+	if(.@have >= 2 || #SHARK_COMBINE) {
+		mes "ท่านต้องผ่านเควสลับอย่างน้อย 2 เควสก่อนนะ";
+		end;
+	}
+	mes "ยอดเยี่ยมสำหรับภารกิจที่ผ่านเควสลับได้ถึง 2 อย่างเลย";
+	mes "รับรางวัลผ่านจดหมายได้เลย";
+	#collab_Secret++;
+	.@reward$ = "รางวัลผ่านเควสลับ 2 เควส";
+	.@mailitem = 2002002;
+	.@mailamount = 1;
+	goto TakeMail;
+	
+	
+TakeMail:
+	.@charid = getcharid(0);
+	.@sender$ = "GM Sharky";
+	.@title$ = .@reward$;
+	.@body$ = "ยินดีที่ทำภารกิจผ่านครับผม";
+	.@zeny = 0;
+	mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount, .@mailrefine, .@mailbound, .@mailcard0, .@mailcard1, .@mailcard2;
+	end;
+
+Oninit:
+	waitingroom "Collaboration Event",0;
+	end;
+}
