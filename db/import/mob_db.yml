@@ -1200,6 +1200,22 @@ Body:
     DamageMotion: 400
     DamageTaken: 10
     Ai: 20
+    Drops:
+      - Item: Crystal_Mirror
+        Rate: 200
+        StealProtected: true
+      - Item: Spoon_Stub
+        Rate: 1500
+        StealProtected: true
+      - Item: Elder_Branch
+        Rate: 3000
+        StealProtected: true
+      - Item: Stuffed_Doll
+        Rate: 5000
+        StealProtected: true
+      - Item: Oridecon
+        Rate: 67
+        StealProtected: true
   - Id: 27006
     AegisName: Immortal_Corps_2
     Name: Immortal Corps
@@ -1229,6 +1245,22 @@ Body:
     DamageMotion: 400
     DamageTaken: 10
     Ai: 20
+    Drops:
+      - Item: Crystal_Mirror
+        Rate: 200
+        StealProtected: true
+      - Item: Spoon_Stub
+        Rate: 1500
+        StealProtected: true
+      - Item: Elder_Branch
+        Rate: 3000
+        StealProtected: true
+      - Item: Stuffed_Doll
+        Rate: 5000
+        StealProtected: true
+      - Item: Elunium
+        Rate: 200
+        StealProtected: true
   - Id: 27007
     AegisName: Immortal_Corps_3
     Name: Immortal Corps
@@ -1257,6 +1289,26 @@ Body:
     ClientAttackMotion: 530
     DamageMotion: 400
     DamageTaken: 10
+    Ai: 20
+    Drops:
+      - Item: Crystal_Mirror
+        Rate: 200
+        StealProtected: true
+      - Item: Spoon_Stub
+        Rate: 1500
+        StealProtected: true
+      - Item: Elder_Branch
+        Rate: 3000
+        StealProtected: true
+      - Item: Stuffed_Doll
+        Rate: 5000
+        StealProtected: true
+      - Item: Elunium_Stone
+        Rate: 750
+        StealProtected: true
+      - Item: Oridecon_Stone
+        Rate: 750
+        StealProtected: true
   - Id: 27008
     AegisName: CODE_X_DUPPER
     Name: CODE X
