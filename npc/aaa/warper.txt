@@ -575,6 +575,7 @@ G8: Restrict("RE");
 menu
 	"Faceworms Nest",I7,
 	"Octopus Cave",I14,
+	"Old Glast Heim",I15,
 	"Orc's Memory",I16,
 	"Kraken Raid",I31
 	;

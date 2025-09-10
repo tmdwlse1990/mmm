@@ -10099,7 +10099,7 @@ Body:
       NoDamage: true
     Hit: Single
     HitCount: 1
-    Duration1: 60000
+    Duration1: 600000
     FixedCastTime: 700
     CastTimeFlags:
       IgnoreDex: true
@@ -10549,7 +10549,7 @@ Body:
     Description: Falcon Assault
     MaxLevel: 5
     Type: Misc
-    TargetType: Attack
+#    TargetType: Attack
     DamageFlags:
       IgnoreFlee: true
       IgnoreDefCard: true
@@ -11877,7 +11877,7 @@ Body:
     Description: Feeling the Sun Moon and Stars
     MaxLevel: 3
     Type: Magic
-    TargetType: Self
+#    TargetType: Self
     DamageFlags:
       NoDamage: true
     Hit: Single
@@ -11984,96 +11984,48 @@ Body:
   - Id: 431
     Name: SG_SUN_COMFORT
     Description: Comfort of the Sun
-    MaxLevel: 4
+    MaxLevel: 10
     Type: Magic
     TargetType: Self
     DamageFlags:
       NoDamage: true
     HitCount: 1
-    Duration1:
-      - Level: 1
-        Time: 80000
-      - Level: 2
-        Time: 160000
-      - Level: 3
-        Time: 240000
-      - Level: 4
-        Time: 320000
+    Duration1: 600000
     Requires:
-      SpCost:
-        - Level: 1
-          Amount: 70
-        - Level: 2
-          Amount: 60
-        - Level: 3
-          Amount: 50
-        - Level: 4
-          Amount: 40
+      SpCost: 100
     Status: Sun_Comfort
   - Id: 432
     Name: SG_MOON_COMFORT
     Description: Comfort of the Moon
-    MaxLevel: 4
+    MaxLevel: 10
     Type: Magic
     TargetType: Self
     DamageFlags:
       NoDamage: true
     HitCount: 1
-    Duration1:
-      - Level: 1
-        Time: 80000
-      - Level: 2
-        Time: 160000
-      - Level: 3
-        Time: 240000
-      - Level: 4
-        Time: 320000
+    Duration1: 600000
     Requires:
-      SpCost:
-        - Level: 1
-          Amount: 70
-        - Level: 2
-          Amount: 60
-        - Level: 3
-          Amount: 50
-        - Level: 4
-          Amount: 40
+      SpCost: 100
     Status: Moon_Comfort
   - Id: 433
     Name: SG_STAR_COMFORT
     Description: Comfort of the Stars
-    MaxLevel: 4
+    MaxLevel: 10
     Type: Magic
     TargetType: Self
     DamageFlags:
       NoDamage: true
     HitCount: 1
-    Duration1:
-      - Level: 1
-        Time: 80000
-      - Level: 2
-        Time: 160000
-      - Level: 3
-        Time: 240000
-      - Level: 4
-        Time: 320000
+    Duration1: 600000
     Requires:
-      SpCost:
-        - Level: 1
-          Amount: 70
-        - Level: 2
-          Amount: 60
-        - Level: 3
-          Amount: 50
-        - Level: 4
-          Amount: 40
+      SpCost: 100
     Status: Star_Comfort
   - Id: 434
     Name: SG_HATE
     Description: Hatred of the Sun Moon and Stars
     MaxLevel: 3
     Type: Magic
-    TargetType: Attack
+#    TargetType: Attack
     DamageFlags:
       NoDamage: true
     Range: 9
@@ -15496,7 +15448,7 @@ Body:
     Type: Magic
     TargetType: Self
     Hit: Single
-    HitCount: 1
+    HitCount: 2
     Element: Water
     CopyFlags:
       Skill:
@@ -20308,7 +20260,7 @@ Body:
       AlterRangeRadius: true
     Range: 11
     Hit: Multi_Hit
-    HitCount: -7
+    HitCount: 6
     Element: Fire
     SplashArea: 3
     Knockback: 3
@@ -20500,15 +20452,15 @@ Body:
     Hit: Multi_Hit
     HitCount:
       - Level: 1
-        Count: -6
+        Count: 6
       - Level: 2
-        Count: -7
+        Count: 7
       - Level: 3
-        Count: -8
+        Count: 8
       - Level: 4
-        Count: -9
+        Count: 9
       - Level: 5
-        Count: -10
+        Count: 10
     Element: Earth
     CopyFlags:
       Skill:
@@ -24144,7 +24096,7 @@ Body:
       - Level: 10
         Size: 11
     Hit: Multi_Hit
-    HitCount: -3
+    HitCount: 3
     Element: Weapon
     CopyFlags:
       Skill:
@@ -26819,7 +26771,7 @@ Body:
       IsTrap: true
     Range: 9
     Hit: Multi_Hit
-    HitCount: -10
+    HitCount: 4
     SplashArea: 2
     CopyFlags:
       Skill:
@@ -29494,7 +29446,7 @@ Body:
       - Level: 10
         Time: 7500
     AfterCastActDelay: 500
-    Cooldown: 4000
+    Cooldown: 2000
     Requires:
       SpCost:
         - Level: 1
@@ -29533,7 +29485,7 @@ Body:
       IgnoreLandProtector: true
     Range: 5
     Hit: Multi_Hit
-    HitCount: 2
+    HitCount: 3
     Element: Weapon
     SplashArea: 2
     ActiveInstance:
@@ -30837,9 +30789,9 @@ Body:
         Time: 8000
       - Level: 5
         Time: 9000
-    AfterCastActDelay: 1000
+    AfterCastActDelay: 1500
     Duration2: 1500
-    Cooldown: 3000
+    Cooldown: 1500
     FixedCastTime: 1000
     Requires:
       SpCost:
@@ -30972,7 +30924,7 @@ Body:
   - Id: 2576
     Name: SJ_FULLMOONKICK
     Description: Full Moon Kick
-    MaxLevel: 10
+    MaxLevel: 15
     Type: Weapon
     TargetType: Self
     DamageFlags:
@@ -31005,6 +30957,16 @@ Body:
           Amount: 70
         - Level: 10
           Amount: 75
+        - Level: 11
+          Amount: 80
+        - Level: 12
+          Amount: 85
+        - Level: 13
+          Amount: 90
+        - Level: 14
+          Amount: 95
+        - Level: 15
+          Amount: 100
       State: Moonstance
     Status: Blind
   - Id: 2577
@@ -31105,21 +31067,6 @@ Body:
       - Level: 7
         Time: 10000
     Requires:
-      SpCost:
-        - Level: 1
-          Amount: 45
-        - Level: 2
-          Amount: 40
-        - Level: 3
-          Amount: 35
-        - Level: 4
-          Amount: 30
-        - Level: 5
-          Amount: 25
-        - Level: 6
-          Amount: 20
-        - Level: 7
-          Amount: 15
       State: Starstance
     Status: FlashKick
   - Id: 2581
@@ -31201,7 +31148,7 @@ Body:
   - Id: 2584
     Name: SJ_FALLINGSTAR
     Description: Falling Star
-    MaxLevel: 10
+    MaxLevel: 15
     TargetType: Self
     DamageFlags:
       NoDamage: true
@@ -31229,6 +31176,16 @@ Body:
         Time: 280000
       - Level: 10
         Time: 300000
+      - Level: 10
+        Time: 360000
+      - Level: 10
+        Time: 420000
+      - Level: 10
+        Time: 480000
+      - Level: 10
+        Time: 540000
+      - Level: 10
+        Time: 600000
     FixedCastTime: 2000
     Requires:
       SpCost:
@@ -31403,7 +31360,7 @@ Body:
   - Id: 2592
     Name: SJ_SOLARBURST
     Description: Solar Burst
-    MaxLevel: 10
+    MaxLevel: 15
     Type: Weapon
     TargetType: Self
     DamageFlags:
@@ -31435,6 +31392,16 @@ Body:
           Amount: 58
         - Level: 10
           Amount: 61
+        - Level: 11
+          Amount: 64
+        - Level: 12
+          Amount: 67
+        - Level: 13
+          Amount: 70
+        - Level: 14
+          Amount: 73
+        - Level: 15
+          Amount: 76
       State: Sunstance
   - Id: 2593
     Name: SJ_PROMINENCEKICK
@@ -31458,7 +31425,7 @@ Body:
   - Id: 2594
     Name: SJ_FALLINGSTAR_ATK
     Description: Falling Star Attack
-    MaxLevel: 10
+    MaxLevel: 15
     Type: Weapon
     TargetType: Self
     DamageFlags:
@@ -31475,7 +31442,7 @@ Body:
   - Id: 2595
     Name: SJ_FALLINGSTAR_ATK2
     Description: Falling Star Attack 2
-    MaxLevel: 10
+    MaxLevel: 15
     Type: Weapon
     TargetType: Attack
     DamageFlags:
@@ -31641,7 +31608,7 @@ Body:
   - Id: 2600
     Name: SP_CURSEEXPLOSION
     Description: Curse Explosion
-    MaxLevel: 10
+    MaxLevel: 15
     Type: Magic
     TargetType: Attack
     DamageFlags:
@@ -31677,10 +31644,20 @@ Body:
           Amount: 90
         - Level: 10
           Amount: 95
+        - Level: 11
+          Amount: 100
+        - Level: 12
+          Amount: 105
+        - Level: 13
+          Amount: 110
+        - Level: 14
+          Amount: 115
+        - Level: 15
+          Amount: 120
   - Id: 2601
     Name: SP_SOULCURSE
     Description: Soul Curse
-    MaxLevel: 5
+    MaxLevel: 10
     Type: Magic
     TargetType: Attack
     DamageFlags:
@@ -31693,7 +31670,7 @@ Body:
     CastTime: 1000
     AfterCastActDelay: 500
     Duration1: 20000
-    Cooldown: 5000
+    Cooldown: 2000
     FixedCastTime: 1000
     Requires:
       SpCost: 70
@@ -31702,7 +31679,7 @@ Body:
   - Id: 2602
     Name: SP_SPA
     Description: Espa
-    MaxLevel: 10
+    MaxLevel: 15
     Type: Magic
     TargetType: Attack
     Range: 9
@@ -31734,6 +31711,16 @@ Body:
           Amount: 84
         - Level: 10
           Amount: 88
+        - Level: 11
+          Amount: 92
+        - Level: 12
+          Amount: 96
+        - Level: 13
+          Amount: 100
+        - Level: 14
+          Amount: 104
+        - Level: 15
+          Amount: 108
       SpiritSphereCost:
         - Level: 1
           Amount: 1
@@ -31754,6 +31741,16 @@ Body:
         - Level: 9
           Amount: 1
         - Level: 10
+          Amount: 0
+        - Level: 11
+          Amount: 0
+        - Level: 12
+          Amount: 0
+        - Level: 13
+          Amount: 0
+        - Level: 14
+          Amount: 0
+        - Level: 15
           Amount: 0
   - Id: 2603
     Name: SP_SHA
@@ -31811,7 +31808,7 @@ Body:
   - Id: 2604
     Name: SP_SWHOO
     Description: Eswhoo
-    MaxLevel: 10
+    MaxLevel: 15
     Type: Magic
     TargetType: Attack
     DamageFlags:
@@ -31841,10 +31838,20 @@ Body:
         Area: 3
       - Level: 10
         Area: 4
+      - Level: 11
+        Area: 4
+      - Level: 12
+        Area: 4
+      - Level: 13
+        Area: 4
+      - Level: 14
+        Area: 4
+      - Level: 15
+        Area: 5
     CastTime: 500
-    AfterCastActDelay: 500
+    AfterCastActDelay: 2500
     Duration1: 5000
-    Cooldown: 2000
+    Cooldown: 1000
     FixedCastTime: 1000
     Requires:
       SpCost:
@@ -31868,6 +31875,16 @@ Body:
           Amount: 98
         - Level: 10
           Amount: 102
+        - Level: 11
+          Amount: 106
+        - Level: 12
+          Amount: 110
+        - Level: 13
+          Amount: 114
+        - Level: 14
+          Amount: 118
+        - Level: 15
+          Amount: 122
       SpiritSphereCost:
         - Level: 1
           Amount: 2
@@ -31888,6 +31905,16 @@ Body:
         - Level: 9
           Amount: 2
         - Level: 10
+          Amount: 1
+        - Level: 11
+          Amount: 1
+        - Level: 12
+          Amount: 1
+        - Level: 13
+          Amount: 1
+        - Level: 14
+          Amount: 1
+        - Level: 15
           Amount: 1
   - Id: 2605
     Name: SP_SOULUNITY
@@ -32040,7 +32067,6 @@ Body:
           Amount: 48
         - Level: 5
           Amount: 50
-      SpiritSphereCost: 2
     Status: SoulReaper
   - Id: 2608
     Name: SP_SOULREVOLVE
@@ -32069,7 +32095,7 @@ Body:
   - Id: 2609
     Name: SP_SOULCOLLECT
     Description: Soul Collect
-    MaxLevel: 5
+    MaxLevel: 15
     Type: Magic
     TargetType: Self
     DamageFlags:
@@ -32080,15 +32106,35 @@ Body:
     HitCount: 1
     Duration1:
       - Level: 1
-        Time: 60000
+        Time: 38000
       - Level: 2
-        Time: 50000
+        Time: 36000
       - Level: 3
-        Time: 40000
+        Time: 34000
       - Level: 4
-        Time: 30000
+        Time: 32000
       - Level: 5
+        Time: 30000
+      - Level: 6
+        Time: 28000
+      - Level: 7
+        Time: 26000
+      - Level: 8
+        Time: 24000
+      - Level: 9
+        Time: 22000
+      - Level: 10
         Time: 20000
+      - Level: 11
+        Time: 18000
+      - Level: 12
+        Time: 16000
+      - Level: 13
+        Time: 14000
+      - Level: 14
+        Time: 12000
+      - Level: 15
+        Time: 10000
     Duration2: 600000
     Requires:
       SpCost: 100

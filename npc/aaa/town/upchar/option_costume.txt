@@ -332,7 +332,13 @@ GarmentOP:
 			2235039, 2236039,	//	Gunslinger 1
 			2235040, 2236040,	//	Ninja 1
 			2235041, 2236041,	//	S-Novice skill 1
-			2235042, 2236042;	//	Taekwon 1
+			2235042, 2236042,	//	Taekwon 1
+			2235043, 2236043,	//	Gunslinger 2
+			2235044, 2236044,	//	Ninja 2
+			2235045, 2236045,	//	S-Novice skill 2
+			2235046, 2236046,	//	star 1
+			2235047, 2236047,	//	soul 1
+			2099003, 2099003;	// All Stat +1
 
 	.@size = getarraysize(.@stone_id);
 	.@max_menu_size = 2047;	// temporary fix the menu length until new data

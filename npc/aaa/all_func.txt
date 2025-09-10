@@ -130,6 +130,16 @@ function	script	F_MVPReward	{
 			4766,4896,				// Atk Matk
 			311014;					//Jackpot
 			break;
+		case 3:
+			setarray .@itemlist,
+			4702,4703,4704,4705,    //
+			4712,4713,4714,4715,    //
+			4722,4723,4724,4725,    //
+			4732,4733,4734,4735,    //
+			4742,4743,4744,4745,    //
+			4752,4753,4754,4755,    //
+			2099003;					//Jackpot
+			break;
 		default:
 			setarray .@itemlist,4700,4710,4720,4730,4740,4750;
 			break;

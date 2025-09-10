@@ -670,6 +670,738 @@ Body:
         skill "MC_DISCOUNT",10;
       }
 #  [Shoes]
+  - Id: 22000
+    AegisName: Temporal_Str_Boots
+    Name: Temporal Str Boots
+    Type: Armor
+    Buy: 20
+    Weight: 600
+    Defense: 25
+    Jobs:
+      Alchemist: true
+      Assassin: true
+      BardDancer: true
+      Blacksmith: true
+      Crusader: true
+      Hunter: true
+      Knight: true
+      Monk: true
+      Priest: true
+      Rogue: true
+      Sage: true
+      Wizard: true
+    Classes:
+      All_Third: true
+      Fourth: true
+    Locations:
+      Shoes: true
+    ArmorLevel: 1
+    EquipLevelMin: 99
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      bonus bMaxHP,300+(1000*(.@r/3));
+      bonus bMaxSP,30+(10*(.@r/3));
+      bonus bBaseAtk,200*(.@r/3);
+      if (readparam(bStr)>=99)
+         bonus2 bAddSize,Size_All,50;
+  - Id: 22001
+    AegisName: Temporal_Int_Boots
+    Name: Temporal Int Boots
+    Type: Armor
+    Buy: 20
+    Weight: 600
+    Defense: 20
+    Jobs:
+      Alchemist: true
+      Assassin: true
+      BardDancer: true
+      Blacksmith: true
+      Crusader: true
+      Hunter: true
+      Knight: true
+      Monk: true
+      Priest: true
+      Rogue: true
+      Sage: true
+      Wizard: true
+    Classes:
+      All_Third: true
+      Fourth: true
+    Locations:
+      Shoes: true
+    ArmorLevel: 1
+    EquipLevelMin: 99
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      bonus bMdef,5;
+      bonus bMaxHP,300+(1000*(.@r/3));
+      bonus bMaxSP,30+(10*(.@r/3));
+      bonus bMatk,200*(.@r/3);
+      if (readparam(bInt)>=99)
+         bonus2 bMagicAtkEle,Ele_All,50;
+  - Id: 22002
+    AegisName: Temporal_Agi_Boots
+    Name: Temporal Agi Boots
+    Type: Armor
+    Buy: 20
+    Weight: 600
+    Defense: 25
+    Jobs:
+      Alchemist: true
+      Assassin: true
+      BardDancer: true
+      Blacksmith: true
+      Crusader: true
+      Hunter: true
+      Knight: true
+      Monk: true
+      Priest: true
+      Rogue: true
+      Sage: true
+      Wizard: true
+    Classes:
+      All_Third: true
+      Fourth: true
+    Locations:
+      Shoes: true
+    ArmorLevel: 1
+    EquipLevelMin: 99
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      bonus bMaxHP,300+(1000*(.@r/3));
+      bonus bMaxSP,30+(10*(.@r/3));
+      bonus bAspdRate,3*(.@r/3);
+      if (readparam(bAgi)>=99)
+         bonus bAspdcap,2;
+  - Id: 22003
+    AegisName: Temporal_Vit_Boots
+    Name: Temporal Vit Boots
+    Type: Armor
+    Buy: 20
+    Weight: 600
+    Defense: 25
+    Jobs:
+      Alchemist: true
+      Assassin: true
+      BardDancer: true
+      Blacksmith: true
+      Crusader: true
+      Hunter: true
+      Knight: true
+      Monk: true
+      Priest: true
+      Rogue: true
+      Sage: true
+      Wizard: true
+    Classes:
+      All_Third: true
+      Fourth: true
+    Locations:
+      Shoes: true
+    ArmorLevel: 1
+    EquipLevelMin: 99
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      bonus bMaxHP,300+(3000*(.@r/3));
+      bonus bMaxSP,30+(10*(.@r/3));
+      if (readparam(bVit)>=99)
+         bonus bMaxHPrate,15;
+  - Id: 22004
+    AegisName: Temporal_Dex_Boots
+    Name: Temporal Dex Boots
+    Type: Armor
+    Buy: 20
+    Weight: 600
+    Defense: 25
+    Jobs:
+      Alchemist: true
+      Assassin: true
+      BardDancer: true
+      Blacksmith: true
+      Crusader: true
+      Hunter: true
+      Knight: true
+      Monk: true
+      Priest: true
+      Rogue: true
+      Sage: true
+      Wizard: true
+    Classes:
+      All_Third: true
+      Fourth: true
+    Locations:
+      Shoes: true
+    ArmorLevel: 1
+    EquipLevelMin: 99
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      bonus bMaxHP,300+(1000*(.@r/3));
+      bonus bMaxSP,30+(10*(.@r/3));
+      bonus bDex,5*(.@r/3);
+      if (readparam(bDex)>=99) {
+         bonus bHitAtk,50;
+         bonus bHitMAtk,50;
+      }
+  - Id: 22005
+    AegisName: Temporal_Luk_Boots
+    Name: Temporal Luk Boots
+    Type: Armor
+    Buy: 20
+    Weight: 600
+    Defense: 20
+    Jobs:
+      Alchemist: true
+      Assassin: true
+      BardDancer: true
+      Blacksmith: true
+      Crusader: true
+      Hunter: true
+      Knight: true
+      Monk: true
+      Priest: true
+      Rogue: true
+      Sage: true
+      Wizard: true
+    Classes:
+      All_Third: true
+      Fourth: true
+    Locations:
+      Shoes: true
+    ArmorLevel: 1
+    EquipLevelMin: 99
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      bonus bMaxHP,300+(1000*(.@r/3));
+      bonus bMaxSP,30+(10*(.@r/3));
+      bonus bMdef,5;
+      bonus bCritical,2*(.@r/3);
+      if (readparam(bLuk)>=99)
+         bonus bCritAtkRate,50;
+  - Id: 22006
+    AegisName: Temporal_Str_Boots_
+    Name: Temporal Str Boots
+    Type: Armor
+    Buy: 20
+    Weight: 600
+    Defense: 25
+    Slots: 1
+    Jobs:
+      Alchemist: true
+      Assassin: true
+      BardDancer: true
+      Blacksmith: true
+      Crusader: true
+      Hunter: true
+      Knight: true
+      Monk: true
+      Priest: true
+      Rogue: true
+      Sage: true
+      Wizard: true
+    Classes:
+      All_Third: true
+      Fourth: true
+    Locations:
+      Shoes: true
+    ArmorLevel: 1
+    EquipLevelMin: 99
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      bonus bMaxHP,300+(1000*(.@r/3));
+      bonus bMaxSP,30+(10*(.@r/3));
+      bonus bBaseAtk,200*(.@r/3);
+      if (readparam(bStr)>=99)
+         bonus2 bAddSize,Size_All,50;
+  - Id: 22007
+    AegisName: Temporal_Vit_Boots_
+    Name: Temporal Vit Boots
+    Type: Armor
+    Buy: 20
+    Weight: 600
+    Defense: 25
+    Slots: 1
+    Jobs:
+      Alchemist: true
+      Assassin: true
+      BardDancer: true
+      Blacksmith: true
+      Crusader: true
+      Hunter: true
+      Knight: true
+      Monk: true
+      Priest: true
+      Rogue: true
+      Sage: true
+      Wizard: true
+    Classes:
+      All_Third: true
+      Fourth: true
+    Locations:
+      Shoes: true
+    ArmorLevel: 1
+    EquipLevelMin: 99
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      bonus bMaxHP,300+(3000*(.@r/3));
+      bonus bMaxSP,30+(10*(.@r/3));
+      if (readparam(bVit)>=99)
+         bonus bMaxHPrate,15;
+  - Id: 22008
+    AegisName: Temporal_Dex_Boots_
+    Name: Temporal Dex Boots
+    Type: Armor
+    Buy: 20
+    Weight: 600
+    Defense: 25
+    Slots: 1
+    Jobs:
+      Alchemist: true
+      Assassin: true
+      BardDancer: true
+      Blacksmith: true
+      Crusader: true
+      Hunter: true
+      Knight: true
+      Monk: true
+      Priest: true
+      Rogue: true
+      Sage: true
+      Wizard: true
+    Classes:
+      All_Third: true
+      Fourth: true
+    Locations:
+      Shoes: true
+    ArmorLevel: 1
+    EquipLevelMin: 99
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      bonus bMaxHP,300+(1000*(.@r/3));
+      bonus bMaxSP,30+(10*(.@r/3));
+      bonus bDex,5*(.@r/3);
+      if (readparam(bDex)>=99) {
+         bonus bHitAtk,50;
+         bonus bHitMAtk,50;
+      }
+  - Id: 22009
+    AegisName: Temporal_Int_Boots_
+    Name: Temporal Int Boots
+    Type: Armor
+    Buy: 20
+    Weight: 600
+    Defense: 20
+    Slots: 1
+    Jobs:
+      Alchemist: true
+      Assassin: true
+      BardDancer: true
+      Blacksmith: true
+      Crusader: true
+      Hunter: true
+      Knight: true
+      Monk: true
+      Priest: true
+      Rogue: true
+      Sage: true
+      Wizard: true
+    Classes:
+      All_Third: true
+      Fourth: true
+    Locations:
+      Shoes: true
+    ArmorLevel: 1
+    EquipLevelMin: 99
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      bonus bMdef,5;
+      bonus bMaxHP,300+(1000*(.@r/3));
+      bonus bMaxSP,30+(10*(.@r/3));
+      bonus bMatk,200*(.@r/3);
+      if (readparam(bInt)>=99)
+         bonus2 bMagicAtkEle,Ele_All,50;
+  - Id: 22010
+    AegisName: Temporal_Agi_Boots_
+    Name: Temporal Agi Boots
+    Type: Armor
+    Buy: 20
+    Weight: 600
+    Defense: 25
+    Slots: 1
+    Jobs:
+      Alchemist: true
+      Assassin: true
+      BardDancer: true
+      Blacksmith: true
+      Crusader: true
+      Hunter: true
+      Knight: true
+      Monk: true
+      Priest: true
+      Rogue: true
+      Sage: true
+      Wizard: true
+    Classes:
+      All_Third: true
+      Fourth: true
+    Locations:
+      Shoes: true
+    ArmorLevel: 1
+    EquipLevelMin: 99
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      bonus bMaxHP,300+(1000*(.@r/3));
+      bonus bMaxSP,30+(10*(.@r/3));
+      bonus bAspdRate,3*(.@r/3);
+      if (readparam(bAgi)>=99)
+         bonus bAspdcap,2;
+  - Id: 22011
+    AegisName: Temporal_Luk_Boots_
+    Name: Temporal Luk Boots
+    Type: Armor
+    Buy: 20
+    Weight: 600
+    Defense: 20
+    Slots: 1
+    Jobs:
+      Alchemist: true
+      Assassin: true
+      BardDancer: true
+      Blacksmith: true
+      Crusader: true
+      Hunter: true
+      Knight: true
+      Monk: true
+      Priest: true
+      Rogue: true
+      Sage: true
+      Wizard: true
+    Classes:
+      All_Third: true
+      Fourth: true
+    Locations:
+      Shoes: true
+    ArmorLevel: 1
+    EquipLevelMin: 99
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      bonus bMaxHP,300+(1000*(.@r/3));
+      bonus bMaxSP,30+(10*(.@r/3));
+      bonus bMdef,5;
+      bonus bCritical,2*(.@r/3);
+      if (readparam(bLuk)>=99)
+         bonus bCritAtkRate,50;
+  - Id: 22107
+    AegisName: Modify_Str_Boots
+    Name: Modified Str Boots
+    Type: Armor
+    Buy: 20
+    Weight: 600
+    Defense: 25
+    Jobs:
+      KagerouOboro: true
+      Rebellion: true
+      # Star_Emperor: true
+      # Soul_Reaper: true
+    Locations:
+      Shoes: true
+    ArmorLevel: 1
+    EquipLevelMin: 99
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      bonus bMaxHP,300+(1000*(.@r/3));
+      bonus bMaxSP,30+(10*(.@r/3));
+      bonus bBaseAtk,200*(.@r/3);
+      if (readparam(bStr)>=99)
+         bonus2 bAddSize,Size_All,50;
+  - Id: 22108
+    AegisName: Modify_Int_Boots
+    Name: Modified Int Boots
+    Type: Armor
+    Buy: 20
+    Weight: 600
+    Defense: 20
+    Jobs:
+      KagerouOboro: true
+      Rebellion: true
+      # Star_Emperor: true
+      # Soul_Reaper: true
+    Locations:
+      Shoes: true
+    ArmorLevel: 1
+    EquipLevelMin: 99
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      bonus bMdef,5;
+      bonus bMaxHP,300+(1000*(.@r/3));
+      bonus bMaxSP,30+(10*(.@r/3));
+      bonus bMatk,200*(.@r/3);
+      if (readparam(bInt)>=99)
+         bonus2 bMagicAtkEle,Ele_All,50;
+  - Id: 22109
+    AegisName: Modify_Agi_Boots
+    Name: Modified Agi Boots
+    Type: Armor
+    Buy: 20
+    Weight: 600
+    Defense: 25
+    Jobs:
+      KagerouOboro: true
+      Rebellion: true
+      # Star_Emperor: true
+      # Soul_Reaper: true
+    Locations:
+      Shoes: true
+    ArmorLevel: 1
+    EquipLevelMin: 99
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      bonus bMaxHP,300+(1000*(.@r/3));
+      bonus bMaxSP,30+(10*(.@r/3));
+      bonus bAspdRate,3*(.@r/3);
+      if (readparam(bAgi)>=99)
+         bonus bAspdcap,2;
+  - Id: 22110
+    AegisName: Modify_Vit_Boots
+    Name: Modified Vit Boots
+    Type: Armor
+    Buy: 20
+    Weight: 600
+    Defense: 25
+    Jobs:
+      KagerouOboro: true
+      Rebellion: true
+      # Star_Emperor: true
+      # Soul_Reaper: true
+    Locations:
+      Shoes: true
+    ArmorLevel: 1
+    EquipLevelMin: 99
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      bonus bMaxHP,300+(3000*(.@r/3));
+      bonus bMaxSP,30+(10*(.@r/3));
+      if (readparam(bVit)>=99)
+         bonus bMaxHPrate,15;
+  - Id: 22111
+    AegisName: Modify_Dex_Boots
+    Name: Modified Dex Boots
+    Type: Armor
+    Buy: 20
+    Weight: 600
+    Defense: 25
+    Jobs:
+      KagerouOboro: true
+      Rebellion: true
+      # Star_Emperor: true
+      # Soul_Reaper: true
+    Locations:
+      Shoes: true
+    ArmorLevel: 1
+    EquipLevelMin: 99
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      bonus bMaxHP,300+(1000*(.@r/3));
+      bonus bMaxSP,30+(10*(.@r/3));
+      bonus bDex,5*(.@r/3);
+      if (readparam(bDex)>=99) {
+         bonus bHitAtk,50;
+         bonus bHitMAtk,50;
+      }
+  - Id: 22112
+    AegisName: Modify_Luk_Boots
+    Name: Modified Luk Boots
+    Type: Armor
+    Buy: 20
+    Weight: 600
+    Defense: 20
+    Jobs:
+      KagerouOboro: true
+      Rebellion: true
+      # Star_Emperor: true
+      # Soul_Reaper: true
+    Locations:
+      Shoes: true
+    ArmorLevel: 1
+    EquipLevelMin: 99
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      bonus bMaxHP,300+(1000*(.@r/3));
+      bonus bMaxSP,30+(10*(.@r/3));
+      bonus bMdef,5;
+      bonus bCritical,2*(.@r/3);
+      if (readparam(bLuk)>=99)
+         bonus bCritAtkRate,50;
+  - Id: 22113
+    AegisName: Modify_Str_Boots_
+    Name: Modified Str Boots
+    Type: Armor
+    Buy: 20
+    Weight: 600
+    Defense: 25
+    Slots: 1
+    Jobs:
+      KagerouOboro: true
+      Rebellion: true
+      # Star_Emperor: true
+      # Soul_Reaper: true
+    Locations:
+      Shoes: true
+    ArmorLevel: 1
+    EquipLevelMin: 99
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      bonus bMaxHP,300+(1000*(.@r/3));
+      bonus bMaxSP,30+(10*(.@r/3));
+      bonus bBaseAtk,200*(.@r/3);
+      if (readparam(bStr)>=99)
+         bonus2 bAddSize,Size_All,50;
+  - Id: 22114
+    AegisName: Modify_Int_Boots_
+    Name: Modified Int Boots
+    Type: Armor
+    Buy: 20
+    Weight: 600
+    Defense: 20
+    Slots: 1
+    Jobs:
+      KagerouOboro: true
+      Rebellion: true
+      # Star_Emperor: true
+      # Soul_Reaper: true
+    Locations:
+      Shoes: true
+    ArmorLevel: 1
+    EquipLevelMin: 99
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      bonus bMdef,5;
+      bonus bMaxHP,300+(1000*(.@r/3));
+      bonus bMaxSP,30+(10*(.@r/3));
+      bonus bMatk,200*(.@r/3);
+      if (readparam(bInt)>=99)
+         bonus2 bMagicAtkEle,Ele_All,50;
+  - Id: 22115
+    AegisName: Modify_Agi_Boots_
+    Name: Modified Agi Boots
+    Type: Armor
+    Buy: 20
+    Weight: 600
+    Defense: 25
+    Slots: 1
+    Jobs:
+      KagerouOboro: true
+      Rebellion: true
+      # Star_Emperor: true
+      # Soul_Reaper: true
+    Locations:
+      Shoes: true
+    ArmorLevel: 1
+    EquipLevelMin: 99
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      bonus bMaxHP,300+(1000*(.@r/3));
+      bonus bMaxSP,30+(10*(.@r/3));
+      bonus bAspdRate,3*(.@r/3);
+      if (readparam(bAgi)>=99)
+         bonus bAspdcap,2;
+  - Id: 22116
+    AegisName: Modify_Vit_Boots_
+    Name: Modified Vit Boots
+    Type: Armor
+    Buy: 20
+    Weight: 600
+    Defense: 25
+    Slots: 1
+    Jobs:
+      KagerouOboro: true
+      Rebellion: true
+      # Star_Emperor: true
+      # Soul_Reaper: true
+    Locations:
+      Shoes: true
+    ArmorLevel: 1
+    EquipLevelMin: 99
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      bonus bMaxHP,300+(3000*(.@r/3));
+      bonus bMaxSP,30+(10*(.@r/3));
+      if (readparam(bVit)>=99)
+         bonus bMaxHPrate,15;
+  - Id: 22117
+    AegisName: Modify_Dex_Boots_
+    Name: Modified Dex Boots
+    Type: Armor
+    Buy: 20
+    Weight: 600
+    Defense: 25
+    Slots: 1
+    Jobs:
+      KagerouOboro: true
+      Rebellion: true
+      # Star_Emperor: true
+      # Soul_Reaper: true
+    Locations:
+      Shoes: true
+    ArmorLevel: 1
+    EquipLevelMin: 99
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      bonus bMaxHP,300+(1000*(.@r/3));
+      bonus bMaxSP,30+(10*(.@r/3));
+      bonus bDex,5*(.@r/3);
+      if (readparam(bDex)>=99) {
+         bonus bHitAtk,50;
+         bonus bHitMAtk,50;
+      }
+  - Id: 22118
+    AegisName: Modify_Luk_Boots_
+    Name: Modified Luk Boots
+    Type: Armor
+    Buy: 20
+    Weight: 600
+    Defense: 20
+    Slots: 1
+    Jobs:
+      KagerouOboro: true
+      Rebellion: true
+      # Star_Emperor: true
+      # Soul_Reaper: true
+    Locations:
+      Shoes: true
+    ArmorLevel: 1
+    EquipLevelMin: 99
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      bonus bMaxHP,300+(1000*(.@r/3));
+      bonus bMaxSP,30+(10*(.@r/3));
+      bonus bMdef,5;
+      bonus bCritical,2*(.@r/3);
+      if (readparam(bLuk)>=99)
+         bonus bCritAtkRate,50;
   - Id: 2170001
     AegisName: Ice_Tentacle_Skins_Shoes
     Name: Ice Tentacle Skins Shoes

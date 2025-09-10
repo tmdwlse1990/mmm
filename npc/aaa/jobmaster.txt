@@ -439,7 +439,6 @@ function	Get_Job_Equip	{
 				getitem 6122,1;	break;	//	Paint Brush
 			case Job_Super_Novice:
 				getitembound4 1208,1,1,15,0,0,0,0,0,Bound_Char,7,.@OptID,.@OptVal,.@OptParam;	break;	//	Main Gauche [1]
-				break;
 		}
 	} else if (.@eac&EAJL_2) {
 		// Second Class (And not Third Class)
@@ -523,7 +522,17 @@ function	Get_Job_Equip	{
 				getitem 2001001,1;	// Paradise Weapon
 				getitem 2001002,1;	// Paradise Armor
 				break;
-		}	
+			case JOB_REBELLION:
+				getitembound4 13107,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Wasteland's Outlaw [1]
+			case JOB_KAGEROU:
+			case JOB_OBORO:
+				getitembound4 13304,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Huuma Calm [1]
+			case JOB_STAR_EMPEROR:
+				getitembound4 1552,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Tablet  [1]
+			case JOB_SOUL_REAPER:
+				getitembound4 1620,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Survival int [1]
+				break;
+		}
 	}
 	return;
 }

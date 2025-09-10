@@ -5239,7 +5239,7 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 			[[fallthrough]];
 		case MA_SHARPSHOOTING:
 #ifdef RENEWAL
-			skillratio += -100 + 600 * skill_lv;
+			skillratio += -100 + 900 * skill_lv;
 			RE_LVL_DMOD(100);
 #else
 			skillratio += 100 + 50 * skill_lv;
@@ -5578,7 +5578,7 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 				skillratio += -100 + 200 + 250 * skill_lv;
 			else
 				*/
-			skillratio += -100 + 200 + 250 * skill_lv;
+			skillratio += -100 + 250 + 410 * skill_lv;
 			RE_LVL_DMOD(100);
 			break;
 		case RA_AIMEDBOLT:
@@ -5647,7 +5647,7 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 			skillratio += 350 + 50 * skill_lv;
 			break;
 		case NC_AXETORNADO:
-			skillratio += -100 + 200 + 180 * skill_lv + sstatus->vit * 2;
+			skillratio += -100 + 200 + 180 * skill_lv + sstatus->vit * 5;
 			skillratio /= 3;
 			if (sc && sc->getSCE(SC_AXE_STOMP))
 				skillratio += 380;
@@ -6114,7 +6114,7 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 				skillratio += skillratio * status_get_hp(src) / status_get_max_hp(src);
 			break;
 		case SJ_FULLMOONKICK:
-			skillratio += 1000 + 100 * skill_lv;
+			skillratio += 1000 + 150 * skill_lv;
 			RE_LVL_DMOD(100);
 			if (sc && sc->getSCE(SC_LIGHTOFMOON))
 				skillratio += skillratio * sc->getSCE(SC_LIGHTOFMOON)->val2 / 100;
@@ -6126,7 +6126,7 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 			skillratio += 700 + 200 * skill_lv;
 			break;
 		case SJ_SOLARBURST:
-			skillratio += 900 + 220 * skill_lv;
+			skillratio += 900 + 320 * skill_lv;
 			RE_LVL_DMOD(100);
 			if (sc && sc->getSCE(SC_LIGHTOFSUN))
 				skillratio += skillratio * sc->getSCE(SC_LIGHTOFSUN)->val2 / 100;
@@ -7154,6 +7154,7 @@ static void battle_attack_sc_bonus(struct Damage* wd, struct block_list *src, st
 	if (sd != nullptr && !anger_id)
 		ARR_FIND(0, MAX_PC_FEELHATE, anger_id, status_get_class(target) == sd->hate_mob[anger_id]);
 
+	/*
 	uint16 anger_level;
 	if (sd != nullptr && anger_id < MAX_PC_FEELHATE && (anger_level = pc_checkskill(sd, sg_info[anger_id].anger_id))) {
 		int32 skillratio = sd->status.base_level + sstatus->dex + sstatus->luk;
@@ -7173,6 +7174,7 @@ static void battle_attack_sc_bonus(struct Damage* wd, struct block_list *src, st
 		RE_ALLATK_ADDRATE(wd, skillratio);
 #endif
 	}
+	*/
 }
 
 /*====================================
@@ -7577,7 +7579,7 @@ static void battle_calc_attack_gvg_bg(struct Damage* wd, struct block_list *src,
 				int64 damage = wd->damage + wd->damage2, rdamage = 0;
 				map_session_data *tsd = BL_CAST(BL_PC, target);
 				status_data* sstatus = status_get_status_data(*src);
-				t_tick tick = gettick();
+				t_tick tick = gettick(); 
 
 				rdamage = battle_calc_return_damage(target, src, &damage, wd->flag, skill_id, false);
 				if( rdamage > 0 ) { //Item reflect gets calculated before any mapflag reducing is applicated
@@ -8812,16 +8814,16 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 					case NJ_KOUENKA:
 						skillratio += 5 * skill_lv;
 						if(sd && sd->spiritcharm_type == CHARM_TYPE_FIRE && sd->spiritcharm > 0)
-							skillratio += skillratio * sd->spiritcharm / 5;
+							skillratio += skillratio * sd->spiritcharm / 2;
 						break;
 					case NJ_KAENSIN:
 						if(sd && sd->spiritcharm_type == CHARM_TYPE_FIRE && sd->spiritcharm > 0)
-							skillratio += skillratio * sd->spiritcharm / 5;
+							skillratio += skillratio * sd->spiritcharm / 2;
 						break;
 					case NJ_BAKUENRYU:
 						skillratio += 50 + 300 * skill_lv;
 						if(sd && sd->spiritcharm_type == CHARM_TYPE_FIRE && sd->spiritcharm > 0)
-							skillratio += skillratio * sd->spiritcharm / 5;
+							skillratio += skillratio * sd->spiritcharm / 3;
 						break;
 					case NJ_HYOUSENSOU:
 #ifdef RENEWAL
@@ -8830,7 +8832,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 							skillratio += 2 * skill_lv;
 #endif
 						if(sd && sd->spiritcharm_type == CHARM_TYPE_WATER && sd->spiritcharm > 0)
-							skillratio += 80 * sd->spiritcharm;
+							skillratio += skillratio * sd->spiritcharm;
 						break;
 					case NJ_HYOUSYOURAKU:
 						skillratio += 600 * skill_lv;
@@ -8844,19 +8846,19 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						skillratio += 60 + 40 * skill_lv;
 #endif
 						if(sd && sd->spiritcharm_type == CHARM_TYPE_WIND && sd->spiritcharm > 0)
-							skillratio += 20 * sd->spiritcharm;
+							skillratio += skillratio * sd->spiritcharm;
 						break;
 					case NJ_KAMAITACHI:
 						skillratio += 250 * skill_lv;
 						if(sd && sd->spiritcharm_type == CHARM_TYPE_WIND && sd->spiritcharm > 0)
-							skillratio += skillratio * sd->spiritcharm / 5;
+							skillratio += skillratio * sd->spiritcharm / 4;
 						break;
 					case NJ_HUUJIN:
 #ifdef RENEWAL
 						skillratio += 50;
 #endif
 						if(sd && sd->spiritcharm_type == CHARM_TYPE_WIND && sd->spiritcharm > 0)
-							skillratio += 10 * sd->spiritcharm;
+							skillratio += skillratio * sd->spiritcharm / 2;
 						break;
 					case NPC_ENERGYDRAIN:
 						skillratio += 100 * skill_lv;
@@ -8963,7 +8965,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						RE_LVL_DMOD(100);
 						break;
 					case WL_CHAINLIGHTNING_ATK:
-						skillratio += 400 + 100 * skill_lv;
+						skillratio += 400 + 600 * skill_lv;
 						RE_LVL_DMOD(100);
 						if (mflag > 0)
 							skillratio += 100 * mflag;
@@ -9169,14 +9171,15 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						RE_LVL_DMOD(100);
 						break;
 					case SP_SPA:
-						skillratio += 400 + 250 * skill_lv;
+						skillratio += 1000 + 500 * skill_lv;
 						RE_LVL_DMOD(100);
 						break;
 					case SP_SHA:
 						skillratio += -100 + 5 * skill_lv;
 						break;
 					case SP_SWHOO:
-						skillratio += 1000 + 200 * skill_lv;
+						//skillratio += 1000 + 200 * skill_lv;
+						skillratio += 1000 + 800 * skill_lv;
 						RE_LVL_DMOD(100);
 						break;
 					case NPC_STORMGUST2:
@@ -10143,7 +10146,7 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 				if(!sd || !(skill = pc_checkskill(sd,HT_STEELCROW)) || !(skill2 = pc_checkskill(sd, HT_BEASTBANE)))
 					skill = 0; skill2 = 0;
 #ifdef RENEWAL
-				md.damage = (sstatus->batk * 5) + (sstatus->watk * 3) + skill * 6 + skill2 * 4;
+				md.damage = (sstatus->batk * 12) + (sstatus->watk * 3) + skill * 6 + skill2 * 4;
 				RE_LVL_MDMOD(90);
 				//md.damage = skill_lv * 20 + skill * 6 + ((sstatus->agi / 2) *2) + ((sstatus->dex / 10) *2);
 #else
@@ -10156,7 +10159,10 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 					DAMAGE_DIV_FIX2(md.damage, skill_get_num(HT_BLITZBEAT, 5));
 					//Falcon Assault Modifier
 					md.damage = md.damage * (150 + 70 * skill_lv) / 100;
+					
 				}
+				//Add Long Range Attack to Skill Damage
+				md.damage = md.damage * (100 + sd->bonus.long_attack_atk_rate) / 100;
 			}
 			break;
 #ifndef RENEWAL

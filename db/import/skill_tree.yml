@@ -3034,17 +3034,17 @@ Body:
           - Name: SG_FEEL
             Level: 3
       - Name: SG_SUN_COMFORT
-        MaxLevel: 4
+        MaxLevel: 10
         Requires:
           - Name: SG_FEEL
             Level: 1
       - Name: SG_MOON_COMFORT
-        MaxLevel: 4
+        MaxLevel: 10
         Requires:
           - Name: SG_FEEL
             Level: 2
       - Name: SG_STAR_COMFORT
-        MaxLevel: 4
+        MaxLevel: 10
         Requires:
           - Name: SG_FEEL
             Level: 3
@@ -6410,7 +6410,7 @@ Body:
           - Name: SJ_DOCUMENT
             Level: 1
       - Name: SJ_FULLMOONKICK
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: SJ_NEWMOONKICK
             Level: 7
@@ -6456,7 +6456,7 @@ Body:
           - Name: SJ_SUNSTANCE
             Level: 3
       - Name: SJ_FALLINGSTAR
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: SJ_FLASHKICK
             Level: 7
@@ -6502,7 +6502,7 @@ Body:
           - Name: SJ_DOCUMENT
             Level: 1
       - Name: SJ_SOLARBURST
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: SJ_PROMINENCEKICK
             Level: 7
@@ -6538,17 +6538,17 @@ Body:
           - Name: SP_SOULUNITY
             Level: 5
       - Name: SP_CURSEEXPLOSION
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: SP_SOULCURSE
             Level: 3
       - Name: SP_SOULCURSE
-        MaxLevel: 5
+        MaxLevel: 10
         Requires:
           - Name: SP_SOULREAPER
             Level: 3
       - Name: SP_SPA
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: SP_SHA
             Level: 1
@@ -6558,7 +6558,7 @@ Body:
           - Name: SP_SOULREAPER
             Level: 3
       - Name: SP_SWHOO
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: SP_SPA
             Level: 3
@@ -6587,7 +6587,7 @@ Body:
           - Name: SP_KAUTE
             Level: 3
       - Name: SP_SOULCOLLECT
-        MaxLevel: 5
+        MaxLevel: 15
       - Name: SP_SOULEXPLOSION
         MaxLevel: 5
         Requires:

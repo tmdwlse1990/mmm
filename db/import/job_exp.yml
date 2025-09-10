@@ -638,6 +638,16 @@ Body:
       - Level: 124
         Exp: 33160307564
       - Level: 125
+        Exp: 41450384455
+      - Level: 126
+        Exp: 45595422900
+      - Level: 127
+        Exp: 50154965190
+      - Level: 128
+        Exp: 55170461709
+      - Level: 129
+        Exp: 60687507880
+      - Level: 130
         Exp: 99999999
   - Jobs:
       Novice: true

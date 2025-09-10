@@ -5,10 +5,11 @@ icecastle,202,202,4	script	Collaboration Event#Lumisys	RED_FLOWER,{
 			"เมนูผู้เล่น",-;
 	}
 	mes "สำหรับผู้ที่เข้าร่วมกิจกรรมจะสามารถกดรับรางวัลได้";
-	if(inarray($collab_lumisys,getcharid(0)) < 0 ) {
+	if(inarray($collab_lumisys,getcharid(3)) < 0) {
 		mes "^ff0000ตัวละครท่านไม่ได้ร่วมกิจกรรม^000000";
 		end;
 	}
+	
 	mes "กรุณาเลือกรับรางวัลของท่าน";
 	menu
 		(!#collab_60 ? "- รับรางวัลเลเวล 60":""),LV60,
@@ -29,8 +30,9 @@ Add_Pool:
 	mes "เพิ่ม :"+strcharinfo(0,.@charidna);
 	mes "ในกิจกรรมไหม ?";
 	next;
+	.@accid = convertpcinfo(.@charidna,CPC_ACCOUNT);
 	if(select("เพิ่ม:ไม่เพิ่ม") == 2) end;
-	$collab_lumisys[getarraysize($collab_lumisys)] = .@charidna;
+	$collab_lumisys[getarraysize($collab_lumisys)] = .@accid;
 	mes "เพิ้มเรียบร้อย";
 	end;
 LV60:

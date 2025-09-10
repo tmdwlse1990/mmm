@@ -9524,12 +9524,12 @@ Body:
          }
       }
       bonus bMatk,.@matk;
-  - Combos:
-      - Combo:
-          - C12th_Crown    # 20135
-          - C12th_ElvenEars    # 20136
-    Script: |
-      bonus bAllStats,12;
+#  - Combos:
+#      - Combo:
+#          - C12th_Crown    # 20135
+#          - C12th_ElvenEars    # 20136
+#    Script: |
+#      bonus bAllStats,12;
   - Combos:
       - Combo:
           - Variant_Axe    # 1331

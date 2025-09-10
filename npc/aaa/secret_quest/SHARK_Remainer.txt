@@ -92,8 +92,8 @@ valkyrie,49,48,5	script(DISABLED)	Game Master#Male	4_M_OPERATION,5,5,{
 Ontouch:
 	cloakoffnpcself(instance_npcname("Game Master#Male(Talk)"));
 	donpcevent instance_npcname("Game Master#Male(Talk)") + "::OnEnable";
-	enablenpc instance_npcname("#trap_1_door");
-	enablenpc instance_npcname("#trap_2_door");
+	//enablenpc instance_npcname("#trap_1_door");
+	//enablenpc instance_npcname("#trap_2_door");
 	disablenpc;
 	end;
 }
@@ -186,18 +186,21 @@ valkyrie,0,0,0	script(CLOAKED)	#summon_gm	-1,{
 		'boss_id = $@mobid[0];
 		
 		donpcevent instance_npcname("#game_master_condition") + "::OnStart";
-		
+		/*
 		for(.@i=1; .@i <= 4; .@i++)
 			donpcevent instance_npcname("#trap_s_"+.@i+"_gm")+"::OnStart";
 		for(.@i=1; .@i <= 2; .@i++)
 			donpcevent instance_npcname("#trap_"+.@i+"_gm")+"::OnStart";
+		*/
 		end;
 	OnGMAgree:
 		announce "??????", bc_all,0xFFFF00,FW_NORMAL,18;
+		/*
 		for(.@i=1; .@i <= 4; .@i++)
 			donpcevent instance_npcname("#trap_s_"+.@i+"_gm")+"::OnStop";
 		for(.@i=1; .@i <= 2; .@i++)
 			donpcevent instance_npcname("#trap_"+.@i+"_gm")+"::OnStop";
+		*/
 		initnpctimer;
 		end;
 OnTimer5000:

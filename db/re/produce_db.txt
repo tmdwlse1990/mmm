@@ -341,6 +341,10 @@
 //-- Condensed White Potion <-- AM_PHARMACY & Condensed Potion Creation Guide & 1 White Potion, 1 Empty Testtube, 1 Witched Starsand
 125,547,22,228,1,7133,0,504,1,1092,1,1061,1
 //----------------------------------------------
+//------Special Health Potion------------------------------
+//----------------------------------------------
+
+
 
 //---- Skill-related Mixtures ------------------
 //-- Holy Water <-- AL_HOLYWATER & 1 Empty Bottle

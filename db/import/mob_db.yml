@@ -81,6 +81,19 @@ Header:
   Version: 5
 
 Body:
+# [Old GLash Heim Mod]
+  - Id: 2475
+    Hp: 50000000
+    Str: 300
+    Dex: 400
+    Luk: 200
+    DamageTaken: 10
+  - Id: 2476
+    Hp: 50000000
+    Str: 300
+    Dex: 400
+    Luk: 400
+    DamageTaken: 10
 # [Faceworm Mod]
   - Id: 2528
 #    Attack: 4500
@@ -1174,24 +1187,24 @@ Body:
   - Id: 27005
     AegisName: Immortal_Corps_1
     Name: Immortal Corps
-    Level: 99
+    Level: 110
     Hp: 550000
-    Attack: 1114
-    Attack2: 1114
+    Attack: 4214
+    Attack2: 3314
     Defense: 47
     MagicDefense: 38
     Str: 151
     Agi: 43
-    Vit: 31
+    Vit: 124
     Int: 65
-    Dex: 39
+    Dex: 179
     Luk: 2
     AttackRange: 2
     SkillRange: 10
     ChaseRange: 12
     Size: Large
     Race: Plant
-    Element: Water
+    Element: Dark
     ElementLevel: 2
     WalkSpeed: 160
     AttackDelay: 460
@@ -1203,40 +1216,38 @@ Body:
     Drops:
       - Item: Crystal_Mirror
         Rate: 200
-        StealProtected: true
       - Item: Spoon_Stub
         Rate: 1500
-        StealProtected: true
       - Item: Elder_Branch
         Rate: 3000
-        StealProtected: true
       - Item: Stuffed_Doll
         Rate: 5000
-        StealProtected: true
       - Item: Oridecon
         Rate: 67
+      - Item: Cops_Card
+        Rate: 1
         StealProtected: true
   - Id: 27006
     AegisName: Immortal_Corps_2
     Name: Immortal Corps
-    Level: 99
+    Level: 110
     Hp: 550000
-    Attack: 1114
-    Attack2: 1114
+    Attack: 3814
+    Attack2: 3014
     Defense: 47
     MagicDefense: 38
     Str: 151
-    Agi: 43
-    Vit: 31
+    Agi: 143
+    Vit: 124
     Int: 65
-    Dex: 39
+    Dex: 149
     Luk: 2
     AttackRange: 2
     SkillRange: 10
     ChaseRange: 12
-    Size: Large
+    Size: Medium
     Race: Plant
-    Element: Water
+    Element: Dark
     ElementLevel: 2
     WalkSpeed: 160
     AttackDelay: 460
@@ -1248,38 +1259,36 @@ Body:
     Drops:
       - Item: Crystal_Mirror
         Rate: 200
-        StealProtected: true
       - Item: Spoon_Stub
         Rate: 1500
-        StealProtected: true
       - Item: Elder_Branch
         Rate: 3000
-        StealProtected: true
       - Item: Stuffed_Doll
         Rate: 5000
-        StealProtected: true
       - Item: Elunium
-        Rate: 200
+        Rate: 150
+      - Item: Cops_Card
+        Rate: 1
         StealProtected: true
   - Id: 27007
     AegisName: Immortal_Corps_3
     Name: Immortal Corps
-    Level: 99
+    Level: 110
     Hp: 550000
-    Attack: 1114
-    Attack2: 1114
+    Attack: 3814
+    Attack2: 3014
     Defense: 47
     MagicDefense: 38
     Str: 151
-    Agi: 43
-    Vit: 31
+    Agi: 143
+    Vit: 124
     Int: 65
-    Dex: 39
+    Dex: 149
     Luk: 2
     AttackRange: 2
     SkillRange: 10
     ChaseRange: 12
-    Size: Large
+    Size: Small
     Race: Plant
     Element: Water
     ElementLevel: 2
@@ -1293,37 +1302,34 @@ Body:
     Drops:
       - Item: Crystal_Mirror
         Rate: 200
-        StealProtected: true
       - Item: Spoon_Stub
         Rate: 1500
-        StealProtected: true
       - Item: Elder_Branch
         Rate: 3000
-        StealProtected: true
       - Item: Stuffed_Doll
         Rate: 5000
-        StealProtected: true
       - Item: Elunium_Stone
         Rate: 750
-        StealProtected: true
       - Item: Oridecon_Stone
         Rate: 750
+      - Item: Cops_Card
+        Rate: 1
         StealProtected: true
   - Id: 27008
     AegisName: CODE_X_DUPPER
     Name: CODE X
-    Level: 99
+    Level: 145
     Hp: 550000
-    Attack: 1114
-    Attack2: 1114
+    Attack: 11114
+    Attack2: 6114
     Defense: 47
     MagicDefense: 38
-    Str: 151
-    Agi: 43
-    Vit: 31
-    Int: 65
-    Dex: 39
-    Luk: 2
+    Str: 412
+    Agi: 473
+    Vit: 311
+    Int: 316
+    Dex: 417
+    Luk: 452
     AttackRange: 2
     SkillRange: 10
     ChaseRange: 12
@@ -1331,13 +1337,35 @@ Body:
     Race: Plant
     Element: Water
     ElementLevel: 2
-    WalkSpeed: 160
-    AttackDelay: 460
-    AttackMotion: 580
-    ClientAttackMotion: 530
-    DamageMotion: 400
-    DamageTaken: 10
+    WalkSpeed: 100
+    AttackDelay: 260
+    AttackMotion: 280
+    ClientAttackMotion: 230
+    DamageMotion: 200
+    DamageTaken: 1
     Ai: 20
+    Class: Boss
+    Modes:
+      Mvp: true
+    MvpDrops:
+      - Item: MVP_Option_Box_T2
+        Rate: 2500
+      - Item: MVP_Option_Box_T3
+        Rate: 1000
+      - Item: MVP_Option_Box_T1
+        Rate: 5000
+    Drops:
+      - Item: Elunium
+        Rate: 750
+      - Item: Oridecon
+        Rate: 750
+      - Item: Elunium_Stone
+        Rate: 750
+      - Item: Oridecon_Stone
+        Rate: 750
+      - Item: CODEX_Card
+        Rate: 1
+        StealProtected: true
   - Id: 22381
     AegisName: CLB_SS_FC
     Name: Fei-Chai

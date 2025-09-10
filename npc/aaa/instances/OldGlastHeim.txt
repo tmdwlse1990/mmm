@@ -22,10 +22,10 @@
 //============================================================
 
 glast_01,204,273,5	script	Hugin	4_M_SAGE_C,{
-	if (BaseLevel < 130) {
+	if (BaseLevel < 125) {
 		mes "[Hugin]";
 		mes "Why don't you come back after becoming stronger?";
-		mes "Maybe, level 130.";
+		mes "Maybe, level 125.";
 		close;
 	}
 	if (isbegin_quest(12316) == 0) {
@@ -35,38 +35,6 @@ glast_01,204,273,5	script	Hugin	4_M_SAGE_C,{
 		mes "[Hugin]";
 		mes "Ah, I'm sorry. I'm muttering in front of a stranger.";
 		next;
-		mes "[Hugin]";
-		mes "My name is Hugin. I'm studying the dimensional gap between time and space.";
-		next;
-		select("There's something like that here?");
-		mes "[Hugin]";
-		mes "Have you ever wondered about the history of Glast Heim?";
-		next;
-		mes "[Hugin]";
-		mes "There was a King named Shumiche who was known as a tyrant in the history of the Rune-Midgarts Kingdom.";
-		next;
-		mes "[Hugin]";
-		mes "Time will reveal the true answers if we look in the right places.";
-		next;
-		if (select("I don't care about history","That is interesting. Did you find anything?") == 1) {
-			mes "[Hugin]";
-			mes "Really? Hmm, please come back later when you are interested then.";
-			close;
-		}
-		mes "[Hugin]";
-		mes "Actually, dimensional time travel is possible but I'm too afraid to go there.";
-		next;
-		mes "[Hugin]";
-		mes "It might be possible for you!";
-		next;
-		mes "[Hugin]";
-		mes "Do you want to time travel?";
-		next;
-		if (select("No, thanks.","Yes, of course I do!") == 1) {
-			mes "[Hugin]";
-			mes "Really? But, jumping gigawatts, this is such a great opportunity.";
-			close;
-		}
 		mes "[Hugin]";
 		mes "I knew that you would understand what I said. Well, please tell me what you want to do.";
 		setquest 12316;// Meeting Hugin
@@ -154,6 +122,9 @@ glast_01,204,273,5	script	Hugin	4_M_SAGE_C,{
 		erasequest 12317;
 		close;
 	}
+Oninit:
+	waitingroom "Old Glast Heim",0;
+	end;
 }
 
 // Warps
@@ -183,10 +154,10 @@ glast_01,204,273,5	script	Hugin	4_M_SAGE_C,{
 		close3;
 	}
 	// If the instance has already been completed once, the player can skip sector 1,2,3 and starts from the 1st boss MG_CORRUPTION_ROOT
-	if (isbegin_quest(12321) == 2) {
+	if (true) {
 		mes "You have a previous clear record. You can skip the scenario and proceed accordingly.";
 		next;
-		if (select( "Omit moderately.", "Appreciate everything." ) == 1) {
+		if (select( "ไปทางลัด", "ไปทางปกติ" ) == 1) {
 			cutin "GL_BARMUND1.bmp",2;
 			mes "[Varmundt]";
 			mes "I've seen you, " + strcharinfo(0) + ".";
@@ -1380,6 +1351,10 @@ OnTimer3500:
 	'npc_varmundt$ = 'npc_heinrich$ = "";
 	enablenpc instance_npcname("#22 Control");
 	enablenpc instance_npcname("#22 Control2");
+	if('mode == 2) {
+		donpcevent instance_npcname("#ghmemorialmob05") + "::OnBossDead";
+		donpcevent instance_npcname("#ghmemorialmob06") + "::OnBossDead";
+	}
 	end;
 }
 

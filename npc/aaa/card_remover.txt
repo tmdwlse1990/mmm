@@ -24,7 +24,7 @@ icecastle,200,158,4	script	Wise Old Woman#eAcustom	78,{
 	mes "[ยายแก่]";
 	mes "อยากปลดปล่อยไอเท็มอะสิ";
 	next;
-	switch(select("ถอดการ์ด.:ลบการ์ดและออฟ:ไม่เป็นไร.")) {
+	switch(select("ถอดการ์ด.:ลบการ์ดและออฟ.:ไม่เป็นไร.")) {
 	case 1:
 		mes "[ยายแก่]";
 		mes "เลือกมาสิส่วนไหน";
@@ -111,6 +111,9 @@ icecastle,200,158,4	script	Wise Old Woman#eAcustom	78,{
 			close;
 		}
 	case 2:
+		mes "[ยายแก่]";
+		mes "ไม่ทำงานนี้แล้วหลานเอ้ย";
+		end;
 		mes "[ยายแก่]";
 		mes "เลือกมาสิส่วนไหน";
 		next;

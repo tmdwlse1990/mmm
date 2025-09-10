@@ -739,6 +739,9 @@ function	script	F_GetPlatinumSkills	{
 		break;
 	case Job_Alchemist:
 		skill "AM_BIOETHICS",1,SKILL_PERM;
+		skill "AM_TWILIGHT1",1,SKILL_PERM;
+		skill "AM_TWILIGHT2",1,SKILL_PERM;
+		skill "AM_TWILIGHT3",1,SKILL_PERM;
 		break;
 	case Job_Bard:
 		skill "BA_PANGVOICE",1,SKILL_PERM;

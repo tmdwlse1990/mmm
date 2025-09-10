@@ -1352,25 +1352,35 @@ int32 skill_additional_effect( struct block_list* src, struct block_list *bl, ui
 
 					// Automatic trigger of Blitz Beat
 					//if (pc_isfalcon(sd) && sd->status.weapon == W_BOW && (skill = pc_checkskill(sd, HT_BLITZBEAT)) > 0 && rnd() % 1000 <= sstatus->luk * 10 / 3 + 1) {
-					if ((skill = pc_checkskill(sd, TK_STORMKICK)) > 0 && sc->getSCE(SC_READYSTORM) && rnd() % 1000 <= (100 + (skill * 10) ) ) {
+					if (pc_isfalcon(sd) && sd->status.weapon == W_BOW && (skill = pc_checkskill(sd, HT_BLITZBEAT)) > 0 && rnd() % 1000 <= 330 + (sd->special_state.skillup3 ? 42 : 0) + 1) {
+						
+						int32 skill2 = pc_checkskill(sd, SN_FALCONASSAULT);
+						if ( skill2  > 0 && rnd() % 1000 <= (skill2 * 150) )
+							skill_castend_damage_id(src, bl, SN_FALCONASSAULT, skill2, tick, SD_LEVEL);
+						else
+							skill_castend_damage_id(src, bl, HT_BLITZBEAT, skill, tick, SD_LEVEL);
+					}
+					// Automatic trigger of Taekwondo Stance
+					if ((skill = pc_checkskill(sd, TK_STORMKICK)) > 0 && sc->getSCE(SC_READYSTORM) && rnd() % 1000 <= (100 + (skill * 10) + (sd->special_state.skillup4 ? 150 : 0) ) ) {
 
 						skill_castend_damage_id(src, bl, TK_STORMKICK, skill, tick, SD_LEVEL);
 					}
-					if ((skill = pc_checkskill(sd, TK_DOWNKICK)) > 0 && sc->getSCE(SC_READYDOWN) && rnd() % 1000 <= (100 + (skill * 10) ) ) {
+					if ((skill = pc_checkskill(sd, TK_DOWNKICK)) > 0 && sc->getSCE(SC_READYDOWN) && rnd() % 1000 <= (100 + (skill * 10) + (sd->special_state.skillup4 ? 150 : 0) ) ) {
 
 						skill_castend_damage_id(src, bl, TK_DOWNKICK, skill, tick, SD_LEVEL);
 					}
-					if ((skill = pc_checkskill(sd, TK_TURNKICK)) > 0 && sc->getSCE(SC_READYTURN) && rnd() % 1000 <= (100 + (skill * 10) ) ) {
+					if ((skill = pc_checkskill(sd, TK_TURNKICK)) > 0 && sc->getSCE(SC_READYTURN) && rnd() % 1000 <= (100 + (skill * 10) + (sd->special_state.skillup4 ? 150 : 0) ) ) {
 
 						skill_castend_damage_id(src, bl, TK_TURNKICK, skill, tick, SD_LEVEL);
 					}
-					if ((skill = pc_checkskill(sd, TK_COUNTER)) > 0 && sc->getSCE(SC_READYCOUNTER) && rnd() % 1000 <= (100 + (skill * 10) ) ) {
+					if ((skill = pc_checkskill(sd, TK_COUNTER)) > 0 && sc->getSCE(SC_READYCOUNTER) && rnd() % 1000 <= (100 + (skill * 10) + (sd->special_state.skillup4 ? 150 : 0) ) ) {
 
 						skill_castend_damage_id(src, bl, TK_COUNTER, skill, tick, SD_LEVEL);
 					}
-					if (pc_isfalcon(sd) && sd->status.weapon == W_BOW && (skill = pc_checkskill(sd, HT_BLITZBEAT)) > 0 && rnd() % 1000 <= 330 + (sd->special_state.skillup3 ? 90 : 0) + 1) {
-
-						skill_castend_damage_id(src, bl, HT_BLITZBEAT, skill, tick, SD_LEVEL);
+					// Automatic trigger of Falling Star 
+					if ((skill = pc_checkskill(sd,SJ_FALLINGSTAR)) > 0 && sc->getSCE(SC_FALLINGSTAR) && (sc->getSCE(SC_STARSTANCE) || sc->getSCE(SC_UNIVERSESTANCE)) && rand()% 1000 <= (100 +(skill*10) ) ) {
+						
+						skill_castend_nodamage_id(src, bl, SJ_FALLINGSTAR_ATK, skill_lv, tick, 0);
 					}
 					// Automatic trigger of Warg Strike
 					if (pc_iswug(sd) && (skill = pc_checkskill(sd, RA_WUGSTRIKE)) > 0) {
@@ -2685,7 +2695,7 @@ int32 skill_counter_additional_effect (struct block_list* src, struct block_list
 		sc_start(src, src, SC_USE_SKILL_SP_SHA, 100, skill_lv, skill_get_time(skill_id, skill_lv));
 		break;
 	}
-
+	/*
 	if(sd && (sd->class_&MAPID_UPPERMASK) == MAPID_STAR_GLADIATOR &&
 		map_getmapflag(sd->m, MF_NOSUNMOONSTARMIRACLE) == 0) {	//SG_MIRACLE [Komurka]
 		// 0.005% chance per sg_miracle_skill_ratio
@@ -2693,7 +2703,7 @@ int32 skill_counter_additional_effect (struct block_list* src, struct block_list
 		if (rnd_chance(battle_config.sg_miracle_skill_ratio, 20000) && rnd_chance(46, (int32)sd->battle_status.agi))
 			sc_start(src, src, SC_MIRACLE, 100, 1, battle_config.sg_miracle_skill_duration);
 	}
-
+	*/
 	if(sd && skill_id && attack_type&BF_MAGIC && status_isdead(*bl) &&
 	 	!(skill_get_inf(skill_id)&(INF_GROUND_SKILL|INF_SELF_SKILL)) &&
 		(rate=pc_checkskill(sd,HW_SOULDRAIN))>0
@@ -7519,6 +7529,7 @@ int32 skill_castend_damage_id (struct block_list* src, struct block_list *bl, ui
 		break;
 
 	case SJ_FALLINGSTAR_ATK:
+		/*
 		if (sd) { // If a player used the skill it will search for targets marked by that player. 
 			if (tsc && tsc->getSCE(SC_FLASHKICK) && tsc->getSCE(SC_FLASHKICK)->val4 == 1) { // Mark placed by a player.
 				int8 i = 0;
@@ -7534,6 +7545,9 @@ int32 skill_castend_damage_id (struct block_list* src, struct block_list *bl, ui
 			skill_attack(BF_WEAPON, src, src, bl, skill_id, skill_lv, tick, flag);
 			skill_castend_damage_id(src, bl, SJ_FALLINGSTAR_ATK2, skill_lv, tick, 0);
 		}
+		*/
+		skill_attack(BF_WEAPON, src, src, bl, skill_id, skill_lv, tick, flag);
+		//skill_castend_damage_id(src, bl, SJ_FALLINGSTAR_ATK2, skill_lv, tick, 0);
 		break;
 	case SJ_FLASHKICK: {
 			map_session_data *tsd = BL_CAST(BL_PC, bl);
@@ -17396,6 +17410,11 @@ int32 skill_unit_onplace_timer(struct skill_unit *unit, struct block_list *bl, t
 				case SOA_TALISMAN_OF_BLACK_TORTOISE:
 					skill_attack( skill_get_type(sg->skill_id), ss, ss, bl, sg->skill_id, sg->skill_lv, tick, 0 );
 					break;
+				case NJ_BAKUENRYU:
+				case NJ_HYOUSYOURAKU:
+				case NJ_RAIGEKISAI:
+					if(tsd != nullptr && tsd->special_state.skillup4)
+						skill_attack(skill_get_type(sg->skill_id),ss,unit,bl,sg->skill_id,sg->skill_lv,tick,0);
 				default:
 					skill_attack(skill_get_type(sg->skill_id),ss,unit,bl,sg->skill_id,sg->skill_lv,tick,0);
 			}
@@ -19125,6 +19144,7 @@ bool skill_check_condition_castbegin( map_session_data& sd, uint16 skill_id, uin
 		case SG_SUN_COMFORT:
 		case SG_MOON_COMFORT:
 		case SG_STAR_COMFORT:
+				break;
 			if (sc && sc->getSCE(SC_MIRACLE))
 				break;
 			i = skill_id-SG_SUN_COMFORT;
@@ -19455,6 +19475,7 @@ bool skill_check_condition_castbegin( map_session_data& sd, uint16 skill_id, uin
 			}
 			break;
 		case SP_SWHOO:
+			if (sd.special_state.skillup4) break;
 			if (!(sc && sc->getSCE(SC_USE_SKILL_SP_SPA)))
 				return false;
 			break;
@@ -19774,6 +19795,7 @@ bool skill_check_condition_castbegin( map_session_data& sd, uint16 skill_id, uin
 			case SP_SOULEXPLOSION:
 			case SP_KAUTE:
 			case SOA_EXORCISM_OF_MALICIOUS_SOUL:
+				if (sd.special_state.skillup4) break;
 				if (sd.soulball < require.spiritball) {
 					clif_skill_fail( sd, skill_id, USESKILL_FAIL_SPIRITS );
 					return false;
@@ -19892,6 +19914,7 @@ bool skill_check_condition_castend( map_session_data& sd, uint16 skill_id, uint1
 		case SG_SUN_WARM:
 		case SG_MOON_WARM:
 		case SG_STAR_WARM:
+			break;
 			if (sc != nullptr) {
 				// Skill fails when already active
 				if (sc->getSCE(SC_WARM)) {

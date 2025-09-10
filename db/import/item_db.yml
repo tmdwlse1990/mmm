@@ -1267,6 +1267,110 @@ Body:
       NoAuction: true
     Script: |
       bonus bAllStats,1;
+  - Id: 2099002
+    AegisName: All_STATS2_NT
+    Name: All Stats +2
+    Type: Card
+    SubType: Enchant
+    Buy: 20
+    Weight: 10
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Script: |
+      bonus bAllStats,2;
+  - Id: 2099003
+    AegisName: All_STATS3_NT
+    Name: All Stats +3
+    Type: Card
+    SubType: Enchant
+    Buy: 20
+    Weight: 10
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Trade:
+      NoDrop: true
+      NoTrade: true
+      NoCart: true
+      NoStorage: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Script: |
+      bonus bAllStats,3;
+  - Id: 2099004
+    AegisName: PowerfulBear's_Power
+    Name: Powerful Bear's Power
+    Type: Card
+    SubType: Enchant
+    Script: |
+      autobonus2 "{ bonus bStr,200; bonus2 bHPLossRate,3000,1000; }",20,5000,BF_WEAPON,"{ specialeffect2 EF_POTION_BERSERK; }";
+      bonus bStr,10;
+    UnEquipScript: |
+      heal 0,-300;
+  - Id: 2099005
+    AegisName: PowerfulRunaway_Magic
+    Name: Powerful Runaway Magic
+    Type: Card
+    SubType: Enchant
+    Script: |
+      autobonus "{ bonus bInt,200; bonus2 bSPLossRate,200,1000; }",15,10000,BF_MAGIC,"{ specialeffect2 EF_LAMADAN; }";
+      if( BaseClass == JOB_GUNSLINGER) {
+        bonus bLongAtkRate,50;
+      }
+      bonus bInt,10;
+    UnEquipScript: |
+      heal 0,-2000;
+  - Id: 2099006
+    AegisName: PowerfulSpeed_Of_Light
+    Name: Powerful Speed of Light
+    Type: Card
+    SubType: Enchant
+    Script: |
+      autobonus "{ bonus bAspdRate,100; bonus bFlee,100; bonus2 bSPLossRate,50,1000; }",10,5000,BF_WEAPON,"{ specialeffect2 EF_FLASHER; }";
+      bonus bAgi,10;
+    UnEquipScript: |
+      heal 0,-300;
+  - Id: 2099007
+    AegisName: PowerfulMuscle_Fool
+    Name: Powerful Muscle Fool
+    Type: Card
+    SubType: Enchant
+    Script: |
+      autobonus2 "{ bonus bDef,2000; bonus2 bSPLossRate,50,1000; }",20,5000,BF_WEAPON,"{ specialeffect2 EF_MAGNUMBREAK; }";
+      bonus bVit,10;
+    UnEquipScript: |
+      heal 0,-300;
+  - Id: 2099008
+    AegisName: PowerfulHawkeye
+    Name: Powerful Hawkeye
+    Type: Card
+    SubType: Enchant
+    Script: |
+      autobonus "{ bonus bDex,200; bonus2 bSPLossRate,50,1000; }",30,5000,BF_WEAPON,"{ specialeffect2 EF_FLASHER; }";
+      bonus bDex,10;
+    UnEquipScript: |
+      heal 0,-300;
+  - Id: 2099009
+    AegisName: PowerfulLucky_Day
+    Name: Powerful Lucky Day
+    Type: Card
+    SubType: Enchant
+    Script: |
+      autobonus "{ bonus bLuk,200; }",15,5000,BF_WEAPON|BF_MAGIC,"{ specialeffect2 EF_MVP; showscript \"LUCKY MAX !!\"; }";
+      autobonus2 "{ bonus bLuk,200; }",1,5000,BF_WEAPON|BF_MAGIC,"{ specialeffect2 EF_MVP; showscript \"LUCKY MAX !!\"; }";
+      bonus bLuk,10;
+    UnEquipScript: |
+      heal 0,-300;
 #   [Guardian Stone Special]
   - Id: 2233001
     AegisName: Guardian_Coin
@@ -3021,6 +3125,31 @@ Body:
     Name: Taekwondo Awakened
     Type: etc
     Weight: 100
+  - Id: 2235043
+    AegisName: GL_UP_Skill_2
+    Name: Gunslinger True Awakened
+    Type: etc
+    Weight: 100
+  - Id: 2235044
+    AegisName: NJ_UP_Skill_2
+    Name: Ninja True Awakened
+    Type: etc
+    Weight: 100
+  - Id: 2235045
+    AegisName: NV_UP_Skill_4
+    Name: Novice True Awakened
+    Type: etc
+    Weight: 100
+  - Id: 2235046
+    AegisName: SJ_UP_Skill_4
+    Name: Star Emperor True Awakened
+    Type: etc
+    Weight: 100
+  - Id: 2235047
+    AegisName: SP_UP_Skill_4
+    Name: Soul Reaper True Awakened
+    Type: etc
+    Weight: 100
 #   [Enchant Result]
   - Id: 2236001
     AegisName: SM_Up_Skill_Ston_1
@@ -3480,6 +3609,68 @@ Body:
         bonus2 bSkillAtk,"NPC_EARTHQUAKE",-50;
         bonus2 bSkillUseSP,"TK_JUMPKICK",-111;
       }
+  - Id: 2236043
+    AegisName: GL_Up_Skill_Ston_2
+    Name: Gunslinger True Awakened
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == JOB_GUNSLINGER) {
+        bonus bSkillUpgrade3;
+        bonus4 bAutoSpellOnSkill,"GS_DESPERADO","RL_AM_BLAST",max(1,getskilllv("RL_AM_BLAST")),50;
+        bonus4 bAutoSpellOnSkill,"GS_DESPERADO","GS_RAPIDSHOWER",max(1,getskilllv("GS_RAPIDSHOWER")),400;
+        bonus2 bSkillDelay,"GS_DESPERADO",-1000;
+      }
+  - Id: 2236044
+    AegisName: NJ_Up_Skill_Ston_2
+    Name: Ninja True Awakened
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == JOB_NINJA) {
+        bonus bSkillUpgrade3;
+        bonus2 bSkillDelay,"NJ_BAKUENRYU",-3000;
+        bonus2 bSkillDelay,"NJ_HYOUSYOURAKU",-3000;
+        bonus2 bSkillDelay,"NJ_RAIGEKISAI",-3000;
+        bonus4 bAutoSpellOnSkill,"NJ_BAKUENRYU","NJ_KOUENKA",max(1,getskilllv("NJ_KOUENKA")),1000;
+        bonus4 bAutoSpellOnSkill,"NJ_HYOUSYOURAKU","NJ_HYOUSENSOU",max(1,getskilllv("NJ_HYOUSENSOU")),1000;
+        bonus4 bAutoSpellOnSkill,"NJ_KAMAITACHI","NJ_RAIGEKISAI",max(1,getskilllv("NJ_RAIGEKISAI")),1000;
+        bonus2 bSkillCooldown,"KO_HUUMARANKA",-(readparam(bStr) * 5);
+        bonus2 bSkillCooldown,"KO_JYUMONJIKIRI",-(readparam(bStr) * 5);
+      }
+  - Id: 2236045
+    AegisName: SNV_Up_Skill_Ston_2
+    Name: Super Novice True Awakened
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == JOB_NOVICE) {
+        bonus bMaxHP,20000;
+        bonus bAllStats,15;
+        bonus bAtkRange,5;
+        bonus bAspdcap,-3;
+        bonus3 bAutospell,"RK_SONICWAVE",3,1000;
+      }
+  - Id: 2236046
+    AegisName: SJ_Up_Skill_Ston_
+    Name: Star Emperor True Awakened
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == JOB_TAEKWON) {
+        bonus bSkillUpgrade4;
+        bonus bSkillRatio,133;
+      }
+  - Id: 2236047
+    AegisName: SP_Up_Skill_Ston_
+    Name: Soul Reaper True Awakened
+    Type: Card
+    SubType: Enchant
+    Script: |
+      if( BaseClass == JOB_TAEKWON) {
+        bonus bSkillUpgrade4;
+        bonus bUseSPrate,-25;
+      }
 #   [Card Item]
   - Id: 2230001
     AegisName: GOLDEN_SAVAGE_Card
@@ -3540,6 +3731,44 @@ Body:
       bonus2 bMagicAddEle,Ele_Earth,20;
       bonus2 bSubEle,Ele_Fire,20;
       bonus2 bSubEle,Ele_Water,-20;
+  - Id: 2230005
+    AegisName: Cops_Card
+    Name: Cops Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Garment: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      .@r = getrefine();
+      bonus bMaxHPrate,-30;
+      bonus bMaxSPrate,-30;
+      if(.@r > 10 ) {
+      bonus bMaxHPrate,3*(.@r-10);
+      bonus bMaxSPrate,3*(.@r-10);
+      }
+      bonus2 bAddRace,RC_DemiHuman,30;
+      bonus2 bMagicAddRace,RC_DemiHuman,30;
+  - Id: 2230006
+    AegisName: CODEX_Card
+    Name: CODE X Card
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus bMaxHPrate,-50;
+      bonus bMaxSPrate,-50;
+      bonus2 bAddRace,RC_DemiHuman,50;
+      bonus2 bMagicAddRace,RC_DemiHuman,50;
+      bonus bPerfectHitAddRate,30;
   - Id: 2231001
     AegisName: IMT_Swordman_Card
     Name: Imitate Swordman Card

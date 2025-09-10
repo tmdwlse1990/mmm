@@ -2762,6 +2762,7 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int32 l
 		status->luk += level + (level >= 200 ? status->luk : 0);
 		status->agi += (level >= 120 ? level : level / 5 ) + (level >= 200 ? status->agi / 4 : 0);
 		status->dex += (level >= 120 ? level : level / 5 ) + (level >= 200 ? status->luk / 4 : 0);
+		status->hit += (level >= 150 ? level*2 : 0 );
 		
 		//status->rhw.atk += status->rhw.atk * (100 + level / 100);
 		status->rhw.atk = status->rhw.atk + (status->rhw.atk * (level/2) / 100) + (level >= 200 ? status->rhw.atk : 0);
@@ -4430,6 +4431,12 @@ int32 status_calc_pc_sub(map_session_data* sd, uint8 opt)
 	// Absolute modifiers from passive skills
 	if(pc_checkskill(sd,BS_HILTBINDING)>0)
 		base_status->str++;
+	if((skill=pc_checkskill(sd,SG_SUN_ANGER))>0)
+		base_status->str += (skill*2) + 1; // +2 Str / lv
+	if((skill=pc_checkskill(sd,SG_MOON_ANGER))>0)
+		base_status->agi += (skill*2) + 1; // +2 Str / lv
+	if((skill=pc_checkskill(sd,SG_STAR_ANGER))>0)
+		base_status->dex += (skill*2) + 1; // +2 Str / lv
 	if((skill=pc_checkskill(sd,SA_DRAGONOLOGY))>0)
 		base_status->int_ += (skill+1)/2; // +1 INT / 2 lv
 	if((skill=pc_checkskill(sd,AC_OWL))>0)
@@ -4458,24 +4465,6 @@ int32 status_calc_pc_sub(map_session_data* sd, uint8 opt)
 	i = base_status->luk + sd->status.luk + sd->indexed_bonus.param_bonus[PARAM_LUK] + sd->indexed_bonus.param_equip[PARAM_LUK];
 	i = i + (i * sd->indexed_bonus.param_bonus_rate[PARAM_LUK] / 100);
 	base_status->luk = cap_value(i,0,USHRT_MAX);
-	i = base_status->pow + sd->status.pow + sd->indexed_bonus.param_bonus[PARAM_POW] + sd->indexed_bonus.param_equip[PARAM_POW];
-	i = i + (i * sd->indexed_bonus.param_bonus_rate[PARAM_POW] / 100);
-	base_status->pow = cap_value(i, 0, USHRT_MAX);
-	i = base_status->sta + sd->status.sta + sd->indexed_bonus.param_bonus[PARAM_STA] + sd->indexed_bonus.param_equip[PARAM_STA];
-	i = i + (i * sd->indexed_bonus.param_bonus_rate[PARAM_STA] / 100);
-	base_status->sta = cap_value(i, 0, USHRT_MAX);
-	i = base_status->wis + sd->status.wis + sd->indexed_bonus.param_bonus[PARAM_WIS] + sd->indexed_bonus.param_equip[PARAM_WIS];
-	i = i + (i * sd->indexed_bonus.param_bonus_rate[PARAM_WIS] / 100);
-	base_status->wis = cap_value(i, 0, USHRT_MAX);
-	i = base_status->spl + sd->status.spl + sd->indexed_bonus.param_bonus[PARAM_SPL] + sd->indexed_bonus.param_equip[PARAM_SPL];
-	i = i + (i * sd->indexed_bonus.param_bonus_rate[PARAM_SPL] / 100);
-	base_status->spl = cap_value(i, 0, USHRT_MAX);
-	i = base_status->con + sd->status.con + sd->indexed_bonus.param_bonus[PARAM_CON] + sd->indexed_bonus.param_equip[PARAM_CON];
-	i = i + (i * sd->indexed_bonus.param_bonus_rate[PARAM_CON] / 100);
-	base_status->con = cap_value(i, 0, USHRT_MAX);
-	i = base_status->crt + sd->status.crt + sd->indexed_bonus.param_bonus[PARAM_CRT] + sd->indexed_bonus.param_equip[PARAM_CRT];
-	i = i + (i * sd->indexed_bonus.param_bonus_rate[PARAM_CRT] / 100);
-	base_status->crt = cap_value(i, 0, USHRT_MAX);
 
 	if (sd->special_state.no_walk_delay) {
 		if (sc->getSCE(SC_ENDURE)) {
@@ -4497,6 +4486,33 @@ int32 status_calc_pc_sub(map_session_data* sd, uint8 opt)
 	if ((skill = pc_checkskill(sd, SOA_SOUL_MASTERY)) > 0)
 		base_status->spl += skill;
 
+	i = base_status->pow + sd->status.pow + sd->indexed_bonus.param_bonus[PARAM_POW] + sd->indexed_bonus.param_equip[PARAM_POW];
+	i = i + (i * sd->indexed_bonus.param_bonus_rate[PARAM_POW] / 100);
+	base_status->pow = cap_value(i, 0, USHRT_MAX);
+	i = base_status->sta + sd->status.sta + sd->indexed_bonus.param_bonus[PARAM_STA] + sd->indexed_bonus.param_equip[PARAM_STA];
+	i = i + (i * sd->indexed_bonus.param_bonus_rate[PARAM_STA] / 100);
+	base_status->sta = cap_value(i, 0, USHRT_MAX);
+	i = base_status->wis + sd->status.wis + sd->indexed_bonus.param_bonus[PARAM_WIS] + sd->indexed_bonus.param_equip[PARAM_WIS];
+	i = i + (i * sd->indexed_bonus.param_bonus_rate[PARAM_WIS] / 100);
+	base_status->wis = cap_value(i, 0, USHRT_MAX);
+	i = base_status->spl + sd->status.spl + sd->indexed_bonus.param_bonus[PARAM_SPL] + sd->indexed_bonus.param_equip[PARAM_SPL];
+	i = i + (i * sd->indexed_bonus.param_bonus_rate[PARAM_SPL] / 100);
+	base_status->spl = cap_value(i, 0, USHRT_MAX);
+	i = base_status->con + sd->status.con + sd->indexed_bonus.param_bonus[PARAM_CON] + sd->indexed_bonus.param_equip[PARAM_CON];
+	i = i + (i * sd->indexed_bonus.param_bonus_rate[PARAM_CON] / 100);
+	base_status->con = cap_value(i, 0, USHRT_MAX);
+	i = base_status->crt + sd->status.crt + sd->indexed_bonus.param_bonus[PARAM_CRT] + sd->indexed_bonus.param_equip[PARAM_CRT];
+	i = i + (i * sd->indexed_bonus.param_bonus_rate[PARAM_CRT] / 100);
+	base_status->crt = cap_value(i, 0, USHRT_MAX);
+// ------ Final Stats CALCULATION ------
+	
+	if ((skill = pc_checkskill(sd, SG_SUN_ANGER)) > 0)
+		base_status->str += base_status->str * skill / 100;
+	if ((skill = pc_checkskill(sd, SG_MOON_ANGER)) > 0)
+		base_status->agi += base_status->agi * skill / 100;
+	if ((skill = pc_checkskill(sd, SG_STAR_ANGER)) > 0)
+		base_status->dex += base_status->dex * skill / 100;
+	
 // ------ ATTACK CALCULATION ------
 
 	// Base batk value is set in status_calc_misc
@@ -11146,7 +11162,7 @@ static bool status_change_start_post_delay(block_list* src, block_list* bl, sc_t
 			}
 			break;
 		case SC_MAGICPOWER:
-			val3 = 5 * val1; // Matk% increase
+			val3 = 10 * val1; // Matk% increase
 #ifndef RENEWAL
 			val2 = 1; // Lasts 1 invocation
 			val4 = 0; // 0 = ready to be used, 1 = activated and running
@@ -11859,14 +11875,26 @@ static bool status_change_start_post_delay(block_list* src, block_list* bl, sc_t
 			val2 = 10*val1; // Critical increase
 			val3 = 3*val1; // Hit increase
 			break;
-		case SC_SUN_COMFORT:
-			val2 = (status_get_lv(bl) + status->dex + status->luk)/2; // def increase
+		case SC_SUN_COMFORT: {
+			int32 bonus;
+			val2 = (status_get_lv(bl) + status->str) * val1 / 10; // def / flee increase
+			if (sd && ((bonus = pc_checkskill(sd, SG_SUN_BLESS)) > 0) )
+				val2 += val2 * (bonus * bonus * 4) / 100;
+		}
 			break;
-		case SC_MOON_COMFORT:
-			val2 = (status_get_lv(bl) + status->dex + status->luk)/10; // flee increase
+		case SC_MOON_COMFORT: {
+			int32 bonus;
+			val2 = (status_get_lv(bl) + status->str) * val1 / 10; // def / flee increase
+			if (sd && ((bonus = pc_checkskill(sd, SG_SUN_BLESS)) > 0))
+				val2 += val2 * (bonus * bonus * 4) / 100;
+		}
 			break;
-		case SC_STAR_COMFORT:
-			val2 = (status_get_lv(bl) + status->dex + status->luk); // Aspd increase
+		case SC_STAR_COMFORT: {
+			int32 bonus;
+			val2 = (status_get_lv(bl) + status->str) * val1 / 20; // Aspd increase
+			if (sd && ((bonus = pc_checkskill(sd, SG_SUN_BLESS)) > 0))
+				val2 += val2 * (bonus * bonus * 4) / 100;
+		}
 			break;
 		case SC_QUAGMIRE:
 			val2 = (sd?5:10)*val1; // Agi/Dex decrease.
@@ -12994,15 +13022,15 @@ static bool status_change_start_post_delay(block_list* src, block_list* bl, sc_t
 			val2 = 5 * val1; // Skill Damage Increase.
 			break;
 		case SC_SOULGOLEM:
-			val2 = 60 * val1; // DEF Increase
-			val3 = 15 + 5 * val1; // MDEF Increase
+			val2 = 100 * val1; // DEF Increase
+			val3 = 50 * val1; // MDEF Increase
 			break;
 		case SC_SOULSHADOW:
 			val2 = (1 + val1) / 2; // ASPD Increase
 			val3 = 10 + 2 * val1; // CRIT Increase
 			break;
 		case SC_SOULFALCON:
-			val2 = 10 * val1; // WATK Increase
+			val2 = 100 * val1; // WATK Increase
 			val3 = 10; // HIT Increase
 			if (val1 >= 3)
 				val3 += 3;
@@ -13010,8 +13038,8 @@ static bool status_change_start_post_delay(block_list* src, block_list* bl, sc_t
 				val3 += 5;
 			break;
 		case SC_SOULFAIRY:
-			val2 = 10 * val1; // MATK Increase
-			val3 = 5; // Variable Cast Time Reduction
+			val2 = 100 * val1; // MATK Increase
+			val3 = 5* val1; // Variable Cast Time Reduction
 			if (val1 >= 3)
 				val3 += 2;
 			else if (val1 >= 5)

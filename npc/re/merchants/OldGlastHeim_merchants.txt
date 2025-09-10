@@ -18,11 +18,17 @@ glast_01,210,273,5	script	Hugin's Butler#pa0829	1_F_04,{
 	mes "[Hugin's Butler]";
 	mes "Bring Temporal Crystal items for various Temporal boots items. Pick something you want.";
 	next;
-	switch( select( "Cancel", "Buy Temporal Boots (Need 1 Temporal Crystal)", "Upgrade Temporal Boots (Need 5 Temporal Crystals)", "Upgrade Modified Boots (Need 5 Temporal Crystals)" ) ) {
+	switch( select( "Cancel", "Buy Temporal Boots (Need 1 Temporal Crystal)", "Upgrade Temporal Boots (Need 30 Temporal Crystals)", "Upgrade Modified Boots (Need 30 Temporal Crystals)", "Exchange True Extended Class Awakened Stone " ) ) {
 	case 1:
 		mes "[Hugin's Butler]";
 		mes "Come back whenever you want.";
 		close;
+	case 5:
+		mes "[Hugin's Butler]";
+		mes "Come back whenever you want.";
+		close2;
+		callshop "ex_stone_ogh";
+		end;
 	case 2:
 		if (countitem(6607) > 0) {
 			mes "[Hugin's Butler]";
@@ -64,13 +70,13 @@ glast_01,210,273,5	script	Hugin's Butler#pa0829	1_F_04,{
 		mes "You are not wearing the Temporal Boots. Talk to me once you're wearing them.";
 		close;
 	}
-	if (countitem(6607) < 5) {
+	if (countitem(6607) < 30) {
 		mes "[Hugin's Butler]";
 		mes "Not enough Temporal Crystals. You need 5 Temporal Crystals to upgrade your item.";
 		close;
 	}
 	mes "[Hugin's Butler]";
-	mes "You can trade ^0000FF1 Temporal Boots and 5 Temporal Crystals^000000 for 1 of the following items. ^FF0000Previous refine rate will not be retained with these new ones^000000.";
+	mes "You can trade ^0000FF1 Temporal Boots and 50 Temporal Crystals^000000 for 1 of the following items. ^FF0000Previous refine rate will not be retained with these new ones^000000.";
 	next;
 	.@s = select( "Cancel", "Str Boots", "Int Boots", "Agi Boots", "Vit Boots", "Dex Boots", "Luk Boots" ) - 2;
 	if (.@s == -1) {
@@ -318,15 +324,15 @@ S_Slot:
 		mes "Ok, come back anytime you want.";
 		close;
 	}
-	if (countitem(6607) < 5) {
+	if (countitem(7925) < 2) {
 		mes "[Hugin's Craftsman]";
-		mes "You must bring ^0000FF5 Temporal Crystal items^000000. Nothing is free you know...";
+		mes "You must bring ^0000FF2 x ^i[7925]^000000. Nothing is free you know...";
 		close;
 	}
-	delitem 6607,5;// Temporal_Crystal
+	delitem 7925,2;// Temporal_Crystal
 	if (getequipid(EQI_SHOES) == .@equip_id) {
 		delequip EQI_SHOES;
-		if (rand(1,100) < 50) {
+		if (rand(1,100) < 85) {
 			mes "[Hugin's Craftsman]";
 			mes "Arrggg, we failed. Better luck next time.";
 			specialeffect2 EF_PHARMACY_FAIL;
@@ -354,7 +360,8 @@ glast_01,184,283,4	script	Dark magic master#pa082	1_F_01,{
 	// requirements
 	.@coagulated_id = 6608;// Coagulated_Spell
 	.@polluted_id = 6755;// Polluted_Spell
-	.@cost_zeny = 100000;
+	.@powerful_id = 7925;
+	.@cost_zeny = 10000000;
 
 	mes "[Dark magic master]";
 	mes "I deal with the Temporal Boots with socket only.";
@@ -412,7 +419,7 @@ glast_01,184,283,4	script	Dark magic master#pa082	1_F_01,{
 	setarray .@en_amount_polluted[0],1,2,4,7,10;
 
 	// (custom) chances of success (official value unknown)
-	setarray .@chances[0],100,70,70,70,70;
+	setarray .@chances[0],100,70,50,30,10;
 
 	// data of item equipped
 	.@equip_name$ = getequipname(EQI_SHOES);

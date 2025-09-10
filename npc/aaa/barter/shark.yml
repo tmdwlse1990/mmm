@@ -46,6 +46,38 @@ Header:
   Version: 2
 
 Body:
+  - Name: ex_stone_ogh
+    Items:
+      - Index: 0
+        Item: GL_UP_Skill_2
+        RequiredItems:
+          - Index: 0
+            Item: Temporal_Crystal
+            Amount: 10
+      - Index: 1
+        Item: NJ_UP_Skill_2
+        RequiredItems:
+          - Index: 0
+            Item: Temporal_Crystal
+            Amount: 10
+      - Index: 2
+        Item: NV_UP_Skill_4
+        RequiredItems:
+          - Index: 0
+            Item: Temporal_Crystal
+            Amount: 10
+      - Index: 3
+        Item: SJ_UP_Skill_4
+        RequiredItems:
+          - Index: 0
+            Item: Temporal_Crystal
+            Amount: 10
+      - Index: 4
+        Item: SP_UP_Skill_4 
+        RequiredItems:
+          - Index: 0
+            Item: Temporal_Crystal
+            Amount: 10
   - Name: Extreme_Kraken
     Items:
       - Index: 0
@@ -94,10 +126,10 @@ Body:
     Items:
       - Index: 0
         Item: Stronghold_Box
-        Zeny: 1200000
+        Zeny: 1000
       - Index: 1
         Item: Silvergrade_Box
-        Zeny: 2400000
+        Zeny: 250000
       - Index: 2
         Item: Catora_Box
         Zeny: 9600000
