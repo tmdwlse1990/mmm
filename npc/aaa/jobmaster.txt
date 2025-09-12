@@ -184,7 +184,15 @@ function	Job_Options	{
 			Job_Options(.@job_opt,roclass(.@eac|EAJL_THIRD)); // Expanded SN is "third" cls
 		}
 	}
-
+	if(.@eac == EAJ_STAR_GLADIATOR) {
+		Require_Level(.Req_Rebirth[0], .Req_Rebirth[1]);
+		Job_Options(.@job_opt, roclass(EAJ_STAR_EMPEROR));
+	}
+	if(.@eac == EAJ_SOUL_LINKER) {
+		Require_Level(.Req_Rebirth[0], .Req_Rebirth[1]);
+		Job_Options(.@job_opt, roclass(EAJ_SOUL_REAPER));
+	}
+	
 	// babies don't get to become 4th jobs
 	if (.FourthExpanded && .@eac == EAJ_REBELLION) {
 		Require_Level(.Req_Fourth[0], .Req_Fourth[1]);
@@ -439,6 +447,10 @@ function	Get_Job_Equip	{
 				getitem 6122,1;	break;	//	Paint Brush
 			case Job_Super_Novice:
 				getitembound4 1208,1,1,15,0,0,0,0,0,Bound_Char,7,.@OptID,.@OptVal,.@OptParam;	break;	//	Main Gauche [1]
+			case JOB_STAR_GLADIATOR:
+				getitembound4 1552,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Tablet  [1]
+			case JOB_SOUL_LINKER:
+				getitembound4 1620,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Survival int [1]
 		}
 	} else if (.@eac&EAJL_2) {
 		// Second Class (And not Third Class)
@@ -527,10 +539,6 @@ function	Get_Job_Equip	{
 			case JOB_KAGEROU:
 			case JOB_OBORO:
 				getitembound4 13304,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Huuma Calm [1]
-			case JOB_STAR_EMPEROR:
-				getitembound4 1552,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Tablet  [1]
-			case JOB_SOUL_REAPER:
-				getitembound4 1620,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Survival int [1]
 				break;
 		}
 	}

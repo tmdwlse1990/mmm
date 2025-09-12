@@ -120,6 +120,7 @@
 27008,Cardinal Margaretha@CD_DILECTIO_HEAL,chase,5280,9,2000,0,2000,yes,friend,friendhpltmaxrate,99,,,,,,3,
 27008,Cardinal Margaretha@CD_DILECTIO_HEAL,chase,5280,9,2000,0,2000,yes,self,myhpltmaxrate,99,,,,,,3,
 27008,Cardinal Margaretha@CD_DILECTIO_HEAL,idle,5280,9,2000,0,2000,yes,self,myhpltmaxrate,99,,,,,,3,
+27008,Valkyrie Randgris@AL_TELEPORT,idle,26,1,10000,0,0,yes,self,rudeattacked,,,,,,,,
 
 22381,Valkyrie Randgris@AL_TELEPORT,idle,26,1,10000,0,0,yes,self,rudeattacked,,,,,,,,
 22381,Valkyrie Randgris@NPC_POWERUP,attack,349,5,10000,0,30000,yes,self,myhpltmaxrate,30,,,,,,,

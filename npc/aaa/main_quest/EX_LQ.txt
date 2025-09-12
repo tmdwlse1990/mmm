@@ -2,11 +2,15 @@
 // NPC: Ksa - Icecastle (เริ่มเควส)
 //--------------------------------------------------
 
-//icecastle,141,216,5	script	Ksa#Ice	531,{
-	lighthalzen,155,257,5	script	Ksa#Ice	531,{
-	if (step==2) {
+icecastle,141,216,5	script	Ksa#Ice	531,{
+	//lighthalzen,155,257,5	script	Ksa#Ice	531,{
+	if (step>=2) {
 		mes "[Ksa]";
-		mes "ไปพบหัวหน้า Lived ที่ห้องวิจัยในเมือง Lighthalzen พิกัด 162 252 เขาจะมอบภารกิจต่อให้!";
+		mes "เวลาไม่คอยท่า!!ไปพบหัวหน้า Lived ที่ห้องวิจัยในเมือง Lighthalzen!!";
+		if (select("ไปเลย:ยังไม่ไป") == 1) {
+			warp "lighthalzen",156,252;
+			end;
+		}
 		end;
 	}
 	if (step == 1){
@@ -28,6 +32,8 @@
 						mes "[Ksa]";
 						mes "ข้าคิดอยู่แล้วว่าแผนนี้จะได้ผล.... ";
 						mes "อ๊ะ ท่านนักผจญภัย ขออภัยที่หลอกลวงท่าน แต่แผนข้านี่มันฉลาดล้ำจริงๆ ไม่โกรธกันนะ";
+						mes "นี่รางวัลของท่าน";
+						getitem 2002002,1;
 						completequest 105;
 						set step,2;
 						next;
@@ -38,16 +44,21 @@
 						next;
 						mes "[Ksa]";
 						mes "เจ้ามาที่ศูนย์วิจัยของพวกข้าที่ Lighthalzen นะ ข้าจะรอท่าน!!";
-						mes "ไปพบหัวหน้า Lived ที่ห้องวิจัยในเมือง Lighthalzen พิกัด 162 252 เขาจะมอบภารกิจต่อให้!";
-						break;
-					default:
-						mes "Error Please contract Admin";
+						next;
+						mes "[Ksa]";
+						mes "ต้องการไปที่ศูนย์วิจัยเลยหรือไม่?";
+							if (select("ไปเลย:ยังไม่ไป") == 1) {
+								warp "lighthalzen",156,252;
+								end;
+							}
+						mes "[Ksa]";
+						mes "ถ้าจะไปก็มาหาข้าได้เลย!!!";
 						end;
 				}
 			case 2: break;
 		}
 	}
-	if (step == 0 && BaseLevel > 100) { 
+	if (step == 0 && BaseLevel > 100 && adv_clas >= 1) { 
 		mes "[Ksa]";
 		mes "โอ้พระเจ้า! ตัวทดลองของข้าหลุดออกระหว่างทำการทดลองแถวๆนี้!!";
 		mes "ถ้าไม่จัดการ พวกมันจะสร้างความเสียหายใหญ่แน่ๆ!";
@@ -65,20 +76,34 @@
 		set step,1;
 		close;
 	}
+	else {
+		mes "[Ksa]";
+		mes "นักผจญภัยระดับเจ้าไม่น่ารอด.....";
+		next;
+		mes "^FF0000ต้องการ LV มากกว่า 100 ";
+		mes "^FF0000และ Rank E ขึ้นไป";
+	}
+	Oninit:
+	waitingroom "EX.Story - Human Evolve",0;
 	end;
 }
 
 
 //--------------------------------------------------
-// NPC: Warp เข้า 1@lhz
+// NPC: Warp เข้า 1@lhz_d1
 //--------------------------------------------------
-lighthalzen,162,252,0	warp	To_Lived	1,1,1@lhz,151,30
-1@lhz,151,27,0	warp	Back_Lived	1,1,lighthalzen,159,252
+lighthalzen,162,252,0	warp	To_Lived	1,1,1@lhz_d1,151,30
+1@lhz_d1,151,27,0	warp	Back_Lived	1,1,lighthalzen,159,252
 
 //--------------------------------------------------
 // NPC: Lived - Research Leader (เริ่มเควสวัตถุดิบ)
 //--------------------------------------------------
-1@lhz,161,54,3	script	Lived Leader	993,{ 
+1@lhz_d1,161,54,3	script	Lived Leader	993,{ 
+	if (step==9) { // จัดการตัวทดลองหลุดเสร็จ แล้วไปฆ่าบอสต่อ 
+		mes "[Lived]";
+		mes "ข้ายังไม่ว่างคุยกับท่าน....."; // แ
+		end;
+	}
 	if (step==3) { //หลังคุยกับ Ksa ในแลป 
 		mes "[Lived]";
 		mes "ข้าดีใจที่เจ้ามาถึงศูนย์วิจัยของเรา!";
@@ -116,18 +141,18 @@ lighthalzen,162,252,0	warp	To_Lived	1,1,1@lhz,151,30
 		mes "[Lived]";
 		mes "ไม่นะ! การทดลองล้มเหลว!! ตัวทดลองบางส่วนหลุดออกมา!!";
 		set step,7; // mob หลุด
-			monster "1@lhz",143,42,"Chief Impostor",27005,1,0,"exsam_fight::OnKill";
-			monster "1@lhz",159,48,"Chief Impostor",27006,1,0,"exsam_fight::OnKill";
-			monster "1@lhz",148,55,"Chief Impostor",27007,1,0,"exsam_fight::OnKill";
-			monster "1@lhz",152,49,"Chief Impostor",27005,1,0,"exsam_fight::OnKill";
-			monster "1@lhz",154,38,"Chief Impostor",27006,1,0,"exsam_fight::OnKill";
+			monster "1@lhz_d1",143,42,"Chief Impostor",27005,1,0,"exsam_fight::OnKill";
+			monster "1@lhz_d1",159,48,"Chief Impostor",27006,1,0,"exsam_fight::OnKill";
+			monster "1@lhz_d1",148,55,"Chief Impostor",27007,1,0,"exsam_fight::OnKill";
+			monster "1@lhz_d1",152,49,"Chief Impostor",27005,1,0,"exsam_fight::OnKill";
+			monster "1@lhz_d1",154,38,"Chief Impostor",27006,1,0,"exsam_fight::OnKill";
 			set @exsam_spawned, 1;
 		close;
 	}
 	if (step==8) { // จัดการตัวทดลองหลุดเสร็จ แล้วไปฆ่าบอสต่อ 
 		mes "[Lived]";
 		mes "เสร็จแล้ว... แต่ตัวต้นแบบยังหนีไป!"; // แก้ text
-		mes "เจ้าไปตามจัดการมันที่ 1@rgsr ได้เลย!"; // แก้ text
+		mes "เจ้าไปตามจัดการมันที่ 1@rgsr_d1 ได้เลย!"; // แก้ text
 		setquest 106; // Prototype escape
 		set step,9;
 		close;
@@ -149,7 +174,14 @@ lighthalzen,162,252,0	warp	To_Lived	1,1,1@lhz,151,30
 						break;
 					case 2: //เควสเสร็จ ไปหา Lived
 						mes "[Lived]";
-						mes "เจ้าทำได้ยอดเยี่ยม! แต่เรื่องนี้ยังไม่จบ...";
+						mes "เรื่องที่เกิดครั้งนี้ทำให้เราต้องนับหนึ่งใหม่อีกแล้วสินะ....";
+						next;
+						mes "[Lived]";
+						mes "นี่คือรางวัลของท่านในการปกป้องเมืองนี้ และที่วิจัยที่นี่";
+						getitem 2099002,1;
+						next;
+						mes "[Lived]";
+						mes "แต่เรื่องนี้ยังไม่จบ...";
 						mes "การวิจัยของข้ามันยังไม่จบ!!!";
 						completequest 106;
 						set step,9;
@@ -184,9 +216,9 @@ lighthalzen,162,252,0	warp	To_Lived	1,1,1@lhz,151,30
 }
 
 //--------------------------------------------------
-// NPC: Ksa - 1@lhz (เตรียมวัตถุดิบ)
+// NPC: Ksa - 1@lhz_d1 (เตรียมวัตถุดิบ)
 //--------------------------------------------------
-1@lhz,143,54,5	script	Ksa#Lab	531,{
+1@lhz_d1,143,54,5	script	Ksa#Lab	531,{
 	if (step == 6 ) {
 		mes "[Ksa]";
 		mes "ไปช่วยลูกน้องของข้าทำงานวิจัยไปก่อนนะ!!";
@@ -380,6 +412,10 @@ lighthalzen,162,252,0	warp	To_Lived	1,1,1@lhz,151,30
 			mes "เตรียมการสมบูรณ์แล้ว .... ";
 			mes "เอาหละ หลังจากนี้มันต้องใช้เวลาจนกว่าท่าน Lived จะเตรียมพื้นที่วิจัยให้พร้อม!!";
 			mes "งานเจ้ามันยังไม่เสร็จ!! ไปช่วยงานของพวกลูกน้องข้าแถวๆนั้นด้วย!! ไป๊!!";
+			next;
+			mes "[Ksa]";
+			mes "เอ้า! เอานี่ไปด้วย!!";
+			getitem 2002002,1;
 			set sideLQA,0;
 			set sideLQB,0;
 			set sideLQC,0;
@@ -398,57 +434,75 @@ lighthalzen,162,252,0	warp	To_Lived	1,1,1@lhz,151,30
 
 
 //--------------------------------------------------
-// Warp ไป Prototype (1@rgsr)
+// Warp ไป Prototype (1@rgsr_d1)
 //--------------------------------------------------
-1@lhz,151,64,4	script	Secure Gate	10237,{ // warp to dun
+1@lhz_d1,151,64,4	script	Secure Gate	10237,{ // warp to dun
 
 	if (step < 7) {
 		mes "[Secure Gate]";
 		mes "ห้ามเข้าก่อนได้รับอนุญาติ!!";
 		close;
 	}
-	warp "1@rgsr",126,38;
+	warp "1@rgsr_d1",126,38;
 	end;
 }
 
-1@rgsr,126,34,0	warp	Back_Prototype	1,1,1@lhz,151,58
+1@rgsr_d1,126,34,0	warp	Back_Prototype	1,1,1@lhz_d1,151,58
 //----------------------------
 // Warp in dungeon
 //----------------------------
-1@rgsr,126,58,0	warp	In_Dun1	1,1,1@rgsr,126,67
-1@rgsr,126,63,0	warp	Out_Dun1	1,1,1@rgsr,126,54
-1@rgsr,58,135,0	warp	In_Dun2	1,1,1@rgsr,66,135
-1@rgsr,63,135,0	warp	Out_Dun2	1,1,1@rgsr,55,135
-1@rgsr,52,184,0	warp	In_Dun3	1,1,1@rgsr,45,184
-1@rgsr,48,184,0	warp	Out_Dun3	1,1,1@rgsr,55,184
-1@rgsr,48,215,0	warp	In_Dun4	1,1,1@rgsr,55,215
-1@rgsr,52,215,0	warp	Out_Dun4	1,1,1@rgsr,45,215
-1@rgsr,108,196,0	warp	In_Dun5	1,1,1@rgsr,108,185
-1@rgsr,108,189,0	warp	Out_Dun5	1,1,1@rgsr,108,200
-1@rgsr,125,161,0	warp	In_Dun6	1,1,1@rgsr,125,152
-1@rgsr,125,156,0	warp	Out_Dun6	1,1,1@rgsr,125,165
-1@rgsr,101,120,0	warp	In_Dun7	1,1,1@rgsr,101,112
-1@rgsr,101,116,0	warp	Out_Dun7	1,1,1@rgsr,101,124
-1@rgsr,144,190,0	warp	In_Dun8	1,1,1@rgsr,144,198
-1@rgsr,144,194,0	warp	Out_Dun8	1,1,1@rgsr,144,186
-1@rgsr,185,215,0	warp	In_Dun9	1,1,1@rgsr,192,215
-1@rgsr,189,215,0	warp	Out_Dun9	1,1,1@rgsr,181,215
-1@rgsr,213,136,0	warp	In_Dun10	1,1,1@rgsr,221,136
-1@rgsr,217,136,0	warp	Out_Dun10	1,1,1@rgsr,209,136
-1@rgsr,213,108,0	warp	In_Dun11	1,1,1@rgsr,220,108
-1@rgsr,217,108,0	warp	Out_Dun11	1,1,1@rgsr,210,108
-1@rgsr,213,76,0	warp	In_Dun12	1,1,1@rgsr,220,76
-1@rgsr,217,76,0	warp	Out_Dun12	1,1,1@rgsr,210,76
-1@rgsr,213,44,0	warp	In_Dun13	1,1,1@rgsr,220,44
-1@rgsr,217,44,0	warp	Out_Dun13	1,1,1@rgsr,210,44
-1@rgsr,151,120,0	warp	In_Dun14	1,1,1@rgsr,151,113
-1@rgsr,151,116,0	warp	Out_Dun14	1,1,1@rgsr,151,123
+1@rgsr_d1,126,58,0	warp	In_Dun1	1,1,1@rgsr_d1,126,67
+1@rgsr_d1,126,63,0	warp	Out_Dun1	1,1,1@rgsr_d1,126,54
+1@rgsr_d1,58,135,0	warp	In_Dun2	1,1,1@rgsr_d1,66,135
+1@rgsr_d1,63,135,0	warp	Out_Dun2	1,1,1@rgsr_d1,55,135
+1@rgsr_d1,52,184,0	warp	In_Dun3	1,1,1@rgsr_d1,45,184
+1@rgsr_d1,48,184,0	warp	Out_Dun3	1,1,1@rgsr_d1,55,184
+1@rgsr_d1,48,215,0	warp	In_Dun4	1,1,1@rgsr_d1,55,215
+1@rgsr_d1,52,215,0	warp	Out_Dun4	1,1,1@rgsr_d1,45,215
+1@rgsr_d1,108,196,0	warp	In_Dun5	1,1,1@rgsr_d1,108,185
+1@rgsr_d1,108,189,0	warp	Out_Dun5	1,1,1@rgsr_d1,108,200
+1@rgsr_d1,125,161,0	warp	In_Dun6	1,1,1@rgsr_d1,125,152
+1@rgsr_d1,125,156,0	warp	Out_Dun6	1,1,1@rgsr_d1,125,165
+1@rgsr_d1,101,120,0	warp	In_Dun7	1,1,1@rgsr_d1,101,112
+1@rgsr_d1,101,116,0	warp	Out_Dun7	1,1,1@rgsr_d1,101,124
+1@rgsr_d1,144,190,0	warp	In_Dun8	1,1,1@rgsr_d1,144,198
+1@rgsr_d1,144,194,0	warp	Out_Dun8	1,1,1@rgsr_d1,144,186
+1@rgsr_d1,185,215,0	warp	In_Dun9	1,1,1@rgsr_d1,192,215
+1@rgsr_d1,189,215,0	warp	Out_Dun9	1,1,1@rgsr_d1,181,215
+1@rgsr_d1,213,136,0	warp	In_Dun10	1,1,1@rgsr_d1,221,136
+1@rgsr_d1,217,136,0	warp	Out_Dun10	1,1,1@rgsr_d1,209,136
+1@rgsr_d1,213,108,0	warp	In_Dun11	1,1,1@rgsr_d1,220,108
+1@rgsr_d1,217,108,0	warp	Out_Dun11	1,1,1@rgsr_d1,210,108
+1@rgsr_d1,213,76,0	warp	In_Dun12	1,1,1@rgsr_d1,220,76
+1@rgsr_d1,217,76,0	warp	Out_Dun12	1,1,1@rgsr_d1,210,76
+1@rgsr_d1,213,44,0	warp	In_Dun13	1,1,1@rgsr_d1,220,44
+1@rgsr_d1,217,44,0	warp	Out_Dun13	1,1,1@rgsr_d1,210,44
+1@rgsr_d1,151,120,0	warp	In_Dun14	1,1,1@rgsr_d1,151,113
+1@rgsr_d1,151,116,0	warp	Out_Dun14	1,1,1@rgsr_d1,151,123
+1@rgsr_d1,189,185,0	warp	In_Dun15	1,1,1@rgsr_d1,190,192
+1@rgsr_d1,190,189,0	warp	Out_Dun15	1,1,1@rgsr_d1,189,182
+1@rgsr_d1,236,209,0	warp	In_Dun16	1,1,1@rgsr_d1,235,202
+1@rgsr_d1,235,205,0	warp	Out_Dun16	1,1,1@rgsr_d1,236,212
+1@rgsr_d1,236,192,0	warp	In_Dun16	1,1,1@rgsr_d1,235,185
+1@rgsr_d1,235,188,0	warp	Out_Dun16	1,1,1@rgsr_d1,236,195
+
+//-----------------------------
+// Monster + MVP
+//------------------------------
+//==================================================
+// 1@cash - Octopus Cave
+//==================================================
+1@rgsr_d1,0,0	monster	Immortal Corps	27005,25,5000
+1@rgsr_d1,0,0	monster	Immortal Corps	27006,25,5000
+1@rgsr_d1,0,0	monster	Immortal Corps	27006,50,5000
+1@rgsr_d1,200,191,5,5	boss_monster	CODE_X	27008,1,7200000,3000000,1
+
 
 //=======ส่วนของนักวิทย์ A B C +อ้วน D============= //spite นักวิทย์(sideLQA,B,C) 402  อ้วน(sideLQD) 853  
 
 //=============== sideLQA ========================//
 
-1@lhz,141,50,5	script	Scientist#Fool	402,{ // นักวิทย์ 1 -> sideLQA
+1@lhz_d1,141,50,5	script	Scientist#Fool	402,{ // นักวิทย์ 1 -> sideLQA
 
     // ---------- ถ้าผ่านแล้ว ----------
 	if (step != 6){
@@ -1634,6 +1688,8 @@ ASK_QUIZ:
         set sideLQA,1;
         mes "[Markus Troll]";
         mes "ถูกต้อง! เจ้าแสดงให้เห็นว่าเข้าใจจริงๆ ยินดีด้วย!";
+		mes "รับรางวัลคนเก่งไปเล้ยยยย!";
+		getitem 2002002,1;
         close;
     } else {
         // ผิด -> เล่าใหม่ตั้งแต่ต้น
@@ -1648,7 +1704,7 @@ ASK_QUIZ:
 
 //=============== sideLQD ========================//
 
-1@lhz,157,54,5	script	Rich Man#Fool	853,{ // อ้วน -> sideLQD
+1@lhz_d1,157,54,5	script	Rich Man#Fool	853,{ // อ้วน -> sideLQD
 	mes "[Dumble R.]";
 	if (step != 6){
 		mes "ใครเอาขยะมายืนจ้องหน้าข้าอยู่ตรงนี้....";
@@ -1724,7 +1780,8 @@ ASK_QUIZ:
 			next;
 			delitem 536,10;
 			mes "[Dumble R.]";
-			mes "หมดธุระของเจ้าแล้ว!!จะไปไหนก็ไป!!";
+			mes "หมดธุระของเจ้าแล้ว!!เจ้าต้องการนี่ใช่ไหม? เอาไปแล้วจะไปไหนก็ไป!!";
+			getitem 2002002,1;
 			set #FatRichStep,8;
 			set sideLQD,1;
 			close;
@@ -1777,7 +1834,7 @@ lhz_in03,107,89,5	script	Item Box#3	10250 ,{
 
 //=========== sideLQB ============//
 
-1@lhz,147,53,4	script	Scientist#Old	923,{ // นักวิทย์ 2 -> sideLQB
+1@lhz_d1,147,53,4	script	Scientist#Old	923,{ // นักวิทย์ 2 -> sideLQB
 	if (OldSstep == 2) {
 		mes "[Max H.]";
 		mes "เจ้าช่วยงานวิจัยข้าได้เยอะเลยหละ ไอ้หนุ่ม.....";
@@ -1803,6 +1860,8 @@ lhz_in03,107,89,5	script	Item Box#3	10250 ,{
 						mes "[Max H.]";
 						mes "ยอดเยี่ยม..ยอดเยี่ยมมม.. ";
 						mes "เอ็งไปช่้วยงานคนอื่นต่อได้แล้วหละ...ข้าคงยุ่งไปอีกซักพักใหญ่";
+						mes "อ่ะ เอานี่ไป....";
+						getitem 2002002,1;
 						completequest 107;
 						set OldSstep,2;
 						set sideLQB,1;
@@ -1832,7 +1891,7 @@ lhz_in03,107,89,5	script	Item Box#3	10250 ,{
 }
 //=========== sideLQC ============//
 
-1@lhz,146,49,4	script	Scientist#Girl	982,{ // นักวิทย์ 3 -> sideLQC
+1@lhz_d1,146,49,4	script	Scientist#Girl	982,{ // นักวิทย์ 3 -> sideLQC
 	if(MiraTalk == 1 && sideLQ_count != 10){
 		mes "[Dr. Mira]";
 		mes "ยังจะพูดอยู่นั่นแหละ!! ไปหาได้แล้ว!!";
@@ -2091,25 +2150,25 @@ lighthalzen,194,294,4	script	Document#10	10391,{
 }
 
 
-1@lhz,138,56,5	script	#Exsample	2350,{ // npc blank
+1@lhz_d1,138,56,5	script	#Exsample	2350,{ // npc blank
 }
-1@lhz,138,56,5	script	#ExsampleP	10007,{ // npc blank
+1@lhz_d1,138,56,5	script	#ExsampleP	10007,{ // npc blank
 }
-1@lhz,138,48,5	script	#ExsamplePA	10007,{ // npc blank
+1@lhz_d1,138,48,5	script	#ExsamplePA	10007,{ // npc blank
 }
-1@lhz,138,40,5	script	#ExsampleB	1195,{ // npc blank
+1@lhz_d1,138,40,5	script	#ExsampleB	1195,{ // npc blank
 }
-1@lhz,138,40,5	script	#ExsamplePB	10007,{ // npc blank
+1@lhz_d1,138,40,5	script	#ExsamplePB	10007,{ // npc blank
 }
-1@lhz,164,56,4	script	#ExsampleC	2274,{ // npc blank
+1@lhz_d1,164,56,4	script	#ExsampleC	2274,{ // npc blank
 }
-1@lhz,164,56,4	script	#ExsamplePC	10007,{ // npc blank
+1@lhz_d1,164,56,4	script	#ExsamplePC	10007,{ // npc blank
 }
-1@lhz,164,48,4	script	#ExsampleD	922,{ // npc blank
+1@lhz_d1,164,48,4	script	#ExsampleD	922,{ // npc blank
 }
-1@lhz,164,48,4	script	#ExsamplePD	10007,{ // npc blank
+1@lhz_d1,164,48,4	script	#ExsamplePD	10007,{ // npc blank
 }
-1@lhz,164,40,4	script	#ExsampleE	802,{ // npc blank
+1@lhz_d1,164,40,4	script	#ExsampleE	802,{ // npc blank
 }
-1@lhz,164,40,5	script	#ExsamplePE	10007,{ // npc blank
+1@lhz_d1,164,40,5	script	#ExsamplePE	10007,{ // npc blank
 }
