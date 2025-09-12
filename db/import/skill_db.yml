@@ -7260,7 +7260,7 @@ Body:
       Skill:
         Plagiarism: true
         Reproduce: true
-    CastDefenseReduction: 33
+#    CastDefenseReduction: 33
     CastTime: 1000
     AfterCastActDelay: 500
     AfterCastWalkDelay: 1000
@@ -7293,7 +7293,7 @@ Body:
     Unit:
       Id: Dummyskill
       Layout: -1
-      Interval: 200
+      Interval: 100
       Target: Enemy
       Flag:
         PathCheck: true
@@ -11198,15 +11198,15 @@ Body:
     Hit: Multi_Hit
     HitCount:
       - Level: 1
-        Count: 1
-      - Level: 2
         Count: 2
-      - Level: 3
-        Count: 3
-      - Level: 4
+      - Level: 2
         Count: 4
+      - Level: 3
+        Count: 6
+      - Level: 4
+        Count: 8
       - Level: 5
-        Count: 5
+        Count: 10
     Element: Ghost
     SplashArea: 1
     CastTime: 800
@@ -13383,21 +13383,11 @@ Body:
       TargetHidden: true
     Range: 18
     Hit: Multi_Hit
-    HitCount:
-      - Level: 1
-        Count: 2
-      - Level: 2
-        Count: 4
-      - Level: 3
-        Count: 6
-      - Level: 4
-        Count: 8
-      - Level: 5
-        Count: 10
+    HitCount: 1
     CastTime: 5000
     AfterCastActDelay: 1000
-    Duration1: 100
-    Cooldown: 5000
+    Duration1: 2000
+    Cooldown: 0
     FixedCastTime: 1000
     Requires:
       SpCost:
@@ -13414,7 +13404,7 @@ Body:
     Unit:
       Id: Gravitation
       Range: 2
-      Interval: 5100 #Using 5s causes a rare bug where another hit occurs at the end
+      Interval: 100 #Using 5s causes a rare bug where another hit occurs at the end
       Target: Enemy
       Flag:
         PathCheck: true
@@ -15448,7 +15438,7 @@ Body:
     Type: Magic
     TargetType: Self
     Hit: Single
-    HitCount: 2
+    HitCount: -2
     Element: Water
     CopyFlags:
       Skill:
@@ -26477,7 +26467,7 @@ Body:
     Hit: Single
     HitCount: 1
     Element: Weapon
-    SplashArea: 3
+    SplashArea: 4
     CopyFlags:
       Skill:
         Reproduce: true
@@ -28255,7 +28245,7 @@ Body:
     Unit:
       Id: Cloud_Kill
       Range: 3
-      Interval: 300
+      Interval: 150
       Target: Enemy
       Flag:
         PathCheck: true
@@ -30517,7 +30507,7 @@ Body:
     Range: -9
     Hit: Single
     HitCount: 1
-    Duration1: 2000
+    Duration1: 30000
     Requires:
       SpCost: 10
       Weapon:
@@ -30532,6 +30522,7 @@ Body:
     TargetType: Self
     DamageFlags:
       Splash: true
+      IgnoreFlee: true
     Hit: Single
     HitCount: 1
     Element: Weapon
@@ -30617,7 +30608,7 @@ Body:
       IgnoreDefense: true
     Range: 11
     Hit: Single
-    HitCount: 1
+    HitCount: 10
     SplashArea: 1
     CastTime:
       - Level: 1
@@ -30683,7 +30674,7 @@ Body:
     Element: Weapon
     SplashArea: 1
     AfterCastActDelay: 1000
-    Duration1: 100
+    Duration1: 1000
     Cooldown: 1000
     Requires:
       SpCost: 70
@@ -30695,7 +30686,7 @@ Body:
     Unit:
       Id: Fire_Rain
       Layout: -1
-      Interval: 1000
+      Interval: 200
       Target: Enemy
       Flag:
         NoOverlap: true

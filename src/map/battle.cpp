@@ -5659,7 +5659,7 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 			if( sc != nullptr && sc->getSCE( SC_ABYSS_DAGGER ) ){
 				skillratio += 30 * skill_lv;
 			}
-
+			skillratio *= 2;
 			RE_LVL_DMOD(100);
 			break;
 		case SC_TRIANGLESHOT: 
@@ -5844,7 +5844,7 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 		case SR_RIDEINLIGHTNING: 
 			skillratio += -100 + 40 * skill_lv;
 			if (sd && sd->status.weapon == W_KNUCKLE)
-				skillratio += 100 * skill_lv;
+				skillratio += 150 * skill_lv;
 			RE_LVL_DMOD(100);
 			break;
 		case WM_SEVERE_RAINSTORM_MELEE:

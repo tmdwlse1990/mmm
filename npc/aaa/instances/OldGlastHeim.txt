@@ -22,10 +22,10 @@
 //============================================================
 
 glast_01,204,273,5	script	Hugin	4_M_SAGE_C,{
-	if (BaseLevel < 125) {
+	if (BaseLevel < 100) {
 		mes "[Hugin]";
 		mes "Why don't you come back after becoming stronger?";
-		mes "Maybe, level 125.";
+		mes "Maybe, level 100.";
 		close;
 	}
 	if (isbegin_quest(12316) == 0) {
@@ -1067,7 +1067,7 @@ OnTimer5000:
 		getexp 250000,250000;
 	}
 	mes "This item has an extraordinary aura with it. Can be very useful for someone special.";
-	getitem 6607,1;// Temporal_Crystal
+	getitem 6607,3;// Temporal_Crystal
 	getitem 6608,1;// Coagulated_Spell
 	close3;
 }
@@ -2009,7 +2009,7 @@ OnTimer10000:
 			getexp 350000,350000;
 		}
 		else {
-			getitem 6607,1;// Temporal_Crystal
+			getitem 6607,3;// Temporal_Crystal
 			getitem 6608,1;// Coagulated_Spell
 		}
 		next;
