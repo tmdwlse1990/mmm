@@ -83,16 +83,8 @@ Header:
 Body:
 # [Old GLash Heim Mod]
   - Id: 2475
-    Hp: 50000000
-    Str: 300
-    Dex: 400
-    Luk: 200
     DamageTaken: 10
   - Id: 2476
-    Hp: 50000000
-    Str: 300
-    Dex: 400
-    Luk: 400
     DamageTaken: 10
 # [Faceworm Mod]
   - Id: 2528

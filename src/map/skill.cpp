@@ -1609,13 +1609,12 @@ int32 skill_additional_effect( struct block_list* src, struct block_list *bl, ui
 	case PA_PRESSURE:
 		status_percent_damage(src, bl, 0, 15+5*skill_lv, false);
 		[[fallthrough]];
+#endif
 	case HW_GRAVITATION:
 		//Pressure and Gravitation can trigger physical autospells
 		attack_type |= BF_NORMAL;
 		attack_type |= BF_WEAPON;
 		break;
-#endif
-
 	case RG_RAID:
 		sc_start(src,bl,SC_STUN,(10+3*skill_lv),skill_lv,skill_get_time(skill_id,skill_lv));
 		sc_start(src,bl,SC_BLIND,(10+3*skill_lv),skill_lv,skill_get_time2(skill_id,skill_lv));
@@ -3670,11 +3669,11 @@ int64 skill_attack (int32 attack_type, struct block_list* src, struct block_list
 	if (tsc && tsc->getSCE(SC_TRICKDEAD))
 		return 0;
 
-#ifndef RENEWAL
+//#ifndef RENEWAL
 	//When Gravitational Field is active, damage can only be dealt by Gravitational Field and Autospells
 	if(sd && sc && sc->getSCE(SC_GRAVITATION) && sc->getSCE(SC_GRAVITATION)->val3 == BCT_SELF && skill_id != HW_GRAVITATION && !sd->state.autocast)
 		return 0;
-#endif
+//#endif
 
 	dmg = battle_calc_attack(attack_type,src,bl,skill_id,skill_lv,flag&0xFFF);
 
@@ -4114,9 +4113,9 @@ int64 skill_attack (int32 attack_type, struct block_list* src, struct block_list
 	}
 
 	if (tsc  && skill_id != NPC_EVILLAND && skill_id != SP_SOULEXPLOSION && skill_id != SJ_NOVAEXPLOSING
-#ifndef RENEWAL
+//#ifndef RENEWAL
 		&& skill_id != PA_PRESSURE && skill_id != HW_GRAVITATION
-#endif
+//#endif
 		) {
 		if (tsc->getSCE(SC_DEVOTION)) {
 			struct status_change_entry *sce = tsc->getSCE(SC_DEVOTION);
@@ -17335,11 +17334,12 @@ int32 skill_unit_onplace_timer(struct skill_unit *unit, struct block_list *bl, t
 		case UNT_MISSION_BOMBARD:
 		case UNT_FUUMASHOUAKU:
 		case UNT_KUNAIKAITEN:
+		case UNT_GRAVITATION:
 			skill_attack(skill_get_type(sg->skill_id),ss,unit,bl,sg->skill_id,sg->skill_lv,tick,0);
 			break;
-#ifdef RENEWAL
- 		case UNT_GRAVITATION:
-#endif
+//#ifdef RENEWAL
+// 		case UNT_GRAVITATION:
+//#endif
 		case UNT_GROUND_GRAVITATION:
 		case UNT_JACK_FROST_NOVA:
 			skill_attack( skill_get_type(sg->skill_id), ss, ss, bl, sg->skill_id, sg->skill_lv, tick, 0 );

@@ -18,7 +18,7 @@ glast_01,210,273,5	script	Hugin's Butler#pa0829	1_F_04,{
 	mes "[Hugin's Butler]";
 	mes "Bring Temporal Crystal items for various Temporal boots items. Pick something you want.";
 	next;
-	switch( select( "Cancel", "Buy Temporal Boots (Need 1 Temporal Crystal)", "Upgrade Temporal Boots (Need 30 Temporal Crystals)", "Upgrade Modified Boots (Need 30 Temporal Crystals)", "Exchange True Extended Class Awakened Stone " ) ) {
+	switch( select( "Cancel", "Buy Temporal Boots (Need 1 Temporal Crystal)", "Upgrade Temporal Boots (Need 5 Temporal Crystals)", "Upgrade Modified Boots (Need 5 Temporal Crystals)", "Exchange True Extended Class Awakened Stone " ) ) {
 	case 1:
 		mes "[Hugin's Butler]";
 		mes "Come back whenever you want.";

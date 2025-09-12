@@ -706,6 +706,11 @@ Body:
         MaxLevel: 10
       - Name: GN_S_PHARMACY
         MaxLevel: 10
+      - Name: GN_MIX_COOKING
+        MaxLevel: 2
+        Requires:
+          - Name: GN_S_PHARMACY
+            Level: 1
   - Job: Clown
     Inherit:
       Novice: true
