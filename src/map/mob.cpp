@@ -2574,6 +2574,7 @@ void mob_process_drop_list(std::shared_ptr<s_item_drop_list>& list, bool loot)
 		dir = DIR_NORTH;
 
 	for (std::shared_ptr<s_item_drop>& ditem : list->items) {
+		if(&ditem->item_data != nullptr)
 		map_addflooritem(&ditem->item_data, ditem->item_data.amount,
 			list->m, list->x, list->y,
 			list->first_charid, list->second_charid, list->third_charid, 4, ditem->mob_id, !loot, dir, BL_CHAR|BL_PET);
