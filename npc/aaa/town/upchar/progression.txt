@@ -156,7 +156,7 @@ icecastle,201,171,4	script	พนักงานต้อนรับ	4_EP21_GALAXIA_B,{
 	setarray .@rankname$[0],"F","E","D","C","B","A","S";
 	mes "สวัสดีนักพจญภัย ท่านต้องการบริการด้านใดค่ะ";
 	next;
-	if(#newbietutorial == 2) {
+	if(#newbietutorial == 2 && !adv_hit) {
 		if(!adv_atk) {
 			mes "อ๊ะ ท่านคือผู้ที่มาใหม่สินะ";
 			mes "สวัสดีจ้า นี่คือกิลนักพจญภัย";
@@ -176,7 +176,7 @@ icecastle,201,171,4	script	พนักงานต้อนรับ	4_EP21_GALAXIA_B,{
 			cutin "",255;
 			end;
 		}
-		else if(adv_atk > 1) {
+		else if(adv_atk > 1 && adv_atk < 5) {
 			mes "นายอัพไปเยอะแล้วนี่น่า เอาตัวใหม่มาเรียนรู้แทนนะ";
 			end;
 		}

@@ -1322,7 +1322,7 @@ Body:
     Int: 316
     Dex: 417
     Luk: 452
-    AttackRange: 2
+    AttackRange: 7
     SkillRange: 10
     ChaseRange: 12
     Size: Large

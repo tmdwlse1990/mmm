@@ -130,7 +130,7 @@ icecastle,185,167,5	script	Troyadee	637,{
 
 Again:
 	// µÒÃÒ§ÍÑµÃÒÊÓàÃç¨µÕ¢Öé¹¢Ñé¹
-	setarray .@tier_rate[0],100,100,100,100,60,60,60,50,40,25,20,20,15,15,10,7,7,7,5;
+	setarray .@tier_rate[0],100,100,100,100,60,60,60,50,40,25,20,20,15,15,10,7,7,7,5,5;
 	setarray .@up_fail_target[0],2,3,4,5,6,7; // +15 ¶Ö§ +20
 	set .@base_rate, .@tier_rate[.@ref];
 
@@ -196,6 +196,9 @@ if (.@chain != 3) {
 				specialeffect2 EF_REFINEOK;
 				mes "^00FF00Up Fail Stack ¤Ãº "+.@up_limit+" µÕµÔ´ 100%!^000000";
 				mes "µÕºÇ¡à»ç¹ +"+(.@ref+1)+" ÊÓàÃç¨!";
+				if (.@ref >= 15 && .@ref < 20) {
+					announce "[Refine System] " + strcharinfo(0) + " has successfully refined " + getitemname(.@item_id) + " to +"+(.@ref+1)+" !!", bc_all | bc_woe;
+				}
 				
 				// Reset ·Ñé§ËÁ´
 				setd .@up_stack_var$, 0;
@@ -210,6 +213,9 @@ if (.@chain != 3) {
 				successrefitem .@slot,1;
 				specialeffect2 EF_REFINEOK;
 				mes "^00FF00µÕºÇ¡à»ç¹ +"+(.@ref+1)+" ÊÓàÃç¨!^000000";
+				if (.@ref >= 15 && .@ref < 20) {
+					announce "[Refine System] " + strcharinfo(0) + " has successfully refined " + getitemname(.@item_id) + " to +"+(.@ref+1)+" !!", bc_all | bc_woe;
+				}
 				setd .@up_stack_var$, 0;
 			} else {
 				specialeffect EF_REFINEFAIL;

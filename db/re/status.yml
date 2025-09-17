@@ -7150,20 +7150,20 @@ Body:
     Icon: EFST_LIGHTOFMOON
     DurationLookup: SJ_LIGHTOFMOON
     EndOnStart:
-      Lunarstance: true
-      Universestance: true
+#      Lunarstance: true
+#      Universestance: true
   - Status: Lightofsun
     Icon: EFST_LIGHTOFSUN
     DurationLookup: SJ_LIGHTOFSUN
     EndOnStart:
-      Lightofsun: true
-      Universestance: true
+#      Lightofsun: true
+#      Universestance: true
   - Status: Lightofstar
     Icon: EFST_LIGHTOFSTAR
     DurationLookup: SJ_LIGHTOFSTAR
     EndOnStart:
-      Starstance: true
-      Universestance: true
+#      Starstance: true
+#      Universestance: true
   - Status: Lunarstance
     Icon: EFST_LUNARSTANCE
     DurationLookup: SJ_LUNARSTANCE

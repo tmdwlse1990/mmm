@@ -1,6 +1,6 @@
 //-	marketshop	#refine_coa_event	-1,2001101:11:5,2001104:12:1,2001105:13:1,6635:14:10,1999941:15:1,2002017:16:20,1999942:17:1,2002018:18:20,2001955:19:10,9183:20:1
-jor_back3,0,0	monster	GLITCH-BC	30003,5,1000
-jor_back3,0,0	monster	GLITCH-WC	30002,5,1000
+jor_back3,0,0	monster	GLITCH-BC	30003,20,1000
+jor_back3,0,0	monster	GLITCH-WC	30002,20,1000
 
 icecastle,183,210,5	script	COA Refine Event	617,{
 //cmd_in02,79,83,5	script	COA Refine Event	617,{

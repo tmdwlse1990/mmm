@@ -368,7 +368,6 @@ function	Job_Change	{
 		set SkillPoint,0;
 	}
 	if( eaclass()&EAJL_UPPER )
-		resetstatus;
 	specialeffect2 EF_ANGEL2;
 	specialeffect2 EF_ELECTRIC;
 	if (.@previous_class != Class) {
@@ -376,6 +375,14 @@ function	Job_Change	{
 			callfunc "F_GetPlatinumSkills";
 		if (.GetJobEquip)
 			Get_Job_Equip();
+	}
+	resetstatus;
+	switch(Class) {
+		case 4239:
+		case 4240:
+		case 4190:
+			StatusPoint += 52;
+		end;
 	}
 	close; // Always closes after the change
 }

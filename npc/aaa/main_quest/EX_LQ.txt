@@ -15,6 +15,7 @@ icecastle,141,216,5	script	Ksa#Ice	531,{
 	}
 	if (step == 1){
 		switch (isbegin_quest(105)){
+			case -1: 
 			case 0: 
 				mes "[Ksa]";
 				mes "มันไม่น่าจะเกิดขึ้นได้นะ ฉันลืมให้เควสเจ้าหรอ....";
@@ -282,9 +283,9 @@ lighthalzen,162,252,0	warp	To_Lived	1,1,1@lhz_d1,151,30
 			switch(select("ส่งวัตถุดิบ","ลงทบทุนวิจัย","ยกเลิก")) {
 				case 1:
 					if (countitem(607) >= 5) {
+						delitem 607,5;
 						progressbar "0xFF0000",3;
 						if (rand(100) < 5) {
-							delitem 607,5;
 							mes "[Ksa]";
 							mes "โอเค วัตถุดิบแรกสมบูรณ์พร้อมใช้ ไปกันต่อ!!";
 							set progress1,1;
@@ -325,9 +326,9 @@ lighthalzen,162,252,0	warp	To_Lived	1,1,1@lhz_d1,151,30
 			switch(select("ส่งวัตถุดิบ","ลงทุนอีก!!","ยกเลิก")) {
 				case 1:
 					if (countitem(6607) >= 1) {
+						delitem 6607,1;
 						progressbar "0xFF0000",3;
 						if (rand(100) < 5) {
-							delitem 6607,1;
 							mes "[Ksa]";
 							mes "ยอดเยี่ยม วัตถุดิบสมบูรณ์สุดๆ! ได้เวลาหาของชิ้นต่อไปแล้ว!!";
 							set progress2,1;
@@ -369,8 +370,8 @@ lighthalzen,162,252,0	warp	To_Lived	1,1,1@lhz_d1,151,30
 				case 1:
 					if (countitem(6649) >= 1) {
 						progressbar "0xFF0000",3;
+						delitem 6649,1;
 						if (rand(100) < 5) {
-							delitem 6649,1;
 							mes "[Ksa]";
 							mes "เขานี่มัน!! สม!!บูรณ์!!แบบ!!";
 							set progress3,1;

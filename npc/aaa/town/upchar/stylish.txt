@@ -4,7 +4,7 @@ icecastle,199,177,4	script	©—π «¬‰À¡#prog	4_ED_SCHMIDT,{
 	setarray .@Styles[1],
 		getbattleflag("max_cloth_color"),
 		getbattleflag("max_hair_style"),
-		getbattleflag("max_hair_color");
+		3;
 	setarray .@Look[1],
 		LOOK_CLOTHES_COLOR,
 		LOOK_HAIR,

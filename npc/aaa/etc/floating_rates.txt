@@ -17,6 +17,7 @@
 
 -	script	FloatingRates	-1,{
 OnInit:
+	bindatcmd "dorate",strnpcinfo(3) + "::OnAtcommand";
 //add any other HOURS
 //OnHour00:
 //OnHour06:
@@ -29,6 +30,12 @@ if(gettime(DT_DAYOFWEEK) >= FRIDAY || !gettime(DT_DAYOFWEEK)) {
 	set $@drate,250;
 	donpcevent strnpcinfo(0)+"::OnDoNewRate";
 }
+	end;
+OnAtcommand:
+	set $@brate,750;
+	set $@jrate,750;
+	set $@drate,250;
+	donpcevent strnpcinfo(0)+"::OnDoNewRate";
 	end;
 OnHour12:
 //OnHour18:

@@ -47,6 +47,13 @@ icecastle,197,155,4	script	Reset Girl	124,{
 		ResetSkill;
 	}
 	if(.@i&2) ResetStatus;
+	switch(Class) {
+		case 4239:
+		case 4240:
+		case 4190:
+			StatusPoint += 52;
+		end;
+	}
 	mes "There you go!";
 	if(.@Reset[3]) set reset_limit,reset_limit + 1;
 	close;
