@@ -1118,15 +1118,15 @@ Body:
     Materials:
       - Material: Ep20_Cat_Whiskers
         Amount: 150
-      - Material: aegis_1001234
+      - Material: Ep20_Ice_Bearskin
         Amount: 150
       - Material: Ep20_Copo_Egg_Shell
         Amount: 50
       - Material: Ep20_Copo_Head_F
         Amount: 20
-      - Material: aegis_300470
+      - Material: Icebear_Card
         Amount: 3
-      - Material: aegis_300455
+      - Material: Copo_Card
         Amount: 3
   - Id: 1263084
     Name: Rp_Ep20_Nest
@@ -1139,7 +1139,7 @@ Body:
         Amount: 50
       - Material: Ep20_Copo_Egg_Shell
         Amount: 50
-      - Material: aegis_300456
+      - Material: Icewind_Egg_Card
         Amount: 3
       - Material: Grey_Icewind_Card
         Amount: 3
@@ -1148,134 +1148,134 @@ Body:
     Materials:
       - Material: Ep20_Cat_Whiskers
         Amount: 250
-      - Material: aegis_1001236
+      - Material: Ep20_Twinkling_Snow
         Amount: 2
-      - Material: aegis_1001232
+      - Material: Ep20_Fluor_Cell_Salty
         Amount: 250
       - Material: EP20_D_P_Ore
         Amount: 1
-      - Material: aegis_300467
+      - Material: Angel_Iceslug_Card
         Amount: 1
-      - Material: aegis_300473
+      - Material: Snow_Angel_Card
         Amount: 1
   - Id: 1263086
     Name: Rp_Ep20_Noob
     Materials:
       - Material: Ep20_Cat_Whiskers
         Amount: 100
-      - Material: aegis_1001240
+      - Material: Ep20_Iwin_Private_C
         Amount: 100
-      - Material: aegis_1001241
+      - Material: Ep20_Iwin_Priva_Co_C
         Amount: 100
-      - Material: aegis_1001242
+      - Material: Ep20_Iwin_Corporal_C
         Amount: 100
-      - Material: aegis_1001243
+      - Material: Ep20_Iwin_Sergeant_C
         Amount: 100
-      - Material: aegis_1001239
+      - Material: Ep20_Broken_Trident
         Amount: 100
-      - Material: aegis_300461
+      - Material: Fake_Iwin_S_Card
         Amount: 5
   - Id: 1263087
     Name: Rp_Ep20_Hide
     Materials:
       - Material: Ep20_Cat_Whiskers
         Amount: 250
-      - Material: aegis_1001233
+      - Material: Ep20_Fluor_Cell_Sweet
         Amount: 450
-      - Material: aegis_1001237
+      - Material: Ep20_Angels_Tail
         Amount: 2
       - Material: EP20_D_P_Ore
         Amount: 1
-      - Material: aegis_300471
+      - Material: F_Angel_Iceslug_Card
         Amount: 1
-      - Material: aegis_300468
+      - Material: Rabbit_Iceslug_card
         Amount: 3
   - Id: 1263088
     Name: Rp_Ep20_Mess
     Materials:
       - Material: Ep20_Cat_Whiskers
         Amount: 150
-      - Material: aegis_1001231
+      - Material: Ep20_Fluor_Cell_Sour
         Amount: 100
-      - Material: aegis_1001232
+      - Material: Ep20_Fluor_Cell_Salty
         Amount: 100
-      - Material: aegis_1001233
+      - Material: Ep20_Fluor_Cell_Sweet
         Amount: 100
-      - Material: aegis_300469
+      - Material: Melibe_Iceslug_Card
         Amount: 3
-      - Material: aegis_300466
+      - Material: E_Rgan_Cleaner_Card
         Amount: 3
   - Id: 1263089
     Name: Rp_Ep20_Heal
     Materials:
       - Material: Ep20_Cat_Whiskers
         Amount: 150
-      - Material: aegis_1001226
+      - Material: Ep20_Rgan_Core_F
         Amount: 15
-      - Material: aegis_1001227
+      - Material: Ep20_Coral_Bangle
         Amount: 20
-      - Material: aegis_1001228
+      - Material: Ep20_Shell_Hairpin
         Amount: 20
-      - Material: aegis_1001229
+      - Material: Ep20_Seaweed_Belt
         Amount: 20
-      - Material: aegis_300462
+      - Material: S_Rgan_Warlock_Card
         Amount: 3
-      - Material: aegis_300463
+      - Material: S_Rgan_Healer_Card
         Amount: 3
   - Id: 1263090
     Name: Rp_Ep20_Ranger
     Materials:
       - Material: Ep20_Cat_Whiskers
         Amount: 150
-      - Material: aegis_1001226
+      - Material: Ep20_Rgan_Core_F
         Amount: 15
-      - Material: aegis_1001230
+      - Material: Ep20_Cataphract_Piece
         Amount: 10
-      - Material: aegis_1001238
+      - Material: Ep20_Mystic_Spl_Colt
         Amount: 15
-      - Material: aegis_300464
+      - Material: E_Rgan_Warlock_Card
         Amount: 2
-      - Material: aegis_300465
+      - Material: E_Rgan_Guardian_Card
         Amount: 2
-      - Material: aegis_300459
+      - Material: E_Rgan_Healer_Card
         Amount: 2
-      - Material: aegis_300460
+      - Material: Jormun_Guardian_Card
         Amount: 2
   - Id: 1263091
     Name: Rp_Ep20_Sweeper
     Materials:
       - Material: Ep20_Cat_Whiskers
         Amount: 300
-      - Material: aegis_1001235
+      - Material: Ep20_Unknown_Canine
         Amount: 2
-      - Material: aegis_1001231
+      - Material: Ep20_Fluor_Cell_Sour
         Amount: 350
-      - Material: aegis_1001232
+      - Material: Ep20_Fluor_Cell_Salty
         Amount: 350
-      - Material: aegis_1001233
+      - Material: Ep20_Fluor_Cell_Sweet
         Amount: 350
-      - Material: aegis_1001226
+      - Material: Ep20_Rgan_Core_F
         Amount: 350
       - Material: EP20_D_P_Ore
         Amount: 1
-      - Material: aegis_300474
+      - Material: Rgan_Chief_Clean_Card
         Amount: 1
   - Id: 1263092
     Name: Rp_Ep20_Ult
     Materials:
       - Material: Ep20_Cat_Whiskers
         Amount: 300
-      - Material: aegis_1001233
+      - Material: Ep20_Fluor_Cell_Sweet
         Amount: 300
-      - Material: aegis_1001231
+      - Material: Ep20_Fluor_Cell_Sour
         Amount: 300
-      - Material: aegis_1001232
+      - Material: Ep20_Fluor_Cell_Salty
         Amount: 300
-      - Material: aegis_1001238
+      - Material: Ep20_Mystic_Spl_Colt
         Amount: 30
       - Material: EP20_D_P_Ore
         Amount: 1
       - Material: EP20_D_Scale
         Amount: 1
-      - Material: aegis_300472
+      - Material: Demigod_Lasgand_Card
         Amount: 1

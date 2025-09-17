@@ -33,6 +33,7 @@
 #include "pc.hpp"
 #include "pc_groups.hpp"
 #include "pet.hpp"
+#include "./skills/skill_impl.hpp"
 
 using namespace rathena;
 
@@ -330,7 +331,7 @@ int32 battle_damage(struct block_list *src, struct block_list *target, int64 dam
 
 	if (src)
 		sd = BL_CAST(BL_PC, src);
-	map_freeblock_lock();
+	FreeBlockLock freeLock;
 	if (sd && battle_check_coma(*sd, *target, (e_battle_flag)attack_type))
 		dmg_change = status_damage(src, target, damage, 0, delay, 16, skill_id); // Coma attack
 	else if (dmg_lv > ATK_BLOCK)
@@ -360,7 +361,6 @@ int32 battle_damage(struct block_list *src, struct block_list *target, int64 dam
 			add_timer(tick + delay, mob_attacked, target->id, src->id);
 		}
 	}
-	map_freeblock_unlock();
 	return dmg_change;
 }
 
@@ -2856,10 +2856,12 @@ static int32 battle_range_type(struct block_list *src, struct block_list *target
 		case MT_RUSH_QUAKE: // 9 cell cast range.
 		case MT_RUSH_STRIKE: // 7 cell cast range.
 		case ABC_UNLUCKY_RUSH: // 7 cell cast range.
+		case ABC_CHASING_BREAK: // 7 cell cast range.
 		case MH_THE_ONE_FIGHTER_RISES: // 7 cell cast range.
 		//case ABC_DEFT_STAB: // 2 cell cast range???
 		case NPC_MAXPAIN_ATK:
 		case SS_SHIMIRU: // 11 cell cast range.
+		case SKE_STAR_LIGHT_KICK: // 7 cell cast range.
 			return BF_SHORT;
 		case CD_PETITIO: { // Skill range is 2 but damage is melee with books and ranged with mace.
 			map_session_data *sd = BL_CAST(BL_PC, src);
@@ -2995,10 +2997,12 @@ static int32 battle_skill_damage_map(struct block_list *src, struct block_list *
  */
 static int32 battle_skill_damage(struct block_list *src, struct block_list *target, uint16 skill_id) {
 	nullpo_ret(src);
+	int32 rates = 0;
 	if (!target || !skill_id)
 		return 0;
 	skill_id = skill_dummy2skill_id(skill_id);
-	return battle_skill_damage_skill(src, target, skill_id) + battle_skill_damage_map(src, target, skill_id) + get_bonus_skillrate(src, skill_id)  - get_bonus_skillratedef(target,skill_id);
+	rates = battle_skill_damage_skill(src, target, skill_id) + battle_skill_damage_map(src, target, skill_id) + get_bonus_skillrate(src, skill_id) - get_bonus_skillratedef(target,skill_id);
+	return rates;
 }
 
 /**
@@ -3470,6 +3474,11 @@ static bool is_attack_hitting(struct Damage* wd, struct block_list *src, struct 
 #endif
 
 	if(skill_id) {
+		std::shared_ptr<s_skill_db> skill = skill_db.find(skill_id);
+		if (skill != nullptr && skill->impl != nullptr) {
+			skill->impl->modifyHitRate(hitrate, src, target, skill_lv);
+		}
+
 		switch(skill_id) { //Hit skill modifiers
 			//It is proven that bonus is applied on final hitrate, not hit.
 			case NPC_EARTHQUAKE_K:
@@ -3480,7 +3489,6 @@ static bool is_attack_hitting(struct Damage* wd, struct block_list *src, struct 
 				hitrate += hitrate * 5 * skill_lv / 100;
 				break;
 			case MS_MAGNUM:
-			case SM_MAGNUM:
 				hitrate += hitrate * 10 * skill_lv / 100;
 				break;
 			case KN_AUTOCOUNTER:
@@ -3533,7 +3541,6 @@ static bool is_attack_hitting(struct Damage* wd, struct block_list *src, struct 
 			case RK_SONICWAVE:
 				hitrate += hitrate * 3 * skill_lv / 100; // !TODO: Confirm the hitrate bonus
 				break;
-			case MC_CARTREVOLUTION:
 			case GN_CART_TORNADO:
 			case GN_CARTCANNON:
 				if (sd && pc_checkskill(sd, GN_REMODELING_CART))
@@ -4926,6 +4933,11 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 		}
 	}
 
+	std::shared_ptr<s_skill_db> skill = skill_db.find(skill_id);
+	if (skill != nullptr && skill->impl != nullptr) {
+		skill->impl->calculateSkillRatio(wd, src, target, skill_lv, skillratio);
+	}
+
 	switch(skill_id) {
 		case BS_HAMMERFALL:
 			skillratio += 450 + 50 * skill_lv;
@@ -4941,17 +4953,12 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 			else
 				skillratio += 10 * skill_lv; //Outer 5x5 circle takes 100%+10%*level damage [Playtester]
 			break;
-		case MC_MAMMONITE:
-			skillratio += 50 * skill_lv;
-			break;
 		case HT_POWER:
 			skillratio += -50 + 8 * sstatus->str;
 			break;
-		case AC_DOUBLE:
 		case MA_DOUBLE:
 			skillratio += 10 * (skill_lv - 1);
 			break;
-		case AC_SHOWER:
 		case MA_SHOWER:
 #ifdef RENEWAL
 			skillratio += 50 + 10 * skill_lv;
@@ -4959,7 +4966,6 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 			skillratio += -25 + 5 * skill_lv;
 #endif
 			break;
-		case AC_CHARGEARROW:
 		case MA_CHARGEARROW:
 			skillratio += 50;
 			break;
@@ -5028,13 +5034,6 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 			break;
 		case TF_SPRINKLESAND:
 			skillratio += 30;
-			break;
-		case MC_CARTREVOLUTION:
-			skillratio += 50;
-			if(sd && sd->cart_weight)
-				skillratio += 100 * sd->cart_weight / sd->cart_weight_max; // +1% every 1% weight
-			else if (!sd)
-				skillratio += 100; //Max damage for non players.
 			break;
 		case NPC_PIERCINGATT:
 			skillratio += -25; //75% base damage
@@ -6261,6 +6260,13 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 			skillratio += -100 + 700 * skill_lv + 10 * sstatus->pow;
 			RE_LVL_DMOD(100);
 			break;
+		case IQ_BLAZING_FLAME_BLAST:
+			skillratio += -100 + 2000 + 3800 * skill_lv;
+			skillratio += 10 * sstatus->pow;	// !TODO: unknown ratio
+			if( sc != nullptr && sc->hasSCE( SC_MASSIVE_F_BLASTER ) )
+				skillratio += 1500 + 400 * skill_lv;
+			RE_LVL_DMOD(100);
+			break;
 		case IG_GRAND_JUDGEMENT:
 			skillratio += -100 + 250 + 1500 * skill_lv + 10 * sstatus->pow;
 			if (tstatus->race == RC_PLANT || tstatus->race == RC_INSECT)
@@ -6434,6 +6440,8 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 			break;
 		case ABC_UNLUCKY_RUSH:
 			skillratio += -100 + 100 + 300 * skill_lv + 5 * sstatus->pow;
+			if (sc != nullptr && sc->hasSCE(SC_CHASING))
+				skillratio += 2500 * skill_lv;
 			RE_LVL_DMOD(100);
 			break;
 		case ABC_CHAIN_REACTION_SHOT:
@@ -6444,6 +6452,8 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 		case ABC_CHAIN_REACTION_SHOT_ATK:
 			skillratio += -100 + 800 + 2550 * skill_lv;
 			skillratio += 15 * sstatus->con;
+			if (sc != nullptr && sc->hasSCE(SC_CHASING))
+				skillratio += 700 * skill_lv;
 			RE_LVL_DMOD(100);
 			break;
 		case ABC_DEFT_STAB:
@@ -6732,6 +6742,30 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 			skillratio += 5 * sstatus->con;
 			RE_LVL_DMOD(100);
 			break;
+		case NW_WILD_SHOT:
+			skillratio += -100 + 870 + 180 * skill_lv;
+			if (sd != nullptr && sc != nullptr && sc->hasSCE(SC_HIDDEN_CARD)) {
+				if (sd->weapontype1 == W_REVOLVER)
+					skillratio += 60 * skill_lv;
+				else if (sd->weapontype1 == W_RIFLE)
+					skillratio += 100 * skill_lv;
+			}
+			skillratio += 5 * sstatus->con; //!TODO: check con ratio
+			RE_LVL_DMOD(100);
+			break;
+		case NW_MIDNIGHT_FALLEN:
+			skillratio += -100 + 2400 + 800 * skill_lv;
+			if (sd != nullptr && sc != nullptr && sc->hasSCE(SC_HIDDEN_CARD)) {
+				if (sd->weapontype1 == W_GATLING)
+					skillratio += 200 * skill_lv;
+				else if (sd->weapontype1 == W_GRENADE)
+					skillratio += 340 * skill_lv;
+				else if (sd->weapontype1 == W_SHOTGUN)
+					skillratio += 400 * skill_lv;
+			}
+			skillratio += 5 * sstatus->con; //!TODO: check con ratio
+			RE_LVL_DMOD(100);
+			break;
 		case SH_CHUL_HO_SONIC_CLAW:
 			skillratio += -100 + 1100 + 2200 * skill_lv;
 			skillratio += 50 * pc_checkskill(sd, SH_MYSTICAL_CREATURE_MASTERY);
@@ -6921,6 +6955,43 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 			RE_LVL_DMOD(100);
 			if (wd->miscflag & SKILL_ALTDMG_FLAG)
 				skillratio = skillratio * 3 / 10;
+			break;
+		case SKE_SKY_SUN:
+			skillratio += -100 + 1500 * skill_lv;
+			skillratio += skill_lv * 7 * pc_checkskill( sd, SKE_SKY_MASTERY );
+			skillratio += 5 * sstatus->pow;
+			RE_LVL_DMOD(100);
+			break;
+		case SKE_SKY_MOON:
+			skillratio += -100 + 1200 + 450 * skill_lv;
+			skillratio += skill_lv * 9 * pc_checkskill( sd, SKE_SKY_MASTERY );
+			skillratio += 5 * sstatus->pow;
+			RE_LVL_DMOD(100);
+			break;
+		case SKE_STAR_LIGHT_KICK:
+			skillratio += -100 + 400 + 200 * skill_lv;
+			skillratio += skill_lv * 5 * pc_checkskill( sd, SKE_SKY_MASTERY );
+			skillratio += 5 * sstatus->pow;
+			RE_LVL_DMOD(100);
+			break;
+		case ABC_HIT_AND_SLIDING:
+			skillratio += -100 + 3500 * skill_lv;
+			skillratio += 5 * sstatus->pow;
+			RE_LVL_DMOD(100);
+			break;
+		case ABC_CHASING_BREAK:
+			skillratio += -100 + 1550 + 450 * skill_lv;
+			skillratio += 5 * sstatus->pow;
+			if (sc != nullptr && sc->hasSCE(SC_CHASING))
+				skillratio += 200 + 50 * skill_lv;
+			RE_LVL_DMOD(100);
+			break;
+		case ABC_CHASING_SHOT:
+			skillratio += -100 + 1500 + 700 * skill_lv;
+			skillratio += 5 * sstatus->con;
+			if (sc != nullptr && sc->hasSCE(SC_CHASING))
+				skillratio += 250 * skill_lv;
+			RE_LVL_DMOD(100);
 			break;
 		case NPC_LIGHTNING_JUDGEMENT:
 			skillratio += -100 + 200 + 50 * skill_lv;	// Unknown value
@@ -7921,6 +7992,18 @@ static struct Damage initialize_weapon_data(struct block_list *src, struct block
 			case BO_MAYHEMIC_THORNS:
 				if (sc && sc->getSCE(SC_RESEARCHREPORT))
 					wd.div_ = 4;
+				break;
+			case ABC_CHASING_BREAK:
+				if (sc != nullptr && sc->hasSCE(SC_CHASING))
+					wd.div_ = 7;
+				break;
+			case ABC_CHASING_SHOT:
+				if (sc != nullptr && sc->hasSCE(SC_CHASING))
+					wd.div_ = 3;
+				break;
+			case ABC_HIT_AND_SLIDING:
+				if (sd != nullptr && sd->status.weapon == W_BOW)
+					wd.flag |= BF_LONG;
 				break;
 			case HN_DOUBLEBOWLINGBASH:
 				if (wd.miscflag > 1)
@@ -9354,6 +9437,18 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						skillratio += 5 * sstatus->spl;
 						RE_LVL_DMOD(100);
 						break;
+					case ABC_ABYSS_FLAME:
+						skillratio += -100 + 500 * skill_lv;
+						skillratio += 10 * sstatus->spl;
+						skillratio += 15 * skill_lv * pc_checkskill( sd, ABC_MAGIC_SWORD_M );
+						RE_LVL_DMOD(100);
+						break;
+					case ABC_ABYSS_FLAME_ATK:
+						skillratio += -100 + 820 * skill_lv;
+						skillratio += 10 * sstatus->spl;
+						skillratio += 30 * skill_lv * pc_checkskill( sd, ABC_MAGIC_SWORD_M );
+						RE_LVL_DMOD(100);
+						break;
 					case TR_METALIC_FURY:
 						skillratio += -100 + 3850 * skill_lv;
 						// !Todo: skill affected by SPL (without SC_SOUNDBLEND) as well?
@@ -10465,6 +10560,11 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 	if ((skill_damage = battle_skill_damage(src,target,skill_id)) != 0)
 		md.damage += (int64)md.damage * skill_damage / 100;
 
+	// P.ATK Apply
+	if (sd != nullptr) {
+		md.damage = (int64)floor((float)(md.damage * (100 + sstatus->patk) / 100));
+	}
+
 	battle_absorb_damage(target, &md);
 
 	battle_do_reflect(BF_MISC,&md, src, target, skill_id, skill_lv); //WIP [lighta]
@@ -10843,7 +10943,7 @@ int32 battle_damage_area(struct block_list *bl, va_list ap) {
 	if (status_bl_has_mode(bl, MD_SKILLIMMUNE) || status_get_class(bl) == MOBID_EMPERIUM)
 		return 0;
 	if( bl != src && battle_check_target(src,bl,BCT_ENEMY) > 0 ) {
-		map_freeblock_lock();
+		FreeBlockLock freeLock;
 		if( src->type == BL_PC )
 			battle_drain((TBL_PC*)src, bl, damage, damage, status_get_race(bl), status_get_class_(bl));
 		if( amotion )
@@ -10852,7 +10952,6 @@ int32 battle_damage_area(struct block_list *bl, va_list ap) {
 			battle_fix_damage(src,bl,damage,0,LG_REFLECTDAMAGE);
 		clif_damage(*bl,*bl,tick,amotion,dmotion,damage,1,DMG_ENDURE,0,false);
 		skill_additional_effect(src, bl, CR_REFLECTSHIELD, 1, BF_WEAPON|BF_SHORT|BF_NORMAL,ATK_DEF,tick);
-		map_freeblock_unlock();
 	}
 
 	return 0;
@@ -11208,7 +11307,7 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 		}
 	}
 
-	map_freeblock_lock();
+	FreeBlockLock freeLock;
 
 	if( !(tsc && tsc->getSCE(SC_DEVOTION)) && !vellum_damage && skill_check_shadowform(target, damage, wd.div_) ) {
 		if( !status_isdead(*target) )
@@ -11337,7 +11436,6 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 
 					if( type != CAST_GROUND ){
 						clif_skill_fail( *sd, r_skill );
-						map_freeblock_unlock();
 						return wd.dmg_lv;
 					}
 				}
@@ -11548,7 +11646,6 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 	if (sd && tsc && wd.flag&BF_LONG && tsc->getSCE(SC_WINDSIGN) && rand()%100 < tsc->getSCE(SC_WINDSIGN)->val2)
 		status_heal(src, 0, 0, 1, 0);
 
-	map_freeblock_unlock();
 	return wd.dmg_lv;
 }
 
@@ -12130,7 +12227,7 @@ static const struct _battle_data {
 	{ "basic_skill_check",                  &battle_config.basic_skill_check,               1,      0,      1,              },
 	{ "guild_emperium_check",               &battle_config.guild_emperium_check,            1,      0,      1,              },
 	{ "guild_exp_limit",                    &battle_config.guild_exp_limit,                 50,     0,      99,             },
-	{ "player_invincible_time",             &battle_config.pc_invincible_time,              5000,   0,      INT_MAX,        },
+	{ "player_invincible_time",             &battle_config.pc_invincible_time,              3000,   0,      INT_MAX,        },
 	{ "pet_catch_rate",                     &battle_config.pet_catch_rate,                  100,    0,      INT_MAX,        },
 	{ "pet_rename",                         &battle_config.pet_rename,                      0,      0,      1,              },
 	{ "pet_friendly_rate",                  &battle_config.pet_friendly_rate,               100,    0,      INT_MAX,        },
@@ -12689,6 +12786,7 @@ static const struct _battle_data {
 	{ "assist_range",                       &battle_config.assist_range,                    11,     1,      MAX_WALKPATH,   },
 	{ "major_overweight_rate",              &battle_config.major_overweight_rate,           90,     0,      100             },
 	{ "trade_count_stackable",              &battle_config.trade_count_stackable,           1,      0,      1,              },
+	{ "enable_bonus_map_drops",             &battle_config.enable_bonus_map_drops,          1,      0,      1,              },
 
 #include <custom/battle_config_init.inc>
 };

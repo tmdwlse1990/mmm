@@ -2178,7 +2178,7 @@ static bool mob_ai_sub_hard(struct mob_data *md, t_tick tick)
 		int32 stop_flag = USW_FIXPOS|USW_RELEASE_TARGET;
 
 		// Source may die due to reflect damage
-		map_freeblock_lock();
+		FreeBlockLock freeLock;
 
 		// Hiding is a special case because it prevents normal attacks but allows skill usage
 		// TODO: Some other states also have this behavior and should be investigated
@@ -2199,8 +2199,6 @@ static bool mob_ai_sub_hard(struct mob_data *md, t_tick tick)
 		// Stop and make sure there is no chase target when attack was not skipped
 		if (stop_flag != USW_NONE)
 			unit_stop_walking(md, stop_flag);
-
-		map_freeblock_unlock();
 
 		//Target still in attack range, no need to chase the target
 		return true;
@@ -2574,6 +2572,7 @@ void mob_process_drop_list(std::shared_ptr<s_item_drop_list>& list, bool loot)
 		dir = DIR_NORTH;
 
 	for (std::shared_ptr<s_item_drop>& ditem : list->items) {
+		if(&ditem->item_data != nullptr)
 		map_addflooritem(&ditem->item_data, ditem->item_data.amount,
 			list->m, list->x, list->y,
 			list->first_charid, list->second_charid, list->third_charid, 4, ditem->mob_id, !loot, dir, BL_CHAR|BL_PET);
@@ -2853,9 +2852,11 @@ void mob_damage(struct mob_data *md, struct block_list *src, int32 damage)
  * @param mob: Monster data
  * @param base_rate: Base drop rate
  * @param drop_modifier: RENEWAL_DROP level modifier
+ * @param md: the actual monster killed
+ * @param factor: factor which is applied to all multiplicative bonuses and upper bound caps
  * @return Modified drop rate
  */
-int32 mob_getdroprate(struct block_list *src, std::shared_ptr<s_mob_db> mob, int32 base_rate, int32 drop_modifier, mob_data* md)
+int32 mob_getdroprate(struct block_list *src, std::shared_ptr<s_mob_db> mob, int32 base_rate, int32 drop_modifier, mob_data* md, int32 factor)
 {
 	int32 drop_rate = base_rate;
 
@@ -2869,9 +2870,9 @@ int32 mob_getdroprate(struct block_list *src, std::shared_ptr<s_mob_db> mob, int
 
 	if (src) {
 		if (battle_config.drops_by_luk) // Drops affected by luk as a fixed increase [Valaris]
-			drop_rate += status_get_luk(src) * battle_config.drops_by_luk / 100;
+			drop_rate += (status_get_luk(src) * battle_config.drops_by_luk / 100) * factor;
 		if (battle_config.drops_by_luk2) // Drops affected by luk as a % increase [Skotlex]
-			drop_rate += (int32)(0.5 + drop_rate * status_get_luk(src) * battle_config.drops_by_luk2 / 10000.);
+			drop_rate += (int32)(0.5 + drop_rate * status_get_luk(src) * battle_config.drops_by_luk2 / 10000.) * factor;
 
 		if (src->type == BL_PC) { // Player specific drop rate adjustments
 			map_session_data *sd = (map_session_data*)src;
@@ -2920,6 +2921,8 @@ int32 mob_getdroprate(struct block_list *src, std::shared_ptr<s_mob_db> mob, int
 			} else
 				cap = battle_config.drop_rate_cap;
 
+			cap *= factor;
+
 			drop_rate = (int32)( 0.5 + drop_rate * drop_rate_bonus / 100. );
 			
 			if (sd) {
@@ -2937,13 +2940,13 @@ int32 mob_getdroprate(struct block_list *src, std::shared_ptr<s_mob_db> mob, int
 #endif
 
 	// Cap it to 100%
-	drop_rate = min( drop_rate, 10000 );
+	drop_rate = min( drop_rate, 10000 * factor );
 
 	// If the monster's drop rate can become 0
 	if( battle_config.drop_rate0item ){
 		drop_rate = max( drop_rate, 0 );
 	}else{
-		// If not - cap to 0.01% drop rate - as on official servers
+		// If not - cap to 0.01% or 0.001% drop rate - as on official servers
 		drop_rate = max( drop_rate, 1 );
 	}
 
@@ -3021,7 +3024,7 @@ int32 mob_dead(struct mob_data *md, struct block_list *src, int32 type)
 		md->status.hp = 0;
 	}
 
-	map_freeblock_lock();
+	FreeBlockLock freeLock;
 
 	memset(pt,0,sizeof(pt));
 
@@ -3485,9 +3488,17 @@ int32 mob_dead(struct mob_data *md, struct block_list *src, int32 type)
 		if( mapdrops != nullptr ){
 			// Process map wide drops
 			for( const auto& it : mapdrops->globals ){
-				if( rnd_chance( it.second->rate, 100000u ) ){
+				uint32 final_rate;
+
+				if ( battle_config.enable_bonus_map_drops ) {
+					final_rate = mob_getdroprate(first_sd, md->db, it.second->rate, drop_modifier, md, 10);
+				} else {
+					final_rate = it.second->rate;
+				}
+
+				if( rnd_chance( final_rate, 100000u ) ){
 					// 'Cheat' for autoloot command: rate is changed from n/100000 to n/10000
-					int32 map_drops_rate = max(1, (it.second->rate / 10));
+					int32 map_drops_rate = max(1, (final_rate / 10));
 					std::shared_ptr<s_item_drop> ditem = mob_setdropitem( it.second, 1, md->mob_id );
 					mob_item_drop( md, dlist, ditem, 0, map_drops_rate, homkillonly || merckillonly );
 				}
@@ -3498,9 +3509,17 @@ int32 mob_dead(struct mob_data *md, struct block_list *src, int32 type)
 
 			if( specific != mapdrops->specific.end() ){
 				for( const auto& it : specific->second ){
-					if( rnd_chance( it.second->rate, 100000u ) ){
+					uint32 final_rate;
+
+					if ( battle_config.enable_bonus_map_drops ) {
+						final_rate = mob_getdroprate(first_sd, md->db, it.second->rate, drop_modifier, md, 10);
+					} else {
+						final_rate = it.second->rate;
+					}
+
+					if( rnd_chance( final_rate, 100000u ) ){
 						// 'Cheat' for autoloot command: rate is changed from n/100000 to n/10000
-						int32 map_drops_rate = max(1, (it.second->rate / 10));
+						int32 map_drops_rate = max(1, (final_rate / 10));
 						std::shared_ptr<s_item_drop> ditem = mob_setdropitem( it.second, 1, md->mob_id );
 						mob_item_drop( md, dlist, ditem, 0, map_drops_rate, homkillonly || merckillonly );
 					}
@@ -3706,7 +3725,8 @@ int32 mob_dead(struct mob_data *md, struct block_list *src, int32 type)
 	if( md->can_summon )
 		mob_deleteslave(md);
 
-	map_freeblock_unlock();
+	// TODO: Check if this is called to early. md is still used below.
+	freeLock.unlock();
 
 	if( !rebirth ) {
 
@@ -4496,7 +4516,8 @@ bool mobskill_use(struct mob_data *md, t_tick tick, int32 event, int64 damage)
 
 		if (!flag)
 			continue; //Skill requisite failed to be fulfilled.
-
+		
+		FreeBlockLock freeLock;
 		//Execute skill
 		if (skill_get_casttype(ms[i]->skill_id) == CAST_GROUND)
 		{	//Ground skill.
@@ -4544,11 +4565,9 @@ bool mobskill_use(struct mob_data *md, t_tick tick, int32 event, int64 damage)
 				map_search_freecell(md, md->m, &x, &y, j, j, 3);
 			}
 			md->skill_idx = i;
-			map_freeblock_lock();
 			if (!battle_check_range(md, bl, skill_get_range2(md, ms[i]->skill_id, ms[i]->skill_lv, true)) ||
 				!unit_skilluse_pos2(md, x, y, ms[i]->skill_id, ms[i]->skill_lv, ms[i]->casttime, ms[i]->cancel))
 			{
-				map_freeblock_unlock();
 				if (battle_config.mob_ai & 0x1000)
 					continue;
 				else
@@ -4595,11 +4614,9 @@ bool mobskill_use(struct mob_data *md, t_tick tick, int32 event, int64 damage)
 			}
 
 			md->skill_idx = i;
-			map_freeblock_lock();
 			if (!battle_check_range(md, bl, skill_get_range2(md, ms[i]->skill_id, ms[i]->skill_lv, true)) ||
 				!unit_skilluse_id2(md, bl->id, ms[i]->skill_id, ms[i]->skill_lv, ms[i]->casttime, ms[i]->cancel))
 			{
-				map_freeblock_unlock();
 				if (battle_config.mob_ai & 0x1000)
 					continue;
 				else
@@ -4610,7 +4627,6 @@ bool mobskill_use(struct mob_data *md, t_tick tick, int32 event, int64 damage)
 		if ( ms[i]->msg_id ){ //Display color message [SnakeDrak]
 			mob_chat_display_message(*md, ms[i]->msg_id);
 		}
-		map_freeblock_unlock();
 		return true;
 	}
 	//No skill was used.
@@ -6635,8 +6651,7 @@ static bool mob_parse_row_mobskilldb( char** str, size_t columns, size_t current
 
 	//Skill ID
 	j = atoi(str[3]);
-	if (j <= 0 || j > MAX_SKILL_ID || !skill_get_index(j)) //fixed Lupus
-	{
+	if ( !skill_db.exists( j ) ){
 		if (mob_id < 0)
 			ShowError("mob_parse_row_mobskilldb: Invalid Skill ID (%d) for all mobs\n", j);
 		else

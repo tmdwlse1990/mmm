@@ -149,7 +149,16 @@ glast_01,212,273,4	script	Hugin's Magician#pa0829	1_F_01,{
 		mes "Are you wearing the item?";
 		close;
 	}
-	.@equip_id = getequipid(EQI_SHOES);
+	.@part = EQI_SHOES;
+	.@equip_id = getequipid(.@part);
+	.@refine = getequiprefinerycnt(.@part);
+	.@grade = getenchantgrade(.@part);
+	setarray .@card[0],getequipcardid(.@part,0),getequipcardid(.@part,1),getequipcardid(.@part,2),getequipcardid(.@part,3);
+	for(.@i=0; .@i <= 3; .@i++) {
+		.@opid[.@i] = getequiprandomoption(.@part,.@i,ROA_ID);
+		.@opval[.@i] = getequiprandomoption(.@part,.@i,ROA_VALUE);
+		.@opparam[.@i] = getequiprandomoption(.@part,.@i,ROA_PARAM);
+	}
 
 	setarray .@enchant_1[0],4808,4832,4814,4741,4869,4752;// Fighting_Spirit4	Expert_Archer1	Spell2	Vitality2	DelayafterAttack1Lv	Luck3
 	setarray .@enchant_2[0],4820,4833,4813,4742,4872,4753;// Fighting_Spirit5	Expert_Archer2	Spell3	Vitality3	DelayafterAttack2Lv	Luck4
@@ -248,7 +257,7 @@ glast_01,212,273,4	script	Hugin's Magician#pa0829	1_F_01,{
 		delequip EQI_SHOES;
 		mes "[Hugin's Magician]";
 		mes "Trying for " + .@string$;
-		getitem2 .@equip_id,1,1,.@equip_refine,0,0,0,.@card[2],.@card[3];
+		getitem4 .@equip_id,1,1,.@equip_refine,0,0,0,.@card[2],.@card[3],.@grade,.@opid,.@opval,.@opparam;
 		close;
 	default:
 		mes "[Hugin's Magician]";
@@ -271,7 +280,7 @@ glast_01,210,270,0	script	Hugin's Craftsman#pa0829	4_F_JOB_BLACKSMITH,{
 	mes "I think putting a slot into the item would be the best. Even with some risk of failing.";
 	next;
 	mes "[Hugin's Craftsman]";
-	mes "Bring me ^0000FF5 Temporal Crystals^000000, and I will try to put a slot into your advanced Temporal Boots. But, it's possible to ^FF0000fail and break the item^000000. Is that ok?";
+	mes "Bring me ^0000FF1 x ^i[7925]^000000., and I will try to put a slot into your advanced Temporal Boots. But, it's possible to ^FF0000fail and break the item^000000. Is that ok?";
 	next;
 	if (select( "Cancel", "Take the risk and try to add a slot" ) == 1) {
 		mes "[Hugin's Craftsman]";
@@ -324,12 +333,12 @@ S_Slot:
 		mes "Ok, come back anytime you want.";
 		close;
 	}
-	if (countitem(7925) < 2) {
+	if (countitem(7925) < 1) {
 		mes "[Hugin's Craftsman]";
-		mes "You must bring ^0000FF2 x ^i[7925]^000000. Nothing is free you know...";
+		mes "You must bring ^0000FF1 x ^i[7925]^000000. Nothing is free you know...";
 		close;
 	}
-	delitem 7925,2;// Temporal_Crystal
+	delitem 7925,1;// Temporal_Crystal
 	if (getequipid(EQI_SHOES) == .@equip_id) {
 		delequip EQI_SHOES;
 		if (rand(1,100) < 85) {
@@ -365,6 +374,7 @@ glast_01,184,283,4	script	Dark magic master#pa082	1_F_01,{
 
 	mes "[Dark magic master]";
 	mes "I deal with the Temporal Boots with socket only.";
+	setdialogsize(300,400);
 	next;
 	if (select( "How does the enchanting work?", "Give effect to my Temporal Boots" ) == 1) {
 		mes "[Dark magic master]";
@@ -383,7 +393,16 @@ glast_01,184,283,4	script	Dark magic master#pa082	1_F_01,{
 		mes "The enchant order is same as Hugin's magic master's enchantment. Please refer to his explanation.";
 		close;
 	}
-	.@equip_id = getequipid(EQI_SHOES);
+	.@part = EQI_SHOES;
+	.@equip_id = getequipid(.@part);
+	.@refine = getequiprefinerycnt(.@part);
+	.@grade = getenchantgrade(.@part);
+	setarray .@card[0],getequipcardid(.@part,0),getequipcardid(.@part,1),getequipcardid(.@part,2),getequipcardid(.@part,3);
+	for(.@i=0; .@i <= 3; .@i++) {
+		.@opid[.@i] = getequiprandomoption(.@part,.@i,ROA_ID);
+		.@opval[.@i] = getequiprandomoption(.@part,.@i,ROA_VALUE);
+		.@opparam[.@i] = getequiprandomoption(.@part,.@i,ROA_PARAM);
+	}
 
 	switch(.@equip_id) {
 	case 22006:	// Temporal_Str_Boots_
@@ -409,14 +428,14 @@ glast_01,184,283,4	script	Dark magic master#pa082	1_F_01,{
 		close;
 	}
 	// enchants ID
-	setarray .@enchant_1[0],4808,4832,4814,4741,4869,4752;// Fighting_Spirit4	Expert_Archer1	Spell2	Vitality2	DelayafterAttack1Lv	Luck3
-	setarray .@enchant_2[0],4820,4833,4813,4742,4872,4753;// Fighting_Spirit5	Expert_Archer2	Spell3	Vitality3	DelayafterAttack2Lv	Luck4
-	setarray .@enchant_3[0],4821,4834,4812,4861,4873,4754;// Fighting_Spirit6	Expert_Archer3	Spell4	MHP1		DelayafterAttack3Lv	Luck5
-	setarray .@enchant_4[0],4822,4835,4826,4862,4881,4755;// Fighting_Spirit7	Expert_Archer4	Spell5	MHP2		DelayafterAttack4Lv	Luck6
+	setarray .@enchant_1[0],311818,311848,4827,310873,4872,4863;// Melee	Expert_Archer1	Spell2	Vitality2	DelayafterAttack1Lv	Fatal
+	setarray .@enchant_2[0],311820,311850,4828,310874,4873,4864;// Melee	Expert_Archer2	Spell3	Vitality3	DelayafterAttack2Lv	Fatal
+	setarray .@enchant_3[0],311822,311852,4829,310875,4881,4865;// Melee	Expert_Archer3	Spell4	MHP1		DelayafterAttack3Lv	Fatal
+	setarray .@enchant_4[0],311824,311854,4830,310918,311394,4866;// Melee	Expert_Archer4	Spell5	MHP2		DelayafterAttack4Lv	Fatal
 
 	// requirements amount
-	setarray .@en_amount_coag[0],3,10,20,40,50;
-	setarray .@en_amount_polluted[0],1,2,4,7,10;
+	setarray .@en_amount_coag[0],5,10,25,50,100;
+	setarray .@en_amount_polluted[0],1,4,9,16,25;
 
 	// (custom) chances of success (official value unknown)
 	setarray .@chances[0],100,70,50,30,10;
@@ -441,10 +460,19 @@ glast_01,184,283,4	script	Dark magic master#pa082	1_F_01,{
 		.@amount_poll = .@en_amount_polluted[0];
 
 		mes "[Dark magic master]";
-		mes "Want to enchant ^0000ff" + .@equip_name$ + " (Socket)^000000? For the 1st enchanting, you need ^0000ff" + .@amount_poll + " " + getitemname(.@polluted_id) + ", " + .@amount_coag + " " + getitemname(.@coagulated_id) + ", and " + callfunc("F_InsertComma",.@cost_zeny) + " zeny^000000.";
-		mes "It has some risk of failing..";
+		//mes "Want to enchant ^0000ff^i["+.@equip_id+"] " + .@equip_name$ + " (Socket)^000000? For the 1st enchanting, you need ^0000ff" + .@amount_poll + " " + getitemname(.@polluted_id) + ", " + .@amount_coag + " " + getitemname(.@coagulated_id) + ", and " + callfunc("F_InsertComma",.@cost_zeny) + " zeny^000000.";
+		mes "Want to enchant ";
+		mes "^0000ff^i["+.@equip_id+"] " + .@equip_name$ + " (Socket)^000000? For the 1st enchanting, you need ^0000ff";
+		mes ""+ .@amount_poll + " x ^i["+.@polluted_id+"] ,";
+		mes "" + .@amount_coag + " x ^i[" + .@coagulated_id + "] and ";
+		mes ""+callfunc("F_InsertComma",.@cost_zeny) + " zeny^000000.";
+		mes "==========================";
+		mes "Enchent list:";
+		mes "Melee[^i[311818]],  Range[^i[311848]],  Spell[^i[4827]],  Vitality[^i[310873]],  Attack Speed[^i[4872]],  Fatal[^i[4863]]";
+		mes "==========================";
+		mes "ทุกการ Enchant มีโอกาสไม่ติด";
 		next;
-		.@s = select( "Quit", "Fighting Spirit", "Archery", "Spell", "Vitality", "Attack Speed", "Lucky" ) - 2;
+		.@s = select( "Quit", "Melee", "Range", "Spell", "Vitality", "Attack Speed", "Fatal" ) - 2;
 		if (.@s == -1) {
 			mes "[Dark magic master]";
 			mes "Ok, come back when you are ready.";
@@ -471,15 +499,29 @@ glast_01,184,283,4	script	Dark magic master#pa082	1_F_01,{
 
 		mes "[Dark magic master]";
 		if (.@num == 4) {
-			.@card[2] = callfunc("F_Rand",4875,4876,4877,4878,4879,4880);// Bear's_Power, Runaway_Magic, Speed_Of_Light, Muscle_Fool, Hawkeye, Lucky_Day
+			.@card[2] = callfunc("F_Rand",2099004,2099005,2099006,2099007,2099008,2099009);// Bear's_Power, Runaway_Magic, Speed_Of_Light, Muscle_Fool, Hawkeye, Lucky_Day
 			.@string$ = "^990000 Bonus effect ^000000 upgrade.";
-			mes "Would you like a random bonus effect for the 3rd slot? You need ^0000ff" + .@amount_poll + " " + getitemname(.@polluted_id) + ", " + .@amount_coag + " " + getitemname(.@coagulated_id) + ", and " + callfunc("F_InsertComma",.@cost_zeny) + " zeny^000000. But it has high risk of failing..";
+			mes "Would you like a random bonus effect for the 3rd slot? You need ^0000ff";
+			mes ""+ .@amount_poll + " x ^i[" +.@polluted_id+ "]";
+			mes ""+ .@amount_coag + " x ^i[" +.@coagulated_id + "]";
+			mes "" + callfunc("F_InsertComma",.@cost_zeny) + " zeny^000000.";
+			mes "And has ^FF0000"+.@chances[.@num]+"%^000000 Success rate";
+			mes "==========================";
+			mes "Enchent list:";
+			setarray .@showstone,2099004,2099005,2099006,2099007,2099008,2099009;
+			for(.@i=0; .@i < getarraysize(.@showstone); .@i++)
+				mes ""+(.@i + 1)+". "+getitemname(.@showstone[.@i])+"[^i["+.@showstone[.@i]+"]]";
+			mes "==========================";
 		}
 		else {
 			.@level = .@num + 1;
 			.@card[3] = getd( ".@enchant_" + (.@num+1) + "[" + .@type + "]" );
 			.@string$ = "enchant number ^990000" + .@level + "^000000.";
-			mes "Enchanting ^0000ff" + .@equip_name$ + " (Socket)^000000's 4th slot as ^0000ff" + .@level + "^000000 level effect. Requires ^0000ff" + .@amount_poll + " " + getitemname(.@polluted_id) + ", " + .@amount_coag + " " + getitemname(.@coagulated_id) + ", and " + callfunc("F_InsertComma",.@cost_zeny) + " z^000000. It has some risk of failing..";
+			mes "^0000ff^i["+.@equip_id+"] " + .@equip_name$ + " (Socket)^000000? For the 4th slot as ^0000ff" + .@level + "^000000 level effect., you need ^0000ff";
+			mes ""+ .@amount_poll + " x ^i["+.@polluted_id+"] ,";
+			mes "" + .@amount_coag + " x ^i[" + .@coagulated_id + "] and ";
+			mes ""+callfunc("F_InsertComma",.@cost_zeny) + " zeny^000000.";
+			mes "And has ^FF0000"+.@chances[.@num]+"%^000000 Success rate";
 		}
 		next;
 		if (select( "Quit", "Effect Upgrade!" ) == 1) {
@@ -511,17 +553,17 @@ glast_01,184,283,4	script	Dark magic master#pa082	1_F_01,{
 	if (callfunc("F_IsEquipIDHack", EQI_SHOES, .@equip_id) || callfunc("F_IsEquipCardHack", EQI_SHOES, .@equip_card[0], .@equip_card[1], .@equip_card[2], .@equip_card[3]) || callfunc("F_IsEquipRefineHack", EQI_SHOES, .@equip_refine))
 		close;
 
-	delequip EQI_SHOES;
 	if (.@chances[.@num] < rand(1,100)) {
 		specialeffect2 EF_LORD;
 		mes "[Dark magic master]";
 		mes "Arrggg, we failed. Better luck next time.";
 		close;
 	}
+	delequip EQI_SHOES;
 	specialeffect2 EF_REPAIRWEAPON;
 	mes "[Hugin's Magician]";
 	mes "Trying for " + .@string$;
-	getitem2 .@equip_id,1,1,.@equip_refine,0,0,0,.@card[2],.@card[3];
+	getitem4 .@equip_id,1,1,.@equip_refine,0,0,0,.@card[2],.@card[3],.@grade,.@opid,.@opval,.@opparam;
 	close;
 }
 

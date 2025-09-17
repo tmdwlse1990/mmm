@@ -1,5 +1,5 @@
 // Max Cap Level
-config_maxlv: 125
+config_maxlv: 140
 
 //Max Cap Aspd
 aspd_unlock_cap: 197
@@ -122,13 +122,13 @@ autoattack_interval_timer: 500
 autoattack_pickup_delay: 500
 
 // ยกเลิกสถานะเมื่อออกเกม , เมื่อกลับเข้าเกม Autoattack จะไม่ทำงาน
-autoattack_clean_logout: no
+autoattack_clean_logout: yes
 
 // effect แสดงเมื่อเปิด auto attack , คนเปิดไม่เห็น , คนอื่นเห็น
 autoattack_hateffect: 31
 
 // กำหนด % การใช้สกิล หากไม่มีการตั้งค่า
-autoattack_skill_rate_default: 25
+autoattack_skill_rate_default: 100
 
 // ลด drop เรท หากใช้ autoattack , 0 = ปิด , หน่วยเป็น %
 autoattack_reduce_droprate: 25
@@ -161,7 +161,7 @@ autoattack_mob_struck: 30000
 autoattack_quiver_check: 100
 
 // กำหนด max รายชื่อมอนที่จะวิงหนี
-autoattack_max_flee_mob: 5
+autoattack_max_flee_mob: 3
 
 // บังคับ coinflip 100% (บอทจะโยนเหรียญรัวๆจนครบ 10)
 autoattack_gunslinger_conflip_fix: yes
@@ -175,4 +175,4 @@ enable_custom_pet_name: yes
 
 // 1 [+7A]
 // 2 [+7][A]
-pet_name_mode: 2
+pet_name_mode: 1

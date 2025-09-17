@@ -84897,7 +84897,7 @@ Body:
     Ai: 19
     Drops:
       - Item: Airship_Boots
-        Rate: 50
+        Rate: 500
       - Item: Large_Jellopy
         Rate: 250
       - Item: Padded_Armor
@@ -84947,7 +84947,7 @@ Body:
       Detector: true
     Drops:
       - Item: Airship_Cape
-        Rate: 50
+        Rate: 500
       - Item: Will_Of_Darkness
         Rate: 500
       - Item: Sticky_Mucus
@@ -84993,7 +84993,7 @@ Body:
       Detector: true
     Drops:
       - Item: Airship_Boots
-        Rate: 50
+        Rate: 500
       - Item: Prickly_Fruit
         Rate: 500
       - Item: Anodyne
@@ -85039,7 +85039,7 @@ Body:
     Ai: 19
     Drops:
       - Item: Airship_Armor
-        Rate: 50
+        Rate: 500
       - Item: Light_Granule
         Rate: 100
       - Item: Dragon_Canine
@@ -85081,7 +85081,7 @@ Body:
     Ai: 01
     Drops:
       - Item: Airship_Cape
-        Rate: 50
+        Rate: 500
       - Item: Dragon_Canine
         Rate: 500
       - Item: Dragon_Scale
@@ -85121,7 +85121,7 @@ Body:
     Ai: 01
     Drops:
       - Item: Airship_Armor
-        Rate: 50
+        Rate: 500
       - Item: Dark_Red_Scale
         Rate: 500
       - Item: Treasure_Box
@@ -85172,13 +85172,13 @@ Body:
         Rate: 5000
     Drops:
       - Item: Felock_Armor
-        Rate: 100
+        Rate: 200
       - Item: Felock_Cape
-        Rate: 100
+        Rate: 200
       - Item: Felock_Boots
-        Rate: 100
+        Rate: 200
       - Item: Felock_Cap
-        Rate: 10
+        Rate: 50
       - Item: Str_Dish07
         Rate: 3000
       - Item: Agi_Dish07
