@@ -387,7 +387,7 @@ Body:
       Soul_Linker: true
       Gunslinger: true
       Ninja: true
-    MaxBaseLevel: 125
+    MaxBaseLevel: 140
     BaseExp:
       - Level: 1
         Exp: 658
@@ -588,67 +588,87 @@ Body:
       - Level: 99
         Exp: 125276100
       - Level: 100
-        Exp: 156595125
+        Exp: 137803710
       - Level: 101
-        Exp: 195743906
+        Exp: 151584081
       - Level: 102
-        Exp: 244679883
+        Exp: 166742489
       - Level: 103
-        Exp: 305849854
+        Exp: 183416738
       - Level: 104
-        Exp: 382312317
+        Exp: 201758412
       - Level: 105
-        Exp: 477890396
+        Exp: 221934253
       - Level: 106
-        Exp: 597362995
+        Exp: 244127678
       - Level: 107
-        Exp: 746703744
+        Exp: 268540446
       - Level: 108
-        Exp: 933379680
+        Exp: 295394491
       - Level: 109
-        Exp: 1166724600
+        Exp: 324933940
       - Level: 110
-        Exp: 1458405750
+        Exp: 357427334
       - Level: 111
-        Exp: 1823007187
+        Exp: 393170067
       - Level: 112
-        Exp: 2278758984
+        Exp: 432487074
       - Level: 113
-        Exp: 2848448730
+        Exp: 475735781
       - Level: 114
-        Exp: 3560560913
+        Exp: 523309359
       - Level: 115
-        Exp: 4450701141
+        Exp: 575640295
       - Level: 116
-        Exp: 5563376426
+        Exp: 633204325
       - Level: 117
-        Exp: 6954220533
+        Exp: 696524757
       - Level: 118
-        Exp: 8692775666
+        Exp: 766177233
       - Level: 119
-        Exp: 10865969582
+        Exp: 842794956
       - Level: 120
-        Exp: 13582461978
+        Exp: 927074452
       - Level: 121
-        Exp: 16978077473
+        Exp: 1112489342
       - Level: 122
-        Exp: 21222596841
+        Exp: 1334987211
       - Level: 123
-        Exp: 26528246051
+        Exp: 1601984653
       - Level: 124
-        Exp: 33160307564
+        Exp: 1922381584
       - Level: 125
-        Exp: 41450384455
+        Exp: 2306857901
       - Level: 126
-        Exp: 45595422900
+        Exp: 2768229481
       - Level: 127
-        Exp: 50154965190
+        Exp: 3321875377
       - Level: 128
-        Exp: 55170461709
+        Exp: 3986250452
       - Level: 129
-        Exp: 60687507880
+        Exp: 4783500542
       - Level: 130
-        Exp: 99999999
+        Exp: 5740200651
+      - Level: 131
+        Exp: 6888240781
+      - Level: 132
+        Exp: 8265888937
+      - Level: 133
+        Exp: 9919066725
+      - Level: 134
+        Exp: 11902880070
+      - Level: 135
+        Exp: 14283456084
+      - Level: 136
+        Exp: 17140147301
+      - Level: 137
+        Exp: 20568176761
+      - Level: 138
+        Exp: 24681812113
+      - Level: 139
+        Exp: 29618174535
+      - Level: 140
+        Exp: 35541809443
   - Jobs:
       Novice: true
       Baby: true

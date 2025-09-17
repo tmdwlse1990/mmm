@@ -3597,7 +3597,7 @@ static uint32 status_calc_maxhp_pc( map_session_data& sd, uint32 vit ){
 	double dmax = job->base_hp[level];
 
 	if( vit > 0 ){
-		dmax *= ( 1.0 + vit * 0.05 );
+		dmax *= ( 1.0 + vit * 0.1 );
 	}
 	
 	/*
@@ -3606,9 +3606,9 @@ static uint32 status_calc_maxhp_pc( map_session_data& sd, uint32 vit ){
 	}else if( pc_is_taekwon_ranker( &sd ) ){
 		dmax *= 3;
 	}
-	*/
 	if( pc_is_taekwon_ranker( &sd ) )
 		dmax *= 3;
+	*/
 	// Vit from equip gives +1 additional HP
 	dmax += sd.indexed_bonus.param_equip[PARAM_VIT];
 
@@ -3788,7 +3788,8 @@ bool status_calc_weight(map_session_data *sd, enum e_status_calc_weight_opt flag
 		if (sd->sc.getSCE(SC_MEMBER10))
 			sd->max_weight += sd->sc.getSCE(SC_MEMBER10)->val1*1000;
 	}
-
+	
+	
 	// Update the client if the new weight calculations don't match
 	if (b_weight != sd->weight)
 		clif_updatestatus(*sd, SP_WEIGHT);
@@ -5449,7 +5450,7 @@ void status_calc_regen(struct block_list *bl, struct status_data *status, struct
 	sd = BL_CAST(BL_PC,bl);
 	sc = status_get_sc(bl);
 
-	val = (status->vit/5) + max(1, status->max_hp/200);
+	val = (status->vit) + max(1, status->max_hp/200);
 
 	if( sd && sd->hprecov_rate != 100 )
 		val = val*sd->hprecov_rate/100;

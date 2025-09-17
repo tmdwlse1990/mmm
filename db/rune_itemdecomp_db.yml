@@ -5165,17 +5165,17 @@ Body:
       Type1: 3
       Type2: 4
 
-  - AegisName: aegis_300422
+  - AegisName: S_Catherine_Card
     Decomposition:
       Type1: 1
       Type2: 2
 
-  - AegisName: aegis_300424
+  - AegisName: S_Friedrich_Card
     Decomposition:
       Type1: 1
       Type2: 2
 
-  - AegisName: aegis_300426
+  - AegisName: S_Crux_Card
     Decomposition:
       Type1: 1
       Type2: 2
@@ -5230,12 +5230,12 @@ Body:
       Type1: 3
       Type2: 4
 
-  - AegisName: aegis_300455
+  - AegisName: Copo_Card
     Decomposition:
       Type1: 5
       Type2: 6
 
-  - AegisName: aegis_300456
+  - AegisName: Icewind_Egg_Card
     Decomposition:
       Type1: 5
       Type2: 6
@@ -5250,82 +5250,82 @@ Body:
       Type1: 5
       Type2: 6
 
-  - AegisName: aegis_300459
+  - AegisName: E_Rgan_Healer_Card
     Decomposition:
       Type1: 5
       Type2: 6
 
-  - AegisName: aegis_300460
+  - AegisName: Jormun_Guardian_Card
     Decomposition:
       Type1: 5
       Type2: 6
 
-  - AegisName: aegis_300461
+  - AegisName: Fake_Iwin_S_Card
     Decomposition:
       Type1: 5
       Type2: 6
 
-  - AegisName: aegis_300462
+  - AegisName: S_Rgan_Warlock_Card
     Decomposition:
       Type1: 5
       Type2: 6
 
-  - AegisName: aegis_300463
+  - AegisName: S_Rgan_Healer_Card
     Decomposition:
       Type1: 5
       Type2: 6
 
-  - AegisName: aegis_300464
+  - AegisName: E_Rgan_Warlock_Card
     Decomposition:
       Type1: 5
       Type2: 6
 
-  - AegisName: aegis_300465
+  - AegisName: E_Rgan_Guardian_Card
     Decomposition:
       Type1: 5
       Type2: 6
 
-  - AegisName: aegis_300466
+  - AegisName: E_Rgan_Cleaner_Card
     Decomposition:
       Type1: 5
       Type2: 6
 
-  - AegisName: aegis_300467
+  - AegisName: Angel_Iceslug_Card
     Decomposition:
       Type1: 5
       Type2: 6
 
-  - AegisName: aegis_300468
+  - AegisName: Rabbit_Iceslug_card
     Decomposition:
       Type1: 5
       Type2: 6
 
-  - AegisName: aegis_300469
+  - AegisName: Melibe_Iceslug_Card
     Decomposition:
       Type1: 5
       Type2: 6
 
-  - AegisName: aegis_300470
+  - AegisName: Icebear_Card
     Decomposition:
       Type1: 5
       Type2: 6
 
-  - AegisName: aegis_300471
+  - AegisName: F_Angel_Iceslug_Card
     Decomposition:
       Type1: 3
       Type2: 4
 
-  - AegisName: aegis_300472
+  - AegisName: Demigod_Lasgand_Card
     Decomposition:
       Type1: 3
       Type2: 4
 
-  - AegisName: aegis_300473
+  - AegisName: Snow_Angel_Card
     Decomposition:
       Type1: 3
       Type2: 4
 
-  - AegisName: aegis_300474
+  - AegisName: Rgan_Chief_Clean_Card
     Decomposition:
       Type1: 3
       Type2: 4

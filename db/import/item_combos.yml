@@ -36,6 +36,49 @@ Header:
 Body:
   - Combos:
       - Combo:
+          - PowerfulBear's_Power
+          - S_Str
+    Script: |
+      bonus bStr,20;
+      bonus bAddMaxWeight,30000;
+  - Combos:
+      - Combo:
+          - PowerfulRunaway_Magic
+          - S_Int
+    Script: |
+      bonus bInt,20;
+      bonus bMaxSP,200;
+  - Combos:
+      - Combo:
+          - PowerfulSpeed_Of_Light
+          - S_Agi
+    Script: |
+      bonus bAgi,20;
+      bonus bAspdcap,2;
+  - Combos:
+      - Combo:
+          - PowerfulMuscle_Fool
+          - S_Vital
+    Script: |
+      bonus bVit,20;
+      bonus2 bSubSize,Size_All,20;
+  - Combos:
+      - Combo:
+          - PowerfulHawkeye
+          - S_Dex
+    Script: |
+      bonus bDex,20;
+      bonus bHitAtk,50;
+      bonus bHitMAtk,50;
+  - Combos:
+      - Combo:
+          - PowerfulLucky_Day
+          - S_Luck
+    Script: |
+      bonus bLuk,20;
+      bonus bCritAtkRate,70;
+  - Combos:
+      - Combo:
           - FaceWorm_Skin    # 20717
           - Temporal_Str_Boots    # 22000
       - Combo:
@@ -180,6 +223,8 @@ Body:
           - FaceWorm_Skin_    # 20718
           - Modify_Luk_Boots_    # 22118
     Script: |
+      bonus bMaxHPrate,15;
+      bonus bMaxSPrate,5;
       .@g = getenchantgrade(EQI_GARMENT);
       if(.@g >= 3) { bonus bDefRate,5; bonus bMDefRate,5;};
       if(.@g >= 4) { bonus bDefRate,5; bonus bMDefRate,5;};

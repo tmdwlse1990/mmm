@@ -2293,10 +2293,6 @@ bool pc_authok(map_session_data *sd, uint32 login_id2, time_t expiration_time, i
 
 	// Initialize BG queue
 	sd->bg_queue_id = 0;
-
-#if PACKETVER_MAIN_NUM >= 20150507 || PACKETVER_RE_NUM >= 20150429 || defined(PACKETVER_ZERO)
-	sd->hatEffects = {};
-#endif
 	
 	sd->createpetegg = {};
 	sd->createpetegg.is_pet_mode = false;
@@ -11132,7 +11128,7 @@ int32 pc_itemheal(map_session_data *sd, t_itemid itemid, int32 hp, int32 sp)
 	int32 bonus, tmp, penalty = 0;
 
 	if (hp) {
-		bonus = 100 + (sd->battle_status.vit * 2) + pc_checkskill(sd, SM_RECOVERY) * 10 + pc_checkskill(sd, AM_LEARNINGPOTION) * 5;
+		bonus = 100 + (sd->battle_status.vit * 10) + pc_checkskill(sd, SM_RECOVERY) * 10 + pc_checkskill(sd, AM_LEARNINGPOTION) * 5;
 		// A potion produced by an Alchemist in the Fame Top 10 gets +50% effect [DracoRPG]
 		if (potion_flag == 2) {
 			bonus += bonus * 50 / 100;

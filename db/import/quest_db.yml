@@ -257,3 +257,22 @@ Body: #ให้ใช้ ID ไม่เกิน 1000
         Count: 50
         
         
+  - Id: 12334
+    Title: Trace of Time Travel
+    TimeLimit: 2d 4h
+  - Id: 12335
+    Title: Space Distortion
+  - Id: 12336
+    Title: Corrupted Soul Hunt
+    Targets:
+      - Mob: MG_CORRUPTION_ROOT_H
+        Count: 1
+  - Id: 12337
+    Title: Amdarais Soul Hunt
+    Targets:
+      - Mob: MG_AMDARAIS_H
+        Count: 1
+  - Id: 12338
+    Title: Time Traveler
+  - Id: 12339
+    Title: Time Conqueror

@@ -1988,7 +1988,7 @@ int32 clif_spawn( struct block_list *bl, bool walking ){
 			if (sd->spiritcharm_type != CHARM_TYPE_NONE && sd->spiritcharm > 0)
 				clif_spiritcharm( *sd );
 			clif_efst_status_change_sub(bl, bl, AREA);
-			clif_hat_effects( *sd, *sd, AREA );
+			clif_hat_effects(*sd, AREA, *sd);
 			clif_autoattack_effect(bl);
 		}
 		break;
@@ -5332,7 +5332,7 @@ void clif_getareachar_unit( map_session_data* sd,struct block_list *bl ){
 			if( tsd->bg_id && map_getmapflag(tsd->m, MF_BATTLEGROUND) )
 				clif_sendbgemblem_single(sd->fd,tsd);
 			clif_efst_status_change_sub(sd, bl, SELF);
-			clif_hat_effects( *sd, *tsd, SELF );
+			clif_hat_effects( *sd, SELF, *tsd);
 			clif_autoattack_effect(bl);
 		}
 		break;
@@ -11292,9 +11292,6 @@ void clif_parse_LoadEndAck(int32 fd,map_session_data *sd)
 
 		//Auron reported that This skill only triggers when you logon on the map o.O [Skotlex]
 		if ((lv = pc_checkskill(sd,SG_KNOWLEDGE)) > 0) {
-			if(sd->m == sd->feel_map[0].m
-				|| sd->m == sd->feel_map[1].m
-				|| sd->m == sd->feel_map[2].m)
 				sc_start(sd,sd, SC_KNOWLEDGE, 100, lv, skill_get_time(SG_KNOWLEDGE, lv));
 		}
 		
@@ -21935,7 +21932,7 @@ void clif_autoattack_effect(struct block_list* bl){
 	p->packetLength = (int16)( sizeof( struct PACKET_ZC_EQUIPMENT_EFFECT ) + sizeof( int16 ));
 	p->aid = bl->id;
 	p->status = 1;
-	p->effects[BL_CAST(BL_PC,bl)->hatEffects.size()] = battle_config.autoattack_hateffect;
+	p->effects[0] = battle_config.autoattack_hateffect;
 
 	clif_send( p, p->packetLength, bl, AREA_AUTOATTACK_WOS);
 #endif
@@ -21952,7 +21949,7 @@ void clif_autoattack_effect_off(struct block_list* bl){
 	p->packetLength = (int16)( sizeof( struct PACKET_ZC_EQUIPMENT_EFFECT ) + sizeof( int16 ));
 	p->aid = bl->id;
 	p->status = 0;
-	p->effects[BL_CAST(BL_PC,bl)->hatEffects.size()] = battle_config.autoattack_hateffect;
+	p->effects[0] = battle_config.autoattack_hateffect;
 
 	clif_send( p, p->packetLength, bl, AREA);
 #endif

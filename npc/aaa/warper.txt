@@ -573,9 +573,11 @@ G8: Restrict("RE");
 	Instances:
 // --------------------------------------------------
 menu
+	"AirShip Raid",I102,
 	"Faceworms Nest",I7,
 	"Octopus Cave",I14,
 	"Old Glast Heim",I15,
+	"Old Glast Heim (True Hard)",I101,
 	"Orc's Memory",I16,
 	"Kraken Raid",I31
 	;
@@ -588,6 +590,10 @@ menu	"Bakonawa Lake",I1, "Bangungot Hospital 2F",I2, "Buwaya Cave",I3,
 		"Orc's Memory",I16, "Sarah and Fenrir",I17, "Sara Memory",I18,
 		"Sealed Shrine",I19, "Wolfchev's Laboratory",I20;
 */
+I101: Restrict("RE");
+	Go("glast_01",181,279);
+I102: Restrict("RE");
+	Go("dali",134,82);
 I1: Restrict("RE");
 	Go("ma_scene01",172,175);
 I2: Restrict("RE");

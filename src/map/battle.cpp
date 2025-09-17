@@ -2997,10 +2997,12 @@ static int32 battle_skill_damage_map(struct block_list *src, struct block_list *
  */
 static int32 battle_skill_damage(struct block_list *src, struct block_list *target, uint16 skill_id) {
 	nullpo_ret(src);
+	int32 rates = 0;
 	if (!target || !skill_id)
 		return 0;
 	skill_id = skill_dummy2skill_id(skill_id);
-	return battle_skill_damage_skill(src, target, skill_id) + battle_skill_damage_map(src, target, skill_id) + get_bonus_skillrate(src, skill_id)  - get_bonus_skillratedef(target,skill_id);
+	rates = battle_skill_damage_skill(src, target, skill_id) + battle_skill_damage_map(src, target, skill_id) + get_bonus_skillrate(src, skill_id) - get_bonus_skillratedef(target,skill_id);
+	return rates;
 }
 
 /**
@@ -10557,6 +10559,11 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 	// Skill damage adjustment
 	if ((skill_damage = battle_skill_damage(src,target,skill_id)) != 0)
 		md.damage += (int64)md.damage * skill_damage / 100;
+
+	// P.ATK Apply
+	if (sd != nullptr) {
+		md.damage = (int64)floor((float)(md.damage * (100 + sstatus->patk) / 100));
+	}
 
 	battle_absorb_damage(target, &md);
 

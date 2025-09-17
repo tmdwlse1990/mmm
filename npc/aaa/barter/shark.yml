@@ -46,6 +46,56 @@ Header:
   Version: 2
 
 Body:
+  - Name: ogh_list
+    Items:
+      - Index: 0
+        Item: White_Knightage_card
+        RequiredItems:
+          - Index: 0
+            Item: Polluted_Spell
+            Amount: 70
+      - Index: 1
+        Item: Khaliz_Knightage_card
+        RequiredItems:
+          - Index: 0
+            Item: Polluted_Spell
+            Amount: 100
+      - Index: 2
+        Item: White_Knightage_card
+        RequiredItems:
+          - Index: 0
+            Item: Coagulated_Spell
+            Amount: 3000
+      - Index: 3
+        Item: Khaliz_Knightage_card
+        RequiredItems:
+          - Index: 0
+            Item: Coagulated_Spell
+            Amount: 5000
+      - Index: 4
+        Item: White_Gold_Bullion
+        RequiredItems:
+          - Index: 0
+            Item: Polluted_Spell
+            Amount: 999
+      - Index: 5
+        Item: Temporal_Crystal
+        RequiredItems:
+          - Index: 0
+            Item: Polluted_Spell
+            Amount: 10
+      - Index: 6
+        Item: Coagulated_Spell
+        RequiredItems:
+          - Index: 0
+            Item: Polluted_Spell
+            Amount: 1
+      - Index: 7
+        Item: Coagulated_Spell
+        RequiredItems:
+          - Index: 0
+            Item: Temporal_Crystal
+            Amount: 1
   - Name: ex_stone_ogh
     Items:
       - Index: 0

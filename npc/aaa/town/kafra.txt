@@ -16,7 +16,8 @@ icecastle,175,216,4	script	Kafra Service#ice	113,{
 		mes "of the Kafra Corporation";
 		mes "Headquarters. Thank you.";
 		next;
-		savepoint "icecastle",187,203,3,3;
+		//savepoint "icecastle",187,203,3,3;
+		atcommand "@save";
 		mes "[Kafra Leilah]";
 		mes "Please make use of";
 		mes "the Kafra Services that are";
@@ -84,3 +85,5 @@ icecastle,175,216,4	script	Kafra Service#ice	113,{
 	cutin "",255;
 	end;
 }
+
+icecastle,202,176,4	duplicate(Kafra Service#ice)	Kafra Service#ice2	113
