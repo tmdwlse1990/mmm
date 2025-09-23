@@ -600,6 +600,139 @@ Body:
       if(.@g >= ENCHANTGRADE_B) bonus2 bAddRace,Race_All,10;
       if(.@g >= ENCHANTGRADE_A) bonus2 bAddEle,Ele_All,10;
       if(.@g >= ENCHANTGRADE_R) bonus bShortAtkRate,10;
+  - Id: 1443 # 1-hand Crimson
+    Script: |
+      .@r = getrefine();
+      .@g = getenchantgrade();
+      bonus bBaseAtk,(pow((.@r+.@g),2)) * (.@g + 1);
+      bonus bLongAtkRate,.@g * 7;
+      bonus bShortAtkRate,.@g * 7;
+  - Id: 1839
+    Script: |
+      .@r = getrefine();
+      .@g = getenchantgrade();
+      bonus bBaseAtk,(pow((.@r+.@g),2)) * (.@g + 1);
+      bonus bLongAtkRate,.@g * 7;
+      bonus bShortAtkRate,.@g * 7;
+  - Id: 1939
+    Script: |
+      .@r = getrefine();
+      .@g = getenchantgrade();
+      bonus bBaseAtk,(pow((.@r+.@g),2)) * (.@g + 1);
+      bonus bLongAtkRate,.@g * 7;
+      bonus bShortAtkRate,.@g * 7;
+  - Id: 1995
+    Script: |
+      .@r = getrefine();
+      .@g = getenchantgrade();
+      bonus bBaseAtk,(pow((.@r+.@g),2)) * (.@g + 1);
+      bonus bLongAtkRate,.@g * 7;
+      bonus bShortAtkRate,.@g * 7;
+  - Id: 13454
+    Script: |
+      .@r = getrefine();
+      .@g = getenchantgrade();
+      bonus bBaseAtk,(pow((.@r+.@g),2)) * (.@g + 1);
+      bonus bLongAtkRate,.@g * 7;
+      bonus bShortAtkRate,.@g * 7;
+  - Id: 16040
+    Script: |
+      .@r = getrefine();
+      .@g = getenchantgrade();
+      bonus bBaseAtk,(pow((.@r+.@g),2)) * (.@g + 1);
+      bonus bLongAtkRate,.@g * 7;
+      bonus bShortAtkRate,.@g * 7;
+  - Id: 28604
+    Script: |
+      .@r = getrefine();
+      .@g = getenchantgrade();
+      bonus bBaseAtk,(pow((.@r+.@g),2)) * (.@g + 1);
+      bonus bLongAtkRate,.@g * 7;
+      bonus bShortAtkRate,.@g * 7;
+      bonus bMatk,(pow((.@r+.@g),2)) * (.@g + 1);
+      bonus bMatkRate,.@g* 7;
+  - Id: 28705
+    Script: |
+      .@r = getrefine();
+      .@g = getenchantgrade();
+      bonus bBaseAtk,(pow((.@r+.@g),2)) * (.@g + 1);
+      bonus bLongAtkRate,.@g * 7;
+      bonus bShortAtkRate,.@g * 7;
+      bonus bMatk,(pow((.@r+.@g),2)) * (.@g + 1);
+      bonus bMatkRate,.@g* 7;
+  - Id: 1498    #2-hand Atk
+    Script: |
+      .@r = getrefine();
+      .@g = getenchantgrade();
+      bonus bBaseAtk,(pow((.@r+.@g),2)) * (.@g + 1);
+      bonus bLongAtkRate,.@g * 7;
+      bonus bShortAtkRate,.@g * 7;
+      bonus2 bSubClass,Class_All,20;
+  - Id: 13127
+    Script: |
+      .@r = getrefine();
+      .@g = getenchantgrade();
+      bonus bBaseAtk,(pow((.@r+.@g),2)) * (.@g + 1);
+      bonus bLongAtkRate,.@g * 7;
+      bonus bShortAtkRate,.@g * 7;
+      bonus2 bSubClass,Class_All,20;
+  - Id: 18130
+    Script: |
+      .@r = getrefine();
+      .@g = getenchantgrade();
+      bonus bBaseAtk,(pow((.@r+.@g),2)) * (.@g + 1);
+      bonus bLongAtkRate,.@g * 7;
+      bonus bShortAtkRate,.@g * 7;
+      bonus2 bSubClass,Class_All,20;
+  - Id: 21015
+    Script: |
+      .@r = getrefine();
+      .@g = getenchantgrade();
+      bonus bBaseAtk,(pow((.@r+.@g),2)) * (.@g + 1);
+      bonus bLongAtkRate,.@g * 7;
+      bonus bShortAtkRate,.@g * 7;
+      bonus bMatk,(pow((.@r+.@g),2)) * (.@g + 1);
+      bonus bMatkRate,.@g* 7;
+      bonus2 bSubClass,Class_All,20;
+  - Id: 28007
+    Script: |
+      .@r = getrefine();
+      .@g = getenchantgrade();
+      bonus bBaseAtk,(pow((.@r+.@g),2)) * (.@g + 1);
+      bonus bLongAtkRate,.@g * 7;
+      bonus bShortAtkRate,.@g * 7;
+      bonus2 bSubClass,Class_All,20;
+  - Id: 28106
+    Script: |
+      .@r = getrefine();
+      .@g = getenchantgrade();
+      bonus bBaseAtk,(pow((.@r+.@g),2)) * (.@g + 1);
+      bonus bLongAtkRate,.@g * 7;
+      bonus bShortAtkRate,.@g * 7;
+      bonus2 bSubClass,Class_All,20;
+  - Id: 13327
+    Script: |
+      .@r = getrefine();
+      .@g = getenchantgrade();
+      bonus bBaseAtk,(pow((.@r+.@g),2)) * (.@g + 1);
+      bonus bLongAtkRate,.@g * 7;
+      bonus bShortAtkRate,.@g * 7;
+      bonus bMatk,(pow((.@r+.@g),2)) * (.@g + 1);
+      bonus bMatkRate,.@g* 7;
+      bonus2 bSubClass,Class_All,20;
+  - Id: 1680    #1-hand Matk
+    Script: |
+      .@r = getrefine();
+      .@g = getenchantgrade();
+      bonus bMatk,(pow((.@r+.@g),2)) * (.@g + 1);
+      bonus bMatkRate,.@g* 7;
+  - Id: 2025    #2-hand Matk
+    Script: |
+      .@r = getrefine();
+      .@g = getenchantgrade();
+      bonus bMatk,(pow((.@r+.@g),2)) * (.@g + 1);
+      bonus bMatkRate,.@g* 7;
+      bonus2 bSubClass,Class_All,20;
 #  [Armor]
   - Id: 2130001
     AegisName: Chicken_Armor

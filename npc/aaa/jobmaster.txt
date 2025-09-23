@@ -453,11 +453,11 @@ function	Get_Job_Equip	{
 				getitem 6121,1;			//	Makeover Brush
 				getitem 6122,1;	break;	//	Paint Brush
 			case Job_Super_Novice:
-				getitembound4 1208,1,1,15,0,0,0,0,0,Bound_Char,7,.@OptID,.@OptVal,.@OptParam;	break;	//	Main Gauche [1]
+				getitem4 1208,1,1,15,0,0,0,0,0,7,.@OptID,.@OptVal,.@OptParam;	break;	//	Main Gauche [1]
 			case JOB_STAR_GLADIATOR:
-				getitembound4 1552,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Tablet  [1]
+				getitem4 1552,1,1,13,0,0,0,0,0,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Tablet  [1]
 			case JOB_SOUL_LINKER:
-				getitembound4 1620,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Survival int [1]
+				getitem4 1620,1,1,13,0,0,0,0,0,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Survival int [1]
 		}
 	} else if (.@eac&EAJL_2) {
 		// Second Class (And not Third Class)
@@ -496,31 +496,31 @@ function	Get_Job_Equip	{
 			case Job_Soul_Linker:
 				getitem2 1617,1,1,7,0,0,0,0,0;	break;	//	Survivor's Rod [0]
 			case JOB_LORD_KNIGHT:
-				getitembound4 1163,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Claymore [0]
+				getitem4 1163,1,1,13,0,0,0,0,0,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Claymore [0]
 			case JOB_HIGH_PRIEST:
-				getitembound4 1522,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Stunner [0]
+				getitem4 1522,1,1,13,0,0,0,0,0,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Stunner [0]
 			case JOB_HIGH_WIZARD:
-				getitembound4 1617,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Survivor's Rod [0]
+				getitem4 1617,1,1,13,0,0,0,0,0,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Survivor's Rod [0]
 			case JOB_WHITESMITH:
-				getitembound4 1360,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Two-Handed-Axe [1]
+				getitem4 1360,1,1,13,0,0,0,0,0,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Two-Handed-Axe [1]
 			case JOB_SNIPER:
-				getitembound4 1718,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Hunter Bow [0]
+				getitem4 1718,1,1,13,0,0,0,0,0,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Hunter Bow [0]
 			case JOB_ASSASSIN_CROSS:
-				getitembound4 1254,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Jamadhar [0]
+				getitem4 1254,1,1,13,0,0,0,0,0,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Jamadhar [0]
 			case JOB_PALADIN:
-				getitembound4 1410,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Lance [0]
+				getitem4 1410,1,1,13,0,0,0,0,0,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Lance [0]
 			case JOB_CHAMPION:
-				getitembound4 1807,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Fist [0]
+				getitem4 1807,1,1,13,0,0,0,0,0,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Fist [0]
 			case JOB_PROFESSOR:
-				getitembound4 1550,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Book [3]
+				getitem4 1550,1,1,13,0,0,0,0,0,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Book [3]
 			case JOB_STALKER:
-				getitembound4 1222,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Damascus [1]
+				getitem4 1222,1,1,13,0,0,0,0,0,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Damascus [1]
 			case JOB_CREATOR:
-				getitembound4 1126,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Saber [2]
+				getitem4 1126,1,1,13,0,0,0,0,0,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Saber [2]
 			case JOB_CLOWN:
-				getitembound4 1907,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Guitar [0]
+				getitem4 1907,1,1,13,0,0,0,0,0,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Guitar [0]
 			case JOB_GYPSY:
-				getitembound4 1960,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Whip [1]
+				getitem4 1960,1,1,13,0,0,0,0,0,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Whip [1]
 		}
 	} else {
 		// Neither Second or Third Cls
@@ -542,10 +542,10 @@ function	Get_Job_Equip	{
 				getitem 2001002,1;	// Paradise Armor
 				break;
 			case JOB_REBELLION:
-				getitembound4 13107,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Wasteland's Outlaw [1]
+				getitem4 13107,1,1,13,0,0,0,0,0,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Wasteland's Outlaw [1]
 			case JOB_KAGEROU:
 			case JOB_OBORO:
-				getitembound4 13304,1,1,13,0,0,0,0,0,Bound_Char,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Huuma Calm [1]
+				getitem4 13304,1,1,13,0,0,0,0,0,4,.@OptID,.@OptVal,.@OptParam;	break;	//	Huuma Calm [1]
 				break;
 		}
 	}

@@ -13867,7 +13867,10 @@ int32 skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, 
 			map_foreachinrange(skill_area_sub, bl, skill_get_splash(skill_id, skill_lv), BL_CHAR, src, skill_id, skill_lv, tick, flag|BCT_ENEMY|1, skill_castend_nodamage_id);
 		}
 		break;
-
+	
+	case NPC_LAVAEVENT:
+		break;
+		
 	default: {
 		std::shared_ptr<s_skill_db> skill = skill_db.find(skill_id);
 
@@ -15881,6 +15884,10 @@ int32 skill_castend_pos2(struct block_list* src, int32 x, int32 y, uint16 skill_
 		clif_blown(src);
 		break;
 
+	// Floor is Lava
+	case NPC_LAVAEVENT:
+		break;
+		
 	default:
 		if (std::shared_ptr<s_skill_db> skill = skill_db.find(skill_id); skill != nullptr && skill->impl != nullptr) {
 			skill->impl->castendPos2(src, x, y, skill_lv, tick, flag);

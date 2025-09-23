@@ -42,6 +42,21 @@ Header:
   Version: 2
 
 Body:
+  - Id: 118
+    Name: Thanatos Tower Revamp
+    TimeLimit: 3600
+    Enter:
+      Map: 1@thts
+      X: 74
+      Y: 371
+    AdditionalMaps:
+      2@thts: true
+      3@thts: true
+      4@thts: true
+      5@thts: true
+      6@thts: true
+      7@thts: true
+      8@thts: true
   - Id: 400
     Name: Chaos Dungeon
     TimeLimit: 600

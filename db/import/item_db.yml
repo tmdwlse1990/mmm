@@ -462,12 +462,6 @@ Body:
     Name: Simple Catalyst
     Type: Etc
     Weight: 10
-    Trade:
-      NoDrop: true
-      NoTrade: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
     Flags:
       DropEffect: CLIENT
   - Id: 2000021
@@ -475,12 +469,6 @@ Body:
     Name: Potent Catalyst
     Type: Etc
     Weight: 10
-    Trade:
-      NoDrop: true
-      NoTrade: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
     Flags:
       DropEffect: CLIENT
   - Id: 2000022
@@ -488,12 +476,6 @@ Body:
     Name: Stable Catalyst
     Type: Etc
     Weight: 10
-    Trade:
-      NoDrop: true
-      NoTrade: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
     Flags:
       DropEffect: CLIENT
   - Id: 2000023
