@@ -138,6 +138,13 @@ function	script	instance_enable	{
 	return;
 }
 
+//= instance_disable(<NPC NAME>);
+function	script	instance_disable	{
+	hideoffnpc instance_npcname(getarg(0));
+	disablenpc instance_npcname(getarg(0));
+	return;
+}
+
 function	script	instance_event	{
 	if(getarg(2))
 		doevent instance_npcname(getarg(0)) + "::" + getarg(1);
@@ -1226,9 +1233,9 @@ Again:
 			}
 		}
 		mes "^006400-------------------------------^000000";
-		mes "สุ่มใหม่ไหม?";
+		mes "สุ่มใหม่ไหม? (กดยกเลิกจะใช้ออกเก่า)";
 		setdialogsize(470,260);
-		switch(select(" - สุ่มใหม่: - เปลี่ยน: - ยกเลิก") ) {
+		switch(select(" - สุ่มต่อ: - ใช้ออฟใหม่: - ใช้ออฟเก่า") ) {
 			case 2:
 				break;
 			case 1:

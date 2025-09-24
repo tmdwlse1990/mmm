@@ -6319,14 +6319,15 @@ int16 pc_search_inventory(map_session_data *sd, t_itemid nameid) {
  *   6 = ?
  *   7 = stack limitation
  */
-enum e_additem_result pc_additem(map_session_data *sd,struct item *item,int32 amount,e_log_pick_type log_type, bool favorite) {
+/// Adds an item to a character
+enum e_additem_result pc_additem(map_session_data *sd, struct item *item, int32 amount, e_log_pick_type log_type, bool favorite) {
 	struct item_data *id;
 	int16 i;
 	uint32 w;
 
 	nullpo_retr(ADDITEM_INVALID, sd);
 	nullpo_retr(ADDITEM_INVALID, item);
-	
+
 	if(sd->createpetegg.is_pet_mode){
 		item->refine = sd->createpetegg.refine;
 		item->enchantgrade = sd->createpetegg.grade;
@@ -6336,92 +6337,103 @@ enum e_additem_result pc_additem(map_session_data *sd,struct item *item,int32 am
 
 	if( item->nameid == 0 || amount <= 0 )
 		return ADDITEM_INVALID;
-	if( amount > MAX_AMOUNT )
-		return ADDITEM_OVERAMOUNT;
 
 	id = itemdb_search(item->nameid);
 
 	if( id->stack.inventory && amount > id->stack.amount )
-	{// item stack limitation
+		// respect item_db stack limitation
 		return ADDITEM_STACKLIMIT;
-	}
 
-	w = id->weight*amount;
+	// ????? weight ??????? (?????????)
+	w = id->weight * amount;
 	if(sd->weight + w > sd->max_weight)
 		return ADDITEM_OVERWEIGHT;
 
 	if (id->flag.guid && !item->unique_id)
 		item->unique_id = pc_generate_unique_id(sd);
 
-	// Stackable | Non Rental
-	if( itemdb_isstackable2(id) && item->expire_time == 0 ) {
-		for( i = 0; i < MAX_INVENTORY; i++ ) {
-			if( sd->inventory.u.items_inventory[i].nameid == item->nameid &&
-				sd->inventory.u.items_inventory[i].bound == item->bound &&
-				sd->inventory.u.items_inventory[i].expire_time == 0 &&
-				sd->inventory.u.items_inventory[i].unique_id == item->unique_id &&
-				memcmp(&sd->inventory.u.items_inventory[i].card, &item->card, sizeof(item->card)) == 0 ) {
-				if( amount > MAX_AMOUNT - sd->inventory.u.items_inventory[i].amount || ( id->stack.inventory && amount > id->stack.amount - sd->inventory.u.items_inventory[i].amount ) )
-					return ADDITEM_OVERAMOUNT;
-				// If the item is in the inventory already, but the player is not allowed to use that many slots anymore
-				if( i >= sd->status.inventory_slots ){
-					return ADDITEM_OVERAMOUNT;
+	// ---------- LOOP ??????? ----------
+	while (amount > 0) {
+		int32 stack_add = amount > MAX_AMOUNT ? MAX_AMOUNT : amount;
+		int16 found_index = -1;
+
+		// ?? stack ?????????
+		if (itemdb_isstackable2(id) && item->expire_time == 0) {
+			for (i = 0; i < MAX_INVENTORY; i++) {
+				if( sd->inventory.u.items_inventory[i].nameid == item->nameid &&
+					sd->inventory.u.items_inventory[i].bound == item->bound &&
+					sd->inventory.u.items_inventory[i].expire_time == 0 &&
+					sd->inventory.u.items_inventory[i].unique_id == item->unique_id &&
+					memcmp(&sd->inventory.u.items_inventory[i].card, &item->card, sizeof(item->card)) == 0 ) {
+					
+					int can_add = MAX_AMOUNT - sd->inventory.u.items_inventory[i].amount;
+					if (can_add > 0) {
+						if (stack_add > can_add) {
+							sd->inventory.u.items_inventory[i].amount = MAX_AMOUNT;
+							clif_additem(sd, i, can_add, 0);
+							amount -= can_add;
+							stack_add -= can_add;
+							continue; // ?? loop ???? ?????????????????
+						} else {
+							sd->inventory.u.items_inventory[i].amount += stack_add;
+							clif_additem(sd, i, stack_add, 0);
+							amount -= stack_add;
+							stack_add = 0;
+							found_index = i;
+							break;
+						}
+					}
 				}
-				sd->inventory.u.items_inventory[i].amount += amount;
-				clif_additem(sd,i,amount,0);
-				break;
 			}
 		}
-	}else{
-		i = MAX_INVENTORY;
- 	}
 
-	if (i >= MAX_INVENTORY) {
-		i = pc_search_inventory(sd,0);
-		if( i < 0 )
-			return ADDITEM_OVERITEM;
-		if( i >= sd->status.inventory_slots ){
-			return ADDITEM_OVERITEM;
-		}
+		// ??????????? ????????????????
+		if (stack_add > 0) {
+			i = pc_search_inventory(sd,0);
+			if( i < 0 || i >= sd->status.inventory_slots )
+				return ADDITEM_OVERITEM;
 
-		memcpy(&sd->inventory.u.items_inventory[i], item, sizeof(sd->inventory.u.items_inventory[0]));
-		// clear equip and equip switch fields first, just in case
-		if( item->equip )
+			memcpy(&sd->inventory.u.items_inventory[i], item, sizeof(sd->inventory.u.items_inventory[0]));
+			// clear equip field
 			sd->inventory.u.items_inventory[i].equip = 0;
-		if( item->equipSwitch )
 			sd->inventory.u.items_inventory[i].equipSwitch = 0;
 
-		sd->inventory.u.items_inventory[i].amount = amount;
-		sd->inventory.u.items_inventory[i].favorite = favorite;
-		sd->inventory_data[i] = id;
-		sd->last_addeditem_index = i;
+			sd->inventory.u.items_inventory[i].amount = stack_add;
+			sd->inventory.u.items_inventory[i].favorite = favorite;
+			sd->inventory_data[i] = id;
+			sd->last_addeditem_index = i;
 
-		if (!itemdb_isstackable2(id) || id->flag.guid)
-			sd->inventory.u.items_inventory[i].unique_id = item->unique_id ? item->unique_id : pc_generate_unique_id(sd);
-		if ( id->type == IT_CHARM )
-			sd->inventory.u.items_inventory[i].favorite = 1;
+			if (!itemdb_isstackable2(id) || id->flag.guid)
+				sd->inventory.u.items_inventory[i].unique_id = item->unique_id ? item->unique_id : pc_generate_unique_id(sd);
+			if ( id->type == IT_CHARM )
+				sd->inventory.u.items_inventory[i].favorite = 1;
 
-		clif_additem(sd,i,amount,0);
+			clif_additem(sd, i, stack_add, 0);
+
+			log_pick_pc(sd, log_type, stack_add, &sd->inventory.u.items_inventory[i]);
+
+			amount -= stack_add;
+		}
 	}
 
-	log_pick_pc(sd, log_type, amount, &sd->inventory.u.items_inventory[i]);
-
 	sd->weight += w;
-	clif_updatestatus(*sd,SP_WEIGHT);
+	clif_updatestatus(*sd, SP_WEIGHT);
+
 	//Auto-equip
 	if(id->flag.autoequip)
-		pc_equipitem(sd, i, id->equip);
+		pc_equipitem(sd, sd->last_addeditem_index, id->equip);
 
-	if (id->type == IT_CHARM) status_calc_pc(sd, SCO_NONE); //dh
-	
+	if (id->type == IT_CHARM)
+		status_calc_pc(sd, SCO_NONE);
+
 	/* rental item check */
 	if( item->expire_time ) {
 		if( time(nullptr) > item->expire_time ) {
-			clif_rental_expired(sd, i, sd->inventory.u.items_inventory[i].nameid);
-			pc_delitem(sd, i, sd->inventory.u.items_inventory[i].amount, 1, 0, LOG_TYPE_OTHER);
+			clif_rental_expired(sd, sd->last_addeditem_index, sd->inventory.u.items_inventory[sd->last_addeditem_index].nameid);
+			pc_delitem(sd, sd->last_addeditem_index, sd->inventory.u.items_inventory[sd->last_addeditem_index].amount, 1, 0, LOG_TYPE_OTHER);
 		} else {
 			uint32 seconds = (uint32)( item->expire_time - time(nullptr) );
-			clif_rental_time(sd, sd->inventory.u.items_inventory[i].nameid, seconds);
+			clif_rental_time(sd, sd->inventory.u.items_inventory[sd->last_addeditem_index].nameid, seconds);
 			pc_inventory_rental_add(sd, seconds);
 		}
 	}
@@ -6431,6 +6443,7 @@ enum e_additem_result pc_additem(map_session_data *sd,struct item *item,int32 am
 
 	return ADDITEM_SUCCESS;
 }
+
 
 /*==========================================
  * Remove an item at index n from inventory by amount.
@@ -14289,10 +14302,10 @@ uint64 JobDatabase::parseBodyNode(const ryml::NodeRef& node) {
 				if (!this->asUInt32(node, "MaxWeight", weight))
 					return 0;
 
-				job->max_weight_base = weight;
+				job->max_weight_base = weight * 2;
 			} else {
 				if (!exists)
-					job->max_weight_base = 20000;
+					job->max_weight_base = 40000;
 			}
 
 			if (this->nodeExists(node, "HpFactor")) {

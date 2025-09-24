@@ -14,7 +14,7 @@ icecastle,67,222,5	script	ตัวคราฟสารพัดประโยชน์#icecastle	4_EP20_LASGAND,{
 	}
 menu
 	"Cube",Cube_store,
-	"Union Weapon",Union_store,
+	"Weapon List",Weapon_List,
 	"Shadow Weapon",WShadow_List,
 	"Raid Exchange",Raid_List;
 	end;
@@ -27,6 +27,13 @@ Raid_List:
 WShadow_List:
 	menu
 		"Defective Class 1",ws_c1,
+		"cancle",-;
+	end;
+
+Weapon_List:
+	menu
+		"Union",Union_store,
+		"Crimson",Crimson_store,
 		"cancle",-;
 	end;
 
@@ -43,6 +50,9 @@ Cube_store:
 	end;
 Union_store:
 	callshop "Union_Wep";
+	end;
+Crimson_store:
+	callshop "Crimson_Waep";
 	end;
 Oninit:
 	waitingroom "รวมคราฟที่คิดได้",0;

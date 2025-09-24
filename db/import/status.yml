@@ -46,6 +46,30 @@ Header:
   Version: 4
 
 Body:
+  - Status: Warm
+    Icon: EFST_SG_SUN_WARM
+    DurationLookup: SG_SUN_WARM
+    Opt3:
+      Warm: true
+    Flags:
+      NoDispell: true
+      NoBanishingBuster: true
+      NoClearance: true
+  - Status: Sun_Comfort
+    Icon: EFST_SUN_COMFORT
+    DurationLookup: SG_SUN_COMFORT
+    CalcFlags:
+      Def2: true
+  - Status: Moon_Comfort
+    Icon: EFST_MOON_COMFORT
+    DurationLookup: SG_MOON_COMFORT
+    CalcFlags:
+      Flee: true
+  - Status: Star_Comfort
+    Icon: EFST_STAR_COMFORT
+    DurationLookup: SG_STAR_COMFORT
+    CalcFlags:
+      Aspd: true
   - Status: H_Mine
     Flags:
       BlEffect: true

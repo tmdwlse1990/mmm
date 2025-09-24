@@ -8,7 +8,7 @@ icecastle,175,216,4	script	Kafra Service#ice	113,{
 	mes "Headquarters. Did you";
 	mes "need something?";
 	next;
-	switch(select("Save:Use Storage:Rent a Pushcart:Cancel")) {
+	switch(select("Save:Use Storage:Use Guild Store:Cancel")) {
 	case 1:
 		mes "[Kafra Leilah]";
 		mes "Your Respawn Point has";
@@ -56,20 +56,8 @@ icecastle,175,216,4	script	Kafra Service#ice	113,{
 		break;
 	case 3:
 		mes "[Kafra Leilah]";
-		mes "My apologies, but I'm";
-		mes "not on duty. I'd assist you";
-		mes "if I could, but actually don't";
-		mes "have any available Pushcarts.";
-		mes "Why don't you ask another Kafra";
-		mes "Employee for assistance?";
-		next;
-		mes "[Kafra Leilah]";
-		mes "Kafra Employees are";
-		mes "stationed all over the";
-		mes "Midgard continent,";
-		mes "and you should be able to find";
-		mes "plenty outside in Al De Baran.";
 		close2;
+		guildopenstorage;
 		break;
 	case 4:
 		mes "[Kafra Leilah]";

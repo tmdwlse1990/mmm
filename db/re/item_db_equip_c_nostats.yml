@@ -154070,9 +154070,6 @@ Body:
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
-    Script: |
-      bonus bAspdRate,5;
-      bonus bVariableCastrate,-5;
   - Id: 31320
     AegisName: C_Pinwheel_Cap_R
     Name: "[Rental] Costume Pinwheel"
@@ -154090,12 +154087,6 @@ Body:
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
-    Script: |
-      bonus bAspd,1;
-      bonus bAspdRate,5;
-      bonus bVariableCastrate,-5;
-      bonus2 bAddRace,RC_Fish,10;
-      bonus2 bMagicAddRace,RC_Fish,10;
   - Id: 31321
     AegisName: C_Shining_Sunflower
     Name: Costume Shining Sunflower

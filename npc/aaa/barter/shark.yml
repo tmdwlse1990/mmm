@@ -46,6 +46,212 @@ Header:
   Version: 2
 
 Body:
+  - Name: Crimson_Waep
+    Items:
+      - Index: 0
+        Item: Scarlet_Bible
+        Zeny: 12000000
+        RequiredItems:
+          - Index: 0
+            Item: Girl's_Diary 
+            Amount: 1
+            Refine: 13
+          - Index: 1
+            Item: Book_Of_The_Apocalypse 
+            Amount: 1
+            Refine: 13
+      - Index: 1
+        Item: Scarlet_Bow
+        Zeny: 12000000
+        RequiredItems:
+          - Index: 0
+            Item: Cursed_Lyre
+            Amount: 1
+            Refine: 13
+          - Index: 1
+            Item: Nepenthes_Bow 
+            Amount: 1
+            Refine: 13
+      - Index: 2
+        Item: Scarlet_Dagger
+        Zeny: 12000000
+        RequiredItems:
+          - Index: 0
+            Item: Forturn_Sword
+            Amount: 1
+            Refine: 13
+          - Index: 1
+            Item: Ginnungagap 
+            Amount: 1
+            Refine: 13
+      - Index: 3
+        Item: Scarlet_Huuma
+        Zeny: 12000000
+        RequiredItems:
+          - Index: 0
+            Item: Huuma_Blaze
+            Amount: 1
+            Refine: 13
+          - Index: 1
+            Item: Huuma_Giant_Wheel_ 
+            Amount: 1
+            Refine: 13
+      - Index: 4
+        Item: Scarlet_Katar
+        Zeny: 12000000
+        RequiredItems:
+          - Index: 0
+            Item: Blood_Tears
+            Amount: 1
+            Refine: 13
+          - Index: 1
+            Item: Bloody_Roar 
+            Amount: 1
+            Refine: 13
+      - Index: 5
+        Item: Scarlet_Knuckle
+        Zeny: 12000000
+        RequiredItems:
+          - Index: 0
+            Item: Berserk
+            Amount: 1
+            Refine: 13
+          - Index: 1
+            Item: Horn_Of_Hilthrion 
+            Amount: 1
+            Refine: 13
+      - Index: 6
+        Item: Scarlet_Lance
+        Zeny: 12000000
+        RequiredItems:
+          - Index: 0
+            Item: Cardo
+            Amount: 1
+            Refine: 13
+          - Index: 1
+            Item: Zephyrus 
+            Amount: 1
+            Refine: 13
+      - Index: 7
+        Item: Scarlet_Mace
+        Zeny: 12000000
+        RequiredItems:
+          - Index: 0
+            Item: Nemesis
+            Amount: 1
+            Refine: 13
+          - Index: 1
+            Item: Spike 
+            Amount: 1
+            Refine: 13
+      - Index: 8
+        Item: Scarlet_Rod
+        Zeny: 12000000
+        RequiredItems:
+          - Index: 0
+            Item: Dead_Tree_Cane
+            Amount: 1
+            Refine: 13
+          - Index: 1
+            Item: Walking_Stick 
+            Amount: 1
+            Refine: 13
+      - Index: 9
+        Item: Scarlet_Revolver
+        Zeny: 12000000
+        RequiredItems:
+          - Index: 0
+            Item: Gold_Lux
+            Amount: 1
+            Refine: 13
+          - Index: 1
+            Item: Wasteland_Outlaw 
+            Amount: 1
+            Refine: 13
+      - Index: 10
+        Item: Scarlet_Saber
+        Zeny: 12000000
+        RequiredItems:
+          - Index: 0
+            Item: Curved_Sword
+            Amount: 1
+            Refine: 13
+          - Index: 1
+            Item: Platinum_Shotel 
+            Amount: 1
+            Refine: 13
+      - Index: 11
+        Item: Scarlet_Spear
+        Zeny: 12000000
+        RequiredItems:
+          - Index: 0
+            Item: Battle_Hook
+            Amount: 1
+            Refine: 13
+          - Index: 1
+            Item: Long_Horn 
+            Amount: 1
+            Refine: 13
+      - Index: 12
+        Item: Scarlet_Twohand_Axe
+        Zeny: 12000000
+        RequiredItems:
+          - Index: 0
+            Item: Bradium_Stonehammer
+            Amount: 1
+            Refine: 13
+          - Index: 1
+            Item: Heart_Breaker 
+            Amount: 1
+            Refine: 13
+      - Index: 13
+        Item: Scarlet_Staff
+        Zeny: 12000000
+        RequiredItems:
+          - Index: 0
+            Item: Divine_Cross
+            Amount: 1
+            Refine: 13
+          - Index: 1
+            Item: Wizardy_Staff 
+            Amount: 1
+            Refine: 13
+      - Index: 14
+        Item: Scarlet_Twohand_Sword
+        Zeny: 12000000
+        RequiredItems:
+          - Index: 0
+            Item: Bloody_Eater
+            Amount: 1
+            Refine: 13
+          - Index: 1
+            Item: Katzbalger 
+            Amount: 1
+            Refine: 13
+      - Index: 15
+        Item: Scarlet_Viollin
+        Zeny: 12000000
+        RequiredItems:
+          - Index: 0
+            Item: Oriental_Lute
+            Amount: 1
+            Refine: 13
+          - Index: 1
+            Item: Harp_Of_Nepenthes 
+            Amount: 1
+            Refine: 13
+      - Index: 16
+        Item: Scarlet_Wire
+        Zeny: 12000000
+        RequiredItems:
+          - Index: 0
+            Item: Bladed_Whip
+            Amount: 1
+            Refine: 13
+          - Index: 1
+            Item: Carrot_Whip 
+            Amount: 1
+            Refine: 13
   - Name: ogh_list
     Items:
       - Index: 0
