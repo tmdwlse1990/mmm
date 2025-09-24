@@ -574,6 +574,7 @@ G8: Restrict("RE");
 // --------------------------------------------------
 menu
 	"AirShip Raid",I102,
+	"Endless Tower",I6,
 	"Faceworms Nest",I7,
 	"Octopus Cave",I14,
 	"Old Glast Heim",I15,
@@ -593,7 +594,7 @@ menu	"Bakonawa Lake",I1, "Bangungot Hospital 2F",I2, "Buwaya Cave",I3,
 I101: Restrict("RE");
 	Go("glast_01",181,279);
 I102: Restrict("RE");
-	Go("dali",134,82);
+	Go("dali02",134,82);
 I1: Restrict("RE");
 	Go("ma_scene01",172,175);
 I2: Restrict("RE");

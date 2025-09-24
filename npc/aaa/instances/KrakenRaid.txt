@@ -622,6 +622,7 @@ OnMyMobDead:
 		mes "[ผู้ใหญ่บ้าน]";
 		mes "นี่คือของตอบแทนจากข้า.....";
 		getitem 2002002, 1;
+		#OCTO_POINT += 10;
 		set 'kraken_defeated , 2;
 		end;
 	}

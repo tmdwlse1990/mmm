@@ -3397,10 +3397,8 @@ int32 map_getcellp(struct map_data* m,int16 x,int16 y,cell_chk cellchk)
 	if(x<0 || x>=m->xs-1 || y<0 || y>=m->ys-1)
 		return( cellchk == CELL_CHKNOPASS );
 
-	if(x + y * m->xs > 0)
-		cell = m->cell[x + y*m->xs];
-	else
-		cell = m->cell[0];
+	cell = m->cell[x + y*m->xs];
+
 
 	switch(cellchk)
 	{

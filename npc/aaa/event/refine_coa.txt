@@ -2,7 +2,7 @@
 jor_back3,0,0	monster	GLITCH-BC	30003,20,1000
 jor_back3,0,0	monster	GLITCH-WC	30002,20,1000
 
-icecastle,183,210,5	script	COA Refine Event	617,{
+icecastle,181,168,5	script	COA Refine Event	617,{
 //cmd_in02,79,83,5	script	COA Refine Event	617,{
 	//if(getgmlevel() < 99) end;		// เอาออกถ้าจะเปิดใช้ ย้ายพิกัด ชื่อ NPC sprite NPC จัดตั้งให้ครบสวยๆก่อนค่อยลบบรรทัดนี้ทิ้ง
 	// แก้คำสวยๆทุกๆ Mes ให้สมเหตุสมผล อ่านง่าย เข้าใจง่ายด้วย
@@ -16,11 +16,8 @@ icecastle,183,210,5	script	COA Refine Event	617,{
 Main_Menu:
 	next;
 	menu
-		"รายละเอียด",Descrip,
-		"รับประดับกิจกรรม",Item_event,
-		"แลกของรางวัล",Exchange_Acc,
 		"แลกเปลี่ยนหินตีบวก",Exchange_material,
-		"วาปไปแมพกิจกรรม",Warpmap,
+		"วาปไปล่าแมว",Warpmap,
 		"ออก",-;
 	end;
 Warpmap:

@@ -604,8 +604,9 @@ Body:
       NoAuction: true
     Script: |
       getitem 2001951,1;
-      getitem 2001005,1;
+      getitem 2001908,1;
       getitem 2001101,1;
+      getitem 2002023,1;
   - Id: 2001007
     AegisName: Store_ADCard_Store 
     Name: Store Adventure Card Store
@@ -1313,7 +1314,7 @@ Body:
     Type: Card
     SubType: Enchant
     Script: |
-      autobonus2 "{ bonus bStr,200; bonus2 bHPLossRate,3000,1000; }",20,5000,BF_WEAPON,"{ specialeffect2 EF_POTION_BERSERK; }";
+      autobonus "{ bonus bStr,200; bonus2 bHPLossRate,3000,1000; }",20,5000,BF_WEAPON,"{ specialeffect2 EF_POTION_BERSERK; }";
       bonus bStr,10;
     UnEquipScript: |
       heal 0,-300;
@@ -1346,7 +1347,7 @@ Body:
     Type: Card
     SubType: Enchant
     Script: |
-      autobonus2 "{ bonus bDef,2000; bonus2 bSPLossRate,50,1000; }",20,5000,BF_WEAPON,"{ specialeffect2 EF_MAGNUMBREAK; }";
+      autobonus2 "{ bonus bDef,5000; bonus2 bSPLossRate,50,1000; }",20,5000,BF_WEAPON,"{ specialeffect2 EF_MAGNUMBREAK; }";
       bonus bVit,10;
     UnEquipScript: |
       heal 0,-300;
