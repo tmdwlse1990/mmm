@@ -325,8 +325,6 @@ Body:
         Rate: 3000
       - Item: Elunium
         Rate: 50
-      - Item: Plate_Armor
-        Rate: 200
   - Id: 3144
     AegisName: MG_RAYDRIC_ARCHER_H
     Name: Wandering Archer
@@ -369,8 +367,6 @@ Body:
         Rate: 3000
       - Item: Elunium
         Rate: 50
-      - Item: Tights
-        Rate: 200
   - Id: 3145
     AegisName: MG_KNIGHT_OF_ABYSS_H
     Name: Corrupted Abysmal Knight
@@ -413,8 +409,6 @@ Body:
         Rate: 5000
       - Item: Patriotism_Marks
         Rate: 10
-      - Item: Full_Plate_Armor
-        Rate: 200
   - Id: 3146
     AegisName: MG_KHALITZBURG_H
     Name: Suffering Khalitzburg
@@ -455,8 +449,6 @@ Body:
         Rate: 50
       - Item: Patriotism_Marks
         Rate: 10
-      - Item: Lapier
-        Rate: 300
   - Id: 3147
     AegisName: MG_BLOODY_KNIGHT_H
     Name: Bloody Knight
@@ -496,10 +488,6 @@ Body:
         Rate: 1500
       - Item: Brigan
         Rate: 5000
-      - Item: Broad_Sword
-        Rate: 100
-      - Item: Two_Hand_Sword
-        Rate: 100
   - Id: 3148
     AegisName: MG_M_UNDEAD_KNIGHT_H
     Name: Commander of Destruction
@@ -539,10 +527,6 @@ Body:
         Rate: 10000
       - Item: Alca_Bringer
         Rate: 10
-      - Item: Claymore
-        Rate: 100
-      - Item: Halberd
-        Rate: 200
       - Item: UndeadKnightM_Card
         Rate: 1
         StealProtected: true
