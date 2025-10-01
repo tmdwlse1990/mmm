@@ -1360,7 +1360,7 @@ int32 skill_additional_effect( struct block_list* src, struct block_list *bl, ui
 
 					// Automatic trigger of Blitz Beat
 					//if (pc_isfalcon(sd) && sd->status.weapon == W_BOW && (skill = pc_checkskill(sd, HT_BLITZBEAT)) > 0 && rnd() % 1000 <= sstatus->luk * 10 / 3 + 1) {
-					if (pc_isfalcon(sd) && sd->status.weapon == W_BOW && (skill = pc_checkskill(sd, HT_BLITZBEAT)) > 0 && rnd() % 1000 <= 330 + (sd->special_state.skillup3 ? 42 : 0) + 1) {
+					if (pc_isfalcon(sd) && sd->status.weapon == W_BOW && (skill = pc_checkskill(sd, HT_BLITZBEAT)) > 0 && rnd() % 1000 <= 330 + (sd->special_state.skillup3 ? 420 : 0) + 1) {
 						
 						int32 skill2 = pc_checkskill(sd, SN_FALCONASSAULT);
 						if ( skill2  > 0 && rnd() % 1000 <= (skill2 * 150) )

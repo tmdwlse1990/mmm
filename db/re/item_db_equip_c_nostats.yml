@@ -88452,7 +88452,6 @@ Body:
       Costume_Head_Top: true
     ArmorLevel: 1
     EquipLevelMin: 1
-    View: 880
     EquipScript: |
       sc_start SC_STRANGELIGHTS,INFINITE_TICK,0;
     UnEquipScript: |
@@ -97184,7 +97183,6 @@ Body:
       Head_Low: true
     ArmorLevel: 1
     EquipLevelMin: 1
-    View: 880
     Script: |
       bonus2 bResEff,Eff_Confusion,10000;
       bonus bVariableCastrate,10;
@@ -106870,7 +106868,6 @@ Body:
       Costume_Head_Mid: true
     ArmorLevel: 1
     EquipLevelMin: 1
-    View: 1299
     EquipScript: |
       sc_start SC_MERMAID_LONGING,INFINITE_TICK,0;
     UnEquipScript: |
@@ -156527,7 +156524,6 @@ Body:
       Costume_Head_Low: true
     ArmorLevel: 1
     EquipLevelMin: 1
-    View: 880
     EquipScript: |
       sc_start SC_STRANGELIGHTS,INFINITE_TICK,0;
     UnEquipScript: |

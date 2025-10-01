@@ -37936,9 +37936,9 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-#      - Item: Bs_Making_S
-#        Index: 0
-#        Rate: 5000
+      - Item: MVP_Option_Box_T1
+        Index: 0
+        Rate: 5000
       - Item: Old_Violet_Box
         Index: 1
         Rate: 5000

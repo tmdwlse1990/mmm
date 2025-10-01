@@ -1,6 +1,6 @@
 
 //icecastle,188,210,4	script	Daily Event Quest#COA	46,{
-amatsu,221,101,4	script	Daily Event Quest#COA	46,{
+icecastle,181,164,4	script	Daily Event Quest#COA	46,{
 
 	mes "[Cat Hunter]";
 	mes "สวัสดี! วันนี้คุณต้องการล่าแมวตัวไหนหละ?";
@@ -102,5 +102,3 @@ case 2:
 		close;
 	}
 }
-
-icecastle,188,210,4	duplicate(Daily Event Quest#COA)	Daily Event Quest#COA2	46,{

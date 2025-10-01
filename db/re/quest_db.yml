@@ -13325,7 +13325,7 @@ Body:
         Count: 150
   - Id: 60200
     Title: Endless Tower Effect
-    TimeLimit: +7d
+    TimeLimit: 4h
   - Id: 60201
     Title: Endless Tower Time Limit
     TimeLimit: +4h

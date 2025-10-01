@@ -341,7 +341,7 @@ S_Slot:
 	delitem 7925,1;// Temporal_Crystal
 	if (getequipid(EQI_SHOES) == .@equip_id) {
 		delequip EQI_SHOES;
-		if (rand(1,100) < 85) {
+		if (rand(1,100) < 51) {
 			mes "[Hugin's Craftsman]";
 			mes "Arrggg, we failed. Better luck next time.";
 			specialeffect2 EF_PHARMACY_FAIL;
@@ -393,6 +393,13 @@ glast_01,184,283,4	script	Dark magic master#pa082	1_F_01,{
 		mes "The enchant order is same as Hugin's magic master's enchantment. Please refer to his explanation.";
 		close;
 	}
+	
+	if (!getequipisequiped(EQI_SHOES)) {
+		mes "[Dark magic master]";
+		mes "Are you wearing the item?";
+		close;
+	}
+	
 	.@part = EQI_SHOES;
 	.@equip_id = getequipid(.@part);
 	.@refine = getequiprefinerycnt(.@part);
