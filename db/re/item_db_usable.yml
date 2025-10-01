@@ -13108,7 +13108,7 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      if ((eaclass()&EAJ_THIRDMASK) == EAJ_RUNE_KNIGHT)
+      if ((eaclass()&EAJ_UPPERMASK) == EAJ_KNIGHT)
          unitskilluseid getcharid(3),"RK_REFRESH",1;
   - Id: 12726
     AegisName: Runstone_Rhydo
@@ -13130,7 +13130,7 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      if ((eaclass()&EAJ_THIRDMASK) == EAJ_RUNE_KNIGHT)
+      if ((eaclass()&EAJ_UPPERMASK) == EAJ_KNIGHT)
          unitskilluseid getcharid(3),"RK_CRUSHSTRIKE",1;
   - Id: 12727
     AegisName: Runstone_Verkana
@@ -13152,7 +13152,7 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      if ((eaclass()&EAJ_THIRDMASK) == EAJ_RUNE_KNIGHT)
+      if ((eaclass()&EAJ_UPPERMASK) == EAJ_KNIGHT)
          unitskilluseid getcharid(3),"RK_MILLENNIUMSHIELD",1;
   - Id: 12728
     AegisName: Runstone_Isia
@@ -13171,7 +13171,7 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      if ((eaclass()&EAJ_THIRDMASK) == EAJ_RUNE_KNIGHT)
+      if ((eaclass()&EAJ_UPPERMASK) == EAJ_KNIGHT)
          unitskilluseid getcharid(3),"RK_VITALITYACTIVATION",1;
   - Id: 12729
     AegisName: Runstone_Asir
@@ -13190,7 +13190,7 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      if ((eaclass()&EAJ_THIRDMASK) == EAJ_RUNE_KNIGHT)
+      if ((eaclass()&EAJ_UPPERMASK) == EAJ_KNIGHT)
          unitskilluseid getcharid(3),"RK_FIGHTINGSPIRIT",1;
   - Id: 12730
     AegisName: Runstone_Urj
@@ -13209,7 +13209,7 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      if ((eaclass()&EAJ_THIRDMASK) == EAJ_RUNE_KNIGHT)
+      if ((eaclass()&EAJ_UPPERMASK) == EAJ_KNIGHT)
          unitskilluseid getcharid(3),"RK_ABUNDANCE",1;
   - Id: 12731
     AegisName: Runstone_Turisus
@@ -13228,7 +13228,7 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      if ((eaclass()&EAJ_THIRDMASK) == EAJ_RUNE_KNIGHT)
+      if ((eaclass()&EAJ_UPPERMASK) == EAJ_KNIGHT)
          unitskilluseid getcharid(3),"RK_GIANTGROWTH",1;
   - Id: 12732
     AegisName: Runstone_Pertz
@@ -13250,7 +13250,7 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      if ((eaclass()&EAJ_THIRDMASK) == EAJ_RUNE_KNIGHT)
+      if ((eaclass()&EAJ_UPPERMASK) == EAJ_KNIGHT)
          unitskilluseid getcharid(3),"RK_STORMBLAST",1;
   - Id: 12733
     AegisName: Runstone_Hagalas
@@ -13269,7 +13269,7 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      if ((eaclass()&EAJ_THIRDMASK) == EAJ_RUNE_KNIGHT)
+      if ((eaclass()&EAJ_UPPERMASK) == EAJ_KNIGHT)
          unitskilluseid getcharid(3),"RK_STONEHARDSKIN",1;
   - Id: 12734
     AegisName: Runstone_Quality
@@ -56967,7 +56967,7 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      if ((eaclass()&EAJ_THIRDMASK) == EAJ_RUNE_KNIGHT)
+      if ((eaclass()&EAJ_UPPERMASK) == EAJ_KNIGHT)
          itemskill "RK_LUXANIMA",1;
   - Id: 22541
     AegisName: PCBang_Coupon_Box6

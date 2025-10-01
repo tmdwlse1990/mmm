@@ -49,6 +49,22 @@ Header:
   Version: 4
 
 Body:
+  - Group: Vicious_extract
+    SubGroups:
+      - SubGroup: 1
+        List:
+          - Index: 0
+            Item: Vicious_Core_S
+            Amount: 1
+            Rate: 3
+          - Index: 1
+            Item: Vicious_Core_S
+            Amount: 2
+            Rate: 2
+          - Index: 2
+            Item: Vicious_Core_S
+            Amount: 3
+            Rate: 1
   - Group: STATSBOX2
     SubGroups:
       - SubGroup: 1

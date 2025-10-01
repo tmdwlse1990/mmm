@@ -110736,12 +110736,28 @@ Body:
       Costume_Garment: true
     ArmorLevel: 1
     View: 181
+    Trade:
+      NoDrop: false
+      NoTrade: false
+      NoCart: false
+      NoStorage: false
+      NoGuildStorage: false
+      NoMail: false
+      NoAuction: false
   - Id: 20623
     AegisName: C_2023RTC_S_Robe2
     Name: Costume Runner Up of ROS 2023
     Type: Armor
     Locations:
       Costume_Garment: true
+    Trade:
+      NoDrop: false
+      NoTrade: false
+      NoCart: false
+      NoStorage: false
+      NoGuildStorage: false
+      NoMail: false
+      NoAuction: false
     ArmorLevel: 1
     View: 182
   - Id: 20624
@@ -110752,6 +110768,14 @@ Body:
       Costume_Garment: true
     ArmorLevel: 1
     View: 183
+    Trade:
+      NoDrop: false
+      NoTrade: false
+      NoCart: false
+      NoStorage: false
+      NoGuildStorage: false
+      NoMail: false
+      NoAuction: false
   - Id: 20625
     AegisName: C_ROS2023_Cape_1
     Name: Costume Star Champion's Manteau
@@ -180026,12 +180050,13 @@ Body:
     ArmorLevel: 1
     View: 2429
     Trade:
-      NoDrop: true
-      NoTrade: true
-      NoCart: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
+      NoDrop: false
+      NoTrade: false
+      NoCart: false
+      NoStorage: false
+      NoGuildStorage: false
+      NoMail: false
+      NoAuction: false
   - Id: 410263
     AegisName: C_Super_Sonic_Mini
     Name: Costume Mini Super Sonic
@@ -180041,12 +180066,13 @@ Body:
     ArmorLevel: 1
     View: 2430
     Trade:
-      NoDrop: true
-      NoTrade: true
-      NoCart: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
+      NoDrop: false
+      NoTrade: false
+      NoCart: false
+      NoStorage: false
+      NoGuildStorage: false
+      NoMail: false
+      NoAuction: false
   - Id: 410264
     AegisName: C_Tails_Mini
     Name: Costume Mini Tails
@@ -180056,12 +180082,13 @@ Body:
     ArmorLevel: 1
     View: 2431
     Trade:
-      NoDrop: true
-      NoTrade: true
-      NoCart: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
+      NoDrop: false
+      NoTrade: false
+      NoCart: false
+      NoStorage: false
+      NoGuildStorage: false
+      NoMail: false
+      NoAuction: false
   - Id: 410265
     AegisName: C_S_Attack_Ring
     Name: Costume Ring (Hit)
@@ -180071,12 +180098,13 @@ Body:
     ArmorLevel: 1
     View: 2432
     Trade:
-      NoDrop: true
-      NoTrade: true
-      NoCart: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
+      NoDrop: false
+      NoTrade: false
+      NoCart: false
+      NoStorage: false
+      NoGuildStorage: false
+      NoMail: false
+      NoAuction: false
   - Id: 410266
     AegisName: C_H_N_Hat
     Name: Costume Miss Rabbit and Little Dog
@@ -180092,13 +180120,13 @@ Body:
     Locations:
       Costume_Head_Mid: true
     Trade:
-      NoDrop: true
-      NoTrade: true
-      NoSell: true
-      NoCart: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
+      NoDrop: false
+      NoTrade: false
+      NoCart: false
+      NoStorage: false
+      NoGuildStorage: false
+      NoMail: false
+      NoAuction: false
     ArmorLevel: 1
     View: 2427
   - Id: 410268
@@ -180108,13 +180136,13 @@ Body:
     Locations:
       Costume_Head_Mid: true
     Trade:
-      NoDrop: true
-      NoTrade: true
-      NoSell: true
-      NoCart: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
+      NoDrop: false
+      NoTrade: false
+      NoCart: false
+      NoStorage: false
+      NoGuildStorage: false
+      NoMail: false
+      NoAuction: false
     ArmorLevel: 1
     View: 2427
   - Id: 410269
@@ -180125,13 +180153,13 @@ Body:
     Locations:
       Head_Mid: true
     Trade:
-      NoDrop: true
-      NoTrade: true
-      NoCart: true
-      NoStorage: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
+      NoDrop: false
+      NoTrade: false
+      NoCart: false
+      NoStorage: false
+      NoGuildStorage: false
+      NoMail: false
+      NoAuction: false
     ArmorLevel: 1
     EquipLevelMin: 80
     View: 1287

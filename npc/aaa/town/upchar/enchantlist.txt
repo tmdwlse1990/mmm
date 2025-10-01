@@ -1,0 +1,34 @@
+icecastle,191,155,2	script	Enchantlist#List_custom	4_NASARIAN_EM,{
+
+menu
+	" • Crimson Series",CRIMSON_MENU,
+	" • Close",-;
+	close;
+
+CRIMSON_MENU:
+	menu
+		" • Extration Vicious Mind",EX_VIC,
+		" • Enchant Crimson Weapon",EN_CRIM,
+		//" • Extract Crimson Option",EX_EN_CRIM,
+		" • Close",-;
+		end;
+		
+EX_VIC:
+	mes "Extration Vicious Open!";
+	close2;
+	laphine_synthesis("Vicious_extract");
+	end;
+
+EN_CRIM:
+	mes "Crimson Enchant UI Open!";
+	close2;
+	item_enchant(302);
+	end;
+	
+EX_EN_CRIM:
+	end;
+	
+Oninit:
+	waitingroom "ÃÇÁÍÍ¿ªÑè¹ÍÒÇØ¸",0;
+	end;
+}

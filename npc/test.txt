@@ -1,4 +1,35 @@
+/*
+function	script	FiL_Check2	{
+    .@qtd = getareaunits(BL_PC,getarg(0),getarg(1)-2,getarg(2)-2,getarg(1)+2,getarg(2)+2,.@array[0]);
+    freeloop(1);
+    for(.@i=0;.@i<getarraysize(.@array);.@i++){
+        attachrid(.@array[.@i]);
+        if(Hp){
+            specialeffect2 721;
+            unitkill .@array[.@i];
+            $@fil_die = .@array[.@i];
+            donpcevent "Floor is Lava#control::OnDie";
+			percentheal -50,-50;
+			specialeffect2 EF_CLAYMORE;
+        }
+    }
+    freeloop(0);
+    return;
+}
+
 icecastle,189,206,5	script	ä¡èÇÔàÈÉ	800,{
-	runeui;
+	getmapxy(.@mapname$, .@mapx, .@mapy, BL_NPC);
+	unitskilluseid getnpcid(0),"NPC_LAVAEVENT",1;
+	sleep 2500;
+	callfunc("FiL_Check2", .@mapname$, .@mapx, .@mapy);
 	end;
+}
+*/
+
+icecastle,189,206,5	script	ä¡èÇÔàÈÉ	800,{
+	if ((eaclass()&EAJ_UPPERMASK) == EAJ_KNIGHT)
+		mes "true";
+	else
+		mes "false";
+	close;
 }

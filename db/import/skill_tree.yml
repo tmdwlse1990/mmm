@@ -5569,7 +5569,7 @@ Body:
       Supernovice: true
     Tree:
       - Name: PR_IMPOSITIO
-        MaxLevel: 5
+        MaxLevel: 15
       - Name: PR_ASPERSIO
         MaxLevel: 5
         Requires:
@@ -5578,7 +5578,7 @@ Body:
           - Name: PR_IMPOSITIO
             Level: 3
       - Name: PR_SANCTUARY
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: AL_HEAL
             Level: 1
@@ -5587,7 +5587,7 @@ Body:
       - Name: PR_MAGNIFICAT
         MaxLevel: 5
       - Name: PR_GLORIA
-        MaxLevel: 5
+        MaxLevel: 15
         Requires:
           - Name: PR_SANCTUARY
             Level: 7
@@ -5618,14 +5618,14 @@ Body:
           - Name: MG_LIGHTNINGBOLT
             Level: 1
       - Name: WZ_VERMILION
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: MG_THUNDERSTORM
             Level: 1
           - Name: WZ_JUPITEL
             Level: 5
       - Name: WZ_WATERBALL
-        MaxLevel: 5
+        MaxLevel: 10
         Requires:
           - Name: MG_COLDBOLT
             Level: 1
@@ -5644,7 +5644,7 @@ Body:
           - Name: WZ_ICEWALL
             Level: 1
       - Name: WZ_STORMGUST
-        MaxLevel: 10
+        MaxLevel: 15
         Requires:
           - Name: MG_FROSTDIVER
             Level: 1
@@ -5656,7 +5656,7 @@ Body:
           - Name: MG_STONECURSE
             Level: 1
       - Name: WZ_HEAVENDRIVE
-        MaxLevel: 5
+        MaxLevel: 10
         Requires:
           - Name: WZ_EARTHSPIKE
             Level: 3

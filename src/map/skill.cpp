@@ -3315,6 +3315,7 @@ void skill_combo_toggle_inf(struct block_list* bl, uint16 skill_id, int32 inf){
 			break;
 		case SR_FALLENEMPIRE:
 			if (sd != nullptr){
+				clif_skillinfo( *sd, MO_EXTREMITYFIST, inf);
 				clif_skillinfo( *sd, SR_GATEOFHELL, inf );
 				clif_skillinfo( *sd, SR_TIGERCANNON, inf );
 			}
@@ -3419,7 +3420,7 @@ void skill_combo(struct block_list* src,struct block_list *dsrc, struct block_li
 				duration = 1;
 			break;
 		case SR_FALLENEMPIRE:
-			if (pc_checkskill(sd, SR_TIGERCANNON) > 0 || pc_checkskill(sd, SR_GATEOFHELL) > 0)
+			if (pc_checkskill(sd, SR_TIGERCANNON) > 0 || pc_checkskill(sd, SR_GATEOFHELL) > 0 || pc_checkskill(sd, MO_EXTREMITYFIST) > 0)
 				duration = 1;
 			break;
 		case SJ_PROMINENCEKICK:
@@ -20396,7 +20397,7 @@ struct s_skill_condition skill_get_requirement(map_session_data* sd, uint16 skil
 					if( sd->special_state.no_gemstone == 2 ) // Remove all Magic Stone required for all skills for VIP.
 						req.itemid[i] = req.amount[i] = 0;
 					else {
-						if( sd->special_state.no_gemstone || (sc && sc->getSCE(SC_INTOABYSS)) )
+						if( sd->special_state.no_gemstone || (sc && sc->getSCE(SC_INTOABYSS)) || (sc && sc->getSCE(SC_OFFERTORIUM)))
 						{	// All gem skills except Hocus Pocus and Ganbantein can cast for free with Mistress card -helvetica
 							if (skill_id != SA_ABRACADABRA && skill_id != HW_GANBANTEIN)
 		 						req.itemid[i] = req.amount[i] = 0;

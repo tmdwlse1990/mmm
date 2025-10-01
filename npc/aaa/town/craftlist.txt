@@ -38,20 +38,31 @@ Weapon_List:
 	end;
 
 ws_c1:
+	mes "Shadow Weapon Welcome";
+	close2;
 	callshop "Defective_S_Weapon_C1";
 	end;
 	
 ex_kraken:
+	mes "Kraken Accessory Welcome";
+	close2;
 	callshop "Extreme_Kraken";
+	close2;
 	end;
 
 Cube_store:
+	mes "Cube Shop Welcome";
+	close2;
 	callshop "Cube_seller";
 	end;
 Union_store:
+	mes "Union Weapon Welcome";
+	close2;
 	callshop "Union_Wep";
 	end;
 Crimson_store:
+	mes "Crimson Weapon Welcome";
+	close2;
 	callshop "Crimson_Waep";
 	end;
 Oninit:

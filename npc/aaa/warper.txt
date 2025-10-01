@@ -573,13 +573,15 @@ G8: Restrict("RE");
 	Instances:
 // --------------------------------------------------
 menu
-	"AirShip Raid",I102,
-	"Faceworms Nest",I7,
-	"Octopus Cave",I14,
-	"Old Glast Heim",I15,
-	"Old Glast Heim (True Hard)",I101,
-	"Orc's Memory",I16,
-	"Kraken Raid",I31
+	"Orc's Memory("+(BaseLevel >= 60 ? "^3BDE00":"^DE1E09")+" Level 60^000000)",I16,
+	"Kraken Raid("+(BaseLevel >= 99 ? "^3BDE00":"^DE1E09")+" Level 99^000000)",I31,
+	"AirShip Raid("+(BaseLevel >= 100 ? "^3BDE00":"^DE1E09")+" Level 100^000000)",I102,
+	"Octopus Cave("+(BaseLevel >= 100 ? "^3BDE00":"^DE1E09")+" Level 100^000000)",I14,
+	"Old Glast Heim("+(BaseLevel >= 100 ? "^3BDE00":"^DE1E09")+" Level 100^000000)",I15,
+	"Faceworms Nest("+(BaseLevel >= 125 ? "^3BDE00":"^DE1E09")+" Level 125^000000)",I7,
+	"Old Glast Heim (True Hard)("+(BaseLevel >= 125 ? "^3BDE00":"^DE1E09")+" Level 125^000000)",I101,
+	"Horror Toy Factory("+(BaseLevel >= 140 ? "^3BDE00":"^DE1E09")+" Level 140^000000)",I11,
+	"Sky Fortress("+(BaseLevel >= 145 ? "^3BDE00":"^DE1E09")+" Level 145^000000)",I103
 	;
 /*
 menu	"Bakonawa Lake",I1, "Bangungot Hospital 2F",I2, "Buwaya Cave",I3,
@@ -594,6 +596,8 @@ I101: Restrict("RE");
 	Go("glast_01",181,279);
 I102: Restrict("RE");
 	Go("dali",134,82);
+I103: Restrict("RE");
+	Go("prt_q",244,81);
 I1: Restrict("RE");
 	Go("ma_scene01",172,175);
 I2: Restrict("RE");

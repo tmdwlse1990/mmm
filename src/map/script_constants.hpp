@@ -864,6 +864,7 @@
 	export_constant2("bHitMagicalDamageRate",SP_HIT_MAGICAL_DAMAGE_RATE);
 	export_constant2("bCritMAtk",SP_CRIT_MATK_DMG);
 	export_constant2("bCritAtk",SP_CRIT_ATK_DMG);
+	export_constant2("bCriticalHitRate",SP_CRIT_DMG_RATE);
 	export_constant2("bIgnoreDef",SP_IGNORE_DEF_POINTS);
 	export_constant2("bIgnoreMDef",SP_IGNORE_MDEF_POINTS);
 	export_constant2("bAspdCap",SP_ASPD_CAP);
@@ -7383,6 +7384,8 @@
 	export_constant(IG_STATSBOX8);
 	export_constant(IG_STATSBOX9);
 	export_constant(IG_STATSBOX10);
+	export_constant(IG_Vicious_extract);
+	export_constant(IG_Pf_extract);
 	export_constant(IG_COMMON2RARE_PET);
 	export_constant(IG_RARE2EPIC_PET);
 	export_constant(IG_EPIC2LEGEND_PET);

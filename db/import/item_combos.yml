@@ -40,7 +40,8 @@ Body:
           - S_Str
     Script: |
       bonus bStr,20;
-      bonus bAddMaxWeight,30000;
+      bonus2 bAddClass,Class_All,20;
+      bonus bAddMaxWeight,100000;
   - Combos:
       - Combo:
           - PowerfulRunaway_Magic

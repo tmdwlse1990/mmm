@@ -86,6 +86,9 @@ Body:
         Requires:
           - Name: KN_RIDING
             Level: 1
+      - Name: RK_RUNEMASTERY
+        MaxLevel: 10
+        BaseLevel: 140
   - Job: High_Priest
     Inherit:
       Novice: true
@@ -150,6 +153,9 @@ Body:
         Requires:
           - Name: PR_GLORIA
             Level: 15
+      - Name: AB_OFFERTORIUM
+        MaxLevel: 5
+        BaseLevel: 140
   - Job: High_Wizard
     Inherit:
       Novice: true
@@ -211,6 +217,9 @@ Body:
         Requires:
           - Name: WZ_STORMGUST
             Level: 15
+      - Name: WL_COMET
+        MaxLevel: 5
+        BaseLevel: 140
   - Job: Whitesmith
     Inherit:
       Novice: true
@@ -299,6 +308,9 @@ Body:
         MaxLevel: 10
       - Name: NC_B_SIDESLIDE
         MaxLevel: 10
+      - Name: NC_NEUTRALBARRIER
+        MaxLevel: 3
+        BaseLevel: 140
   - Job: Sniper
     Inherit:
       Novice: true
@@ -348,6 +360,9 @@ Body:
         Requires:
           - Name: SN_SHARPSHOOTING
             Level: 5
+      - Name: RA_UNLIMIT
+        MaxLevel: 5
+        BaseLevel: 140
   - Job: Assassin_Cross
     Inherit:
       Novice: true
@@ -411,6 +426,9 @@ Body:
         Requires:
           - Name: AS_SONICBLOW
             Level: 10
+      - Name: GC_VENOMIMPRESS
+        MaxLevel: 5
+        BaseLevel: 140
   - Job: Paladin
     Inherit:
       Novice: true
@@ -462,6 +480,9 @@ Body:
         Requires:
           - Name: CR_HOLYCROSS
             Level: 10
+      - Name: LG_INSPIRATION
+        MaxLevel: 5
+        BaseLevel: 140
   - Job: Champion
     Inherit:
       Novice: true
@@ -513,6 +534,15 @@ Body:
         Requires:
           - Name: CH_SOULCOLLECT
             Level: 1
+      - Name: SR_DRAGONCOMBO
+        MaxLevel: 10
+        BaseLevel: 140
+      - Name: SR_FALLENEMPIRE
+        MaxLevel: 10
+        BaseLevel: 140
+        Requires:
+          - Name: SR_DRAGONCOMBO
+            Level: 10
   - Job: Professor
     Inherit:
       Novice: true
@@ -607,6 +637,9 @@ Body:
         Requires:
           - Name: SO_EL_CONTROL
             Level: 1
+      - Name: SO_PSYCHIC_WAVE
+        MaxLevel: 5
+        BaseLevel: 140
   - Job: Stalker
     Inherit:
       Novice: true
@@ -647,6 +680,11 @@ Body:
         Requires:
           - Name: SC_TRIANGLESHOT
             Level: 2
+      - Name: SC_REPRODUCE
+        MaxLevel: 10
+      - Name: SC_AUTOSHADOWSPELL
+        MaxLevel: 15
+        BaseLevel: 140
   - Job: Creator
     Inherit:
       Novice: true
@@ -711,6 +749,9 @@ Body:
         Requires:
           - Name: GN_S_PHARMACY
             Level: 1
+      - Name: GN_CARTBOOST
+        MaxLevel: 5
+        BaseLevel: 140
   - Job: Clown
     Inherit:
       Novice: true
@@ -786,6 +827,12 @@ Body:
             Level: 15
       - Name: MI_RUSH_WINDMILL
         MaxLevel: 5
+      - Name: WM_UNLIMITED_HUMMING_VOICE
+        MaxLevel: 5
+        BaseLevel: 140
+      - Name: WM_DANCE_WITH_WUG
+        MaxLevel: 5
+        BaseLevel: 140
   - Job: Gypsy
     Inherit:
       Novice: true
@@ -859,3 +906,9 @@ Body:
             Level: 15
       - Name: WA_MOONLIT_SERENADE
         MaxLevel: 5
+      - Name: WM_UNLIMITED_HUMMING_VOICE
+        MaxLevel: 5
+        BaseLevel: 140
+      - Name: WM_DANCE_WITH_WUG
+        MaxLevel: 5
+        BaseLevel: 140

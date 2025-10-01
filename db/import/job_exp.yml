@@ -669,6 +669,26 @@ Body:
         Exp: 29618174535
       - Level: 140
         Exp: 35541809443
+      - Level: 141
+        Exp: 44427261803
+      - Level: 142
+        Exp: 55534077254
+      - Level: 143
+        Exp: 69417596568
+      - Level: 144
+        Exp: 86771995709
+      - Level: 145
+        Exp: 108464994637
+      - Level: 146
+        Exp: 123650093886
+      - Level: 147
+        Exp: 140961107030
+      - Level: 148
+        Exp: 160695662014
+      - Level: 149
+        Exp: 183193054696
+      - Level: 150
+        Exp: 208840082354
   - Jobs:
       Novice: true
       Baby: true
@@ -1349,7 +1369,7 @@ Body:
       Clown: true
       Gypsy: true
       Paladin2: true
-    MaxJobLevel: 40
+    MaxJobLevel: 50
     JobExp:
       - Level: 1
         Exp: 123456
@@ -1430,6 +1450,26 @@ Body:
       - Level: 39
         Exp: 11071218052
       - Level: 40
+        Exp: 14946144370
+      - Level: 41
+        Exp: 20177294899
+      - Level: 42
+        Exp: 27239348114
+      - Level: 43
+        Exp: 36773119954
+      - Level: 44
+        Exp: 49643711937
+      - Level: 45
+        Exp: 67019011115
+      - Level: 46
+        Exp: 90475665006
+      - Level: 47
+        Exp: 122142147758
+      - Level: 48
+        Exp: 164891899473
+      - Level: 49
+        Exp: 222604064289
+      - Level: 50
         Exp: 999999
   - Jobs:
       Rune_Knight: true

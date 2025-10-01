@@ -5059,4 +5059,238 @@ Body:
                 Chance: 8000
               - Item: Atk_Speed1
                 Chance: 200
+  - Id: 302
+    TargetItems:
+      Scarlet_Bible: true
+      Scarlet_Bow: true
+      Scarlet_Dagger: true
+      Scarlet_Huuma: true
+      Scarlet_Katar: true
+      Scarlet_Knuckle: true
+      Scarlet_Lance: true
+      Scarlet_Mace: true
+      Scarlet_Rod: true
+      Scarlet_Revolver: true
+      Scarlet_Saber: true
+      Scarlet_Spear: true
+      Scarlet_Twohand_Axe: true
+      Scarlet_Staff: true
+      Scarlet_Twohand_Sword: true
+      Scarlet_Viollin: true
+      Scarlet_Wire: true
+    Reset:
+      Chance: 100000
+      Price: 5000000
+      Materials:
+        - Material: VICIOUS_CORE
+          Amount: 10
+    Order:
+      - Slot: 3
+      - Slot: 2
+    Slots:
+      - Slot: 3
+        Price: 5000000
+        Materials:
+          - Material: VICIOUS_CORE
+            Amount: 20
+        Enchants:
+          - Enchantgrade: 5
+            Items:
+              - Item: CMS_ORDER_SUN_1
+                Chance: 10000
+              - Item: CMS_ORDER_SUN_2
+                Chance: 1000
+              - Item: CMS_ORDER_SUN_3
+                Chance: 100
+              - Item: CMS_ORDER_SUN_4
+                Chance: 10
+              - Item: CMS_ORDER_SUN_5
+                Chance: 1
+              - Item: CMS_ORDER_MOON_1
+                Chance: 10000
+              - Item: CMS_ORDER_MOON_2
+                Chance: 1000
+              - Item: CMS_ORDER_MOON_3
+                Chance: 100
+              - Item: CMS_ORDER_MOON_4
+                Chance: 10
+              - Item: CMS_ORDER_MOON_5
+                Chance: 1
+              - Item: CMS_ORDER_STAR_1
+                Chance: 10000
+              - Item: CMS_ORDER_STAR_2
+                Chance: 1000
+              - Item: CMS_ORDER_STAR_3
+                Chance: 100
+              - Item: CMS_ORDER_STAR_4
+                Chance: 10
+              - Item: CMS_ORDER_STAR_5
+                Chance: 1
+          - Enchantgrade: 6
+            Items:
+              - Item: CMS_ORDER_SUN_1
+                Chance: 5000
+              - Item: CMS_ORDER_SUN_2
+                Chance: 500
+              - Item: CMS_ORDER_SUN_3
+                Chance: 50
+              - Item: CMS_ORDER_SUN_4
+                Chance: 5
+              - Item: CMS_ORDER_SUN_5
+                Chance: 1
+              - Item: CMS_ORDER_MOON_1
+                Chance: 5000
+              - Item: CMS_ORDER_MOON_2
+                Chance: 500
+              - Item: CMS_ORDER_MOON_3
+                Chance: 50
+              - Item: CMS_ORDER_MOON_4
+                Chance: 5
+              - Item: CMS_ORDER_MOON_5
+                Chance: 1
+              - Item: CMS_ORDER_STAR_1
+                Chance: 5000
+              - Item: CMS_ORDER_STAR_2
+                Chance: 500
+              - Item: CMS_ORDER_STAR_3
+                Chance: 50
+              - Item: CMS_ORDER_STAR_4
+                Chance: 5
+              - Item: CMS_ORDER_STAR_5
+                Chance: 1
+          - Enchantgrade: 7
+            Items:
+              - Item: CMS_ORDER_SUN_1
+                Chance: 1000
+              - Item: CMS_ORDER_SUN_2
+                Chance: 2000
+              - Item: CMS_ORDER_SUN_3
+                Chance: 3000
+              - Item: CMS_ORDER_SUN_4
+                Chance: 100
+              - Item: CMS_ORDER_SUN_5
+                Chance: 10
+              - Item: CMS_ORDER_MOON_1
+                Chance: 1000
+              - Item: CMS_ORDER_MOON_2
+                Chance: 2000
+              - Item: CMS_ORDER_MOON_3
+                Chance: 3000
+              - Item: CMS_ORDER_MOON_4
+                Chance: 100
+              - Item: CMS_ORDER_MOON_5
+                Chance: 10
+              - Item: CMS_ORDER_STAR_1
+                Chance: 1000
+              - Item: CMS_ORDER_STAR_2
+                Chance: 2000
+              - Item: CMS_ORDER_STAR_3
+                Chance: 3000
+              - Item: CMS_ORDER_STAR_4
+                Chance: 100
+              - Item: CMS_ORDER_STAR_5
+                Chance: 10
+      - Slot: 2
+        Price: 10000000
+        Materials:
+          - Material: VICIOUS_CORE
+            Amount: 30
+        Enchants:
+          - Enchantgrade: 5
+            Items:
+              - Item: CMS_CHAOS_SUN_1
+                Chance: 10000
+              - Item: CMS_CHAOS_SUN_2
+                Chance: 1000
+              - Item: CMS_CHAOS_SUN_3
+                Chance: 100
+              - Item: CMS_CHAOS_SUN_4
+                Chance: 10
+              - Item: CMS_CHAOS_SUN_5
+                Chance: 1
+              - Item: CMS_CHAOS_MOON_1
+                Chance: 10000
+              - Item: CMS_CHAOS_MOON_2
+                Chance: 1000
+              - Item: CMS_CHAOS_MOON_3
+                Chance: 100
+              - Item: CMS_CHAOS_MOON_4
+                Chance: 10
+              - Item: CMS_CHAOS_MOON_5
+                Chance: 1
+              - Item: CMS_CHAOS_STAR_1
+                Chance: 10000
+              - Item: CMS_CHAOS_STAR_2
+                Chance: 1000
+              - Item: CMS_CHAOS_STAR_3
+                Chance: 100
+              - Item: CMS_CHAOS_STAR_4
+                Chance: 10
+              - Item: CMS_CHAOS_STAR_5
+                Chance: 1
+          - Enchantgrade: 6
+            Items:
+              - Item: CMS_CHAOS_SUN_1
+                Chance: 5000
+              - Item: CMS_CHAOS_SUN_2
+                Chance: 500
+              - Item: CMS_CHAOS_SUN_3
+                Chance: 50
+              - Item: CMS_CHAOS_SUN_4
+                Chance: 5
+              - Item: CMS_CHAOS_SUN_5
+                Chance: 1
+              - Item: CMS_CHAOS_MOON_1
+                Chance: 5000
+              - Item: CMS_CHAOS_MOON_2
+                Chance: 500
+              - Item: CMS_CHAOS_MOON_3
+                Chance: 50
+              - Item: CMS_CHAOS_MOON_4
+                Chance: 5
+              - Item: CMS_CHAOS_MOON_5
+                Chance: 1
+              - Item: CMS_CHAOS_STAR_1
+                Chance: 5000
+              - Item: CMS_CHAOS_STAR_2
+                Chance: 500
+              - Item: CMS_CHAOS_STAR_3
+                Chance: 50
+              - Item: CMS_CHAOS_STAR_4
+                Chance: 5
+              - Item: CMS_CHAOS_STAR_5
+                Chance: 1
+          - Enchantgrade: 7
+            Items:
+              - Item: CMS_CHAOS_SUN_1
+                Chance: 1000
+              - Item: CMS_CHAOS_SUN_2
+                Chance: 2000
+              - Item: CMS_CHAOS_SUN_3
+                Chance: 3000
+              - Item: CMS_CHAOS_SUN_4
+                Chance: 100
+              - Item: CMS_CHAOS_SUN_5
+                Chance: 10
+              - Item: CMS_CHAOS_MOON_1
+                Chance: 1000
+              - Item: CMS_CHAOS_MOON_2
+                Chance: 2000
+              - Item: CMS_CHAOS_MOON_3
+                Chance: 3000
+              - Item: CMS_CHAOS_MOON_4
+                Chance: 100
+              - Item: CMS_CHAOS_MOON_5
+                Chance: 10
+              - Item: CMS_CHAOS_STAR_1
+                Chance: 1000
+              - Item: CMS_CHAOS_STAR_2
+                Chance: 2000
+              - Item: CMS_CHAOS_STAR_3
+                Chance: 3000
+              - Item: CMS_CHAOS_STAR_4
+                Chance: 100
+              - Item: CMS_CHAOS_STAR_5
+                Chance: 10
+
 
