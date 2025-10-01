@@ -2503,9 +2503,6 @@ uint16 status_base_atk(const struct block_list *bl, const struct status_data *st
 			case W_GRENADE:
 				flag = 1;
 				break;
-			case W_BOW:
-				flag = 2;
-				break;
 		}
 		if(flag == 1) {
 			dstr = 
@@ -2533,7 +2530,7 @@ uint16 status_base_atk(const struct block_list *bl, const struct status_data *st
 		case BL_PC:
 #ifdef RENEWAL
 			//str = (dstr * 10 + dex * 10 / 5 + status->luk * 10 / 3 + level * 10 / 4) / 10 + 5 * status->pow;
-			str = dstr * (flag ? 5:10) + status->luk / 3;
+			str = (dstr * 10) + status->luk / 3;
 #else
 			dstr = str / 10;
 			str += dstr*dstr;
@@ -3760,10 +3757,10 @@ bool status_calc_weight(map_session_data *sd, enum e_status_calc_weight_opt flag
 			sd->max_weight += 10000;
 		else if (pc_isridingdragon(sd))
 			sd->max_weight += 5000 + 2000 * pc_checkskill(sd, RK_DRAGONTRAINING);
-		if (sc->getSCE(SC_KNOWLEDGE))
-			sd->max_weight += sd->max_weight * sc->getSCE(SC_KNOWLEDGE)->val1 / 10;
 		if ((skill = pc_checkskill(sd, ALL_INCCARRY)) > 0)
 			sd->max_weight += 2000 * skill;
+		if ((skill = pc_checkskill(sd, SG_KNOWLEDGE)) > 0)
+			sd->max_weight += sd->max_weight * sc->getSCE(SC_KNOWLEDGE)->val1 / 10;
 		if (pc_ismadogear(sd))
 			sd->max_weight += 15000;
 		

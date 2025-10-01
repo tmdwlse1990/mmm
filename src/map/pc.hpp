@@ -795,7 +795,7 @@ public:
 		int32 aspd_cap, drop_up;
 		int32 normal_ratio;
 		int32 hit_physical_damage_rate, hit_magical_damage_rate; // Increases hit physical damage rate
-		int32 crit_atk_dmg, crit_matk_dmg;	// Increase Critical Type Damage
+		int32 crit_atk_dmg, crit_matk_dmg, critical_hit_rate;	// Increase Critical Type Damage
 		int32 cooldown_rate;
 		// [Custom Bonus]
 		int32 hp, sp, ap;

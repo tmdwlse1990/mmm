@@ -5144,6 +5144,8 @@ static int32 battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list
 				skillratio *= 2; // More than 5 spirit balls active
 #endif
 			skillratio = min(500000,skillratio); //We stop at roughly 50k SP for overflow protection
+			if (sc && sc->getSCE(SC_COMBO) && sc->getSCE(SC_COMBO)->val1 == SR_FALLENEMPIRE)
+				skillratio *= 2;
 			break;
 		case MO_TRIPLEATTACK:
 			skillratio += 20 * skill_lv;
@@ -7172,6 +7174,7 @@ static void battle_attack_sc_bonus(struct Damage* wd, struct block_list *src, st
 				RE_ALLATK_ADD(wd, hd->homunculus.spiritball * 3);
 			}
 		}
+		/*
 		if(sc->getSCE(SC_UNLIMIT) && (wd->flag&(BF_LONG|BF_MAGIC)) == BF_LONG) {
 			switch(skill_id) {
 				case RA_WUGDASH:
@@ -7184,6 +7187,7 @@ static void battle_attack_sc_bonus(struct Damage* wd, struct block_list *src, st
 					break;
 			}
 		}
+		*/
 		if (sc->getSCE(SC_HEAT_BARREL)) {
 			ATK_ADDRATE(wd->damage, wd->damage2, sc->getSCE(SC_HEAT_BARREL)->val3);
 			RE_ALLATK_ADDRATE(wd, sc->getSCE(SC_HEAT_BARREL)->val3);
@@ -8261,10 +8265,18 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src, struct bl
 					wd.damage2 += (int64)floor((float)(wd.damage2 * sd->bonus.hit_physical_damage_rate / 100));
 			}
 			*/
-			if (wd.flag & BF_SHORT)
+			
+			if (wd.flag & BF_SHORT) {
 				ATK_ADDRATE(wd.damage, wd.damage2, sd->bonus.short_attack_atk_rate);
-			if(wd.flag&BF_LONG && (skill_id != RA_WUGBITE && skill_id != RA_WUGSTRIKE)) //Long damage rate addition doesn't use weapon + equip attack
-				ATK_ADDRATE(wd.damage, wd.damage2, sd->bonus.long_attack_atk_rate);
+			}
+			if (wd.flag & BF_LONG && (skill_id != RA_WUGBITE && skill_id != RA_WUGSTRIKE)) { //Long damage rate addition doesn't use weapon + equip attack
+				int32 sumlong_atk = 0;
+				if (sd)
+					sumlong_atk += sd->bonus.long_attack_atk_rate;
+				if (sd && sc && sc->getSCE(SC_UNLIMIT))
+					sumlong_atk += sc->getSCE(SC_UNLIMIT)->val2;
+				ATK_ADDRATE(wd.damage, wd.damage2, sumlong_atk);
+			}
 		}
 
 		// Skill ratio
@@ -8357,6 +8369,12 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src, struct bl
 				wd.damage = (int64)floor((float)((wd.damage * (2.0f + (0.01f * sum_crit_atk) + (0.002f * sstatus->luk) + (0.1f * sstatus->crate)))));
 			if (is_attack_left_handed(src, skill_id))
 				wd.damage2 = (int64)floor((float)((wd.damage2 * (1.5f + (0.01f * sum_crit_atk) + (0.002f * sstatus->luk) + (0.05f * sstatus->crate)))));
+
+			// Critical Hit Damage rate modifier
+			wd.damage += (int64)floor((float)(wd.damage * sd->bonus.critical_hit_rate / 100));
+			if (is_attack_left_handed(src, skill_id))
+				wd.damage2 += (int64)floor((float)(wd.damage2 * sd->bonus.critical_hit_rate / 100));
+
 		} else
 			wd.damage = (int64)floor((float)(wd.damage * 1.2f));
 
@@ -10101,6 +10119,8 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 				ad.damage = (int64)floor((float)((ad.damage * (1.5f + (0.01f * sum_crit_atk) + (0.002f * sstatus->luk) + (0.05f * sstatus->crate)))));
 			else
 				ad.damage = (int64)floor((float)((ad.damage * (2.0f + (0.01f * sum_crit_atk) + (0.002f * sstatus->luk) + (0.1f * sstatus->crate)))));
+
+			ad.damage += (int64)floor((float)(ad.damage * sd->bonus.critical_hit_rate / 100));
 		} else
 			ad.damage = (int64)floor((float)(ad.damage * 1.2f));
 
@@ -10257,7 +10277,11 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 					
 				}
 				//Add Long Range Attack to Skill Damage
-				md.damage = md.damage * (100 + sd->bonus.long_attack_atk_rate) / 100;
+				status_change* sc = status_get_sc(src);
+				int32 long_attack_atk = sd->bonus.long_attack_atk_rate;
+				if (sd && sc && sc->getSCE(SC_UNLIMIT))
+					long_attack_atk += sc->getSCE(SC_UNLIMIT)->val2;
+				md.damage = md.damage * (100 + long_attack_atk) / 100;
 			}
 			break;
 #ifndef RENEWAL

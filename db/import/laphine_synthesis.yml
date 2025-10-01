@@ -136,6 +136,28 @@ Body:
       - Item: Vitality9
       - Item: Luck9
 
+  - Item: Vicious_extract
+    RewardGroup: Vicious_extract
+    RequiredRequirementsCount: 3
+    Requirements:
+      - Item: Sinister_Book
+      - Item: Sinister_Bow
+      - Item: Sinister_Dagger
+      - Item: Sinister_Huuma
+      - Item: Sinister_Katar
+      - Item: Sinister_Fist
+      - Item: Sinister_Lance
+      - Item: Sinister_Mace
+      - Item: Sinister_Revolver
+      - Item: Sinister_Rod
+      - Item: Sinister_Saber
+      - Item: Sinister_Spear
+      - Item: Sinister_Staff
+      - Item: Sinister_Twohand_Axe
+      - Item: Sinister_Twohand_Sword
+      - Item: Sinister_Viollin
+      - Item: Sinister_Wire
+
   - Item: Common2rare
     RewardGroup: COMMON2RARE_PET
     RequiredRequirementsCount: 4

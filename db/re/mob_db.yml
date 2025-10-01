@@ -92092,19 +92092,19 @@ Body:
       Detector: true
     Drops:
       - Item: Sinister_Dagger
-        Rate: 20
+        Rate: 200
         RandomOptionGroup: AS_WEAPON_4
       - Item: Sinister_Saber
-        Rate: 20
+        Rate: 200
         RandomOptionGroup: AS_WEAPON_3
       - Item: Sinister_Twohand_Sword
-        Rate: 20
+        Rate: 200
         RandomOptionGroup: AS_WEAPON_5
       - Item: Sinister_Spear
-        Rate: 20
+        Rate: 200
         RandomOptionGroup: AS_WEAPON_5
       - Item: Sinister_Lance
-        Rate: 20
+        Rate: 200
         RandomOptionGroup: AS_WEAPON_5
   - Id: 3478
     AegisName: AS_ZOMBIE_SLAUGHTER
@@ -92173,22 +92173,22 @@ Body:
     Ai: 04
     Drops:
       - Item: Sinister_Book
-        Rate: 20
+        Rate: 200
         RandomOptionGroup: AS_WEAPON_4
       - Item: Sinister_Katar
-        Rate: 20
+        Rate: 200
         RandomOptionGroup: AS_WEAPON_5
       - Item: Sinister_Huuma
-        Rate: 20
+        Rate: 200
         RandomOptionGroup: AS_WEAPON_4
       - Item: Sinister_Twohand_Axe
-        Rate: 20
+        Rate: 200
         RandomOptionGroup: AS_WEAPON_3
       - Item: Sinister_Mace
-        Rate: 20
+        Rate: 200
         RandomOptionGroup: AS_WEAPON_3
       - Item: Sinister_Fist
-        Rate: 20
+        Rate: 200
         RandomOptionGroup: AS_WEAPON_5
   - Id: 3480
     AegisName: AS_CURSED_SOLDIER
@@ -92222,22 +92222,22 @@ Body:
     Ai: 04
     Drops:
       - Item: Sinister_Staff
-        Rate: 20
+        Rate: 200
         RandomOptionGroup: AS_WEAPON_1
       - Item: Sinister_Rod
-        Rate: 20
+        Rate: 200
         RandomOptionGroup: AS_WEAPON_1
       - Item: Sinister_Revolver
-        Rate: 20
+        Rate: 200
         RandomOptionGroup: AS_WEAPON_2
       - Item: Sinister_Wire
-        Rate: 20
+        Rate: 200
         RandomOptionGroup: AS_WEAPON_2
       - Item: Sinister_Viollin
-        Rate: 20
+        Rate: 200
         RandomOptionGroup: AS_WEAPON_2
       - Item: Sinister_Bow
-        Rate: 20
+        Rate: 200
         RandomOptionGroup: AS_WEAPON_2
   - Id: 3481
     AegisName: AS_EVIL_SHADOW1
@@ -92273,22 +92273,22 @@ Body:
       Detector: true
     Drops:
       - Item: Sinister_Book
-        Rate: 30
+        Rate: 300
         RandomOptionGroup: AS_WEAPON_4
       - Item: Sinister_Katar
-        Rate: 30
+        Rate: 300
         RandomOptionGroup: AS_WEAPON_5
       - Item: Sinister_Huuma
-        Rate: 30
+        Rate: 300
         RandomOptionGroup: AS_WEAPON_4
       - Item: Sinister_Twohand_Axe
-        Rate: 30
+        Rate: 300
         RandomOptionGroup: AS_WEAPON_3
       - Item: Sinister_Mace
-        Rate: 30
+        Rate: 300
         RandomOptionGroup: AS_WEAPON_3
       - Item: Sinister_Fist
-        Rate: 30
+        Rate: 300
         RandomOptionGroup: AS_WEAPON_5
   - Id: 3482
     AegisName: AS_EVIL_SHADOW2
@@ -92324,22 +92324,22 @@ Body:
       Detector: true
     Drops:
       - Item: Sinister_Staff
-        Rate: 30
+        Rate: 300
         RandomOptionGroup: AS_WEAPON_1
       - Item: Sinister_Rod
-        Rate: 30
+        Rate: 300
         RandomOptionGroup: AS_WEAPON_1
       - Item: Sinister_Revolver
-        Rate: 30
+        Rate: 300
         RandomOptionGroup: AS_WEAPON_2
       - Item: Sinister_Wire
-        Rate: 30
+        Rate: 300
         RandomOptionGroup: AS_WEAPON_2
       - Item: Sinister_Viollin
-        Rate: 30
+        Rate: 300
         RandomOptionGroup: AS_WEAPON_2
       - Item: Sinister_Bow
-        Rate: 30
+        Rate: 300
         RandomOptionGroup: AS_WEAPON_2
   - Id: 3483
     AegisName: AS_EVIL_SHADOW3
@@ -92375,19 +92375,19 @@ Body:
       Detector: true
     Drops:
       - Item: Sinister_Dagger
-        Rate: 30
+        Rate: 300
         RandomOptionGroup: AS_WEAPON_4
       - Item: Sinister_Saber
-        Rate: 30
+        Rate: 300
         RandomOptionGroup: AS_WEAPON_3
       - Item: Sinister_Twohand_Sword
-        Rate: 30
+        Rate: 300
         RandomOptionGroup: AS_WEAPON_5
       - Item: Sinister_Spear
-        Rate: 30
+        Rate: 300
         RandomOptionGroup: AS_WEAPON_5
       - Item: Sinister_Lance
-        Rate: 30
+        Rate: 300
         RandomOptionGroup: AS_WEAPON_5
   - Id: 3484
     AegisName: AS_D_RAGGED_GOLEM

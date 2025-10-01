@@ -944,7 +944,7 @@ Body:
       - Level: 4 
         Max: 4
       - Level: 5
-        Max: 5
+        Max: 50
     CopyFlags:
       Skill:
         Plagiarism: true
@@ -20360,7 +20360,6 @@ Body:
     Hit: Single
     HitCount: 1
     SplashArea: 6
-    Knockback: 2
     CopyFlags:
       Skill:
         Reproduce: true
@@ -20378,7 +20377,7 @@ Body:
     AfterCastActDelay: 1500
     Duration1: 100
     Duration2: 42000
-    Cooldown: 20000
+    Cooldown: 2000
     FixedCastTime: 2000
     Requires:
       SpCost:
@@ -23453,7 +23452,7 @@ Body:
           Amount: 90
         - Level: 3
           Amount: 100
-      State: Mado
+      State: None
       ItemCost:
         - Item: Magic_Gear_Fuel
           Amount: 1
@@ -27340,8 +27339,6 @@ Body:
     DamageFlags:
       NoDamage: true
       Splash: true
-    Flags:
-      IsChorus: true
     Hit: Single
     HitCount: 1
     SplashArea:
@@ -27691,8 +27688,6 @@ Body:
     DamageFlags:
       NoDamage: true
       Splash: true
-    Flags:
-      IsChorus: true
     Hit: Single
     HitCount: 1
     SplashArea:
@@ -28206,7 +28201,7 @@ Body:
       Interval: 500
       Target: Enemy
       Flag:
-        NoOverlap: true
+        NoOverlap: false
         PathCheck: true
   - Id: 2450
     Name: SO_CLOUD_KILL
@@ -33437,7 +33432,7 @@ Body:
     HitCount: 1
     AfterCastActDelay: 500
     Duration1: 150000
-    Cooldown: 300000
+    Cooldown: 120000
     FixedCastTime: 1000
     Requires:
       SpCost:

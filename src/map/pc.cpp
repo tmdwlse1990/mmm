@@ -3963,6 +3963,10 @@ void pc_bonus(map_session_data *sd,int32 type,int32 val)
 			if (sd->state.lr_flag != LR_FLAG_ARROW)
 				sd->bonus.crit_matk_dmg += val;
 			break;
+		case SP_CRIT_DMG_RATE:
+			if (sd->state.lr_flag != LR_FLAG_ARROW)
+				sd->bonus.critical_hit_rate += val;
+			break;
 		/*
 		case SP_PERFECT_HIT_ADD_RATE:
 			if (sd->state.lr_flag != LR_FLAG_ARROW)
@@ -10648,6 +10652,7 @@ int64 pc_readparam(map_session_data* sd,int64 type)
 		case SP_HIT_MAGICAL_DAMAGE_RATE:     val = sd->bonus.hit_magical_damage_rate; break;
 		case SP_CRIT_ATK_DMG:     val = sd->bonus.crit_atk_dmg; break;
 		case SP_CRIT_MATK_DMG:     val = sd->bonus.crit_matk_dmg; break;
+		case SP_CRIT_DMG_RATE:     val = sd->bonus.critical_hit_rate; break;
 		case SP_COOLDOWNRATE:	val = sd->bonus.cooldown_rate; break;
 		// [Custom Bonus]
 		case SP_SKILLPOINT:      val = sd->status.skill_point; break;

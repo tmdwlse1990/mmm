@@ -3129,6 +3129,8 @@ enum e_random_item_group {
 	IG_STATSBOX8,
 	IG_STATSBOX9,
 	IG_STATSBOX10,
+	IG_Vicious_extract,
+	IG_Pf_extract,
 	IG_COMMON2RARE_PET,
 	IG_RARE2EPIC_PET,
 	IG_EPIC2LEGEND_PET,

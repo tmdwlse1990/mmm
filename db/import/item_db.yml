@@ -774,6 +774,13 @@ Body:
     Weight: 10
     Script: |
       getgroupitem(IG_STATSBOX10);
+  - Id: 2001914
+    AegisName: Vicious_extract
+    Name: Vicious extract
+    Type: DelayConsume
+    Weight: 10
+    Script: |
+      laphine_synthesis();
   - Id: 2001951
     AegisName: Donate_Pet_Box
     Name: Donate Pet Box
@@ -1354,6 +1361,230 @@ Body:
       bonus bLuk,10;
     UnEquipScript: |
       heal 0,-300;
+  - Id: 2099010
+    AegisName: AMDARAIS_MANACORE
+    Name: Amdarais Mana Core
+    Type: Card
+    SubType: Enchant
+    Script: |
+      autobonus "{bonus bAllstats,100; }",10,5000,BF_WEAPON|BF_MAGIC,"{ specialeffect2 EF_MVP; showscript \"Amdarais Take Over !!\"; }";
+      autobonus2 "{ bonus bAllstats,100; }",1,5000,BF_WEAPON|BF_MAGIC,"{ specialeffect2 EF_MVP; showscript \"Amdarais Take Over !!\"; }";
+      bonus bAllstats,10;
+  - Id: 2099011
+    AegisName: CMS_ORDER_SUN_1
+    Name: Crimson Order of the Sun
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSkillrate,SKILLRATE_TYPE_ALL,1;
+  - Id: 2099012
+    AegisName: CMS_ORDER_SUN_2
+    Name: Crimson Order of the Sun
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSkillrate,SKILLRATE_TYPE_ALL,4;
+  - Id: 2099013
+    AegisName: CMS_ORDER_SUN_3
+    Name: Crimson Order of the Sun
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSkillrate,SKILLRATE_TYPE_ALL,9;
+  - Id: 2099014
+    AegisName: CMS_ORDER_SUN_4
+    Name: Crimson Order of the Sun
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSkillrate,SKILLRATE_TYPE_ALL,16;
+  - Id: 2099015
+    AegisName: CMS_ORDER_SUN_5
+    Name: Crimson Order of the Sun
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSkillrate,SKILLRATE_TYPE_ALL,25;
+  - Id: 2099016
+    AegisName: CMS_ORDER_MOON_1
+    Name: Crimson Order of the Moon
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bDelayrate,-1;
+  - Id: 2099017
+    AegisName: CMS_ORDER_MOON_2
+    Name: Crimson Order of the Moon
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bDelayrate,-4;
+  - Id: 2099018
+    AegisName: CMS_ORDER_MOON_3
+    Name: Crimson Order of the Moon
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bDelayrate,-9;
+  - Id: 2099019
+    AegisName: CMS_ORDER_MOON_4
+    Name: Crimson Order of the Moon
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bDelayrate,-16;
+  - Id: 2099020
+    AegisName: CMS_ORDER_MOON_5
+    Name: Crimson Order of the Moon
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bDelayrate,-25;
+  - Id: 2099021
+    AegisName: CMS_ORDER_Star_1
+    Name: Crimson Order of the Star
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bCooldownRate,-1;
+  - Id: 2099022
+    AegisName: CMS_ORDER_Star_2
+    Name: Crimson Order of the Star
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bCooldownRate,-4;
+  - Id: 2099023
+    AegisName: CMS_ORDER_Star_3
+    Name: Crimson Order of the Star
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bCooldownRate,-9;
+  - Id: 2099024
+    AegisName: CMS_ORDER_Star_4
+    Name: Crimson Order of the Star
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bCooldownRate,-16;
+  - Id: 2099025
+    AegisName: CMS_ORDER_Star_5
+    Name: Crimson Order of the Star
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bCooldownRate,-25;
+  - Id: 2099026
+    AegisName: CMS_Chaos_SUN_1
+    Name: Crimson Chaos of the Sun
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bCriticalhitDamage,1;
+  - Id: 2099027
+    AegisName: CMS_Chaos_SUN_2
+    Name: Crimson Chaos of the Sun
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bCriticalhitDamage,2;
+  - Id: 2099028
+    AegisName: CMS_Chaos_SUN_3
+    Name: Crimson Chaos of the Sun
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bCriticalhitDamage,3;
+  - Id: 2099029
+    AegisName: CMS_Chaos_SUN_4
+    Name: Crimson Chaos of the Sun
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bCriticalhitDamage,4;
+  - Id: 2099030
+    AegisName: CMS_Chaos_SUN_5
+    Name: Crimson Chaos of the Sun
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bCriticalhitDamage,5;
+  - Id: 2099031
+    AegisName: CMS_Chaos_MOON_1
+    Name: Crimson Chaos of the Moon
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bHitAtk,3;
+      bonus bHitMAtk,3;
+  - Id: 2099032
+    AegisName: CMS_Chaos_MOON_2
+    Name: Crimson Chaos of the Moon
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bHitAtk,6;
+      bonus bHitMAtk,6;
+  - Id: 2099033
+    AegisName: CMS_Chaos_MOON_3
+    Name: Crimson Chaos of the Moon
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bHitAtk,9;
+      bonus bHitMAtk,9;
+  - Id: 2099034
+    AegisName: CMS_Chaos_MOON_4
+    Name: Crimson Chaos of the Moon
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bHitAtk,12;
+      bonus bHitMAtk,12;
+  - Id: 2099035
+    AegisName: CMS_Chaos_MOON_5
+    Name: Crimson Chaos of the Moon
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus bHitAtk,15;
+      bonus bHitMAtk,15;
+  - Id: 2099036
+    AegisName: CMS_Chaos_Star_1
+    Name: Crimson Chaos of the Star
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSubSize,Size_All,2;
+  - Id: 2099037
+    AegisName: CMS_Chaos_Star_2
+    Name: Crimson Chaos of the Star
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSubSize,Size_All,4;
+  - Id: 2099038
+    AegisName: CMS_Chaos_Star_3
+    Name: Crimson Chaos of the Star
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSubSize,Size_All,6;
+  - Id: 2099039
+    AegisName: CMS_Chaos_Star_4
+    Name: Crimson Chaos of the Star
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSubSize,Size_All,8;
+  - Id: 2099040
+    AegisName: CMS_Chaos_Star_5
+    Name: Crimson Chaos of the Star
+    Type: Card
+    SubType: Enchant
+    Script: |
+      bonus2 bSubSize,Size_All,10;
 #   [Guardian Stone Special]
   - Id: 2233001
     AegisName: Guardian_Coin
@@ -3951,6 +4182,12 @@ Body:
     Name: Extreme Kraken leg
     Type: etc
     Buy: 20
+    Weight: 10
+  - Id: 2239006
+    AegisName: Vicious_Core
+    Name: Vicious Core
+    Type: etc
+    Buy: 2000
     Weight: 10
 
   - Id: 80000
