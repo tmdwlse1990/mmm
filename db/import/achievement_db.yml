@@ -88,6 +88,36 @@ Body:
       Amount: 1
       TitleId: 1021
     Score: 10
+  - Id: 100103
+    Group: Battle
+    Name: Incubus
+    Targets:
+      - Id: 0
+        Mob: INCUBUS
+        Count: 3000
+    Rewards:
+      TitleId: 1015
+    Score: 10
+  - Id: 100104
+    Group: Battle
+    Name: Succubus
+    Targets:
+      - Id: 0
+        Mob: SUCCUBUS
+        Count: 3000
+    Rewards:
+      TitleId: 1016
+    Score: 10
+  - Id: 100105
+    Group: Battle
+    Name: Dracula
+    Targets:
+      - Id: 0
+        Mob: DRACULA
+        Count: 77
+    Rewards:
+      TitleId: 1017
+    Score: 10
   - Id: 220001
     Group: Get_Zeny
     Name: Rich King (1) # 10,000,000 zeny
@@ -102,3 +132,23 @@ Body:
     Rewards:
       TitleId: 1010
     Score: 10
+  - Id: 220003
+    Group: Get_Zeny
+    Name: God Casino
+    Rewards:
+      TitleId: 1011
+  - Id: 220004
+    Group: Get_Zeny
+    Name: God Oridecon
+    Rewards:
+      TitleId: 1012
+  - Id: 220005
+    Group: Get_Zeny
+    Name: God Elunium
+    Rewards:
+      TitleId: 1013
+  - Id: 220006
+    Group: Get_Zeny
+    Name: Umazing
+    Rewards:
+      TitleId: 1014

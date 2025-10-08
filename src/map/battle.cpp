@@ -10154,6 +10154,8 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 
 	battle_absorb_damage(target, &ad);
 
+	battle_drain2(sd, target, ad.damage, ad.damage, tstatus->race, tstatus->class_);
+
 	if(iscritical)
 		clif_skill_damage( *target, *target, gettick(), ad.amotion, ad.dmotion, ad.damage, 1, TK_STORMKICK, -1, DMG_MULTI_HIT);
 	//battle_do_reflect(BF_MAGIC,&ad, src, target, skill_id, skill_lv); //WIP [lighta] Magic skill has own handler at skill_attack
@@ -10878,6 +10880,46 @@ bool battle_vellum_damage(map_session_data *sd, struct block_list *target, struc
 /*===========================================
  * Perform battle drain effects (HP/SP loss)
  *-------------------------------------------*/
+void battle_drain2(map_session_data *sd, struct block_list *tbl, int64 rdamage, int64 ldamage, int32 race, int32 class_)
+{
+	struct weapon_data *wd;
+	int64 *damage;
+	int32 thp = 0, // HP gained
+		tsp = 0, // SP gained
+		//rhp = 0, // HP reduced from target
+		//rsp = 0, // SP reduced from target
+		hp = 0, sp = 0, php =0, psp = 0;
+
+	if (!CHK_RACE(race) && !CHK_CLASS(class_))
+		return;
+	if(sd) {
+		status_data* sstatus = status_get_status_data(*sd);
+		if (sd->bonus.hp_drain_per.rate > rand() % 1000)
+			php += (sstatus->max_hp / 100) * sd->bonus.hp_drain_per.per;
+		if (sd->bonus.sp_drain_per.rate > rand() % 1000)
+			psp += (sstatus->max_sp / 100) * sd->bonus.sp_drain_per.per;
+		//ShowDebug("battle_drain: Passive Drain: %d%% HP, %d%% Proc\n", sd->bonus.hp_drain_per.per, sd->bonus.hp_drain_per.rate);
+		//ShowDebug("battle_drain: Passive Drain: %d%% HP, %d%% Proc\n", php, psp);
+
+		if(php)
+			thp += php;
+
+		if(psp)
+			tsp += psp;
+	}
+
+	if (!thp && !tsp)
+		return;
+
+	status_heal(sd, thp, tsp, battle_config.show_hp_sp_drain?3:1);
+
+	//if (rhp || rsp)
+	//	status_zap(tbl, rhp, rsp);
+}
+
+/*===========================================
+ * Perform battle drain effects (HP/SP loss)
+ *-------------------------------------------*/
 void battle_drain(map_session_data *sd, struct block_list *tbl, int64 rdamage, int64 ldamage, int32 race, int32 class_)
 {
 	struct weapon_data *wd;
@@ -10886,11 +10928,25 @@ void battle_drain(map_session_data *sd, struct block_list *tbl, int64 rdamage, i
 		tsp = 0, // SP gained
 		//rhp = 0, // HP reduced from target
 		//rsp = 0, // SP reduced from target
-		hp = 0, sp = 0;
+		hp = 0, sp = 0, php =0, psp = 0;
 
 	if (!CHK_RACE(race) && !CHK_CLASS(class_))
 		return;
+	if(sd) {
+		status_data* sstatus = status_get_status_data(*sd);
+		if (sd->bonus.hp_drain_per.rate > rand() % 1000)
+			php += (sstatus->max_hp / 100) * sd->bonus.hp_drain_per.per;
+		if (sd->bonus.sp_drain_per.rate > rand() % 1000)
+			psp += (sstatus->max_sp / 100) * sd->bonus.sp_drain_per.per;
+		//ShowDebug("battle_drain: Passive Drain: %d%% HP, %d%% Proc\n", sd->bonus.hp_drain_per.per, sd->bonus.hp_drain_per.rate);
+		//ShowDebug("battle_drain: Passive Drain: %d%% HP, %d%% Proc\n", php, psp);
 
+		if(php)
+			thp += php;
+
+		if(psp)
+			tsp += psp;
+	}
 	for (int32 i = 0; i < 4; i++) {
 		//First two iterations: Right hand
 		if (i < 2) {

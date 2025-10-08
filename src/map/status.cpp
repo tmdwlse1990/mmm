@@ -3760,7 +3760,7 @@ bool status_calc_weight(map_session_data *sd, enum e_status_calc_weight_opt flag
 		if ((skill = pc_checkskill(sd, ALL_INCCARRY)) > 0)
 			sd->max_weight += 2000 * skill;
 		if ((skill = pc_checkskill(sd, SG_KNOWLEDGE)) > 0)
-			sd->max_weight += sd->max_weight * sc->getSCE(SC_KNOWLEDGE)->val1 / 10;
+			sd->max_weight += sd->max_weight * skill / 10;
 		if (pc_ismadogear(sd))
 			sd->max_weight += 15000;
 		

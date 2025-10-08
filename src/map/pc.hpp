@@ -843,6 +843,10 @@ public:
 		int16 critical_rangeatk;
 		int16 weapon_atk_rate, weapon_matk_rate;
 		int32 skill_ratio;
+		struct drain_data {
+			int16 rate; ///< Success rate 10000 = 100%
+			int16 per;  ///< Drain value/rate per attack
+		} hp_drain_per, sp_drain_per;
 	} bonus;
 	// zeroed vars end here.
 

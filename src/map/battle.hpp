@@ -113,6 +113,7 @@ struct Damage battle_calc_attack(int32 attack_type,struct block_list *bl,struct 
 int64 battle_calc_return_damage(struct block_list *bl, struct block_list *src, int64 *, int32 flag, uint16 skill_id, bool status_reflect);
 
 void battle_drain(map_session_data *sd, struct block_list *tbl, int64 rdamage, int64 ldamage, int32 race, int32 class_);
+void battle_drain2(map_session_data *sd, struct block_list *tbl, int64 rdamage, int64 ldamage, int32 race, int32 class_);
 
 int64 battle_attr_fix(struct block_list* src, struct block_list* target, int64 damage, int32 atk_elem, int32 def_type, int32 def_lv, int32 flag = 0);
 int32 battle_calc_cardfix(int32 attack_type, struct block_list *src, struct block_list *target, std::bitset<NK_MAX> nk, int32 s_ele, int32 s_ele_, int64 damage, int32 left, int32 flag);

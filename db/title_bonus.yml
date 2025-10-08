@@ -38,3 +38,29 @@ Body:
   - Id: 1010 # มหาเศรษฐี
     Script: |
       bonus2 bAddGetZenyNum,100,1;
+  - Id: 1011 # คาสิโน
+    Script: |
+      bonus2 bAddGetZenyNum,300,1;
+  - Id: 1012 # เทพโอริ
+    Script: |
+      bonus2 bAddMonsterDropItem,984,1;
+  - Id: 1013 # เทพอีลู
+    Script: |
+      bonus2 bAddMonsterDropItem,985,1;
+  - Id: 1014 # นักทำนายม้า
+    Script: |
+      bonus2 bDropAddRace,RC_All,10;
+  - Id: 1015 # กินเลือด
+    Script: |
+      bonus bHPGainValue,100;
+      bonus bLongHPGainValue,100;
+      bonus bMagicHPGainValue,100;
+  - Id: 1016 # กินมานา
+    Script: |
+      bonus bSPGainValue,30;
+      bonus bLongSPGainValue,30;
+      bonus bMagicSPGainValue,30;
+  - Id: 1017 # กระหายน้ำ
+    Script: |
+      bonus2 bHPDrainPer,10,1;
+      bonus2 bSPDrainPer,10,1;

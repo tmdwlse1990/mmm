@@ -5458,6 +5458,14 @@ void pc_bonus2(map_session_data *sd,int32 type,int32 type2,int32 val)
 		//PC_SKILLRATE_CHECK(type2, val);
 		sd->indexed_bonus.skill_rate_def[type2] += val;
 		break;
+	case SP_HP_DRAIN_PER: // bonus bHPDrainValue,n;
+		sd->bonus.hp_drain_per.rate += type2;
+		sd->bonus.hp_drain_per.per += val;
+		break;
+	case SP_SP_DRAIN_PER: // bonus bSPDrainValue,n;
+		sd->bonus.sp_drain_per.rate += type2;
+		sd->bonus.sp_drain_per.per += val;
+		break;
 	default:
 		if (current_equip_combo_pos > 0) {
 			ShowWarning("pc_bonus2: unknown bonus type %d %d %d in a combo with item #%u\n", type, type2, val, sd->inventory_data[pc_checkequip( sd, current_equip_combo_pos )]->nameid);

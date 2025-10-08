@@ -885,6 +885,8 @@
 	export_constant2("bConRate",SP_CONRATE);
 	export_constant2("bCrtRate",SP_CRTRATE);
 	export_constant2("bCooldownrate",SP_COOLDOWNRATE);
+	export_constant2("bHPDrainPer",SP_HP_DRAIN_PER);
+	export_constant2("bSPDrainPer",SP_SP_DRAIN_PER);
 	export_constant2("bAllStatsRate",SP_ALL_STATS_RATE);
 	export_constant2("bAllTraitStatsRatr",SP_ALL_TRAIT_STATS_RATE);
 
