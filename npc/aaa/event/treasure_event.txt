@@ -835,7 +835,6 @@ OnDisable:
 }
 
 icecastle,177,229,5	script	นักผจญภัยหูยาว	515,{
-//icecastle,94,271,5	script	นักผจญภัยหูยาว	515,{
 	mes "[Misa]";
 	mes "นักผจญภัย!! เจ้าต้องไม่เชื่อแน่!!";
 	next;
@@ -845,23 +844,54 @@ icecastle,177,229,5	script	นักผจญภัยหูยาว	515,{
 	mes "[Misa]";
 	mes "แถวนี้มันต้องมีสมบัติแน่ๆ!!";
 	next;
+	// ===== One-time Migration จากตัวแปรเก่า (#rare_a_used / #rare_b_used) =====
+	// อ้างอิงจำนวนครั้งที่เคยแลกในอดีต เพื่ออัปเดตยอดรวมแบบบัญชี (#sp_total)
+	// และกันการรับซ้ำย้อนหลังด้วย #sp_claimed_global
+	if (!#sp_migrate_done) {
+		.@baseline = (#rare_a_used * 1) + (#rare_b_used * 3); // A=+1 ต่อครั้ง, B=+3 ต่อครั้ง
+		if (.@baseline > #sp_total) #sp_total = .@baseline;
+		if (#sp_claimed_global < .@baseline) #sp_claimed_global = .@baseline;
+		#sp_migrate_done = 1;
+	}
+	
 	if (BaseLevel < 99 || adv_clas < 1) {
 		mes "[Misa]";
 		mes "แต่เจ้าดูขาดประสบการณ์นะ ไปฝึกมามากกว่านี้!!";
-		mes "^FF0000ต้องการ LV 99/50 และ Rank E ขึ้นไป^000000";
+		mes "^FF0000ต้องการ LV 99 และ Rank E ขึ้นไป^000000";
 		end;
 	}
 	mes "[Misa]";
 	mes "เจ้าพร้อมจะไปหาสมบัติแล้วใช่ไหม!!";
 	next;
-	switch(select("แน่นอน!!:ข้าเจออะไรบางอย่างมาด้วย!!:ยกเลิก")) {
+	switch(select("แน่นอน!!:ข้าเจออะไรบางอย่างมาด้วย!!:^00AAFFรับของรางวัลจากการแลกแร่^000000:ยกเลิก")) {
 		case 1:
 			close2;
 			warp "jor_twig", 134, 156;
 			end;
+
 		case 2:
 			break;
+
 		case 3:
+			// ===== รับของรางวัลจากการแลกแร่ (สำหรับตัวละครอื่นในไอดีเดียวกัน) =====
+			// จะคำนวณส่วนต่างที่ยังไม่ได้รับ = #sp_total - sp_claimed_total
+			.@owed = #sp_total - sp_claimed_total;
+			if (.@owed <= 0) {
+				mes "[Misa]";
+				mes "ตอนนี้เจ้ายังไม่มีแต้มคงค้างจากการแลกแร่ของบัญชีนี้นะ";
+				close;
+			}
+			mes "[Misa]";
+			mes "ในบัญชีของเจ้ามีแต้มคงค้างอยู่ ^00FF00"+.@owed+"^000000 แต้ม";
+			mes "จะรับเข้าตัวละครนี้เลยหรือไม่?";
+			if (select("รับเดี๋ยวนี้:ยกเลิก") == 2) close;
+			SkillPoint += .@owed;
+			sp_claimed_total += .@owed;
+			mes "[Misa]";
+			mes "เรียบร้อย! ได้รับ Skill Point จำนวน ^00FF00"+.@owed+"^000000 แต้ม";
+			close;
+
+		case 4:
 			end;
 	}
 
@@ -869,7 +899,7 @@ icecastle,177,229,5	script	นักผจญภัยหูยาว	515,{
 	mes "เจ้ามีของหายากมาให้ข้าดูใช่ไหม!! ไหนเอามาดูซิ!?!";
 	next;
 	switch(select("^FFA500Pure Sapphire Ore^000000 :^FF0000Pure Topaz ore^000000:ยกเลิก")) {
-		case 1:	// กลุ่ม A
+		case 1:	// กลุ่ม A (+1 แต้ม)
 			if (#rare_a_used >= 6) {
 				mes "[Misa]";
 				mes "ข้าได้ครบที่ต้องการแล้ว เจ้าเก็บไว้เถอะนะ";
@@ -882,13 +912,18 @@ icecastle,177,229,5	script	นักผจญภัยหูยาว	515,{
 			}
 			delitem 2000016, 1;
 			set #rare_a_used, #rare_a_used + 1;
-			set SkillPoint, SkillPoint + 1;
+
+			// ได้แต้มเข้าตัวนี้ทันที (พฤติกรรมเดิม) + บันทึกสะสมบัญชี/ตัวละคร
+			SkillPoint += 1;
+			#sp_total += 1;
+			sp_claimed_total += 1;
+
 			mes "[Misa]";
 			mes "ขอบใจ! ข้าให้นี่ตอบแทนเจ้าละกัน";
 			mes "ได้รับ ^00FF00 Skill Point เพิ่มขึ้น 1 แต้ม^000000 แล้ว.";
 			end;
 
-		case 2:	// กลุ่ม B
+		case 2:	// กลุ่ม B (+3 แต้ม)
 			if (#rare_b_used >= 3) {
 				mes "[Misa]";
 				mes "ข้าได้ครบที่ต้องการแล้ว เจ้าเก็บไว้เถอะนะ";
@@ -901,7 +936,12 @@ icecastle,177,229,5	script	นักผจญภัยหูยาว	515,{
 			}
 			delitem 2000015, 1;
 			set #rare_b_used, #rare_b_used + 1;
-			set SkillPoint, SkillPoint + 3;
+
+			// ได้แต้มเข้าตัวนี้ทันที (พฤติกรรมเดิม) + บันทึกสะสมบัญชี/ตัวละคร
+			SkillPoint += 3;
+			#sp_total += 3;
+			sp_claimed_total += 3;
+
 			mes "[Misa]";
 			mes "ยอดเยี่ยม! ของดีแบบนี้หาไม่ได้อีกแล้ว!! เอารางวัลไป!!";
 			mes "ได้รับ ^00FF00 Skill Point เพิ่มขึ้น 3 แต้ม^000000 แล้ว.";
@@ -911,6 +951,7 @@ icecastle,177,229,5	script	นักผจญภัยหูยาว	515,{
 			mes "ไว้เจอกันใหม่.";
 			end;
 	}
+
 Oninit:
 	waitingroom "จุดขุดแร่",0;
 	end;

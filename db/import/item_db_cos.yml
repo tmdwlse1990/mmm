@@ -109,6 +109,3 @@ Body:
     View: 3001
     Script: |
       bonus2 bExpAddRace,RC_All,100;
-  - Id: 31143
-    Script: |
-      bonus2 bExpAddRace,RC_All,100;

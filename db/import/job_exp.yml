@@ -387,7 +387,7 @@ Body:
       Soul_Linker: true
       Gunslinger: true
       Ninja: true
-    MaxBaseLevel: 140
+    MaxBaseLevel: 150
     BaseExp:
       - Level: 1
         Exp: 658

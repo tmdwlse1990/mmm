@@ -54,15 +54,15 @@ Body:
       - SubGroup: 1
         List:
           - Index: 0
-            Item: Vicious_Core_S
+            Item: Vicious_Core
             Amount: 1
             Rate: 3
           - Index: 1
-            Item: Vicious_Core_S
+            Item: Vicious_Core
             Amount: 2
             Rate: 2
           - Index: 2
-            Item: Vicious_Core_S
+            Item: Vicious_Core
             Amount: 3
             Rate: 1
   - Group: STATSBOX2
